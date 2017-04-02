@@ -30,7 +30,7 @@ public class Packet {
 		fcrc32 = (data[5] & 0x01) > 0 ? true : false;
 		int endIndex = data.length;
 		if (fhmac) {
-			hmac = Arrays.copyOf(data, endIndex - 2);
+			hmac = Arrays.copyOfRange(data, endIndex - 2, endIndex);
 			endIndex = endIndex - 2;
 		}
 		this.data = Arrays.copyOfRange(data, 2 + 4, endIndex);
