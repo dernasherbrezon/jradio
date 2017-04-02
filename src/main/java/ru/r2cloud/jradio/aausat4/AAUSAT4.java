@@ -14,7 +14,7 @@ public class AAUSAT4 implements Iterable<AAUSAT4Beacon>, Iterator<AAUSAT4Beacon>
 
 	private final TaggedStreamToPdu input;
 	private byte[] current;
-	
+
 	public AAUSAT4(TaggedStreamToPdu input) {
 		this.input = input;
 	}
@@ -40,18 +40,20 @@ public class AAUSAT4 implements Iterable<AAUSAT4Beacon>, Iterator<AAUSAT4Beacon>
 
 	@Override
 	public AAUSAT4Beacon next() {
-		if( current[0] == 0x59 ) {
-			//long frame
+		if (current[0] == 0x59) {
+			// long frame
 			byte[] viterbi = Viterbi.decode(Arrays.copyOfRange(current, 1, 250));
 			byte[] deShuffled = Randomize.shuffle(viterbi);
-			byte[] result = ReedSolomon.decode(deShuffled);
+			byte[] rawData = ReedSolomon.decode(deShuffled);
 			try {
-				return new AAUSAT4Beacon(result);
+				AAUSAT4Beacon result = new AAUSAT4Beacon();
+				result.readExternal(rawData);
+				return result;
 			} catch (IOException e) {
 				throw new RuntimeException(e);
 			}
-		} else if( current[0] == 0xA6 ) {
-			//short frame
+		} else if (current[0] == 0xA6) {
+			// short frame
 		} else {
 			throw new IllegalArgumentException("invalid frame start: " + current[0]);
 		}

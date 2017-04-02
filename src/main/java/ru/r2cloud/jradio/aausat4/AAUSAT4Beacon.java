@@ -18,8 +18,9 @@ public class AAUSAT4Beacon extends Packet {
 	// # [ 1 byte | 20 bytes | 10 bytes | 7 bytes | 6 bytes | 20 bytes | 20
 	// bytes ]
 	// # [ Valid | EPS | COM | ADCS1 | ADCS2 | AIS1 | AIS2 ]
-	public AAUSAT4Beacon(byte[] raw) throws IOException {
-		super(raw);
+	@Override
+	public void readExternal(byte[] rawData) throws IOException {
+		super.readExternal(rawData);
 		DataInputStream data = new DataInputStream(new ByteArrayInputStream(getData()));
 		byte valid = data.readByte();
 		boolean eps_valid = (valid & (1 << 0)) > 0 ? true : false;
@@ -28,7 +29,7 @@ public class AAUSAT4Beacon extends Packet {
 		boolean adcs2_valid = (valid & (1 << 3)) > 0 ? true : false;
 		boolean ais1_valid = (valid & (1 << 4)) > 0 ? true : false;
 		boolean ais2_valid = (valid & (1 << 5)) > 0 ? true : false;
-
+		
 		if (eps_valid) {
 			eps = new EPS(data);
 		} else {

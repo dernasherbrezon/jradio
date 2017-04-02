@@ -1,8 +1,11 @@
 package ru.r2cloud.jradio.csp;
 
+import java.io.IOException;
 import java.util.Arrays;
 
-public class Packet {
+import ru.r2cloud.jradio.Externalizable;
+
+public class Packet implements Externalizable {
 
 	private int length;
 	private Priority priority;
@@ -17,9 +20,10 @@ public class Packet {
 	
 	private byte[] hmac;
 
-	public Packet(byte[] data) {
+	@Override
+	public void readExternal(byte[] data) throws IOException {
 		if (data.length < 6) {
-			throw new IllegalArgumentException("invalid csp header size: " + data.length);
+			throw new IOException("invalid csp header size: " + data.length);
 		}
 		length = data[0] << 8 | data[1];
 		priority = Priority.valufOfCode(data[2] >> 6);
@@ -99,5 +103,5 @@ public class Packet {
 	public void setFcrc32(boolean fcrc32) {
 		this.fcrc32 = fcrc32;
 	}
-
+	
 }
