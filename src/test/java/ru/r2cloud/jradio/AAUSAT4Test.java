@@ -23,6 +23,22 @@ public class AAUSAT4Test {
 
 	private AAUSAT4 input;
 	
+	public static void main(String[] args) throws Exception {
+		ThroughputStream throughputStream = new ThroughputStream(new RepeatedWavSource("aausat-4.wav"));
+		AAUSAT4 input = new AAUSAT4(new TaggedStreamToPdu(new TaggedStreamMultiplyLength(new UnpackedToPacked(new FixedLengthTagger(new CorrelateAccessCodeTag(new BinarySlicer(new ClockRecoveryMM(throughputStream, 20.0f, (float) (0.25 * 0.175 * 0.175), 0.005f, 0.175f, 0.005f)), 8, "syncword", "010011110101101000110100010000110101010101000010"), "syncword", "packet_len", 2008), 1, Endianness.GR_MSB_FIRST, Byte.class), "packet_len", (double) 1 / 8), "packet_len"));
+		int i = 0;
+		while( input.hasNext() && i < 100 ) {
+			try {
+				input.next();
+			} catch (Exception e) {
+				//do nothing
+			}
+			i++;
+		}
+		input.close();
+		System.out.println("average " + throughputStream.getAverage() + " bytes/s");
+	}
+	
 	@Test
 	public void testSuccess() throws Exception {
 		input = new AAUSAT4(new TaggedStreamToPdu(new TaggedStreamMultiplyLength(new UnpackedToPacked(new FixedLengthTagger(new CorrelateAccessCodeTag(new BinarySlicer(new ClockRecoveryMM(new WavFileSource(WavFileSourceTest.class.getClassLoader().getResourceAsStream("aausat-4.wav")), 20.0f, (float) (0.25 * 0.175 * 0.175), 0.005f, 0.175f, 0.005f)), 8, "syncword", "010011110101101000110100010000110101010101000010"), "syncword", "packet_len", 2008), 1, Endianness.GR_MSB_FIRST, Byte.class), "packet_len", (double) 1 / 8), "packet_len"));
