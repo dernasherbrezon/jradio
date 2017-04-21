@@ -28,7 +28,7 @@ public class AAUSAT4 implements Iterable<AAUSAT4Beacon>, Iterator<AAUSAT4Beacon>
 	public boolean hasNext() {
 		try {
 			current = input.readBytes();
-			if (current != null || current.length == 0) {
+			if (current != null && current.length != 0) {
 				return true;
 			} else {
 				return false;

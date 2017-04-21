@@ -13,10 +13,14 @@ import ru.r2cloud.jradio.FloatInput;
 public class WavFileSource implements FloatInput {
 
 	private AudioInputStream ais;
-	private byte[] buf = new byte[2];
+	private byte[] buf;
 
 	public WavFileSource(InputStream is) throws UnsupportedAudioFileException, IOException {
 		ais = AudioSystem.getAudioInputStream(is);
+		if (ais.getFormat().getSampleSizeInBits() != 16) {
+			throw new UnsupportedAudioFileException("unsupported sample size in bits: " + ais.getFormat().getSampleSizeInBits());
+		}
+		buf = new byte[ais.getFormat().getFrameSize()];
 	}
 
 	@Override

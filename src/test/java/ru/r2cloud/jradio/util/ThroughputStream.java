@@ -1,4 +1,4 @@
-package ru.r2cloud.jradio;
+package ru.r2cloud.jradio.util;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -7,6 +7,8 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicLong;
+
+import ru.r2cloud.jradio.FloatInput;
 
 public class ThroughputStream implements FloatInput {
 
@@ -30,20 +32,26 @@ public class ThroughputStream implements FloatInput {
 			}
 		}, 1000, 1000, TimeUnit.MILLISECONDS);
 	}
-	
+
 	public List<Long> getSamples() {
 		return samples;
 	}
-	
+
 	public Long getAverage() {
+		if (samples.isEmpty()) {
+			return 0l;
+		}
 		return total / samples.size();
 	}
-	
+
+	public Long getCurrent() {
+		return numberOfBytes.get();
+	}
+
 	@Override
 	public float readFloat() throws IOException {
 		float result = impl.readFloat();
-		//wavsource outputs 2bytes
-		numberOfBytes.addAndGet(2);
+		numberOfBytes.addAndGet(impl.getFrameSize());
 		return result;
 	}
 
