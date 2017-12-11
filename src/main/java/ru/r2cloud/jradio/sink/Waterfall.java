@@ -1,6 +1,5 @@
 package ru.r2cloud.jradio.sink;
 
-import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.Closeable;
@@ -63,6 +62,12 @@ public class Waterfall implements Closeable {
 					float img = previousBuf[i + 1] * iNormalizationFactor;
 					result[j] = (float) (10.0 * Math.log10((real * real) + (img * img) + 1e-20));
 				}
+				
+				int length = d_fftsize/2;
+				float[] tmp = new float[length];
+				System.arraycopy(result, 0, tmp, 0, length);
+				System.arraycopy(result, length, result, 0, result.length - length);
+				System.arraycopy(tmp, 0, result, result.length - length, length);
 
 				System.out.println(currentRow);
 				for (int i = 0; i < result.length; i++) {
@@ -82,24 +87,6 @@ public class Waterfall implements Closeable {
 		} catch (EOFException e) {
 			return;
 		}
-	}
-
-	private final double minValue = -200.0;
-	private final double maxValue = 0.0;
-	// due to minus, swap them
-	private final double halfValue = (minValue - maxValue) / 2;
-	private final double colorShiftPerValueOnInterval = 255 / Math.abs(halfValue);
-
-	private Color color(double value) {
-		double diff = value - halfValue;
-		int colorShift = (int) (Math.abs(diff) * colorShiftPerValueOnInterval);
-		Color result;
-		if (diff > 0.0) {
-			result = new Color(0 + colorShift, 255 - colorShift, 0);
-		} else {
-			result = new Color(0, 255 - colorShift, 0 + colorShift);
-		}
-		return result;
 	}
 
 	@Override
