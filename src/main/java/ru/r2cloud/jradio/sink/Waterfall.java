@@ -1,6 +1,5 @@
 package ru.r2cloud.jradio.sink;
 
-import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.Closeable;
 import java.io.EOFException;
@@ -8,46 +7,42 @@ import java.io.IOException;
 
 import org.jtransforms.fft.FloatFFT_1D;
 
-import ru.r2cloud.jradio.FloatInput;
+import ru.r2cloud.jradio.source.WavFileSource;
 
 public class Waterfall implements Closeable {
 
 	private final int d_fftsize;
 	private final int d_wintype;
 	private final double d_center_freq;
-	private final double d_bandwidth;
-	private final FloatInput source;
-	private final int sampleRate;
+	private final WavFileSource source;
 	private final FloatFFT_1D fft;
-	private final int numUpdatesPerSecond;
+	private final int numRowsPerSecond;
 	private final WaterfallPalette palette = new WaterfallPalette(0.0f, -160.0f, 0x000000, 0x0000e7, 0x0094ff, 0x00ffb8, 0x2eff00, 0xffff00, 0xff8800, 0xff0000, 0xff007c);
 
-	public Waterfall(FloatInput source, int d_fftsize, int d_wintype, double d_center_freq, double d_bandwidth, int numUpdatesPerSecond) {
+	public Waterfall(WavFileSource source, int d_wintype, double d_center_freq, int numRowsPerSecond, int width) {
 		this.source = source;
-		this.d_fftsize = d_fftsize;
+		this.d_fftsize = width;
 		this.d_wintype = d_wintype;
 		this.d_center_freq = d_center_freq;
-		this.d_bandwidth = d_bandwidth;
-		// verify somehow
-		this.sampleRate = (int) d_bandwidth;
 		this.fft = new FloatFFT_1D(d_fftsize);
-		this.numUpdatesPerSecond = numUpdatesPerSecond;
+		this.numRowsPerSecond = numRowsPerSecond;
 	}
 
-	public void save(BufferedImage image) throws IOException {
-		int blockWidth = image.getWidth() / d_fftsize;
-		int blockHeight = blockWidth;
-		Graphics2D graphic = (Graphics2D) image.getGraphics();
+	public BufferedImage save() throws IOException {
+		int height = (int) (source.getFrameLength() / (source.getFormat().getSampleRate() / numRowsPerSecond));
+		BufferedImage image = new BufferedImage(d_fftsize, height, BufferedImage.TYPE_INT_RGB);
 
-		int maxPossibleNumberOfBlocksPerRow = sampleRate / numUpdatesPerSecond;
+		int maxPossibleNumberOfBlocksPerRow = (int) (source.getFormat().getSampleRate() / numRowsPerSecond);
 		int skipOnEveryRow = maxPossibleNumberOfBlocksPerRow - d_fftsize;
+		//FIXME skipOnEveryRow could be negative!!
 
 		float iNormalizationFactor = (float) 1 / d_fftsize;
 
-		try {
-			float[] previousBuf = null;
-			int currentRow = 0;
-			while (true) {
+		float[] previousBuf = null;
+		int currentRow = 0;
+		// skip samples which were not fitted into height.
+		while (currentRow < height) {
+			try {
 				float[] newBuf = new float[d_fftsize * 2];
 				for (int i = 0; i < newBuf.length; i += 2) {
 					newBuf[i] = source.readFloat();
@@ -62,8 +57,8 @@ public class Waterfall implements Closeable {
 					float img = previousBuf[i + 1] * iNormalizationFactor;
 					result[j] = (float) (10.0 * Math.log10((real * real) + (img * img) + 1e-20));
 				}
-				
-				int length = d_fftsize/2;
+
+				int length = d_fftsize / 2;
 				float[] tmp = new float[length];
 				System.arraycopy(result, 0, tmp, 0, length);
 				System.arraycopy(result, length, result, 0, result.length - length);
@@ -83,10 +78,11 @@ public class Waterfall implements Closeable {
 				for (int i = 0; i < skipOnEveryRow; i++) {
 					source.readFloat();
 				}
+			} catch (EOFException e) {
+				break;
 			}
-		} catch (EOFException e) {
-			return;
 		}
+		return image;
 	}
 
 	@Override

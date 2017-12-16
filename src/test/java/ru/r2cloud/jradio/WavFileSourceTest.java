@@ -13,6 +13,14 @@ import ru.r2cloud.jradio.source.WavFileSource;
 public class WavFileSourceTest {
 
 	private WavFileSource source;
+	
+	@Test
+	public void testStereo() throws Exception {
+		source = new WavFileSource(WavFileSourceTest.class.getClassLoader().getResourceAsStream("stereo.wav"));
+		assertEquals(0.0012512588873505592, source.readFloat(), 0.0);
+		assertEquals(-0.0001831110566854477, source.readFloat(), 0.0);
+		assertEquals(-0.00009155552834272385, source.readFloat(), 0.0);
+	}
 
 	@Test
 	public void test() throws Exception {
