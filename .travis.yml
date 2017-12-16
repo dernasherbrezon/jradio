@@ -9,7 +9,7 @@ before_cache:
   - rm -rf $HOME/.m2/repository/ru/r2cloud/
 
 script:
-  - mvn cobertura:cobertura
+  - mvn test
   
 after_success:
   - bash <(curl -s https://codecov.io/bash)
