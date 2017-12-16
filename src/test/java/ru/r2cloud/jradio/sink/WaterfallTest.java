@@ -26,11 +26,12 @@ public class WaterfallTest {
 
 	@Test
 	public void testSuccess() throws Exception {
-		Waterfall waterfall = new Waterfall(new WavFileSource(WaterfallTest.class.getClassLoader().getResourceAsStream("aausat-4.wav")), 100, 1024);
-		BufferedImage image = waterfall.save();
+		Waterfall waterfall = new Waterfall(100, 1024);
+		WavFileSource source = new WavFileSource(WaterfallTest.class.getClassLoader().getResourceAsStream("aausat-4.wav"));
+		BufferedImage image = waterfall.process(source);
 		File actual = new File(tempFolder.getRoot(), UUID.randomUUID().toString());
 		ImageIO.write(image, "png", new FileOutputStream(actual));
-		waterfall.close();
+		source.close();
 		try (InputStream is1 = WavFileSourceTest.class.getClassLoader().getResourceAsStream("expectedWaterfall.png"); InputStream is2 = new FileInputStream(actual)) {
 			while (true) {
 				try {

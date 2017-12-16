@@ -1,7 +1,6 @@
 package ru.r2cloud.jradio.sink;
 
 import java.awt.image.BufferedImage;
-import java.io.Closeable;
 import java.io.EOFException;
 import java.io.IOException;
 
@@ -9,24 +8,23 @@ import org.jtransforms.fft.FloatFFT_1D;
 
 import ru.r2cloud.jradio.source.WavFileSource;
 
-public class Waterfall implements Closeable {
+public class Waterfall {
 
 	private final int d_fftsize;
-	private final WavFileSource source;
 	private final FloatFFT_1D fft;
 	private final int numRowsPerSecond;
 	private final WaterfallPalette palette = new WaterfallPalette(0.0f, -160.0f, 0x000000, 0x0000e7, 0x0094ff, 0x00ffb8, 0x2eff00, 0xffff00, 0xff8800, 0xff0000, 0xff007c);
 
-	public Waterfall(WavFileSource source, int numRowsPerSecond, int width) {
-		this.source = source;
+	public Waterfall(int numRowsPerSecond, int width) {
 		this.d_fftsize = width;
 		this.fft = new FloatFFT_1D(d_fftsize);
 		this.numRowsPerSecond = numRowsPerSecond;
 	}
 
-	public BufferedImage save() throws IOException {
+	public BufferedImage process(WavFileSource source) throws IOException {
 		int maxPossibleNumberOfBlocksPerRow = (int) (source.getFormat().getSampleRate() / numRowsPerSecond);
-		// requested number of rows might be more than available in fft. adjust height
+		// requested number of rows might be more than available in fft. adjust
+		// height
 		if (maxPossibleNumberOfBlocksPerRow < d_fftsize) {
 			maxPossibleNumberOfBlocksPerRow = d_fftsize;
 		}
@@ -84,11 +82,6 @@ public class Waterfall implements Closeable {
 			}
 		}
 		return image;
-	}
-
-	@Override
-	public void close() throws IOException {
-		source.close();
 	}
 
 }
