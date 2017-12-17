@@ -60,13 +60,17 @@ public class Waterfall {
 				}
 
 				int length = d_fftsize / 2;
-				float[] tmp = new float[length];
-				System.arraycopy(fftResult, 0, tmp, 0, length);
-				System.arraycopy(fftResult, length, fftResult, 0, fftResult.length - length);
-				System.arraycopy(tmp, 0, fftResult, fftResult.length - length, length);
-
 				for (int i = 0; i < fftResult.length; i++) {
-					image.setRGB(i, height - currentRow - 1, palette.getRGB(fftResult[i]));
+					// original algorithm swapped 2 halfs of result using array
+					// copy and third array.
+					// replaced it with juggling with index below
+					int index;
+					if (i < length) {
+						index = length + i;
+					} else {
+						index = i - length;
+					}
+					image.setRGB(i, height - currentRow - 1, palette.getRGB(fftResult[index]));
 				}
 
 				currentRow++;
