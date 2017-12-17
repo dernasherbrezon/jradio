@@ -36,37 +36,37 @@ public class Waterfall {
 		float iNormalizationFactor = (float) 1 / d_fftsize;
 
 		float[] previousBuf = null;
+		float[] fftBuf = new float[d_fftsize * 2];
+		float[] fftResult = new float[d_fftsize];
 		int currentRow = 0;
 		// skip samples which were not fitted into height.
 		while (currentRow < height) {
 			try {
-				float[] newBuf = new float[d_fftsize * 2];
-				for (int i = 0; i < newBuf.length; i += 2) {
-					newBuf[i] = source.readFloat();
+				for (int i = 0; i < fftBuf.length; i += 2) {
+					fftBuf[i] = source.readFloat();
 					if (source.getFormat().getChannels() == 2) {
-						newBuf[i + 1] = source.readFloat();
+						fftBuf[i + 1] = source.readFloat();
 					} else {
-						newBuf[i + 1] = 0.0f;
+						fftBuf[i + 1] = 0.0f;
 					}
 				}
 				// TODO apply windowing function to the previous data
-				previousBuf = newBuf;
+				previousBuf = fftBuf;
 				fft.complexForward(previousBuf);
-				float[] result = new float[d_fftsize];
 				for (int i = 0, j = 0; i < previousBuf.length; i += 2, j++) {
 					float real = previousBuf[i] * iNormalizationFactor;
 					float img = previousBuf[i + 1] * iNormalizationFactor;
-					result[j] = (float) (10.0 * Math.log10((real * real) + (img * img) + 1e-20));
+					fftResult[j] = (float) (10.0 * Math.log10((real * real) + (img * img) + 1e-20));
 				}
 
 				int length = d_fftsize / 2;
 				float[] tmp = new float[length];
-				System.arraycopy(result, 0, tmp, 0, length);
-				System.arraycopy(result, length, result, 0, result.length - length);
-				System.arraycopy(tmp, 0, result, result.length - length, length);
+				System.arraycopy(fftResult, 0, tmp, 0, length);
+				System.arraycopy(fftResult, length, fftResult, 0, fftResult.length - length);
+				System.arraycopy(tmp, 0, fftResult, fftResult.length - length, length);
 
-				for (int i = 0; i < result.length; i++) {
-					image.setRGB(i, height - currentRow - 1, palette.getRGB(result[i]));
+				for (int i = 0; i < fftResult.length; i++) {
+					image.setRGB(i, height - currentRow - 1, palette.getRGB(fftResult[i]));
 				}
 
 				currentRow++;
