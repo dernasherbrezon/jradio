@@ -3,12 +3,7 @@ package ru.r2cloud.jradio.sink;
 import static org.junit.Assert.assertEquals;
 
 import java.awt.image.BufferedImage;
-import java.io.EOFException;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.InputStream;
-import java.util.UUID;
 
 import javax.imageio.ImageIO;
 
@@ -29,19 +24,12 @@ public class WaterfallTest {
 		Waterfall waterfall = new Waterfall(100, 1024);
 		WavFileSource source = new WavFileSource(WaterfallTest.class.getClassLoader().getResourceAsStream("aausat-4.wav"));
 		BufferedImage image = waterfall.process(source);
-		File actual = new File(tempFolder.getRoot(), UUID.randomUUID().toString());
-		ImageIO.write(image, "png", new FileOutputStream(actual));
 		source.close();
-		try (InputStream is1 = WavFileSourceTest.class.getClassLoader().getResourceAsStream("expectedWaterfall.png"); InputStream is2 = new FileInputStream(actual)) {
-			while (true) {
-				try {
-					int expected = is1.read();
-					if (expected == -1) {
-						break;
-					}
-					assertEquals(expected, is2.read());
-				} catch (EOFException e) {
-					break;
+		try (InputStream is1 = WavFileSourceTest.class.getClassLoader().getResourceAsStream("expectedWaterfall.png")) {
+			BufferedImage expected = ImageIO.read(is1);
+			for (int i = 0; i < expected.getWidth(); i++) {
+				for (int j = 0; j < expected.getHeight(); j++) {
+					assertEquals(expected.getRGB(i, j), image.getRGB(i, j));
 				}
 			}
 		}
