@@ -8,14 +8,17 @@ import org.jtransforms.fft.FloatFFT_1D;
 
 import ru.r2cloud.jradio.source.WavFileSource;
 
-public class Waterfall {
+public class Spectogram {
 
 	private final int d_fftsize;
 	private final FloatFFT_1D fft;
 	private final int numRowsPerSecond;
-	private final WaterfallPalette palette = new WaterfallPalette(0.0f, -160.0f, 0x000000, 0x0000e7, 0x0094ff, 0x00ffb8, 0x2eff00, 0xffff00, 0xff8800, 0xff0000, 0xff007c);
+	private final SpectogramPalette palette = new SpectogramPalette(0.0f, -160.0f, 0x000000, 0x0000e7, 0x0094ff, 0x00ffb8, 0x2eff00, 0xffff00, 0xff8800, 0xff0000, 0xff007c);
 
-	public Waterfall(int numRowsPerSecond, int width) {
+	public Spectogram(int numRowsPerSecond, int width) {
+		if (width <= 0) {
+			throw new IllegalArgumentException("width should be positive: " + width);
+		}
 		this.d_fftsize = width;
 		this.fft = new FloatFFT_1D(d_fftsize);
 		this.numRowsPerSecond = numRowsPerSecond;
@@ -29,6 +32,9 @@ public class Waterfall {
 			maxPossibleNumberOfBlocksPerRow = d_fftsize;
 		}
 		int height = (int) (source.getFrameLength() / maxPossibleNumberOfBlocksPerRow);
+		if (height <= 0) {
+			throw new IOException("unable to create image with height " + height + ". total number of samples: " + source.getFrameLength() + " rows per second: " + numRowsPerSecond + " sample rate: " + source.getFormat().getSampleRate());
+		}
 		BufferedImage image = new BufferedImage(d_fftsize, height, BufferedImage.TYPE_INT_RGB);
 
 		int skipOnEveryRow = maxPossibleNumberOfBlocksPerRow - d_fftsize;

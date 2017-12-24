@@ -2,14 +2,14 @@ package ru.r2cloud.jradio.sink;
 
 import java.awt.Color;
 
-public class WaterfallPalette {
+public class SpectogramPalette {
 
 	private Color[] palette;
 	private float step;
 	private float max;
 	private float min;
 
-	public WaterfallPalette(float max, float min, int... palette) {
+	public SpectogramPalette(float max, float min, int... palette) {
 		this.max = max;
 		this.min = min;
 		this.palette = new Color[palette.length];

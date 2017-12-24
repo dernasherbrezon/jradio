@@ -5,9 +5,9 @@ import static org.junit.Assert.assertEquals;
 import org.junit.Before;
 import org.junit.Test;
 
-public class WaterfallPaletteTest {
+public class SpectogramPaletteTest {
 	
-	private WaterfallPalette palette;
+	private SpectogramPalette palette;
 
 	@Test
 	public void testInterpolation() {
@@ -27,7 +27,7 @@ public class WaterfallPaletteTest {
 	
 	@Before
 	public void start() {
-		palette = new WaterfallPalette(0.0f, -160.0f, 0x000000, 0x0000e7, 0x0094ff, 0x00ffb8, 0x2eff00, 0xffff00, 0xff8800, 0xff0000, 0xff007c);
+		palette = new SpectogramPalette(0.0f, -160.0f, 0x000000, 0x0000e7, 0x0094ff, 0x00ffb8, 0x2eff00, 0xffff00, 0xff8800, 0xff0000, 0xff007c);
 	}
 	
 }
