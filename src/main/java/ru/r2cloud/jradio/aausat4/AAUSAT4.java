@@ -3,7 +3,9 @@ package ru.r2cloud.jradio.aausat4;
 import java.io.Closeable;
 import java.io.IOException;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.Iterator;
+import java.util.Set;
 
 import ru.r2cloud.jradio.blocks.TaggedStreamToPdu;
 import ru.r2cloud.jradio.fec.ccsds.Randomize;
@@ -14,6 +16,12 @@ public class AAUSAT4 implements Iterable<AAUSAT4Beacon>, Iterator<AAUSAT4Beacon>
 
 	private final TaggedStreamToPdu input;
 	private byte[] current;
+	private final static Set<Byte> supportedFormats = new HashSet<>();
+
+	static {
+		supportedFormats.add((byte) 0x59);
+		supportedFormats.add((byte) 0xA6);
+	}
 
 	public AAUSAT4(TaggedStreamToPdu input) {
 		this.input = input;
@@ -28,7 +36,7 @@ public class AAUSAT4 implements Iterable<AAUSAT4Beacon>, Iterator<AAUSAT4Beacon>
 	public boolean hasNext() {
 		try {
 			current = input.readBytes();
-			if (current != null && current.length != 0) {
+			if (current != null && current.length != 0 && supportedFormats.contains(current[0])) {
 				return true;
 			} else {
 				return false;
@@ -54,8 +62,6 @@ public class AAUSAT4 implements Iterable<AAUSAT4Beacon>, Iterator<AAUSAT4Beacon>
 			}
 		} else if (current[0] == 0xA6) {
 			// short frame
-		} else {
-			throw new IllegalArgumentException("invalid frame start: " + current[0]);
 		}
 		return null;
 	}
