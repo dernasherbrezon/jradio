@@ -14,6 +14,7 @@ import ru.r2cloud.jradio.blocks.CorrelateAccessCodeTag;
 import ru.r2cloud.jradio.blocks.FixedLengthTagger;
 import ru.r2cloud.jradio.blocks.UnpackedToPacked;
 import ru.r2cloud.jradio.source.WavFileSource;
+import ru.r2cloud.jradio.source.WavFileSourceTest;
 
 public class UnpackedToPackedTest {
 

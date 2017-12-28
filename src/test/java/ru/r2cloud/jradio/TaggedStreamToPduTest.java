@@ -18,6 +18,7 @@ import ru.r2cloud.jradio.blocks.TaggedStreamMultiplyLength;
 import ru.r2cloud.jradio.blocks.TaggedStreamToPdu;
 import ru.r2cloud.jradio.blocks.UnpackedToPacked;
 import ru.r2cloud.jradio.source.WavFileSource;
+import ru.r2cloud.jradio.source.WavFileSourceTest;
 
 public class TaggedStreamToPduTest {
 

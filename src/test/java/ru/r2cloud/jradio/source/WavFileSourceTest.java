@@ -1,4 +1,4 @@
-package ru.r2cloud.jradio;
+package ru.r2cloud.jradio.source;
 
 import static org.junit.Assert.assertEquals;
 
@@ -34,7 +34,7 @@ public class WavFileSourceTest {
 		}
 	}
 
-	static Float readFloat(InputStream is) throws IOException {
+	public static Float readFloat(InputStream is) throws IOException {
 		Integer readInt = readInt(is);
 		if( readInt == null ) {
 			return null;

@@ -17,6 +17,7 @@ import ru.r2cloud.jradio.blocks.TaggedStreamToPdu;
 import ru.r2cloud.jradio.blocks.UnpackedToPacked;
 import ru.r2cloud.jradio.csp.Priority;
 import ru.r2cloud.jradio.source.WavFileSource;
+import ru.r2cloud.jradio.source.WavFileSourceTest;
 import ru.r2cloud.jradio.util.RepeatedWavSource;
 import ru.r2cloud.jradio.util.ThroughputStream;
 

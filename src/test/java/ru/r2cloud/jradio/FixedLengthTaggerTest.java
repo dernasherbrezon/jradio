@@ -13,6 +13,7 @@ import ru.r2cloud.jradio.blocks.ClockRecoveryMM;
 import ru.r2cloud.jradio.blocks.CorrelateAccessCodeTag;
 import ru.r2cloud.jradio.blocks.FixedLengthTagger;
 import ru.r2cloud.jradio.source.WavFileSource;
+import ru.r2cloud.jradio.source.WavFileSourceTest;
 
 public class FixedLengthTaggerTest {
 
