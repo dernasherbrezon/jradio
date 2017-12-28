@@ -26,14 +26,16 @@ public class RtlTcp implements FloatInput {
 	private float[] lookupTable;
 	private byte[] buffer;
 	private int currentBufIndex = 0;
-	
+	private int tunerType;
+	private int tunerGainCount;
+
 	public RtlTcp(String host, int port, RtlSdrSettings initialSettings) throws UnknownHostException, IOException {
 		socket = new Socket(host, port);
 		is = new DataInputStream(socket.getInputStream());
 		readDongleInfo();
 		os = socket.getOutputStream();
 		setSettings(initialSettings);
-		buffer = new byte[(int)settings.getSampleRate()];
+		buffer = new byte[(int) settings.getSampleRate()];
 		lookupTable = new float[0x100];
 		for (int i = 0; i < 0x100; ++i) {
 			lookupTable[i] = (((i & 0xff)) - 127.4f) * (1.0f / 128.0f);
@@ -56,7 +58,9 @@ public class RtlTcp implements FloatInput {
 				throw new EOFException();
 			}
 		}
-		return lookupTable[buffer[currentBufIndex] & 0xFF];
+		float result = lookupTable[buffer[currentBufIndex] & 0xFF];
+		currentBufIndex++;
+		return result;
 	}
 
 	private void readDongleInfo() throws IOException {
@@ -66,8 +70,10 @@ public class RtlTcp implements FloatInput {
 		if (!magicStr.equals("RTL0")) {
 			throw new IOException("invalid magic: " + magicStr);
 		}
-		LOG.info("tuner type: " + is.readInt());
-		LOG.info("tuner gain count: " + is.readInt());
+		tunerType = is.readInt();
+		LOG.info("tuner type: " + tunerType);
+		tunerGainCount = is.readInt();
+		LOG.info("tuner gain count: " + tunerGainCount);
 	}
 
 	public void setSettings(RtlSdrSettings settings) throws IOException {
@@ -77,5 +83,13 @@ public class RtlTcp implements FloatInput {
 		dos.writeInt((int) settings.getFrequency());
 		dos.writeByte(0x02);
 		dos.writeInt((int) settings.getSampleRate());
+	}
+
+	public int getTunerGainCount() {
+		return tunerGainCount;
+	}
+
+	public int getTunerType() {
+		return tunerType;
 	}
 }
