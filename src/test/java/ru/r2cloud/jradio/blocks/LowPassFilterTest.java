@@ -15,15 +15,15 @@ import ru.r2cloud.jradio.source.WavFileSourceTest;
 public class LowPassFilterTest {
 
 	private LowPassFilter source;
-
+	
 	@Test
 	public void test() throws Exception {
-		source = new LowPassFilter(new WavFileSource(new BufferedInputStream(new FileInputStream("/Users/dernasherbrezon/Downloads/meteor.wav"))));
+		source = new LowPassFilter(new WavFileSource(new BufferedInputStream(new FileInputStream("/Users/dernasherbrezon/Downloads/meteor.wav"))), 1.0, 222222.0, 60000.0, 100.0, Window.WIN_HAMMING, 6.76);
 		try (InputStream is = new FileInputStream("/Users/dernasherbrezon/Downloads/LowPassFilter.bin")) {
 			Float expected = null;
 			while ((expected = WavFileSourceTest.readFloat(is)) != null) {
 				float actual = source.readFloat();
-				assertEquals(expected, actual, 0.0);
+				assertEquals(expected, actual, 0.0001f);
 			}
 		}
 	}
