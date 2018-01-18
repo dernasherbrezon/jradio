@@ -3,6 +3,7 @@ package ru.r2cloud.jradio.blocks;
 import java.io.IOException;
 
 import ru.r2cloud.jradio.FloatInput;
+import ru.r2cloud.jradio.util.MathUtils;
 
 public class ClockRecoveryMM implements FloatInput {
 
@@ -43,7 +44,7 @@ public class ClockRecoveryMM implements FloatInput {
 		d_last_sample = result;
 
 		d_omega = d_omega + d_gain_omega * mm_val;
-		d_omega = d_omega_mid + branchless_clip(d_omega - d_omega_mid, d_omega_lim);
+		d_omega = d_omega_mid + MathUtils.branchless_clip(d_omega - d_omega_mid, d_omega_lim);
 		d_mu = d_mu + d_omega + d_gain_mu * mm_val;
 
 		int skip = (int) Math.floor(d_mu) - curBuf.length;
@@ -55,16 +56,6 @@ public class ClockRecoveryMM implements FloatInput {
 		}
 
 		return result;
-	}
-
-	private static float branchless_clip(float x, float clip) {
-		if (x > clip) {
-			return clip;
-		} else if (x < -clip) {
-			return -clip;
-		} else {
-			return x;
-		}
 	}
 
 	private static float slice(float x) {
