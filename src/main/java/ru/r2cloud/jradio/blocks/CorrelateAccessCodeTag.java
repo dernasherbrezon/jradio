@@ -11,34 +11,35 @@ public class CorrelateAccessCodeTag extends AbstractTaggedStream implements Byte
 
 	private ByteInput input;
 
-	private long d_data_reg = 0;
-	private long d_mask = 0;
-	private int d_threshold;
-	private int d_len = 0;
-	private long d_access_code;
+	private long dataRegister = 0;
+	private long mask = 0;
+	private int threshold;
+	private int length = 0;
+	private long accessCode;
 	private String d_key;
 	private String d_me;
 	private long abs_out_sample_cnt = 0;
 
 	public CorrelateAccessCodeTag(ByteInput input, int threshold, String key, String access_code) {
 		this.input = input;
-		this.d_threshold = threshold;
+		this.threshold = threshold;
 		this.d_key = key;
 		this.d_me = UUID.randomUUID().toString();
-		set_access_code(access_code);
+		setAccessCode(access_code);
 	}
 
-	private void set_access_code(String access_code) {
-		d_len = access_code.length(); // # of bytes in string
-		if (d_len > 64)
-			return;
+	private void setAccessCode(String accessCodeBinary) {
+		length = accessCodeBinary.length(); // # of bytes in string
+		if (length > 64) {
+			throw new IllegalArgumentException("access code with length: " + length + " is unsupported");
+		}
 
 		// set len bottom bits to 1.
-		d_mask = (~0L >>> (64 - d_len));
+		mask = (~0L >>> (64 - length));
 
-		d_access_code = 0;
-		for (int i = 0; i < d_len; i++) {
-			d_access_code = (d_access_code << 1) | (Byte.valueOf(String.valueOf(access_code.charAt(i))) & 1);
+		accessCode = 0;
+		for (int i = 0; i < length; i++) {
+			accessCode = (accessCode << 1) | (Byte.valueOf(String.valueOf(accessCodeBinary.charAt(i))) & 1);
 		}
 
 	}
@@ -48,14 +49,14 @@ public class CorrelateAccessCodeTag extends AbstractTaggedStream implements Byte
 		byte result = input.readByte();
 
 		long wrong_bits = 0;
-		long nwrong = d_threshold + 1;
+		long nwrong = threshold + 1;
 
-		wrong_bits = (d_data_reg ^ d_access_code) & d_mask;
+		wrong_bits = (dataRegister ^ accessCode) & mask;
 		nwrong = calc(wrong_bits);
 
 		// shift in new data
-		d_data_reg = (d_data_reg << 1) | (result & 0x1);
-		if (nwrong <= d_threshold) {
+		dataRegister = (dataRegister << 1) | (result & 0x1);
+		if (nwrong <= threshold) {
 			Tag tag = new Tag();
 			tag.setStreamId(0);
 			tag.setSample(abs_out_sample_cnt);

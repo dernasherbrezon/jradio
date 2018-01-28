@@ -42,7 +42,8 @@ public class Viterbi {
 			branchtab[1][state] = (byte) ((invertPoly2Byte ^ lookup[(2 * state) & poly2]));
 		}
 	}
-
+	
+	//each byte coded 8 bits
 	private byte[] decodeInternal(byte[] data) {
 		byte m0, m1, decision, metric, sym0, sym1;
 		LinkedList<int[]> decisions = new LinkedList<int[]>();

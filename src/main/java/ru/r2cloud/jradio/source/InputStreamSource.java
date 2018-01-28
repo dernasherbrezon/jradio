@@ -5,9 +5,10 @@ import java.io.EOFException;
 import java.io.IOException;
 import java.io.InputStream;
 
+import ru.r2cloud.jradio.ByteInput;
 import ru.r2cloud.jradio.FloatInput;
 
-public class InputStreamSource implements FloatInput {
+public class InputStreamSource implements FloatInput, ByteInput {
 
 	private final InputStream is;
 
@@ -22,6 +23,11 @@ public class InputStreamSource implements FloatInput {
 	@Override
 	public float readFloat() throws IOException {
 		return Float.intBitsToFloat(readInt(is));
+	}
+
+	@Override
+	public byte readByte() throws IOException {
+		return (byte) is.read();
 	}
 
 	@Override
