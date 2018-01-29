@@ -27,7 +27,11 @@ public class InputStreamSource implements FloatInput, ByteInput {
 
 	@Override
 	public byte readByte() throws IOException {
-		return (byte) is.read();
+		int result = is.read();
+		if (result < 0) {
+			throw new EOFException();
+		}
+		return (byte) result;
 	}
 
 	@Override
