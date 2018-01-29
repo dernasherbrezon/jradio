@@ -17,14 +17,20 @@ public class CorrelateAccessCodeTag extends AbstractTaggedStream implements Byte
 	private int length = 0;
 	private long accessCode;
 	private String d_key;
-	private String d_me;
+	private String blockId;
 	private long abs_out_sample_cnt = 0;
+	private boolean soft;
 
 	public CorrelateAccessCodeTag(ByteInput input, int threshold, String key, String access_code) {
+		this(input, threshold, key, access_code, false);
+	}
+	
+	public CorrelateAccessCodeTag(ByteInput input, int threshold, String key, String access_code, boolean soft) {
 		this.input = input;
 		this.threshold = threshold;
 		this.d_key = key;
-		this.d_me = UUID.randomUUID().toString();
+		this.blockId = UUID.randomUUID().toString();
+		this.soft = soft;
 		setAccessCode(access_code);
 	}
 
@@ -47,6 +53,17 @@ public class CorrelateAccessCodeTag extends AbstractTaggedStream implements Byte
 	@Override
 	public byte readByte() throws IOException {
 		byte result = input.readByte();
+		byte toCheck;
+		if (soft) {
+			// make hard for correlation, but leave stream soft
+			if ((result & 0xFF) > 127) {
+				toCheck = 1;
+			} else {
+				toCheck = 0;
+			}
+		} else {
+			toCheck = result;
+		}
 
 		long wrong_bits = 0;
 		long nwrong = threshold + 1;
@@ -55,14 +72,14 @@ public class CorrelateAccessCodeTag extends AbstractTaggedStream implements Byte
 		nwrong = calc(wrong_bits);
 
 		// shift in new data
-		dataRegister = (dataRegister << 1) | (result & 0x1);
+		dataRegister = (dataRegister << 1) | (toCheck & 0x1);
 		if (nwrong <= threshold) {
 			Tag tag = new Tag();
 			tag.setStreamId(0);
 			tag.setSample(abs_out_sample_cnt);
 			tag.setKey(d_key);
 			tag.setValue(String.valueOf(nwrong));
-			tag.setBlockId(d_me);
+			tag.setBlockId(blockId);
 			addTag(tag);
 		}
 
