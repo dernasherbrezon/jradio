@@ -20,6 +20,28 @@ public class ReedSolomon {
 
 	private static final int[] CCSDS_poly = new int[] { 0, 249, 59, 66, 4, 43, 126, 251, 97, 30, 3, 213, 50, 66, 170, 5, 24, 5, 170, 66, 50, 213, 3, 30, 97, 251, 126, 43, 4, 66, 59, 249, 0, };
 
+	public static byte[] decode(byte[] data, int interleaving) {
+		byte[][] interleaved = new byte[interleaving][NN];
+		byte[] result = new byte[data.length - NROOTS * interleaving];
+		for (int i = 0; i < interleaving; i++) {
+			// deinterleave
+			// transform 0 1 2 3 4 5 6 7 8 p1 p2 p3 p4 bytes into ${interleaving} blocks:
+			// 0 4 p1
+			// 1 5 p2
+			// 2 6 p3 &etc
+			for (int j = 0; j < NN; j++) {
+				interleaved[i][j] = data[j * interleaving + i];
+			}
+			// decode each block
+			byte[] decoded = decode(interleaved[i]);
+			// interleave error-corrected results back
+			for (int j = 0; j < decoded.length; j++) {
+				result[j * interleaving + i] = decoded[j];
+			}
+		}
+		return result;
+	}
+
 	public static byte[] decode(byte[] data) {
 		int pad = NN - NROOTS - (data.length - NROOTS);
 		int FCR = 112;
@@ -35,12 +57,11 @@ public class ReedSolomon {
 		int deg_lambda, el, deg_omega;
 		int i, j, r, k;
 		int q, tmp, num1, num2, den, discr_r;
-		int[] lambda = new int[NROOTS + 1], s = new int[NROOTS]; /*
-																 * Err+Eras
-																 * Locator poly
-																 * and syndrome
-																 * poly
-																 */
+		int[] lambda = new int[NROOTS + 1],
+				s = new int[NROOTS]; /*
+										 * Err+Eras Locator poly and syndrome
+										 * poly
+										 */
 		int[] b = new int[NROOTS + 1], t = new int[NROOTS + 1], omega = new int[NROOTS + 1];
 		int[] root = new int[NROOTS], reg = new int[NROOTS + 1], loc = new int[NROOTS];
 		int syn_error, count;
@@ -77,19 +98,6 @@ public class ReedSolomon {
 
 			lambda[0] = 1;
 
-//			if (no_eras > 0) {
-//				/* Init lambda to be the erasure locator polynomial */
-//				lambda[1] = CCSDS_alpha_to[mod255(PRIM * (NN - 1 - eras_pos[0]))];
-//				for (i = 1; i < no_eras; i++) {
-//					u = mod255(PRIM * (NN - 1 - eras_pos[i]));
-//					for (j = i + 1; j > 0; j--) {
-//						tmp = CCSDS_index_of[lambda[j - 1]];
-//						if (tmp != A0)
-//							lambda[j] ^= CCSDS_alpha_to[mod255(u + tmp)];
-//					}
-//				}
-//
-//			}
 			for (i = 0; i < NROOTS + 1; i++) {
 				b[i] = CCSDS_index_of[lambda[i]];
 			}
