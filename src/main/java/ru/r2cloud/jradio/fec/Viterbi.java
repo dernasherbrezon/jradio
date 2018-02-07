@@ -2,13 +2,8 @@ package ru.r2cloud.jradio.fec;
 
 import java.util.LinkedList;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 public class Viterbi {
 	
-	private static final Logger LOG = LoggerFactory.getLogger(Viterbi.class);
-
 	private final static int TAIL = 2;
 	private byte[] metrics1 = new byte[64];
 	private byte[] metrics2 = new byte[64];
@@ -78,8 +73,6 @@ public class Viterbi {
 
 		}
 
-		LOG.info("corrected bit errors: " + (int) old_metrics[0]);
-		
 		int endstate = 0;
 
 		byte[] result = new byte[data.length / 2];
