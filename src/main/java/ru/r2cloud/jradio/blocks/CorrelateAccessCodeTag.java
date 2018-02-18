@@ -56,7 +56,7 @@ public class CorrelateAccessCodeTag extends AbstractTaggedStream implements Byte
 		byte toCheck;
 		if (soft) {
 			// make hard for correlation, but leave stream soft
-			if ((result & 0xFF) > 127) {
+			if (result > 0) {
 				toCheck = 1;
 			} else {
 				toCheck = 0;

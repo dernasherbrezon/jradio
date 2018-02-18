@@ -25,10 +25,11 @@ public class ReedSolomon {
 		byte[] result = new byte[data.length - NROOTS * interleaving];
 		for (int i = 0; i < interleaving; i++) {
 			// deinterleave
-			// transform 0 1 2 3 4 5 6 7 8 p1 p2 p3 p4 bytes into ${interleaving} blocks:
+			// transform 0 1 2 3 4 5 6 7 p1 p2 p3 p4 bytes into ${interleaving} blocks:
 			// 0 4 p1
 			// 1 5 p2
-			// 2 6 p3 &etc
+			// 2 6 p3
+			// 3 7 p4 &etc
 			for (int j = 0; j < NN; j++) {
 				interleaved[i][j] = data[j * interleaving + i];
 			}

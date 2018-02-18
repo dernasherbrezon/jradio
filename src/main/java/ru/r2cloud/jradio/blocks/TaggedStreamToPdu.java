@@ -43,6 +43,7 @@ public class TaggedStreamToPdu extends AbstractTaggedStream implements MessageIn
 		result[0] = firstByte;
 		for (int i = 1; i < length; i++) {
 			result[i] = input.readByte();
+			read++;
 		}
 		return result;
 	}

@@ -73,6 +73,7 @@ public class FixedLengthTagger extends AbstractTaggedStream implements ByteInput
 					lengthTag.setValue(String.valueOf(packet_len));
 					addTag(lengthTag);
 					written += packet_len;
+					nitems_read++;
 					break searchForNext;
 				}
 			}

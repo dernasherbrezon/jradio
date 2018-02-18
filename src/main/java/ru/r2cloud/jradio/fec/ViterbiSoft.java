@@ -44,8 +44,8 @@ public class ViterbiSoft {
 		LinkedList<long[]> decisions = new LinkedList<long[]>();
 		for (int i = 0; i < data.length; i += 2) {
 			long[] d = new long[2];
-			sym0 = data[i] & 0xFF; // convert to unsigned
-			sym1 = data[i + 1] & 0xFF; // convert to unsigned
+			sym0 = 128 + data[i];// & 0xFF; // convert to unsigned
+			sym1 = 128 + data[i + 1];// & 0xFF; // convert to unsigned
 			for (int b = 0; b < 32; b++) {
 				metric = (branchtab[0][b] ^ sym0) + (branchtab[1][b] ^ sym1);
 				m0 = old_metrics[b] + metric;
