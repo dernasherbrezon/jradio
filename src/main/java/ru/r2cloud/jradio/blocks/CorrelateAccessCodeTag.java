@@ -18,7 +18,7 @@ public class CorrelateAccessCodeTag extends AbstractTaggedStream implements Byte
 	private long accessCode;
 	private String d_key;
 	private String blockId;
-	private long abs_out_sample_cnt = 0;
+	private long read = 0;
 	private boolean soft;
 
 	public CorrelateAccessCodeTag(ByteInput input, int threshold, String key, String access_code) {
@@ -76,14 +76,14 @@ public class CorrelateAccessCodeTag extends AbstractTaggedStream implements Byte
 		if (nwrong <= threshold) {
 			Tag tag = new Tag();
 			tag.setStreamId(0);
-			tag.setSample(abs_out_sample_cnt);
+			tag.setSample(read);
 			tag.setKey(d_key);
 			tag.setValue(String.valueOf(nwrong));
 			tag.setBlockId(blockId);
 			addTag(tag);
 		}
 
-		abs_out_sample_cnt++;
+		read++;
 		return result;
 	}
 

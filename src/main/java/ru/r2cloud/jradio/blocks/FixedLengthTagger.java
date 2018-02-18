@@ -18,7 +18,7 @@ public class FixedLengthTagger extends AbstractTaggedStream implements ByteInput
 	private String syncword_tag;
 	private String packetlen_tag;
 	private int packet_len;
-	private int nitems_read = 0;
+	private int read = 0;
 
 	private long written = 0;
 
@@ -55,14 +55,14 @@ public class FixedLengthTagger extends AbstractTaggedStream implements ByteInput
 			}
 
 			// tags are lazily calculated during readByte
-			Tag tag = getTag(nitems_read);
+			Tag tag = getTag(read);
 			if (tag != null && tag.getKey().equals(syncword_tag)) {
 				currentTags.add(tag);
 			}
 			Iterator<Tag> it = currentTags.iterator();
 			while (it.hasNext()) {
 				Tag cur = it.next();
-				if (cur.getSample() + packet_len <= nitems_read + 1) {
+				if (cur.getSample() + packet_len <= read + 1) {
 					it.remove();
 					packet.addAll(window);
 					Tag lengthTag = new Tag();
@@ -73,12 +73,12 @@ public class FixedLengthTagger extends AbstractTaggedStream implements ByteInput
 					lengthTag.setValue(String.valueOf(packet_len));
 					addTag(lengthTag);
 					written += packet_len;
-					nitems_read++;
+					read++;
 					break searchForNext;
 				}
 			}
 
-			nitems_read++;
+			read++;
 		}
 		return readByte();
 	}
