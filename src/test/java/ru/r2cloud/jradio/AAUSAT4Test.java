@@ -12,7 +12,6 @@ import ru.r2cloud.jradio.blocks.BinarySlicer;
 import ru.r2cloud.jradio.blocks.ClockRecoveryMM;
 import ru.r2cloud.jradio.blocks.CorrelateAccessCodeTag;
 import ru.r2cloud.jradio.blocks.FixedLengthTagger;
-import ru.r2cloud.jradio.blocks.TaggedStreamMultiplyLength;
 import ru.r2cloud.jradio.blocks.TaggedStreamToPdu;
 import ru.r2cloud.jradio.blocks.UnpackedToPacked;
 import ru.r2cloud.jradio.csp.Priority;
@@ -26,8 +25,9 @@ public class AAUSAT4Test {
 	private AAUSAT4 input;
 
 	public static void main(String[] args) throws Exception {
+		Context context = new Context();
 		final ThroughputStream throughputStream = new ThroughputStream(new RepeatedWavSource("source.wav", 1));
-		AAUSAT4 input = new AAUSAT4(new TaggedStreamToPdu(new TaggedStreamMultiplyLength(new UnpackedToPacked(new FixedLengthTagger(new CorrelateAccessCodeTag(new BinarySlicer(new ClockRecoveryMM(throughputStream, 20.0f, (float) (0.25 * 0.175 * 0.175), 0.005f, 0.175f, 0.005f)), 8, "syncword", "010011110101101000110100010000110101010101000010"), "syncword", "packet_len", 2008), 1, Endianness.GR_MSB_FIRST, Byte.class), "packet_len", (double) 1 / 8), "packet_len"));
+		AAUSAT4 input = new AAUSAT4(new TaggedStreamToPdu(context, new UnpackedToPacked(context, new FixedLengthTagger(context, new CorrelateAccessCodeTag(context, new BinarySlicer(new ClockRecoveryMM(throughputStream, 20.0f, (float) (0.25 * 0.175 * 0.175), 0.005f, 0.175f, 0.005f)), 8, "010011110101101000110100010000110101010101000010"), 2008), 1, Endianness.GR_MSB_FIRST, Byte.class)));
 		Thread t = new Thread(new Runnable() {
 
 			@Override
@@ -59,8 +59,8 @@ public class AAUSAT4Test {
 
 	@Test
 	public void testSuccess() throws Exception {
-		input = new AAUSAT4(new TaggedStreamToPdu(new TaggedStreamMultiplyLength(new UnpackedToPacked(new FixedLengthTagger(new CorrelateAccessCodeTag(new BinarySlicer(new ClockRecoveryMM(new WavFileSource(WavFileSourceTest.class.getClassLoader().getResourceAsStream("aausat-4.wav")), 20.0f, (float) (0.25 * 0.175 * 0.175), 0.005f, 0.175f, 0.005f)), 8, "syncword", "010011110101101000110100010000110101010101000010"), "syncword", "packet_len", 2008), 1, Endianness.GR_MSB_FIRST, Byte.class),
-				"packet_len", (double) 1 / 8), "packet_len"));
+		Context context = new Context();
+		input = new AAUSAT4(new TaggedStreamToPdu(context, new UnpackedToPacked(context, new FixedLengthTagger(context, new CorrelateAccessCodeTag(context, new BinarySlicer(new ClockRecoveryMM(new WavFileSource(WavFileSourceTest.class.getClassLoader().getResourceAsStream("aausat-4.wav")), 20.0f, (float) (0.25 * 0.175 * 0.175), 0.005f, 0.175f, 0.005f)), 8, "010011110101101000110100010000110101010101000010"), 2008), 1, Endianness.GR_MSB_FIRST, Byte.class)));
 		assertTrue(input.hasNext());
 		AAUSAT4Beacon beacon = input.next();
 		assertEquals(4, beacon.getCom().getBootCount());

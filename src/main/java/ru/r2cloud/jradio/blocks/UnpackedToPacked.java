@@ -2,22 +2,23 @@ package ru.r2cloud.jradio.blocks;
 
 import java.io.IOException;
 
-import ru.r2cloud.jradio.AbstractTaggedStream;
 import ru.r2cloud.jradio.ByteInput;
-import ru.r2cloud.jradio.Tag;
-import ru.r2cloud.jradio.TaggedStream;
+import ru.r2cloud.jradio.Context;
 import ru.r2cloud.jradio.Endianness;
+import ru.r2cloud.jradio.Tag;
 
-public class UnpackedToPacked extends AbstractTaggedStream implements ByteInput {
+public class UnpackedToPacked implements ByteInput {
 
-	private ByteInput input;
-	private int d_bits_per_chunk;
+	private final ByteInput input;
+	private final Context context;
+	private final int d_bits_per_chunk;
 	private int d_index = 0;
-	private Endianness d_endianness;
-	private Class<?> outputType;
+	private final Endianness d_endianness;
+	private final Class<?> outputType;
 
-	public UnpackedToPacked(ByteInput input, int bits_per_chunk, Endianness endianness, Class<?> outputType) {
+	public UnpackedToPacked(Context context, ByteInput input, int bits_per_chunk, Endianness endianness, Class<?> outputType) {
 		this.input = input;
+		this.context = context;
 		this.d_bits_per_chunk = bits_per_chunk;
 		this.d_endianness = endianness;
 		this.outputType = outputType;
@@ -26,19 +27,6 @@ public class UnpackedToPacked extends AbstractTaggedStream implements ByteInput 
 	@Override
 	public void close() throws IOException {
 		input.close();
-	}
-	
-	@Override
-	public Tag getTag(long sampleId) {
-		Tag result = super.getTag(sampleId);
-		if (result != null) {
-			return result;
-		}
-		if (input instanceof TaggedStream) {
-			TaggedStream tg = (TaggedStream) input;
-			return tg.getTag(sampleId);
-		}
-		return null;
 	}
 
 	private static int get_bit_be1(byte x, int bit_addr, int bits_per_chunk) {
@@ -54,6 +42,7 @@ public class UnpackedToPacked extends AbstractTaggedStream implements ByteInput 
 		}
 		int index_tmp = d_index;
 		byte result = 0;
+		Tag tag = null;
 		switch (d_endianness) {
 
 		case GR_MSB_FIRST:
@@ -61,6 +50,13 @@ public class UnpackedToPacked extends AbstractTaggedStream implements ByteInput 
 			for (int j = 0; j < 8; j++) {
 				tmp = (byte) ((tmp << 1) | get_bit_be1(input.readByte(), index_tmp, d_bits_per_chunk));
 				index_tmp++;
+				//reduce length of message
+				if (j == 0) {
+					tag = context.getCurrent();
+					if (tag != null) {
+						tag.put(FixedLengthTagger.LENGTH, (Integer) tag.get(FixedLengthTagger.LENGTH) / 8);
+					}
+				}
 			}
 			result = tmp;
 			break;
@@ -69,11 +65,18 @@ public class UnpackedToPacked extends AbstractTaggedStream implements ByteInput 
 			for (int j = 0; j < 8; j++) {
 				tmp2 = (tmp2 >> 1) | (get_bit_be1(input.readByte(), index_tmp, d_bits_per_chunk) << (8 - 1));
 				index_tmp++;
+				//reduce length of message
+				if (j == 0) {
+					tag = context.getCurrent();
+					if (tag != null) {
+						tag.put(FixedLengthTagger.LENGTH, (Integer) tag.get(FixedLengthTagger.LENGTH) / 8);
+					}
+				}
 			}
 			result = (byte) tmp2;
 			break;
 		}
-
+		context.setCurrent(tag);
 		d_index = index_tmp;
 		return result;
 	}

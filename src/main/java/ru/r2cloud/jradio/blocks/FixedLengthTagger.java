@@ -6,30 +6,28 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
-import ru.r2cloud.jradio.AbstractTaggedStream;
 import ru.r2cloud.jradio.ByteInput;
+import ru.r2cloud.jradio.Context;
 import ru.r2cloud.jradio.Tag;
-import ru.r2cloud.jradio.TaggedStream;
 
-public class FixedLengthTagger extends AbstractTaggedStream implements ByteInput {
+public class FixedLengthTagger implements ByteInput {
 
-	private ByteInput input;
-	private String syncword_tag;
-	private String packetlen_tag;
+	public static final String BEGIN_SAMPLE = "beginSample";
+	public static final String LENGTH = "length";
+
+	private final ByteInput input;
+	private final Context context;
 	private int packet_len;
 	private int read = 0;
-
-	private long written = 0;
 
 	private List<Byte> packet;
 	private int currentIndex = -1;
 	private LinkedList<Byte> window;
 	private List<Tag> currentTags = new ArrayList<>();
 
-	public FixedLengthTagger(ByteInput input, String syncword_tag, String packetlen_tag, int packet_len) {
+	public FixedLengthTagger(Context context, ByteInput input, int packet_len) {
 		this.input = input;
-		this.syncword_tag = syncword_tag;
-		this.packetlen_tag = packetlen_tag;
+		this.context = context;
 		this.packet_len = packet_len;
 		this.packet = new ArrayList<Byte>(packet_len);
 		this.window = new LinkedList<Byte>();
@@ -39,6 +37,10 @@ public class FixedLengthTagger extends AbstractTaggedStream implements ByteInput
 	public byte readByte() throws IOException {
 		// output current packet
 		if (currentIndex >= 0 && currentIndex < packet.size()) {
+			//indicate tag only for the first byte
+			if( currentIndex > 0 ) {
+				context.resetCurrent();
+			}
 			byte result = packet.get(currentIndex);
 			currentIndex++;
 			return result;
@@ -54,43 +56,30 @@ public class FixedLengthTagger extends AbstractTaggedStream implements ByteInput
 			}
 
 			// tags are lazily calculated during readByte
-			Tag tag = getTag(read);
-			if (tag != null && tag.getKey().equals(syncword_tag)) {
+			Tag tag = context.getCurrent();
+			if (tag != null) {
+				tag.put(BEGIN_SAMPLE, read);
 				currentTags.add(tag);
 			}
-			Iterator<Tag> it = currentTags.iterator();
-			while (it.hasNext()) {
-				Tag cur = it.next();
-				if (cur.getSample() + packet_len <= read + 1) {
-					it.remove();
-					packet.addAll(window);
-					Tag lengthTag = new Tag();
-					lengthTag.setKey(packetlen_tag);
-					lengthTag.setSample(written);
-					lengthTag.setValue(String.valueOf(packet_len));
-					addTag(lengthTag);
-					written += packet_len;
-					read++;
-					break searchForNext;
+			
+			if (!currentTags.isEmpty()) {
+				Iterator<Tag> it = currentTags.iterator();
+				while (it.hasNext()) {
+					Tag cur = it.next();
+					if ((Integer) cur.get(BEGIN_SAMPLE) + packet_len <= read + 1) {
+						it.remove();
+						packet.addAll(window);
+						cur.put(LENGTH, packet_len);
+						context.setCurrent(cur);
+						read++;
+						break searchForNext;
+					}
 				}
 			}
 
 			read++;
 		}
 		return readByte();
-	}
-
-	@Override
-	public Tag getTag(long sampleId) {
-		Tag result = super.getTag(sampleId);
-		if (result != null) {
-			return result;
-		}
-		if (input instanceof TaggedStream) {
-			TaggedStream tg = (TaggedStream) input;
-			return tg.getTag(sampleId);
-		}
-		return null;
 	}
 
 	@Override

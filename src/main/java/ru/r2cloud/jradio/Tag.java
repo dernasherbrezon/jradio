@@ -1,33 +1,27 @@
 package ru.r2cloud.jradio;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class Tag {
 
-	private long sample;
-	private String key;
-	private String value;
+	private String id;
+	private Map<String, Object> meta = new HashMap<>();
 
-	public long getSample() {
-		return sample;
+	public String getId() {
+		return id;
 	}
 
-	public void setSample(long sample) {
-		this.sample = sample;
+	public void setId(String id) {
+		this.id = id;
 	}
 
-	public String getKey() {
-		return key;
+	public void put(String name, Object value) {
+		meta.put(name, value);
 	}
 
-	public void setKey(String key) {
-		this.key = key;
-	}
-
-	public String getValue() {
-		return value;
-	}
-
-	public void setValue(String value) {
-		this.value = value;
+	public Object get(String name) {
+		return meta.get(name);
 	}
 
 }

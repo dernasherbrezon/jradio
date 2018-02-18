@@ -1,32 +1,34 @@
 package ru.r2cloud.jradio.blocks;
 
 import java.io.IOException;
+import java.util.UUID;
 
-import ru.r2cloud.jradio.AbstractTaggedStream;
 import ru.r2cloud.jradio.ByteInput;
+import ru.r2cloud.jradio.Context;
 import ru.r2cloud.jradio.Tag;
 
-public class CorrelateAccessCodeTag extends AbstractTaggedStream implements ByteInput {
+public class CorrelateAccessCodeTag implements ByteInput {
 
-	private ByteInput input;
+	public static final String ACCESS_CODE = "accessCode";
+
+	private final ByteInput input;
+	private final Context context;
 
 	private long dataRegister = 0;
 	private long mask = 0;
 	private int threshold;
 	private int length = 0;
 	private long accessCode;
-	private String d_key;
-	private long read = 0;
 	private boolean soft;
 
-	public CorrelateAccessCodeTag(ByteInput input, int threshold, String key, String access_code) {
-		this(input, threshold, key, access_code, false);
+	public CorrelateAccessCodeTag(Context context, ByteInput input, int threshold, String access_code) {
+		this(context, input, threshold, access_code, false);
 	}
-	
-	public CorrelateAccessCodeTag(ByteInput input, int threshold, String key, String access_code, boolean soft) {
+
+	public CorrelateAccessCodeTag(Context context, ByteInput input, int threshold, String access_code, boolean soft) {
 		this.input = input;
+		this.context = context;
 		this.threshold = threshold;
-		this.d_key = key;
 		this.soft = soft;
 		setAccessCode(access_code);
 	}
@@ -72,13 +74,13 @@ public class CorrelateAccessCodeTag extends AbstractTaggedStream implements Byte
 		dataRegister = (dataRegister << 1) | (toCheck & 0x1);
 		if (nwrong <= threshold) {
 			Tag tag = new Tag();
-			tag.setSample(read);
-			tag.setKey(d_key);
-			tag.setValue(String.valueOf(nwrong));
-			addTag(tag);
+			tag.setId(UUID.randomUUID().toString());
+			tag.put(ACCESS_CODE, accessCode);
+			context.put(tag.getId(), tag);
+		} else {
+			context.resetCurrent();
 		}
 
-		read++;
 		return result;
 	}
 

@@ -1,9 +1,10 @@
 package ru.r2cloud.jradio;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
 
 import java.io.InputStream;
+import java.util.Map;
+import java.util.Map.Entry;
 
 import org.junit.After;
 import org.junit.Test;
@@ -22,17 +23,17 @@ public class UnpackedToPackedTest {
 
 	@Test
 	public void testSuccess() throws Exception {
-		source = new UnpackedToPacked(new FixedLengthTagger(new CorrelateAccessCodeTag(new BinarySlicer(new ClockRecoveryMM(new WavFileSource(WavFileSourceTest.class.getClassLoader().getResourceAsStream("aausat-4.wav")), 20.0f, (float) (0.25 * 0.175 * 0.175), 0.005f, 0.175f, 0.005f)), 8, "syncword", "010011110101101000110100010000110101010101000010"), "syncword", "packet_len", 2008), 1, Endianness.GR_MSB_FIRST, Byte.class);
+		Context context = new Context();
+		source = new UnpackedToPacked(context, new FixedLengthTagger(context, new CorrelateAccessCodeTag(context, new BinarySlicer(new ClockRecoveryMM(new WavFileSource(WavFileSourceTest.class.getClassLoader().getResourceAsStream("aausat-4.wav")), 20.0f, (float) (0.25 * 0.175 * 0.175), 0.005f, 0.175f, 0.005f)), 8, "010011110101101000110100010000110101010101000010"), 2008), 1, Endianness.GR_MSB_FIRST, Byte.class);
 		try (InputStream is = BinarySlicerTest.class.getClassLoader().getResourceAsStream("UnpackedToPacked.bin")) {
 			int expected = -1;
-			while( (expected = is.read()) != -1 ) {
+			while ((expected = is.read()) != -1) {
 				byte actual = source.readByte();
-				assertEquals((byte)expected, actual);
+				assertEquals((byte) expected, actual);
 			}
-		}		
-		Tag tag = source.getTag(0);
-		assertNotNull(tag);
-		assertEquals("2008", tag.getValue());
+		}
+		Tag tag = getFirst(context);
+		assertEquals(251, tag.get(FixedLengthTagger.LENGTH));
 	}
 
 	@After
@@ -40,6 +41,15 @@ public class UnpackedToPackedTest {
 		if (source != null) {
 			source.close();
 		}
+	}
+
+	public static Tag getFirst(Context context) {
+		Map<String, Tag> tags = context.getTags();
+		assertEquals(1, tags.size());
+		for (Entry<String, Tag> cur : tags.entrySet()) {
+			return cur.getValue();
+		}
+		return null;
 	}
 
 }
