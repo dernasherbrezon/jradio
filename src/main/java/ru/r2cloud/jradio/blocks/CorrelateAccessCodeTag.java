@@ -1,7 +1,6 @@
 package ru.r2cloud.jradio.blocks;
 
 import java.io.IOException;
-import java.util.UUID;
 
 import ru.r2cloud.jradio.AbstractTaggedStream;
 import ru.r2cloud.jradio.ByteInput;
@@ -17,7 +16,6 @@ public class CorrelateAccessCodeTag extends AbstractTaggedStream implements Byte
 	private int length = 0;
 	private long accessCode;
 	private String d_key;
-	private String blockId;
 	private long read = 0;
 	private boolean soft;
 
@@ -29,7 +27,6 @@ public class CorrelateAccessCodeTag extends AbstractTaggedStream implements Byte
 		this.input = input;
 		this.threshold = threshold;
 		this.d_key = key;
-		this.blockId = UUID.randomUUID().toString();
 		this.soft = soft;
 		setAccessCode(access_code);
 	}
@@ -75,11 +72,9 @@ public class CorrelateAccessCodeTag extends AbstractTaggedStream implements Byte
 		dataRegister = (dataRegister << 1) | (toCheck & 0x1);
 		if (nwrong <= threshold) {
 			Tag tag = new Tag();
-			tag.setStreamId(0);
 			tag.setSample(read);
 			tag.setKey(d_key);
 			tag.setValue(String.valueOf(nwrong));
-			tag.setBlockId(blockId);
 			addTag(tag);
 		}
 

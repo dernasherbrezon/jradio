@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.UUID;
 
 import ru.r2cloud.jradio.AbstractTaggedStream;
 import ru.r2cloud.jradio.ByteInput;
@@ -66,10 +65,8 @@ public class FixedLengthTagger extends AbstractTaggedStream implements ByteInput
 					it.remove();
 					packet.addAll(window);
 					Tag lengthTag = new Tag();
-					lengthTag.setBlockId(UUID.randomUUID().toString());
 					lengthTag.setKey(packetlen_tag);
 					lengthTag.setSample(written);
-					lengthTag.setStreamId(0);
 					lengthTag.setValue(String.valueOf(packet_len));
 					addTag(lengthTag);
 					written += packet_len;
