@@ -34,6 +34,8 @@ public class LRPT implements Iterable<VCDU>, Iterator<VCDU>, Closeable {
 	private final TaggedStreamToPdu input;
 	private final BufferedByteInput buffer;
 	private byte[] current;
+	//previous is used for restoring partial packets
+	private VCDU previous = null;
 
 	static {
 		for (int i = 0; i <= 255; i++) {
@@ -55,7 +57,8 @@ public class LRPT implements Iterable<VCDU>, Iterator<VCDU>, Closeable {
 	@Override
 	public VCDU next() {
 		VCDU result = new VCDU();
-		result.readExternal(current);
+		result.readExternal(previous, current);
+		previous = result;
 		return result;
 	}
 
@@ -67,8 +70,8 @@ public class LRPT implements Iterable<VCDU>, Iterator<VCDU>, Closeable {
 				Tag currentTag = context.getCurrent();
 				int index = getIndex((Long) currentTag.get(CorrelateAccessCodeTag.ACCESS_CODE));
 				if (index != 0) {
-					//phase was incorrectly locked,
-					//rotate data the same number of turns as synchronization marker
+					// phase was incorrectly locked,
+					// rotate data the same number of turns as synchronization marker
 					for (int i = 0; i < rawBytes.length; i++) {
 						rawBytes[i] = (byte) rotate_iq(rawBytes[i], index);
 					}
