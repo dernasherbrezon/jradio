@@ -40,6 +40,7 @@ public class TaggedStreamToPdu implements MessageInput {
 		for (int i = 1; i < length; i++) {
 			result[i] = input.readByte();
 		}
+		context.setCurrent(tag);
 		return result;
 	}
 
