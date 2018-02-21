@@ -1,6 +1,7 @@
 package ru.r2cloud.jradio.lrpt;
 
 import java.io.Closeable;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Iterator;
 
@@ -57,6 +58,13 @@ public class LRPT implements Iterable<VCDU>, Iterator<VCDU>, Closeable {
 	@Override
 	public VCDU next() {
 		VCDU result = new VCDU();
+		try {
+			FileOutputStream fos = new FileOutputStream("vcdu.bin");
+			fos.write(current);
+			fos.close();
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
 		result.readExternal(previous, current);
 		previous = result;
 		return result;
