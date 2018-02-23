@@ -1,9 +1,10 @@
 package ru.r2cloud.jradio;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
-import java.io.FileInputStream;
 import java.io.IOException;
 
 import org.junit.After;
@@ -13,6 +14,8 @@ import ru.r2cloud.jradio.blocks.CorrelateAccessCodeTag;
 import ru.r2cloud.jradio.blocks.FixedLengthTagger;
 import ru.r2cloud.jradio.blocks.TaggedStreamToPdu;
 import ru.r2cloud.jradio.lrpt.LRPT;
+import ru.r2cloud.jradio.lrpt.Packet;
+import ru.r2cloud.jradio.lrpt.VCDU;
 import ru.r2cloud.jradio.source.InputStreamSource;
 
 public class LRPTTest {
@@ -22,14 +25,48 @@ public class LRPTTest {
 	@Test
 	public void success() throws Exception {
 		Context context = new Context();
-		InputStreamSource float2char = new InputStreamSource(new FileInputStream("/Users/dernasherbrezon/ubuntu_shared/good bit_stream.s"));
+		InputStreamSource float2char = new InputStreamSource(LRPTTest.class.getClassLoader().getResourceAsStream("8bitsoft.s"));
 		BufferedByteInput buffer = new BufferedByteInput(float2char, 8160 * 2, 8 * 2);
 		CorrelateAccessCodeTag correlate = new CorrelateAccessCodeTag(context, buffer, 9, "1111110010100010101101100011110110110000000011011001011110010100", true);
 		TaggedStreamToPdu tag = new TaggedStreamToPdu(context, new FixedLengthTagger(context, correlate, 8160 * 2 + 8 * 2));
 		lrpt = new LRPT(context, tag, buffer);
 		assertTrue(lrpt.hasNext());
-		assertNotNull(lrpt.next());
-		lrpt.close();
+		VCDU vcdu = lrpt.next();
+		assertNotNull(vcdu);
+		assertEquals(4649488, vcdu.getCounter());
+		assertEquals(0, vcdu.getId().getSpacecraftId());
+		assertEquals(5, vcdu.getId().getVirtualChannelId());
+		assertFalse(vcdu.getInsertZone().isEncryption());
+		assertEquals(0, vcdu.getInsertZone().getKeyNumber());
+		assertEquals(0, vcdu.getmPdu().getSpareBits());
+		assertEquals(54, vcdu.getmPdu().getHeaderFirstPointer());
+		assertEquals(0, vcdu.getSignalling());
+		assertEquals(1, vcdu.getVersion());
+		assertEquals(1, vcdu.getPackets().size());
+		Packet packet = vcdu.getPackets().get(0);
+		assertEquals(65, packet.getApid());
+		assertEquals(489, packet.getLength());
+		assertEquals(0, packet.getMicrosecondOfMillisecond());
+		assertEquals(47839268, packet.getMillisecondOfDay());
+		assertEquals(0, packet.getNumberOfDays());
+		assertTrue(packet.isSecondaryHeader());
+		assertEquals(2, packet.getSequence());
+		assertEquals(4858, packet.getSequenceCount());
+		assertEquals(482, packet.getUserData().length);
+		assertEquals(0, packet.getVersion());
+		Packet partial = vcdu.getPartial();
+		assertNotNull(partial);
+
+		assertEquals(65, partial.getApid());
+		assertEquals(511, partial.getLength());
+		assertEquals(0, partial.getMicrosecondOfMillisecond());
+		assertEquals(47839268, partial.getMillisecondOfDay());
+		assertEquals(0, partial.getNumberOfDays());
+		assertTrue(partial.isSecondaryHeader());
+		assertEquals(2, partial.getSequence());
+		assertEquals(4859, partial.getSequenceCount());
+		assertEquals(318, partial.getUserData().length);
+		assertEquals(0, partial.getVersion());
 	}
 
 	@After
