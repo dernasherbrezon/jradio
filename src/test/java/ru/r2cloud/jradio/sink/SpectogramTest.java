@@ -7,17 +7,12 @@ import java.io.InputStream;
 
 import javax.imageio.ImageIO;
 
-import org.junit.Rule;
 import org.junit.Test;
-import org.junit.rules.TemporaryFolder;
 
 import ru.r2cloud.jradio.source.WavFileSource;
 import ru.r2cloud.jradio.source.WavFileSourceTest;
 
 public class SpectogramTest {
-
-	@Rule
-	public TemporaryFolder tempFolder = new TemporaryFolder();
 
 	@Test
 	public void testSuccess() throws Exception {
