@@ -77,13 +77,13 @@ public class LRPT implements Iterable<VCDU>, Iterator<VCDU>, Closeable {
 					}
 				}
 				byte[] viterbi = ViterbiSoft.decode(rawBytes, (byte) 0x4f, (byte) 0x6d, false);
-				// viterbi needs last 2 bytes for tail.
-				// need to reset source stream back 2 bytes
-				// since next packet might start exactly after previous
-				buffer.reset(8 * 2);
 				byte[] deShuffled = Randomize.shuffle(viterbi);
 				try {
 					current = ReedSolomon.decode(deShuffled, 4);
+					// viterbi needs last 2 bytes for tail.
+					// need to reset source stream back 2 bytes
+					// since next packet might start exactly after previous
+					buffer.reset(8 * 2);
 				} catch (Exception e) {
 					LOG.info("unable to decode reed solomon: " + e.getMessage());
 					return hasNext();
