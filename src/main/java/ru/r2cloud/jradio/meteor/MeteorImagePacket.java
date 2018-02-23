@@ -13,7 +13,7 @@ public class MeteorImagePacket implements Iterable<int[]>, Iterator<int[]> {
 	private static final Logger LOG = LoggerFactory.getLogger(MeteorImagePacket.class);
 
 	private final Packet packet;
-	private final byte msuNumber;
+	private final int mcuNumber;
 	private final byte quantTableIndex;
 	private final byte huffmanIndexDc;
 	private final byte huffmanIndexAc;
@@ -57,7 +57,7 @@ public class MeteorImagePacket implements Iterable<int[]>, Iterator<int[]> {
 	public MeteorImagePacket(Packet packet) {
 		this.packet = packet;
 		byte[] data = packet.getUserData();
-		msuNumber = data[0];
+		mcuNumber = (data[0] & 0xFF);
 		quantTableIndex = data[1];
 		huffmanIndexDc = (byte) ((data[2] & 0xFF) >> 4);
 		huffmanIndexAc = (byte) (data[2] & 0x0F);
@@ -141,7 +141,7 @@ public class MeteorImagePacket implements Iterable<int[]>, Iterator<int[]> {
 			int currentByteIndex = bitIndex >> 3;
 			// peeking into next 16 bits might overflow byte array
 			// this is fine, since not all bits will be used for matching codeword
-		    // stuff the overflow with zeroes
+			// stuff the overflow with zeroes
 			if (currentByteIndex >= packet.getUserData().length) {
 				result = (result << 1) | 0;
 				continue;
@@ -203,8 +203,8 @@ public class MeteorImagePacket implements Iterable<int[]>, Iterator<int[]> {
 		return packet;
 	}
 
-	public byte getMsuNumber() {
-		return msuNumber;
+	public int getMcuNumber() {
+		return mcuNumber;
 	}
 
 	public byte getQuantTableIndex() {

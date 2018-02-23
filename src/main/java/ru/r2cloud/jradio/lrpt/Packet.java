@@ -2,13 +2,13 @@ package ru.r2cloud.jradio.lrpt;
 
 public class Packet {
 
-	private byte version;
+	private byte version = -1;
 	private int apid;
 	private boolean secondaryHeader;
 	private byte sequence;
 	private int sequenceCount;
 	private int length;
-	private int numberOfDays;
+	private int numberOfDays = -1;
 	private int millisecondOfDay;
 	private int microsecondOfMillisecond;
 	private byte[] userData;

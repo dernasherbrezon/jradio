@@ -36,32 +36,38 @@ public class VCDU {
 				byte[] newUserData = new byte[previousPartial.getUserData().length + mPdu.getHeaderFirstPointer()];
 				System.arraycopy(previousPartial.getUserData(), 0, newUserData, 0, previousPartial.getUserData().length);
 				System.arraycopy(data, 10, newUserData, previousPartial.getUserData().length, mPdu.getHeaderFirstPointer());
-				previousPartial.setUserData(newUserData);
+				int userDataIndex = 0;
+				// primary header was not read
+				if (previousPartial.getVersion() == -1) {
+					readPirmaryHeader(newUserData, 0, previousPartial);
+					userDataIndex += 6;
+				}
+				// primary header was read, but secondary header was not.
+				if (previousPartial.isSecondaryHeader() && previousPartial.getNumberOfDays() == -1) {
+					readSecondaryHeader(newUserData, userDataIndex, previousPartial);
+					userDataIndex += 8;
+				}
+
+				if (userDataIndex != 0) {
+					byte[] userDataWithoutHeaders = new byte[newUserData.length - userDataIndex];
+					System.arraycopy(newUserData, userDataIndex, userDataWithoutHeaders, 0, userDataWithoutHeaders.length);
+					previousPartial.setUserData(userDataWithoutHeaders);
+				} else {
+					previousPartial.setUserData(newUserData);
+				}
+
 				packets.add(previousPartial);
 			}
 			int index = 10 + mPdu.getHeaderFirstPointer();
 			// 6 is for minimum header size
-			while (data.length > index + 6) {
+			while (data.length >= index + 6) {
 				Packet packet = new Packet();
-				// 000 (CCSDS packet Version number 1)
-				packet.setVersion((byte) (data[index] & 0xFF >> 5));
-				// This bit shall be always set to 1 to indicate the presence of a secondary header.
-				packet.setSecondaryHeader((data[index] & (1 << 3)) > 0 ? true : false);
-				// This field defines the data route between two users application endpoints
-				packet.setApid(((data[index] & 0b0000_0111) << 8) | data[index + 1]);
-				// This flag is set to 11 indicating that the packet contains unsegmented User data.
-				packet.setSequence((byte) (data[index + 2] & 0xFF >> 6));
-				// This field is a modulo 16384 counter, which numbers the packets
-				packet.setSequenceCount(((data[index + 2] & 0b0011_1111) << 8) | (data[index + 3] & 0xFF));
-				// This field contains a sequential binary count "C" that expresses the length of the Secondary Header and the User Data. The value of "C" is the length (in octets) minus 1.
-				packet.setLength((data[index + 4] & 0xFF) << 8 | (data[index + 5] & 0xFF));
+				readPirmaryHeader(data, index, packet);
 				// for +1 see the length field description
 				int userDataLength = packet.getLength() + 1;
 				int userDataIndex;
-				if (packet.isSecondaryHeader()) {
-					packet.setNumberOfDays((data[index + 6] & 0xFF) << 8 | (data[index + 7] & 0xFF));
-					packet.setMillisecondOfDay((data[index + 8] & 0xFF) << 24 | (data[index + 9] & 0xFF) << 16 | (data[index + 10] & 0xFF) << 8 | (data[index + 11] & 0xFF) << 0);
-					packet.setMicrosecondOfMillisecond((data[index + 12] & 0xFF) << 8 | (data[index + 13] & 0xFF) << 0);
+				if (packet.isSecondaryHeader() && data.length >= index + 6 + 8) {
+					readSecondaryHeader(data, index, packet);
 					userDataLength -= 8;
 					// 9 + 1
 					userDataIndex = 14;
@@ -86,6 +92,14 @@ public class VCDU {
 
 				index += userData.length;
 			}
+			// primary header doesn't fit
+			// check for partial packet is a safecheck only. shouldnt happen
+			if (data.length - index > 0 && partial == null) {
+				byte[] userData = new byte[data.length - index];
+				System.arraycopy(data, index, userData, 0, userData.length);
+				partial = new Packet();
+				partial.setUserData(userData);
+			}
 		} else {
 			if (previousPartial != null) {
 				byte[] newUserData = new byte[previousPartial.getUserData().length + data.length - 10];
@@ -95,6 +109,27 @@ public class VCDU {
 				this.partial = previousPartial;
 			}
 		}
+	}
+
+	private static void readPirmaryHeader(byte[] data, int index, Packet packet) {
+		// 000 (CCSDS packet Version number 1)
+		packet.setVersion((byte) (data[index] & 0xFF >> 5));
+		// This bit shall be always set to 1 to indicate the presence of a secondary header.
+		packet.setSecondaryHeader((data[index] & (1 << 3)) > 0 ? true : false);
+		// This field defines the data route between two users application endpoints
+		packet.setApid(((data[index] & 0b0000_0111) << 8) | data[index + 1]);
+		// This flag is set to 11 indicating that the packet contains unsegmented User data.
+		packet.setSequence((byte) (data[index + 2] & 0xFF >> 6));
+		// This field is a modulo 16384 counter, which numbers the packets
+		packet.setSequenceCount(((data[index + 2] & 0b0011_1111) << 8) | (data[index + 3] & 0xFF));
+		// This field contains a sequential binary count "C" that expresses the length of the Secondary Header and the User Data. The value of "C" is the length (in octets) minus 1.
+		packet.setLength((data[index + 4] & 0xFF) << 8 | (data[index + 5] & 0xFF));
+	}
+
+	private static void readSecondaryHeader(byte[] data, int index, Packet packet) {
+		packet.setNumberOfDays((data[index + 6] & 0xFF) << 8 | (data[index + 7] & 0xFF));
+		packet.setMillisecondOfDay((data[index + 8] & 0xFF) << 24 | (data[index + 9] & 0xFF) << 16 | (data[index + 10] & 0xFF) << 8 | (data[index + 11] & 0xFF) << 0);
+		packet.setMicrosecondOfMillisecond((data[index + 12] & 0xFF) << 8 | (data[index + 13] & 0xFF) << 0);
 	}
 
 	public int getVersion() {

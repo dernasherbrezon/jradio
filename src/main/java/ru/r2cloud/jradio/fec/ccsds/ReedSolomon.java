@@ -58,11 +58,9 @@ public class ReedSolomon {
 		int deg_lambda, el, deg_omega;
 		int i, j, r, k;
 		int q, tmp, num1, num2, den, discr_r;
-		int[] lambda = new int[NROOTS + 1],
-				s = new int[NROOTS]; /*
-										 * Err+Eras Locator poly and syndrome
-										 * poly
-										 */
+		int[] lambda = new int[NROOTS + 1], s = new int[NROOTS]; /*
+																	 * Err+Eras Locator poly and syndrome poly
+																	 */
 		int[] b = new int[NROOTS + 1], t = new int[NROOTS + 1], omega = new int[NROOTS + 1];
 		int[] root = new int[NROOTS], reg = new int[NROOTS + 1], loc = new int[NROOTS];
 		int syn_error, count;
@@ -91,8 +89,7 @@ public class ReedSolomon {
 
 		if (syn_error == 0) {
 			/*
-			 * if syndrome is zero, data[] is a codeword and there are no errors
-			 * to correct. So return data[] unmodified
+			 * if syndrome is zero, data[] is a codeword and there are no errors to correct. So return data[] unmodified
 			 */
 			count = 0;
 		} else {
@@ -104,8 +101,7 @@ public class ReedSolomon {
 			}
 
 			/*
-			 * Begin Berlekamp-Massey algorithm to determine error+erasure
-			 * locator polynomial
+			 * Begin Berlekamp-Massey algorithm to determine error+erasure locator polynomial
 			 */
 			r = no_eras;
 			el = no_eras;
@@ -155,8 +151,7 @@ public class ReedSolomon {
 					deg_lambda = i;
 			}
 			/*
-			 * Find roots of the error+erasure locator polynomial by Chien
-			 * search
+			 * Find roots of the error+erasure locator polynomial by Chien search
 			 */
 			System.arraycopy(lambda, 1, reg, 1, NROOTS);
 			count = 0; /* Number of roots of lambda(x) */
@@ -174,22 +169,19 @@ public class ReedSolomon {
 				root[count] = i;
 				loc[count] = k;
 				/*
-				 * If we've already found max possible roots, abort the search
-				 * to save time
+				 * If we've already found max possible roots, abort the search to save time
 				 */
 				if (++count == deg_lambda)
 					break;
 			}
 			if (deg_lambda != count) {
 				/*
-				 * deg(lambda) unequal to number of roots => uncorrectable error
-				 * detected
+				 * deg(lambda) unequal to number of roots => uncorrectable error detected
 				 */
 				throw new IllegalArgumentException("uncorrectable");
 			} else {
 				/*
-				 * Compute err+eras evaluator poly omega(x) = s(x)*lambda(x)
-				 * (modulo x**NROOTS). in index form. Also find deg(omega).
+				 * Compute err+eras evaluator poly omega(x) = s(x)*lambda(x) (modulo x**NROOTS). in index form. Also find deg(omega).
 				 */
 				deg_omega = deg_lambda - 1;
 				for (i = 0; i <= deg_omega; i++) {
@@ -202,9 +194,7 @@ public class ReedSolomon {
 				}
 
 				/*
-				 * Compute error values in poly-form. num1 = omega(inv(X(l))),
-				 * num2 = inv(X(l))**(FCR-1) and den = lambda_pr(inv(X(l))) all
-				 * in poly-form
+				 * Compute error values in poly-form. num1 = omega(inv(X(l))), num2 = inv(X(l))**(FCR-1) and den = lambda_pr(inv(X(l))) all in poly-form
 				 */
 				for (j = count - 1; j >= 0; j--) {
 					num1 = 0;
@@ -216,8 +206,7 @@ public class ReedSolomon {
 					den = 0;
 
 					/*
-					 * lambda[i+1] for i even is the formal derivative lambda_pr
-					 * of lambda[i]
+					 * lambda[i+1] for i even is the formal derivative lambda_pr of lambda[i]
 					 */
 					for (i = Math.min(deg_lambda, NROOTS - 1) & ~1; i >= 0; i -= 2) {
 						if (lambda[i + 1] != A0)
@@ -230,8 +219,10 @@ public class ReedSolomon {
 				}
 			}
 		}
-		
-		LOG.info("corrected byte errors: " + count);
+
+		if (LOG.isDebugEnabled()) {
+			LOG.debug("corrected byte errors: " + count);
+		}
 		byte[] result = new byte[data.length - NROOTS];
 		System.arraycopy(data, 0, result, 0, result.length);
 		return result;
