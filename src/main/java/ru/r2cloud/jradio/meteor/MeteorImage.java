@@ -1,6 +1,5 @@
 package ru.r2cloud.jradio.meteor;
 
-import java.awt.Color;
 import java.awt.image.BufferedImage;
 import java.util.Iterator;
 
@@ -64,6 +63,9 @@ public class MeteorImage {
 	}
 
 	public BufferedImage toBufferedImage() {
+		if (channel1 == null) {
+			return null;
+		}
 		int maxHeight = -1;
 		maxHeight = Math.max(getChannel1().getCurrentY() + 8, maxHeight);
 		if (channel2 != null) {
@@ -76,10 +78,14 @@ public class MeteorImage {
 		for (int row = 0; row < result.getHeight(); row++) {
 			for (int col = 0; col < result.getWidth(); col++) {
 				int index = row * result.getWidth() + col;
-				result.setRGB(col, row, new Color(getRed(this, index), getGreen(this, index), getBlue(this, index)).getRGB());
+				result.setRGB(col, row, getRGB(getRed(this, index), getGreen(this, index), getBlue(this, index)));
 			}
 		}
 		return result;
+	}
+
+	private static int getRGB(int r, int g, int b) {
+		return ((r & 0xFF) << 16) | ((g & 0xFF) << 8) | ((b & 0xFF) << 0);
 	}
 
 	private static void align(ImageChannel first, ImageChannel second) {

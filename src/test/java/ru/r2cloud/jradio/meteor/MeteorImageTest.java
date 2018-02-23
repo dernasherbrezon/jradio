@@ -1,6 +1,7 @@
 package ru.r2cloud.jradio.meteor;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
 
 import java.awt.image.BufferedImage;
 import java.io.IOException;
@@ -34,6 +35,12 @@ public class MeteorImageTest {
 				}
 			}
 		}
+	}
+
+	@Test
+	public void testNoImage() throws Exception {
+		MeteorImage image = new MeteorImage(new ArrayList<VCDU>().iterator());
+		assertNull(image.toBufferedImage());
 	}
 
 	private static byte[] toBytes(String source) throws IOException {
