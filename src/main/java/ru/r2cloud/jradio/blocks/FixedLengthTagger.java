@@ -3,7 +3,6 @@ package ru.r2cloud.jradio.blocks;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.LinkedList;
 import java.util.List;
 
 import ru.r2cloud.jradio.ByteInput;
@@ -17,42 +16,43 @@ public class FixedLengthTagger implements ByteInput {
 
 	private final ByteInput input;
 	private final Context context;
-	private int packet_len;
+	private final int packet_len;
+	private final byte[] window;
+	private final byte[] packet;
 	private int read = 0;
+	private int windowIndex = 0;
 
-	private List<Byte> packet;
 	private int currentIndex = -1;
-	private LinkedList<Byte> window;
 	private List<Tag> currentTags = new ArrayList<>();
 
 	public FixedLengthTagger(Context context, ByteInput input, int packet_len) {
 		this.input = input;
 		this.context = context;
 		this.packet_len = packet_len;
-		this.packet = new ArrayList<Byte>(packet_len);
-		this.window = new LinkedList<Byte>();
+		this.packet = new byte[packet_len];
+		this.window = new byte[packet_len];
 	}
 
 	@Override
 	public byte readByte() throws IOException {
 		// output current packet
-		if (currentIndex >= 0 && currentIndex < packet.size()) {
+		if (currentIndex >= 0 && currentIndex < packet.length) {
 			//indicate tag only for the first byte
 			if( currentIndex > 0 ) {
 				context.resetCurrent();
 			}
-			byte result = packet.get(currentIndex);
+			byte result = packet[currentIndex];
 			currentIndex++;
 			return result;
 		}
-		packet.clear();
-		currentIndex = 0;
+		currentIndex = -1;
 		// search for the next packet
 		searchForNext: while (true) {
 			byte curByte = input.readByte();
-			window.offerLast(curByte);
-			if (window.size() > packet_len) {
-				window.removeFirst();
+			window[windowIndex] = curByte;
+			windowIndex++;
+			if( windowIndex >= window.length ) {
+				windowIndex = 0;
 			}
 
 			// tags are lazily calculated during readByte
@@ -68,7 +68,9 @@ public class FixedLengthTagger implements ByteInput {
 					Tag cur = it.next();
 					if ((Integer) cur.get(BEGIN_SAMPLE) + packet_len <= read + 1) {
 						it.remove();
-						packet.addAll(window);
+						currentIndex = 0;
+						System.arraycopy(window, windowIndex, packet, 0, window.length - windowIndex);
+						System.arraycopy(window, 0, packet, window.length - windowIndex, windowIndex);
 						cur.put(LENGTH, packet_len);
 						context.setCurrent(cur);
 						read++;
