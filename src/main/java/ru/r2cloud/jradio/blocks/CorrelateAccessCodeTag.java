@@ -2,7 +2,6 @@ package ru.r2cloud.jradio.blocks;
 
 import java.io.IOException;
 import java.util.Collections;
-import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
 
@@ -21,7 +20,7 @@ public class CorrelateAccessCodeTag implements ByteInput {
 	private int threshold;
 	private boolean soft;
 
-	private final Set<AccessCode> accessCodes = new HashSet<>();
+	private final AccessCode[] accessCodes;
 
 	public CorrelateAccessCodeTag(Context context, ByteInput input, int threshold, String access_code) {
 		this(context, input, threshold, Collections.singleton(access_code), false);
@@ -36,9 +35,12 @@ public class CorrelateAccessCodeTag implements ByteInput {
 		this.context = context;
 		this.threshold = threshold;
 		this.soft = soft;
+		accessCodes = new AccessCode[accessCodesStr.size()];
+		int i = 0;
 		for (String cur : accessCodesStr) {
 			AccessCode accessCode = new AccessCode(cur);
-			accessCodes.add(accessCode);
+			accessCodes[i] = accessCode;
+			i++;
 		}
 	}
 
@@ -59,7 +61,9 @@ public class CorrelateAccessCodeTag implements ByteInput {
 
 		Tag tag = null;
 
-		for (AccessCode cur : accessCodes) {
+		for (int i = 0; i < accessCodes.length; i++) {
+			AccessCode cur = accessCodes[i];
+
 			long nwrong = threshold + 1;
 			nwrong = cur.correlate(dataRegister);
 
