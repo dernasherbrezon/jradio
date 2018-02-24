@@ -21,10 +21,10 @@ public class ConstellationSoftDecoder implements FloatInput {
 	@Override
 	public float readFloat() throws IOException {
 		if (currentBits == null || currentBitsIndex >= currentBits.length) {
-			currentBitsIndex = 0;
 			sample[0] = source.readFloat();
 			sample[1] = source.readFloat();
 			currentBits = constellation.softDecisionMaker(sample);
+			currentBitsIndex = 0;
 		}
 		float result = currentBits[currentBitsIndex];
 		currentBitsIndex++;

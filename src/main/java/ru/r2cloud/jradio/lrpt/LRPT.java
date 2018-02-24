@@ -34,7 +34,7 @@ public class LRPT implements Iterable<VCDU>, Iterator<VCDU>, Closeable {
 	private final TaggedStreamToPdu input;
 	private final BufferedByteInput buffer;
 	private byte[] current;
-	//previous is used for restoring partial packets
+	// previous is used for restoring partial packets
 	private VCDU previous = null;
 
 	static {
@@ -128,11 +128,13 @@ public class LRPT implements Iterable<VCDU>, Iterator<VCDU>, Closeable {
 
 	private static int rotate_iq(int data, int shift) {
 		int result = data;
-		if ((shift == 1) | (shift == 3))
-			result = rotate_iq_tab[result];
+		if ((shift == 1) | (shift == 3)) {
+			result = rotate_iq_tab[result & 0xFF];
+		}
 
-		if ((shift == 2) | (shift == 3))
+		if ((shift == 2) | (shift == 3)) {
 			result = result ^ 0xFF;
+		}
 
 		return result;
 	}
