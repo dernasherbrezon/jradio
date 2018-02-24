@@ -1,4 +1,4 @@
-package ru.r2cloud.jradio;
+package ru.r2cloud.jradio.lrpt;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
@@ -10,6 +10,8 @@ import java.io.IOException;
 import org.junit.After;
 import org.junit.Test;
 
+import ru.r2cloud.jradio.BufferedByteInput;
+import ru.r2cloud.jradio.Context;
 import ru.r2cloud.jradio.blocks.CorrelateAccessCodeTag;
 import ru.r2cloud.jradio.blocks.FixedLengthTagger;
 import ru.r2cloud.jradio.blocks.TaggedStreamToPdu;
