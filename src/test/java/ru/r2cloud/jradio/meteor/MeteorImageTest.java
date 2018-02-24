@@ -4,7 +4,9 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
 
 import java.awt.image.BufferedImage;
+import java.io.BufferedInputStream;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -36,7 +38,6 @@ import ru.r2cloud.jradio.blocks.Window;
 import ru.r2cloud.jradio.lrpt.LRPT;
 import ru.r2cloud.jradio.lrpt.VCDU;
 import ru.r2cloud.jradio.source.WavFileSource;
-import ru.r2cloud.jradio.source.WavFileSourceTest;
 
 public class MeteorImageTest {
 
@@ -78,7 +79,7 @@ public class MeteorImageTest {
 	// performance test
 	public static void main(String[] args) throws Exception {
 
-		LowPassFilter lowPass = new LowPassFilter(new WavFileSource(WavFileSourceTest.class.getClassLoader().getResourceAsStream("meteor_small.wav")), 1.0, 222222.0, 60000.0, 100.0, Window.WIN_HAMMING, 6.76);
+		LowPassFilter lowPass = new LowPassFilter(new WavFileSource(new BufferedInputStream(new FileInputStream("/Users/dernasherbrezon/Downloads/lrpt/11-13-00_137874kHz.wav"))), 1.0, 222222.0, 60000.0, 100.0, Window.WIN_HAMMING, 6.76);
 		AGC agc = new AGC(lowPass, 1000e-4f, 0.5f, 1.0f, 4000.0f);
 		RootRaisedCosineFilter rrcf = new RootRaisedCosineFilter(agc, 1.0f, 222222f, 72000f, 0.6f, 361);
 		CostasLoop costas = new CostasLoop(rrcf, 0.015f, 4, false);

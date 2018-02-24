@@ -20,7 +20,7 @@ public class ReedSolomon {
 
 	private static final int[] CCSDS_poly = new int[] { 0, 249, 59, 66, 4, 43, 126, 251, 97, 30, 3, 213, 50, 66, 170, 5, 24, 5, 170, 66, 50, 213, 3, 30, 97, 251, 126, 43, 4, 66, 59, 249, 0, };
 
-	public static byte[] decode(byte[] data, int interleaving) {
+	public static byte[] decode(byte[] data, int interleaving) throws UncorrectableException {
 		byte[][] interleaved = new byte[interleaving][NN];
 		byte[] result = new byte[data.length - NROOTS * interleaving];
 		for (int i = 0; i < interleaving; i++) {
@@ -43,7 +43,7 @@ public class ReedSolomon {
 		return result;
 	}
 
-	public static byte[] decode(byte[] data) {
+	public static byte[] decode(byte[] data) throws UncorrectableException {
 		int pad = NN - NROOTS - (data.length - NROOTS);
 		int FCR = 112;
 		int PRIM = 11;
@@ -178,7 +178,7 @@ public class ReedSolomon {
 				/*
 				 * deg(lambda) unequal to number of roots => uncorrectable error detected
 				 */
-				throw new IllegalArgumentException("uncorrectable");
+				throw new UncorrectableException("uncorrectable");
 			} else {
 				/*
 				 * Compute err+eras evaluator poly omega(x) = s(x)*lambda(x) (modulo x**NROOTS). in index form. Also find deg(omega).

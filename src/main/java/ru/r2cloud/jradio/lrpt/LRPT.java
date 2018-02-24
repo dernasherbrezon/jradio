@@ -15,6 +15,7 @@ import ru.r2cloud.jradio.blocks.TaggedStreamToPdu;
 import ru.r2cloud.jradio.fec.ViterbiSoft;
 import ru.r2cloud.jradio.fec.ccsds.Randomize;
 import ru.r2cloud.jradio.fec.ccsds.ReedSolomon;
+import ru.r2cloud.jradio.fec.ccsds.UncorrectableException;
 
 public class LRPT implements Iterable<VCDU>, Iterator<VCDU>, Closeable {
 
@@ -58,6 +59,9 @@ public class LRPT implements Iterable<VCDU>, Iterator<VCDU>, Closeable {
 	public VCDU next() {
 		VCDU result = new VCDU();
 		result.readExternal(previous, current);
+		if (previous == null) {
+			LOG.info("detected meteor-m image. frame: " + result.getCounter());
+		}
 		previous = result;
 		return result;
 	}
@@ -84,8 +88,11 @@ public class LRPT implements Iterable<VCDU>, Iterator<VCDU>, Closeable {
 					// need to reset source stream back 2 bytes
 					// since next packet might start exactly after previous
 					buffer.reset(8 * 2);
-				} catch (Exception e) {
-					LOG.info("unable to decode reed solomon: " + e.getMessage());
+				} catch (UncorrectableException e) {
+					if (LOG.isDebugEnabled()) {
+						LOG.debug("unable to decode reed solomon: " + e.getMessage());
+					}
+					//TODO unroll to while(true) loop in order to avoid stackoverflow
 					return hasNext();
 				}
 				return true;

@@ -10,12 +10,13 @@ import java.util.Set;
 import ru.r2cloud.jradio.blocks.TaggedStreamToPdu;
 import ru.r2cloud.jradio.fec.ccsds.Randomize;
 import ru.r2cloud.jradio.fec.ccsds.ReedSolomon;
+import ru.r2cloud.jradio.fec.ccsds.UncorrectableException;
 import ru.r2cloud.jradio.fec.ccsds.Viterbi;
 
 public class AAUSAT4 implements Iterable<AAUSAT4Beacon>, Iterator<AAUSAT4Beacon>, Closeable {
 
 	private final TaggedStreamToPdu input;
-	private byte[] current;
+	private AAUSAT4Beacon current;
 	private final static Set<Byte> supportedFormats = new HashSet<>();
 
 	static {
@@ -35,8 +36,24 @@ public class AAUSAT4 implements Iterable<AAUSAT4Beacon>, Iterator<AAUSAT4Beacon>
 	@Override
 	public boolean hasNext() {
 		try {
-			current = input.readBytes();
-			if (current != null && current.length != 0 && supportedFormats.contains(current[0])) {
+			byte[] raw = input.readBytes();
+			if (raw != null && raw.length != 0 && supportedFormats.contains(raw[0])) {
+				if (raw[0] == 0x59) {
+					// long frame
+					byte[] viterbi = Viterbi.decode(Arrays.copyOfRange(raw, 1, 250));
+					byte[] deShuffled = Randomize.shuffle(viterbi);
+					try {
+						byte[] data = ReedSolomon.decode(deShuffled);
+						current = new AAUSAT4Beacon();
+						current.readExternal(data);
+					} catch (IOException e) {
+						return hasNext();
+					} catch (UncorrectableException e) {
+						return hasNext();
+					}
+				} else if (raw[0] == 0xA6) {
+					// short frame
+				}
 				return true;
 			} else {
 				return false;
@@ -48,22 +65,7 @@ public class AAUSAT4 implements Iterable<AAUSAT4Beacon>, Iterator<AAUSAT4Beacon>
 
 	@Override
 	public AAUSAT4Beacon next() {
-		if (current[0] == 0x59) {
-			// long frame
-			byte[] viterbi = Viterbi.decode(Arrays.copyOfRange(current, 1, 250));
-			byte[] deShuffled = Randomize.shuffle(viterbi);
-			byte[] rawData = ReedSolomon.decode(deShuffled);
-			try {
-				AAUSAT4Beacon result = new AAUSAT4Beacon();
-				result.readExternal(rawData);
-				return result;
-			} catch (IOException e) {
-				throw new RuntimeException(e);
-			}
-		} else if (current[0] == 0xA6) {
-			// short frame
-		}
-		return null;
+		return current;
 	}
 
 	@Override
