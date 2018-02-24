@@ -28,7 +28,7 @@ public class LRPT implements Iterable<VCDU>, Iterator<VCDU>, Closeable {
 	// 00 -> 11 don't need lookup table as it simply inverting bits
 	private static final int[] rotate_iq_tab = new int[256];
 
-	private static final long[] SYNCHRONIZATION_MARKERS = new long[4];
+	public static final long[] SYNCHRONIZATION_MARKERS = new long[4];
 
 	private final Context context;
 	private final TaggedStreamToPdu input;
