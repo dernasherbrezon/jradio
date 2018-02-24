@@ -4,7 +4,7 @@ public enum Window {
 
 	WIN_HAMMING, WIN_HANN, WIN_BLACKMAN, WIN_RECTANGULAR, WIN_KAISER, WIN_BLACKMAN_hARRIS, WIN_BARTLETT, WIN_FLATTOP;
 
-	public float[] build(int ntaps, double beta) {
+	public float[] build(int ntaps, @SuppressWarnings("unused") double beta) {
 		float[] taps;
 		switch (this) {
 		case WIN_HAMMING:
