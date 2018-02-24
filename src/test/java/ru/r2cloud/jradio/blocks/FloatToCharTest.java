@@ -17,11 +17,11 @@ public class FloatToCharTest {
 	private FloatToChar source;
 
 	@Test
-	//ignore due to rounding error in float 
+	// ignore due to rounding error in float
 	@Ignore
 	public void test() throws Exception {
-		source = new FloatToChar(new InputStreamSource(new FileInputStream("/Users/dernasherbrezon/Downloads/rail.bin")), 127.0f);
-		try (InputStream is = new FileInputStream("/Users/dernasherbrezon/Downloads/f2char.bin")) {
+		source = new FloatToChar(new InputStreamSource(FloatToCharTest.class.getClassLoader().getResourceAsStream("rail.bin")), 127.0f);
+		try (InputStream is = new FileInputStream("f2char.bin")) {
 			int index = 0;
 			while (true) {
 				int expected = is.read();

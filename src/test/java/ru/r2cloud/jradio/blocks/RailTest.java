@@ -3,7 +3,6 @@ package ru.r2cloud.jradio.blocks;
 import static org.junit.Assert.assertEquals;
 
 import java.io.EOFException;
-import java.io.FileInputStream;
 
 import org.junit.After;
 import org.junit.Test;
@@ -16,8 +15,8 @@ public class RailTest {
 
 	@Test
 	public void test() throws Exception {
-		source = new Rail(new InputStreamSource(new FileInputStream("/Users/dernasherbrezon/Downloads/constdec.bin")), -1.0f, 1.0f);
-		try (InputStreamSource is = new InputStreamSource(new FileInputStream("/Users/dernasherbrezon/Downloads/rail.bin"))) {
+		source = new Rail(new InputStreamSource(RailTest.class.getClassLoader().getResourceAsStream("constdec.bin")), -1.0f, 1.0f);
+		try (InputStreamSource is = new InputStreamSource(RailTest.class.getClassLoader().getResourceAsStream("rail.bin"))) {
 			while (true) {
 				float expected = is.readFloat();
 				float actual = source.readFloat();

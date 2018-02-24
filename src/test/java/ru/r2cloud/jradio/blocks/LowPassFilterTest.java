@@ -2,15 +2,14 @@ package ru.r2cloud.jradio.blocks;
 
 import static org.junit.Assert.assertEquals;
 
-import java.io.BufferedInputStream;
 import java.io.EOFException;
-import java.io.FileInputStream;
 
 import org.junit.After;
 import org.junit.Test;
 
 import ru.r2cloud.jradio.source.InputStreamSource;
 import ru.r2cloud.jradio.source.WavFileSource;
+import ru.r2cloud.jradio.source.WavFileSourceTest;
 
 public class LowPassFilterTest {
 
@@ -18,8 +17,8 @@ public class LowPassFilterTest {
 
 	@Test
 	public void test() throws Exception {
-		source = new LowPassFilter(new WavFileSource(new BufferedInputStream(new FileInputStream("/Users/dernasherbrezon/Downloads/meteor.wav"))), 1.0, 222222.0, 60000.0, 100.0, Window.WIN_HAMMING, 6.76);
-		try (InputStreamSource is = new InputStreamSource(new FileInputStream("/Users/dernasherbrezon/Downloads/LowPassFilter.bin"))) {
+		source = new LowPassFilter(new WavFileSource(WavFileSourceTest.class.getClassLoader().getResourceAsStream("meteor_small.wav")), 1.0, 222222.0, 60000.0, 100.0, Window.WIN_HAMMING, 6.76);
+		try (InputStreamSource is = new InputStreamSource(LowPassFilterTest.class.getClassLoader().getResourceAsStream("LowPassFilter.bin"))) {
 			while (true) {
 				float expected = is.readFloat();
 				float actual = source.readFloat();

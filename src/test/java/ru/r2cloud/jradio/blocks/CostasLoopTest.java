@@ -3,7 +3,6 @@ package ru.r2cloud.jradio.blocks;
 import static org.junit.Assert.assertEquals;
 
 import java.io.EOFException;
-import java.io.FileInputStream;
 
 import org.junit.After;
 import org.junit.Test;
@@ -16,8 +15,8 @@ public class CostasLoopTest {
 
 	@Test
 	public void test() throws Exception {
-		source = new CostasLoop(new InputStreamSource(new FileInputStream("/Users/dernasherbrezon/Downloads/RRCF.bin")), 0.015f, 4, false);
-		try (InputStreamSource is = new InputStreamSource(new FileInputStream("/Users/dernasherbrezon/Downloads/costas.bin"))) {
+		source = new CostasLoop(new InputStreamSource(CostasLoopTest.class.getClassLoader().getResourceAsStream("RRCF.bin")), 0.015f, 4, false);
+		try (InputStreamSource is = new InputStreamSource(CostasLoopTest.class.getClassLoader().getResourceAsStream("costas.bin"))) {
 			int index = 0;
 			while (true) {
 				float expected = is.readFloat();

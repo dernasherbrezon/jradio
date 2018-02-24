@@ -3,7 +3,6 @@ package ru.r2cloud.jradio.blocks;
 import static org.junit.Assert.assertEquals;
 
 import java.io.EOFException;
-import java.io.FileInputStream;
 
 import org.junit.After;
 import org.junit.Test;
@@ -16,8 +15,8 @@ public class RootRaisedCosineFilterTest {
 
 	@Test
 	public void test() throws Exception {
-		source = new RootRaisedCosineFilter(new InputStreamSource(new FileInputStream("/Users/dernasherbrezon/Downloads/AGC.bin")), 1.0f, 222222f, 72000f, 0.6f, 361);
-		try (InputStreamSource is = new InputStreamSource(new FileInputStream("/Users/dernasherbrezon/Downloads/RRCF.bin"))) {
+		source = new RootRaisedCosineFilter(new InputStreamSource(RootRaisedCosineFilterTest.class.getClassLoader().getResourceAsStream("AGC.bin")), 1.0f, 222222f, 72000f, 0.6f, 361);
+		try (InputStreamSource is = new InputStreamSource(RootRaisedCosineFilterTest.class.getClassLoader().getResourceAsStream("RRCF.bin"))) {
 			while (true) {
 				float expected = is.readFloat();
 				float actual = source.readFloat();
