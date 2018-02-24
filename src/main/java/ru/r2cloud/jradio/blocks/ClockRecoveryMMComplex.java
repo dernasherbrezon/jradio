@@ -64,7 +64,7 @@ public class ClockRecoveryMMComplex implements FloatInput {
 
 			d_c_2T = d_c_1T;
 			d_c_1T = d_c_0T;
-			d_c_0T = slicer_0deg(d_p_0T);
+			slicer_0deg(d_c_0T, d_p_0T);
 
 			x[0] = calcReal(d_c_0T, d_c_2T, d_p_1T);
 			x[1] = calcImg(d_c_0T, d_c_2T, d_p_1T);
@@ -109,14 +109,18 @@ public class ClockRecoveryMMComplex implements FloatInput {
 		return (z1[0] - z2[0]) * (-z3[1]) + (z1[1] - z2[1]) * z3[0];
 	}
 
-	private static float[] slicer_0deg(float[] sample) {
+	private static void slicer_0deg(float[] result, float[] sample) {
 		float real = 0, imag = 0;
 
-		if (sample[0] > 0)
+		if (sample[0] > 0) {
 			real = 1;
-		if (sample[1] > 0)
+		}
+		if (sample[1] > 0) {
 			imag = 1;
-		return new float[] { real, imag };
+		}
+
+		result[0] = real;
+		result[1] = imag;
 	}
 
 	private void set_omega(float omega) {
