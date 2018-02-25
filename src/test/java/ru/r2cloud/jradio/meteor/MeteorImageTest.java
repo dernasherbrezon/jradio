@@ -91,7 +91,7 @@ public class MeteorImageTest {
 		Constellation constel = new Constellation(new float[] { -1.0f, -1.0f, -1.0f, 1.0f, 1.0f, 1.0f, 1.0f, -1.0f }, new int[] { 0, 1, 3, 2 }, 4, 1);
 		ConstellationSoftDecoder constelDecoder = new ConstellationSoftDecoder(clockmm, constel);
 		Rail rail = new Rail(constelDecoder, -1.0f, 1.0f);
-		FloatToChar f2char = new FloatToChar(rail, 127.0f);
+//		FloatToChar f2char = new FloatToChar(rail, 127.0f);
 
 		Set<String> accessCodes = new HashSet<>(LRPT.SYNCHRONIZATION_MARKERS.length);
 		for (long cur : LRPT.SYNCHRONIZATION_MARKERS) {
@@ -99,7 +99,7 @@ public class MeteorImageTest {
 		}
 
 		Context context = new Context();
-//		InputStreamSource f2char = new InputStreamSource(new FileInputStream("/Users/dernasherbrezon/ubuntu_shared/good bit_stream.s"));
+		InputStreamSource f2char = new InputStreamSource(new FileInputStream("/Users/dernasherbrezon/ubuntu_shared/2018_02_25_LRPT_22-15-34.s"));
 		BufferedByteInput buffer = new BufferedByteInput(f2char, 8160 * 2, 8 * 2);
 		CorrelateAccessCodeTag correlate = new CorrelateAccessCodeTag(context, buffer, 9, accessCodes, true);
 		TaggedStreamToPdu tag = new TaggedStreamToPdu(context, new FixedLengthTagger(context, correlate, 8160 * 2 + 8 * 2));

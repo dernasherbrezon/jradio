@@ -34,7 +34,7 @@ public class LRPT implements Iterable<VCDU>, Iterator<VCDU>, Closeable {
 	private final Context context;
 	private final TaggedStreamToPdu input;
 	private final BufferedByteInput buffer;
-	private byte[] current;
+	private VCDU currentVcdu;
 	// previous is used for restoring partial packets
 	private VCDU previous = null;
 
@@ -57,50 +57,56 @@ public class LRPT implements Iterable<VCDU>, Iterator<VCDU>, Closeable {
 
 	@Override
 	public VCDU next() {
-		VCDU result = new VCDU();
-		result.readExternal(previous, current);
-		if (previous == null) {
-			LOG.info("detected meteor-m image. frame: " + result.getCounter());
-		}
-		previous = result;
-		return result;
+		return currentVcdu;
 	}
 
 	@Override
 	public boolean hasNext() {
-		try {
-			byte[] rawBytes = input.readBytes();
-			if (rawBytes != null && rawBytes.length != 0) {
-				Tag currentTag = context.getCurrent();
-				int index = getIndex((Long) currentTag.get(CorrelateAccessCodeTag.ACCESS_CODE));
-				if (index != 0) {
-					// phase was incorrectly locked,
-					// rotate data the same number of turns as synchronization marker
-					for (int i = 0; i < rawBytes.length; i++) {
-						rawBytes[i] = (byte) rotate_iq(rawBytes[i], index);
+		while (true) {
+			try {
+				byte[] rawBytes = input.readBytes();
+				if (rawBytes != null && rawBytes.length != 0) {
+					Tag currentTag = context.getCurrent();
+					int index = getIndex((Long) currentTag.get(CorrelateAccessCodeTag.ACCESS_CODE));
+					if (index != 0) {
+						// phase was incorrectly locked,
+						// rotate data the same number of turns as synchronization marker
+						for (int i = 0; i < rawBytes.length; i++) {
+							rawBytes[i] = (byte) rotate_iq(rawBytes[i], index);
+						}
 					}
-				}
-				byte[] viterbi = ViterbiSoft.decode(rawBytes, (byte) 0x4f, (byte) 0x6d, false);
-				byte[] deShuffled = Randomize.shuffle(viterbi);
-				try {
-					current = ReedSolomon.decode(deShuffled, 4);
-					// viterbi needs last 2 bytes for tail.
-					// need to reset source stream back 2 bytes
-					// since next packet might start exactly after previous
-					buffer.reset(8 * 2);
-				} catch (UncorrectableException e) {
-					if (LOG.isDebugEnabled()) {
-						LOG.debug("unable to decode reed solomon: " + e.getMessage());
+					byte[] viterbi = ViterbiSoft.decode(rawBytes, (byte) 0x4f, (byte) 0x6d, false);
+					byte[] deShuffled = Randomize.shuffle(viterbi);
+					try {
+						byte[] current = ReedSolomon.decode(deShuffled, 4);
+						currentVcdu = new VCDU();
+						currentVcdu.readExternal(previous, current);
+						// reed solomon might pass for array [0,0,0,0,0,0...0]
+						// ensure version is not 0 (according to spec it should be 01)
+						if (currentVcdu.getVersion() == 0) {
+							continue;
+						}
+						if (previous == null) {
+							LOG.info("detected meteor-m image. frame: " + currentVcdu.getCounter());
+						}
+						previous = currentVcdu;
+						// viterbi needs last 2 bytes for tail.
+						// need to reset source stream back 2 bytes
+						// since next packet might start exactly after previous
+						buffer.reset(8 * 2);
+						return true;
+					} catch (UncorrectableException e) {
+						if (LOG.isDebugEnabled()) {
+							LOG.debug("unable to decode reed solomon: " + e.getMessage());
+						}
+						continue;
 					}
-					//TODO unroll to while(true) loop in order to avoid stackoverflow
-					return hasNext();
+				} else {
+					return false;
 				}
-				return true;
-			} else {
+			} catch (IOException e) {
 				return false;
 			}
-		} catch (IOException e) {
-			return false;
 		}
 	}
 

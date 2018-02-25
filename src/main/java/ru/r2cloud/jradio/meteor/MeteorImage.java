@@ -3,10 +3,15 @@ package ru.r2cloud.jradio.meteor;
 import java.awt.image.BufferedImage;
 import java.util.Iterator;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import ru.r2cloud.jradio.lrpt.Packet;
 import ru.r2cloud.jradio.lrpt.VCDU;
 
 public class MeteorImage {
+
+	private static final Logger LOG = LoggerFactory.getLogger(MeteorImage.class);
 
 	private static final int PACKETS_IN_ROW = 14 + 14 + 14 + 1;
 
@@ -27,34 +32,38 @@ public class MeteorImage {
 				if (cur.getApid() == 70) {
 					continue;
 				}
-				MeteorImagePacket meteorPacket = new MeteorImagePacket(cur);
-				ImageChannel channel = getAndReserveChannel(cur.getApid());
-				// explicitly start from the beginning
-				if (channel.getLastPacket() == -1) {
-					channel.setCurrentY(0);
-					channel.setFirstPacket(cur.getSequenceCount());
-					channel.setFirstMcu(meteorPacket.getMcuNumber());
-				} else {
-					int numberOfMissingPackets;
-					// doesn't work if lost more than 16383 packets. But this is very unlikely
-					if (channel.getLastPacket() > cur.getSequenceCount()) {
-						// tail + beginning
-						numberOfMissingPackets = (MAX_SEQUENCE_COUNT - channel.getLastPacket()) + cur.getSequenceCount();
+				try {
+					MeteorImagePacket meteorPacket = new MeteorImagePacket(cur);
+					ImageChannel channel = getAndReserveChannel(cur.getApid());
+					// explicitly start from the beginning
+					if (channel.getLastPacket() == -1) {
+						channel.setCurrentY(0);
+						channel.setFirstPacket(cur.getSequenceCount());
+						channel.setFirstMcu(meteorPacket.getMcuNumber());
 					} else {
-						numberOfMissingPackets = cur.getSequenceCount() - channel.getLastPacket() - 1;
+						int numberOfMissingPackets;
+						// doesn't work if lost more than 16383 packets. But this is very unlikely
+						if (channel.getLastPacket() > cur.getSequenceCount()) {
+							// tail + beginning
+							numberOfMissingPackets = (MAX_SEQUENCE_COUNT - channel.getLastPacket()) + cur.getSequenceCount();
+						} else {
+							numberOfMissingPackets = cur.getSequenceCount() - channel.getLastPacket() - 1;
+						}
+						// each row sent by 14 + 14 + 14 + 1 packets
+						int rowsToAdd = numberOfMissingPackets / PACKETS_IN_ROW;
+						if (rowsToAdd == 0 && meteorPacket.getMcuNumber() == 0) {
+							rowsToAdd++;
+						}
+						channel.appendRows(rowsToAdd);
 					}
-					// each row sent by 14 + 14 + 14 + 1 packets
-					int rowsToAdd = numberOfMissingPackets / PACKETS_IN_ROW;
-					if (rowsToAdd == 0 && meteorPacket.getMcuNumber() == 0) {
-						rowsToAdd++;
+					channel.setLastPacket(cur.getSequenceCount());
+					channel.setCurrentX(meteorPacket.getMcuNumber() * 8);
+					while (meteorPacket.hasNext()) {
+						channel.fill(meteorPacket.next());
+						channel.setCurrentX(channel.getCurrentX() + 8);
 					}
-					channel.appendRows(rowsToAdd);
-				}
-				channel.setLastPacket(cur.getSequenceCount());
-				channel.setCurrentX(meteorPacket.getMcuNumber() * 8);
-				while (meteorPacket.hasNext()) {
-					channel.fill(meteorPacket.next());
-					channel.setCurrentX(channel.getCurrentX() + 8);
+				} catch (Exception e) {
+					LOG.error("unable to decode packet", e);
 				}
 			}
 		}
