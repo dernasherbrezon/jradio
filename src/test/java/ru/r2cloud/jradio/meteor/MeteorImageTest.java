@@ -37,6 +37,7 @@ import ru.r2cloud.jradio.blocks.TaggedStreamToPdu;
 import ru.r2cloud.jradio.blocks.Window;
 import ru.r2cloud.jradio.lrpt.LRPT;
 import ru.r2cloud.jradio.lrpt.VCDU;
+import ru.r2cloud.jradio.source.InputStreamSource;
 import ru.r2cloud.jradio.source.WavFileSource;
 
 public class MeteorImageTest {
@@ -79,7 +80,9 @@ public class MeteorImageTest {
 	// performance test
 	public static void main(String[] args) throws Exception {
 
-		LowPassFilter lowPass = new LowPassFilter(new WavFileSource(new BufferedInputStream(new FileInputStream("/Users/dernasherbrezon/Downloads/lrpt/11-13-00_137874kHz.wav"))), 1.0, 222222.0, 60000.0, 100.0, Window.WIN_HAMMING, 6.76);
+//		String filename = "/Users/dernasherbrezon/Downloads/lrpt/11-13-00_137874kHz.wav";
+		String filename = "/Users/dernasherbrezon/Downloads/meteor.wav";
+		LowPassFilter lowPass = new LowPassFilter(new WavFileSource(new BufferedInputStream(new FileInputStream(filename))), 1.0, 222222.0, 60000.0, 100.0, Window.WIN_HAMMING, 6.76);
 		AGC agc = new AGC(lowPass, 1000e-4f, 0.5f, 1.0f, 4000.0f);
 		RootRaisedCosineFilter rrcf = new RootRaisedCosineFilter(agc, 1.0f, 222222f, 72000f, 0.6f, 361);
 		CostasLoop costas = new CostasLoop(rrcf, 0.015f, 4, false);
@@ -96,6 +99,7 @@ public class MeteorImageTest {
 		}
 
 		Context context = new Context();
+//		InputStreamSource f2char = new InputStreamSource(new FileInputStream("/Users/dernasherbrezon/ubuntu_shared/good bit_stream.s"));
 		BufferedByteInput buffer = new BufferedByteInput(f2char, 8160 * 2, 8 * 2);
 		CorrelateAccessCodeTag correlate = new CorrelateAccessCodeTag(context, buffer, 9, accessCodes, true);
 		TaggedStreamToPdu tag = new TaggedStreamToPdu(context, new FixedLengthTagger(context, correlate, 8160 * 2 + 8 * 2));

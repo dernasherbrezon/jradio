@@ -58,7 +58,9 @@ public class RtlTcpTest {
 					client.getOutputStream().write(baos.toByteArray());
 					client.getOutputStream().flush();
 					DataInputStream dis = new DataInputStream(client.getInputStream());
-					dis.readFully(input);
+					synchronized (input) {
+						dis.readFully(input);
+					}
 				} catch (Exception e) {
 					LOG.error("unable to handle incoming connection", e);
 				} finally {
@@ -82,11 +84,13 @@ public class RtlTcpTest {
 		assertEquals(tunerType, tcp.getTunerType());
 		assertEquals(tunerGainCount, tcp.getTunerGainCount());
 
-		DataInputStream actualSettings = new DataInputStream(new ByteArrayInputStream(input));
-		assertEquals(0x01, actualSettings.readByte());
-		assertEquals(settings.getFrequency(), actualSettings.readInt());
-		assertEquals(0x02, actualSettings.readByte());
-		assertEquals(settings.getSampleRate(), actualSettings.readInt());
+		synchronized (input) {
+			DataInputStream actualSettings = new DataInputStream(new ByteArrayInputStream(input));
+			assertEquals(0x01, actualSettings.readByte());
+			assertEquals(settings.getFrequency(), actualSettings.readInt());
+			assertEquals(0x02, actualSettings.readByte());
+			assertEquals(settings.getSampleRate(), actualSettings.readInt());
+		}
 	}
 
 	@Before
