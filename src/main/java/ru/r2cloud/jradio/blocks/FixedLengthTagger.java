@@ -1,9 +1,7 @@
 package ru.r2cloud.jradio.blocks;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
+import java.util.LinkedList;
 
 import ru.r2cloud.jradio.ByteInput;
 import ru.r2cloud.jradio.Context;
@@ -23,7 +21,7 @@ public class FixedLengthTagger implements ByteInput {
 	private int windowIndex = 0;
 
 	private int currentIndex = -1;
-	private List<Tag> currentTags = new ArrayList<>();
+	private LinkedList<Tag> currentTags = new LinkedList<>();
 
 	public FixedLengthTagger(Context context, ByteInput input, int packet_len) {
 		this.input = input;
@@ -37,8 +35,8 @@ public class FixedLengthTagger implements ByteInput {
 	public byte readByte() throws IOException {
 		// output current packet
 		if (currentIndex >= 0 && currentIndex < packet.length) {
-			//indicate tag only for the first byte
-			if( currentIndex > 0 ) {
+			// indicate tag only for the first byte
+			if (currentIndex > 0) {
 				context.resetCurrent();
 			}
 			byte result = packet[currentIndex];
@@ -51,7 +49,7 @@ public class FixedLengthTagger implements ByteInput {
 			byte curByte = input.readByte();
 			window[windowIndex] = curByte;
 			windowIndex++;
-			if( windowIndex >= window.length ) {
+			if (windowIndex >= window.length) {
 				windowIndex = 0;
 			}
 
@@ -61,21 +59,27 @@ public class FixedLengthTagger implements ByteInput {
 				tag.put(BEGIN_SAMPLE, read);
 				currentTags.add(tag);
 			}
-			
+
 			if (!currentTags.isEmpty()) {
-				Iterator<Tag> it = currentTags.iterator();
-				while (it.hasNext()) {
-					Tag cur = it.next();
+				// new tags added at the end only. Since this is fixed length tagger, than first tag will be filled first
+				// we could use iterator and it.remove here, however list.iterator will create object on each invocation.
+				boolean removeFirst = false;
+				for (int i = 0; i < currentTags.size(); i++) {
+					Tag cur = currentTags.get(i);
 					if ((Integer) cur.get(BEGIN_SAMPLE) + packet_len <= read + 1) {
-						it.remove();
 						currentIndex = 0;
 						System.arraycopy(window, windowIndex, packet, 0, window.length - windowIndex);
 						System.arraycopy(window, 0, packet, window.length - windowIndex, windowIndex);
 						cur.put(LENGTH, packet_len);
 						context.setCurrent(cur);
 						read++;
-						break searchForNext;
+						removeFirst = true;
+						break;
 					}
+				}
+				if (removeFirst) {
+					currentTags.removeFirst();
+					break searchForNext;
 				}
 			}
 

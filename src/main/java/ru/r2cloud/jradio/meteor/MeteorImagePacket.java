@@ -20,7 +20,7 @@ public class MeteorImagePacket implements Iterable<int[]>, Iterator<int[]> {
 	private final int qualityMarker;
 	private final byte qualityValue;
 
-	private Double previousDc = null;
+	private double previousDc = Double.NaN;
 	private int currentBitIndex = 0;
 	private int currentMcu = 0;
 	private int[] currentPixels = new int[64];
@@ -91,7 +91,7 @@ public class MeteorImagePacket implements Iterable<int[]>, Iterator<int[]> {
 
 		zigzagDct[0] = mapBitmaskToValue(dcCategory, dcBitmask);
 		// for the first MCU previous dc should be 0
-		if (previousDc != null) {
+		if (!Double.isNaN(previousDc)) {
 			zigzagDct[0] += previousDc;
 		}
 		previousDc = zigzagDct[0];

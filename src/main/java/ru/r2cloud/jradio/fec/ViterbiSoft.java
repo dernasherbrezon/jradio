@@ -1,7 +1,5 @@
 package ru.r2cloud.jradio.fec;
 
-import java.util.LinkedList;
-
 public class ViterbiSoft {
 
 	private final static int TAIL = 2;
@@ -41,32 +39,30 @@ public class ViterbiSoft {
 	// each byte coded 1 bit
 	private byte[] decodeInternal(byte[] data) {
 		long m0, m1, decision, metric, sym0, sym1;
-		LinkedList<long[]> decisions = new LinkedList<long[]>();
+		// use flat array for perf reasons
+		// flat array will store decisions 0 and 1 one by one
+		long[] decisions = new long[data.length];
 		for (int i = 0; i < data.length; i += 2) {
-			long[] d = new long[2];
-			sym0 = 128 + data[i];// & 0xFF; // convert to unsigned
-			sym1 = 128 + data[i + 1];// & 0xFF; // convert to unsigned
+			sym0 = 128 + data[i]; // convert to unsigned
+			sym1 = 128 + data[i + 1]; // convert to unsigned
 			for (int b = 0; b < 32; b++) {
 				metric = (branchtab[0][b] ^ sym0) + (branchtab[1][b] ^ sym1);
 				m0 = old_metrics[b] + metric;
 				m1 = old_metrics[b + 32] + (510 - metric);
 				decision = m0 > m1 ? 1 : 0;
 				new_metrics[2 * b] = m0 > m1 ? m1 : m0;
-				d[b / 16] |= decision << ((2 * b) & 31);
+				decisions[i + b / 16] |= decision << ((2 * b) & 31);
 
 				m0 -= (metric + metric - 510);
 				m1 += (metric + metric - 510);
 				decision = m0 > m1 ? 1 : 0;
 				new_metrics[2 * b + 1] = m0 > m1 ? m1 : m0;
-				d[b / 16] |= decision << ((2 * b + 1) & 31);
+				decisions[i + b / 16] |= decision << ((2 * b + 1) & 31);
 			}
 
 			long[] tmp = old_metrics;
 			old_metrics = new_metrics;
 			new_metrics = tmp;
-
-			decisions.add(d);
-
 		}
 
 		long endstate = 0;
@@ -76,7 +72,7 @@ public class ViterbiSoft {
 		int nbits = ((data.length / 8 - TAIL) / 2) * 8;
 		long k;
 		while (nbits-- > 0) {
-			k = (decisions.get(nbits + 6)[(int)((endstate >> 2) / 32)] >> ((endstate >> 2) % 32)) & 1;
+			k = (decisions[(nbits + 6) * 2 + (int) ((endstate >> 2) / 32)] >> ((endstate >> 2) % 32)) & 1;
 			endstate = (endstate >> 1) | (k << 7);
 			result[nbits >> 3] = (byte) endstate;
 		}
