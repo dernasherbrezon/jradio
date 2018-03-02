@@ -5,12 +5,18 @@ import java.io.EOFException;
 import java.io.IOException;
 import java.io.InputStream;
 
+import com.codahale.metrics.Counter;
+import com.codahale.metrics.MetricRegistry;
+
 import ru.r2cloud.jradio.ByteInput;
 import ru.r2cloud.jradio.FloatInput;
+import ru.r2cloud.jradio.util.Metrics;
 
 public class InputStreamSource implements FloatInput, ByteInput {
 
+	private final MetricRegistry registry = Metrics.getRegistry();
 	private final InputStream is;
+	private final Counter bytes;
 
 	public InputStreamSource(InputStream is) {
 		if (!(is instanceof BufferedInputStream)) {
@@ -18,11 +24,20 @@ public class InputStreamSource implements FloatInput, ByteInput {
 		} else {
 			this.is = is;
 		}
+		if (registry != null) {
+			bytes = registry.counter(InputStreamSource.class.getName());
+		} else {
+			bytes = null;
+		}
 	}
 
 	@Override
 	public float readFloat() throws IOException {
-		return Float.intBitsToFloat(readInt(is));
+		float result = Float.intBitsToFloat(readInt(is));
+		if (bytes != null) {
+			bytes.inc(4);
+		}
+		return result;
 	}
 
 	@Override
@@ -30,6 +45,9 @@ public class InputStreamSource implements FloatInput, ByteInput {
 		int result = is.read();
 		if (result < 0) {
 			throw new EOFException();
+		}
+		if (bytes != null) {
+			bytes.inc();
 		}
 		return (byte) result;
 	}

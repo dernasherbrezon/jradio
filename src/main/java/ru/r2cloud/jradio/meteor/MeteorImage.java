@@ -13,7 +13,8 @@ public class MeteorImage {
 
 	private static final Logger LOG = LoggerFactory.getLogger(MeteorImage.class);
 
-	private static final int PACKETS_IN_ROW = 14 + 14 + 14 + 1;
+	private static final int PACKETS_IN_CHANNEL = 14;
+	private static final int PACKETS_IN_ROW = 3 * PACKETS_IN_CHANNEL + 1;
 
 	private static final int MAX_SEQUENCE_COUNT = 16383;
 
@@ -101,12 +102,21 @@ public class MeteorImage {
 		if (second == null) {
 			return;
 		}
-		int rowsToAdd = (first.getFirstPacket() - second.getFirstPacket()) / PACKETS_IN_ROW;
+		int rowsToAdd = (second.getFirstPacket() - first.getFirstPacket()) / PACKETS_IN_ROW;
 		// second was wrapped to the new line. I.e.
 		// first mcu - 182, second mcu - 0
 		// if second mcu more than first mcu, then second is on the same row
-		if (rowsToAdd == 0 && first.getFirstMcu() > second.getFirstMcu()) {
+		if (first.getFirstMcu() > second.getFirstMcu()) {
 			rowsToAdd++;
+		} else if (first.getFirstMcu() == second.getFirstMcu()) {
+			// still could be additional row
+			// for example: in RGB, blue starts from mcu 0 and outputs the full row
+			// red should come after 14 + 1 (1 for admin packet) packets
+			// that means next row and the same mcu = 0
+			int remainder = (second.getFirstPacket() - first.getFirstPacket()) % PACKETS_IN_ROW;
+			if ((remainder == (PACKETS_IN_CHANNEL + 1)) || (remainder == (2 * PACKETS_IN_CHANNEL + 1))) {
+				rowsToAdd++;
+			}
 		}
 		second.prependRows(rowsToAdd);
 	}

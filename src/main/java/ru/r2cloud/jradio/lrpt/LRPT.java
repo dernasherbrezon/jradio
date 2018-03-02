@@ -95,7 +95,7 @@ public class LRPT implements Iterable<VCDU>, Iterator<VCDU>, Closeable {
 		// synchronization marker 1ACFFC1D encoded by viterbi
 		long syncMarkerEncoded = 0x035d49c24ff2686bL;
 		for (int i = 0; i < SYNCHRONIZATION_MARKERS.length; i++) {
-			SYNCHRONIZATION_MARKERS[i] = rotate_iq_qw(syncMarkerEncoded, i);
+			SYNCHRONIZATION_MARKERS[i] = rotateClockWise(syncMarkerEncoded, i);
 		}
 	}
 
@@ -118,12 +118,10 @@ public class LRPT implements Iterable<VCDU>, Iterator<VCDU>, Closeable {
 				if (rawBytes != null && rawBytes.length != 0) {
 					Tag currentTag = context.getCurrent();
 					int index = getIndex((Long) currentTag.get(CorrelateAccessCodeTag.ACCESS_CODE));
+					// phase was incorrectly locked,
+					// rotate data the same number of turns as synchronization marker
 					if (index != 0) {
-						// phase was incorrectly locked,
-						// rotate data the same number of turns as synchronization marker
-						for (int i = 0; i < rawBytes.length; i++) {
-							rawBytes[i] = (byte) rotate_iq(rawBytes[i], index);
-						}
+						rotateIqCounterClockWise(rawBytes, index);
 					}
 					byte[] viterbi = ViterbiSoft.decode(rawBytes, (byte) 0x4f, (byte) 0x6d, false);
 					byte[] deShuffled = Randomize.shuffle(viterbi);
@@ -175,7 +173,38 @@ public class LRPT implements Iterable<VCDU>, Iterator<VCDU>, Closeable {
 		input.close();
 	}
 
-	private static long rotate_iq_qw(long data, int shift) {
+	private static void rotateIqCounterClockWise(byte[] rawBytes, int index) {
+		int hardDecision = 0;
+		for (int i = 0, bits = 7; i < rawBytes.length; i++, bits--) {
+			if (rawBytes[i] > 0) {
+				hardDecision = (hardDecision << 1) | 1;
+			} else {
+				hardDecision = (hardDecision << 1) | 0;
+			}
+			// full byte was assembled
+			if (bits == 0) {
+				int rotated = rotateIqCounterClockWise(hardDecision, index);
+				// unroll back to soft decision
+				// look for the last 8 bytes and invert them
+				for (int j = 7; j >= 0; j--) {
+					//invert only unmatched bits
+					if (((rotated >> j) & 0x1) == 1) {
+						if (rawBytes[i - j] < 0) {
+							rawBytes[i - j] ^= 0xFF;
+						}
+					} else {
+						if (rawBytes[i - j] > 0) {
+							rawBytes[i - j] ^= 0xFF;
+						}
+					}
+				}
+				hardDecision = 0;
+				bits = 8;
+			}
+		}
+	}
+	
+	private static long rotateClockWise(long data, int shift) {
 		int i;
 		long result = 0;
 		int bdata;
@@ -183,23 +212,28 @@ public class LRPT implements Iterable<VCDU>, Iterator<VCDU>, Closeable {
 		for (i = 0; i < 8; i++) {
 			bdata = (int) ((data >> (56 - 8 * i)) & 0xff);
 			result <<= 8;
-			result |= rotate_iq(bdata, shift);
+			int val = rotateIqCounterClockWise(bdata, shift);
+			// invert back since it was rotated counter clock wise
+			if (shift == 1 || shift == 3) {
+				val = val ^ 0xFF;
+			}
+			result |= val;
 		}
 
 		return (result);
 	}
 
-	private static int rotate_iq(int data, int shift) {
+	private static int rotateIqCounterClockWise(int data, int shift) {
 		int result = data;
 		switch (shift) {
 		case 0:
 			return result;
 		case 1:
-			return rotate_iq_tab[result & 0xFF];
+			return rotate_iq_tab[result & 0xFF] ^ 0xFF;
 		case 2:
 			return result ^ 0xFF;
 		case 3:
-			return rotate_iq_tab[result & 0xFF] ^ 0xFF;
+			return rotate_iq_tab[result & 0xFF];
 		case 4:
 			return phase4[result & 0xFF];
 		case 5:
