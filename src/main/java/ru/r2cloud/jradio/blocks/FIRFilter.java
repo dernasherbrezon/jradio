@@ -2,8 +2,7 @@ package ru.r2cloud.jradio.blocks;
 
 public class FIRFilter {
 
-	private float[] taps;
-	private float[] filterComplex = new float[2];
+	private final float[] taps;
 
 	public FIRFilter(float[] taps) {
 		this.taps = new float[taps.length];
@@ -20,16 +19,15 @@ public class FIRFilter {
 		return dotProduct;
 	}
 
-	public float[] filterComplex(float[] input, float[] inputImg) {
+	public void filterComplex(float[] output, float[] input, float[] inputImg) {
 		float dotProductReal = 0;
 		float dotProductImg = 0;
 		for (int i = 0; i < input.length; i++) {
 			dotProductReal = dotProductReal + input[i] * taps[i];
 			dotProductImg = dotProductImg + inputImg[i] * taps[i];
 		}
-		filterComplex[0] = dotProductReal;
-		filterComplex[1] = dotProductImg;
-		return filterComplex;
+		output[0] = dotProductReal;
+		output[1] = dotProductImg;
 	}
 
 }

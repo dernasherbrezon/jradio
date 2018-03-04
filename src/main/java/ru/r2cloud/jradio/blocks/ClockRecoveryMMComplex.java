@@ -58,12 +58,16 @@ public class ClockRecoveryMMComplex implements FloatInput {
 
 			float mm_val = 0;
 
+			float[] temp = d_p_2T;
 			d_p_2T = d_p_1T;
 			d_p_1T = d_p_0T;
-			d_p_0T = d_interp.interpolateComplex(curBuf, curBufImg, d_mu);
+			d_p_0T = temp;
+			d_interp.interpolateComplex(d_p_0T, curBuf, curBufImg, d_mu);
 
+			temp = d_c_2T;
 			d_c_2T = d_c_1T;
 			d_c_1T = d_c_0T;
+			d_c_0T = temp;
 			slicer_0deg(d_c_0T, d_p_0T);
 
 			x[0] = calcReal(d_c_0T, d_c_2T, d_p_1T);

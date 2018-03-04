@@ -21,7 +21,7 @@ public class RootRaisedCosineFilter implements FloatInput {
 
 	private boolean real = true;
 
-	private float[] currentComplex;
+	private float[] currentComplex = new float[2];
 
 	public RootRaisedCosineFilter(FloatInput source, float gain, float sampleRate, float symbolRate, float alpha, int numTaps) {
 		this.source = source;
@@ -46,7 +46,7 @@ public class RootRaisedCosineFilter implements FloatInput {
 			System.arraycopy(historyImg, 0, historyImg, 1, historyImg.length - 1);
 			historyImg[0] = source.readFloat();
 
-			currentComplex = filter.filterComplex(historyReal, historyImg);
+			filter.filterComplex(currentComplex, historyReal, historyImg);
 			if (samples != null) {
 				samples.mark();
 			}

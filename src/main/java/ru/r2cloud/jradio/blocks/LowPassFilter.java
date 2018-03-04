@@ -12,6 +12,7 @@ public class LowPassFilter implements FloatInput {
 
 	private final MetricRegistry registry = Metrics.getRegistry();
 	private final Meter samples;
+	private final float[] currentComplex = new float[2];
 
 	private final FloatInput source;
 	private final FIRFilter filter;
@@ -20,7 +21,6 @@ public class LowPassFilter implements FloatInput {
 
 	private boolean real = true;
 
-	private float[] currentComplex;
 
 	public LowPassFilter(FloatInput source, double gain, double sampling_freq, double cutoff_freq, double transition_width, Window window_type, double beta) {
 		this.source = source;
@@ -45,7 +45,7 @@ public class LowPassFilter implements FloatInput {
 			System.arraycopy(historyImg, 0, historyImg, 1, historyImg.length - 1);
 			historyImg[0] = source.readFloat();
 
-			currentComplex = filter.filterComplex(historyReal, historyImg);
+			filter.filterComplex(currentComplex, historyReal, historyImg);
 			if (samples != null) {
 				samples.mark();
 			}
