@@ -37,7 +37,6 @@ import ru.r2cloud.jradio.blocks.TaggedStreamToPdu;
 import ru.r2cloud.jradio.blocks.Window;
 import ru.r2cloud.jradio.lrpt.LRPT;
 import ru.r2cloud.jradio.lrpt.VCDU;
-import ru.r2cloud.jradio.source.InputStreamSource;
 import ru.r2cloud.jradio.source.WavFileSource;
 
 public class MeteorImageTest {
@@ -79,19 +78,17 @@ public class MeteorImageTest {
 
 	// performance test
 	public static void main(String[] args) throws Exception {
-
-//		String filename = "/Users/dernasherbrezon/Downloads/lrpt/11-13-00_137874kHz.wav";
-		String filename = "/Users/dernasherbrezon/Downloads/meteor.wav";
-		LowPassFilter lowPass = new LowPassFilter(new WavFileSource(new BufferedInputStream(new FileInputStream(filename))), 1.0, 222222.0, 60000.0, 100.0, Window.WIN_HAMMING, 6.76);
+		String filename = "/Users/dernasherbrezon/Downloads/lrpt/11-13-00_137874kHz.wav";
+		LowPassFilter lowPass = new LowPassFilter(new WavFileSource(new BufferedInputStream(new FileInputStream(filename))), 1.0, 222222.0, 60000.0, 10000.0, Window.WIN_HAMMING, 6.76);
 		AGC agc = new AGC(lowPass, 1000e-4f, 0.5f, 1.0f, 4000.0f);
 		RootRaisedCosineFilter rrcf = new RootRaisedCosineFilter(agc, 1.0f, 222222f, 72000f, 0.6f, 361);
 		CostasLoop costas = new CostasLoop(rrcf, 0.015f, 4, false);
-		float omega = 3.08642f;
-		ClockRecoveryMMComplex clockmm = new ClockRecoveryMMComplex(costas, omega, (float) (0.001 * 0.001 / 4), 0.5f, 0.001f, 0.005f);
+		float omega = (float) ((222222 * 1.0) / (72000 * 1.0));
+		ClockRecoveryMMComplex clockmm = new ClockRecoveryMMComplex(costas, omega, (float) (0.001 * 0.001 / 4), 0.5f, 0.001f, 0.05f);
 		Constellation constel = new Constellation(new float[] { -1.0f, -1.0f, -1.0f, 1.0f, 1.0f, 1.0f, 1.0f, -1.0f }, new int[] { 0, 1, 3, 2 }, 4, 1);
 		ConstellationSoftDecoder constelDecoder = new ConstellationSoftDecoder(clockmm, constel);
 		Rail rail = new Rail(constelDecoder, -1.0f, 1.0f);
-//		FloatToChar f2char = new FloatToChar(rail, 127.0f);
+		FloatToChar f2char = new FloatToChar(rail, 127.0f);
 
 		Set<String> accessCodes = new HashSet<>(LRPT.SYNCHRONIZATION_MARKERS.length);
 		for (long cur : LRPT.SYNCHRONIZATION_MARKERS) {
@@ -99,9 +96,8 @@ public class MeteorImageTest {
 		}
 
 		Context context = new Context();
-		InputStreamSource f2char = new InputStreamSource(new FileInputStream("/Users/dernasherbrezon/ubuntu_shared/2018_02_25_LRPT_22-15-34.s"));
 		BufferedByteInput buffer = new BufferedByteInput(f2char, 8160 * 2, 8 * 2);
-		CorrelateAccessCodeTag correlate = new CorrelateAccessCodeTag(context, buffer, 9, accessCodes, true);
+		CorrelateAccessCodeTag correlate = new CorrelateAccessCodeTag(context, buffer, 12, accessCodes, true);
 		TaggedStreamToPdu tag = new TaggedStreamToPdu(context, new FixedLengthTagger(context, correlate, 8160 * 2 + 8 * 2));
 		LRPT lrpt = new LRPT(context, tag, buffer);
 		MeteorImage image = new MeteorImage(lrpt);
@@ -109,7 +105,6 @@ public class MeteorImageTest {
 		if (actual != null) {
 			ImageIO.write(actual, "png", new File("output.png"));
 		}
-
 		lrpt.close();
 	}
 
