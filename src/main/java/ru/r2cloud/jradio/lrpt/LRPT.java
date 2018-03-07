@@ -7,6 +7,9 @@ import java.util.Iterator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.codahale.metrics.Counter;
+import com.codahale.metrics.MetricRegistry;
+
 import ru.r2cloud.jradio.BufferedByteInput;
 import ru.r2cloud.jradio.Context;
 import ru.r2cloud.jradio.Tag;
@@ -16,11 +19,12 @@ import ru.r2cloud.jradio.fec.ViterbiSoft;
 import ru.r2cloud.jradio.fec.ccsds.Randomize;
 import ru.r2cloud.jradio.fec.ccsds.ReedSolomon;
 import ru.r2cloud.jradio.fec.ccsds.UncorrectableException;
+import ru.r2cloud.jradio.util.Metrics;
 
 public class LRPT implements Iterable<VCDU>, Iterator<VCDU>, Closeable {
 
 	private static final Logger LOG = LoggerFactory.getLogger(LRPT.class);
-
+	private final MetricRegistry registry = Metrics.getRegistry();
 	// phase might be incorrectly locked, so there are 4 different sync markers possible:
 	// 1ACFFC1D itself + rotated clockwise 3 times
 	// this is lookup table to quickly convert:
@@ -45,6 +49,8 @@ public class LRPT implements Iterable<VCDU>, Iterator<VCDU>, Closeable {
 	private final Context context;
 	private final TaggedStreamToPdu input;
 	private final BufferedByteInput buffer;
+	private final Counter count;
+
 	private VCDU currentVcdu;
 	// previous is used for restoring partial packets
 	private VCDU previous = null;
@@ -103,6 +109,11 @@ public class LRPT implements Iterable<VCDU>, Iterator<VCDU>, Closeable {
 		this.context = context;
 		this.input = input;
 		this.buffer = buffer;
+		if (registry != null) {
+			count = registry.counter(LRPT.class.getName());
+		} else {
+			count = null;
+		}
 	}
 
 	@Override
@@ -136,6 +147,9 @@ public class LRPT implements Iterable<VCDU>, Iterator<VCDU>, Closeable {
 						}
 						if (previous == null) {
 							LOG.info("detected meteor-m image. frame: " + currentVcdu.getCounter());
+						}
+						if (count != null) {
+							count.inc();
 						}
 						previous = currentVcdu;
 						// viterbi needs last 2 bytes for tail.
@@ -187,7 +201,7 @@ public class LRPT implements Iterable<VCDU>, Iterator<VCDU>, Closeable {
 				// unroll back to soft decision
 				// look for the last 8 bytes and invert them
 				for (int j = 7; j >= 0; j--) {
-					//invert only unmatched bits
+					// invert only unmatched bits
 					if (((rotated >> j) & 0x1) == 1) {
 						if (rawBytes[i - j] < 0) {
 							rawBytes[i - j] ^= 0xFF;

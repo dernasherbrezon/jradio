@@ -14,6 +14,7 @@ public class ImageChannel {
 	private int firstPacket;
 	private int firstMcu;
 	private int lastPacket = -1;
+	private int lastMcu = -1;
 
 	public ImageChannel(int apid) {
 		this.apid = apid;
@@ -98,4 +99,11 @@ public class ImageChannel {
 		this.firstMcu = firstMcu;
 	}
 
+	public int getLastMcu() {
+		return lastMcu;
+	}
+	
+	public void setLastMcu(int lastMcu) {
+		this.lastMcu = lastMcu;
+	}
 }

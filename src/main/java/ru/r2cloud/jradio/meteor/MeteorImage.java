@@ -17,6 +17,9 @@ public class MeteorImage {
 	private static final int PACKETS_IN_ROW = 3 * PACKETS_IN_CHANNEL + 1;
 
 	private static final int MAX_SEQUENCE_COUNT = 16383;
+	private static final int DEFAULT_RED_APID = 66;
+	private static final int DEFAULT_GREEN_APID = 65;
+	private static final int DEFAULT_BLUE_APID = 64;
 
 	private ImageChannel channel1;
 	private ImageChannel channel2;
@@ -52,12 +55,17 @@ public class MeteorImage {
 						}
 						// each row sent by 14 + 14 + 14 + 1 packets
 						int rowsToAdd = numberOfMissingPackets / PACKETS_IN_ROW;
-						if (rowsToAdd == 0 && meteorPacket.getMcuNumber() == 0) {
+						if (channel.getLastMcu() > meteorPacket.getMcuNumber()) {
 							rowsToAdd++;
+						} else {
+							if (rowsToAdd != 0) {
+								rowsToAdd++;
+							}
 						}
 						channel.appendRows(rowsToAdd);
 					}
 					channel.setLastPacket(cur.getSequenceCount());
+					channel.setLastMcu(meteorPacket.getMcuNumber());
 					channel.setCurrentX(meteorPacket.getMcuNumber() * 8);
 					while (meteorPacket.hasNext()) {
 						channel.fill(meteorPacket.next());
@@ -73,6 +81,10 @@ public class MeteorImage {
 	}
 
 	public BufferedImage toBufferedImage() {
+		return toBufferedImage(DEFAULT_RED_APID, DEFAULT_GREEN_APID, DEFAULT_BLUE_APID);
+	}
+
+	public BufferedImage toBufferedImage(int redApid, int greenApid, int blueApid) {
 		if (channel1 == null) {
 			return null;
 		}
@@ -88,7 +100,7 @@ public class MeteorImage {
 		for (int row = 0; row < result.getHeight(); row++) {
 			for (int col = 0; col < result.getWidth(); col++) {
 				int index = row * result.getWidth() + col;
-				result.setRGB(col, row, getRGB(getRed(this, index), getGreen(this, index), getBlue(this, index)));
+				result.setRGB(col, row, getRGB(getRed(this, index, redApid), getGreen(this, index, greenApid), getBlue(this, index, blueApid)));
 			}
 		}
 		return result;
@@ -102,7 +114,14 @@ public class MeteorImage {
 		if (second == null) {
 			return;
 		}
-		int rowsToAdd = (second.getFirstPacket() - first.getFirstPacket()) / PACKETS_IN_ROW;
+		// handle packet wrap
+		int numberOfMissingPackets;
+		if (second.getFirstPacket() > first.getFirstPacket()) {
+			numberOfMissingPackets = second.getFirstPacket() - first.getFirstPacket();
+		} else {
+			numberOfMissingPackets = (MAX_SEQUENCE_COUNT - first.getFirstPacket()) + second.getFirstPacket();
+		}
+		int rowsToAdd = numberOfMissingPackets / PACKETS_IN_ROW;
 		// second was wrapped to the new line. I.e.
 		// first mcu - 182, second mcu - 0
 		// if second mcu more than first mcu, then second is on the same row
@@ -113,7 +132,7 @@ public class MeteorImage {
 			// for example: in RGB, blue starts from mcu 0 and outputs the full row
 			// red should come after 14 + 1 (1 for admin packet) packets
 			// that means next row and the same mcu = 0
-			int remainder = (second.getFirstPacket() - first.getFirstPacket()) % PACKETS_IN_ROW;
+			int remainder = numberOfMissingPackets % PACKETS_IN_ROW;
 			if ((remainder == (PACKETS_IN_CHANNEL + 1)) || (remainder == (2 * PACKETS_IN_CHANNEL + 1))) {
 				rowsToAdd++;
 			}
@@ -146,11 +165,11 @@ public class MeteorImage {
 		throw new IllegalArgumentException("all channels were already reserved. unexpected apid: " + apid);
 	}
 
-	private static int getBlue(MeteorImage image, int index) {
+	private static int getBlue(MeteorImage image, int index, int apid) {
 		ImageChannel channel;
-		if (image.getChannel1() != null && image.getChannel1().getApid() == 64) {
+		if (image.getChannel1() != null && image.getChannel1().getApid() == apid) {
 			channel = image.getChannel1();
-		} else if (image.getChannel2() != null && image.getChannel2().getApid() == 64) {
+		} else if (image.getChannel2() != null && image.getChannel2().getApid() == apid) {
 			channel = image.getChannel2();
 		} else {
 			channel = image.getChannel3();
@@ -161,14 +180,16 @@ public class MeteorImage {
 		return channel.getData()[index];
 	}
 
-	private static int getRed(MeteorImage image, int index) {
+	private static int getRed(MeteorImage image, int index, int apid) {
 		ImageChannel channel;
-		if (image.getChannel1() != null && image.getChannel1().getApid() == 66) {
+		if (image.getChannel1() != null && image.getChannel1().getApid() == apid) {
 			channel = image.getChannel1();
-		} else if (image.getChannel2() != null && image.getChannel2().getApid() == 66) {
+		} else if (image.getChannel2() != null && image.getChannel2().getApid() == apid) {
 			channel = image.getChannel2();
-		} else {
+		} else if (image.getChannel3() != null && image.getChannel3().getApid() == apid) {
 			channel = image.getChannel3();
+		} else {
+			return 0;
 		}
 		if (channel == null || index >= channel.getData().length) {
 			return 0;
@@ -176,11 +197,11 @@ public class MeteorImage {
 		return channel.getData()[index];
 	}
 
-	private static int getGreen(MeteorImage image, int index) {
+	private static int getGreen(MeteorImage image, int index, int apid) {
 		ImageChannel channel;
-		if (image.getChannel1() != null && image.getChannel1().getApid() == 65) {
+		if (image.getChannel1() != null && image.getChannel1().getApid() == apid) {
 			channel = image.getChannel1();
-		} else if (image.getChannel2() != null && image.getChannel2().getApid() == 65) {
+		} else if (image.getChannel2() != null && image.getChannel2().getApid() == apid) {
 			channel = image.getChannel2();
 		} else {
 			channel = image.getChannel3();

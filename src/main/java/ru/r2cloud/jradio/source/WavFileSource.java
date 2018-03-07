@@ -39,9 +39,9 @@ public class WavFileSource implements FloatInput {
 			currentBufIndex += 2;
 			return ((float) s / Short.MAX_VALUE);
 		} else {
-			byte s = buf[currentBufIndex];
+			short s = (short)(buf[currentBufIndex] & 0xFF);
 			currentBufIndex += 1;
-			return ((float) s / Byte.MAX_VALUE);
+			return ((float) s / 128) - 1;
 		}
 	}
 
