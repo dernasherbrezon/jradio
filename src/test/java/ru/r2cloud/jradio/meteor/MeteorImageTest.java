@@ -19,6 +19,8 @@ import javax.imageio.ImageIO;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.junit.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import ru.r2cloud.jradio.BufferedByteInput;
 import ru.r2cloud.jradio.Context;
@@ -40,6 +42,8 @@ import ru.r2cloud.jradio.lrpt.VCDU;
 import ru.r2cloud.jradio.source.WavFileSource;
 
 public class MeteorImageTest {
+
+	private static final Logger LOG = LoggerFactory.getLogger(MeteorImageTest.class);
 
 	@Test
 	public void success() throws Exception {
@@ -78,13 +82,19 @@ public class MeteorImageTest {
 
 	// performance test
 	public static void main(String[] args) throws Exception {
+		float sampleRate = 222222.0f;
+		float symbolRate = 72000f;
+		float clockAlpha = 0.010f;
+		LOG.info("started");
 		String filename = "/Users/dernasherbrezon/Downloads/lrpt/11-13-00_137874kHz.wav";
-		LowPassFilter lowPass = new LowPassFilter(new WavFileSource(new BufferedInputStream(new FileInputStream(filename))), 1.0, 222222.0, 60000.0, 10000.0, Window.WIN_HAMMING, 6.76);
+		WavFileSource source = new WavFileSource(new BufferedInputStream(new FileInputStream(filename)));
+		LowPassFilter lowPass = new LowPassFilter(source, 1.0, sampleRate, 50000.0, 1000.0, Window.WIN_HAMMING, 6.76);
 		AGC agc = new AGC(lowPass, 1000e-4f, 0.5f, 1.0f, 4000.0f);
-		RootRaisedCosineFilter rrcf = new RootRaisedCosineFilter(agc, 1.0f, 222222f, 72000f, 0.6f, 361);
-		CostasLoop costas = new CostasLoop(rrcf, 0.015f, 4, false);
-		float omega = (float) ((222222 * 1.0) / (72000 * 1.0));
-		ClockRecoveryMMComplex clockmm = new ClockRecoveryMMComplex(costas, omega, (float) (0.001 * 0.001 / 4), 0.5f, 0.001f, 0.05f);
+		RootRaisedCosineFilter rrcf = new RootRaisedCosineFilter(agc, 1.0f, sampleRate, symbolRate, 0.6f, 361);
+
+		CostasLoop costas = new CostasLoop(rrcf, 0.020f, 4, false);
+		float omega = (float) ((sampleRate * 1.0) / (symbolRate * 1.0));
+		ClockRecoveryMMComplex clockmm = new ClockRecoveryMMComplex(costas, omega, clockAlpha * clockAlpha / 4, 0.5f, clockAlpha, 0.005f);
 		Constellation constel = new Constellation(new float[] { -1.0f, -1.0f, -1.0f, 1.0f, 1.0f, 1.0f, 1.0f, -1.0f }, new int[] { 0, 1, 3, 2 }, 4, 1);
 		ConstellationSoftDecoder constelDecoder = new ConstellationSoftDecoder(clockmm, constel);
 		Rail rail = new Rail(constelDecoder, -1.0f, 1.0f);
@@ -106,6 +116,7 @@ public class MeteorImageTest {
 			ImageIO.write(actual, "png", new File("output.png"));
 		}
 		lrpt.close();
+		LOG.info("done");
 	}
 
 }

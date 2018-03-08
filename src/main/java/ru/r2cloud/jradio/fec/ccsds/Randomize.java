@@ -25,12 +25,10 @@ public class Randomize {
 		}
 	}
 
-	public static byte[] shuffle(byte[] data) {
-		byte[] result = new byte[data.length];
+	public static void shuffle(byte[] data) {
 		for (int i = 0; i < data.length; i++) {
-			result[i] = (byte) (data[i] ^ sequence[i % sequence.length]);
+			data[i] = (byte) (data[i] ^ sequence[i % sequence.length]);
 		}
-		return result;
 	}
 
 }

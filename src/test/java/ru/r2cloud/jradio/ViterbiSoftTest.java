@@ -8,6 +8,21 @@ import ru.r2cloud.jradio.fec.Viterbi;
 import ru.r2cloud.jradio.fec.ViterbiSoft;
 
 public class ViterbiSoftTest {
+	
+	@Test
+	public void testReuseInstance() {
+		ViterbiSoft viterbi = new ViterbiSoft((byte) 0x4f, (byte) 0x6d, false, 4 * 2 * 8 + 2 * 8);
+		assertEncodedDecoded("1ACFFC1D", viterbi);
+		assertEncodedDecoded("9A00AADD", viterbi);
+		assertEncodedDecoded("AFAFAFAF", viterbi);
+	}
+
+	private static void assertEncodedDecoded(String data, ViterbiSoft viterbi) {
+		byte[] original = ViterbiTest.hexStringToByteArray(data);
+		byte[] input = convertToSoft(Viterbi.encode(original, (byte) 0x4f, (byte) 0x6d, false));
+		byte[] result = viterbi.decode(input);
+		assertArrayEquals(original, result);
+	}
 
 	@Test
 	public void testEncodeDecode() {

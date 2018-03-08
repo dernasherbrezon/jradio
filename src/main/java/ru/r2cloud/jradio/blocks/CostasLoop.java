@@ -7,6 +7,8 @@ import ru.r2cloud.jradio.util.MathUtils;
 
 public class CostasLoop implements FloatInput {
 
+	private static final double ONE_AND_HALF_PI = 3 * Math.PI / 2;
+	private static final double HALF_PI = Math.PI / 2;
 	private final static float M_TWOPI = (float) (2.0 * Math.PI);
 	private final FloatInput source;
 
@@ -43,11 +45,12 @@ public class CostasLoop implements FloatInput {
 			float origReal = source.readFloat();
 			img = source.readFloat();
 
-			float sinImg = (float) Math.sin(-d_phase);
-			float cosReal = (float) Math.cos(-d_phase);
+			float phaseToCalc = -d_phase;
+			double sinImg = Math.sin(phaseToCalc);
+			float cosReal = cos(phaseToCalc, sinImg);
 
-			float real = origReal * cosReal - img * sinImg;
-			img = origReal * sinImg + img * cosReal;
+			float real = origReal * cosReal - img * (float) sinImg;
+			img = origReal * (float) sinImg + img * cosReal;
 
 			switch (order) {
 			case 4:
@@ -88,6 +91,20 @@ public class CostasLoop implements FloatInput {
 		}
 		outputReal = !outputReal;
 		return img;
+	}
+
+	private static float cos(float phaseToCalc, double sinImg) {
+		float cosReal = (float) Math.sqrt(1 - sinImg * sinImg);
+		if (phaseToCalc >= 0 && (phaseToCalc > HALF_PI) && sinImg >= 0.0) {
+			cosReal = -cosReal;
+		} else if (phaseToCalc >= 0 && sinImg < 0.0 && phaseToCalc < ONE_AND_HALF_PI) {
+			cosReal = -cosReal;
+		} else if (phaseToCalc < 0 && sinImg >= 0.0 && phaseToCalc > -ONE_AND_HALF_PI) {
+			cosReal = -cosReal;
+		} else if (phaseToCalc < 0 && sinImg < 0.0 && phaseToCalc < -HALF_PI) {
+			cosReal = -cosReal;
+		}
+		return cosReal;
 	}
 
 	@Override

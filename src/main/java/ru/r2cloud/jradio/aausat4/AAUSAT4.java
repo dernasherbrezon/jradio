@@ -41,9 +41,9 @@ public class AAUSAT4 implements Iterable<AAUSAT4Beacon>, Iterator<AAUSAT4Beacon>
 				if (raw[0] == 0x59) {
 					// long frame
 					byte[] viterbi = Viterbi.decode(Arrays.copyOfRange(raw, 1, 250));
-					byte[] deShuffled = Randomize.shuffle(viterbi);
+					Randomize.shuffle(viterbi);
 					try {
-						byte[] data = ReedSolomon.decode(deShuffled);
+						byte[] data = ReedSolomon.decode(viterbi);
 						current = new AAUSAT4Beacon();
 						current.readExternal(data);
 					} catch (IOException e) {

@@ -3,18 +3,24 @@ package ru.r2cloud.jradio.fec;
 public class ViterbiSoft {
 
 	private final static int TAIL = 2;
+	private final int[][] branchtab = new int[2][32];
+	private final long[] decisions;
+	private final byte[] resultWithTail;
+	private final byte[] resultWithoutTail;
+
 	private long[] metrics1 = new long[64];
 	private long[] metrics2 = new long[64];
 
 	private long[] old_metrics;
 	private long[] new_metrics;
 
-	private int[][] branchtab = new int[2][32];
-
 	private static final int[] lookup = new int[] { 0, 1, 1, 0, 1, 0, 0, 1, 1, 0, 0, 1, 0, 1, 1, 0, 1, 0, 0, 1, 0, 1, 1, 0, 0, 1, 1, 0, 1, 0, 0, 1, 1, 0, 0, 1, 0, 1, 1, 0, 0, 1, 1, 0, 1, 0, 0, 1, 0, 1, 1, 0, 1, 0, 0, 1, 1, 0, 0, 1, 0, 1, 1, 0, 1, 0, 0, 1, 0, 1, 1, 0, 0, 1, 1, 0, 1, 0, 0, 1, 0, 1, 1, 0, 1, 0, 0, 1, 1, 0, 0, 1, 0, 1, 1, 0, 0, 1, 1, 0, 1, 0, 0, 1, 1, 0, 0, 1, 0, 1, 1, 0, 1, 0, 0, 1, 0, 1, 1, 0, 0, 1, 1, 0, 1, 0, 0, 1, 1, 0, 0, 1, 0, 1, 1, 0, 0, 1, 1, 0, 1, 0, 0, 1, 0, 1, 1, 0, 1,
 			0, 0, 1, 1, 0, 0, 1, 0, 1, 1, 0, 0, 1, 1, 0, 1, 0, 0, 1, 1, 0, 0, 1, 0, 1, 1, 0, 1, 0, 0, 1, 0, 1, 1, 0, 0, 1, 1, 0, 1, 0, 0, 1, 0, 1, 1, 0, 1, 0, 0, 1, 1, 0, 0, 1, 0, 1, 1, 0, 1, 0, 0, 1, 0, 1, 1, 0, 0, 1, 1, 0, 1, 0, 0, 1, 1, 0, 0, 1, 0, 1, 1, 0, 0, 1, 1, 0, 1, 0, 0, 1, 0, 1, 1, 0, 1, 0, 0, 1, 1, 0, 0, 1, 0, 1, 1, 0 };
 
-	public ViterbiSoft(byte poly1, byte poly2, boolean invertPoly2) {
+	public ViterbiSoft(byte poly1, byte poly2, boolean invertPoly2, int dataLength) {
+		decisions = new long[dataLength];
+		resultWithTail = new byte[dataLength / 16];
+		resultWithoutTail = new byte[resultWithTail.length - 1];
 		byte invertPoly2Byte;
 		if (invertPoly2) {
 			invertPoly2Byte = 1;
@@ -22,12 +28,6 @@ public class ViterbiSoft {
 			invertPoly2Byte = 0;
 		}
 
-		for (int i = 0; i < metrics1.length; i++) {
-			metrics1[i] = 63;
-		}
-		old_metrics = metrics1;
-		new_metrics = metrics2;
-		old_metrics[0 & 63] = 0;
 		int state;
 
 		for (state = 0; state < 32; state++) {
@@ -37,14 +37,26 @@ public class ViterbiSoft {
 	}
 
 	// each byte coded 1 bit
-	private byte[] decodeInternal(byte[] data) {
+	public byte[] decode(byte[] data) {
+		if (data.length != decisions.length) {
+			throw new IllegalArgumentException("data length mismatched. expected: " + decisions.length + " got: " + data.length);
+		}
+		
+		for (int i = 0; i < metrics1.length; i++) {
+			metrics1[i] = 63;
+		}
+		old_metrics = metrics1;
+		new_metrics = metrics2;
+		old_metrics[0 & 63] = 0;
+		
 		long m0, m1, decision, metric, sym0, sym1;
 		// use flat array for perf reasons
 		// flat array will store decisions 0 and 1 one by one
-		long[] decisions = new long[data.length];
 		for (int i = 0; i < data.length; i += 2) {
 			sym0 = 128 + data[i]; // convert to unsigned
 			sym1 = 128 + data[i + 1]; // convert to unsigned
+			decisions[i] = 0;
+			decisions[i + 1] = 0;
 			for (int b = 0; b < 32; b++) {
 				metric = (branchtab[0][b] ^ sym0) + (branchtab[1][b] ^ sym1);
 				m0 = old_metrics[b] + metric;
@@ -68,22 +80,20 @@ public class ViterbiSoft {
 		long endstate = 0;
 
 		// /8 for 8bit soft encoding, /2 because of convolutional code
-		byte[] result = new byte[data.length / 16];
 		int nbits = ((data.length / 8 - TAIL) / 2) * 8;
 		long k;
 		while (nbits-- > 0) {
 			k = (decisions[(nbits + 6) * 2 + (int) ((endstate >> 2) / 32)] >> ((endstate >> 2) % 32)) & 1;
 			endstate = (endstate >> 1) | (k << 7);
-			result[nbits >> 3] = (byte) endstate;
+			resultWithTail[nbits >> 3] = (byte) endstate;
 		}
-		byte[] temp = new byte[result.length - 1];
-		System.arraycopy(result, 0, temp, 0, temp.length);
-		return temp;
+		System.arraycopy(resultWithTail, 0, resultWithoutTail, 0, resultWithoutTail.length);
+		return resultWithoutTail;
 	}
 
 	public static byte[] decode(byte[] data, byte poly1, byte poly2, boolean invertPoly2) {
-		ViterbiSoft v = new ViterbiSoft(poly1, poly2, invertPoly2);
-		return v.decodeInternal(data);
+		ViterbiSoft v = new ViterbiSoft(poly1, poly2, invertPoly2, data.length);
+		return v.decode(data);
 	}
 
 }

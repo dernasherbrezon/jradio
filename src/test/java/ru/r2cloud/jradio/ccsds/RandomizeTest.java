@@ -12,9 +12,11 @@ public class RandomizeTest {
 	@Test
 	public void shuffle() {
 		byte[] data = ViterbiTest.hexStringToByteArray("eec1d49d7082582c93ada7b746ce5a97");
-		byte[] shuffled = Randomize.shuffle(data);
-		byte[] result = Randomize.shuffle(shuffled);
+		byte[] result = new byte[data.length];
+		System.arraycopy(data, 0, result, 0, data.length);
+		Randomize.shuffle(result);
+		Randomize.shuffle(result);
 		assertArrayEquals(data, result);
 	}
-	
+
 }

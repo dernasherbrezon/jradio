@@ -50,6 +50,7 @@ public class LRPT implements Iterable<VCDU>, Iterator<VCDU>, Closeable {
 	private final TaggedStreamToPdu input;
 	private final BufferedByteInput buffer;
 	private final Counter count;
+	private final ViterbiSoft viterbiSoft;
 
 	private VCDU currentVcdu;
 	// previous is used for restoring partial packets
@@ -114,6 +115,7 @@ public class LRPT implements Iterable<VCDU>, Iterator<VCDU>, Closeable {
 		} else {
 			count = null;
 		}
+		this.viterbiSoft = new ViterbiSoft((byte) 0x4f, (byte) 0x6d, false, 16336);
 	}
 
 	@Override
@@ -134,10 +136,10 @@ public class LRPT implements Iterable<VCDU>, Iterator<VCDU>, Closeable {
 					if (index != 0) {
 						rotateIqCounterClockWise(rawBytes, index);
 					}
-					byte[] viterbi = ViterbiSoft.decode(rawBytes, (byte) 0x4f, (byte) 0x6d, false);
-					byte[] deShuffled = Randomize.shuffle(viterbi);
+					byte[] viterbi = viterbiSoft.decode(rawBytes);
+					Randomize.shuffle(viterbi);
 					try {
-						byte[] current = ReedSolomon.decode(deShuffled, 4);
+						byte[] current = ReedSolomon.decode(viterbi, 4);
 						currentVcdu = new VCDU();
 						currentVcdu.readExternal(previous, current);
 						// reed solomon might pass for array [0,0,0,0,0,0...0]
@@ -217,7 +219,7 @@ public class LRPT implements Iterable<VCDU>, Iterator<VCDU>, Closeable {
 			}
 		}
 	}
-	
+
 	private static long rotateClockWise(long data, int shift) {
 		int i;
 		long result = 0;
