@@ -19,12 +19,17 @@ public class FIRFilter {
 		return dotProduct;
 	}
 
-	public void filterComplex(float[] output, float[] input, float[] inputImg) {
+	public void filterComplex(float[] output, float[] input, float[] inputImg, int inputPos) {
 		float dotProductReal = 0;
 		float dotProductImg = 0;
-		for (int i = 0; i < input.length; i++) {
-			dotProductReal = dotProductReal + input[i] * taps[i];
-			dotProductImg = dotProductImg + inputImg[i] * taps[i];
+		int j = 0;
+		for (int i = inputPos; i < input.length; i++, j++) {
+			dotProductReal = dotProductReal + input[i] * taps[j];
+			dotProductImg = dotProductImg + inputImg[i] * taps[j];
+		}
+		for (int i = 0; i < inputPos; i++, j++) {
+			dotProductReal = dotProductReal + input[i] * taps[j];
+			dotProductImg = dotProductImg + inputImg[i] * taps[j];
 		}
 		output[0] = dotProductReal;
 		output[1] = dotProductImg;

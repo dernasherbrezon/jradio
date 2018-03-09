@@ -157,14 +157,14 @@ public class MMSEFIRInterpolator {
 		return filters[imu].filter(input);
 	}
 
-	public void interpolateComplex(float[] output, float[] input, float[] inputImg, float mu) {
+	public void interpolateComplex(float[] output, float[] input, float[] inputImg, int inputPos, float mu) {
 		int imu = (int) Math.rint(mu * NSTEPS);
 
 		if ((imu < 0) || (imu > NSTEPS)) {
 			throw new RuntimeException("mmse_fir_interpolator_ff: imu out of bounds: " + imu);
 		}
 
-		filters[imu].filterComplex(output, input, inputImg);
+		filters[imu].filterComplex(output, input, inputImg, inputPos);
 	}
 
 	public int ntaps() {

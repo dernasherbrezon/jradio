@@ -18,6 +18,7 @@ public class LowPassFilter implements FloatInput {
 	private final FIRFilter filter;
 	private final float[] historyReal;
 	private final float[] historyImg;
+	private int historyPos;
 
 	private boolean real = true;
 
@@ -28,6 +29,7 @@ public class LowPassFilter implements FloatInput {
 		this.filter = new FIRFilter(taps);
 		historyReal = new float[taps.length];
 		historyImg = new float[taps.length];
+		historyPos = historyImg.length - 1;
 		if (registry != null) {
 			samples = registry.meter(LowPassFilter.class.getName());
 		} else {
@@ -39,13 +41,13 @@ public class LowPassFilter implements FloatInput {
 	public float readFloat() throws IOException {
 		float result;
 		if (real) {
-			System.arraycopy(historyReal, 0, historyReal, 1, historyReal.length - 1);
-			historyReal[0] = source.readFloat();
-
-			System.arraycopy(historyImg, 0, historyImg, 1, historyImg.length - 1);
-			historyImg[0] = source.readFloat();
-
-			filter.filterComplex(currentComplex, historyReal, historyImg);
+			historyReal[historyPos] = source.readFloat();
+			historyImg[historyPos] = source.readFloat();
+			filter.filterComplex(currentComplex, historyReal, historyImg, historyPos);
+			historyPos--;
+			if( historyPos < 0 ) {
+				historyPos = historyImg.length - 1;
+			}
 			if (samples != null) {
 				samples.mark();
 			}
