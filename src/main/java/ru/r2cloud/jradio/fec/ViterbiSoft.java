@@ -55,7 +55,7 @@ public class ViterbiSoft {
 		for (int i = 0; i < data.length; i += 2) {
 			sym0 = 128 + data[i]; // convert to unsigned
 			sym1 = 128 + data[i + 1]; // convert to unsigned
-			decisions[i] = 0;
+			decisions[i + 0] = 0;
 			decisions[i + 1] = 0;
 			for (int b = 0; b < 32; b++) {
 				metric = (branchtab[0][b] ^ sym0) + (branchtab[1][b] ^ sym1);
@@ -63,13 +63,13 @@ public class ViterbiSoft {
 				m1 = old_metrics[b + 32] + (510 - metric);
 				decision = m0 > m1 ? 1 : 0;
 				new_metrics[2 * b] = m0 > m1 ? m1 : m0;
-				decisions[i + b / 16] |= decision << ((2 * b) & 31);
+				decisions[i + (b >> 4)] |= decision << ((2 * b) & 31);
 
 				m0 -= (metric + metric - 510);
 				m1 += (metric + metric - 510);
 				decision = m0 > m1 ? 1 : 0;
 				new_metrics[2 * b + 1] = m0 > m1 ? m1 : m0;
-				decisions[i + b / 16] |= decision << ((2 * b + 1) & 31);
+				decisions[i + (b >> 4)] |= decision << ((2 * b + 1) & 31);
 			}
 
 			long[] tmp = old_metrics;
