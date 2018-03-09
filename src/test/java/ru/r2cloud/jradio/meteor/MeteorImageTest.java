@@ -39,6 +39,7 @@ import ru.r2cloud.jradio.blocks.TaggedStreamToPdu;
 import ru.r2cloud.jradio.blocks.Window;
 import ru.r2cloud.jradio.lrpt.LRPT;
 import ru.r2cloud.jradio.lrpt.VCDU;
+import ru.r2cloud.jradio.source.InputStreamSource;
 import ru.r2cloud.jradio.source.WavFileSource;
 
 public class MeteorImageTest {
@@ -70,7 +71,7 @@ public class MeteorImageTest {
 		assertNull(image.toBufferedImage());
 	}
 
-	private static byte[] toBytes(String source) throws IOException {
+	public static byte[] toBytes(String source) throws IOException {
 		InputStream is = MeteorImageTest.class.getClassLoader().getResourceAsStream(source);
 		if (is == null) {
 			throw new IllegalArgumentException("cannot find in classpath: " + source);
@@ -98,12 +99,14 @@ public class MeteorImageTest {
 		Constellation constel = new Constellation(new float[] { -1.0f, -1.0f, -1.0f, 1.0f, 1.0f, 1.0f, 1.0f, -1.0f }, new int[] { 0, 1, 3, 2 }, 4, 1);
 		ConstellationSoftDecoder constelDecoder = new ConstellationSoftDecoder(clockmm, constel);
 		Rail rail = new Rail(constelDecoder, -1.0f, 1.0f);
-		FloatToChar f2char = new FloatToChar(rail, 127.0f);
+//		FloatToChar f2char = new FloatToChar(rail, 127.0f);
 
 		Set<String> accessCodes = new HashSet<>(LRPT.SYNCHRONIZATION_MARKERS.length);
 		for (long cur : LRPT.SYNCHRONIZATION_MARKERS) {
 			accessCodes.add(StringUtils.leftPad(Long.toBinaryString(cur), 64, '0'));
 		}
+		
+		InputStreamSource f2char = new InputStreamSource(new FileInputStream("/Users/dernasherbrezon/ubuntu_shared/fully demodulated.s"));
 
 		Context context = new Context();
 		BufferedByteInput buffer = new BufferedByteInput(f2char, 8160 * 2, 8 * 2);
@@ -111,9 +114,10 @@ public class MeteorImageTest {
 		TaggedStreamToPdu tag = new TaggedStreamToPdu(context, new FixedLengthTagger(context, correlate, 8160 * 2 + 8 * 2));
 		LRPT lrpt = new LRPT(context, tag, buffer);
 		MeteorImage image = new MeteorImage(lrpt);
+		LOG.info("decoded");
 		BufferedImage actual = image.toBufferedImage();
 		if (actual != null) {
-			ImageIO.write(actual, "png", new File("output.png"));
+			ImageIO.write(actual, "png", new File("./target/output.png"));
 		}
 		lrpt.close();
 		LOG.info("done");
