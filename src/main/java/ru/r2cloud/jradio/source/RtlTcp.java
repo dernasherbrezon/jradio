@@ -2,7 +2,6 @@ package ru.r2cloud.jradio.source;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
-import java.io.EOFException;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.net.Socket;
@@ -21,11 +20,8 @@ public class RtlTcp implements FloatInput {
 
 	private final Socket socket;
 	private final DataInputStream is;
+	private final RtlSdr rtlSdr;
 	private final OutputStream os;
-	private RtlSdrSettings settings;
-	private float[] lookupTable;
-	private byte[] buffer;
-	private int currentBufIndex = 0;
 	private int tunerType;
 	private int tunerGainCount;
 
@@ -33,13 +29,9 @@ public class RtlTcp implements FloatInput {
 		socket = new Socket(host, port);
 		is = new DataInputStream(socket.getInputStream());
 		readDongleInfo();
+		rtlSdr = new RtlSdr(is);
 		os = socket.getOutputStream();
 		setSettings(initialSettings);
-		buffer = new byte[(int) settings.getSampleRate()];
-		lookupTable = new float[0x100];
-		for (int i = 0; i < 0x100; ++i) {
-			lookupTable[i] = (((i & 0xff)) - 127.4f) * (1.0f / 128.0f);
-		}
 	}
 
 	@Override
@@ -51,16 +43,7 @@ public class RtlTcp implements FloatInput {
 
 	@Override
 	public float readFloat() throws IOException {
-		if (currentBufIndex == 0 || currentBufIndex >= buffer.length) {
-			currentBufIndex = 0;
-			int bytesRead = is.read(buffer);
-			if (bytesRead == -1) {
-				throw new EOFException();
-			}
-		}
-		float result = lookupTable[buffer[currentBufIndex] & 0xFF];
-		currentBufIndex++;
-		return result;
+		return rtlSdr.readFloat();
 	}
 
 	private void readDongleInfo() throws IOException {
@@ -77,7 +60,6 @@ public class RtlTcp implements FloatInput {
 	}
 
 	public void setSettings(RtlSdrSettings settings) throws IOException {
-		this.settings = settings;
 		DataOutputStream dos = new DataOutputStream(os);
 		dos.writeByte(0x01);
 		dos.writeInt((int) settings.getFrequency());
