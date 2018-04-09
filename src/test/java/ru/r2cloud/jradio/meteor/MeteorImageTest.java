@@ -10,19 +10,17 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import javax.imageio.ImageIO;
 
 import org.apache.commons.io.IOUtils;
-import org.apache.commons.lang3.StringUtils;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import ru.r2cloud.jradio.Context;
+import ru.r2cloud.jradio.PhaseAmbiguityResolver;
 import ru.r2cloud.jradio.blocks.AGC;
 import ru.r2cloud.jradio.blocks.ClockRecoveryMMComplex;
 import ru.r2cloud.jradio.blocks.Constellation;
@@ -101,18 +99,15 @@ public class MeteorImageTest {
 		Rail rail = new Rail(constelDecoder, -1.0f, 1.0f);
 //		FloatToChar f2char = new FloatToChar(rail, 127.0f);
 
-		Set<String> accessCodes = new HashSet<>(LRPT.SYNCHRONIZATION_MARKERS.length);
-		for (long cur : LRPT.SYNCHRONIZATION_MARKERS) {
-			accessCodes.add(StringUtils.leftPad(Long.toBinaryString(cur), 64, '0'));
-		}
+		PhaseAmbiguityResolver phaseAmbiguityResolver = new PhaseAmbiguityResolver(0x035d49c24ff2686bL);
 		
 //		InputStreamSource f2char = new InputStreamSource(new FileInputStream("/Users/dernasherbrezon/ubuntu_shared/trimmed.s"));
 		InputStreamSource f2char = new InputStreamSource(new FileInputStream("trimmed.s"));
 
 		Context context = new Context();
-		CorrelateAccessCodeTag correlate = new CorrelateAccessCodeTag(context, f2char, 16, accessCodes, true);
+		CorrelateAccessCodeTag correlate = new CorrelateAccessCodeTag(context, f2char, 16, phaseAmbiguityResolver.getSynchronizationMarkers(), true);
 		TaggedStreamToPdu tag = new TaggedStreamToPdu(context, new FixedLengthTagger(context, correlate, 8160 * 2 + 8 * 2));
-		LRPT lrpt = new LRPT(context, tag);
+		LRPT lrpt = new LRPT(context, tag, phaseAmbiguityResolver);
 		MeteorImage image = new MeteorImage(lrpt);
 		LOG.info("decoded");
 		BufferedImage actual = image.toBufferedImage();

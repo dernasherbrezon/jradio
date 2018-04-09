@@ -6,14 +6,12 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 import java.io.IOException;
-import java.util.HashSet;
-import java.util.Set;
 
-import org.apache.commons.lang3.StringUtils;
 import org.junit.After;
 import org.junit.Test;
 
 import ru.r2cloud.jradio.Context;
+import ru.r2cloud.jradio.PhaseAmbiguityResolver;
 import ru.r2cloud.jradio.blocks.CorrelateAccessCodeTag;
 import ru.r2cloud.jradio.blocks.FixedLengthTagger;
 import ru.r2cloud.jradio.blocks.TaggedStreamToPdu;
@@ -25,15 +23,12 @@ public class LRPTTest {
 
 	@Test
 	public void success() throws Exception {
-		Set<String> accessCodes = new HashSet<>(LRPT.SYNCHRONIZATION_MARKERS.length);
-		for (long cur : LRPT.SYNCHRONIZATION_MARKERS) {
-			accessCodes.add(StringUtils.leftPad(Long.toBinaryString(cur), 64, '0'));
-		}
+		PhaseAmbiguityResolver phaseAmbiguityResolver = new PhaseAmbiguityResolver(0x035d49c24ff2686bL);
 		Context context = new Context();
 		InputStreamSource float2char = new InputStreamSource(LRPTTest.class.getClassLoader().getResourceAsStream("8bitsoft.s"));
-		CorrelateAccessCodeTag correlate = new CorrelateAccessCodeTag(context, float2char, 9, accessCodes, true);
+		CorrelateAccessCodeTag correlate = new CorrelateAccessCodeTag(context, float2char, 9, phaseAmbiguityResolver.getSynchronizationMarkers(), true);
 		TaggedStreamToPdu tag = new TaggedStreamToPdu(context, new FixedLengthTagger(context, correlate, 8160 * 2 + 8 * 2));
-		lrpt = new LRPT(context, tag);
+		lrpt = new LRPT(context, tag, phaseAmbiguityResolver);
 		assertTrue(lrpt.hasNext());
 		VCDU vcdu = lrpt.next();
 		assertNotNull(vcdu);
