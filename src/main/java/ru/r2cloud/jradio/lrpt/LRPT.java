@@ -60,7 +60,7 @@ public class LRPT implements Iterable<VCDU>, Iterator<VCDU>, Closeable {
 				byte[] rawBytes = input.readBytes();
 				if (rawBytes != null && rawBytes.length != 0) {
 					Tag currentTag = context.getCurrent();
-					phaseAmbiguityResolver.rotate(rawBytes, (Long) currentTag.get(CorrelateAccessCodeTag.ACCESS_CODE));
+					phaseAmbiguityResolver.rotateSoft(rawBytes, (Long) currentTag.get(CorrelateAccessCodeTag.ACCESS_CODE));
 					byte[] viterbi = viterbiSoft.decode(rawBytes);
 					Randomize.shuffle(viterbi);
 					try {

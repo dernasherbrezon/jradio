@@ -13,7 +13,7 @@ public class PhaseAmbiguityResolver {
 	// 00 -> 01 (1 phase difference)
 	// 00 -> 10 (3 phase difference)
 	// 00 -> 11 don't need lookup table as it simply inverting bits
-	// @see table 1 from https://ntrs.nasa.gov/archive/nasa/casi.ntrs.nasa.gov/19890016010.pdf
+	// @see table 1 from https://ntrs.nasa.gov/archive/nasa/casi.ntrs.nasa.gov/19890016009.pdf
 	// normal sense ambiguity could be resolved using single table
 	private static final int[] rotate_iq_tab = new int[256];
 	// reverse sense ambiguity require 4 different tables
@@ -75,7 +75,7 @@ public class PhaseAmbiguityResolver {
 
 	public PhaseAmbiguityResolver(long synchronizationMarker) {
 		for (int i = 0; i < synchronizationMarkers.length; i++) {
-			synchronizationMarkers[i] = rotateClockWise(synchronizationMarker, i);
+			synchronizationMarkers[i] = rotate(synchronizationMarker, i);
 		}
 	}
 
@@ -87,25 +87,13 @@ public class PhaseAmbiguityResolver {
 		return accessCodes;
 	}
 
-	public void rotate(byte[] rawBytes, long synchronizationMarker) {
+	public void rotateSoft(byte[] rawBytes, long synchronizationMarker) {
 		int index = getIndex(synchronizationMarker);
+		if( index == 0 ) {
+			return;
+		}
 		// phase was incorrectly locked,
 		// rotate data the same number of turns as synchronization marker
-		if (index != 0) {
-			rotateIqCounterClockWise(rawBytes, index);
-		}
-	}
-
-	private int getIndex(long synchronizationMarker) {
-		for (int i = 0; i < synchronizationMarkers.length; i++) {
-			if (synchronizationMarker == synchronizationMarkers[i]) {
-				return i;
-			}
-		}
-		throw new IllegalArgumentException("unsupported marker: " + synchronizationMarker);
-	}
-
-	private static void rotateIqCounterClockWise(byte[] rawBytes, int index) {
 		int hardDecision = 0;
 		for (int i = 0, bits = 7; i < rawBytes.length; i++, bits--) {
 			if (rawBytes[i] > 0) {
@@ -115,7 +103,7 @@ public class PhaseAmbiguityResolver {
 			}
 			// full byte was assembled
 			if (bits == 0) {
-				int rotated = rotateIqCounterClockWise(hardDecision, index);
+				int rotated = rotate(hardDecision, index);
 				// unroll back to soft decision
 				// look for the last 8 bytes and invert them
 				for (int j = 7; j >= 0; j--) {
@@ -135,8 +123,17 @@ public class PhaseAmbiguityResolver {
 			}
 		}
 	}
+	
+	private int getIndex(long synchronizationMarker) {
+		for (int i = 0; i < synchronizationMarkers.length; i++) {
+			if (synchronizationMarker == synchronizationMarkers[i]) {
+				return i;
+			}
+		}
+		throw new IllegalArgumentException("unsupported marker: " + synchronizationMarker);
+	}
 
-	private static long rotateClockWise(long data, int shift) {
+	private static long rotate(long data, int shift) {
 		int i;
 		long result = 0;
 		int bdata;
@@ -144,7 +141,7 @@ public class PhaseAmbiguityResolver {
 		for (i = 0; i < 8; i++) {
 			bdata = (int) ((data >> (56 - 8 * i)) & 0xff);
 			result <<= 8;
-			int val = rotateIqCounterClockWise(bdata, shift);
+			int val = rotate(bdata, shift);
 			// invert back since it was rotated counter clock wise
 			if (shift == 1 || shift == 3) {
 				val = val ^ 0xFF;
@@ -155,7 +152,7 @@ public class PhaseAmbiguityResolver {
 		return (result);
 	}
 
-	private static int rotateIqCounterClockWise(int data, int shift) {
+	private static int rotate(int data, int shift) {
 		int result = data;
 		switch (shift) {
 		case 0:
