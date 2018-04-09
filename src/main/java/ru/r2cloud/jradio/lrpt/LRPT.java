@@ -10,7 +10,6 @@ import org.slf4j.LoggerFactory;
 import com.codahale.metrics.Counter;
 import com.codahale.metrics.MetricRegistry;
 
-import ru.r2cloud.jradio.BufferedByteInput;
 import ru.r2cloud.jradio.Context;
 import ru.r2cloud.jradio.Tag;
 import ru.r2cloud.jradio.blocks.CorrelateAccessCodeTag;
@@ -48,7 +47,6 @@ public class LRPT implements Iterable<VCDU>, Iterator<VCDU>, Closeable {
 
 	private final Context context;
 	private final TaggedStreamToPdu input;
-	private final BufferedByteInput buffer;
 	private final Counter count;
 	private final ViterbiSoft viterbiSoft;
 
@@ -106,10 +104,9 @@ public class LRPT implements Iterable<VCDU>, Iterator<VCDU>, Closeable {
 		}
 	}
 
-	public LRPT(Context context, TaggedStreamToPdu input, BufferedByteInput buffer) {
+	public LRPT(Context context, TaggedStreamToPdu input) {
 		this.context = context;
 		this.input = input;
-		this.buffer = buffer;
 		if (registry != null) {
 			count = registry.counter(LRPT.class.getName());
 		} else {
@@ -144,7 +141,7 @@ public class LRPT implements Iterable<VCDU>, Iterator<VCDU>, Closeable {
 						currentVcdu.readExternal(previous, current);
 						// reed solomon might pass for array [0,0,0,0,0,0...0]
 						// ensure version is not 0 (according to spec it should be 01)
-						if (currentVcdu.getVersion() == 0) {
+						if (currentVcdu.getVersion() != 1 || (currentVcdu.getPartial() == null && currentVcdu.getPackets().isEmpty())) {
 							continue;
 						}
 						if (previous == null) {
@@ -154,10 +151,6 @@ public class LRPT implements Iterable<VCDU>, Iterator<VCDU>, Closeable {
 							count.inc();
 						}
 						previous = currentVcdu;
-						// viterbi needs last 2 bytes for tail.
-						// need to reset source stream back 2 bytes
-						// since next packet might start exactly after previous
-						buffer.reset(8 * 2);
 						return true;
 					} catch (UncorrectableException e) {
 						if (LOG.isDebugEnabled()) {

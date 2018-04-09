@@ -22,7 +22,6 @@ import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import ru.r2cloud.jradio.BufferedByteInput;
 import ru.r2cloud.jradio.Context;
 import ru.r2cloud.jradio.blocks.AGC;
 import ru.r2cloud.jradio.blocks.ClockRecoveryMMComplex;
@@ -31,7 +30,6 @@ import ru.r2cloud.jradio.blocks.ConstellationSoftDecoder;
 import ru.r2cloud.jradio.blocks.CorrelateAccessCodeTag;
 import ru.r2cloud.jradio.blocks.CostasLoop;
 import ru.r2cloud.jradio.blocks.FixedLengthTagger;
-import ru.r2cloud.jradio.blocks.FloatToChar;
 import ru.r2cloud.jradio.blocks.LowPassFilter;
 import ru.r2cloud.jradio.blocks.Rail;
 import ru.r2cloud.jradio.blocks.RootRaisedCosineFilter;
@@ -83,11 +81,13 @@ public class MeteorImageTest {
 
 	// performance test
 	public static void main(String[] args) throws Exception {
-		float sampleRate = 222222.0f;
+//		float sampleRate = 222222.0f;
+		float sampleRate = 150000.0f;
 		float symbolRate = 72000f;
 		float clockAlpha = 0.010f;
 		LOG.info("started");
-		String filename = "/Users/dernasherbrezon/Downloads/lrpt/11-13-00_137874kHz.wav";
+//		String filename = "/Users/dernasherbrezon/Downloads/lrpt/11-13-00_137874kHz.wav";
+		String filename = "/Users/dernasherbrezon/Downloads/output.wav";
 		WavFileSource source = new WavFileSource(new BufferedInputStream(new FileInputStream(filename)));
 		LowPassFilter lowPass = new LowPassFilter(source, 1.0, sampleRate, 50000.0, 1000.0, Window.WIN_HAMMING, 6.76);
 		AGC agc = new AGC(lowPass, 1000e-4f, 0.5f, 1.0f, 4000.0f);
@@ -106,13 +106,13 @@ public class MeteorImageTest {
 			accessCodes.add(StringUtils.leftPad(Long.toBinaryString(cur), 64, '0'));
 		}
 		
-		InputStreamSource f2char = new InputStreamSource(new FileInputStream("/Users/dernasherbrezon/ubuntu_shared/fully demodulated.s"));
+//		InputStreamSource f2char = new InputStreamSource(new FileInputStream("/Users/dernasherbrezon/ubuntu_shared/trimmed.s"));
+		InputStreamSource f2char = new InputStreamSource(new FileInputStream("trimmed.s"));
 
 		Context context = new Context();
-		BufferedByteInput buffer = new BufferedByteInput(f2char, 8160 * 2, 8 * 2);
-		CorrelateAccessCodeTag correlate = new CorrelateAccessCodeTag(context, buffer, 12, accessCodes, true);
+		CorrelateAccessCodeTag correlate = new CorrelateAccessCodeTag(context, f2char, 16, accessCodes, true);
 		TaggedStreamToPdu tag = new TaggedStreamToPdu(context, new FixedLengthTagger(context, correlate, 8160 * 2 + 8 * 2));
-		LRPT lrpt = new LRPT(context, tag, buffer);
+		LRPT lrpt = new LRPT(context, tag);
 		MeteorImage image = new MeteorImage(lrpt);
 		LOG.info("decoded");
 		BufferedImage actual = image.toBufferedImage();

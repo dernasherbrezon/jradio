@@ -13,7 +13,6 @@ import org.apache.commons.lang3.StringUtils;
 import org.junit.After;
 import org.junit.Test;
 
-import ru.r2cloud.jradio.BufferedByteInput;
 import ru.r2cloud.jradio.Context;
 import ru.r2cloud.jradio.blocks.CorrelateAccessCodeTag;
 import ru.r2cloud.jradio.blocks.FixedLengthTagger;
@@ -32,10 +31,9 @@ public class LRPTTest {
 		}
 		Context context = new Context();
 		InputStreamSource float2char = new InputStreamSource(LRPTTest.class.getClassLoader().getResourceAsStream("8bitsoft.s"));
-		BufferedByteInput buffer = new BufferedByteInput(float2char, 8160 * 2, 8 * 2);
-		CorrelateAccessCodeTag correlate = new CorrelateAccessCodeTag(context, buffer, 9, accessCodes, true);
+		CorrelateAccessCodeTag correlate = new CorrelateAccessCodeTag(context, float2char, 9, accessCodes, true);
 		TaggedStreamToPdu tag = new TaggedStreamToPdu(context, new FixedLengthTagger(context, correlate, 8160 * 2 + 8 * 2));
-		lrpt = new LRPT(context, tag, buffer);
+		lrpt = new LRPT(context, tag);
 		assertTrue(lrpt.hasNext());
 		VCDU vcdu = lrpt.next();
 		assertNotNull(vcdu);
