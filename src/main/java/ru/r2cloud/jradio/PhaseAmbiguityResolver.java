@@ -82,48 +82,57 @@ public class PhaseAmbiguityResolver {
 	public Set<String> getSynchronizationMarkers() {
 		Set<String> accessCodes = new HashSet<>(synchronizationMarkers.length);
 		for (long cur : synchronizationMarkers) {
-			accessCodes.add(StringUtils.leftPad(Long.toBinaryString(cur), 64, '0'));
+			String toAdd = StringUtils.leftPad(Long.toBinaryString(cur), 64, '0');
+			accessCodes.add(toAdd);
 		}
 		return accessCodes;
 	}
 
 	public void rotateSoft(byte[] rawBytes, long synchronizationMarker) {
 		int index = getIndex(synchronizationMarker);
-		if( index == 0 ) {
+		if (index == 0) {
 			return;
 		}
 		// phase was incorrectly locked,
 		// rotate data the same number of turns as synchronization marker
-		int hardDecision = 0;
-		for (int i = 0, bits = 7; i < rawBytes.length; i++, bits--) {
-			if (rawBytes[i] > 0) {
-				hardDecision = (hardDecision << 1) | 1;
-			} else {
-				hardDecision = (hardDecision << 1) | 0;
-			}
-			// full byte was assembled
-			if (bits == 0) {
-				int rotated = rotate(hardDecision, index);
-				// unroll back to soft decision
-				// look for the last 8 bytes and invert them
-				for (int j = 7; j >= 0; j--) {
-					// invert only unmatched bits
-					if (((rotated >> j) & 0x1) == 1) {
-						if (rawBytes[i - j] < 0) {
-							rawBytes[i - j] ^= 0xFF;
-						}
-					} else {
-						if (rawBytes[i - j] > 0) {
-							rawBytes[i - j] ^= 0xFF;
-						}
-					}
-				}
-				hardDecision = 0;
-				bits = 8;
+		for (int i = 0; i < rawBytes.length; i += 2) {
+			switch (index) {
+			case 1:
+				byte temp = (byte) (rawBytes[i + 1] ^ 0xFF);
+				rawBytes[i + 1] = rawBytes[i];
+				rawBytes[i] = temp;
+				break;
+			case 2:
+				rawBytes[i] = (byte) (rawBytes[i] ^ 0xFF);
+				rawBytes[i + 1] = (byte) (rawBytes[i + 1] ^ 0xFF);
+				break;
+			case 3:
+				temp = (byte) (rawBytes[i] ^ 0xFF);
+				rawBytes[i] = rawBytes[i + 1];
+				rawBytes[i + 1] = temp;
+				break;
+			case 4:
+				temp = rawBytes[i];
+				rawBytes[i] = rawBytes[i + 1];
+				rawBytes[i + 1] = temp;
+				break;
+			case 5:
+				rawBytes[i + 1] = (byte) (rawBytes[i + 1] ^ 0xFF);
+				break;
+			case 6:
+				temp = (byte) (rawBytes[i + 1] ^ 0xFF);
+				rawBytes[i + 1] = (byte) (rawBytes[i] ^ 0xFF);
+				rawBytes[i] = temp;
+				break;
+			case 7:
+				rawBytes[i] = (byte) (rawBytes[i] ^ 0xFF);
+				break;
+			default:
+				throw new IllegalArgumentException("unsupported synchronization marker index: " + index);
 			}
 		}
 	}
-	
+
 	private int getIndex(long synchronizationMarker) {
 		for (int i = 0; i < synchronizationMarkers.length; i++) {
 			if (synchronizationMarker == synchronizationMarkers[i]) {

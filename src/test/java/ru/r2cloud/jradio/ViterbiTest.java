@@ -15,7 +15,7 @@ public class ViterbiTest {
 		byte[] result = Viterbi.encode(input, (byte) 0x4f, (byte) 0x6d, true);
 		assertArrayEquals(expected, result);
 	}
-	
+
 	@Test
 	public void testDecode() {
 		byte[] input = hexStringToByteArray("558fab4d3e790e2274af0a479c013770a2f889df13fefd825417b794470f2403afe5");
@@ -31,12 +31,25 @@ public class ViterbiTest {
 		byte[] result = Viterbi.decode(input, (byte) 0x4f, (byte) 0x6d, true);
 		assertArrayEquals(expected, result);
 	}
-	
+
 	public static byte[] hexStringToByteArray(String s) {
-		int len = s.length();
+		int len = 0;
+		for (int i = 0; i < s.length(); i++) {
+			if (s.charAt(i) == ' ') {
+				continue;
+			}
+			len++;
+		}
 		byte[] data = new byte[len / 2];
-		for (int i = 0; i < len; i += 2) {
-			data[i / 2] = (byte) ((Character.digit(s.charAt(i), 16) << 4) + Character.digit(s.charAt(i + 1), 16));
+		int index = 0;
+		for (int i = 0; i < s.length();) {
+			if (s.charAt(i) == ' ') {
+				i++;
+				continue;
+			}
+			data[index] = (byte) ((Character.digit(s.charAt(i), 16) << 4) + Character.digit(s.charAt(i + 1), 16));
+			i += 2;
+			index++;
 		}
 		return data;
 	}
