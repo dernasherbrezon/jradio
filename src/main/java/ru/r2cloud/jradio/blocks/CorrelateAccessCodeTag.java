@@ -75,16 +75,9 @@ public class CorrelateAccessCodeTag implements ByteInput {
 				minAccessCode = cur.getAccessCode();
 			}
 
-//			if (nwrong <= threshold) {
-//				tag = new Tag();
-//				tag.setId(UUID.randomUUID().toString());
-//				tag.put(ACCESS_CODE, cur.getAccessCode());
-//				context.put(tag.getId(), tag);
-//				break;
-//			}
 		}
 		
-		if( minWrong > 0 && minWrong <= threshold ) {
+		if( minWrong <= threshold ) {
 			tag = new Tag();
 			tag.setId(UUID.randomUUID().toString());
 			tag.put(ACCESS_CODE, minAccessCode);
