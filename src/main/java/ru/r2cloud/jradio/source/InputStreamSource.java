@@ -57,10 +57,6 @@ public class InputStreamSource implements FloatInput, ByteInput {
 		is.close();
 	}
 	
-	public Counter getBytes() {
-		return bytes;
-	}
-
 	// little endian
 	private static int readInt(InputStream is) throws IOException {
 		int ch1 = is.read();

@@ -101,11 +101,10 @@ public class MeteorImageTest {
 
 		PhaseAmbiguityResolver phaseAmbiguityResolver = new PhaseAmbiguityResolver(0x035d49c24ff2686bL);
 		
-//		InputStreamSource f2char = new InputStreamSource(new FileInputStream("/Users/dernasherbrezon/ubuntu_shared/trimmed.s"));
 		InputStreamSource f2char = new InputStreamSource(new FileInputStream("trimmed.s"));
 
 		Context context = new Context();
-		CorrelateAccessCodeTag correlate = new CorrelateAccessCodeTag(context, f2char, 16, phaseAmbiguityResolver.getSynchronizationMarkers(), true);
+		CorrelateAccessCodeTag correlate = new CorrelateAccessCodeTag(context, f2char, 17, phaseAmbiguityResolver.getSynchronizationMarkers(), true);
 		TaggedStreamToPdu tag = new TaggedStreamToPdu(context, new FixedLengthTagger(context, correlate, 8160 * 2 + 8 * 2));
 		LRPT lrpt = new LRPT(context, tag, phaseAmbiguityResolver);
 		MeteorImage image = new MeteorImage(lrpt);
