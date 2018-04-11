@@ -3,8 +3,6 @@ package ru.r2cloud.jradio;
 import java.util.HashSet;
 import java.util.Set;
 
-import org.apache.commons.lang3.StringUtils;
-
 public class PhaseAmbiguityResolver {
 
 	// phase might be incorrectly locked, so there are 4 different sync markers possible:
@@ -82,10 +80,19 @@ public class PhaseAmbiguityResolver {
 	public Set<String> getSynchronizationMarkers() {
 		Set<String> accessCodes = new HashSet<>(synchronizationMarkers.length);
 		for (long cur : synchronizationMarkers) {
-			String toAdd = StringUtils.leftPad(Long.toBinaryString(cur), 64, '0');
+			String toAdd = leftPad(Long.toBinaryString(cur));
 			accessCodes.add(toAdd);
 		}
 		return accessCodes;
+	}
+
+	private static String leftPad(String orig) {
+		StringBuilder result = new StringBuilder();
+		for (int i = 0; i < (64 - orig.length()); i++) {
+			result.append('0');
+		}
+		result.append(orig);
+		return result.toString();
 	}
 
 	public void rotateSoft(byte[] rawBytes, long synchronizationMarker) {
