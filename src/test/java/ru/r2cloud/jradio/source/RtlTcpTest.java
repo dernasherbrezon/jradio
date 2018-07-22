@@ -33,7 +33,7 @@ public class RtlTcpTest {
 	private RtlTcp tcp;
 
 	@Test
-	public void basic() throws IOException {
+	public void basic() throws IOException, InterruptedException {
 		final ByteArrayOutputStream baos = new ByteArrayOutputStream();
 		DataOutputStream dos = new DataOutputStream(baos);
 		dos.write("RTL0".getBytes(StandardCharsets.US_ASCII));
@@ -60,6 +60,7 @@ public class RtlTcpTest {
 					DataInputStream dis = new DataInputStream(client.getInputStream());
 					synchronized (input) {
 						dis.readFully(input);
+						input.notifyAll();
 					}
 				} catch (Exception e) {
 					LOG.error("unable to handle incoming connection", e);
@@ -85,6 +86,7 @@ public class RtlTcpTest {
 		assertEquals(tunerGainCount, tcp.getTunerGainCount());
 
 		synchronized (input) {
+			input.wait(1000);
 			DataInputStream actualSettings = new DataInputStream(new ByteArrayInputStream(input));
 			assertEquals(0x01, actualSettings.readByte());
 			assertEquals(settings.getFrequency(), actualSettings.readInt());
