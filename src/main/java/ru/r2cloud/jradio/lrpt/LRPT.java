@@ -44,7 +44,7 @@ public class LRPT implements Iterable<VCDU>, Iterator<VCDU>, Closeable {
 		} else {
 			count = null;
 		}
-		this.viterbiSoft = new ViterbiSoft((byte) 0x4f, (byte) 0x6d, false, 16336);
+		this.viterbiSoft = new ViterbiSoft((byte) 0x4f, (byte) 0x6d, false, VCDU.VITERBI_TAIL_SIZE);
 		this.phaseAmbiguityResolver = phaseAmbiguityResolver;
 	}
 

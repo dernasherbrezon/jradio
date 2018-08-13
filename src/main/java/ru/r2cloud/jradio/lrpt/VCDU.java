@@ -4,6 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class VCDU {
+	
+	public static final int SIZE = 892;
+	public static final int VITERBI_SIZE = (SIZE / 4 + 32 ) * 4;
+	public static final int VITERBI_TAIL_SIZE = (VITERBI_SIZE + 1) * 16;
 
 	private int version;
 	private VCDUId id;
@@ -13,8 +17,10 @@ public class VCDU {
 	private M_PDU mPdu;
 	private List<Packet> packets = new ArrayList<>();
 	private Packet partial;
+	private byte[] data;
 
 	public void readExternal(VCDU previous, byte[] data) {
+		this.data = data;
 		version = (data[0] & 0xFF) >> 6;
 		id = new VCDUId();
 		id.setSpacecraftId(data[0] & 0b0011_1111 + (byte) (data[1] >> 6));
@@ -130,6 +136,10 @@ public class VCDU {
 		packet.setNumberOfDays((data[index + 6] & 0xFF) << 8 | (data[index + 7] & 0xFF));
 		packet.setMillisecondOfDay((data[index + 8] & 0xFF) << 24 | (data[index + 9] & 0xFF) << 16 | (data[index + 10] & 0xFF) << 8 | (data[index + 11] & 0xFF) << 0);
 		packet.setMicrosecondOfMillisecond((data[index + 12] & 0xFF) << 8 | (data[index + 13] & 0xFF) << 0);
+	}
+	
+	public byte[] getData() {
+		return data;
 	}
 
 	public int getVersion() {
