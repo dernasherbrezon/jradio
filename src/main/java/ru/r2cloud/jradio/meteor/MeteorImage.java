@@ -45,24 +45,7 @@ public class MeteorImage {
 						channel.setFirstPacket(cur.getSequenceCount());
 						channel.setFirstMcu(meteorPacket.getMcuNumber());
 					} else {
-						int numberOfMissingPackets;
-						// doesn't work if lost more than 16383 packets. But this is very unlikely
-						if (channel.getLastPacket() > cur.getSequenceCount()) {
-							// tail + beginning
-							numberOfMissingPackets = (MAX_SEQUENCE_COUNT - channel.getLastPacket()) + cur.getSequenceCount();
-						} else {
-							numberOfMissingPackets = cur.getSequenceCount() - channel.getLastPacket() - 1;
-						}
-						// each row sent by 14 + 14 + 14 + 1 packets
-						int rowsToAdd = numberOfMissingPackets / PACKETS_IN_ROW;
-						if (channel.getLastMcu() > meteorPacket.getMcuNumber()) {
-							rowsToAdd++;
-						} else {
-							if (rowsToAdd != 0) {
-								rowsToAdd++;
-							}
-						}
-						channel.appendRows(rowsToAdd);
+						channel.appendRows(calculateMissingRows(channel.getLastMcu(), channel.getLastPacket(), meteorPacket.getMcuNumber(), cur.getSequenceCount()));
 					}
 					channel.setLastPacket(cur.getSequenceCount());
 					channel.setLastMcu(meteorPacket.getMcuNumber());
@@ -114,20 +97,23 @@ public class MeteorImage {
 		if (second == null) {
 			return;
 		}
-		// handle packet wrap
+		second.prependRows(calculateMissingRows(first.getFirstMcu(), first.getFirstPacket(), second.getFirstMcu(), second.getFirstPacket()));
+	}
+
+	private static int calculateMissingRows(int firstMcu, int firstPacket, int secondMcu, int secondPacket) {
 		int numberOfMissingPackets;
-		if (second.getFirstPacket() > first.getFirstPacket()) {
-			numberOfMissingPackets = second.getFirstPacket() - first.getFirstPacket();
+		if (secondPacket > firstPacket) {
+			numberOfMissingPackets = secondPacket - firstPacket;
 		} else {
-			numberOfMissingPackets = (MAX_SEQUENCE_COUNT - first.getFirstPacket()) + second.getFirstPacket();
+			numberOfMissingPackets = (MAX_SEQUENCE_COUNT - firstPacket) + secondPacket;
 		}
 		int rowsToAdd = numberOfMissingPackets / PACKETS_IN_ROW;
 		// second was wrapped to the new line. I.e.
 		// first mcu - 182, second mcu - 0
 		// if second mcu more than first mcu, then second is on the same row
-		if (first.getFirstMcu() > second.getFirstMcu()) {
+		if (firstMcu > secondMcu) {
 			rowsToAdd++;
-		} else if (first.getFirstMcu() == second.getFirstMcu()) {
+		} else if (firstMcu == secondMcu) {
 			// still could be additional row
 			// for example: in RGB, blue starts from mcu 0 and outputs the full row
 			// red should come after 14 + 1 (1 for admin packet) packets
@@ -137,7 +123,7 @@ public class MeteorImage {
 				rowsToAdd++;
 			}
 		}
-		second.prependRows(rowsToAdd);
+		return rowsToAdd;
 	}
 
 	private ImageChannel getAndReserveChannel(int apid) {
