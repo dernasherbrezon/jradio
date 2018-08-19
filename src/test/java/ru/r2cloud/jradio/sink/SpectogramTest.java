@@ -3,6 +3,10 @@ package ru.r2cloud.jradio.sink;
 import static org.junit.Assert.assertEquals;
 
 import java.awt.image.BufferedImage;
+import java.io.BufferedInputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.InputStream;
 
 import javax.imageio.ImageIO;
@@ -27,6 +31,20 @@ public class SpectogramTest {
 					assertEquals(expected.getRGB(i, j), image.getRGB(i, j));
 				}
 			}
+		}
+	}
+
+	public static void main(String[] args) throws Exception {
+		Spectogram spectogram = new Spectogram(2);
+		File[] f = new File("/Users/dernasherbrezon/git/r2cloud/ao73analysis").listFiles();
+		for (File cur : f) {
+			if (cur.getName().endsWith(".png") || cur.getName().contains("DS_Store")) {
+				continue;
+			}
+			WavFileSource source = new WavFileSource(new BufferedInputStream(new FileInputStream(cur)));
+			BufferedImage image = spectogram.process(source);
+			source.close();
+			ImageIO.write(image, "png", new FileOutputStream(new File(cur.getParentFile(), cur.getName() + ".png")));
 		}
 	}
 

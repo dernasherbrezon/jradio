@@ -14,8 +14,8 @@ public class SigSource implements FloatInput {
 	private NumericallyControlledOscillator nco;
 	private boolean real = true;
 
-	public SigSource(Waveform waveform, long sampleRate, int numberOfChannels, final float frequency, double amplitude) {
-		this(waveform, sampleRate, numberOfChannels, new FloatValueSource() {
+	public SigSource(Waveform waveform, long sampleRate, final float frequency, double amplitude) {
+		this(waveform, sampleRate, new FloatValueSource() {
 			@Override
 			public float getValue() {
 				return frequency;
@@ -23,9 +23,9 @@ public class SigSource implements FloatInput {
 		}, amplitude);
 	}
 
-	public SigSource(Waveform waveform, final long sampleRate, int numberOfChannels, final FloatValueSource frequency, double amplitude) {
+	public SigSource(Waveform waveform, final long sampleRate, final FloatValueSource frequency, double amplitude) {
 		this.waveform = waveform;
-		if (numberOfChannels != 2) {
+		if (!waveform.equals(Waveform.COMPLEX)) {
 			throw new IllegalArgumentException("only complex output supported for now");
 		}
 		nco = new NumericallyControlledOscillator(new FloatValueSource() {
@@ -42,8 +42,7 @@ public class SigSource implements FloatInput {
 		float result;
 		if (real) {
 			switch (waveform) {
-			case COSINE:
-			case SINE:
+			case COMPLEX:
 				nco.sincos(complex);
 				result = complex[0];
 				break;
