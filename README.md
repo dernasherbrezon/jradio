@@ -42,3 +42,27 @@ Using the blocks above, you could decode signals from the following satellites:
 
 * AAUSAT-4 (NORAD 41460). Digital telemetry only. Based on [gr-aausat](https://github.com/daniestevez/gr-aausat). See the pipeline at the [AAUSAT4Test](https://github.com/dernasherbrezon/jradio/blob/master/src/test/java/ru/r2cloud/jradio/AAUSAT4Test.java)
 * Meteor-M N2 (NORAD 40069). Decode pictures. Based on [meteor-decoder](https://github.com/artlav/meteor_decoder) and [meteor-m2-lrpt](https://github.com/otti-soft/meteor-m2-lrpt). See the pipeline at the [MeteorImageTest](https://github.com/dernasherbrezon/jradio/blob/lrpt/src/test/java/ru/r2cloud/jradio/meteor/MeteorImageTest.java)
+
+# Doppler correction
+
+Doppler correction could be made using SigSource and Multiply blocks. Here is the sample code:
+
+```java
+SigSource source2 = new SigSource(Waveform.COMPLEX, (long) source.getFormat().getSampleRate(), new FloatValueSource() {
+
+	@Override
+	public float getValue() {
+		return currentShift;
+	}
+}, 1.0f);
+Multiply mul = new Multiply(source, source2, true);
+```
+
+"currentShift" could be calculated using [predict4java](https://github.com/badgersoftdotcom/predict4java):
+
+```java
+PassPredictor predictor = new PassPredictor(tle, currentLocation);
+
+Long dFreq = predictor.getDownlinkFreq(satelliteFreq, new Date());
+currentShift = satelliteFreq - dFreq;
+```
