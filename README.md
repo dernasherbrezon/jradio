@@ -27,6 +27,8 @@ All blocks meant to be binary compatible with gnuradio versions. This will ensur
 * WavFileSource
 * osmocom source (RtlTcp)
 * File Source (InputStreamSource)
+* Multiply
+* SigSource (only Complex type is supported)
 
 Forward error correction:
 

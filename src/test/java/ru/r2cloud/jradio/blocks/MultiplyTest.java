@@ -34,8 +34,8 @@ public class MultiplyTest {
 			public float readFloat() throws IOException {
 				return 2.0f;
 			}
-		});
-		assertEquals(4.0f, multiply.readFloat(), 0.0f);
+		}, true);
+		assertEquals(0.0f, multiply.readFloat(), 0.0f);
 		multiply.close();
 	}
 

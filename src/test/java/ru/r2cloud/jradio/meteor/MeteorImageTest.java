@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
 
 import java.awt.image.BufferedImage;
+import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -20,12 +21,22 @@ import org.slf4j.LoggerFactory;
 
 import ru.r2cloud.jradio.Context;
 import ru.r2cloud.jradio.PhaseAmbiguityResolver;
+import ru.r2cloud.jradio.blocks.AGC;
+import ru.r2cloud.jradio.blocks.ClockRecoveryMMComplex;
+import ru.r2cloud.jradio.blocks.Constellation;
+import ru.r2cloud.jradio.blocks.ConstellationSoftDecoder;
 import ru.r2cloud.jradio.blocks.CorrelateAccessCodeTag;
+import ru.r2cloud.jradio.blocks.CostasLoop;
 import ru.r2cloud.jradio.blocks.FixedLengthTagger;
+import ru.r2cloud.jradio.blocks.FloatToChar;
+import ru.r2cloud.jradio.blocks.LowPassFilter;
+import ru.r2cloud.jradio.blocks.Rail;
+import ru.r2cloud.jradio.blocks.RootRaisedCosineFilter;
 import ru.r2cloud.jradio.blocks.TaggedStreamToPdu;
+import ru.r2cloud.jradio.blocks.Window;
 import ru.r2cloud.jradio.lrpt.LRPT;
 import ru.r2cloud.jradio.lrpt.VCDU;
-import ru.r2cloud.jradio.source.InputStreamSource;
+import ru.r2cloud.jradio.source.WavFileSource;
 
 public class MeteorImageTest {
 
@@ -68,46 +79,34 @@ public class MeteorImageTest {
 
 	// performance test
 	public static void main(String[] args) throws Exception {
-		// float sampleRate = 222222.0f;
 		float sampleRate = 150000.0f;
 		float symbolRate = 72000f;
 		float clockAlpha = 0.010f;
 		LOG.info("started");
-		// String filename = "/Users/dernasherbrezon/Downloads/lrpt/11-13-00_137874kHz.wav";
-//		String filename = "/Users/dernasherbrezon/Downloads/debug_r2cloud/misaligned_picture.wav";
-//		WavFileSource source = new WavFileSource(new BufferedInputStream(new FileInputStream(filename)));
-//		LowPassFilter lowPass = new LowPassFilter(source, 1.0, sampleRate, 50000.0, 1000.0, Window.WIN_HAMMING, 6.76);
-//		AGC agc = new AGC(lowPass, 1000e-4f, 0.5f, 1.0f, 4000.0f);
-//		RootRaisedCosineFilter rrcf = new RootRaisedCosineFilter(agc, 1.0f, sampleRate, symbolRate, 0.6f, 361);
-//
-//		CostasLoop costas = new CostasLoop(rrcf, 0.020f, 4, false);
-//		float omega = (float) ((sampleRate * 1.0) / (symbolRate * 1.0));
-//		ClockRecoveryMMComplex clockmm = new ClockRecoveryMMComplex(costas, omega, clockAlpha * clockAlpha / 4, 0.5f, clockAlpha, 0.005f);
-//		Constellation constel = new Constellation(new float[] { -1.0f, -1.0f, -1.0f, 1.0f, 1.0f, 1.0f, 1.0f, -1.0f }, new int[] { 0, 1, 3, 2 }, 4, 1);
-//		ConstellationSoftDecoder constelDecoder = new ConstellationSoftDecoder(clockmm, constel);
-//		Rail rail = new Rail(constelDecoder, -1.0f, 1.0f);
-//		FloatToChar f2char = new FloatToChar(rail, 127.0f);
-//
+		String filename = "your file is here";
+		WavFileSource source = new WavFileSource(new BufferedInputStream(new FileInputStream(filename)));
+		LowPassFilter lowPass = new LowPassFilter(source, 1.0, sampleRate, 50000.0, 1000.0, Window.WIN_HAMMING, 6.76);
+		AGC agc = new AGC(lowPass, 1000e-4f, 0.5f, 1.0f, 4000.0f);
+		RootRaisedCosineFilter rrcf = new RootRaisedCosineFilter(agc, 1.0f, sampleRate, symbolRate, 0.6f, 361);
+
+		CostasLoop costas = new CostasLoop(rrcf, 0.020f, 4, false);
+		float omega = (float) ((sampleRate * 1.0) / (symbolRate * 1.0));
+		ClockRecoveryMMComplex clockmm = new ClockRecoveryMMComplex(costas, omega, clockAlpha * clockAlpha / 4, 0.5f, clockAlpha, 0.005f);
+		Constellation constel = new Constellation(new float[] { -1.0f, -1.0f, -1.0f, 1.0f, 1.0f, 1.0f, 1.0f, -1.0f }, new int[] { 0, 1, 3, 2 }, 4, 1);
+		ConstellationSoftDecoder constelDecoder = new ConstellationSoftDecoder(clockmm, constel);
+		Rail rail = new Rail(constelDecoder, -1.0f, 1.0f);
+		FloatToChar f2char = new FloatToChar(rail, 127.0f);
 		PhaseAmbiguityResolver phaseAmbiguityResolver = new PhaseAmbiguityResolver(0x035d49c24ff2686bL);
-//
-		 InputStreamSource f2char = new InputStreamSource(new FileInputStream("/Users/dernasherbrezon/Downloads/2018_08_15_LRPT_01-55-40.s"));
 
 		Context context = new Context();
 		CorrelateAccessCodeTag correlate = new CorrelateAccessCodeTag(context, f2char, 17, phaseAmbiguityResolver.getSynchronizationMarkers(), true);
 		TaggedStreamToPdu tag = new TaggedStreamToPdu(context, new FixedLengthTagger(context, correlate, VCDU.VITERBI_TAIL_SIZE));
 		LRPT lrpt = new LRPT(context, tag, phaseAmbiguityResolver);
-//		try (OutputStream fos = new BufferedOutputStream(new FileOutputStream("./target/raw.bin"))) {
-//			while (lrpt.hasNext()) {
-//				VCDU next = lrpt.next();
-//				fos.write(next.getData());
-//			}
-//		}
-//		LRPTInputStream lrpt = new LRPTInputStream(new FileInputStream("./target/raw.bin"));
 		MeteorImage image = new MeteorImage(lrpt);
 		LOG.info("decoded");
 		BufferedImage actual = image.toBufferedImage();
 		if (actual != null) {
-			ImageIO.write(actual, "png", new File("./target/output2.png"));
+			ImageIO.write(actual, "png", new File("./target/output_fixed.png"));
 		}
 		lrpt.close();
 		LOG.info("done");
