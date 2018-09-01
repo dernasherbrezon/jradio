@@ -13,10 +13,6 @@ public class MeteorImage {
 
 	private static final Logger LOG = LoggerFactory.getLogger(MeteorImage.class);
 
-	private static final int PACKETS_IN_CHANNEL = 14;
-	private static final int PACKETS_IN_ROW = 3 * PACKETS_IN_CHANNEL + 1;
-
-	private static final int MAX_SEQUENCE_COUNT = 16383;
 	private static final int DEFAULT_RED_APID = 66;
 	private static final int DEFAULT_GREEN_APID = 65;
 	private static final int DEFAULT_BLUE_APID = 64;
@@ -45,7 +41,7 @@ public class MeteorImage {
 						channel.setFirstPacket(cur.getSequenceCount());
 						channel.setFirstMcu(meteorPacket.getMcuNumber());
 					} else {
-						channel.appendRows(calculateMissingRows(channel.getLastMcu(), channel.getLastPacket(), meteorPacket.getMcuNumber(), cur.getSequenceCount()));
+						channel.appendRows(ImageChannelUtil.calculateMissingRows(channel.getLastMcu(), channel.getLastPacket(), meteorPacket.getMcuNumber(), cur.getSequenceCount()));
 					}
 					channel.setLastPacket(cur.getSequenceCount());
 					channel.setLastMcu(meteorPacket.getMcuNumber());
@@ -59,8 +55,8 @@ public class MeteorImage {
 				}
 			}
 		}
-		align(channel1, channel2);
-		align(channel1, channel3);
+		ImageChannelUtil.align(channel1, channel2);
+		ImageChannelUtil.align(channel1, channel3);
 	}
 
 	public BufferedImage toBufferedImage() {
@@ -91,39 +87,6 @@ public class MeteorImage {
 
 	private static int getRGB(int r, int g, int b) {
 		return ((r & 0xFF) << 16) | ((g & 0xFF) << 8) | ((b & 0xFF) << 0);
-	}
-
-	private static void align(ImageChannel first, ImageChannel second) {
-		if (second == null) {
-			return;
-		}
-		second.prependRows(calculateMissingRows(first.getFirstMcu(), first.getFirstPacket(), second.getFirstMcu(), second.getFirstPacket()));
-	}
-
-	private static int calculateMissingRows(int firstMcu, int firstPacket, int secondMcu, int secondPacket) {
-		int numberOfMissingPackets;
-		if (secondPacket > firstPacket) {
-			numberOfMissingPackets = secondPacket - firstPacket;
-		} else {
-			numberOfMissingPackets = (MAX_SEQUENCE_COUNT - firstPacket) + secondPacket;
-		}
-		int rowsToAdd = numberOfMissingPackets / PACKETS_IN_ROW;
-		// second was wrapped to the new line. I.e.
-		// first mcu - 182, second mcu - 0
-		// if second mcu more than first mcu, then second is on the same row
-		if (firstMcu > secondMcu) {
-			rowsToAdd++;
-		} else if (firstMcu == secondMcu) {
-			// still could be additional row
-			// for example: in RGB, blue starts from mcu 0 and outputs the full row
-			// red should come after 14 + 1 (1 for admin packet) packets
-			// that means next row and the same mcu = 0
-			int remainder = numberOfMissingPackets % PACKETS_IN_ROW;
-			if ((remainder == (PACKETS_IN_CHANNEL + 1)) || (remainder == (2 * PACKETS_IN_CHANNEL + 1))) {
-				rowsToAdd++;
-			}
-		}
-		return rowsToAdd;
 	}
 
 	private ImageChannel getAndReserveChannel(int apid) {
