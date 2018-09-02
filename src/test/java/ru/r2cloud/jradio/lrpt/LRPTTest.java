@@ -15,6 +15,7 @@ import ru.r2cloud.jradio.PhaseAmbiguityResolver;
 import ru.r2cloud.jradio.blocks.CorrelateAccessCodeTag;
 import ru.r2cloud.jradio.blocks.FixedLengthTagger;
 import ru.r2cloud.jradio.blocks.TaggedStreamToPdu;
+import ru.r2cloud.jradio.meteor.MeteorImage;
 import ru.r2cloud.jradio.source.InputStreamSource;
 
 public class LRPTTest {
@@ -28,7 +29,7 @@ public class LRPTTest {
 		InputStreamSource float2char = new InputStreamSource(LRPTTest.class.getClassLoader().getResourceAsStream("8bitsoft.s"));
 		CorrelateAccessCodeTag correlate = new CorrelateAccessCodeTag(context, float2char, 9, phaseAmbiguityResolver.getSynchronizationMarkers(), true);
 		TaggedStreamToPdu tag = new TaggedStreamToPdu(context, new FixedLengthTagger(context, correlate, 8160 * 2 + 8 * 2));
-		lrpt = new LRPT(context, tag, phaseAmbiguityResolver);
+		lrpt = new LRPT(context, tag, phaseAmbiguityResolver, MeteorImage.METEOR_SPACECRAFT_ID);
 		assertTrue(lrpt.hasNext());
 		VCDU vcdu = lrpt.next();
 		assertNotNull(vcdu);

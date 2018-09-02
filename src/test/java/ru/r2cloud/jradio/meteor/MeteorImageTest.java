@@ -101,7 +101,7 @@ public class MeteorImageTest {
 		Context context = new Context();
 		CorrelateAccessCodeTag correlate = new CorrelateAccessCodeTag(context, f2char, 17, phaseAmbiguityResolver.getSynchronizationMarkers(), true);
 		TaggedStreamToPdu tag = new TaggedStreamToPdu(context, new FixedLengthTagger(context, correlate, VCDU.VITERBI_TAIL_SIZE));
-		LRPT lrpt = new LRPT(context, tag, phaseAmbiguityResolver);
+		LRPT lrpt = new LRPT(context, tag, phaseAmbiguityResolver, MeteorImage.METEOR_SPACECRAFT_ID);
 		MeteorImage image = new MeteorImage(lrpt);
 		LOG.info("decoded");
 		BufferedImage actual = image.toBufferedImage();

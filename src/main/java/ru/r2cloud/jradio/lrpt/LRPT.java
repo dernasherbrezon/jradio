@@ -31,12 +31,13 @@ public class LRPT implements Iterable<VCDU>, Iterator<VCDU>, Closeable {
 	private final Counter count;
 	private final ViterbiSoft viterbiSoft;
 	private final PhaseAmbiguityResolver phaseAmbiguityResolver;
+	private final int spacecraftId;
 
 	private VCDU currentVcdu;
 	// previous is used for restoring partial packets
 	private VCDU previous = null;
 
-	public LRPT(Context context, TaggedStreamToPdu input, PhaseAmbiguityResolver phaseAmbiguityResolver) {
+	public LRPT(Context context, TaggedStreamToPdu input, PhaseAmbiguityResolver phaseAmbiguityResolver, int spacecraftId) {
 		this.context = context;
 		this.input = input;
 		if (registry != null) {
@@ -46,6 +47,7 @@ public class LRPT implements Iterable<VCDU>, Iterator<VCDU>, Closeable {
 		}
 		this.viterbiSoft = new ViterbiSoft((byte) 0x4f, (byte) 0x6d, false, VCDU.VITERBI_TAIL_SIZE);
 		this.phaseAmbiguityResolver = phaseAmbiguityResolver;
+		this.spacecraftId = spacecraftId;
 	}
 
 	@Override
@@ -70,6 +72,10 @@ public class LRPT implements Iterable<VCDU>, Iterator<VCDU>, Closeable {
 						// reed solomon might pass for array [0,0,0,0,0,0...0]
 						// ensure version is not 0 (according to spec it should be 01)
 						if (currentVcdu.getVersion() != 1 || (currentVcdu.getPartial() == null && currentVcdu.getPackets().isEmpty())) {
+							continue;
+						}
+						// another check to filter out broken packets
+						if (currentVcdu.getId() == null || currentVcdu.getId().getSpacecraftId() != spacecraftId) {
 							continue;
 						}
 						if (previous == null) {
