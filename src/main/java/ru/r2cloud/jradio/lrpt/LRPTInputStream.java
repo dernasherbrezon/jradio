@@ -25,10 +25,14 @@ public class LRPTInputStream implements Iterable<VCDU>, Iterator<VCDU>, Closeabl
 	public boolean hasNext() {
 		byte[] current = new byte[VCDU.SIZE];
 		try {
-			int actuallyRead = input.read(current);
-			if (actuallyRead == -1) {
-				return false;
-			}
+			int n = 0;
+	        while (n < current.length) {
+	            int count = input.read(current, n, current.length - n);
+	            if (count < 0) {
+	                return false;
+	            }
+	            n += count;
+	        }
 			currentVcdu = new VCDU();
 			currentVcdu.readExternal(previous, current);
 			previous = currentVcdu;
