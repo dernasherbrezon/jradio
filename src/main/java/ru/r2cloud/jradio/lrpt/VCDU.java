@@ -45,7 +45,7 @@ public class VCDU {
 				int userDataIndex = 0;
 				// primary header was not read
 				if (previousPartial.getVersion() == -1) {
-					readPirmaryHeader(newUserData, 0, previousPartial);
+					readPrimaryHeader(newUserData, 0, previousPartial);
 					userDataIndex += 6;
 				}
 				// primary header was read, but secondary header was not.
@@ -68,12 +68,12 @@ public class VCDU {
 			// 6 is for minimum header size
 			while (data.length >= index + 6) {
 				Packet packet = new Packet();
-				readPirmaryHeader(data, index, packet);
+				readPrimaryHeader(data, index, packet);
 				// for +1 see the length field description
 				int userDataLength = packet.getLength() + 1;
 				int userDataIndex;
 				if (packet.isSecondaryHeader() && data.length >= index + 6 + 8) {
-					readSecondaryHeader(data, index, packet);
+					readSecondaryHeader(data, index + 6, packet);
 					userDataLength -= 8;
 					// 9 + 1
 					userDataIndex = 14;
@@ -117,7 +117,7 @@ public class VCDU {
 		}
 	}
 
-	private static void readPirmaryHeader(byte[] data, int index, Packet packet) {
+	private static void readPrimaryHeader(byte[] data, int index, Packet packet) {
 		// 000 (CCSDS packet Version number 1)
 		packet.setVersion((byte) (data[index] & 0xFF >> 5));
 		// This bit shall be always set to 1 to indicate the presence of a secondary header.
@@ -133,9 +133,9 @@ public class VCDU {
 	}
 
 	private static void readSecondaryHeader(byte[] data, int index, Packet packet) {
-		packet.setNumberOfDays((data[index + 6] & 0xFF) << 8 | (data[index + 7] & 0xFF));
-		packet.setMillisecondOfDay((data[index + 8] & 0xFF) << 24 | (data[index + 9] & 0xFF) << 16 | (data[index + 10] & 0xFF) << 8 | (data[index + 11] & 0xFF) << 0);
-		packet.setMicrosecondOfMillisecond((data[index + 12] & 0xFF) << 8 | (data[index + 13] & 0xFF) << 0);
+		packet.setNumberOfDays((data[index] & 0xFF) << 8 | (data[index + 1] & 0xFF));
+		packet.setMillisecondOfDay((data[index + 2] & 0xFF) << 24 | (data[index + 3] & 0xFF) << 16 | (data[index + 4] & 0xFF) << 8 | (data[index + 5] & 0xFF) << 0);
+		packet.setMicrosecondOfMillisecond((data[index + 6] & 0xFF) << 8 | (data[index + 7] & 0xFF) << 0);
 	}
 	
 	public byte[] getData() {
