@@ -11,26 +11,38 @@ import ru.r2cloud.jradio.source.WavFileSource;
 public class Spectogram {
 
 	private final int numHertzPerPixel;
+	private final int numRowsPerSecond;
 	private final SpectogramPalette palette = new SpectogramPalette(0.0f, -160.0f, 0x000000, 0x0000e7, 0x0094ff, 0x00ffb8, 0x2eff00, 0xffff00, 0xff8800, 0xff0000, 0xff007c);
 
 	public Spectogram(int numHertzPerPixel) {
+		this(numHertzPerPixel, 1);
+	}
+
+	public Spectogram(int numHertzPerPixel, int numRowsPerSecond) {
 		if (numHertzPerPixel <= 0) {
 			throw new IllegalArgumentException("numPixelsPer100Hz should be positive: " + numHertzPerPixel);
 		}
+		if (numRowsPerSecond <= 0) {
+			throw new IllegalArgumentException("numRowsPerSecond should be positive: " + numRowsPerSecond);
+		}
 		this.numHertzPerPixel = numHertzPerPixel;
+		this.numRowsPerSecond = numRowsPerSecond;
 	}
 
 	public BufferedImage process(WavFileSource source) throws IOException {
 		// 1 pixel = 1 fft bucket = x hz
 		int width = (int) (source.getFormat().getSampleRate() / numHertzPerPixel);
-		//height == number of seconds. i.e. 1 pixel per second
-		int height = (int) (source.getFrameLength() / source.getFormat().getSampleRate());
+		// height == numRowsPerSecond pixels per second
+		int height = (int) ((source.getFrameLength() / source.getFormat().getSampleRate())) * numRowsPerSecond;
 
 		FloatFFT_1D fft = new FloatFFT_1D(width);
 
 		BufferedImage image = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
 
-		int skipOnEveryRow = (int) source.getFormat().getSampleRate() - width;
+		int skipOnEveryRow = (int) (source.getFormat().getSampleRate() - width * numRowsPerSecond) / numRowsPerSecond;
+		if (skipOnEveryRow < 0) {
+			skipOnEveryRow = 0;
+		}
 
 		float iNormalizationFactor = (float) 1 / width;
 
