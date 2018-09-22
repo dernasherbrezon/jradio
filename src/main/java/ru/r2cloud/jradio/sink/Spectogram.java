@@ -34,7 +34,9 @@ public class Spectogram {
 		int width = (int) (source.getFormat().getSampleRate() / numHertzPerPixel);
 		// height == numRowsPerSecond pixels per second
 		int height = (int) ((source.getFrameLength() / source.getFormat().getSampleRate())) * numRowsPerSecond;
-
+		if (height == 0) {
+			throw new IllegalArgumentException("not enough data in source: " + source.getFrameLength());
+		}
 		FloatFFT_1D fft = new FloatFFT_1D(width);
 
 		BufferedImage image = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);

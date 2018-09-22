@@ -30,4 +30,12 @@ public class SpectogramTest {
 		}
 	}
 
+	@Test(expected = IllegalArgumentException.class)
+	public void testEmptyFile() throws Exception {
+		Spectogram spectogram = new Spectogram(200);
+		WavFileSource source = new WavFileSource(SpectogramTest.class.getClassLoader().getResourceAsStream("empty.wav"));
+		spectogram.process(source);
+		source.close();
+	}
+
 }
