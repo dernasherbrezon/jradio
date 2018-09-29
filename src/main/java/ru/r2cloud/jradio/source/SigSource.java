@@ -39,6 +39,7 @@ public class SigSource implements FloatInput {
 		}, amplitude);
 		context = new Context();
 		context.setSampleRate(sampleRate);
+		context.setSampleSizeInBits(32);
 		switch (waveform) {
 		case COMPLEX:
 			context.setChannels(2);

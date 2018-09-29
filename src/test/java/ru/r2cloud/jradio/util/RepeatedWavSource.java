@@ -36,6 +36,7 @@ public class RepeatedWavSource implements FloatInput {
 				context.setTotalSamples(ais.getFrameLength());
 				context.setSampleRate(ais.getFormat().getSampleRate());
 				context.setChannels(ais.getFormat().getChannels());
+				context.setSampleSizeInBits(ais.getFormat().getSampleSizeInBits());
 			} catch (UnsupportedAudioFileException e) {
 				throw new IOException(e);
 			}

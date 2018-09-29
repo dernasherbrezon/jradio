@@ -28,6 +28,7 @@ public class WavFileSource implements FloatInput {
 		context.setTotalSamples(ais.getFrameLength());
 		context.setSampleRate(ais.getFormat().getSampleRate());
 		context.setChannels(ais.getFormat().getChannels());
+		context.setSampleSizeInBits(ais.getFormat().getSampleSizeInBits());
 	}
 
 	@Override
@@ -39,7 +40,7 @@ public class WavFileSource implements FloatInput {
 				throw new EOFException();
 			}
 		}
-		if (ais.getFormat().getSampleSizeInBits() == 16) {
+		if (context.getSampleSizeInBits() == 16) {
 			short s = (short) ((buf[currentBufIndex + 1] << 8) | (buf[currentBufIndex] & 0xff));
 			currentBufIndex += 2;
 			return ((float) s / Short.MAX_VALUE);

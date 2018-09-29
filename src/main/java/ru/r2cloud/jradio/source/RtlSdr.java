@@ -32,6 +32,7 @@ public class RtlSdr implements FloatInput {
 		}
 		context = new Context();
 		context.setChannels(2);
+		context.setSampleSizeInBits(8);
 		context.setSampleRate(sampleRate);
 	}
 

@@ -14,6 +14,7 @@ public class Context {
 	private Long totalSamples;
 	private float sampleRate;
 	private int channels;
+	private int sampleSizeInBits;
 
 	public void put(String id, Tag tag) {
 		tagById.put(id, tag);
@@ -46,6 +47,14 @@ public class Context {
 
 	public void setTotalSamples(Long totalSamples) {
 		this.totalSamples = totalSamples;
+	}
+	
+	public int getSampleSizeInBits() {
+		return sampleSizeInBits;
+	}
+	
+	public void setSampleSizeInBits(int sampleSizeInBits) {
+		this.sampleSizeInBits = sampleSizeInBits;
 	}
 
 	public float getSampleRate() {
