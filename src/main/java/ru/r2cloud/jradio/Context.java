@@ -11,6 +11,9 @@ public class Context {
 
 	private Tag current = null;
 	private final Map<String, Tag> tagById = new HashMap<>();
+	private Long totalSamples;
+	private float sampleRate;
+	private int channels;
 
 	public void put(String id, Tag tag) {
 		tagById.put(id, tag);
@@ -20,7 +23,7 @@ public class Context {
 	public Tag getCurrent() {
 		return current;
 	}
-	
+
 	public void setCurrent(Tag current) {
 		this.current = current;
 	}
@@ -35,6 +38,30 @@ public class Context {
 
 	public Map<String, Tag> getTags() {
 		return tagById;
+	}
+
+	public Long getTotalSamples() {
+		return totalSamples;
+	}
+
+	public void setTotalSamples(Long totalSamples) {
+		this.totalSamples = totalSamples;
+	}
+
+	public float getSampleRate() {
+		return sampleRate;
+	}
+
+	public void setSampleRate(float sampleRate) {
+		this.sampleRate = sampleRate;
+	}
+
+	public int getChannels() {
+		return channels;
+	}
+
+	public void setChannels(int channels) {
+		this.channels = channels;
 	}
 
 }

@@ -4,11 +4,11 @@ import java.io.EOFException;
 import java.io.IOException;
 import java.io.InputStream;
 
-import javax.sound.sampled.AudioFormat;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.UnsupportedAudioFileException;
 
+import ru.r2cloud.jradio.Context;
 import ru.r2cloud.jradio.FloatInput;
 
 public class WavFileSource implements FloatInput {
@@ -16,6 +16,7 @@ public class WavFileSource implements FloatInput {
 	private final AudioInputStream ais;
 	private final byte[] buf;
 	private int currentBufIndex = 0;
+	private final Context context;
 
 	public WavFileSource(InputStream is) throws UnsupportedAudioFileException, IOException {
 		ais = AudioSystem.getAudioInputStream(is);
@@ -23,6 +24,10 @@ public class WavFileSource implements FloatInput {
 			throw new UnsupportedAudioFileException("unsupported sample size in bits: " + ais.getFormat().getSampleSizeInBits());
 		}
 		buf = new byte[ais.getFormat().getFrameSize()];
+		context = new Context();
+		context.setTotalSamples(ais.getFrameLength());
+		context.setSampleRate(ais.getFormat().getSampleRate());
+		context.setChannels(ais.getFormat().getChannels());
 	}
 
 	@Override
@@ -45,16 +50,13 @@ public class WavFileSource implements FloatInput {
 		}
 	}
 
-	public AudioFormat getFormat() {
-		return ais.getFormat();
-	}
-
-	public long getFrameLength() {
-		return ais.getFrameLength();
-	}
-
 	@Override
 	public void close() throws IOException {
 		ais.close();
+	}
+	
+	@Override
+	public Context getContext() {
+		return context;
 	}
 }

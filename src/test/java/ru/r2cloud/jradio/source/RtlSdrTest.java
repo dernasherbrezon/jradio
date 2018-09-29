@@ -24,7 +24,7 @@ public class RtlSdrTest {
 		dos.writeByte(30);
 		dos.writeByte(40);
 
-		rtl = new RtlSdr(new ByteArrayInputStream(baos.toByteArray()));
+		rtl = new RtlSdr(new ByteArrayInputStream(baos.toByteArray()), 0.0f);
 		assertEquals(-0.9171875, rtl.readFloat(), 0.0000001);
 		assertEquals(-0.8390625, rtl.readFloat(), 0.0000001);
 		assertEquals(-0.7609375, rtl.readFloat(), 0.0000001);

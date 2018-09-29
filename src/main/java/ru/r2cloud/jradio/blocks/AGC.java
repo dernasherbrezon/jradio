@@ -2,6 +2,7 @@ package ru.r2cloud.jradio.blocks;
 
 import java.io.IOException;
 
+import ru.r2cloud.jradio.Context;
 import ru.r2cloud.jradio.FloatInput;
 
 public class AGC implements FloatInput {
@@ -42,5 +43,10 @@ public class AGC implements FloatInput {
 	@Override
 	public void close() throws IOException {
 		source.close();
+	}
+	
+	@Override
+	public Context getContext() {
+		return source.getContext();
 	}
 }

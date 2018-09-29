@@ -8,6 +8,7 @@ import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicLong;
 
+import ru.r2cloud.jradio.Context;
 import ru.r2cloud.jradio.FloatInput;
 
 public class ThroughputStream implements FloatInput {
@@ -59,5 +60,10 @@ public class ThroughputStream implements FloatInput {
 	public void close() throws IOException {
 		impl.close();
 		executor.shutdown();
+	}
+	
+	@Override
+	public Context getContext() {
+		return impl.getContext();
 	}
 }

@@ -6,7 +6,7 @@ import java.io.IOException;
 
 import org.jtransforms.fft.FloatFFT_1D;
 
-import ru.r2cloud.jradio.source.WavFileSource;
+import ru.r2cloud.jradio.FloatInput;
 
 public class Spectogram {
 
@@ -29,19 +29,19 @@ public class Spectogram {
 		this.numRowsPerSecond = numRowsPerSecond;
 	}
 
-	public BufferedImage process(WavFileSource source) throws IOException {
+	public BufferedImage process(FloatInput source) throws IOException {
 		// 1 pixel = 1 fft bucket = x hz
-		int width = (int) (source.getFormat().getSampleRate() / numHertzPerPixel);
+		int width = (int) (source.getContext().getSampleRate() / numHertzPerPixel);
 		// height == numRowsPerSecond pixels per second
-		int height = (int) ((source.getFrameLength() / source.getFormat().getSampleRate())) * numRowsPerSecond;
+		int height = (int) ((source.getContext().getTotalSamples() / source.getContext().getSampleRate())) * numRowsPerSecond;
 		if (height == 0) {
-			throw new IllegalArgumentException("not enough data in source: " + source.getFrameLength());
+			throw new IllegalArgumentException("not enough data in source: " + source.getContext().getTotalSamples());
 		}
 		FloatFFT_1D fft = new FloatFFT_1D(width);
 
 		BufferedImage image = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
 
-		int skipOnEveryRow = (int) (source.getFormat().getSampleRate() - width * numRowsPerSecond) / numRowsPerSecond;
+		int skipOnEveryRow = (int) (source.getContext().getSampleRate() - width * numRowsPerSecond) / numRowsPerSecond;
 		if (skipOnEveryRow < 0) {
 			skipOnEveryRow = 0;
 		}
@@ -57,7 +57,7 @@ public class Spectogram {
 			try {
 				for (int i = 0; i < complexBuf.length; i += 2) {
 					complexBuf[i] = source.readFloat();
-					if (source.getFormat().getChannels() == 2) {
+					if (source.getContext().getChannels() == 2) {
 						complexBuf[i + 1] = source.readFloat();
 					} else {
 						complexBuf[i + 1] = 0.0f;
@@ -90,7 +90,7 @@ public class Spectogram {
 
 				for (int i = 0; i < skipOnEveryRow; i++) {
 					source.readFloat();
-					if (source.getFormat().getChannels() == 2) {
+					if (source.getContext().getChannels() == 2) {
 						source.readFloat();
 					}
 				}

@@ -2,6 +2,7 @@ package ru.r2cloud.jradio.blocks;
 
 import java.io.IOException;
 
+import ru.r2cloud.jradio.Context;
 import ru.r2cloud.jradio.FloatInput;
 
 public class Multiply implements FloatInput {
@@ -56,4 +57,8 @@ public class Multiply implements FloatInput {
 		return result;
 	}
 
+	@Override
+	public Context getContext() {
+		return source1.getContext();
+	}
 }

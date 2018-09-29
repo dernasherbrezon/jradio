@@ -11,6 +11,7 @@ import java.nio.charset.StandardCharsets;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import ru.r2cloud.jradio.Context;
 import ru.r2cloud.jradio.FloatInput;
 import ru.r2cloud.jradio.RtlSdrSettings;
 
@@ -29,7 +30,7 @@ public class RtlTcp implements FloatInput {
 		socket = new Socket(host, port);
 		is = new DataInputStream(socket.getInputStream());
 		readDongleInfo();
-		rtlSdr = new RtlSdr(is);
+		rtlSdr = new RtlSdr(is, initialSettings.getSampleRate());
 		os = socket.getOutputStream();
 		setSettings(initialSettings);
 	}
@@ -73,5 +74,10 @@ public class RtlTcp implements FloatInput {
 
 	public int getTunerType() {
 		return tunerType;
+	}
+	
+	@Override
+	public Context getContext() {
+		return rtlSdr.getContext();
 	}
 }

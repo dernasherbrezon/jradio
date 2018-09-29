@@ -2,6 +2,7 @@ package ru.r2cloud.jradio.blocks;
 
 import java.io.IOException;
 
+import ru.r2cloud.jradio.Context;
 import ru.r2cloud.jradio.FloatInput;
 import ru.r2cloud.jradio.util.MathUtils;
 
@@ -166,4 +167,8 @@ public class ClockRecoveryMMComplex implements FloatInput {
 		source.close();
 	}
 
+	@Override
+	public Context getContext() {
+		return source.getContext();
+	}
 }

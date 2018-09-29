@@ -7,4 +7,6 @@ public interface FloatInput extends Closeable {
 
 	float readFloat() throws IOException;
 	
+	Context getContext();
+	
 }

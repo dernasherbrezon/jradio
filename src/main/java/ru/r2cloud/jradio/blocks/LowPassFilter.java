@@ -5,6 +5,7 @@ import java.io.IOException;
 import com.codahale.metrics.Meter;
 import com.codahale.metrics.MetricRegistry;
 
+import ru.r2cloud.jradio.Context;
 import ru.r2cloud.jradio.FloatInput;
 import ru.r2cloud.jradio.util.Metrics;
 
@@ -64,4 +65,8 @@ public class LowPassFilter implements FloatInput {
 		source.close();
 	}
 
+	@Override
+	public Context getContext() {
+		return source.getContext();
+	}
 }

@@ -7,6 +7,7 @@ import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.UnsupportedAudioFileException;
 
+import ru.r2cloud.jradio.Context;
 import ru.r2cloud.jradio.FloatInput;
 
 public class RepeatedWavSource implements FloatInput {
@@ -17,6 +18,7 @@ public class RepeatedWavSource implements FloatInput {
 	private int currentRepeats = 0;
 	private final int numberOfRepeats;
 	private final String classpathSource;
+	private Context context;
 
 	public RepeatedWavSource(String classpathSource, int numberOfRepeats) {
 		this.classpathSource = classpathSource;
@@ -30,6 +32,10 @@ public class RepeatedWavSource implements FloatInput {
 				ais = AudioSystem.getAudioInputStream(RepeatedWavSource.class.getClassLoader().getResourceAsStream(classpathSource));
 				frameSize = ais.getFormat().getFrameSize();
 				buf = new byte[ais.getFormat().getFrameSize()];
+				context = new Context();
+				context.setTotalSamples(ais.getFrameLength());
+				context.setSampleRate(ais.getFormat().getSampleRate());
+				context.setChannels(ais.getFormat().getChannels());
 			} catch (UnsupportedAudioFileException e) {
 				throw new IOException(e);
 			}
@@ -55,6 +61,11 @@ public class RepeatedWavSource implements FloatInput {
 	@Override
 	public void close() throws IOException {
 		ais.close();
+	}
+	
+	@Override
+	public Context getContext() {
+		return context;
 	}
 
 }

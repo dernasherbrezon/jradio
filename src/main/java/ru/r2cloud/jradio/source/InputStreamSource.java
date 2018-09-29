@@ -9,6 +9,7 @@ import com.codahale.metrics.Counter;
 import com.codahale.metrics.MetricRegistry;
 
 import ru.r2cloud.jradio.ByteInput;
+import ru.r2cloud.jradio.Context;
 import ru.r2cloud.jradio.FloatInput;
 import ru.r2cloud.jradio.util.Metrics;
 
@@ -67,5 +68,11 @@ public class InputStreamSource implements FloatInput, ByteInput {
 			throw new EOFException();
 		}
 		return ((ch4 << 24) + (ch3 << 16) + (ch2 << 8) + (ch1 << 0));
+	}
+	
+	@Override
+	public Context getContext() {
+		//not defined
+		return null;
 	}
 }
