@@ -7,4 +7,5 @@ public interface MessageInput extends Closeable {
 
 	byte[] readBytes() throws IOException;
 	
+	Context getContext();
 }

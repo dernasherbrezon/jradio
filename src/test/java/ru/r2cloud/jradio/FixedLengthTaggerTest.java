@@ -21,8 +21,7 @@ public class FixedLengthTaggerTest {
 
 	@Test
 	public void success() throws Exception {
-		Context context = new Context();
-		source = new FixedLengthTagger(context, new CorrelateAccessCodeTag(context, new BinarySlicer(new ClockRecoveryMM(new WavFileSource(WavFileSourceTest.class.getClassLoader().getResourceAsStream("aausat-4.wav")), 20.0f, (float) (0.25 * 0.175 * 0.175), 0.005f, 0.175f, 0.005f)), 8, "010011110101101000110100010000110101010101000010"), 2008);
+		source = new FixedLengthTagger(new CorrelateAccessCodeTag(new BinarySlicer(new ClockRecoveryMM(new WavFileSource(WavFileSourceTest.class.getClassLoader().getResourceAsStream("aausat-4.wav")), 20.0f, (float) (0.25 * 0.175 * 0.175), 0.005f, 0.175f, 0.005f)), 8, "010011110101101000110100010000110101010101000010"), 2008);
 		try (InputStream is = BinarySlicerTest.class.getClassLoader().getResourceAsStream("FixedLengthTagger.bin")) {
 			int expected = -1;
 			while( (expected = is.read()) != -1 ) {
@@ -30,7 +29,7 @@ public class FixedLengthTaggerTest {
 				assertEquals(expected, actual);
 			}
 		}
-		Map<String, Tag> tags = context.getTags();
+		Map<String, Tag> tags = source.getContext().getTags();
 		assertEquals(1, tags.size());
 	}
 

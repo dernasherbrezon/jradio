@@ -10,7 +10,6 @@ import org.slf4j.LoggerFactory;
 import com.codahale.metrics.Counter;
 import com.codahale.metrics.MetricRegistry;
 
-import ru.r2cloud.jradio.Context;
 import ru.r2cloud.jradio.PhaseAmbiguityResolver;
 import ru.r2cloud.jradio.Tag;
 import ru.r2cloud.jradio.blocks.CorrelateAccessCodeTag;
@@ -26,7 +25,6 @@ public class LRPT implements Iterable<VCDU>, Iterator<VCDU>, Closeable {
 	private static final Logger LOG = LoggerFactory.getLogger(LRPT.class);
 	private final MetricRegistry registry = Metrics.getRegistry();
 
-	private final Context context;
 	private final TaggedStreamToPdu input;
 	private final Counter count;
 	private final ViterbiSoft viterbiSoft;
@@ -37,8 +35,7 @@ public class LRPT implements Iterable<VCDU>, Iterator<VCDU>, Closeable {
 	// previous is used for restoring partial packets
 	private VCDU previous = null;
 
-	public LRPT(Context context, TaggedStreamToPdu input, PhaseAmbiguityResolver phaseAmbiguityResolver, int spacecraftId) {
-		this.context = context;
+	public LRPT(TaggedStreamToPdu input, PhaseAmbiguityResolver phaseAmbiguityResolver, int spacecraftId) {
 		this.input = input;
 		if (registry != null) {
 			count = registry.counter(LRPT.class.getName());
@@ -61,7 +58,7 @@ public class LRPT implements Iterable<VCDU>, Iterator<VCDU>, Closeable {
 			try {
 				byte[] rawBytes = input.readBytes();
 				if (rawBytes != null && rawBytes.length != 0) {
-					Tag currentTag = context.getCurrent();
+					Tag currentTag = input.getContext().getCurrent();
 					phaseAmbiguityResolver.rotateSoft(rawBytes, (Long) currentTag.get(CorrelateAccessCodeTag.ACCESS_CODE));
 					byte[] viterbi = viterbiSoft.decode(rawBytes);
 					Randomize.shuffle(viterbi);

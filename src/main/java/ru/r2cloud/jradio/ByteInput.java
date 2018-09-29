@@ -7,4 +7,5 @@ public interface ByteInput  extends Closeable {
 
 	byte readByte() throws IOException;
 	
+	Context getContext();
 }

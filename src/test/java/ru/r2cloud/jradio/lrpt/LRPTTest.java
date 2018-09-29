@@ -10,7 +10,6 @@ import java.io.IOException;
 import org.junit.After;
 import org.junit.Test;
 
-import ru.r2cloud.jradio.Context;
 import ru.r2cloud.jradio.PhaseAmbiguityResolver;
 import ru.r2cloud.jradio.blocks.CorrelateAccessCodeTag;
 import ru.r2cloud.jradio.blocks.FixedLengthTagger;
@@ -25,11 +24,10 @@ public class LRPTTest {
 	@Test
 	public void success() throws Exception {
 		PhaseAmbiguityResolver phaseAmbiguityResolver = new PhaseAmbiguityResolver(0x035d49c24ff2686bL);
-		Context context = new Context();
 		InputStreamSource float2char = new InputStreamSource(LRPTTest.class.getClassLoader().getResourceAsStream("8bitsoft.s"));
-		CorrelateAccessCodeTag correlate = new CorrelateAccessCodeTag(context, float2char, 9, phaseAmbiguityResolver.getSynchronizationMarkers(), true);
-		TaggedStreamToPdu tag = new TaggedStreamToPdu(context, new FixedLengthTagger(context, correlate, 8160 * 2 + 8 * 2));
-		lrpt = new LRPT(context, tag, phaseAmbiguityResolver, MeteorImage.METEOR_SPACECRAFT_ID);
+		CorrelateAccessCodeTag correlate = new CorrelateAccessCodeTag(float2char, 9, phaseAmbiguityResolver.getSynchronizationMarkers(), true);
+		TaggedStreamToPdu tag = new TaggedStreamToPdu(new FixedLengthTagger(correlate, 8160 * 2 + 8 * 2));
+		lrpt = new LRPT(tag, phaseAmbiguityResolver, MeteorImage.METEOR_SPACECRAFT_ID);
 		assertTrue(lrpt.hasNext());
 		VCDU vcdu = lrpt.next();
 		assertNotNull(vcdu);

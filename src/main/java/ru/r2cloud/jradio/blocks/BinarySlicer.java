@@ -3,6 +3,7 @@ package ru.r2cloud.jradio.blocks;
 import java.io.IOException;
 
 import ru.r2cloud.jradio.ByteInput;
+import ru.r2cloud.jradio.Context;
 import ru.r2cloud.jradio.FloatInput;
 
 public class BinarySlicer implements ByteInput {
@@ -26,6 +27,11 @@ public class BinarySlicer implements ByteInput {
 	@Override
 	public void close() throws IOException {
 		input.close();
+	}
+	
+	@Override
+	public Context getContext() {
+		return input.getContext();
 	}
 
 }

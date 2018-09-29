@@ -10,11 +10,9 @@ import ru.r2cloud.jradio.Tag;
 public class TaggedStreamToPdu implements MessageInput {
 
 	private final ByteInput input;
-	private final Context context;
 
-	public TaggedStreamToPdu(Context context, ByteInput input) {
+	public TaggedStreamToPdu(ByteInput input) {
 		this.input = input;
-		this.context = context;
 	}
 
 	@Override
@@ -24,7 +22,7 @@ public class TaggedStreamToPdu implements MessageInput {
 		do {
 			// discard bytes
 			firstByte = input.readByte();
-			tag = context.getCurrent();
+			tag = getContext().getCurrent();
 			if (tag != null) {
 				break;
 			}
@@ -40,13 +38,18 @@ public class TaggedStreamToPdu implements MessageInput {
 		for (int i = 1; i < length; i++) {
 			result[i] = input.readByte();
 		}
-		context.setCurrent(tag);
+		getContext().setCurrent(tag);
 		return result;
 	}
 
 	@Override
 	public void close() throws IOException {
 		input.close();
+	}
+	
+	@Override
+	public Context getContext() {
+		return input.getContext();
 	}
 
 }

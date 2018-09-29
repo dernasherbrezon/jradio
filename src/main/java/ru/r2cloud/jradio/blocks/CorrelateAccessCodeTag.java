@@ -14,7 +14,6 @@ public class CorrelateAccessCodeTag implements ByteInput {
 	public static final String ACCESS_CODE = "accessCode";
 
 	private final ByteInput input;
-	private final Context context;
 
 	private long dataRegister = 0;
 	private int threshold;
@@ -22,17 +21,16 @@ public class CorrelateAccessCodeTag implements ByteInput {
 
 	private final AccessCode[] accessCodes;
 
-	public CorrelateAccessCodeTag(Context context, ByteInput input, int threshold, String access_code) {
-		this(context, input, threshold, Collections.singleton(access_code), false);
+	public CorrelateAccessCodeTag(ByteInput input, int threshold, String access_code) {
+		this(input, threshold, Collections.singleton(access_code), false);
 	}
 
-	public CorrelateAccessCodeTag(Context context, ByteInput input, int threshold, String access_code, boolean soft) {
-		this(context, input, threshold, Collections.singleton(access_code), soft);
+	public CorrelateAccessCodeTag(ByteInput input, int threshold, String access_code, boolean soft) {
+		this(input, threshold, Collections.singleton(access_code), soft);
 	}
 
-	public CorrelateAccessCodeTag(Context context, ByteInput input, int threshold, Set<String> accessCodesStr, boolean soft) {
+	public CorrelateAccessCodeTag(ByteInput input, int threshold, Set<String> accessCodesStr, boolean soft) {
 		this.input = input;
-		this.context = context;
 		this.threshold = threshold;
 		this.soft = soft;
 		accessCodes = new AccessCode[accessCodesStr.size()];
@@ -81,11 +79,11 @@ public class CorrelateAccessCodeTag implements ByteInput {
 			tag = new Tag();
 			tag.setId(UUID.randomUUID().toString());
 			tag.put(ACCESS_CODE, minAccessCode);
-			context.put(tag.getId(), tag);
+			getContext().put(tag.getId(), tag);
 		}
 
 		if (tag == null) {
-			context.resetCurrent();
+			getContext().resetCurrent();
 		}
 
 		// shift in new data
@@ -97,6 +95,11 @@ public class CorrelateAccessCodeTag implements ByteInput {
 	@Override
 	public void close() throws IOException {
 		input.close();
+	}
+
+	@Override
+	public Context getContext() {
+		return input.getContext();
 	}
 
 }

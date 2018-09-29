@@ -25,9 +25,8 @@ public class AAUSAT4Test {
 	private AAUSAT4 input;
 
 	public static void main(String[] args) throws Exception {
-		Context context = new Context();
 		final ThroughputStream throughputStream = new ThroughputStream(new RepeatedWavSource("source.wav", 1));
-		AAUSAT4 input = new AAUSAT4(new TaggedStreamToPdu(context, new UnpackedToPacked(context, new FixedLengthTagger(context, new CorrelateAccessCodeTag(context, new BinarySlicer(new ClockRecoveryMM(throughputStream, 20.0f, (float) (0.25 * 0.175 * 0.175), 0.005f, 0.175f, 0.005f)), 8, "010011110101101000110100010000110101010101000010"), 2008), 1, Endianness.GR_MSB_FIRST, Byte.class)));
+		AAUSAT4 input = new AAUSAT4(new TaggedStreamToPdu(new UnpackedToPacked(new FixedLengthTagger(new CorrelateAccessCodeTag(new BinarySlicer(new ClockRecoveryMM(throughputStream, 20.0f, (float) (0.25 * 0.175 * 0.175), 0.005f, 0.175f, 0.005f)), 8, "010011110101101000110100010000110101010101000010"), 2008), 1, Endianness.GR_MSB_FIRST, Byte.class)));
 		Thread t = new Thread(new Runnable() {
 
 			@Override
@@ -59,8 +58,7 @@ public class AAUSAT4Test {
 
 	@Test
 	public void testSuccess() throws Exception {
-		Context context = new Context();
-		input = new AAUSAT4(new TaggedStreamToPdu(context, new UnpackedToPacked(context, new FixedLengthTagger(context, new CorrelateAccessCodeTag(context, new BinarySlicer(new ClockRecoveryMM(new WavFileSource(WavFileSourceTest.class.getClassLoader().getResourceAsStream("aausat-4.wav")), 20.0f, (float) (0.25 * 0.175 * 0.175), 0.005f, 0.175f, 0.005f)), 8, "010011110101101000110100010000110101010101000010"), 2008), 1, Endianness.GR_MSB_FIRST, Byte.class)));
+		input = new AAUSAT4(new TaggedStreamToPdu(new UnpackedToPacked(new FixedLengthTagger(new CorrelateAccessCodeTag(new BinarySlicer(new ClockRecoveryMM(new WavFileSource(WavFileSourceTest.class.getClassLoader().getResourceAsStream("aausat-4.wav")), 20.0f, (float) (0.25 * 0.175 * 0.175), 0.005f, 0.175f, 0.005f)), 8, "010011110101101000110100010000110101010101000010"), 2008), 1, Endianness.GR_MSB_FIRST, Byte.class)));
 		assertTrue(input.hasNext());
 		AAUSAT4Beacon beacon = input.next();
 		assertEquals(4, beacon.getCom().getBootCount());

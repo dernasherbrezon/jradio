@@ -10,15 +10,13 @@ import ru.r2cloud.jradio.Tag;
 public class UnpackedToPacked implements ByteInput {
 
 	private final ByteInput input;
-	private final Context context;
 	private final int d_bits_per_chunk;
 	private int d_index = 0;
 	private final Endianness d_endianness;
 	private final Class<?> outputType;
 
-	public UnpackedToPacked(Context context, ByteInput input, int bits_per_chunk, Endianness endianness, Class<?> outputType) {
+	public UnpackedToPacked(ByteInput input, int bits_per_chunk, Endianness endianness, Class<?> outputType) {
 		this.input = input;
-		this.context = context;
 		this.d_bits_per_chunk = bits_per_chunk;
 		this.d_endianness = endianness;
 		this.outputType = outputType;
@@ -52,7 +50,7 @@ public class UnpackedToPacked implements ByteInput {
 				index_tmp++;
 				//reduce length of message
 				if (j == 0) {
-					tag = context.getCurrent();
+					tag = getContext().getCurrent();
 					if (tag != null) {
 						tag.put(FixedLengthTagger.LENGTH, (Integer) tag.get(FixedLengthTagger.LENGTH) / 8);
 					}
@@ -67,7 +65,7 @@ public class UnpackedToPacked implements ByteInput {
 				index_tmp++;
 				//reduce length of message
 				if (j == 0) {
-					tag = context.getCurrent();
+					tag = getContext().getCurrent();
 					if (tag != null) {
 						tag.put(FixedLengthTagger.LENGTH, (Integer) tag.get(FixedLengthTagger.LENGTH) / 8);
 					}
@@ -76,9 +74,14 @@ public class UnpackedToPacked implements ByteInput {
 			result = (byte) tmp2;
 			break;
 		}
-		context.setCurrent(tag);
+		getContext().setCurrent(tag);
 		d_index = index_tmp;
 		return result;
+	}
+
+	@Override
+	public Context getContext() {
+		return input.getContext();
 	}
 
 }

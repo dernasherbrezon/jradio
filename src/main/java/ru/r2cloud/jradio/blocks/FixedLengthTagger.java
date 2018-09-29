@@ -13,7 +13,6 @@ public class FixedLengthTagger implements ByteInput {
 	public static final String LENGTH = "length";
 
 	private final ByteInput input;
-	private final Context context;
 	private final int packet_len;
 	private final byte[] window;
 	private final byte[] packet;
@@ -23,9 +22,8 @@ public class FixedLengthTagger implements ByteInput {
 	private int currentIndex = -1;
 	private LinkedList<Tag> currentTags = new LinkedList<>();
 
-	public FixedLengthTagger(Context context, ByteInput input, int packet_len) {
+	public FixedLengthTagger(ByteInput input, int packet_len) {
 		this.input = input;
-		this.context = context;
 		this.packet_len = packet_len;
 		this.packet = new byte[packet_len];
 		this.window = new byte[packet_len];
@@ -37,7 +35,7 @@ public class FixedLengthTagger implements ByteInput {
 		if (currentIndex >= 0 && currentIndex < packet.length) {
 			// indicate tag only for the first byte
 			if (currentIndex > 0) {
-				context.resetCurrent();
+				getContext().resetCurrent();
 			}
 			byte result = packet[currentIndex];
 			currentIndex++;
@@ -54,7 +52,7 @@ public class FixedLengthTagger implements ByteInput {
 			}
 
 			// tags are lazily calculated during readByte
-			Tag tag = context.getCurrent();
+			Tag tag = getContext().getCurrent();
 			if (tag != null) {
 				tag.put(BEGIN_SAMPLE, read);
 				currentTags.add(tag);
@@ -71,7 +69,7 @@ public class FixedLengthTagger implements ByteInput {
 						System.arraycopy(window, windowIndex, packet, 0, window.length - windowIndex);
 						System.arraycopy(window, 0, packet, window.length - windowIndex, windowIndex);
 						cur.put(LENGTH, packet_len);
-						context.setCurrent(cur);
+						getContext().setCurrent(cur);
 						read++;
 						removeFirst = true;
 						break;
@@ -91,6 +89,11 @@ public class FixedLengthTagger implements ByteInput {
 	@Override
 	public void close() throws IOException {
 		input.close();
+	}
+
+	@Override
+	public Context getContext() {
+		return input.getContext();
 	}
 
 }

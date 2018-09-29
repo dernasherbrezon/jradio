@@ -19,7 +19,6 @@ import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import ru.r2cloud.jradio.Context;
 import ru.r2cloud.jradio.PhaseAmbiguityResolver;
 import ru.r2cloud.jradio.blocks.AGC;
 import ru.r2cloud.jradio.blocks.ClockRecoveryMMComplex;
@@ -94,10 +93,9 @@ public class MeteorImageTest {
 		FloatToChar f2char = new FloatToChar(rail, 127.0f);
 		PhaseAmbiguityResolver phaseAmbiguityResolver = new PhaseAmbiguityResolver(0x035d49c24ff2686bL);
 
-		Context context = new Context();
-		CorrelateAccessCodeTag correlate = new CorrelateAccessCodeTag(context, f2char, 17, phaseAmbiguityResolver.getSynchronizationMarkers(), true);
-		TaggedStreamToPdu tag = new TaggedStreamToPdu(context, new FixedLengthTagger(context, correlate, VCDU.VITERBI_TAIL_SIZE));
-		LRPT lrpt = new LRPT(context, tag, phaseAmbiguityResolver, MeteorImage.METEOR_SPACECRAFT_ID);
+		CorrelateAccessCodeTag correlate = new CorrelateAccessCodeTag(f2char, 17, phaseAmbiguityResolver.getSynchronizationMarkers(), true);
+		TaggedStreamToPdu tag = new TaggedStreamToPdu(new FixedLengthTagger(correlate, VCDU.VITERBI_TAIL_SIZE));
+		LRPT lrpt = new LRPT(tag, phaseAmbiguityResolver, MeteorImage.METEOR_SPACECRAFT_ID);
 		MeteorImage image = new MeteorImage(lrpt);
 		LOG.info("decoded");
 		BufferedImage actual = image.toBufferedImage();

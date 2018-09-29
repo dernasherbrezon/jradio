@@ -19,8 +19,7 @@ public class CorrelateAccessCodeTagTest {
 
 	@Test
 	public void test() throws Exception {
-		Context context = new Context();
-		source = new CorrelateAccessCodeTag(context, new BinarySlicer(new ClockRecoveryMM(new WavFileSource(WavFileSourceTest.class.getClassLoader().getResourceAsStream("aausat-4.wav")), 20.0f, (float) (0.25 * 0.175 * 0.175), 0.005f, 0.175f, 0.005f)), 8, "010011110101101000110100010000110101010101000010");
+		source = new CorrelateAccessCodeTag(new BinarySlicer(new ClockRecoveryMM(new WavFileSource(WavFileSourceTest.class.getClassLoader().getResourceAsStream("aausat-4.wav")), 20.0f, (float) (0.25 * 0.175 * 0.175), 0.005f, 0.175f, 0.005f)), 8, "010011110101101000110100010000110101010101000010");
 		try {
 			while (true) {
 				source.readByte();
@@ -29,7 +28,7 @@ public class CorrelateAccessCodeTagTest {
 			// ignore
 		}
 
-		Map<String, Tag> tags = context.getTags();
+		Map<String, Tag> tags = source.getContext().getTags();
 		assertEquals(1, tags.size());
 	}
 

@@ -3,6 +3,7 @@ package ru.r2cloud.jradio.blocks;
 import java.io.IOException;
 
 import ru.r2cloud.jradio.ByteInput;
+import ru.r2cloud.jradio.Context;
 import ru.r2cloud.jradio.FloatInput;
 
 public class FloatToChar implements ByteInput {
@@ -32,6 +33,11 @@ public class FloatToChar implements ByteInput {
 	@Override
 	public void close() throws IOException {
 		source.close();
+	}
+
+	@Override
+	public Context getContext() {
+		return source.getContext();
 	}
 
 }
