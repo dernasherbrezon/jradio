@@ -17,7 +17,7 @@ public class LowPassFilterTest {
 
 	@Test
 	public void test() throws Exception {
-		source = new LowPassFilter(new WavFileSource(WavFileSourceTest.class.getClassLoader().getResourceAsStream("meteor_small.wav")), 1.0, 222222.0, 60000.0, 100.0, Window.WIN_HAMMING, 6.76);
+		source = new LowPassFilter(new WavFileSource(WavFileSourceTest.class.getClassLoader().getResourceAsStream("meteor_small.wav")), 1.0, 60000.0, 100.0, Window.WIN_HAMMING, 6.76);
 		try (InputStreamSource is = new InputStreamSource(LowPassFilterTest.class.getClassLoader().getResourceAsStream("LowPassFilter.bin"))) {
 			while (true) {
 				float expected = is.readFloat();

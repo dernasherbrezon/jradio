@@ -76,15 +76,14 @@ public class MeteorImageTest {
 
 	// performance test
 	public static void main(String[] args) throws Exception {
-		float sampleRate = 150000.0f;
 		float symbolRate = 72000f;
 		float clockAlpha = 0.01f;
 		LOG.info("started");
 		String filename = "your file is here";
 		WavFileSource source = new WavFileSource(new BufferedInputStream(new FileInputStream(filename)));
 		AGC agc = new AGC(source, 1000e-4f, 0.5f, 2.0f, 4000.0f);
-		RootRaisedCosineFilter rrcf = new RootRaisedCosineFilter(agc, 1.0f, sampleRate, symbolRate, 0.6f, 361);
-		float omega = (float) ((sampleRate * 1.0) / (symbolRate * 1.0));
+		RootRaisedCosineFilter rrcf = new RootRaisedCosineFilter(agc, 1.0f, symbolRate, 0.6f, 361);
+		float omega = (float) ((source.getContext().getSampleRate() * 1.0) / (symbolRate * 1.0));
 		ClockRecoveryMMComplex clockmm = new ClockRecoveryMMComplex(rrcf, omega, clockAlpha * clockAlpha / 4, 0.5f, clockAlpha, 0.005f);
 		CostasLoop costas = new CostasLoop(clockmm, 0.008f, 4, false);
 		Constellation constel = new Constellation(new float[] { -1.0f, -1.0f, -1.0f, 1.0f, 1.0f, 1.0f, 1.0f, -1.0f }, new int[] { 0, 1, 3, 2 }, 4, 1);

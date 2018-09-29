@@ -25,9 +25,9 @@ public class RootRaisedCosineFilter implements FloatInput {
 
 	private float[] currentComplex = new float[2];
 
-	public RootRaisedCosineFilter(FloatInput source, float gain, float sampleRate, float symbolRate, float alpha, int numTaps) {
+	public RootRaisedCosineFilter(FloatInput source, float gain, float symbolRate, float alpha, int numTaps) {
 		this.source = source;
-		float[] taps = Firdes.rootRaisedCosine(gain, sampleRate, symbolRate, alpha, numTaps);
+		float[] taps = Firdes.rootRaisedCosine(gain, source.getContext().getSampleRate(), symbolRate, alpha, numTaps);
 		this.filter = new FIRFilter(taps);
 		historyReal = new float[taps.length];
 		historyImg = new float[taps.length];

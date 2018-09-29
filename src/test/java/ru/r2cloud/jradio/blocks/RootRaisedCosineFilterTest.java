@@ -7,6 +7,7 @@ import java.io.EOFException;
 import org.junit.After;
 import org.junit.Test;
 
+import ru.r2cloud.jradio.Context;
 import ru.r2cloud.jradio.source.InputStreamSource;
 
 public class RootRaisedCosineFilterTest {
@@ -15,7 +16,9 @@ public class RootRaisedCosineFilterTest {
 
 	@Test
 	public void test() throws Exception {
-		source = new RootRaisedCosineFilter(new InputStreamSource(RootRaisedCosineFilterTest.class.getClassLoader().getResourceAsStream("AGC.bin")), 1.0f, 222222f, 72000f, 0.6f, 361);
+		Context context = new Context();
+		context.setSampleRate(222222f);
+		source = new RootRaisedCosineFilter(new InputStreamSource(RootRaisedCosineFilterTest.class.getClassLoader().getResourceAsStream("AGC.bin"), context), 1.0f, 72000f, 0.6f, 361);
 		try (InputStreamSource is = new InputStreamSource(RootRaisedCosineFilterTest.class.getClassLoader().getResourceAsStream("RRCF.bin"))) {
 			while (true) {
 				float expected = is.readFloat();

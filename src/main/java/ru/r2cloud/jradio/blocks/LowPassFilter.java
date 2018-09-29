@@ -24,9 +24,9 @@ public class LowPassFilter implements FloatInput {
 	private boolean real = true;
 
 
-	public LowPassFilter(FloatInput source, double gain, double sampling_freq, double cutoff_freq, double transition_width, Window window_type, double beta) {
+	public LowPassFilter(FloatInput source, double gain, double cutoff_freq, double transition_width, Window window_type, double beta) {
 		this.source = source;
-		float[] taps = Firdes.lowPass(gain, sampling_freq, cutoff_freq, transition_width, window_type, beta);
+		float[] taps = Firdes.lowPass(gain, source.getContext().getSampleRate(), cutoff_freq, transition_width, window_type, beta);
 		this.filter = new FIRFilter(taps);
 		historyReal = new float[taps.length];
 		historyImg = new float[taps.length];

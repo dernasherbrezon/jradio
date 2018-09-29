@@ -18,9 +18,13 @@ public class InputStreamSource implements FloatInput, ByteInput {
 	private final MetricRegistry registry = Metrics.getRegistry();
 	private final InputStream is;
 	private final Counter bytes;
-	private final Context context = new Context();
+	private final Context context;
 
 	public InputStreamSource(InputStream is) {
+		this(is, new Context());
+	}
+	
+	public InputStreamSource(InputStream is, Context context) {
 		if (!(is instanceof BufferedInputStream)) {
 			this.is = new BufferedInputStream(is);
 		} else {
@@ -31,6 +35,7 @@ public class InputStreamSource implements FloatInput, ByteInput {
 		} else {
 			bytes = null;
 		}
+		this.context = context;
 	}
 
 	@Override
