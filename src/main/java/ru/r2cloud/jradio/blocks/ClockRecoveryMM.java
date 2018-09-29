@@ -28,6 +28,10 @@ public class ClockRecoveryMM implements FloatInput {
 		this.d_gain_mu = gain_mu;
 		this.omega_relative_limit = omega_relative_limit;
 		this.source = source;
+		// this block decimates the stream
+		// however it is unknown in advance the decimation rate
+		// put null, to let downstream blocks aware of it
+		this.source.getContext().setTotalSamples(null);
 		d_interp = new MMSEFIRInterpolator();
 		set_omega(omega);
 	}
