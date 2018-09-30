@@ -18,7 +18,7 @@ public class RepeatedWavSource implements FloatInput {
 	private int currentRepeats = 0;
 	private final int numberOfRepeats;
 	private final String classpathSource;
-	private Context context;
+	private Context context = new Context();
 
 	public RepeatedWavSource(String classpathSource, int numberOfRepeats) {
 		this.classpathSource = classpathSource;
