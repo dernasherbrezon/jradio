@@ -48,21 +48,15 @@ Using the blocks above, you could decode signals from the following satellites:
 Doppler correction could be made using SigSource and Multiply blocks. Here is the sample code:
 
 ```java
-SigSource source2 = new SigSource(Waveform.COMPLEX, (long) source.getFormat().getSampleRate(), new FloatValueSource() {
+PassPredictor predictor = new PassPredictor(tle, currentLocation);
+SigSource source2 = new SigSource(Waveform.COMPLEX, sampleRate, new DopplerValueSource(sampleRate, satelliteFrequency, correctPeriodMillis, startTimeMillis) {
 
 	@Override
-	public float getValue() {
-		return currentShift;
+	public long getDopplerFrequency(long satelliteFrequency, long currentTimeMillis) {
+		return predictor.getDownlinkFreq(satelliteFrequency, new Date(currentTimeMillis));
 	}
 }, 1.0f);
 Multiply mul = new Multiply(source, source2, true);
 ```
 
-"currentShift" could be calculated using [predict4java](https://github.com/badgersoftdotcom/predict4java):
-
-```java
-PassPredictor predictor = new PassPredictor(tle, currentLocation);
-
-Long dFreq = predictor.getDownlinkFreq(satelliteFreq, new Date());
-currentShift = satelliteFreq - dFreq;
-```
+Where "getDopplerFrequency" was calculated using [predict4java](https://github.com/badgersoftdotcom/predict4java)
