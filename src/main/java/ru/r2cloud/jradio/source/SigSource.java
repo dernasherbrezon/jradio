@@ -27,9 +27,6 @@ public class SigSource implements FloatInput {
 
 	public SigSource(Waveform waveform, final long sampleRate, final FloatValueSource frequency, double amplitude) {
 		this.waveform = waveform;
-		if (!waveform.equals(Waveform.COMPLEX)) {
-			throw new IllegalArgumentException("only complex output supported for now");
-		}
 		nco = new NumericallyControlledOscillator(new FloatValueSource() {
 
 			@Override
@@ -44,6 +41,10 @@ public class SigSource implements FloatInput {
 		case COMPLEX:
 			context.setChannels(2);
 			break;
+		case COSINE:
+		case SINE:
+			context.setChannels(1);
+			break;
 		default:
 			throw new IllegalArgumentException("unsupported waveform: " + waveform);
 		}
@@ -52,19 +53,25 @@ public class SigSource implements FloatInput {
 	@Override
 	public float readFloat() throws IOException {
 		float result;
-		if (real) {
-			switch (waveform) {
-			case COMPLEX:
+		switch (waveform) {
+		case COMPLEX:
+			if (real) {
 				nco.sincos(complex);
 				result = complex[0];
-				break;
-			default:
-				throw new IllegalArgumentException("unsupported waveform: " + waveform);
+			} else {
+				result = complex[1];
 			}
-		} else {
-			result = complex[1];
+			real = !real;
+			break;
+		case COSINE:
+			result = nco.cos();
+			break;
+		case SINE:
+			result = nco.sin();
+			break;
+		default:
+			throw new IllegalArgumentException("unsupported waveform: " + waveform);
 		}
-		real = !real;
 		return result;
 	}
 
