@@ -6,8 +6,10 @@ public abstract class DopplerValueSource implements FloatValueSource {
 	private final long correctPeriodMillis;
 	private final long satelliteFrequency;
 	private long currentSample = 0;
-	private long currentShift = 0;
+	private float nextShift = 0;
+	private float currentShift = 0;
 	private long currentTimeMillis;
+	private float shiftPerSample;
 
 	public DopplerValueSource(float sampleRate, long satelliteFrequency, long correctPeriodMillis, long startTimeMillis) {
 		this.correctPeriodMillis = correctPeriodMillis;
@@ -18,15 +20,22 @@ public abstract class DopplerValueSource implements FloatValueSource {
 		}
 		this.currentTimeMillis = startTimeMillis;
 		this.satelliteFrequency = satelliteFrequency;
+		this.nextShift = satelliteFrequency - getDopplerFrequency(satelliteFrequency, currentTimeMillis);
 	}
 
 	@Override
 	public float getValue() {
 		if (currentSample % correctPeriodSamples == 0) {
-			currentShift = satelliteFrequency - getDopplerFrequency(satelliteFrequency, currentTimeMillis);
+			currentShift = nextShift;
 			currentTimeMillis += correctPeriodMillis;
+			nextShift = satelliteFrequency - getDopplerFrequency(satelliteFrequency, currentTimeMillis);
+			//linear shift between 2 frequency samples
+			shiftPerSample = (nextShift - currentShift) / correctPeriodSamples;
+			currentSample++;
+			return currentShift;
 		}
 		currentSample++;
+		currentShift += shiftPerSample;
 		return currentShift;
 	}
 
