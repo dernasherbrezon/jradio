@@ -13,7 +13,7 @@ import ru.r2cloud.jradio.FloatInput;
 public class WavFileSink {
 
 	public static void process(FloatInput source, OutputStream os) throws IOException {
-		AudioFormat format = new AudioFormat(source.getContext().getSampleRate(), source.getContext().getSampleSizeInBits(), source.getContext().getChannels(), true, false);
+		AudioFormat format = new AudioFormat(source.getContext().getSampleRate(), source.getContext().getSampleSizeInBits(), source.getContext().getChannels(), false, false);
 		AudioInputStream audioInputStream;
 		long length;
 		if (source.getContext().getTotalSamples() != null) {
