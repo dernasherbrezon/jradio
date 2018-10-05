@@ -6,12 +6,12 @@ import java.io.IOException;
 public class AIS {
 
 	private int bootCount;
-	private int unique_mssi;
+	private int uniqueMssi;
 
 	public AIS(DataInputStream data) throws IOException {
 		bootCount = data.readUnsignedShort();
 		data.skipBytes(4);
-		unique_mssi = data.readUnsignedShort();
+		uniqueMssi = data.readUnsignedShort();
 		data.skipBytes(12);
 	}
 
@@ -23,12 +23,12 @@ public class AIS {
 		this.bootCount = bootCount;
 	}
 
-	public int getUnique_mssi() {
-		return unique_mssi;
+	public int getUniqueMssi() {
+		return uniqueMssi;
 	}
 
-	public void setUnique_mssi(int unique_mssi) {
-		this.unique_mssi = unique_mssi;
+	public void setUniqueMssi(int uniqueMssi) {
+		this.uniqueMssi = uniqueMssi;
 	}
 
 }

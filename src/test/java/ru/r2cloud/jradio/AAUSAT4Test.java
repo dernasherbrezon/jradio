@@ -90,7 +90,7 @@ public class AAUSAT4Test {
 		assertEquals(-2278, beacon.getAdcs1().getBdot3());
 		assertEquals(Priority.CSP_PRIO_CRITICAL, beacon.getPriority());
 		assertEquals(343, beacon.getAis2().getBootCount());
-		assertEquals(65535, beacon.getAis2().getUnique_mssi());
+		assertEquals(65535, beacon.getAis2().getUniqueMssi());
 	}
 
 	@After

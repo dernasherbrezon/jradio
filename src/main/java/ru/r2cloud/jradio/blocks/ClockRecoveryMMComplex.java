@@ -8,25 +8,25 @@ import ru.r2cloud.jradio.util.MathUtils;
 
 public class ClockRecoveryMMComplex implements FloatInput {
 
-	private float d_omega;
-	private float d_omega_mid;
-	private float d_omega_lim;
-	private float d_gain_omega;
-	private float d_mu;
-	private float d_gain_mu;
-	private float omega_relative_limit;
-	private MMSEFIRInterpolator d_interp;
+	private float omega;
+	private float omegaMid;
+	private float omegaLim;
+	private float gainOmega;
+	private float mu;
+	private float gainMu;
+	private float omegaRelativeLimit;
+	private MMSEFIRInterpolator interp;
 	private FloatInput source;
 
 	private float[] u = new float[2];
 	private float[] x = new float[2];
 	private float[] y = new float[2];
-	private float[] d_p_0T = new float[2];
-	private float[] d_p_1T = new float[2];
-	private float[] d_p_2T = new float[2];
-	private float[] d_c_1T = new float[2];
-	private float[] d_c_2T = new float[2];
-	private float[] d_c_0T = new float[2];
+	private float[] p0T = new float[2];
+	private float[] p1T = new float[2];
+	private float[] p2T = new float[2];
+	private float[] c1T = new float[2];
+	private float[] c2T = new float[2];
+	private float[] c0T = new float[2];
 
 	private float[] curBuf = new float[8];
 	private float[] curBufImg = new float[8];
@@ -36,19 +36,19 @@ public class ClockRecoveryMMComplex implements FloatInput {
 
 	private int skip;
 
-	public ClockRecoveryMMComplex(FloatInput source, float omega, float gain_omega, float mu, float gain_mu, float omega_relative_limit) {
-		this.d_gain_omega = gain_omega;
-		this.d_mu = mu;
-		this.d_gain_mu = gain_mu;
-		this.omega_relative_limit = omega_relative_limit;
+	public ClockRecoveryMMComplex(FloatInput source, float omega, float gainOmega, float mu, float gainMu, float omegaRelativeLimit) {
+		this.gainOmega = gainOmega;
+		this.mu = mu;
+		this.gainMu = gainMu;
+		this.omegaRelativeLimit = omegaRelativeLimit;
 		this.source = source;
 		// this block decimates the stream
 		// however it is unknown in advance the decimation rate
 		// put null, to let downstream blocks aware of it
 		this.source.getContext().setTotalSamples(null);
-		d_interp = new MMSEFIRInterpolator();
-		this.skip = d_interp.ntaps() - 2;
-		set_omega(omega);
+		interp = new MMSEFIRInterpolator();
+		this.skip = interp.ntaps() - 2;
+		setOmega(omega);
 	}
 
 	@Override
@@ -63,46 +63,46 @@ public class ClockRecoveryMMComplex implements FloatInput {
 
 			float mm_val = 0;
 
-			float[] temp = d_p_2T;
-			d_p_2T = d_p_1T;
-			d_p_1T = d_p_0T;
-			d_p_0T = temp;
-			d_interp.interpolateComplex(d_p_0T, curBuf, curBufImg, 0, d_mu);
+			float[] temp = p2T;
+			p2T = p1T;
+			p1T = p0T;
+			p0T = temp;
+			interp.interpolateComplex(p0T, curBuf, curBufImg, 0, mu);
 
-			temp = d_c_2T;
-			d_c_2T = d_c_1T;
-			d_c_1T = d_c_0T;
-			d_c_0T = temp;
-			slicer_0deg(d_c_0T, d_p_0T);
+			temp = c2T;
+			c2T = c1T;
+			c1T = c0T;
+			c0T = temp;
+			slicer0deg(c0T, p0T);
 
-			x[0] = calcReal(d_c_0T, d_c_2T, d_p_1T);
-			x[1] = calcImg(d_c_0T, d_c_2T, d_p_1T);
+			x[0] = calcReal(c0T, c2T, p1T);
+			x[1] = calcImg(c0T, c2T, p1T);
 
-			y[0] = calcReal(d_p_0T, d_p_2T, d_c_1T);
-			y[1] = calcImg(d_p_0T, d_p_2T, d_c_1T);
+			y[0] = calcReal(p0T, p2T, c1T);
+			y[1] = calcImg(p0T, p2T, c1T);
 
 			// u = y - x;
 			u[0] = y[0] - x[0];
 			u[1] = y[1] - x[1];
 
 			mm_val = u[0];
-			img = d_p_0T[1];
+			img = p0T[1];
 
 			// limit mm_val
 			mm_val = MathUtils.branchless_clip(mm_val, 1.0f);
 
-			d_omega = d_omega + d_gain_omega * mm_val;
-			d_omega = d_omega_mid + MathUtils.branchless_clip(d_omega - d_omega_mid, d_omega_lim);
-			d_mu = d_mu + d_omega + d_gain_mu * mm_val;
-			this.skip = (int) Math.floor(d_mu);
-			d_mu = d_mu - (float) Math.floor(d_mu);
+			omega = omega + gainOmega * mm_val;
+			omega = omegaMid + MathUtils.branchless_clip(omega - omegaMid, omegaLim);
+			mu = mu + omega + gainMu * mm_val;
+			this.skip = (int) Math.floor(mu);
+			mu = mu - (float) Math.floor(mu);
 
 			if (skip < 0) {// clamp it. This should only happen with bogus input
 				skip = 0;
 			}
 
 			outputReal = !outputReal;
-			return d_p_0T[0];
+			return p0T[0];
 		}
 
 		outputReal = !outputReal;
@@ -118,7 +118,7 @@ public class ClockRecoveryMMComplex implements FloatInput {
 		return (z1[0] - z2[0]) * (-z3[1]) + (z1[1] - z2[1]) * z3[0];
 	}
 
-	private static void slicer_0deg(float[] result, float[] sample) {
+	private static void slicer0deg(float[] result, float[] sample) {
 		float real = 0, imag = 0;
 
 		if (sample[0] > 0) {
@@ -132,10 +132,10 @@ public class ClockRecoveryMMComplex implements FloatInput {
 		result[1] = imag;
 	}
 
-	private void set_omega(float omega) {
-		d_omega = omega;
-		d_omega_mid = omega;
-		d_omega_lim = round(d_omega_mid * omega_relative_limit);
+	private void setOmega(float omega) {
+		this.omega = omega;
+		omegaMid = omega;
+		omegaLim = round(omegaMid * omegaRelativeLimit);
 	}
 
 	private static float round(float f) {
@@ -143,27 +143,27 @@ public class ClockRecoveryMMComplex implements FloatInput {
 	}
 
 	public float getMu() {
-		return d_mu;
+		return mu;
 	}
 
 	public void setMu(float mu) {
-		this.d_mu = mu;
+		this.mu = mu;
 	}
 
-	public float getGain_mu() {
-		return d_gain_mu;
+	public float getGainMu() {
+		return gainMu;
 	}
 
-	public void setGain_mu(float gain_mu) {
-		this.d_gain_mu = gain_mu;
+	public void setGainMu(float gainMu) {
+		this.gainMu = gainMu;
 	}
 
-	public float getOmega_relative_limit() {
-		return omega_relative_limit;
+	public float getOmegaRelativeLimit() {
+		return omegaRelativeLimit;
 	}
 
-	public void setOmega_relative_limit(float omega_relative_limit) {
-		this.omega_relative_limit = omega_relative_limit;
+	public void setOmegaRelativeLimit(float omegaRelativeLimit) {
+		this.omegaRelativeLimit = omegaRelativeLimit;
 	}
 
 	@Override

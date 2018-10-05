@@ -37,5 +37,5 @@ public class SpectogramTest {
 		spectogram.process(source);
 		source.close();
 	}
-
+	
 }
