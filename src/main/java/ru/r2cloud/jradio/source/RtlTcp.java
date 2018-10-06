@@ -51,7 +51,7 @@ public class RtlTcp implements FloatInput {
 		byte[] magic = new byte[4];
 		is.readFully(magic);
 		String magicStr = new String(magic, StandardCharsets.US_ASCII);
-		if (!magicStr.equals("RTL0")) {
+		if (!"RTL0".equals(magicStr)) {
 			throw new IOException("invalid magic: " + magicStr);
 		}
 		tunerType = is.readInt();

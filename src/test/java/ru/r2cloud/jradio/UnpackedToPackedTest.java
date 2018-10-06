@@ -3,6 +3,7 @@ package ru.r2cloud.jradio;
 import static org.junit.Assert.assertEquals;
 
 import java.io.InputStream;
+import java.util.Iterator;
 import java.util.Map;
 import java.util.Map.Entry;
 
@@ -45,8 +46,9 @@ public class UnpackedToPackedTest {
 	public static Tag getFirst(Context context) {
 		Map<String, Tag> tags = context.getTags();
 		assertEquals(1, tags.size());
-		for (Entry<String, Tag> cur : tags.entrySet()) {
-			return cur.getValue();
+		Iterator<Entry<String, Tag>> it = tags.entrySet().iterator();
+		if (it.hasNext()) {
+			return it.next().getValue();
 		}
 		return null;
 	}

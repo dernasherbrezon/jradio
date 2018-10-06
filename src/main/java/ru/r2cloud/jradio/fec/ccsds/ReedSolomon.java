@@ -55,15 +55,21 @@ public class ReedSolomon {
 			throw new IllegalArgumentException("invalid pad: " + pad);
 		}
 
-		int deg_lambda, el, deg_omega;
+		int deg_lambda;
+		int el;
+		int deg_omega;
 		int i, j, r, k;
 		int q, tmp, num1, num2, den, discr_r;
-		int[] lambda = new int[NROOTS + 1], s = new int[NROOTS]; /*
-																	 * Err+Eras Locator poly and syndrome poly
-																	 */
-		int[] b = new int[NROOTS + 1], t = new int[NROOTS + 1], omega = new int[NROOTS + 1];
-		int[] root = new int[NROOTS], reg = new int[NROOTS + 1], loc = new int[NROOTS];
-		int syn_error, count;
+		int[] lambda = new int[NROOTS + 1];
+		int[] s = new int[NROOTS];
+		int[] b = new int[NROOTS + 1];
+		int[] t = new int[NROOTS + 1];
+		int[] omega = new int[NROOTS + 1];
+		int[] root = new int[NROOTS];
+		int[] reg = new int[NROOTS + 1];
+		int[] loc = new int[NROOTS];
+		int syn_error;
+		int count;
 
 		/* form the syndromes; i.e., evaluate data(x) at roots of g(x) */
 		for (i = 0; i < NROOTS; i++)

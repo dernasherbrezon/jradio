@@ -248,6 +248,8 @@ public class MeteorImagePacket implements Iterable<int[]>, Iterator<int[]> {
 			return 4;
 		case 6:
 			return 5;
+		default:
+			break;
 		}
 
 		if ((codeword >> 12) == 0x00E) {

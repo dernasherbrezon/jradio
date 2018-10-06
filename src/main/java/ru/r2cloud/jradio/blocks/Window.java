@@ -27,7 +27,7 @@ public enum Window {
 		}
 	}
 
-	public double max_attenuation(double beta) {
+	public double maxAttenuation(double beta) {
 		switch (this) {
 		case WIN_HAMMING:
 			return 53;

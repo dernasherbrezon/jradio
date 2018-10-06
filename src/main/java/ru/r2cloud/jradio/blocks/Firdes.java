@@ -57,7 +57,7 @@ public class Firdes {
 	}
 
 	private static int compute_ntaps(double sampling_freq, double transition_width, Window window_type, double beta) {
-		double a = window_type.max_attenuation(beta);
+		double a = window_type.maxAttenuation(beta);
 		int ntaps = (int) (a * sampling_freq / (22.0 * transition_width));
 		if ((ntaps & 1) == 0) { // if even...
 			ntaps++; // ...make odd

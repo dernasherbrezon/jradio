@@ -2,12 +2,12 @@ package ru.r2cloud.jradio.blocks;
 
 public class MMSEFIRInterpolator {
 
-	static final int NTAPS = 8;
-	static final int NSTEPS = 128;
+	private static final int NTAPS = 8;
+	private static final int NSTEPS = 128;
 
 	private FIRFilter[] filters;
 
-	static final float[][] taps = new float[][] {
+	private static final float[][] taps = new float[][] {
 			// -4 -3 -2 -1 0 1 2 3 mu
 			{ 0.00000e+00f, 0.00000e+00f, 0.00000e+00f, 0.00000e+00f, 1.00000e+00f, 0.00000e+00f, 0.00000e+00f, 0.00000e+00f }, // 0/128
 			{ -1.54700e-04f, 8.53777e-04f, -2.76968e-03f, 7.89295e-03f, 9.98534e-01f, -5.41054e-03f, 1.24642e-03f, -1.98993e-04f }, // 1/128
@@ -151,7 +151,7 @@ public class MMSEFIRInterpolator {
 		int imu = (int) Math.rint(mu * NSTEPS);
 
 		if ((imu < 0) || (imu > NSTEPS)) {
-			throw new RuntimeException("mmse_fir_interpolator_ff: imu out of bounds: " + imu);
+			throw new IllegalArgumentException("mmse_fir_interpolator_ff: imu out of bounds: " + imu);
 		}
 
 		return filters[imu].filter(input);

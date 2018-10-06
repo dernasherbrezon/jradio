@@ -9,7 +9,7 @@ public class EPS {
 	private long uptime;
 	private long realtimeClock;
 	private int pingStatus;
-	private int subsystem_status;
+	private int subsystemStatus;
 	private int batteryVoltage;
 	private byte cellDiff;
 	private byte batteryCurrent;
@@ -23,7 +23,7 @@ public class EPS {
 		uptime = data.readInt() & 0xffffffffl;
 		realtimeClock = data.readInt() & 0xffffffffl;
 		pingStatus = data.readUnsignedByte();
-		subsystem_status = data.readUnsignedShort();
+		subsystemStatus = data.readUnsignedShort();
 		batteryVoltage = data.readUnsignedByte();
 		cellDiff = data.readByte();
 		batteryCurrent = data.readByte();
@@ -70,12 +70,12 @@ public class EPS {
 		this.pingStatus = pingStatus;
 	}
 
-	public int getSubsystem_status() {
-		return subsystem_status;
+	public int getSubsystemStatus() {
+		return subsystemStatus;
 	}
 
-	public void setSubsystem_status(int subsystem_status) {
-		this.subsystem_status = subsystem_status;
+	public void setSubsystemStatus(int subsystemStatus) {
+		this.subsystemStatus = subsystemStatus;
 	}
 
 	public int getBatteryVoltage() {
