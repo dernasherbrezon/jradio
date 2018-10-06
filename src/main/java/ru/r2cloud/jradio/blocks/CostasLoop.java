@@ -13,7 +13,6 @@ public class CostasLoop implements FloatInput {
 	private final static float M_TWOPI = (float) (2.0 * Math.PI);
 	private final FloatInput source;
 
-	private final float damping;
 	private final float alpha;
 	private final float beta;
 	private final float maxFreq = 1.0f;
@@ -27,7 +26,7 @@ public class CostasLoop implements FloatInput {
 	private float img;
 
 	public CostasLoop(FloatInput source, float loopBw, int order, boolean useSnr) {
-		damping = (float) Math.sqrt(2.0) / 2.0f;
+		float damping = (float) Math.sqrt(2.0) / 2.0f;
 		float denom = (float) (1.0 + 2.0 * damping * loopBw + loopBw * loopBw);
 		alpha = (4 * damping * loopBw) / denom;
 		beta = (4 * loopBw * loopBw) / denom;

@@ -161,7 +161,7 @@ public class MMSEFIRInterpolator {
 		int imu = (int) Math.rint(mu * NSTEPS);
 
 		if ((imu < 0) || (imu > NSTEPS)) {
-			throw new RuntimeException("mmse_fir_interpolator_ff: imu out of bounds: " + imu);
+			throw new IllegalArgumentException("mmse_fir_interpolator_ff: imu out of bounds: " + imu);
 		}
 
 		filters[imu].filterComplex(output, input, inputImg, inputPos);
