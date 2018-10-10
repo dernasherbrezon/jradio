@@ -105,4 +105,13 @@ public class Firdes {
 
 		return taps;
 	}
+
+	public static float[] convertToComplex(float[] realTaps) {
+		float[] complexTaps = new float[realTaps.length * 2];
+		for (int i = 0; i < realTaps.length; i++) {
+			complexTaps[2 * i] = realTaps[i];
+			complexTaps[2 * i + 1] = 0.0f;
+		}
+		return complexTaps;
+	}
 }

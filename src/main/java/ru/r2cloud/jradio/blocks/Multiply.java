@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import ru.r2cloud.jradio.Context;
 import ru.r2cloud.jradio.FloatInput;
+import ru.r2cloud.jradio.util.MathUtils;
 
 public class Multiply implements FloatInput {
 
@@ -47,8 +48,7 @@ public class Multiply implements FloatInput {
 			float b = source1.readFloat();
 			float c = source2.readFloat();
 			float d = source2.readFloat();
-			complex[0] = (a * c - b * d);
-			complex[1] = (a * d + c * b);
+			MathUtils.multiply(complex, a, b, c, d);
 			result = complex[0];
 		} else {
 			result = complex[1];

@@ -7,6 +7,7 @@ import com.codahale.metrics.MetricRegistry;
 
 import ru.r2cloud.jradio.Context;
 import ru.r2cloud.jradio.FloatInput;
+import ru.r2cloud.jradio.util.CircularComplexArray;
 import ru.r2cloud.jradio.util.Metrics;
 
 public class LowPassFilter implements FloatInput {
@@ -17,9 +18,7 @@ public class LowPassFilter implements FloatInput {
 
 	private final FloatInput source;
 	private final FIRFilter filter;
-	private final float[] historyReal;
-	private final float[] historyImg;
-	private int historyPos;
+	private final CircularComplexArray array;
 
 	private boolean real = true;
 
@@ -28,9 +27,7 @@ public class LowPassFilter implements FloatInput {
 		this.source = source;
 		float[] taps = Firdes.lowPass(gain, source.getContext().getSampleRate(), cutoff_freq, transition_width, window_type, beta);
 		this.filter = new FIRFilter(taps);
-		historyReal = new float[taps.length];
-		historyImg = new float[taps.length];
-		historyPos = historyImg.length - 1;
+		array = new CircularComplexArray(taps.length);
 		if (registry != null) {
 			samples = registry.meter(LowPassFilter.class.getName());
 		} else {
@@ -42,13 +39,8 @@ public class LowPassFilter implements FloatInput {
 	public float readFloat() throws IOException {
 		float result;
 		if (real) {
-			historyReal[historyPos] = source.readFloat();
-			historyImg[historyPos] = source.readFloat();
-			filter.filterComplex(currentComplex, historyReal, historyImg, historyPos);
-			historyPos--;
-			if( historyPos < 0 ) {
-				historyPos = historyImg.length - 1;
-			}
+			array.add(source.readFloat(), source.readFloat());
+			filter.filterComplex(currentComplex, array.getHistoryReal(), array.getHistoryImg(), array.getCurrentPos());
 			if (samples != null) {
 				samples.mark();
 			}
