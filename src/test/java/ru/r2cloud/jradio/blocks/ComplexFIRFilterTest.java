@@ -17,22 +17,22 @@ public class ComplexFIRFilterTest {
 		//number were taken from gnuradio test output
 		CircularComplexArray array = new CircularComplexArray(complexTaps.length / 2);
 		array.add(1.0f, 1.0f);
-		filter.filterComplexTaps(result, array.getHistoryReal(), array.getHistoryImg(), array.getCurrentPos());
+		filter.filterComplex(result, array.getHistoryReal(), array.getHistoryImg(), array.getCurrentPos());
 		assertEquals(-6.241107190021916e-19, result[0], 0.00001);
 		assertEquals(-6.241107190021916e-19, result[1], 0.00001);
 		
 		array.add(2.0f, 2.0f);
-		filter.filterComplexTaps(result, array.getHistoryReal(), array.getHistoryImg(), array.getCurrentPos());
+		filter.filterComplex(result, array.getHistoryReal(), array.getHistoryImg(), array.getCurrentPos());
 		assertEquals(-0.00012610940029844642, result[0], 0.00001);
 		assertEquals(-0.00012610940029844642, result[1], 0.00001);
 		 
 		array.add(3.0f, 3.0f);
-		filter.filterComplexTaps(result, array.getHistoryReal(), array.getHistoryImg(), array.getCurrentPos());
+		filter.filterComplex(result, array.getHistoryReal(), array.getHistoryImg(), array.getCurrentPos());
 		assertEquals(-0.0004592110344674438, result[0], 0.00001);
 		assertEquals(-0.0004592110344674438, result[1], 0.00001);
 		
 		array.add(4.0f, 4.0f);
-		filter.filterComplexTaps(result, array.getHistoryReal(), array.getHistoryImg(), array.getCurrentPos());
+		filter.filterComplex(result, array.getHistoryReal(), array.getHistoryImg(), array.getCurrentPos());
 		assertEquals(-0.001003113342449069, result[0], 0.00001);
 		assertEquals(-0.001003113342449069, result[1], 0.00001);
 	}

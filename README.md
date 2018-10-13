@@ -15,20 +15,22 @@ All blocks meant to be binary compatible with gnuradio versions. This will ensur
   * ConstellationSoftDecoder
   * CorrelateAccessCodeTag
   * CostasLoop
-  * FIRFilter
+  * FIRFilter and ComplexFIRFilter
   * FixedLengthTagger
   * FloatToChar
   * LowPassFilter
+  * FrequencyXlatingFIRFilter
   * Rail
   * RootRaisedCosineFilter
   * GUI Histogram Sink (Spectogram) 
   * TaggedStreamToPdu
   * UnpackedToPacked
   * WavFileSource
+  * WavFileSink
   * osmocom source (RtlTcp)
   * File Source (InputStreamSource)
   * Multiply
-  * SigSource (only Complex type is supported)
+  * SigSource
 
 Forward error correction:
 

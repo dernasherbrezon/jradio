@@ -12,22 +12,20 @@ public class ComplexFIRFilter {
 		}
 	}
 
-	public void filterComplexTaps(float[] output, float[] input, float[] inputImg, int inputPos) {
+	public void filterComplex(float[] output, float[] input, float[] inputImg, int inputPos) {
 		int j = 0;
-		int limit = input.length;
-		
+
 		output[0] = 0.0f;
 		output[1] = 0.0f;
-		
-		for (int i = inputPos; i < limit; j += 2) {
+
+		for (int i = inputPos - 1; i >= 0; i--, j += 2) {
 			output[0] += input[i] * taps[j] - inputImg[i] * taps[j + 1];
 			output[1] += input[i] * taps[j + 1] + inputImg[i] * taps[j];
-			i++;
-			if (i >= input.length) {
-				i = 0;
-				limit = inputPos;
-			}
+		}
+		for (int i = input.length - 1; i >= inputPos; i--, j += 2) {
+			output[0] += input[i] * taps[j] - inputImg[i] * taps[j + 1];
+			output[1] += input[i] * taps[j + 1] + inputImg[i] * taps[j];
 		}
 	}
-	
+
 }
