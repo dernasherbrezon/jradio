@@ -16,7 +16,7 @@ public class SpectogramTest {
 
 	@Test
 	public void testSuccess() throws Exception {
-		Spectogram spectogram = new Spectogram(200);
+		Spectogram spectogram = new Spectogram(100, 10);
 		WavFileSource source = new WavFileSource(SpectogramTest.class.getClassLoader().getResourceAsStream("aausat-4.wav"));
 		BufferedImage image = spectogram.process(source);
 		source.close();

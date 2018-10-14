@@ -41,35 +41,35 @@ public class Spectogram {
 
 		BufferedImage image = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
 
-		int skipOnEveryRow = (int) (source.getContext().getSampleRate() - width * numRowsPerSecond) / numRowsPerSecond;
-		if (skipOnEveryRow < 0) {
-			skipOnEveryRow = 0;
-		}
+		int numberOfFftPerRow = (int) (source.getContext().getSampleRate() / (width * numRowsPerSecond));
+		int skipOnEveryRow = (int) source.getContext().getSampleRate() % (width * numRowsPerSecond);
 
 		float iNormalizationFactor = (float) 1 / width;
 
-		float[] previousBuf = null;
 		float[] complexBuf = new float[width * 2];
 		float[] fftResult = new float[width];
+		for (int i = 0; i < fftResult.length; i++) {
+			fftResult[i] = Float.NEGATIVE_INFINITY;
+		}
 		int currentRow = 0;
 		// skip samples which were not fitted into height.
 		while (currentRow < height) {
 			try {
-				for (int i = 0; i < complexBuf.length; i += 2) {
-					complexBuf[i] = source.readFloat();
-					if (source.getContext().getChannels() == 2) {
-						complexBuf[i + 1] = source.readFloat();
-					} else {
-						complexBuf[i + 1] = 0.0f;
+				for (int k = 0; k < numberOfFftPerRow; k++) {
+					for (int i = 0; i < complexBuf.length; i += 2) {
+						complexBuf[i] = source.readFloat();
+						if (source.getContext().getChannels() == 2) {
+							complexBuf[i + 1] = source.readFloat();
+						} else {
+							complexBuf[i + 1] = 0.0f;
+						}
 					}
-				}
-				// TODO apply windowing function to the previous data
-				previousBuf = complexBuf;
-				fft.complexForward(previousBuf);
-				for (int i = 0, j = 0; i < previousBuf.length; i += 2, j++) {
-					float real = previousBuf[i] * iNormalizationFactor;
-					float img = previousBuf[i + 1] * iNormalizationFactor;
-					fftResult[j] = (float) (10.0 * Math.log10((real * real) + (img * img) + 1e-20));
+					fft.complexForward(complexBuf);
+					for (int i = 0, j = 0; i < complexBuf.length; i += 2, j++) {
+						float real = complexBuf[i] * iNormalizationFactor;
+						float img = complexBuf[i + 1] * iNormalizationFactor;
+						fftResult[j] = Math.max(fftResult[j], (float) (10.0 * Math.log10((real * real) + (img * img) + 1e-20)));
+					}
 				}
 
 				int length = width / 2;
@@ -84,14 +84,18 @@ public class Spectogram {
 						index = i - length;
 					}
 					image.setRGB(i, height - currentRow - 1, palette.getRGB(fftResult[index]));
+					fftResult[index] = Float.NEGATIVE_INFINITY;
 				}
 
 				currentRow++;
 
-				for (int i = 0; i < skipOnEveryRow; i++) {
-					source.readFloat();
-					if (source.getContext().getChannels() == 2) {
+				//skip at the end of second
+				if (currentRow % numRowsPerSecond == 0) {
+					for (int i = 0; i < skipOnEveryRow; i++) {
 						source.readFloat();
+						if (source.getContext().getChannels() == 2) {
+							source.readFloat();
+						}
 					}
 				}
 			} catch (EOFException e) {
