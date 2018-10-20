@@ -24,6 +24,7 @@ public class FrequencyXlatingFIRFilter implements FloatInput {
 	private final ComplexFIRFilter filter;
 	private final Rotator rotator;
 	private final int decimation;
+	private final Context context;
 
 	private boolean real = true;
 	private EOFException endOfStream = null;
@@ -51,6 +52,9 @@ public class FrequencyXlatingFIRFilter implements FloatInput {
 		} else {
 			samples = null;
 		}
+		context = new Context(source.getContext());
+		context.setSampleRate((long) context.getSampleRate() / decimation);
+		context.setTotalSamples(context.getTotalSamples() / decimation);
 	}
 
 	@Override
@@ -83,7 +87,7 @@ public class FrequencyXlatingFIRFilter implements FloatInput {
 
 	@Override
 	public Context getContext() {
-		return source.getContext();
+		return context;
 	}
 
 	@Override

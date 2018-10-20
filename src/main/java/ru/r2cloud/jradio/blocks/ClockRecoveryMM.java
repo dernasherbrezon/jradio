@@ -15,6 +15,8 @@ public class ClockRecoveryMM implements FloatInput {
 	private float mu;
 	private float gainMu;
 	private float omegaRelativeLimit;
+	private final Context context;
+	
 	private MMSEFIRInterpolator interp;
 	private FloatInput source;
 
@@ -34,6 +36,11 @@ public class ClockRecoveryMM implements FloatInput {
 		this.source.getContext().setTotalSamples(null);
 		interp = new MMSEFIRInterpolator();
 		setOmega(omega);
+		
+		context = new Context(source.getContext());
+		//unpredictable number of samples will be dropped
+		context.setSampleRate(0.0f);
+		context.setTotalSamples(0L);
 	}
 
 	@Override
@@ -108,6 +115,6 @@ public class ClockRecoveryMM implements FloatInput {
 
 	@Override
 	public Context getContext() {
-		return source.getContext();
+		return context;
 	}
 }

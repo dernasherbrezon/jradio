@@ -15,6 +15,19 @@ public class Context {
 	private float sampleRate;
 	private int channels;
 	private int sampleSizeInBits;
+	
+	public Context() {
+		//do nothing
+	}
+	
+	public Context(Context orig) {
+		current = orig.current;
+		tagById.putAll(orig.tagById);
+		totalSamples = orig.totalSamples;
+		sampleRate = orig.sampleRate;
+		channels = orig.channels;
+		sampleSizeInBits = orig.sampleSizeInBits;
+	}
 
 	public void put(String id, Tag tag) {
 		tagById.put(id, tag);
