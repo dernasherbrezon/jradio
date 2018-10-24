@@ -12,8 +12,25 @@ import ru.r2cloud.jradio.FloatInput;
 
 public class WavFileSink {
 
-	public static void process(FloatInput source, OutputStream os) throws IOException {
-		AudioFormat format = new AudioFormat(source.getContext().getSampleRate(), source.getContext().getSampleSizeInBits(), source.getContext().getChannels(), false, false);
+	private final int sampleSizeInBits;
+	private final FloatInput source;
+
+	public WavFileSink(FloatInput source) {
+		this(source, source.getContext().getSampleSizeInBits());
+	}
+
+	// 16 bits are better while storing float output
+	// 8 bits will produce dc offset in the result file due to rounding
+	public WavFileSink(FloatInput source, int sampleSizeInBits) {
+		if (sampleSizeInBits != 8 && sampleSizeInBits != 16) {
+			throw new IllegalArgumentException("unsupported number of sample size in bits: " + sampleSizeInBits);
+		}
+		this.source = source;
+		this.sampleSizeInBits = sampleSizeInBits;
+	}
+
+	public void process(OutputStream os) throws IOException {
+		AudioFormat format = new AudioFormat(source.getContext().getSampleRate(), sampleSizeInBits, source.getContext().getChannels(), isSigned(), false);
 		AudioInputStream audioInputStream;
 		long length;
 		if (source.getContext().getTotalSamples() != null) {
@@ -21,9 +38,20 @@ public class WavFileSink {
 		} else {
 			length = AudioSystem.NOT_SPECIFIED;
 		}
-		audioInputStream = new AudioInputStream(new FloatInputStream(source), format, length);
+		audioInputStream = new AudioInputStream(new FloatInputStream(source, sampleSizeInBits), format, length);
 		AudioSystem.write(audioInputStream, AudioFileFormat.Type.WAVE, os);
 		audioInputStream.close();
+	}
+
+	private boolean isSigned() {
+		switch (sampleSizeInBits) {
+		case 8:
+			return false;
+		case 16:
+			return true;
+		default:
+			throw new IllegalArgumentException("unsupported sample size: " + sampleSizeInBits);
+		}
 	}
 
 }

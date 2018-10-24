@@ -10,21 +10,23 @@ class FloatInputStream extends InputStream {
 
 	private final FloatInput input;
 	private final int[] buf;
+	private final int sampleSizeInBits;
 	private boolean firstByte = true;
 
-	FloatInputStream(FloatInput input) {
+	FloatInputStream(FloatInput input, int sampleSizeInBits) {
 		this.input = input;
-		buf = new int[input.getContext().getSampleSizeInBits() / 8];
+		this.sampleSizeInBits = sampleSizeInBits;
+		buf = new int[sampleSizeInBits / 8];
 	}
 
 	@Override
 	public int read() throws IOException {
-		if (input.getContext().getSampleSizeInBits() == 16) {
+		if (sampleSizeInBits == 16) {
 			if (firstByte) {
 				try {
-					short s = (short) (input.readFloat() * Short.MAX_VALUE);
-					buf[0] = (0x00FF & s);
-					buf[1] = (s >> 8) & 0xFF;
+					short s = (short) (Math.round(input.readFloat() * Short.MAX_VALUE));
+					buf[0] = (0xFF & s);
+					buf[1] = ((s >> 8) & 0xFF);
 					firstByte = false;
 					return buf[0];
 				} catch (EOFException e) {
@@ -42,4 +44,5 @@ class FloatInputStream extends InputStream {
 			}
 		}
 	}
+
 }

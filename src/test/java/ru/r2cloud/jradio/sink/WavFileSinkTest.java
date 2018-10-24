@@ -20,16 +20,35 @@ public class WavFileSinkTest {
 	public void testStereo() throws IOException, UnsupportedAudioFileException {
 		assertWavData("stereo.wav");
 	}
-	
+
 	@Test
 	public void testMono() throws IOException, UnsupportedAudioFileException {
 		assertWavData("aausat-4.wav");
 	}
 
+	@Test
+	public void testConvert8BitTo16Bit() throws IOException, UnsupportedAudioFileException {
+		WavFileSource source = new WavFileSource(WavFileSinkTest.class.getClassLoader().getResourceAsStream("2ch4-part.wav"));
+		ByteArrayOutputStream baos = new ByteArrayOutputStream();
+		WavFileSink sink = new WavFileSink(source, 16);
+		sink.process(baos);
+		baos.close();
+		AudioInputStream ais = AudioSystem.getAudioInputStream(WavFileSinkTest.class.getClassLoader().getResourceAsStream("2ch4-16bit.wav"));
+		AudioInputStream ais2 = AudioSystem.getAudioInputStream(new ByteArrayInputStream(baos.toByteArray()));
+		byte[] expected = new byte[ais.getFormat().getFrameSize()];
+		byte[] actual = new byte[ais2.getFormat().getFrameSize()];
+		while (ais.read(expected, 0, expected.length) != -1 && ais2.read(actual, 0, actual.length) != -1) {
+			for (int i = 0; i < expected.length; i++) {
+				assertEquals(expected[i], actual[i]);
+			}
+		}
+	}
+
 	private static void assertWavData(String name) throws IOException, UnsupportedAudioFileException {
 		WavFileSource source = new WavFileSource(WavFileSinkTest.class.getClassLoader().getResourceAsStream(name));
 		ByteArrayOutputStream baos = new ByteArrayOutputStream();
-		WavFileSink.process(source, baos);
+		WavFileSink sink = new WavFileSink(source);
+		sink.process(baos);
 		baos.close();
 		AudioInputStream ais = AudioSystem.getAudioInputStream(WavFileSinkTest.class.getClassLoader().getResourceAsStream(name));
 		AudioInputStream ais2 = AudioSystem.getAudioInputStream(new ByteArrayInputStream(baos.toByteArray()));
