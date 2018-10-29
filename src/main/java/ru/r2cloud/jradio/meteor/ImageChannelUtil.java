@@ -5,7 +5,7 @@ public class ImageChannelUtil {
 	private static final int PACKETS_IN_CHANNEL = 14;
 	private static final int PACKETS_IN_ROW = 3 * PACKETS_IN_CHANNEL + 1;
 
-	static final int MAX_SEQUENCE_COUNT = 16383;
+	static final int MAX_SEQUENCE_COUNT = 16384;
 
 	static void align(ImageChannel first, ImageChannel second) {
 		if (second == null) {

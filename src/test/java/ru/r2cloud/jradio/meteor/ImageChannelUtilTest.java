@@ -30,6 +30,11 @@ public class ImageChannelUtilTest {
 	public void testWrapSequenceAndWrapToSecondLine() {
 		assertEquals(1, ImageChannelUtil.calculateMissingRows(0, ImageChannelUtil.MAX_SEQUENCE_COUNT, 0, 0 + 14 + 1));
 	}
+	
+	@Test
+	public void testWrapSequenceAndWrapToSecondLine2() {
+		assertEquals(1, ImageChannelUtil.calculateMissingRows(182, 16380, 0, 26));
+	}
 
 	@Test
 	public void testSkip2Lines() {
