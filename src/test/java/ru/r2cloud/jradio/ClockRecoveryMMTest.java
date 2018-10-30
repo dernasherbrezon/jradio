@@ -29,7 +29,7 @@ public class ClockRecoveryMMTest {
 			// do nothing
 		}
 	}
-
+	
 	@After
 	public void stop() throws Exception {
 		if (source != null) {

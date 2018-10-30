@@ -1,5 +1,7 @@
 package ru.r2cloud.jradio.blocks;
 
+import ru.r2cloud.jradio.util.CircularArray;
+
 public class MMSEFIRInterpolator {
 
 	private static final int NTAPS = 8;
@@ -147,7 +149,7 @@ public class MMSEFIRInterpolator {
 		}
 	}
 
-	public float interpolate(float[] input, float mu) {
+	public float interpolate(CircularArray input, float mu) {
 		int imu = (int) Math.rint(mu * NSTEPS);
 
 		if ((imu < 0) || (imu > NSTEPS)) {

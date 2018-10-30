@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import ru.r2cloud.jradio.Context;
 import ru.r2cloud.jradio.FloatInput;
+import ru.r2cloud.jradio.util.CircularArray;
 import ru.r2cloud.jradio.util.MathUtils;
 
 public class ClockRecoveryMM implements FloatInput {
@@ -16,12 +17,13 @@ public class ClockRecoveryMM implements FloatInput {
 	private float gainMu;
 	private float omegaRelativeLimit;
 	private final Context context;
-	
+
 	private MMSEFIRInterpolator interp;
 	private FloatInput source;
 
-	private float[] curBuf = new float[8];
+	private final CircularArray curBuf;
 	private float lastSample = 0.0f;
+	private int skip;
 
 	public ClockRecoveryMM(FloatInput source, float omega, float gainOmega, float mu, float gainMu, float omegaRelativeLimit) {
 		super();
@@ -36,22 +38,25 @@ public class ClockRecoveryMM implements FloatInput {
 		this.source.getContext().setTotalSamples(null);
 		interp = new MMSEFIRInterpolator();
 		setOmega(omega);
-		
+
+		curBuf = new CircularArray(interp.ntaps());
+		this.skip = curBuf.getSize();
+
 		context = new Context(source.getContext());
-		//unpredictable number of samples will be dropped
+		// unpredictable number of samples will be dropped
 		context.setSampleRate(0.0f);
 		context.setTotalSamples(0L);
 	}
 
 	@Override
 	public float readFloat() throws IOException {
-		for (int i = 0; i < curBuf.length; i++) {
-			curBuf[i] = source.readFloat();
+		for (int i = 0; i < skip; i++) {
+			curBuf.add(source.readFloat());
 		}
 
 		float mmVal;
 		float result = interp.interpolate(curBuf, mu);
-
+		
 		mmVal = slice(lastSample) * result - slice(result) * lastSample;
 		lastSample = result;
 
@@ -59,13 +64,9 @@ public class ClockRecoveryMM implements FloatInput {
 		omega = omegaMid + MathUtils.branchless_clip(omega - omegaMid, omegaLim);
 		mu = mu + omega + gainMu * mmVal;
 
-		int skip = (int) Math.floor(mu) - curBuf.length;
+		skip = (int) Math.floor(mu);
 
 		mu = mu - (float) Math.floor(mu);
-
-		for (int i = 0; i < skip; i++) {
-			source.readFloat();
-		}
 
 		return result;
 	}

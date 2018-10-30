@@ -1,5 +1,7 @@
 package ru.r2cloud.jradio.blocks;
 
+import ru.r2cloud.jradio.util.CircularArray;
+
 public class FIRFilter {
 
 	private final float[] taps;
@@ -11,10 +13,14 @@ public class FIRFilter {
 		}
 	}
 
-	public float filter(float[] input) {
+	public float filter(CircularArray circularArray) {
 		float dotProduct = 0;
-		for (int i = 0; i < input.length; i++) {
-			dotProduct = dotProduct + input[i] * taps[i];
+		int j = 0;
+		for (int i = circularArray.getCurrentPos() + 1; i < circularArray.getSize(); i++, j++) {
+			dotProduct = dotProduct + circularArray.getArray()[i] * taps[j];
+		}
+		for (int i = 0; i <= circularArray.getCurrentPos(); i++, j++) {
+			dotProduct = dotProduct + circularArray.getArray()[i] * taps[j];
 		}
 		return dotProduct;
 	}
