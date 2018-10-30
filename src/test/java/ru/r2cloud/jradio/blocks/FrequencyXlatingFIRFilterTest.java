@@ -9,7 +9,6 @@ import org.junit.Test;
 
 import ru.r2cloud.jradio.source.InputStreamSource;
 import ru.r2cloud.jradio.source.WavFileSource;
-import ru.r2cloud.jradio.source.WavFileSourceTest;
 
 public class FrequencyXlatingFIRFilterTest {
 
@@ -18,8 +17,8 @@ public class FrequencyXlatingFIRFilterTest {
 	@Test
 	public void test() throws Exception {
 		float[] taps = Firdes.lowPass(1.0, 222222.0f, 222222.0f / 2, 1000, Window.WIN_HAMMING, 6.76);
-		source = new FrequencyXlatingFIRFilter(new WavFileSource(WavFileSourceTest.class.getClassLoader().getResourceAsStream("meteor_small.wav")), taps, 10, -10000);
-		try (InputStreamSource is = new InputStreamSource(LowPassFilterTest.class.getClassLoader().getResourceAsStream("xlating.bin"))) {
+		source = new FrequencyXlatingFIRFilter(new WavFileSource(FrequencyXlatingFIRFilterTest.class.getClassLoader().getResourceAsStream("meteor_small.wav")), taps, 10, -10000);
+		try (InputStreamSource is = new InputStreamSource(FrequencyXlatingFIRFilterTest.class.getClassLoader().getResourceAsStream("xlating.bin"))) {
 			while (true) {
 				float expected = is.readFloat();
 				float actual = source.readFloat();
