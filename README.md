@@ -18,7 +18,7 @@ All blocks meant to be binary compatible with gnuradio versions. This will ensur
   * FIRFilter and ComplexFIRFilter
   * FixedLengthTagger
   * FloatToChar
-  * LowPassFilter
+  * LowPassFilter and LowPassFilterComplex
   * FrequencyXlatingFIRFilter
   * Rail
   * RootRaisedCosineFilter
@@ -30,7 +30,9 @@ All blocks meant to be binary compatible with gnuradio versions. This will ensur
   * osmocom source (RtlTcp)
   * File Source (InputStreamSource)
   * Multiply
+  * MultiplyConst
   * SigSource
+  * QuadratureDemodulation
 
 Forward error correction:
 
