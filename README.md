@@ -29,6 +29,7 @@ All blocks meant to be binary compatible with gnuradio versions. This will ensur
   * WavFileSink
   * osmocom source (RtlTcp)
   * File Source (InputStreamSource)
+  * File Sink (OutputStreamSink)
   * Multiply
   * MultiplyConst
   * SigSource
