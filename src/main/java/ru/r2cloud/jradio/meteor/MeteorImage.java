@@ -1,7 +1,10 @@
 package ru.r2cloud.jradio.meteor;
 
 import java.awt.image.BufferedImage;
+import java.util.Collection;
+import java.util.HashMap;
 import java.util.Iterator;
+import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -10,32 +13,27 @@ import ru.r2cloud.jradio.lrpt.Packet;
 import ru.r2cloud.jradio.lrpt.VCDU;
 
 public class MeteorImage {
-	
+
 	public static int METEOR_SPACECRAFT_ID = 0;
 	private static final Logger LOG = LoggerFactory.getLogger(MeteorImage.class);
+	private static final int ADMIN_PACKET_APID = 70;
 
 	private static final int DEFAULT_RED_APID = 66;
 	private static final int DEFAULT_GREEN_APID = 65;
 	private static final int DEFAULT_BLUE_APID = 64;
 
-	private ImageChannel channel1;
-	private ImageChannel channel2;
-	private ImageChannel channel3;
-
-	private int channel1Apid = -1;
-	private int channel2Apid = -1;
-	private int channel3Apid = -1;
+	private final Map<Integer, ImageChannel> channelByApid = new HashMap<>();
 
 	public MeteorImage(Iterator<VCDU> input) {
 		while (input.hasNext()) {
 			VCDU next = input.next();
 			for (Packet cur : next.getPackets()) {
-				if (cur.getApid() == 70) {
+				if (cur.getApid() == ADMIN_PACKET_APID) {
 					continue;
 				}
 				try {
 					MeteorImagePacket meteorPacket = new MeteorImagePacket(cur);
-					ImageChannel channel = getAndReserveChannel(cur.getApid());
+					ImageChannel channel = getOrCreateChannel(cur.getApid());
 					// explicitly start from the beginning
 					if (channel.getLastPacket() == -1) {
 						channel.setCurrentY(0);
@@ -56,8 +54,17 @@ public class MeteorImage {
 				}
 			}
 		}
-		ImageChannelUtil.align(channel1, channel2);
-		ImageChannelUtil.align(channel1, channel3);
+
+		//find first channel and align other channels based on it
+		ImageChannel first = findFirst(channelByApid.values());
+		if (first != null) {
+			for (ImageChannel cur : channelByApid.values()) {
+				if (cur == first) {
+					continue;
+				}
+				ImageChannelUtil.align(first, cur);
+			}
+		}
 	}
 
 	public BufferedImage toBufferedImage() {
@@ -65,22 +72,28 @@ public class MeteorImage {
 	}
 
 	public BufferedImage toBufferedImage(int redApid, int greenApid, int blueApid) {
-		if (channel1 == null) {
+		if (channelByApid.isEmpty()) {
 			return null;
 		}
+		ImageChannel red = channelByApid.get(redApid);
+		ImageChannel green = channelByApid.get(greenApid);
+		ImageChannel blue = channelByApid.get(blueApid);
+
 		int maxHeight = -1;
-		maxHeight = Math.max(getChannel1().getCurrentY() + 8, maxHeight);
-		if (channel2 != null) {
-			maxHeight = Math.max(getChannel2().getCurrentY() + 8, maxHeight);
+		if (red != null) {
+			maxHeight = Math.max(red.getCurrentY() + 8, maxHeight);
 		}
-		if (channel3 != null) {
-			maxHeight = Math.max(getChannel3().getCurrentY() + 8, maxHeight);
+		if (green != null) {
+			maxHeight = Math.max(green.getCurrentY() + 8, maxHeight);
+		}
+		if (blue != null) {
+			maxHeight = Math.max(blue.getCurrentY() + 8, maxHeight);
 		}
 		BufferedImage result = new BufferedImage(ImageChannel.WIDTH, maxHeight, BufferedImage.TYPE_INT_RGB);
 		for (int row = 0; row < result.getHeight(); row++) {
 			for (int col = 0; col < result.getWidth(); col++) {
 				int index = row * result.getWidth() + col;
-				result.setRGB(col, row, getRGB(getRed(this, index, redApid), getGreen(this, index, greenApid), getBlue(this, index, blueApid)));
+				result.setRGB(col, row, getRGB(getColor(red, index), getColor(green, index), getColor(blue, index)));
 			}
 		}
 		return result;
@@ -90,88 +103,30 @@ public class MeteorImage {
 		return ((r & 0xFF) << 16) | ((g & 0xFF) << 8) | ((b & 0xFF) << 0);
 	}
 
-	private ImageChannel getAndReserveChannel(int apid) {
-		if (channel1Apid == -1 || channel1Apid == apid) {
-			channel1Apid = apid;
-			if (channel1 == null) {
-				channel1 = new ImageChannel(apid);
-			}
-			return channel1;
+	private ImageChannel getOrCreateChannel(int apid) {
+		ImageChannel result = channelByApid.get(apid);
+		if (result == null) {
+			result = new ImageChannel(apid);
+			channelByApid.put(apid, result);
 		}
-		if (channel2Apid == -1 || channel2Apid == apid) {
-			channel2Apid = apid;
-			if (channel2 == null) {
-				channel2 = new ImageChannel(apid);
-			}
-			return channel2;
-		}
-		if (channel3Apid == -1 || channel3Apid == apid) {
-			channel3Apid = apid;
-			if (channel3 == null) {
-				channel3 = new ImageChannel(apid);
-			}
-			return channel3;
-		}
-		throw new IllegalArgumentException("all channels were already reserved. unexpected apid: " + apid);
+		return result;
 	}
 
-	private static int getBlue(MeteorImage image, int index, int apid) {
-		ImageChannel channel;
-		if (image.getChannel1() != null && image.getChannel1().getApid() == apid) {
-			channel = image.getChannel1();
-		} else if (image.getChannel2() != null && image.getChannel2().getApid() == apid) {
-			channel = image.getChannel2();
-		} else {
-			channel = image.getChannel3();
+	private static ImageChannel findFirst(Collection<ImageChannel> all) {
+		ImageChannel result = null;
+		for (ImageChannel cur : all) {
+			if (result == null || cur.getFirstPacket() < result.getFirstPacket()) {
+				result = cur;
+			}
 		}
+		return result;
+	}
+
+	private static int getColor(ImageChannel channel, int index) {
 		if (channel == null || index >= channel.getData().length) {
 			return 0;
 		}
 		return channel.getData()[index];
-	}
-
-	private static int getRed(MeteorImage image, int index, int apid) {
-		ImageChannel channel;
-		if (image.getChannel1() != null && image.getChannel1().getApid() == apid) {
-			channel = image.getChannel1();
-		} else if (image.getChannel2() != null && image.getChannel2().getApid() == apid) {
-			channel = image.getChannel2();
-		} else if (image.getChannel3() != null && image.getChannel3().getApid() == apid) {
-			channel = image.getChannel3();
-		} else {
-			return 0;
-		}
-		if (channel == null || index >= channel.getData().length) {
-			return 0;
-		}
-		return channel.getData()[index];
-	}
-
-	private static int getGreen(MeteorImage image, int index, int apid) {
-		ImageChannel channel;
-		if (image.getChannel1() != null && image.getChannel1().getApid() == apid) {
-			channel = image.getChannel1();
-		} else if (image.getChannel2() != null && image.getChannel2().getApid() == apid) {
-			channel = image.getChannel2();
-		} else {
-			channel = image.getChannel3();
-		}
-		if (channel == null || index >= channel.getData().length) {
-			return 0;
-		}
-		return channel.getData()[index];
-	}
-
-	public ImageChannel getChannel1() {
-		return channel1;
-	}
-
-	public ImageChannel getChannel2() {
-		return channel2;
-	}
-
-	public ImageChannel getChannel3() {
-		return channel3;
 	}
 
 }
