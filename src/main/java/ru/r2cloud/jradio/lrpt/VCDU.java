@@ -61,8 +61,16 @@ public class VCDU {
 				} else {
 					previousPartial.setUserData(newUserData);
 				}
+				
+				//sometimes user data cannot be recovered even if VCDU is next
+				int expectedLength = previousPartial.getLength() + 1;
+				if (previousPartial.isSecondaryHeader()) {
+					expectedLength -= 8;
+				}
+				if (previousPartial.getUserData().length == expectedLength) {
+					packets.add(previousPartial);
+				}
 
-				packets.add(previousPartial);
 			}
 			int index = 10 + mPdu.getHeaderFirstPointer();
 			// 6 is for minimum header size
