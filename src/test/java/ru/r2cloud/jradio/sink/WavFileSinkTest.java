@@ -28,11 +28,18 @@ public class WavFileSinkTest {
 
 	@Test
 	public void testConvert8BitTo16Bit() throws IOException, UnsupportedAudioFileException {
-		WavFileSource source = new WavFileSource(WavFileSinkTest.class.getClassLoader().getResourceAsStream("2ch4-part.wav"));
 		ByteArrayOutputStream baos = new ByteArrayOutputStream();
-		WavFileSink sink = new WavFileSink(source, 16);
-		sink.process(baos);
-		baos.close();
+		WavFileSink sink = null;
+		try {
+			WavFileSource source = new WavFileSource(WavFileSinkTest.class.getClassLoader().getResourceAsStream("2ch4-part.wav"));
+			sink = new WavFileSink(source, 16);
+			sink.process(baos);
+		} finally {
+			baos.close();
+			if (sink != null) {
+				sink.close();
+			}
+		}
 		AudioInputStream ais = AudioSystem.getAudioInputStream(WavFileSinkTest.class.getClassLoader().getResourceAsStream("2ch4-16bit.wav"));
 		AudioInputStream ais2 = AudioSystem.getAudioInputStream(new ByteArrayInputStream(baos.toByteArray()));
 		byte[] expected = new byte[ais.getFormat().getFrameSize()];
@@ -45,11 +52,19 @@ public class WavFileSinkTest {
 	}
 
 	private static void assertWavData(String name) throws IOException, UnsupportedAudioFileException {
-		WavFileSource source = new WavFileSource(WavFileSinkTest.class.getClassLoader().getResourceAsStream(name));
 		ByteArrayOutputStream baos = new ByteArrayOutputStream();
-		WavFileSink sink = new WavFileSink(source);
-		sink.process(baos);
-		baos.close();
+		WavFileSink sink = null;
+		try {
+			WavFileSource source = new WavFileSource(WavFileSinkTest.class.getClassLoader().getResourceAsStream(name));
+			sink = new WavFileSink(source, 16);
+			sink.process(baos);
+		} finally {
+			baos.close();
+			if (sink != null) {
+				sink.close();
+			}
+		}
+
 		AudioInputStream ais = AudioSystem.getAudioInputStream(WavFileSinkTest.class.getClassLoader().getResourceAsStream(name));
 		AudioInputStream ais2 = AudioSystem.getAudioInputStream(new ByteArrayInputStream(baos.toByteArray()));
 		byte[] expected = new byte[ais.getFormat().getFrameSize()];

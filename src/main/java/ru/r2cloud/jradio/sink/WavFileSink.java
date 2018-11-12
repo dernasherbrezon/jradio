@@ -1,5 +1,6 @@
 package ru.r2cloud.jradio.sink;
 
+import java.io.Closeable;
 import java.io.IOException;
 import java.io.OutputStream;
 
@@ -10,7 +11,7 @@ import javax.sound.sampled.AudioSystem;
 
 import ru.r2cloud.jradio.FloatInput;
 
-public class WavFileSink {
+public class WavFileSink implements Closeable {
 
 	private final int sampleSizeInBits;
 	private final FloatInput source;
@@ -52,6 +53,11 @@ public class WavFileSink {
 		default:
 			throw new IllegalArgumentException("unsupported sample size: " + sampleSizeInBits);
 		}
+	}
+
+	@Override
+	public void close() throws IOException {
+		source.close();
 	}
 
 }
