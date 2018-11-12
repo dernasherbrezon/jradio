@@ -8,16 +8,26 @@ import java.util.List;
 import org.jtransforms.fft.FloatFFT_1D;
 
 import ru.r2cloud.jradio.FloatInput;
+import ru.r2cloud.jradio.blocks.FIRFilter;
+import ru.r2cloud.jradio.blocks.Firdes;
+import ru.r2cloud.jradio.blocks.Window;
+import ru.r2cloud.jradio.util.CircularArray;
 
 public class PeakDetection {
 
 	private final int numHertzPerPixel;
+	private final Float noiseFloorDb;
+	private final Integer maxPeaks;
+	private final float[] taps = Firdes.lowPass(1.0, 2000, 1000, 100, Window.WIN_HAMMING, 6.76);
+	private final FIRFilter filter = new FIRFilter(taps);
 
-	public PeakDetection(int numHertzPerPixel) {
+	public PeakDetection(int numHertzPerPixel, Float noiseFloorDb, Integer maxPeaks) {
 		if (numHertzPerPixel <= 0) {
 			throw new IllegalArgumentException("numPixelsPer100Hz should be positive: " + numHertzPerPixel);
 		}
 		this.numHertzPerPixel = numHertzPerPixel;
+		this.noiseFloorDb = noiseFloorDb;
+		this.maxPeaks = maxPeaks;
 	}
 
 	public List<PeakInterval> process(FloatInput source) throws IOException {
@@ -33,6 +43,9 @@ public class PeakDetection {
 			fftResult[i] = Float.NEGATIVE_INFINITY;
 		}
 		long currentSample = 0;
+		float[] temp = new float[fftResult.length - taps.length / 2];
+		CircularArray arr = new CircularArray(taps.length);
+
 		while (true) {
 			try {
 				PeakInterval curInterval = new PeakInterval();
@@ -55,6 +68,7 @@ public class PeakDetection {
 				}
 
 				int length = width / 2;
+				int half = taps.length / 2;
 				for (int i = 0; i < fftResult.length; i++) {
 					// original algorithm swapped 2 halfs of result using array
 					// copy and third array.
@@ -65,11 +79,26 @@ public class PeakDetection {
 					} else {
 						index = i - length;
 					}
-					// FIXME detect peaks
-					// image.setRGB(i, height - currentRow - 1, palette.getRGB(fftResult[index]));
+					arr.add(fftResult[index]);
+					if (i >= half) {
+						temp[i - half] = filter.filter(arr);
+					}
 					fftResult[index] = Float.NEGATIVE_INFINITY;
 				}
+				temp[0] = temp[1];
 
+				List<Peak> peaksP = PeakDetectionUtil.getPersistentHomology(temp);
+				List<Peak> filtered = new ArrayList<>();
+				for (Peak cur : peaksP) {
+					cur.setValue(temp[cur.getIndex()]);
+					cur.setFrequency(numHertzPerPixel * (cur.getIndex() - length));
+					boolean valueIsOk = noiseFloorDb == null || cur.getValue() > noiseFloorDb;
+					boolean sizeIsOk = maxPeaks == null || filtered.size() < maxPeaks;
+					if (valueIsOk && sizeIsOk) {
+						filtered.add(cur);
+					}
+				}
+				curInterval.setPeaks(filtered);
 				result.add(curInterval);
 			} catch (EOFException e) {
 				break;

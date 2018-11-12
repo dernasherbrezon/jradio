@@ -26,7 +26,12 @@ public class PeakValueSource implements FloatValueSource {
 		if (currentInterval == null || currentInterval.getSampleEnd() < currentSample) {
 			if (currentIndex < peaks.size()) {
 				currentInterval = peaks.get(currentIndex);
-				currentFrequency = freqCorrection.getPeakFrequencyOffset(currentInterval);
+				Float newFreq = freqCorrection.getPeakFrequencyOffset(currentInterval);
+				//do not change currentFrequency if offset not found
+				if (newFreq != null) {
+					// "-" for shift opposite direction
+					currentFrequency = -newFreq;
+				}
 				currentIndex++;
 			}
 		}

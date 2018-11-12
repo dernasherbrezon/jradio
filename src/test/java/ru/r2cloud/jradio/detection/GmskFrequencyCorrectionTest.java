@@ -3,6 +3,7 @@ package ru.r2cloud.jradio.detection;
 import static org.junit.Assert.assertEquals;
 
 import java.io.EOFException;
+import java.io.InputStream;
 import java.util.List;
 
 import org.junit.Test;
@@ -18,13 +19,13 @@ public class GmskFrequencyCorrectionTest {
 	@Test
 	public void testSuccess() throws Exception {
 		List<PeakInterval> peaks;
-		try (WavFileSource source = new WavFileSource(GmskFrequencyCorrectionTest.class.getClassLoader().getResourceAsStream("aausat-4-with-offset.wav"))) {
-			PeakDetection detection = new PeakDetection(100);
+		try (WavFileSource source = new WavFileSource(getStream())) {
+			PeakDetection detection = new PeakDetection(100, -80.0f, 3);
 			peaks = detection.process(source);
 		}
-		
-		WavFileSource source = new WavFileSource(GmskFrequencyCorrectionTest.class.getClassLoader().getResourceAsStream("aausat-4-with-offset.wav"));
-		SigSource source2 = new SigSource(Waveform.COMPLEX, (long) source.getContext().getSampleRate(), new PeakValueSource(peaks, new GmskFrequencyCorrection()), 1.0f);
+
+		WavFileSource source = new WavFileSource(getStream());
+		SigSource source2 = new SigSource(Waveform.COMPLEX, (long) source.getContext().getSampleRate(), new PeakValueSource(peaks, new GmskFrequencyCorrection(2400, 10)), 1.0f);
 		try (Multiply mul = new Multiply(source, source2, true); InputStreamSource is = new InputStreamSource(GmskFrequencyCorrectionTest.class.getClassLoader().getResourceAsStream("expectedAausat4Correction.bin"))) {
 			while (true) {
 				float expected = is.readFloat();
@@ -35,5 +36,9 @@ public class GmskFrequencyCorrectionTest {
 			// do nothing
 		}
 	}
-	
+
+	private static InputStream getStream() throws Exception {
+		 return GmskFrequencyCorrectionTest.class.getClassLoader().getResourceAsStream("aausat-4-with-offset.wav");
+	}
+
 }
