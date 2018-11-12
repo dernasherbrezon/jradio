@@ -34,12 +34,17 @@ All blocks meant to be binary compatible with gnuradio versions. This will ensur
   * MultiplyConst
   * SigSource
   * QuadratureDemodulation
+  * PeakDetection. Detect peaks in the FFT. Not a gnuradio block.
 
 Forward error correction:
 
   * Viterbi (hard)
   * ViterbiSoft
   * ReedSolomon
+  
+Frequency correction:
+  
+  * GmskFrequencyCorrection. Calculates frequency correction based on 2 main GMSK spikes
 
 ## Supported satellites
 
