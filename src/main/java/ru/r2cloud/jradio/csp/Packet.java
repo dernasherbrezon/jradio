@@ -17,6 +17,7 @@ public class Packet implements Externalizable {
 	private boolean fcrc32; // Use CRC32 checksum
 
 	private byte[] data;
+	private byte[] rawData;
 	
 	private byte[] hmac;
 
@@ -25,6 +26,7 @@ public class Packet implements Externalizable {
 		if (data.length < 6) {
 			throw new IOException("invalid csp header size: " + data.length);
 		}
+		this.rawData = data;
 		length = data[0] << 8 | data[1];
 		priority = Priority.valufOfCode(data[2] >> 6);
 		ffrag = (data[5] & 0x10) > 0 ? true : false;
@@ -103,5 +105,8 @@ public class Packet implements Externalizable {
 	public void setFcrc32(boolean fcrc32) {
 		this.fcrc32 = fcrc32;
 	}
-	
+
+	public byte[] getRawData() {
+		return rawData;
+	}
 }

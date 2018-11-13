@@ -5,6 +5,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Iterator;
 
+import ru.r2cloud.jradio.util.IOUtils;
+
 public class LRPTInputStream implements Iterable<VCDU>, Iterator<VCDU>, Closeable {
 
 	private final InputStream input;
@@ -25,14 +27,7 @@ public class LRPTInputStream implements Iterable<VCDU>, Iterator<VCDU>, Closeabl
 	public boolean hasNext() {
 		byte[] current = new byte[VCDU.SIZE];
 		try {
-			int n = 0;
-	        while (n < current.length) {
-	            int count = input.read(current, n, current.length - n);
-	            if (count < 0) {
-	                return false;
-	            }
-	            n += count;
-	        }
+			IOUtils.readFully(input, current);
 			currentVcdu = new VCDU();
 			currentVcdu.readExternal(previous, current);
 			previous = currentVcdu;

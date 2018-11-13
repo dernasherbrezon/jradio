@@ -18,8 +18,11 @@ public class AAUSAT4 implements Iterable<AAUSAT4Beacon>, Iterator<AAUSAT4Beacon>
 
 	private static final Logger LOG = LoggerFactory.getLogger(AAUSAT4.class);
 
-	public static final int SIZE = 2 + 4 + 84 + 2;
-	public static final int VITERBI_SIZE = SIZE + 32;
+	public static final int SHORT_PACKET_FSM = 0xA6;
+	public static final int LONG_PACKET_FSM = 0x59;
+	public static final int SHORT_PACKET_SIZE = 31;
+	public static final int LONG_PACKET_SIZE = 2 + 4 + 84 + 2;
+	public static final int VITERBI_SIZE = LONG_PACKET_SIZE + 32;
 	public static final int VITERBI_TAIL_SIZE = (VITERBI_SIZE + 1) * 2 * 8;
 
 	private final TaggedStreamToPdu input;
@@ -45,12 +48,12 @@ public class AAUSAT4 implements Iterable<AAUSAT4Beacon>, Iterator<AAUSAT4Beacon>
 					continue;
 				}
 				byte fsm = hardDecode(raw);
-				if (fsm == 0xA6) {
+				if (fsm == SHORT_PACKET_FSM) {
 					// short frame
 					LOG.info("short frame detected");
 					continue;
 				}
-				if (fsm == 0x59) {
+				if (fsm == LONG_PACKET_FSM) {
 					// long frame
 					byte[] viterbi = viterbiSoft.decode(Arrays.copyOfRange(raw, 8, raw.length));
 					Randomize.shuffle(viterbi);
