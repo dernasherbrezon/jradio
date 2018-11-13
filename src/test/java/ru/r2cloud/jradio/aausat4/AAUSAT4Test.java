@@ -1,4 +1,4 @@
-package ru.r2cloud.jradio;
+package ru.r2cloud.jradio.aausat4;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -9,6 +9,7 @@ import java.util.List;
 import org.junit.After;
 import org.junit.Test;
 
+import ru.r2cloud.jradio.FloatInput;
 import ru.r2cloud.jradio.aausat4.AAUSAT4;
 import ru.r2cloud.jradio.aausat4.AAUSAT4Beacon;
 import ru.r2cloud.jradio.blocks.ClockRecoveryMM;
