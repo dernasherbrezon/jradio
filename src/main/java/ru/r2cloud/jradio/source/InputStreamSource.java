@@ -11,6 +11,7 @@ import com.codahale.metrics.MetricRegistry;
 import ru.r2cloud.jradio.ByteInput;
 import ru.r2cloud.jradio.Context;
 import ru.r2cloud.jradio.FloatInput;
+import ru.r2cloud.jradio.FloatValueSource;
 import ru.r2cloud.jradio.util.Metrics;
 
 public class InputStreamSource implements FloatInput, ByteInput {
@@ -19,11 +20,14 @@ public class InputStreamSource implements FloatInput, ByteInput {
 	private final InputStream is;
 	private final Counter bytes;
 	private final Context context;
+	private float framePos = 0;
+
+	private long currentFloat;
 
 	public InputStreamSource(InputStream is) {
 		this(is, new Context());
 	}
-	
+
 	public InputStreamSource(InputStream is, Context context) {
 		if (!(is instanceof BufferedInputStream)) {
 			this.is = new BufferedInputStream(is);
@@ -36,6 +40,13 @@ public class InputStreamSource implements FloatInput, ByteInput {
 			bytes = null;
 		}
 		this.context = context;
+		this.context.setCurrentSample(new FloatValueSource() {
+
+			@Override
+			public float getValue() {
+				return framePos;
+			}
+		});
 	}
 
 	@Override
@@ -43,6 +54,10 @@ public class InputStreamSource implements FloatInput, ByteInput {
 		float result = Float.intBitsToFloat(readInt(is));
 		if (bytes != null) {
 			bytes.inc(4);
+		}
+		currentFloat++;
+		if (currentFloat % getContext().getChannels() == 0) {
+			framePos++;
 		}
 		return result;
 	}
@@ -63,7 +78,7 @@ public class InputStreamSource implements FloatInput, ByteInput {
 	public void close() throws IOException {
 		is.close();
 	}
-	
+
 	// little endian
 	private static int readInt(InputStream is) throws IOException {
 		int ch1 = is.read();
@@ -75,7 +90,7 @@ public class InputStreamSource implements FloatInput, ByteInput {
 		}
 		return ((ch4 << 24) + (ch3 << 16) + (ch2 << 8) + (ch1 << 0));
 	}
-	
+
 	@Override
 	public Context getContext() {
 		return context;

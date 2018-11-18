@@ -10,6 +10,7 @@ import ru.r2cloud.jradio.util.IOUtils;
 public class AAUSAT4InputStream implements Iterable<AAUSAT4Beacon>, Iterator<AAUSAT4Beacon>, Closeable {
 
 	private final InputStream is;
+	private final byte readBuffer[] = new byte[8];
 
 	private AAUSAT4Beacon current;
 
@@ -30,12 +31,16 @@ public class AAUSAT4InputStream implements Iterable<AAUSAT4Beacon>, Iterator<AAU
 				IOUtils.readFully(is, longPacket);
 				current = new AAUSAT4Beacon();
 				current.readExternal(longPacket);
+				current.setBeginMillis(readLong());
+				current.setBeginSample(readLong());
 				return true;
 			case AAUSAT4.SHORT_PACKET_FSM:
 				byte[] shortPacket = new byte[AAUSAT4.SHORT_PACKET_SIZE];
 				IOUtils.readFully(is, shortPacket);
 				current = new AAUSAT4Beacon();
 				current.readExternal(shortPacket);
+				current.setBeginMillis(readLong());
+				current.setBeginSample(readLong());
 				return true;
 			default:
 				throw new IllegalArgumentException("unsupported fsm found: " + fsm);
@@ -63,6 +68,11 @@ public class AAUSAT4InputStream implements Iterable<AAUSAT4Beacon>, Iterator<AAU
 	@Override
 	public Iterator<AAUSAT4Beacon> iterator() {
 		return this;
+	}
+
+	private final long readLong() throws IOException {
+		IOUtils.readFully(is, readBuffer);
+		return (((long) readBuffer[0] << 56) + ((long) (readBuffer[1] & 255) << 48) + ((long) (readBuffer[2] & 255) << 40) + ((long) (readBuffer[3] & 255) << 32) + ((long) (readBuffer[4] & 255) << 24) + ((readBuffer[5] & 255) << 16) + ((readBuffer[6] & 255) << 8) + ((readBuffer[7] & 255) << 0));
 	}
 
 }

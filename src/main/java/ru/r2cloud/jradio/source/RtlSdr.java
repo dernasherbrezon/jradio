@@ -6,6 +6,7 @@ import java.io.InputStream;
 
 import ru.r2cloud.jradio.Context;
 import ru.r2cloud.jradio.FloatInput;
+import ru.r2cloud.jradio.FloatValueSource;
 
 public class RtlSdr implements FloatInput {
 
@@ -18,6 +19,7 @@ public class RtlSdr implements FloatInput {
 	private byte[] buffer;
 	private int currentBufIndex = 0;
 	private int maxBytes;
+	private float framePos = 0;
 
 	public RtlSdr(InputStream iqStream, float sampleRate) {
 		if (iqStream == null) {
@@ -34,6 +36,13 @@ public class RtlSdr implements FloatInput {
 		context.setChannels(2);
 		context.setSampleSizeInBits(8);
 		context.setSampleRate(sampleRate);
+		context.setCurrentSample(new FloatValueSource() {
+
+			@Override
+			public float getValue() {
+				return framePos;
+			}
+		});
 	}
 
 	@Override
@@ -47,6 +56,9 @@ public class RtlSdr implements FloatInput {
 		}
 		float result = lookupTable[buffer[currentBufIndex] & 0xFF];
 		currentBufIndex++;
+		if (currentBufIndex % context.getChannels() == 0) {
+			framePos++;
+		}
 		return result;
 	}
 

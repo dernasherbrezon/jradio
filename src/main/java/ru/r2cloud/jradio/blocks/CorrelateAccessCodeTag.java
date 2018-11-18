@@ -7,11 +7,13 @@ import java.util.UUID;
 
 import ru.r2cloud.jradio.ByteInput;
 import ru.r2cloud.jradio.Context;
+import ru.r2cloud.jradio.FloatValueSource;
 import ru.r2cloud.jradio.Tag;
 
 public class CorrelateAccessCodeTag implements ByteInput {
 
 	public static final String ACCESS_CODE = "accessCode";
+	public static final String SOURCE_SAMPLE = "sourceSample";
 
 	private final ByteInput input;
 
@@ -58,27 +60,30 @@ public class CorrelateAccessCodeTag implements ByteInput {
 		}
 
 		Tag tag = null;
-		
+
 		long minWrong = threshold + 1;
 		long minAccessCode = -1;
-		
 
 		for (int i = 0; i < accessCodes.length; i++) {
 			AccessCode cur = accessCodes[i];
 
 			long nwrong = threshold + 1;
 			nwrong = cur.correlate(dataRegister);
-			if( nwrong < minWrong ) {
+			if (nwrong < minWrong) {
 				minWrong = nwrong;
 				minAccessCode = cur.getAccessCode();
 			}
 
 		}
-		
-		if( minWrong <= threshold ) {
+
+		if (minWrong <= threshold) {
 			tag = new Tag();
 			tag.setId(UUID.randomUUID().toString());
 			tag.put(ACCESS_CODE, minAccessCode);
+			FloatValueSource currentSample = getContext().getCurrentSample();
+			if (currentSample != null) {
+				tag.put(SOURCE_SAMPLE, currentSample.getValue());
+			}
 			getContext().put(tag.getId(), tag);
 		}
 

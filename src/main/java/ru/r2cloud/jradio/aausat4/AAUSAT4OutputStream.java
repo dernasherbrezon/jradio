@@ -7,6 +7,7 @@ import java.io.OutputStream;
 public class AAUSAT4OutputStream implements Closeable {
 
 	private final OutputStream os;
+	private final byte writeBuffer[] = new byte[8];
 
 	public AAUSAT4OutputStream(OutputStream os) {
 		this.os = os;
@@ -24,6 +25,8 @@ public class AAUSAT4OutputStream implements Closeable {
 			throw new IllegalArgumentException("unsupported packet length: " + beacon.getRawData().length);
 		}
 		os.write(beacon.getRawData());
+		writeLong(beacon.getBeginMillis());
+		writeLong(beacon.getBeginSample());
 	}
 
 	@Override
@@ -31,4 +34,15 @@ public class AAUSAT4OutputStream implements Closeable {
 		os.close();
 	}
 
+	private final void writeLong(long v) throws IOException {
+		writeBuffer[0] = (byte) (v >>> 56);
+		writeBuffer[1] = (byte) (v >>> 48);
+		writeBuffer[2] = (byte) (v >>> 40);
+		writeBuffer[3] = (byte) (v >>> 32);
+		writeBuffer[4] = (byte) (v >>> 24);
+		writeBuffer[5] = (byte) (v >>> 16);
+		writeBuffer[6] = (byte) (v >>> 8);
+		writeBuffer[7] = (byte) (v >>> 0);
+		os.write(writeBuffer, 0, 8);
+	}
 }

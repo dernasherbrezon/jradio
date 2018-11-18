@@ -10,6 +10,7 @@ import javax.sound.sampled.UnsupportedAudioFileException;
 
 import ru.r2cloud.jradio.Context;
 import ru.r2cloud.jradio.FloatInput;
+import ru.r2cloud.jradio.FloatValueSource;
 
 public class WavFileSource implements FloatInput {
 
@@ -17,6 +18,7 @@ public class WavFileSource implements FloatInput {
 	private final byte[] buf;
 	private int currentBufIndex = 0;
 	private final Context context;
+	private float framePos = 0;
 
 	public WavFileSource(InputStream is) throws UnsupportedAudioFileException, IOException {
 		ais = AudioSystem.getAudioInputStream(is);
@@ -29,12 +31,20 @@ public class WavFileSource implements FloatInput {
 		context.setSampleRate(ais.getFormat().getSampleRate());
 		context.setChannels(ais.getFormat().getChannels());
 		context.setSampleSizeInBits(ais.getFormat().getSampleSizeInBits());
+		context.setCurrentSample(new FloatValueSource() {
+
+			@Override
+			public float getValue() {
+				return framePos;
+			}
+		});
 	}
 
 	@Override
 	public float readFloat() throws IOException {
 		if (currentBufIndex == 0 || currentBufIndex >= buf.length) {
 			currentBufIndex = 0;
+			framePos++;
 			int bytesRead = ais.read(buf, 0, buf.length);
 			if (bytesRead == -1) {
 				throw new EOFException();
@@ -45,7 +55,7 @@ public class WavFileSource implements FloatInput {
 			currentBufIndex += 2;
 			return ((float) s / Short.MAX_VALUE);
 		} else {
-			short s = (short)(buf[currentBufIndex] & 0xFF);
+			short s = (short) (buf[currentBufIndex] & 0xFF);
 			currentBufIndex += 1;
 			return ((float) s / 128) - 1;
 		}
@@ -55,7 +65,7 @@ public class WavFileSource implements FloatInput {
 	public void close() throws IOException {
 		ais.close();
 	}
-	
+
 	@Override
 	public Context getContext() {
 		return context;

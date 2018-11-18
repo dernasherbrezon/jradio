@@ -13,13 +13,14 @@ public class Context {
 	private final Map<String, Tag> tagById = new HashMap<>();
 	private Long totalSamples;
 	private float sampleRate;
-	private int channels;
+	private int channels = 1;
 	private int sampleSizeInBits;
-	
+	private FloatValueSource currentSample;
+
 	public Context() {
-		//do nothing
+		// do nothing
 	}
-	
+
 	public Context(Context orig) {
 		current = orig.current;
 		tagById.putAll(orig.tagById);
@@ -27,6 +28,7 @@ public class Context {
 		sampleRate = orig.sampleRate;
 		channels = orig.channels;
 		sampleSizeInBits = orig.sampleSizeInBits;
+		currentSample = orig.currentSample;
 	}
 
 	public void put(String id, Tag tag) {
@@ -61,11 +63,11 @@ public class Context {
 	public void setTotalSamples(Long totalSamples) {
 		this.totalSamples = totalSamples;
 	}
-	
+
 	public int getSampleSizeInBits() {
 		return sampleSizeInBits;
 	}
-	
+
 	public void setSampleSizeInBits(int sampleSizeInBits) {
 		this.sampleSizeInBits = sampleSizeInBits;
 	}
@@ -84,6 +86,14 @@ public class Context {
 
 	public void setChannels(int channels) {
 		this.channels = channels;
+	}
+
+	public FloatValueSource getCurrentSample() {
+		return currentSample;
+	}
+
+	public void setCurrentSample(FloatValueSource currentSample) {
+		this.currentSample = currentSample;
 	}
 
 }

@@ -26,9 +26,13 @@ public class RtlSdrTest {
 
 		rtl = new RtlSdr(new ByteArrayInputStream(baos.toByteArray()), 0.0f);
 		assertEquals(-0.9171875, rtl.readFloat(), 0.0000001);
+		assertEquals(0.0f, rtl.getContext().getCurrentSample().getValue(), 0.0f);
 		assertEquals(-0.8390625, rtl.readFloat(), 0.0000001);
+		assertEquals(1.0f, rtl.getContext().getCurrentSample().getValue(), 0.0f);
 		assertEquals(-0.7609375, rtl.readFloat(), 0.0000001);
+		assertEquals(1.0f, rtl.getContext().getCurrentSample().getValue(), 0.0f);
 		assertEquals(-0.6828125, rtl.readFloat(), 0.0000001);
+		assertEquals(2.0f, rtl.getContext().getCurrentSample().getValue(), 0.0f);
 		try {
 			rtl.readFloat();
 			fail("eof expected");
