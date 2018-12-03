@@ -12,7 +12,6 @@ public class Spectogram {
 
 	private final int numHertzPerPixel;
 	private final int numRowsPerSecond;
-	private final SpectogramPalette palette = new SpectogramPalette(0.0f, -160.0f, 0x000000, 0x0000e7, 0x0094ff, 0x00ffb8, 0x2eff00, 0xffff00, 0xff8800, 0xff0000, 0xff007c);
 
 	public Spectogram(int numHertzPerPixel) {
 		this(numHertzPerPixel, 1);
@@ -39,7 +38,12 @@ public class Spectogram {
 		}
 		FloatFFT_1D fft = new FloatFFT_1D(width);
 
-		BufferedImage image = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
+		float[] tempResults = new float[height * width];
+		for (int i = 0; i < tempResults.length; i++) {
+			tempResults[i] = Float.NEGATIVE_INFINITY;
+		}
+		float sum = 0.0f;
+		int tempResulsSize = 0;
 
 		int numberOfFftPerRow = (int) (source.getContext().getSampleRate() / (width * numRowsPerSecond));
 		int skipOnEveryRow = (int) source.getContext().getSampleRate() % (width * numRowsPerSecond);
@@ -47,10 +51,6 @@ public class Spectogram {
 		float iNormalizationFactor = (float) 1 / width;
 
 		float[] complexBuf = new float[width * 2];
-		float[] fftResult = new float[width];
-		for (int i = 0; i < fftResult.length; i++) {
-			fftResult[i] = Float.NEGATIVE_INFINITY;
-		}
 		int currentRow = 0;
 		// skip samples which were not fitted into height.
 		while (currentRow < height) {
@@ -68,28 +68,24 @@ public class Spectogram {
 					for (int i = 0, j = 0; i < complexBuf.length; i += 2, j++) {
 						float real = complexBuf[i] * iNormalizationFactor;
 						float img = complexBuf[i + 1] * iNormalizationFactor;
-						fftResult[j] = Math.max(fftResult[j], (float) (10.0 * Math.log10((real * real) + (img * img) + 1e-20)));
+						tempResults[currentRow * width + j] = Math.max(tempResults[currentRow * width + j], (float) (10.0 * Math.log10((real * real) + (img * img) + 1e-20)));
 					}
 				}
 
 				int length = width / 2;
-				for (int i = 0; i < fftResult.length; i++) {
-					// original algorithm swapped 2 halfs of result using array
-					// copy and third array.
-					// replaced it with juggling with index below
-					int index;
-					if (i < length) {
-						index = length + i;
-					} else {
-						index = i - length;
-					}
-					image.setRGB(i, height - currentRow - 1, palette.getRGB(fftResult[index]));
-					fftResult[index] = Float.NEGATIVE_INFINITY;
+				for (int i = 0; i < length; i++) {
+					// swap 2 halfes
+					float temp = tempResults[currentRow * width + i];
+					tempResults[currentRow * width + i] = tempResults[currentRow * width + length + i];
+					tempResults[currentRow * width + length + i] = temp;
+
+					sum += tempResults[currentRow * width + i] + tempResults[currentRow * width + length + i];
+					tempResulsSize += 2;
 				}
 
 				currentRow++;
 
-				//skip at the end of second
+				// skip at the end of second
 				if (currentRow % numRowsPerSecond == 0) {
 					for (int i = 0; i < skipOnEveryRow; i++) {
 						source.readFloat();
@@ -100,6 +96,23 @@ public class Spectogram {
 				}
 			} catch (EOFException e) {
 				break;
+			}
+		}
+		double mean = sum / tempResulsSize;
+		double standardDeviation = 0.0;
+		for (float curValue : tempResults) {
+			standardDeviation += Math.pow(curValue - mean, 2);
+		}
+		standardDeviation = Math.sqrt(standardDeviation / tempResulsSize);
+		double min = mean - 2 * standardDeviation;
+		double max = mean + 6 * standardDeviation;
+
+		SpectogramPalette palette = new SpectogramPalette((float) max, (float) min, 0x000000, 0x0000e7, 0x0094ff, 0x00ffb8, 0x2eff00, 0xffff00, 0xff8800, 0xff0000, 0xff007c);
+
+		BufferedImage image = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
+		for (int i = 0; i < height; i++) {
+			for (int j = 0; j < width; j++) {
+				image.setRGB(j, height - i - 1, palette.getRGB(tempResults[i * width + j]));
 			}
 		}
 		return image;
