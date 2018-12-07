@@ -7,6 +7,8 @@ import java.util.Set;
 
 import org.junit.Test;
 
+import ru.r2cloud.jradio.fec.ViterbiTest;
+
 public class PhaseAmbiguityResolverTest {
 	
 	@Test
