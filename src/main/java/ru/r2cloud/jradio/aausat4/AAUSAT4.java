@@ -54,6 +54,9 @@ public class AAUSAT4 extends BeaconSource<AAUSAT4Beacon> {
 				}
 				return current;
 			} catch (UncorrectableException e) {
+				if (LOG.isDebugEnabled()) {
+					LOG.debug("unable to decode reed solomon: " + e.getMessage());
+				}
 				return null;
 			} catch (IOException e) {
 				LOG.error("unable to parse beacon", e);
