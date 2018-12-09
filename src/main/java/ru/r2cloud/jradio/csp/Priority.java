@@ -2,7 +2,7 @@ package ru.r2cloud.jradio.csp;
 
 public enum Priority {
 
-	CSP_PRIO_CRITICAL(0), CSP_PRIO_ALERT(1), CSP_PRIO_HIGH(2), CSP_PRIO_RESERVED(3), CSP_PRIO_NORM(4), CSP_PRIO_LOW(5), CSP_PRIO_BULK(6), CSP_PRIO_DEBUG(7);
+	CSP_PRIO_CRITICAL(0), CSP_PRIO_HIGH(1), CSP_PRIO_NORM(2), CSP_PRIO_LOW(3);
 
 	private final int code;
 

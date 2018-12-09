@@ -10,8 +10,6 @@ import org.junit.After;
 import org.junit.Test;
 
 import ru.r2cloud.jradio.FloatInput;
-import ru.r2cloud.jradio.aausat4.AAUSAT4;
-import ru.r2cloud.jradio.aausat4.AAUSAT4Beacon;
 import ru.r2cloud.jradio.blocks.ClockRecoveryMM;
 import ru.r2cloud.jradio.blocks.CorrelateAccessCodeTag;
 import ru.r2cloud.jradio.blocks.FixedLengthTagger;
@@ -102,6 +100,7 @@ public class AAUSAT4Test {
 		setupDemodulator(source);
 		assertTrue(input.hasNext());
 		AAUSAT4Beacon beacon = input.next();
+		assertEquals(86, beacon.getLength());
 		assertEquals(4, beacon.getCom().getBootCount());
 		assertEquals(62, beacon.getCom().getPacketsReceived());
 		assertEquals(568, beacon.getCom().getPacketsSend());
@@ -120,7 +119,7 @@ public class AAUSAT4Test {
 		assertEquals(4411, beacon.getAdcs1().getBdot1());
 		assertEquals(835, beacon.getAdcs1().getBdot2());
 		assertEquals(-2278, beacon.getAdcs1().getBdot3());
-		assertEquals(Priority.CSP_PRIO_CRITICAL, beacon.getPriority());
+		assertEquals(Priority.CSP_PRIO_LOW, beacon.getHeader().getPriority());
 		assertEquals(343, beacon.getAis2().getBootCount());
 		assertEquals(65535, beacon.getAis2().getUniqueMssi());
 	}

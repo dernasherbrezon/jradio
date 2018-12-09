@@ -3,11 +3,16 @@ package ru.r2cloud.jradio.aausat4;
 import java.io.ByteArrayInputStream;
 import java.io.DataInputStream;
 import java.io.IOException;
+import java.util.Arrays;
 
-import ru.r2cloud.jradio.csp.Packet;
+import ru.r2cloud.jradio.Externalizable;
+import ru.r2cloud.jradio.csp.Header;
 
-public class AAUSAT4Beacon extends Packet {
+public class AAUSAT4Beacon implements Externalizable {
 
+	private int length;
+	private Header header;
+	private byte[] hmac;
 	private EPS eps;
 	private COM com;
 	private ADCS1 adcs1;
@@ -18,14 +23,26 @@ public class AAUSAT4Beacon extends Packet {
 	// begin sample used to calculate begin millis
 	private long beginSample;
 	private long beginMillis;
+	
+	private byte[] rawData;
 
 	// # [ 1 byte | 20 bytes | 10 bytes | 7 bytes | 6 bytes | 20 bytes | 20
 	// bytes ]
 	// # [ Valid | EPS | COM | ADCS1 | ADCS2 | AIS1 | AIS2 ]
 	@Override
 	public void readExternal(byte[] rawData) throws IOException {
-		super.readExternal(rawData);
-		DataInputStream data = new DataInputStream(new ByteArrayInputStream(getData()));
+		this.rawData = rawData;
+		length = (rawData[0] << 8) | rawData[1];
+		header = new Header(Arrays.copyOfRange(rawData, 2, 2 + Header.LENGTH));
+		int endIndex = rawData.length;
+		if (header.isFhmac()) {
+			if (rawData.length < 6) {
+				throw new IOException("invalid csp header size: " + rawData.length);
+			}
+			hmac = Arrays.copyOfRange(rawData, endIndex - 2, endIndex);
+			endIndex = endIndex - 2;
+		}
+		DataInputStream data = new DataInputStream(new ByteArrayInputStream(Arrays.copyOfRange(rawData, 2 + Header.LENGTH, endIndex)));
 		byte valid = data.readByte();
 		boolean eps_valid = (valid & (1 << 0)) > 0 ? true : false;
 		boolean com_valid = (valid & (1 << 1)) > 0 ? true : false;
@@ -64,6 +81,22 @@ public class AAUSAT4Beacon extends Packet {
 		} else {
 			data.skipBytes(20);
 		}
+	}
+	
+	public byte[] getRawData() {
+		return rawData;
+	}
+	
+	public byte[] getHmac() {
+		return hmac;
+	}
+	
+	public Header getHeader() {
+		return header;
+	}
+	
+	public int getLength() {
+		return length;
 	}
 
 	public long getBeginSample() {
