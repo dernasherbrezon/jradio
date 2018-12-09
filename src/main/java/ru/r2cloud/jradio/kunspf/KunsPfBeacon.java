@@ -82,16 +82,26 @@ public class KunsPfBeacon implements Externalizable {
 	private long beginSample;
 	private long beginMillis;
 
+	private int imageBlock;
+	private byte[] imageChunk;
+
 	@Override
 	public void readExternal(byte[] rawData) throws IOException {
 		this.rawData = rawData;
 		header = new Header(Arrays.copyOfRange(rawData, 0, Header.LENGTH));
 		byte[] data = Arrays.copyOfRange(rawData, Header.LENGTH, rawData.length);
-		if (data.length >= 88) {
+		if (data.length == 134) {
+			readImage(data);
+		} else if (data.length >= 88) {
 			readWODBeacon(data);
 		} else {
 			readBeacon(data);
 		}
+	}
+
+	private void readImage(byte[] data) {
+		imageBlock = ((data[0] & 0xFF) << 8) | (data[1] & 0xFF);
+		imageChunk = Arrays.copyOfRange(data, 2, data.length - 4);
 	}
 
 	private void readBeacon(byte[] data) throws IOException {
@@ -662,4 +672,19 @@ public class KunsPfBeacon implements Externalizable {
 		this.solarPanelTemp5 = solarPanelTemp5;
 	}
 
+	public int getImageBlock() {
+		return imageBlock;
+	}
+	
+	public void setImageBlock(int imageBlock) {
+		this.imageBlock = imageBlock;
+	}
+	
+	public byte[] getImageChunk() {
+		return imageChunk;
+	}
+	
+	public void setImageChunk(byte[] imageChunk) {
+		this.imageChunk = imageChunk;
+	}
 }

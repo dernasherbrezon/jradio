@@ -1,6 +1,7 @@
 package ru.r2cloud.jradio.kunspf;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 import org.junit.Test;
 
@@ -14,5 +15,14 @@ public class KunsPfBeaconTest {
 		KunsPfBeacon beacon = new KunsPfBeacon();
 		beacon.readExternal(data);
 		assertEquals(260, beacon.getSunSensor4());
+	}
+
+	@Test
+	public void testImage() throws Exception {
+		byte[] data = ViterbiTest.hexStringToByteArray("00E792420000FFD8FFE000104A46494600010101000000000000FFDB0043000C08090B09080C0B0A0B0E0D0C0E121E1412111112251A1C161E2C262E2D2B262A293036453B30334134292A3C523D41474A4D4E4D2F3A555B544B5A454C4D4AFFDB0043010D0E0E121012231414234A322A324A4A4A4A4A4A4A4A4A4A4A4A4A4A4A4A4A4A4A4A0F51D13E");
+		KunsPfBeacon beacon = new KunsPfBeacon();
+		beacon.readExternal(data);
+		assertEquals(0, beacon.getImageBlock());
+		assertNotNull(beacon.getImageChunk());
 	}
 }
