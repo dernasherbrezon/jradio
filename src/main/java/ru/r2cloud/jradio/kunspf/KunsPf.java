@@ -44,6 +44,10 @@ public class KunsPf implements Iterable<KunsPfBeacon>, Iterator<KunsPfBeacon>, C
 					if (LOG.isDebugEnabled()) {
 						LOG.debug("golay decoded. frameLength: {} viterbiFlag: {}, scramblerFlag: {}, rsFlag: {}", frameLength, viterbiFlag, scramblerFlag, rsFlag);
 					}
+					if (3 + frameLength > raw.length) {
+						LOG.info("not enough data: {}", raw.length);
+						continue;
+					}
 					byte[] packet = new byte[frameLength];
 					System.arraycopy(raw, 3, packet, 0, frameLength);
 					Randomize.shuffle(packet);
