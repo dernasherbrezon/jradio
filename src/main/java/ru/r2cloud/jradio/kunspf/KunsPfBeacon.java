@@ -33,12 +33,12 @@ public class KunsPfBeacon implements Externalizable {
 
 	private int txCount;
 	private int rxCount;
-	private int obcTemp0;
-	private int obcTemp1;
+	private float obcTemp0;
+	private float obcTemp1;
 	private int angVelocityMag;
-	private int magnetometerX;
-	private int magnetometerY;
-	private int magnetometerZ;
+	private float magnetometerX;
+	private float magnetometerY;
+	private float magnetometerZ;
 	private int mainAxisOfRotation;
 
 	private int timestamp;
@@ -53,24 +53,24 @@ public class KunsPfBeacon implements Externalizable {
 	private int solarPannelCurrent;
 	private int systemCurrent;
 	private int epsBootCount;
-	private int radioAmplifierTemp;
+	private float radioAmplifierTemp;
 	private int lastRxRfPower;
 	private int lastRfError;
 	private int radioBootCount;
-	private int gyroX;
-	private int gyroY;
-	private int gyroZ;
+	private float gyroX;
+	private float gyroY;
+	private float gyroZ;
 
 	private int solarPanelRegulatorCurrent0;
 	private int solarPanelRegulatorCurrent1;
 	private int solarPanelRegulatorCurrent2;
 
-	private int solarPanelTemp0;
-	private int solarPanelTemp1;
-	private int solarPanelTemp2;
-	private int solarPanelTemp3;
-	private int solarPanelTemp4;
-	private int solarPanelTemp5;
+	private float solarPanelTemp0;
+	private float solarPanelTemp1;
+	private float solarPanelTemp2;
+	private float solarPanelTemp3;
+	private float solarPanelTemp4;
+	private float solarPanelTemp5;
 
 	private int sunSensor0;
 	private int sunSensor1;
@@ -129,14 +129,13 @@ public class KunsPfBeacon implements Externalizable {
 		mainAxisOfRotation = dis.readUnsignedByte();
 	}
 
-	// TODO not tested on real data
 	private void readWODBeacon(byte[] data) throws IOException {
 		DataInputStream dis = new DataInputStream(new ByteArrayInputStream(data));
 		timestamp = dis.readInt();
 
-		solarPanelVoltageX = dis.readUnsignedShort() / 1000;
-		solarPanelVoltageY = dis.readUnsignedShort() / 1000;
-		solarPanelVoltageZ = dis.readUnsignedShort() / 1000;
+		solarPanelVoltageX = dis.readUnsignedShort();
+		solarPanelVoltageY = dis.readUnsignedShort();
+		solarPanelVoltageZ = dis.readUnsignedShort();
 
 		solarPanelRegulatorTemp0 = dis.readShort();
 		solarPanelRegulatorTemp1 = dis.readShort();
@@ -147,33 +146,33 @@ public class KunsPfBeacon implements Externalizable {
 		batteryMode = dis.readUnsignedShort();
 		solarPanelCurrent = dis.readShort();
 		systemCurrent = dis.readUnsignedShort();
-		batteryVoltage = dis.readUnsignedShort() / 1000;
+		batteryVoltage = dis.readUnsignedShort();
 		epsBootCount = dis.readUnsignedShort();
-		radioAmplifierTemp = dis.readShort() / 10;
+		radioAmplifierTemp = dis.readShort();
 		txCount = dis.readUnsignedShort();
 		rxCount = dis.readUnsignedShort();
 		lastRxRfPower = dis.readShort();
 		lastRfError = dis.readUnsignedShort();
 		radioBootCount = dis.readUnsignedShort();
-		obcTemp0 = dis.readShort() / 10;
-		obcTemp1 = dis.readShort() / 10;
-		gyroX = dis.readShort() / 100;
-		gyroY = dis.readShort() / 100;
-		gyroZ = dis.readShort() / 100;
-		magnetometerX = dis.readShort() / 10;
-		magnetometerY = dis.readShort() / 10;
-		magnetometerZ = dis.readShort() / 10;
+		obcTemp0 = (float) dis.readShort() / 10;
+		obcTemp1 = (float) dis.readShort() / 10;
+		gyroX = (float) dis.readShort() / 100;
+		gyroY = (float) dis.readShort() / 100;
+		gyroZ = (float) dis.readShort() / 100;
+		magnetometerX = (float) dis.readShort() / 10;
+		magnetometerY = (float) dis.readShort() / 10;
+		magnetometerZ = (float) dis.readShort() / 10;
 
 		solarPanelRegulatorCurrent0 = dis.readUnsignedShort();
 		solarPanelRegulatorCurrent1 = dis.readUnsignedShort();
 		solarPanelRegulatorCurrent2 = dis.readUnsignedShort();
 
-		solarPanelTemp0 = dis.readShort() / 10;
-		solarPanelTemp1 = dis.readShort() / 10;
-		solarPanelTemp2 = dis.readShort() / 10;
-		solarPanelTemp3 = dis.readShort() / 10;
-		solarPanelTemp4 = dis.readShort() / 10;
-		solarPanelTemp5 = dis.readShort() / 10;
+		solarPanelTemp0 = (float) dis.readShort() / 10;
+		solarPanelTemp1 = (float) dis.readShort() / 10;
+		solarPanelTemp2 = (float) dis.readShort() / 10;
+		solarPanelTemp3 = (float) dis.readShort() / 10;
+		solarPanelTemp4 = (float) dis.readShort() / 10;
+		solarPanelTemp5 = (float) dis.readShort() / 10;
 
 		sunSensor0 = dis.readShort();
 		sunSensor1 = dis.readShort();
@@ -327,16 +326,8 @@ public class KunsPfBeacon implements Externalizable {
 		this.rxCount = rxCount;
 	}
 
-	public int getObcTemp0() {
-		return obcTemp0;
-	}
-
 	public void setObcTemp0(int obcTemp0) {
 		this.obcTemp0 = obcTemp0;
-	}
-
-	public int getObcTemp1() {
-		return obcTemp1;
 	}
 
 	public void setObcTemp1(int obcTemp1) {
@@ -349,30 +340,6 @@ public class KunsPfBeacon implements Externalizable {
 
 	public void setAngVelocityMag(int angVelocityMag) {
 		this.angVelocityMag = angVelocityMag;
-	}
-
-	public int getMagnetometerX() {
-		return magnetometerX;
-	}
-
-	public void setMagnetometerX(int magnetometerX) {
-		this.magnetometerX = magnetometerX;
-	}
-
-	public int getMagnetometerY() {
-		return magnetometerY;
-	}
-
-	public void setMagnetometerY(int magnetometerY) {
-		this.magnetometerY = magnetometerY;
-	}
-
-	public int getMagnetometerZ() {
-		return magnetometerZ;
-	}
-
-	public void setMagnetometerZ(int magnetometerZ) {
-		this.magnetometerZ = magnetometerZ;
 	}
 
 	public int getMainAxisOfRotation() {
@@ -463,14 +430,6 @@ public class KunsPfBeacon implements Externalizable {
 		this.epsBootCount = epsBootCount;
 	}
 
-	public int getRadioAmplifierTemp() {
-		return radioAmplifierTemp;
-	}
-
-	public void setRadioAmplifierTemp(int radioAmplifierTemp) {
-		this.radioAmplifierTemp = radioAmplifierTemp;
-	}
-
 	public int getLastRxRfPower() {
 		return lastRxRfPower;
 	}
@@ -495,30 +454,6 @@ public class KunsPfBeacon implements Externalizable {
 		this.radioBootCount = radioBootCount;
 	}
 
-	public int getGyroX() {
-		return gyroX;
-	}
-
-	public void setGyroX(int gyroX) {
-		this.gyroX = gyroX;
-	}
-
-	public int getGyroY() {
-		return gyroY;
-	}
-
-	public void setGyroY(int gyroY) {
-		this.gyroY = gyroY;
-	}
-
-	public int getGyroZ() {
-		return gyroZ;
-	}
-
-	public void setGyroZ(int gyroZ) {
-		this.gyroZ = gyroZ;
-	}
-
 	public int getSolarPanelRegulatorCurrent0() {
 		return solarPanelRegulatorCurrent0;
 	}
@@ -541,54 +476,6 @@ public class KunsPfBeacon implements Externalizable {
 
 	public void setSolarPanelRegulatorCurrent2(int solarPanelRegulatorCurrent2) {
 		this.solarPanelRegulatorCurrent2 = solarPanelRegulatorCurrent2;
-	}
-
-	public int getSolarPanelTemp0() {
-		return solarPanelTemp0;
-	}
-
-	public void setSolarPanelTemp0(int solarPanelTemp0) {
-		this.solarPanelTemp0 = solarPanelTemp0;
-	}
-
-	public int getSolarPanelTemp1() {
-		return solarPanelTemp1;
-	}
-
-	public void setSolarPanelTemp1(int solarPanelTemp1) {
-		this.solarPanelTemp1 = solarPanelTemp1;
-	}
-
-	public int getSolarPanelTemp2() {
-		return solarPanelTemp2;
-	}
-
-	public void setSolarPanelTemp2(int solarPanelTemp2) {
-		this.solarPanelTemp2 = solarPanelTemp2;
-	}
-
-	public int getSolarPanelTemp3() {
-		return solarPanelTemp3;
-	}
-
-	public void setSolarPanelTemp3(int solarPanelTemp3) {
-		this.solarPanelTemp3 = solarPanelTemp3;
-	}
-
-	public int getSolarPanelTemp4() {
-		return solarPanelTemp4;
-	}
-
-	public void setSolarPanelTemp4(int solarPanelTemp4) {
-		this.solarPanelTemp4 = solarPanelTemp4;
-	}
-
-	public int getSolarPanelTemp5() {
-		return solarPanelTemp5;
-	}
-
-	public void setSolarPanelTemp5(int solarPanelTemp5) {
-		this.solarPanelTemp5 = solarPanelTemp5;
 	}
 
 	public int getSunSensor0() {
@@ -654,5 +541,125 @@ public class KunsPfBeacon implements Externalizable {
 	public void setBeginMillis(long beginMillis) {
 		this.beginMillis = beginMillis;
 	}
-	
+
+	public float getObcTemp0() {
+		return obcTemp0;
+	}
+
+	public void setObcTemp0(float obcTemp0) {
+		this.obcTemp0 = obcTemp0;
+	}
+
+	public float getObcTemp1() {
+		return obcTemp1;
+	}
+
+	public void setObcTemp1(float obcTemp1) {
+		this.obcTemp1 = obcTemp1;
+	}
+
+	public float getMagnetometerX() {
+		return magnetometerX;
+	}
+
+	public void setMagnetometerX(float magnetometerX) {
+		this.magnetometerX = magnetometerX;
+	}
+
+	public float getMagnetometerY() {
+		return magnetometerY;
+	}
+
+	public void setMagnetometerY(float magnetometerY) {
+		this.magnetometerY = magnetometerY;
+	}
+
+	public float getMagnetometerZ() {
+		return magnetometerZ;
+	}
+
+	public void setMagnetometerZ(float magnetometerZ) {
+		this.magnetometerZ = magnetometerZ;
+	}
+
+	public float getRadioAmplifierTemp() {
+		return radioAmplifierTemp;
+	}
+
+	public void setRadioAmplifierTemp(float radioAmplifierTemp) {
+		this.radioAmplifierTemp = radioAmplifierTemp;
+	}
+
+	public float getGyroX() {
+		return gyroX;
+	}
+
+	public void setGyroX(float gyroX) {
+		this.gyroX = gyroX;
+	}
+
+	public float getGyroY() {
+		return gyroY;
+	}
+
+	public void setGyroY(float gyroY) {
+		this.gyroY = gyroY;
+	}
+
+	public float getGyroZ() {
+		return gyroZ;
+	}
+
+	public void setGyroZ(float gyroZ) {
+		this.gyroZ = gyroZ;
+	}
+
+	public float getSolarPanelTemp0() {
+		return solarPanelTemp0;
+	}
+
+	public void setSolarPanelTemp0(float solarPanelTemp0) {
+		this.solarPanelTemp0 = solarPanelTemp0;
+	}
+
+	public float getSolarPanelTemp1() {
+		return solarPanelTemp1;
+	}
+
+	public void setSolarPanelTemp1(float solarPanelTemp1) {
+		this.solarPanelTemp1 = solarPanelTemp1;
+	}
+
+	public float getSolarPanelTemp2() {
+		return solarPanelTemp2;
+	}
+
+	public void setSolarPanelTemp2(float solarPanelTemp2) {
+		this.solarPanelTemp2 = solarPanelTemp2;
+	}
+
+	public float getSolarPanelTemp3() {
+		return solarPanelTemp3;
+	}
+
+	public void setSolarPanelTemp3(float solarPanelTemp3) {
+		this.solarPanelTemp3 = solarPanelTemp3;
+	}
+
+	public float getSolarPanelTemp4() {
+		return solarPanelTemp4;
+	}
+
+	public void setSolarPanelTemp4(float solarPanelTemp4) {
+		this.solarPanelTemp4 = solarPanelTemp4;
+	}
+
+	public float getSolarPanelTemp5() {
+		return solarPanelTemp5;
+	}
+
+	public void setSolarPanelTemp5(float solarPanelTemp5) {
+		this.solarPanelTemp5 = solarPanelTemp5;
+	}
+
 }

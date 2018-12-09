@@ -53,19 +53,19 @@ public class KunsPfTest {
 		assertEquals(3, beacon.getEpsTemp1());
 		assertEquals(2, beacon.getEpsTemp2());
 		assertEquals(2, beacon.getEpsTemp3());
-		assertEquals(0, beacon.getGyroX());
-		assertEquals(0, beacon.getGyroY());
-		assertEquals(0, beacon.getGyroZ());
+		assertEquals(0, beacon.getGyroX(), 0.0);
+		assertEquals(0, beacon.getGyroY(), 0.0);
+		assertEquals(0, beacon.getGyroZ(), 0.0);
 		assertEquals(0, beacon.getLastRfError());
 		assertEquals(0, beacon.getLastRxRfPower());
-		assertEquals(288, beacon.getMagnetometerX());
-		assertEquals(0, beacon.getMagnetometerY());
-		assertEquals(0, beacon.getMagnetometerZ());
+		assertEquals(288, beacon.getMagnetometerX(), 0.0);
+		assertEquals(0, beacon.getMagnetometerY(), 0.0);
+		assertEquals(0, beacon.getMagnetometerZ(), 0.0);
 		assertEquals(89, beacon.getMainAxisOfRotation());
 		
-		assertEquals(1, beacon.getObcTemp0());
-		assertEquals(1, beacon.getObcTemp1());
-		assertEquals(0, beacon.getRadioAmplifierTemp());
+		assertEquals(1, beacon.getObcTemp0(), 0.0);
+		assertEquals(1, beacon.getObcTemp1(), 0.0);
+		assertEquals(0, beacon.getRadioAmplifierTemp(), 0.0);
 		assertEquals(0, beacon.getRadioBootCount());
 		assertEquals(4, beacon.getRadioPATemp());
 		
@@ -79,12 +79,12 @@ public class KunsPfTest {
 		assertEquals(0, beacon.getSolarPanelRegulatorTemp0());
 		assertEquals(0, beacon.getSolarPanelRegulatorTemp0());
 
-		assertEquals(0, beacon.getSolarPanelTemp0());
-		assertEquals(0, beacon.getSolarPanelTemp1());
-		assertEquals(0, beacon.getSolarPanelTemp2());
-		assertEquals(0, beacon.getSolarPanelTemp3());
-		assertEquals(0, beacon.getSolarPanelTemp4());
-		assertEquals(0, beacon.getSolarPanelTemp5());
+		assertEquals(0, beacon.getSolarPanelTemp0(), 0.0);
+		assertEquals(0, beacon.getSolarPanelTemp1(), 0.0);
+		assertEquals(0, beacon.getSolarPanelTemp2(), 0.0);
+		assertEquals(0, beacon.getSolarPanelTemp3(), 0.0);
+		assertEquals(0, beacon.getSolarPanelTemp4(), 0.0);
+		assertEquals(0, beacon.getSolarPanelTemp5(), 0.0);
 		
 		assertEquals(2448, beacon.getSolarPanelVoltageX());
 		assertEquals(2448, beacon.getSolarPanelVoltageY());
