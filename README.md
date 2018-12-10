@@ -9,6 +9,7 @@ Software radio decoding written in Java. The idea of this project is to get bloc
 
 All blocks meant to be binary compatible with gnuradio versions. This will ensure you got the same results when moving from gnuradio-companion to Java.
 
+  * AdditiveScrambler
   * AGC
   * BinarySlicer
   * ClockRecoveryMM and ClockRecoveryMMComplex
@@ -40,7 +41,8 @@ Forward error correction:
 
   * Viterbi (hard)
   * ViterbiSoft
-  * ReedSolomon
+  * CCSDS ReedSolomon
+  * BCH ReedSolomon
   
 Frequency correction:
   
@@ -50,8 +52,10 @@ Frequency correction:
 
 Using the blocks above, you could decode signals from the following satellites:
 
-  * AAUSAT-4 (NORAD 41460). Digital telemetry only. Based on [gr-aausat](https://github.com/daniestevez/gr-aausat). See the pipeline at the [AAUSAT4Test](https://github.com/dernasherbrezon/jradio/blob/master/src/test/java/ru/r2cloud/jradio/AAUSAT4Test.java)
+  * AAUSAT-4 (NORAD 41460). Digital telemetry only. Based on [gr-aausat](https://github.com/daniestevez/gr-aausat). See the pipeline at the [AAUSAT4Test](https://github.com/dernasherbrezon/jradio/blob/master/src/test/java/ru/r2cloud/jradio/aausat4/AAUSAT4Test.java)
   * Meteor-M N2 (NORAD 40069). Decode pictures. Based on [meteor-decoder](https://github.com/artlav/meteor_decoder) and [meteor-m2-lrpt](https://github.com/otti-soft/meteor-m2-lrpt). See the pipeline at the [MeteorImageTest](https://github.com/dernasherbrezon/jradio/blob/lrpt/src/test/java/ru/r2cloud/jradio/meteor/MeteorImageTest.java)
+  * 1Kuns-Pf (NORAD 43466). Decode short and long beacon formats, images. Based on [gr-satellites](https://github.com/daniestevez/gr-satellites). See the pipeline at the [KunsPfTest](https://github.com/dernasherbrezon/jradio/blob/master/src/test/java/ru/r2cloud/jradio/kunspf/KunsPfTest.java)
+  * Sat3Cat1 (NORAD 99901). Decode telemetry beacon. Based on [gr-satellites](https://github.com/daniestevez/gr-satellites). See the pipeline at the [Sat3Cat1Test](https://github.com/dernasherbrezon/jradio/blob/master/src/test/java/ru/r2cloud/jradio/sat3cat1/Sat3Cat1Test.java)
 
 ## Doppler correction
 
