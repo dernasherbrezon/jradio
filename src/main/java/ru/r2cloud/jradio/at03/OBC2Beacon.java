@@ -7,9 +7,9 @@ import ru.r2cloud.jradio.util.MathUtils;
 
 public class OBC2Beacon {
 
-	// format ddMMyy
+	// gps format
 	private int date;
-	// format hhmmss
+	// gps format
 	private int time;
 	private boolean fix;
 	private int numberOfSatellitesSeen;

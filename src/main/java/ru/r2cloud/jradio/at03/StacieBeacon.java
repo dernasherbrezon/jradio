@@ -34,10 +34,12 @@ public class StacieBeacon {
 		UplinkError = dis.readUnsignedByte();
 		OBCSendPacketcounter = dis.readUnsignedByte();
 		BeaconInterval = dis.readUnsignedByte() | (dis.readUnsignedByte() << 8);
+		dis.skipBytes(8);
 		SID = dis.readByte();
 		TxSelReason = dis.readUnsignedByte();
 		reasonRemote = dis.readUnsignedByte();
 		sTime = dis.readUnsignedByte() | (dis.readUnsignedByte() << 8) | (dis.readUnsignedByte() << 16) | (dis.readUnsignedByte() << 24);
+		dis.skipBytes(1);
 		BeaconCount = dis.readUnsignedByte();
 	}
 
