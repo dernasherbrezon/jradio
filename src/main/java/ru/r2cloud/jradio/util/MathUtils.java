@@ -2,6 +2,10 @@ package ru.r2cloud.jradio.util;
 
 public class MathUtils {
 
+	public final static float fiveBitResolution = (float) (1 / Math.pow(2.0, 5));
+	public final static float fourBitResolution = (float) (1 / Math.pow(2.0, 4));
+	public final static float thirteenBitResolution = (float) (1 / Math.pow(2.0, 13));
+
 	private final static double TAN_MAP_RES = 0.003921569;
 	private final static int TAN_MAP_SIZE = 255;
 
@@ -94,6 +98,16 @@ public class MathUtils {
 		return (angle);
 	}
 
+	public static float convertfix34(int unsignedByte) {
+		float result = (unsignedByte >> 4) + fourBitResolution * (unsignedByte & 0xf);
+		return result;
+	}
+
+	public static float convertUfix35(int unsignedByte) {
+		float result = (unsignedByte >> 5) + fiveBitResolution * (unsignedByte & 0x1f);
+		return result;
+	}
+	
 	private MathUtils() {
 		// do nothing
 	}
