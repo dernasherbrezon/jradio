@@ -26,7 +26,7 @@ public class KunsPf extends BeaconSource<KunsPfBeacon> {
 	@Override
 	protected KunsPfBeacon parseBeacon(byte[] raw) {
 		try {
-			int lengthField = (raw[0] << 16) | (raw[1] << 8) | raw[2];
+			int lengthField = ((raw[0] & 0xFF) << 16) | ((raw[1] & 0xFF) << 8) | (raw[2] & 0xFF);
 			lengthField = golay.decode(lengthField);
 			int frameLength = lengthField & 0xFF;
 			int viterbiFlag = lengthField & 0x100;
