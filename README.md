@@ -13,12 +13,14 @@ All blocks meant to be binary compatible with gnuradio versions. This will ensur
   * AGC
   * BinarySlicer
   * ClockRecoveryMM and ClockRecoveryMMComplex
+  * ComplexConjugate
   * ConstellationSoftDecoder
   * CorrelateAccessCodeTag
   * CostasLoop
   * FIRFilter and ComplexFIRFilter
   * FixedLengthTagger
   * FloatToChar
+  * FloatToComplex
   * LowPassFilter and LowPassFilterComplex
   * FrequencyXlatingFIRFilter
   * Rail
@@ -56,7 +58,9 @@ Using the blocks above, you could decode signals from the following satellites:
   * Meteor-M N2 (NORAD 40069). Decode pictures. Based on [meteor-decoder](https://github.com/artlav/meteor_decoder) and [meteor-m2-lrpt](https://github.com/otti-soft/meteor-m2-lrpt). See the pipeline at the [MeteorImageTest](https://github.com/dernasherbrezon/jradio/blob/lrpt/src/test/java/ru/r2cloud/jradio/meteor/MeteorImageTest.java)
   * 1Kuns-Pf (NORAD 43466). Decode short and long beacon formats, images. Based on [gr-satellites](https://github.com/daniestevez/gr-satellites). See the pipeline at the [KunsPfTest](https://github.com/dernasherbrezon/jradio/blob/master/src/test/java/ru/r2cloud/jradio/kunspf/KunsPfTest.java)
   * Sat3Cat1 (NORAD 99901). Decode telemetry beacon. Based on [gr-satellites](https://github.com/daniestevez/gr-satellites). See the pipeline at the [Sat3Cat1Test](https://github.com/dernasherbrezon/jradio/blob/master/src/test/java/ru/r2cloud/jradio/sat3cat1/Sat3Cat1Test.java)
-
+  * AT03 (NORAD 42784). Decode telemetry beacon. Based on [gr-satellites](https://github.com/daniestevez/gr-satellites). See the pipeline at the [At03Test](https://github.com/dernasherbrezon/jradio/blob/master/src/test/java/ru/r2cloud/jradio/at03/At03Test.java)
+  * AU02/AU03 (NORAD 42723/42731). Decode telemetry beacon. Based on [gr-satellites](https://github.com/daniestevez/gr-satellites). See the pipeline at the [Au02Test](https://github.com/dernasherbrezon/jradio/blob/master/src/test/java/ru/r2cloud/jradio/au02/Au02Test.java)  
+  
 ## Doppler correction
 
 Doppler correction could be made using SigSource and Multiply blocks. Here is the sample code:
