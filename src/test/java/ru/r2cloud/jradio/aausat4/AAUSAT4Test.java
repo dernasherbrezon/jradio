@@ -81,7 +81,7 @@ public class AAUSAT4Test {
 		}
 		WavFileSource source = new WavFileSource(getStream());
 		SigSource source2 = new SigSource(Waveform.COMPLEX, (long) source.getContext().getSampleRate(), new PeakValueSource(peaks, new GmskFrequencyCorrection(2400, 10)), 1.0f);
-		Multiply mul = new Multiply(source, source2, true);
+		Multiply mul = new Multiply(source, source2);
 		QuadratureDemodulation qd = new QuadratureDemodulation(mul, 0.4f);
 		LowPassFilter lpf = new LowPassFilter(qd, 1.0, 1500.0f, 100, Window.WIN_HAMMING, 6.76);
 		MultiplyConst mc = new MultiplyConst(lpf, 1.0f);

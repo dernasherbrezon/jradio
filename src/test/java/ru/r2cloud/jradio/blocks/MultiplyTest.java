@@ -10,7 +10,7 @@ public class MultiplyTest {
 
 	@Test
 	public void test() throws Exception {
-		Multiply multiply = new Multiply(new SingleResultInput(2.0f), new SingleResultInput(2.0f), true);
+		Multiply multiply = new Multiply(new SingleResultInput(2.0f), new SingleResultInput(2.0f));
 		assertEquals(0.0f, multiply.readFloat(), 0.0f);
 		multiply.close();
 	}

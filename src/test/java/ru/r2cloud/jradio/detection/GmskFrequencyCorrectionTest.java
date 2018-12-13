@@ -26,7 +26,7 @@ public class GmskFrequencyCorrectionTest {
 
 		WavFileSource source = new WavFileSource(getStream());
 		SigSource source2 = new SigSource(Waveform.COMPLEX, (long) source.getContext().getSampleRate(), new PeakValueSource(peaks, new GmskFrequencyCorrection(2400, 10)), 1.0f);
-		try (Multiply mul = new Multiply(source, source2, true); InputStreamSource is = new InputStreamSource(GmskFrequencyCorrectionTest.class.getClassLoader().getResourceAsStream("expectedAausat4Correction.bin"))) {
+		try (Multiply mul = new Multiply(source, source2); InputStreamSource is = new InputStreamSource(GmskFrequencyCorrectionTest.class.getClassLoader().getResourceAsStream("expectedAausat4Correction.bin"))) {
 			while (true) {
 				float expected = is.readFloat();
 				float actual = mul.readFloat();

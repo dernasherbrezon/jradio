@@ -4,15 +4,18 @@ import java.io.IOException;
 
 public class SingleResultInput implements FloatInput {
 
+	private final Context context;
 	private float result;
 
 	public SingleResultInput(float result) {
 		this.result = result;
+		context = new Context();
+		context.setChannels(2);
 	}
 
 	@Override
 	public void close() throws IOException {
-		//do nothing
+		// do nothing
 	}
 
 	@Override
@@ -22,7 +25,7 @@ public class SingleResultInput implements FloatInput {
 
 	@Override
 	public Context getContext() {
-		return new Context();
+		return context;
 	}
 
 }

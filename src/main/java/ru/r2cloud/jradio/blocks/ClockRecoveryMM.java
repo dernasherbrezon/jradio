@@ -39,7 +39,7 @@ public class ClockRecoveryMM implements FloatInput {
 		interp = new MMSEFIRInterpolator();
 		setOmega(omega);
 
-		curBuf = new CircularArray(interp.ntaps());
+		curBuf = new CircularArray(interp.getNumberOfTaps());
 		this.skip = curBuf.getSize();
 
 		context = new Context(source.getContext());

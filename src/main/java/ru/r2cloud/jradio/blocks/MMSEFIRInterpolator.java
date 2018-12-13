@@ -169,7 +169,7 @@ public class MMSEFIRInterpolator {
 		filters[imu].filterComplex(output, input, inputImg, inputPos);
 	}
 
-	public int ntaps() {
+	public int getNumberOfTaps() {
 		return NTAPS;
 	}
 

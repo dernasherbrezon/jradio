@@ -14,12 +14,15 @@ public class Multiply implements FloatInput {
 	private final float[] complex = new float[2];
 	private boolean real = true;
 
-	public Multiply(FloatInput source1, FloatInput source2, boolean complexInput) {
+	public Multiply(FloatInput source1, FloatInput source2) {
+		if (source1.getContext().getChannels() != 2) {
+			throw new IllegalArgumentException("input is not a complex number: " + source1.getContext().getChannels());
+		}
+		if (source2.getContext().getChannels() != 2) {
+			throw new IllegalArgumentException("input is not a complex number: " + source2.getContext().getChannels());
+		}
 		this.source1 = source1;
 		this.source2 = source2;
-		if (!complexInput) {
-			throw new IllegalArgumentException("non complex input is not supported");
-		}
 	}
 
 	@Override
