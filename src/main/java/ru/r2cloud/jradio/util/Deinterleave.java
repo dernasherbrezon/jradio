@@ -2,15 +2,23 @@ package ru.r2cloud.jradio.util;
 
 public class Deinterleave {
 
-	public static byte[] deinterleaveBits(byte[] data) {
-		byte[] deinterleaved = new byte[data.length];
+	public static byte[] deinterleaveBits(byte[] data, int wordLength, int numberOfWords) {
+		if (wordLength > 8 || wordLength < 1) {
+			throw new IllegalArgumentException("word length is expected: [1;8]. got: " + wordLength);
+		}
+		if (numberOfWords < 0 || numberOfWords > data.length * 8) {
+			throw new IllegalArgumentException("unsupported number of words. got: " + numberOfWords);
+		}
+		byte[] deinterleaved = new byte[numberOfWords];
+		int targetBit = 0;
 		for (int j = 0; j < data.length; j++) {
 			for (int i = 0; i < 8; i++) {
 				int sourceBit = (((data[j] >> (7 - i))) & 0x1);
-				int currentBitIndex = j * 8 + i;
-				int dIndex = currentBitIndex % deinterleaved.length;
-				int dBit = currentBitIndex / deinterleaved.length;
-				deinterleaved[dIndex] |= sourceBit << (7 - dBit);
+				int dIndex = targetBit % numberOfWords;
+				int dBit = targetBit / numberOfWords;
+				deinterleaved[dIndex] |= sourceBit << (wordLength - dBit - 1);
+
+				targetBit++;
 			}
 		}
 		return deinterleaved;
