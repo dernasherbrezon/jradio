@@ -11,6 +11,12 @@ public class SourcePacket {
 	private StdTmFOR stdTmFor;
 	private StdTmCOM stdTmCom;
 	private StdTmAOCS stdTmAocs;
+	private ObcTemperatures obcTemp;
+	private HistoryBufferInfo historyBufferInfo;
+	private I2CStatus i2cStatus;
+	private NodeInfos nodeInfos;
+	private TmAocsStateEstimationA tmAocsStateEstimationA;
+	private TmAocsTle tmAocsTle;
 
 	private int length;
 	private byte virtualChannelIdentifier;
@@ -48,7 +54,24 @@ public class SourcePacket {
 		case 60:
 			stdTmAocs = new StdTmAOCS(dis);
 			break;
-
+		case 103:
+			obcTemp = new ObcTemperatures(dis);
+			break;
+		case 104:
+			historyBufferInfo = new HistoryBufferInfo(dis);
+			break;
+		case 117:
+			i2cStatus = new I2CStatus(dis);
+			break;
+		case 118:
+			nodeInfos = new NodeInfos(dis);
+			break;
+		case 131:
+			tmAocsStateEstimationA = new TmAocsStateEstimationA(dis);
+			break;
+		case 149:
+			tmAocsTle = new TmAocsTle(dis);
+			break;
 		default:
 			break;
 		}
