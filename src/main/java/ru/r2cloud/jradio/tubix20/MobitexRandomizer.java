@@ -1,4 +1,4 @@
-package ru.r2cloud.jradio.technosat;
+package ru.r2cloud.jradio.tubix20;
 
 public class MobitexRandomizer {
 

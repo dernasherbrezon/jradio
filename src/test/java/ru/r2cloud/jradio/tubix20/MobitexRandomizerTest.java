@@ -1,10 +1,10 @@
-package ru.r2cloud.jradio.technosat;
+package ru.r2cloud.jradio.tubix20;
 
 import static org.junit.Assert.assertArrayEquals;
 
 import org.junit.Test;
 
-import ru.r2cloud.jradio.technosat.MobitexRandomizer;
+import ru.r2cloud.jradio.tubix20.MobitexRandomizer;
 
 public class MobitexRandomizerTest {
 

@@ -15,10 +15,6 @@ import ru.r2cloud.jradio.crc.Crc16Ccitt;
 import ru.r2cloud.jradio.fec.Crc16CcittFec;
 import ru.r2cloud.jradio.fec.Hamming;
 import ru.r2cloud.jradio.fec.ccsds.UncorrectableException;
-import ru.r2cloud.jradio.technosat.Control1;
-import ru.r2cloud.jradio.technosat.Control2;
-import ru.r2cloud.jradio.technosat.MessageType;
-import ru.r2cloud.jradio.technosat.MobitexRandomizer;
 import ru.r2cloud.jradio.util.Deinterleave;
 
 public abstract class CMX909bBeacon implements Externalizable {
