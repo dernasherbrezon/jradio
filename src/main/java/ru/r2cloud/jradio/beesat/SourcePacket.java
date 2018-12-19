@@ -17,6 +17,13 @@ public class SourcePacket {
 	private NodeInfos nodeInfos;
 	private TmAocsStateEstimationA tmAocsStateEstimationA;
 	private TmAocsTle tmAocsTle;
+	private TmAocsIsbStatus tmAocsIsbStatus;
+	private TmAocsMts tmAocsMts;
+	private TmForTemperatures tmForTemp;
+	private TmForStatus tmForStatus;
+	private TmFor tmFor;
+	private TmEpsCtrlBatteryPowerTemp tmEpsCtrlTemp;
+	private TmEpsCtrlPcuPower tmEpsCtrlPower;
 
 	private int length;
 	private byte virtualChannelIdentifier;
@@ -72,6 +79,29 @@ public class SourcePacket {
 		case 149:
 			tmAocsTle = new TmAocsTle(dis);
 			break;
+		case 150:
+			tmAocsIsbStatus = new TmAocsIsbStatus(dis);
+			break;
+		case 159:
+			tmAocsMts = new TmAocsMts(dis);
+			break;
+		case 161:
+			tmForTemp = new TmForTemperatures(dis);
+			break;
+		case 162:
+			tmForStatus = new TmForStatus(dis);
+			break;
+		case 163:
+			tmFor = new TmFor(dis);
+			break;
+		case 171:
+			tmEpsCtrlTemp = new TmEpsCtrlBatteryPowerTemp(dis);
+			break;
+		case 172:
+			tmEpsCtrlPower = new TmEpsCtrlPcuPower(dis);
+			break;
+//		case 173:
+			
 		default:
 			break;
 		}
