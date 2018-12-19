@@ -1,12 +1,11 @@
 package ru.r2cloud.jradio.beesat;
 
 import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.DataInputStream;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -30,7 +29,7 @@ public class BeesatBeacon implements Externalizable {
 	// unable to decode
 	private byte[] shortDataBlock;
 
-	private List<TransferFrame> frames;
+	private TransferFrame frame;
 
 	private String callsign;
 
@@ -101,16 +100,16 @@ public class BeesatBeacon implements Externalizable {
 	}
 
 	private void readDataBlocks(MobitexRandomizer randomizer, DataInputStream dis) throws IOException {
-		frames = new ArrayList<>();
+		ByteArrayOutputStream baos = new ByteArrayOutputStream();
 		for (int i = 0; i < control1.getNumberOfBlocks(); i++) {
 			byte[] cur = readDatablock(randomizer, dis, 18);
 			if (cur == null) {
 				continue;
 			}
-			TransferFrame curFrame = new TransferFrame();
-			curFrame.readExternal(cur);
-			frames.add(curFrame);
+			baos.write(cur);
 		}
+		frame = new TransferFrame();
+		frame.readExternal(baos.toByteArray());
 	}
 
 	private void readShortDataBlock(MobitexRandomizer randomizer, DataInputStream dis) throws IOException {
@@ -198,12 +197,12 @@ public class BeesatBeacon implements Externalizable {
 		this.shortDataBlock = shortDataBlock;
 	}
 
-	public List<TransferFrame> getFrames() {
-		return frames;
+	public TransferFrame getFrame() {
+		return frame;
 	}
 
-	public void setFrames(List<TransferFrame> frames) {
-		this.frames = frames;
+	public void setFrame(TransferFrame frame) {
+		this.frame = frame;
 	}
 
 	public String getCallsign() {
