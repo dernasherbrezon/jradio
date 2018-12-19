@@ -5,27 +5,27 @@ import java.io.IOException;
 
 public class TmAocsMts {
 
-	private float MT_0_VOLT;
-	private float MT_1_VOLT;
-	private float MT_2_VOLT;
-	private float MT_0_CURR;
-	private float MT_1_CURR;
-	private float MT_2_CURR;
-	private float MT_0_DIPOLE;
-	private float MT_1_DIPOLE;
-	private float MT_2_DIPOLE;
-	private int MT_0_ERROR_CNT;
-	private int MT_1_ERROR_CNT;
-	private int MT_2_ERROR_CNT;
-	private boolean MT_0_ENABLED;
-	private boolean MT_1_ENABLED;
-	private boolean MT_2_ENABLED;
-	private boolean MT_0_LOCKED;
-	private boolean MT_1_LOCKED;
-	private boolean MT_2_LOCKED;
-	private boolean MT_CURR_0_BOUND;
-	private boolean MT_CURR_1_BOUND;
-	private boolean MT_CURR_2_BOUND;
+	private float MT_0_VOLT;               // MT 0 voltage
+	private float MT_1_VOLT;               // MT 1 voltage
+	private float MT_2_VOLT;               // MT 2 voltage
+	private float MT_0_CURR;               // MT 0 current
+	private float MT_1_CURR;               // MT 1 current
+	private float MT_2_CURR;               // MT 2 current
+	private float MT_0_DIPOLE;             // MT 0 dipole
+	private float MT_1_DIPOLE;             // MT 1 dipole
+	private float MT_2_DIPOLE;             // MT 2 dipole
+	private int MT_0_ERROR_CNT;            // MT 0 error counter
+	private int MT_1_ERROR_CNT;            // MT 1 error counter
+	private int MT_2_ERROR_CNT;            // MT 2 error counter
+	private boolean MT_0_ENABLED;          // MT 0 enabled
+	private boolean MT_1_ENABLED;          // MT 1 enabled
+	private boolean MT_2_ENABLED;          // MT 2 enabled
+	private boolean MT_0_LOCKED;           // MT 0 locked
+	private boolean MT_1_LOCKED;           // MT 1 locked
+	private boolean MT_2_LOCKED;           // MT 2 locked
+	private boolean MT_CURR_0_BOUND;       // Current sensor 0 bound
+	private boolean MT_CURR_1_BOUND;       // Current sensor 1 bound
+	private boolean MT_CURR_2_BOUND;       // Current sensor 2 bound
 
 	public TmAocsMts(DataInputStream dis) throws IOException {
 		MT_0_VOLT = dis.readShort() * 0.02f;

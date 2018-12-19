@@ -5,45 +5,45 @@ import java.io.IOException;
 
 public class StdTmEPS {
 
-	private byte NODENO;
-	private boolean RST_EN;
-	private byte BOTSLT;
-	private boolean SYNPPS;
-	private boolean DISUTC;
-	private boolean DULBSY;
+	private byte NODENO;       // redundant node number
+	private boolean RST_EN;    // the watchdog application is enabled to reset the node
+	private byte BOTSLT;       // currently running internal software slot
+	private boolean SYNPPS;    // shall the node synchronize with the PPS signal
+	private boolean DISUTC;    // shall the node distribute the UTC time at the next PPS signal
+	private boolean DULBSY;    // Indicates the state of the UploadManagers Flash Controller
 
-	private boolean ACTIVE_CAN;
-	private boolean PWRSTS00;
-	private boolean PWRSTS01;
-	private boolean PWRSTS02;
-	private boolean PWRSTS03;
-	private boolean PWRSTS04;
-	private boolean PWRSTS05;
-	private boolean PWRSTS06;
-	private boolean PWRSTS07;
-	private boolean PWRSTS08;
-	private boolean PWRSTS09;
-	private boolean PWRSTS10;
-	private boolean PWRSTS11;
-	private boolean PWRSTS12;
-	private boolean PWRSTS13;
-	private boolean PWRSTS14;
-	private boolean PWRSTS15;
-	private boolean PWRSTS16;
-	private boolean PWRSTS18;
-	private boolean PWRSTS20;
-	private boolean PWRSTS22;
-	private boolean SOL_STATUS_0;
-	private boolean SOL_STATUS_1;
-	private boolean REG_PWR_STAT_0;
-	private boolean REG_PWR_STAT_1;
-	private short SOL_PWR_INPUT;
-	private short PWR_INTO_BAT;
-	private int BAT_ENRG_AVAIL;
-	private int PWR_INTO_SYS;
-	private float SP_VOLT_A;
-	private float SP_VOLT_B;
-
+	private boolean ACTIVE_CAN;             //  Active CAN bus
+	private boolean PWRSTS00;               //  AOCS 0
+	private boolean PWRSTS01;               //  AOCS 1
+	private boolean PWRSTS02;               //  FOR 0
+	private boolean PWRSTS03;               //  FOR 1
+	private boolean PWRSTS04;               //  OBC 0
+	private boolean PWRSTS05;               //  OBC 1
+	private boolean PWRSTS06;               //  PDH 0
+	private boolean PWRSTS07;               //  PDH 1
+	private boolean PWRSTS08;               //  SOLID 0
+	private boolean PWRSTS09;               //  SOLID 1
+	private boolean PWRSTS10;               //  FDA 0
+	private boolean PWRSTS11;               //  FDA 1
+	private boolean PWRSTS12;               //  STELLA 0
+	private boolean PWRSTS13;               //  STELLA 1
+	private boolean PWRSTS14;               //  COM 0
+	private boolean PWRSTS15;               //  COM 1
+	private boolean PWRSTS16;               //  RW0 0
+	private boolean PWRSTS18;               //  RW1 0
+	private boolean PWRSTS20;               //  RW2 0
+	private boolean PWRSTS22;               //  RW3 0
+	private boolean SOL_STATUS_0;           //  Solarring 0 status
+	private boolean SOL_STATUS_1;           //  Solarring 1 status
+	private boolean REG_PWR_STAT_0;         //  Reg Pwr 0 status
+	private boolean REG_PWR_STAT_1;         //  Reg Pwr 1 status
+	private short SOL_PWR_INPUT;            //  Pwr Input via Solarpanels    
+	private short PWR_INTO_BAT;             //  Pwr into/from the Batteries  
+	private int BAT_ENRG_AVAIL;             //  Energy left in Batteries     
+	private int PWR_INTO_SYS;               //  Pwr into the system          
+	private float SP_VOLT_A;                //  PCU A sum point voltage      
+	private float SP_VOLT_B;                //  PCU B sum point voltage      
+                                                
 	public StdTmEPS(DataInputStream dis) throws IOException {
 		int raw = dis.readUnsignedByte();
 		NODENO = (byte) (raw >> 7);

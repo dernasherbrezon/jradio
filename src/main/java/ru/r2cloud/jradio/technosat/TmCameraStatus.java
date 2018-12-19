@@ -5,8 +5,8 @@ import java.io.IOException;
 
 public class TmCameraStatus {
 
-	private boolean I2CEN;
-	private boolean I2CLK;
+	private boolean I2CEN;     // I2C enabled
+	private boolean I2CLK;     // I2C locked
 
 	public TmCameraStatus(DataInputStream dis) throws IOException {
 		int raw = dis.readUnsignedByte();

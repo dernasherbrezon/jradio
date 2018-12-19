@@ -5,32 +5,32 @@ import java.io.IOException;
 
 public class TmEpsCtrlPcuPower {
 
-	private float SOLVOLTA;
-	private float SOLVOLTB;
-	private float SP_V_ADC_A;
-	private short SP_C_ADC_A;
-	private float SP_V_ADC_B;
-	private short SP_C_ADC_B;
-	private float BATVOLTA_ADC;
-	private float BATVOLTB_ADC;
-	private float MAIN_12V_A;
-	private float MAIN_12V_B;
-	private float MAIN_5V_A;
-	private float MAIN_5V_B;
-	private float MAIN_3V3_A;
-	private float MAIN_3V3_B;
-	private int SUM_MAIN_12V_A;
-	private int SUM_MAIN_12V_B;
-	private int SUM_MAIN_5V_A;
-	private int SUM_MAIN_5V_B;
-	private int SUM_MAIN_3V3_A;
-	private int SUM_MAIN_3V3_B;
-	private float MAIN_Unreg_A;
-	private float MAIN_Unreg_B;
-	private int SUM_MAIN_Unreg_A;
-	private int SUM_MAIN_Unreg_B;
-	private float PCU_TEMP_A;
-	private float PCU_TEMP_B;
+	private float SOLVOLTA;             //  The voltage of the solar panel ring A.
+	private float SOLVOLTB;             //  The voltage of the solar panel ring B.
+	private float SP_V_ADC_A;           //  Voltage of the PCU's sum point. Measured on PCU A.
+	private short SP_C_ADC_A;           //  Current drawn from the PCU sum point. Measured on PCU A.
+	private float SP_V_ADC_B;           //  Voltage of the PCU's sum point. Measured on PCU B.
+	private short SP_C_ADC_B;           //  Current drawn from the PCU sum point. Measured on PCU B.
+	private float BATVOLTA_ADC;         //  Battery A voltage measured via an external voltage divider and ADC of the µC.
+	private float BATVOLTB_ADC;         //  Battery B voltage measured via an external voltage divider and ADC of the µC.
+	private float MAIN_12V_A;           //  12V voltage measurement of the main regulated power bus A switch.
+	private float MAIN_12V_B;           //  12V voltage measurement of the main regulated power bus B switch.
+	private float MAIN_5V_A;            //  5V voltage measurement of the main regulated power bus A switch.
+	private float MAIN_5V_B;            //  5V voltage measurement of the main regulated power bus B switch.
+	private float MAIN_3V3_A;           //  3V3 voltage measurement of the main regulated power bus A switch.
+	private float MAIN_3V3_B;           //  3V3 voltage measurement of the main regulated power bus B switch.
+	private int SUM_MAIN_12V_A;         //  12V current measurement of the main regulated power bus A switch.
+	private int SUM_MAIN_12V_B;         //  12V current measurement of the main regulated power bus B switch.
+	private int SUM_MAIN_5V_A;          //  5V current measurement of the main regulated power bus A switch.
+	private int SUM_MAIN_5V_B;          //  5V current measurement of the main regulated power bus B switch.
+	private int SUM_MAIN_3V3_A;         //  3V3 current measurement of the main regulated power bus A switch.
+	private int SUM_MAIN_3V3_B;         //  3V3 current measurement of the main regulated power bus B switch.
+	private float MAIN_Unreg_A;         //  Voltage measurement of the main unregulated power bus A switch.
+	private float MAIN_Unreg_B;         //  Voltage measurement of the main unregulated power bus B switch.
+	private int SUM_MAIN_Unreg_A;       //  Current measurement of the main unregulated power bus A switch.
+	private int SUM_MAIN_Unreg_B;       //  Current measurement of the main unregulated power bus B switch.
+	private float PCU_TEMP_A;        //  Temperature PCU A
+	private float PCU_TEMP_B;        //  Temperature PCU B
 
 	public TmEpsCtrlPcuPower(DataInputStream dis) throws IOException {
 		SOLVOLTA = dis.readUnsignedShort() * 0.001f;

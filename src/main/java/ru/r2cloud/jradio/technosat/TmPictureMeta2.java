@@ -5,188 +5,188 @@ import java.io.IOException;
 
 public class TmPictureMeta2 {
 
-	private int PLEN00;
-	private int PLEN01;
-	private int PLEN02;
-	private int PLEN03;
-	private int PLEN04;
-	private int PLEN05;
-	private int PLEN06;
-	private int PLEN07;
-	private int PLEN08;
-	private int PLEN09;
-	private int PLEN10;
-	private int PLEN11;
-	private int PLEN12;
-	private int PLEN13;
-	private int PLEN14;
-	private int PLEN15;
-	private int PLEN16;
-	private int PLEN17;
-	private int PLEN18;
-	private int PLEN19;
-	private int PLEN20;
-	private int PLEN21;
-	private int PLEN22;
-	private int PLEN23;
-	private int PLEN24;
-	private int PLEN25;
-	private int PLEN26;
-	private int PLEN27;
-	private int PLEN28;
-	private int PLEN29;
-	private long PTIM00;
-	private long PTIM01;
-	private long PTIM02;
-	private long PTIM03;
-	private long PTIM04;
-	private long PTIM05;
-	private long PTIM06;
-	private long PTIM07;
-	private long PTIM08;
-	private long PTIM09;
-	private long PTIM10;
-	private long PTIM11;
-	private long PTIM12;
-	private long PTIM13;
-	private long PTIM14;
-	private long PTIM15;
-	private long PTIM16;
-	private long PTIM17;
-	private long PTIM18;
-	private long PTIM19;
-	private long PTIM20;
-	private long PTIM21;
-	private long PTIM22;
-	private long PTIM23;
-	private long PTIM24;
-	private long PTIM25;
-	private long PTIM26;
-	private long PTIM27;
-	private long PTIM28;
-	private long PTIM29;
-	private byte[] PCRC00;
-	private byte[] PCRC01;
-	private byte[] PCRC02;
-	private byte[] PCRC03;
-	private byte[] PCRC04;
-	private byte[] PCRC05;
-	private byte[] PCRC06;
-	private byte[] PCRC07;
-	private byte[] PCRC08;
-	private byte[] PCRC09;
-	private byte[] PCRC10;
-	private byte[] PCRC11;
-	private byte[] PCRC12;
-	private byte[] PCRC13;
-	private byte[] PCRC14;
-	private byte[] PCRC15;
-	private byte[] PCRC16;
-	private byte[] PCRC17;
-	private byte[] PCRC18;
-	private byte[] PCRC19;
-	private byte[] PCRC20;
-	private byte[] PCRC21;
-	private byte[] PCRC22;
-	private byte[] PCRC23;
-	private byte[] PCRC24;
-	private byte[] PCRC25;
-	private byte[] PCRC26;
-	private byte[] PCRC27;
-	private byte[] PCRC28;
-	private byte[] PCRC29;
-	private int PCHU00;
-	private int PCHU01;
-	private int PCHU02;
-	private int PCHU03;
-	private int PCHU04;
-	private int PCHU05;
-	private int PCHU06;
-	private int PCHU07;
-	private int PCHU08;
-	private int PCHU09;
-	private int PCHU10;
-	private int PCHU11;
-	private int PCHU12;
-	private int PCHU13;
-	private int PCHU14;
-	private int PCHU15;
-	private int PCHU16;
-	private int PCHU17;
-	private int PCHU18;
-	private int PCHU19;
-	private int PCHU20;
-	private int PCHU21;
-	private int PCHU22;
-	private int PCHU23;
-	private int PCHU24;
-	private int PCHU25;
-	private int PCHU26;
-	private int PCHU27;
-	private int PCHU28;
-	private int PCHU29;
-	private int ID_00;
-	private int ID_01;
-	private int ID_02;
-	private int ID_03;
-	private int ID_04;
-	private int ID_05;
-	private int ID_06;
-	private int ID_07;
-	private int ID_08;
-	private int ID_09;
-	private int ID_10;
-	private int ID_11;
-	private int ID_12;
-	private int ID_13;
-	private int ID_14;
-	private int ID_15;
-	private int ID_16;
-	private int ID_17;
-	private int ID_18;
-	private int ID_19;
-	private int ID_20;
-	private int ID_21;
-	private int ID_22;
-	private int ID_23;
-	private int ID_24;
-	private int ID_25;
-	private int ID_26;
-	private int ID_27;
-	private int ID_28;
-	private int ID_29;
-	private byte[] OCC_00;
-	private byte[] OCC_01;
-	private byte[] OCC_02;
-	private byte[] OCC_03;
-	private byte[] OCC_04;
-	private byte[] OCC_05;
-	private byte[] OCC_06;
-	private byte[] OCC_07;
-	private byte[] OCC_08;
-	private byte[] OCC_09;
-	private byte[] OCC_10;
-	private byte[] OCC_11;
-	private byte[] OCC_12;
-	private byte[] OCC_13;
-	private byte[] OCC_14;
-	private byte[] OCC_15;
-	private byte[] OCC_16;
-	private byte[] OCC_17;
-	private byte[] OCC_18;
-	private byte[] OCC_19;
-	private byte[] OCC_20;
-	private byte[] OCC_21;
-	private byte[] OCC_22;
-	private byte[] OCC_23;
-	private byte[] OCC_24;
-	private byte[] OCC_25;
-	private byte[] OCC_26;
-	private byte[] OCC_27;
-	private byte[] OCC_28;
-	private byte[] OCC_29;
-	private byte[] OCC_30;
-	private byte[] OCC_31;
+	private int PLEN00;           // Picture length of slot 0
+	private int PLEN01;           // Picture length of slot 1
+	private int PLEN02;           // Picture length of slot 2
+	private int PLEN03;           // Picture length of slot 3
+	private int PLEN04;           // Picture length of slot 4
+	private int PLEN05;           // Picture length of slot 5
+	private int PLEN06;           // Picture length of slot 6
+	private int PLEN07;           // Picture length of slot 7
+	private int PLEN08;           // Picture length of slot 8
+	private int PLEN09;           // Picture length of slot 9
+	private int PLEN10;           // Picture length of slot 10
+	private int PLEN11;           // Picture length of slot 11
+	private int PLEN12;           // Picture length of slot 12
+	private int PLEN13;           // Picture length of slot 13
+	private int PLEN14;           // Picture length of slot 14
+	private int PLEN15;           // Picture length of slot 15
+	private int PLEN16;           // Picture length of slot 16
+	private int PLEN17;           // Picture length of slot 17
+	private int PLEN18;           // Picture length of slot 18
+	private int PLEN19;           // Picture length of slot 19
+	private int PLEN20;           // Picture length of slot 20
+	private int PLEN21;           // Picture length of slot 21
+	private int PLEN22;           // Picture length of slot 22
+	private int PLEN23;           // Picture length of slot 23
+	private int PLEN24;           // Picture length of slot 24
+	private int PLEN25;           // Picture length of slot 25
+	private int PLEN26;           // Picture length of slot 26
+	private int PLEN27;           // Picture length of slot 27
+	private int PLEN28;           // Picture length of slot 28
+	private int PLEN29;           // Picture length of slot 29
+	private long PTIM00;          // Picture time of slot 0
+	private long PTIM01;          // Picture time of slot 1
+	private long PTIM02;          // Picture time of slot 2
+	private long PTIM03;          // Picture time of slot 3
+	private long PTIM04;          // Picture time of slot 4
+	private long PTIM05;          // Picture time of slot 5
+	private long PTIM06;          // Picture time of slot 6
+	private long PTIM07;          // Picture time of slot 7
+	private long PTIM08;          // Picture time of slot 8
+	private long PTIM09;          // Picture time of slot 9
+	private long PTIM10;          // Picture time of slot 10
+	private long PTIM11;          // Picture time of slot 11
+	private long PTIM12;          // Picture time of slot 12
+	private long PTIM13;          // Picture time of slot 13
+	private long PTIM14;          // Picture time of slot 14
+	private long PTIM15;          // Picture time of slot 15
+	private long PTIM16;          // Picture time of slot 16
+	private long PTIM17;          // Picture time of slot 17
+	private long PTIM18;          // Picture time of slot 18
+	private long PTIM19;          // Picture time of slot 19
+	private long PTIM20;          // Picture time of slot 20
+	private long PTIM21;          // Picture time of slot 21
+	private long PTIM22;          // Picture time of slot 22
+	private long PTIM23;          // Picture time of slot 23
+	private long PTIM24;          // Picture time of slot 24
+	private long PTIM25;          // Picture time of slot 25
+	private long PTIM26;          // Picture time of slot 26
+	private long PTIM27;          // Picture time of slot 27
+	private long PTIM28;          // Picture time of slot 28
+	private long PTIM29;          // Picture time of slot 29
+	private byte[] PCRC00;        // Picture CRC32 of slot 0
+	private byte[] PCRC01;        // Picture CRC32 of slot 1
+	private byte[] PCRC02;        // Picture CRC32 of slot 2
+	private byte[] PCRC03;        // Picture CRC32 of slot 3
+	private byte[] PCRC04;        // Picture CRC32 of slot 4
+	private byte[] PCRC05;        // Picture CRC32 of slot 5
+	private byte[] PCRC06;        // Picture CRC32 of slot 6
+	private byte[] PCRC07;        // Picture CRC32 of slot 7
+	private byte[] PCRC08;        // Picture CRC32 of slot 8
+	private byte[] PCRC09;        // Picture CRC32 of slot 9
+	private byte[] PCRC10;        // Picture CRC32 of slot 10
+	private byte[] PCRC11;        // Picture CRC32 of slot 11
+	private byte[] PCRC12;        // Picture CRC32 of slot 12
+	private byte[] PCRC13;        // Picture CRC32 of slot 13
+	private byte[] PCRC14;        // Picture CRC32 of slot 14
+	private byte[] PCRC15;        // Picture CRC32 of slot 15
+	private byte[] PCRC16;        // Picture CRC32 of slot 16
+	private byte[] PCRC17;        // Picture CRC32 of slot 17
+	private byte[] PCRC18;        // Picture CRC32 of slot 18
+	private byte[] PCRC19;        // Picture CRC32 of slot 19
+	private byte[] PCRC20;        // Picture CRC32 of slot 20
+	private byte[] PCRC21;        // Picture CRC32 of slot 21
+	private byte[] PCRC22;        // Picture CRC32 of slot 22
+	private byte[] PCRC23;        // Picture CRC32 of slot 23
+	private byte[] PCRC24;        // Picture CRC32 of slot 24
+	private byte[] PCRC25;        // Picture CRC32 of slot 25
+	private byte[] PCRC26;        // Picture CRC32 of slot 26
+	private byte[] PCRC27;        // Picture CRC32 of slot 27
+	private byte[] PCRC28;        // Picture CRC32 of slot 28
+	private byte[] PCRC29;        // Picture CRC32 of slot 29
+	private int PCHU00;           // Picture total chunks of slot 0
+	private int PCHU01;           // Picture total chunks of slot 1
+	private int PCHU02;           // Picture total chunks of slot 2
+	private int PCHU03;           // Picture total chunks of slot 3
+	private int PCHU04;           // Picture total chunks of slot 4
+	private int PCHU05;           // Picture total chunks of slot 5
+	private int PCHU06;           // Picture total chunks of slot 6
+	private int PCHU07;           // Picture total chunks of slot 7
+	private int PCHU08;           // Picture total chunks of slot 8
+	private int PCHU09;           // Picture total chunks of slot 9
+	private int PCHU10;           // Picture total chunks of slot 10
+	private int PCHU11;           // Picture total chunks of slot 11
+	private int PCHU12;           // Picture total chunks of slot 12
+	private int PCHU13;           // Picture total chunks of slot 13
+	private int PCHU14;           // Picture total chunks of slot 14
+	private int PCHU15;           // Picture total chunks of slot 15
+	private int PCHU16;           // Picture total chunks of slot 16
+	private int PCHU17;           // Picture total chunks of slot 17
+	private int PCHU18;           // Picture total chunks of slot 18
+	private int PCHU19;           // Picture total chunks of slot 19
+	private int PCHU20;           // Picture total chunks of slot 20
+	private int PCHU21;           // Picture total chunks of slot 21
+	private int PCHU22;           // Picture total chunks of slot 22
+	private int PCHU23;           // Picture total chunks of slot 23
+	private int PCHU24;           // Picture total chunks of slot 24
+	private int PCHU25;           // Picture total chunks of slot 25
+	private int PCHU26;           // Picture total chunks of slot 26
+	private int PCHU27;           // Picture total chunks of slot 27
+	private int PCHU28;           // Picture total chunks of slot 28
+	private int PCHU29;           // Picture total chunks of slot 29
+	private int ID_00;            // ID of the picture meta 0
+	private int ID_01;            // ID of the picture meta 1
+	private int ID_02;            // ID of the picture meta 2
+	private int ID_03;            // ID of the picture meta 3
+	private int ID_04;            // ID of the picture meta 4
+	private int ID_05;            // ID of the picture meta 5
+	private int ID_06;            // ID of the picture meta 6
+	private int ID_07;            // ID of the picture meta 7
+	private int ID_08;            // ID of the picture meta 8
+	private int ID_09;            // ID of the picture meta 9
+	private int ID_10;            // ID of the picture meta 10
+	private int ID_11;            // ID of the picture meta 11
+	private int ID_12;            // ID of the picture meta 12
+	private int ID_13;            // ID of the picture meta 13
+	private int ID_14;            // ID of the picture meta 14
+	private int ID_15;            // ID of the picture meta 15
+	private int ID_16;            // ID of the picture meta 16
+	private int ID_17;            // ID of the picture meta 17
+	private int ID_18;            // ID of the picture meta 18
+	private int ID_19;            // ID of the picture meta 19
+	private int ID_20;            // ID of the picture meta 20
+	private int ID_21;            // ID of the picture meta 21
+	private int ID_22;            // ID of the picture meta 22
+	private int ID_23;            // ID of the picture meta 23
+	private int ID_24;            // ID of the picture meta 24
+	private int ID_25;            // ID of the picture meta 25
+	private int ID_26;            // ID of the picture meta 26
+	private int ID_27;            // ID of the picture meta 27
+	private int ID_28;            // ID of the picture meta 28
+	private int ID_29;            // ID of the picture meta 29
+	private byte[] OCC_00;        // Occupied mask (1 means occupied, 0 means free, left to right))
+	private byte[] OCC_01;        // Occupied mask (1 means occupied, 0 means free, left to right))
+	private byte[] OCC_02;        // Occupied mask (1 means occupied, 0 means free, left to right))
+	private byte[] OCC_03;        // Occupied mask (1 means occupied, 0 means free, left to right))
+	private byte[] OCC_04;        // Occupied mask (1 means occupied, 0 means free, left to right))
+	private byte[] OCC_05;        // Occupied mask (1 means occupied, 0 means free, left to right))
+	private byte[] OCC_06;        // Occupied mask (1 means occupied, 0 means free, left to right))
+	private byte[] OCC_07;        // Occupied mask (1 means occupied, 0 means free, left to right))
+	private byte[] OCC_08;        // Occupied mask (1 means occupied, 0 means free, left to right))
+	private byte[] OCC_09;        // Occupied mask (1 means occupied, 0 means free, left to right))
+	private byte[] OCC_10;        // Occupied mask (1 means occupied, 0 means free, left to right))
+	private byte[] OCC_11;        // Occupied mask (1 means occupied, 0 means free, left to right))
+	private byte[] OCC_12;        // Occupied mask (1 means occupied, 0 means free, left to right))
+	private byte[] OCC_13;        // Occupied mask (1 means occupied, 0 means free, left to right))
+	private byte[] OCC_14;        // Occupied mask (1 means occupied, 0 means free, left to right))
+	private byte[] OCC_15;        // Occupied mask (1 means occupied, 0 means free, left to right))
+	private byte[] OCC_16;        // Occupied mask (1 means occupied, 0 means free, left to right))
+	private byte[] OCC_17;        // Occupied mask (1 means occupied, 0 means free, left to right))
+	private byte[] OCC_18;        // Occupied mask (1 means occupied, 0 means free, left to right))
+	private byte[] OCC_19;        // Occupied mask (1 means occupied, 0 means free, left to right))
+	private byte[] OCC_20;        // Occupied mask (1 means occupied, 0 means free, left to right))
+	private byte[] OCC_21;        // Occupied mask (1 means occupied, 0 means free, left to right))
+	private byte[] OCC_22;        // Occupied mask (1 means occupied, 0 means free, left to right))
+	private byte[] OCC_23;        // Occupied mask (1 means occupied, 0 means free, left to right))
+	private byte[] OCC_24;        // Occupied mask (1 means occupied, 0 means free, left to right))
+	private byte[] OCC_25;        // Occupied mask (1 means occupied, 0 means free, left to right))
+	private byte[] OCC_26;        // Occupied mask (1 means occupied, 0 means free, left to right))
+	private byte[] OCC_27;        // Occupied mask (1 means occupied, 0 means free, left to right))
+	private byte[] OCC_28;        // Occupied mask (1 means occupied, 0 means free, left to right))
+	private byte[] OCC_29;        // Occupied mask (1 means occupied, 0 means free, left to right))
+	private byte[] OCC_30;        // Occupied mask (1 means occupied, 0 means free, left to right))
+	private byte[] OCC_31;        // Occupied mask (1 means occupied, 0 means free, left to right))
 
 	public TmPictureMeta2(DataInputStream dis) throws IOException {
 		PLEN00 = dis.readUnsignedShort();

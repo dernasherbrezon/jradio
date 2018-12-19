@@ -5,13 +5,13 @@ import java.io.IOException;
 
 public class TmCameraPicture2 {
 
-	private int PID;
-	private int CHNUM;
-	private int TOTCH;
-	private byte[] CRC32;
-	private long RECTM;
-	private PictureType TYPE;
-	private byte[] PCHK;
+	private int PID;               // ID
+	private int CHNUM;             // Chunk number
+	private int TOTCH;             // Total chunks
+	private byte[] CRC32;          // CRC32
+	private long RECTM;            // Recording time
+	private PictureType TYPE;      // Media type
+	private byte[] PCHK;           // Raw Data
 
 	public TmCameraPicture2(DataInputStream dis) throws IOException {
 		PID = dis.readUnsignedShort();

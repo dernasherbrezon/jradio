@@ -5,37 +5,33 @@ import java.io.IOException;
 
 public class StdTmAOCS {
 
-	private byte NODENO;
-	private boolean RST_EN;
-	private byte BOTSLT;
-	private boolean SYNPPS;
-	private boolean DISUTC;
-	private boolean DULBSY;
-
-	private AcsMode ACS_MODE;
-	private boolean MFS_RECEIVED;
-	private boolean SSS_RECEIVED;
-	private boolean GYR_RECEIVED;
-	private boolean FOR_RECEIVED;
-	private boolean STR_RECEIVED;
-
-	private boolean MTS_RECEIVED;
-	private boolean RW0_RECEIVED;
-	private boolean RW1_RECEIVED;
-	private boolean RW2_RECEIVED;
-	private boolean RW3_RECEIVED;
-
-	private float STD_Q_S;
-	private float STD_Q_X;
-	private float STD_Q_Y;
-	private float STD_Q_Z;
-
-	private float STD_RATE_X;
-	private float STD_RATE_Y;
-	private float STD_RATE_Z;
-	private int STD_R_X;
-	private int STD_R_Y;
-	private int STD_R_Z;
+	private byte NODENO;                     //   redundant node number
+	private boolean RST_EN;                  //   the watchdog application is enabled to reset the node
+	private byte BOTSLT;                     //   currently running internal software slot
+	private boolean SYNPPS;                  //   shall the node synchronize with the PPS signal
+	private boolean DISUTC;                  //   shall the node distribute the UTC time at the next PPS signal
+	private boolean DULBSY;                  //   Indicates the state of the UploadManagers Flash Controller
+	private AcsMode ACS_MODE;                //
+	private boolean MFS_RECEIVED;            //   True, if data from the magnetic field sensor system was received in the current control cycle
+	private boolean SSS_RECEIVED;            //   True, if data from the Sun sensor system was received in the current control cycle
+	private boolean GYR_RECEIVED;            //   True, if data from the MEMS gyro system was received in the current control cycle
+	private boolean FOR_RECEIVED;            //   True, if data from the fiber optic rate sensor system was received in the current control cycle
+	private boolean STR_RECEIVED;            //   True, if data from the star tracker system was received in the current control cycle
+	private boolean MTS_RECEIVED;            //   True, if data from the magnetic torquer system was received in the current control cycle      
+	private boolean RW0_RECEIVED;            //   True, if data from the reaction wheel 0 was received in the current control cycle             
+	private boolean RW1_RECEIVED;            //   True, if data from the reaction wheel 1 was received in the current control cycle             
+	private boolean RW2_RECEIVED;            //   True, if data from the reaction wheel 2 was received in the current control cycle             
+	private boolean RW3_RECEIVED;            //   True, if data from the reaction wheel 3 was received in the current control cycle             
+	private float STD_Q_S;                   //   
+	private float STD_Q_X;                   //
+	private float STD_Q_Y;                   //
+	private float STD_Q_Z;                   //
+	private float STD_RATE_X;                //
+	private float STD_RATE_Y;                //
+	private float STD_RATE_Z;                //
+	private int STD_R_X;                     //
+	private int STD_R_Y;                     //
+	private int STD_R_Z;                     //
 
 	public StdTmAOCS(DataInputStream dis) throws IOException {
 		int raw = dis.readUnsignedByte();

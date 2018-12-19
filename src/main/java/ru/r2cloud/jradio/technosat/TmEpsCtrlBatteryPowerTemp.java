@@ -5,17 +5,17 @@ import java.io.IOException;
 
 public class TmEpsCtrlBatteryPowerTemp {
 
-	private short I2C_0_CURRENT;
-	private float BATVOLTA;
-	private short BATCURRA;
-	private int BATCAPCA;
-	private float BATVOLTA_ADC;
-	private float BATVOLTB;
-	private short BATCURRB;
-	private int BATCAPB;
-	private float BATVOLTB_ADC;
-	private byte BATTMPA;
-	private byte BATTMPB;
+	private short I2C_0_CURRENT;      // Current drawn by all sensors of the solar panels.
+	private float BATVOLTA;           // Battery A voltage measured by its battery monitor.
+	private short BATCURRA;           // Battery A voltage measured by its battery monitor.
+	private int BATCAPCA;             // Battery A voltage measured by its battery monitor.
+	private float BATVOLTA_ADC;       // Battery A voltage measured via an external voltage divider and ADC of the µC.
+	private float BATVOLTB;           // Battery B voltage measured by its battery monitor.
+	private short BATCURRB;           // Battery B voltage measured by its battery monitor.
+	private int BATCAPB;              // Battery B voltage measured by its battery monitor.
+	private float BATVOLTB_ADC;       // Battery B voltage measured via an external voltage divider and ADC of the µC.
+	private byte BATTMPA;             // Battery A voltage measured by its battery monitor.
+	private byte BATTMPB;             // Battery B voltage measured by its battery monitor.
 
 	public TmEpsCtrlBatteryPowerTemp(DataInputStream dis) throws IOException {
 		I2C_0_CURRENT = dis.readShort();

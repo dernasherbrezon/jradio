@@ -5,24 +5,24 @@ import java.io.IOException;
 
 public class TmForStatus {
 
-	private float FOR_0_CURRE;
-	private float FOR_1_CURRE;
-	private float FOR_2_CURRE;
-	private float FOR_I2C_0_CURRE;
-	private boolean FOR_0_ENABLED;
-	private boolean FOR_1_ENABLED;
-	private boolean FOR_2_ENABLED;
-	private boolean FOR_0_LOCKED;
-	private boolean FOR_1_LOCKED;
-	private boolean FOR_2_LOCKED;
-	private boolean FOR_0_BOUND;
-	private boolean FOR_1_BOUND;
-	private boolean FOR_2_BOUND;
-	private boolean FOR_I2C_0_ENABL;
-	private boolean FOR_I2C_0_LOCKE;
-	private boolean FOR_TMP_0_BOUND;
-	private boolean FOR_TMP_1_BOUND;
-	private boolean FOR_TMP_2_BOUND;
+	private float FOR_0_CURRE;               //   FOR 0 current
+	private float FOR_1_CURRE;               //   FOR 1 current
+	private float FOR_2_CURRE;               //   FOR 2 current
+	private float FOR_I2C_0_CURRE;           //   I2C0 current
+	private boolean FOR_0_ENABLED;           //   FOR 0 enabled
+	private boolean FOR_1_ENABLED;           //   FOR 1 enabled
+	private boolean FOR_2_ENABLED;           //   FOR 2 enabled
+	private boolean FOR_0_LOCKED;            //   FOR 0 locked
+	private boolean FOR_1_LOCKED;            //   FOR 1 locked
+	private boolean FOR_2_LOCKED;            //   FOR 2 locked
+	private boolean FOR_0_BOUND;             //   FOR 0 bound
+	private boolean FOR_1_BOUND;             //   FOR 1 bound
+	private boolean FOR_2_BOUND;             //   FOR 2 bound
+	private boolean FOR_I2C_0_ENABL;         //   I2C0 enabled
+	private boolean FOR_I2C_0_LOCKE;         //   I2C0 locked
+	private boolean FOR_TMP_0_BOUND;         //   FOR TMP 0 bound
+	private boolean FOR_TMP_1_BOUND;         //   FOR TMP 1 bound
+	private boolean FOR_TMP_2_BOUND;         //   FOR TMP 2 bound
 
 	public TmForStatus(DataInputStream dis) throws IOException {
 		FOR_0_CURRE = dis.readUnsignedShort() * 0.1f;

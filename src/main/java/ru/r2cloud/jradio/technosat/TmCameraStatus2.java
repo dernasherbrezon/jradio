@@ -5,9 +5,9 @@ import java.io.IOException;
 
 public class TmCameraStatus2 {
 
-	private boolean I2CEN;
-	private boolean I2CLK;
-	private boolean BUSY;
+	private boolean I2CEN;     // I2C enabled
+	private boolean I2CLK;     // I2C locked
+	private boolean BUSY;      // Cam busy
 
 	public TmCameraStatus2(DataInputStream dis) throws IOException {
 		int raw = dis.readUnsignedByte();

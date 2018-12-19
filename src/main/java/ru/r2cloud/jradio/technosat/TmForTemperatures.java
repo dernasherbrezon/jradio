@@ -5,9 +5,9 @@ import java.io.IOException;
 
 public class TmForTemperatures {
 
-	private float FOR_TEMP0;
-	private float FOR_TEMP1;
-	private float FOR_TEMP2;
+	private float FOR_TEMP0;        //  temp FOR 0
+	private float FOR_TEMP1;        //  temp FOR 1
+	private float FOR_TEMP2;        //  temp FOR 2
 
 	public TmForTemperatures(DataInputStream dis) throws IOException {
 		FOR_TEMP0 = dis.readShort() * 0.1f;

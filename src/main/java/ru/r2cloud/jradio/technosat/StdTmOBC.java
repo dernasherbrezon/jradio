@@ -5,16 +5,16 @@ import java.io.IOException;
 
 public class StdTmOBC {
 
-	private byte NODENO;
-	private boolean RST_EN;
-	private byte BOTSLT;
-	private boolean SYNPPS;
-	private boolean DISUTC;
-	private boolean DULBSY;
-	private HistoryBufferType TMMTFHIST;
-	private SatelliteMode SAT_MODE;
-	private HistoryBufferType TMMHSHIST;
-	private HighSpeedState TMMHSSTAT;
+	private byte NODENO;                    // redundant node number
+	private boolean RST_EN;                 // the watchdog application is enabled to reset the node
+	private byte BOTSLT;                    // currently running internal software slot
+	private boolean SYNPPS;                 // shall the node synchronize with the PPS signal
+	private boolean DISUTC;                 // shall the node distribute the UTC time at the next PPS signal
+	private boolean DULBSY;                 // Indicates the state of the UploadManagers Flash Controller
+	private HistoryBufferType TMMTFHIST;    // indicates the history buffer used to fill up transfer frames with history telemetry
+	private SatelliteMode SAT_MODE;         // the current mode of the satellite
+	private HistoryBufferType TMMHSHIST;    // indicates the history buffer used to fill up the high speed downlink
+	private HighSpeedState TMMHSSTAT;       // indicates the current state of highspeed telemetry transmissions
 
 	public StdTmOBC(DataInputStream dis) throws IOException {
 		int raw = dis.readUnsignedByte();

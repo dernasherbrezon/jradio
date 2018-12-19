@@ -5,15 +5,15 @@ import java.io.IOException;
 
 public class I2CStatus {
 
-	private float I2C0CUR;
-	private float I2C1CUR;
-	private float I2C2CUR;
-	private boolean I2C0ENA;
-	private boolean I2C1ENA;
-	private boolean I2C2ENA;
-	private boolean I2C0LCK;
-	private boolean I2C1LCK;
-	private boolean I2C2LCK;
+	private float I2C0CUR;         // Current drawn on I2C-Bus 0
+	private float I2C1CUR;         // Current drawn on I2C-Bus 1
+	private float I2C2CUR;         // Current drawn on I2C-Bus 2
+	private boolean I2C0ENA;       // Enable-Status of the I2C-Bus 0
+	private boolean I2C1ENA;       // Enable-Status of the I2C-Bus 1
+	private boolean I2C2ENA;       // Enable-Status of the I2C-Bus 2
+	private boolean I2C0LCK;       // Lock-Status of the I2C-Bus 0
+	private boolean I2C1LCK;       // Lock-Status of the I2C-Bus 1
+	private boolean I2C2LCK;       // Lock-Status of the I2C-Bus 2
 
 	public I2CStatus(DataInputStream dis) throws IOException {
 		I2C0CUR = dis.readShort() * 0.0305185095f;

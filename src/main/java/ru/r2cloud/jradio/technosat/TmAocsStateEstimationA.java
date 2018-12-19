@@ -5,35 +5,35 @@ import java.io.IOException;
 
 public class TmAocsStateEstimationA {
 
-	private float ESTA_Q_S;
-	private float ESTA_Q_X;
-	private float ESTA_Q_Y;
-	private float ESTA_Q_Z;
-	private float ESTA_RATE_X;
-	private float ESTA_RATE_Y;
-	private float ESTA_RATE_Z;
-	private float ESTA_ACC_X;
-	private float ESTA_ACC_Y;
-	private float ESTA_ACC_Z;
-	private int ESTA_B_SAT_X;
-	private int ESTA_B_SAT_Y;
-	private int ESTA_B_SAT_Z;
-	private float ESTA_S_SAT_X;
-	private float ESTA_S_SAT_Y;
-	private float ESTA_S_SAT_Z;
-	private int ESTA_B_TOD_X;
-	private int ESTA_B_TOD_Y;
-	private int ESTA_B_TOD_Z;
-	private float ESTA_S_TOD_X;
-	private float ESTA_S_TOD_Y;
-	private float ESTA_S_TOD_Z;
-	private int ESTA_R_X;
-	private int ESTA_R_Y;
-	private int ESTA_R_Z;
-	private int ESTA_V_X;
-	private int ESTA_V_Y;
-	private int ESTA_V_Z;
-	private boolean ESTA_OCCULTATIO;
+	private float ESTA_Q_S;             //  Attitude (TOD<-SAT) S
+	private float ESTA_Q_X;             //  Attitude (TOD<-SAT) X
+	private float ESTA_Q_Y;             //  Attitude (TOD<-SAT) Y
+	private float ESTA_Q_Z;             //  Attitude (TOD<-SAT) Z
+	private float ESTA_RATE_X;          //  Angular Rate (SAT) X
+	private float ESTA_RATE_Y;          //  Angular Rate (SAT) Y
+	private float ESTA_RATE_Z;          //  Angular Rate (SAT) Z
+	private float ESTA_ACC_X;           //  Angular Acceleration (SAT) X
+	private float ESTA_ACC_Y;           //  Angular Acceleration (SAT) Y
+	private float ESTA_ACC_Z;           //  Angular Acceleration (SAT) Z
+	private int ESTA_B_SAT_X;           //  Geomagnetic Field (SAT) X
+	private int ESTA_B_SAT_Y;           //  Geomagnetic Field (SAT) Y
+	private int ESTA_B_SAT_Z;           //  Geomagnetic Field (SAT) Z
+	private float ESTA_S_SAT_X;         //  Sun Vector (SAT) X
+	private float ESTA_S_SAT_Y;         //  Sun Vector (SAT) Y
+	private float ESTA_S_SAT_Z;         //  Sun Vector (SAT) Z
+	private int ESTA_B_TOD_X;           //  Geomagnetic Field (TOD) X
+	private int ESTA_B_TOD_Y;           //  Geomagnetic Field (TOD) Y
+	private int ESTA_B_TOD_Z;           //  Geomagnetic Field (TOD) Z
+	private float ESTA_S_TOD_X;         //  Sun Vector (TOD) X
+	private float ESTA_S_TOD_Y;         //  Sun Vector (TOD) Y
+	private float ESTA_S_TOD_Z;         //  Sun Vector (TOD) Z
+	private int ESTA_R_X;               //  Position (TOD) X
+	private int ESTA_R_Y;               //  Position (TOD) Y
+	private int ESTA_R_Z;               //  Position (TOD) Z
+	private int ESTA_V_X;               //  Velocity (TOD) X
+	private int ESTA_V_Y;               //  Velocity (TOD) Y
+	private int ESTA_V_Z;               //  Velocity (TOD) Z
+	private boolean ESTA_OCCULTATIO;    //  Occultation
 
 	public TmAocsStateEstimationA(DataInputStream dis) throws IOException {
 		ESTA_Q_S = dis.readInt() * 0.000001f;

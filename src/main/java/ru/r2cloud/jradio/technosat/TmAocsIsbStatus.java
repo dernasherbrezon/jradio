@@ -5,84 +5,84 @@ import java.io.IOException;
 
 public class TmAocsIsbStatus {
 
-	private float I2C_0_CURRENT;
-	private float I2C_1_CURRENT;
-	private boolean I2C_0_ENABLED;
-	private boolean I2C_1_ENABLED;
-	private boolean I2C_0_LOCKED;
-	private boolean I2C_1_LOCKED;
-	private boolean SSU_00_BOUND;
-	private boolean SSU_01_BOUND;
-	private boolean SSU_02_BOUND;
-	private boolean SSU_03_BOUND;
-	private boolean SSU_04_BOUND;
-	private boolean SSU_05_BOUND;
-	private boolean SSU_10_BOUND;
-	private boolean SSU_11_BOUND;
-	private boolean SSU_12_BOUND;
-	private boolean SSU_13_BOUND;
-	private boolean SSU_14_BOUND;
-	private boolean SSU_15_BOUND;
-	private boolean MFSA_00_BOUND;
-	private boolean MFSA_01_BOUND;
-	private boolean MFSA_02_BOUND;
-	private boolean MFSA_03_BOUND;
-	private boolean MFSA_04_BOUND;
-	private boolean MFSA_05_BOUND;
-	private boolean MFSA_10_BOUND;
-	private boolean MFSA_11_BOUND;
-	private boolean MFSA_12_BOUND;
-	private boolean MFSA_13_BOUND;
-	private boolean MFSA_14_BOUND;
-	private boolean MFSA_15_BOUND;
-	private boolean GYRA_00_BOUND;
-	private boolean GYRA_01_BOUND;
-	private boolean GYRA_02_BOUND;
-	private boolean GYRA_03_BOUND;
-	private boolean GYRA_04_BOUND;
-	private boolean GYRA_05_BOUND;
-	private boolean GYRA_10_BOUND;
-	private boolean GYRA_11_BOUND;
-	private boolean GYRA_12_BOUND;
-	private boolean GYRA_13_BOUND;
-	private boolean GYRA_14_BOUND;
-	private boolean GYRA_15_BOUND;
-	private boolean GYRA_T_00_BOUND;
-	private boolean GYRA_T_01_BOUND;
-	private boolean GYRA_T_02_BOUND;
-	private boolean GYRA_T_03_BOUND;
-	private boolean GYRA_T_04_BOUND;
-	private boolean GYRA_T_05_BOUND;
-	private boolean GYRA_T_10_BOUND;
-	private boolean GYRA_T_11_BOUND;
-	private boolean GYRA_T_12_BOUND;
-	private boolean GYRA_T_13_BOUND;
-	private boolean GYRA_T_14_BOUND;
-	private boolean GYRA_T_15_BOUND;
-	private boolean MFSA_F_00_ACTIV;
-	private boolean MFSA_F_01_ACTIV;
-	private boolean MFSA_F_02_ACTIV;
-	private boolean MFSA_F_03_ACTIV;
-	private boolean MFSA_F_04_ACTIV;
-	private boolean MFSA_F_05_ACTIV;
-	private boolean MFSA_F_10_ACTIV;
-	private boolean MFSA_F_11_ACTIV;
-	private boolean MFSA_F_12_ACTIV;
-	private boolean MFSA_F_13_ACTIV;
-	private boolean MFSA_F_14_ACTIV;
-	private boolean MFSA_F_15_ACTIV;
-	private boolean GYRA_F_00_ACTIV;
-	private boolean GYRA_F_01_ACTIV;
-	private boolean GYRA_F_02_ACTIV;
-	private boolean GYRA_F_03_ACTIV;
-	private boolean GYRA_F_04_ACTIV;
-	private boolean GYRA_F_05_ACTIV;
-	private boolean GYRA_F_10_ACTIV;
-	private boolean GYRA_F_11_ACTIV;
-	private boolean GYRA_F_12_ACTIV;
-	private boolean GYRA_F_13_ACTIV;
-	private boolean GYRA_F_14_ACTIV;
-	private boolean GYRA_F_15_ACTIV;
+	private float I2C_0_CURRENT;               //   I2C0 current
+	private float I2C_1_CURRENT;               //   I2C1 current
+	private boolean I2C_0_ENABLED;             //   I2C0 enabled
+	private boolean I2C_1_ENABLED;             //   I2C1 enabled
+	private boolean I2C_0_LOCKED;              //   I2C0 locked
+	private boolean I2C_1_LOCKED;              //   I2C1 locked
+	private boolean SSU_00_BOUND;              //   bound
+	private boolean SSU_01_BOUND;              //   bound
+	private boolean SSU_02_BOUND;              //   bound
+	private boolean SSU_03_BOUND;              //   bound
+	private boolean SSU_04_BOUND;              //   bound
+	private boolean SSU_05_BOUND;              //   bound
+	private boolean SSU_10_BOUND;              //   bound
+	private boolean SSU_11_BOUND;              //   bound
+	private boolean SSU_12_BOUND;              //   bound
+	private boolean SSU_13_BOUND;              //   bound
+	private boolean SSU_14_BOUND;              //   bound
+	private boolean SSU_15_BOUND;              //   bound
+	private boolean MFSA_00_BOUND;             //   bound
+	private boolean MFSA_01_BOUND;             //   bound
+	private boolean MFSA_02_BOUND;             //   bound
+	private boolean MFSA_03_BOUND;             //   bound
+	private boolean MFSA_04_BOUND;             //   bound
+	private boolean MFSA_05_BOUND;             //   bound
+	private boolean MFSA_10_BOUND;             //   bound
+	private boolean MFSA_11_BOUND;             //   bound
+	private boolean MFSA_12_BOUND;             //   bound
+	private boolean MFSA_13_BOUND;             //   bound
+	private boolean MFSA_14_BOUND;             //   bound
+	private boolean MFSA_15_BOUND;             //   bound
+	private boolean GYRA_00_BOUND;             //   bound
+	private boolean GYRA_01_BOUND;             //   bound
+	private boolean GYRA_02_BOUND;             //   bound
+	private boolean GYRA_03_BOUND;             //   bound
+	private boolean GYRA_04_BOUND;             //   bound
+	private boolean GYRA_05_BOUND;             //   bound
+	private boolean GYRA_10_BOUND;             //   bound
+	private boolean GYRA_11_BOUND;             //   bound
+	private boolean GYRA_12_BOUND;             //   bound
+	private boolean GYRA_13_BOUND;             //   bound
+	private boolean GYRA_14_BOUND;             //   bound
+	private boolean GYRA_15_BOUND;             //   bound
+	private boolean GYRA_T_00_BOUND;           //   bound
+	private boolean GYRA_T_01_BOUND;           //   bound
+	private boolean GYRA_T_02_BOUND;           //   bound
+	private boolean GYRA_T_03_BOUND;           //   bound
+	private boolean GYRA_T_04_BOUND;           //   bound
+	private boolean GYRA_T_05_BOUND;           //   bound
+	private boolean GYRA_T_10_BOUND;           //   bound
+	private boolean GYRA_T_11_BOUND;           //   bound
+	private boolean GYRA_T_12_BOUND;           //   bound
+	private boolean GYRA_T_13_BOUND;           //   bound
+	private boolean GYRA_T_14_BOUND;           //   bound
+	private boolean GYRA_T_15_BOUND;           //   bound
+	private boolean MFSA_F_00_ACTIV;           //   active
+	private boolean MFSA_F_01_ACTIV;           //   active
+	private boolean MFSA_F_02_ACTIV;           //   active
+	private boolean MFSA_F_03_ACTIV;           //   active
+	private boolean MFSA_F_04_ACTIV;           //   active
+	private boolean MFSA_F_05_ACTIV;           //   active
+	private boolean MFSA_F_10_ACTIV;           //   active
+	private boolean MFSA_F_11_ACTIV;           //   active
+	private boolean MFSA_F_12_ACTIV;           //   active
+	private boolean MFSA_F_13_ACTIV;           //   active
+	private boolean MFSA_F_14_ACTIV;           //   active
+	private boolean MFSA_F_15_ACTIV;           //   active
+	private boolean GYRA_F_00_ACTIV;           //   active
+	private boolean GYRA_F_01_ACTIV;           //   active
+	private boolean GYRA_F_02_ACTIV;           //   active
+	private boolean GYRA_F_03_ACTIV;           //   active
+	private boolean GYRA_F_04_ACTIV;           //   active
+	private boolean GYRA_F_05_ACTIV;           //   active
+	private boolean GYRA_F_10_ACTIV;           //   active
+	private boolean GYRA_F_11_ACTIV;           //   active
+	private boolean GYRA_F_12_ACTIV;           //   active
+	private boolean GYRA_F_13_ACTIV;           //   active
+	private boolean GYRA_F_14_ACTIV;           //   active
+	private boolean GYRA_F_15_ACTIV;           //   active
 
 	public TmAocsIsbStatus(DataInputStream dis) throws IOException {
 		I2C_0_CURRENT = dis.readUnsignedShort() * 0.1f;

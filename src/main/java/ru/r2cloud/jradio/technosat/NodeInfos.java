@@ -5,17 +5,17 @@ import java.io.IOException;
 
 public class NodeInfos {
 
-	private int CNTIMM;
-	private int CNTTTC;
-	private int CNTINT;
-	private int CNTEXE;
-	private int CNTREJ;
-	private int LSTCID;
-	private float MCUCUR;
-	private long RSTSTS;
-	private int BOTCNT;
-	private long TIMLOC;
-	private byte TMPINT;
+	private int CNTIMM;          // counts all immediate telecommands for this node
+	private int CNTTTC;          // counts all timed telecommands for this node
+	private int CNTINT;          // counts all internal commands for this node
+	private int CNTEXE;          // counts all commands executed by applications on this node
+	private int CNTREJ;          // counts all commands rejected (bad TCC or Parameter) by applications on this node
+	private int LSTCID;          // ID of the last immediate/timetagged/internal command that was received by applications on this node (executed and rejected)
+	private float MCUCUR;        // supply current of the node's microcontroller
+	private long RSTSTS;         // the reset status register contents
+	private int BOTCNT;          // counts all soft- and hardware triggered reboots and power-ups
+	private long TIMLOC;         // current uptime since last reboot
+	private byte TMPINT;         // internal temperature of node-MCU
 
 	public NodeInfos(DataInputStream dis) throws IOException {
 		CNTIMM = dis.readUnsignedByte();

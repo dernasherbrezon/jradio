@@ -5,11 +5,11 @@ import java.io.IOException;
 
 public class TmCameraPicture {
 
-	private int PID;
-	private int CHNUM;
-	private int TOTCH;
-	private byte[] CRC32;
-	private byte[] PCHK;
+	private int PID;           // ID
+	private int CHNUM;         // Chunk number
+	private int TOTCH;         // Total chunks
+	private byte[] CRC32;      // CRC32
+	private byte[] PCHK;       // Raw Data
 
 	public TmCameraPicture(DataInputStream dis) throws IOException {
 		PID = dis.readUnsignedByte();

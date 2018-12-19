@@ -5,13 +5,13 @@ import java.io.IOException;
 
 public class StdTmFOR {
 
-	private byte NODENO;
-	private boolean RST_EN;
-	private byte BOTSLT;
-	private boolean SYNPPS;
-	private boolean DISUTC;
-	private boolean DULBSY;
-	private ForMode FOR_MODE;
+	private byte NODENO;           // redundant node number
+	private boolean RST_EN;        // the watchdog application is enabled to reset the node
+	private byte BOTSLT;           // currently running internal software slot
+	private boolean SYNPPS;        // shall the node synchronize with the PPS signal
+	private boolean DISUTC;        // shall the node distribute the UTC time at the next PPS signal
+	private boolean DULBSY;        // Indicates the state of the UploadManagers Flash Controller
+	private ForMode FOR_MODE;      // the selected FOR mode
 
 	public StdTmFOR(DataInputStream dis) throws IOException {
 		int raw = dis.readUnsignedByte();

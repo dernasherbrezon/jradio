@@ -5,24 +5,24 @@ import java.io.IOException;
 
 public class TmPictureMeta {
 
-	private long PICTURE0_LENGTH;
-	private long PICTURE1_LENGTH;
-	private long PICTURE2_LENGTH;
-	private long PICTURE3_LENGTH;
-	private long PICTURE4_LENGTH;
-	private long PICTURE5_LENGTH;
-	private long PICTURE0_TIME;
-	private long PICTURE1_TIME;
-	private long PICTURE2_TIME;
-	private long PICTURE3_TIME;
-	private long PICTURE4_TIME;
-	private long PICTURE5_TIME;
-	private byte[] PICTURE0_CRC;
-	private byte[] PICTURE1_CRC;
-	private byte[] PICTURE2_CRC;
-	private byte[] PICTURE3_CRC;
-	private byte[] PICTURE4_CRC;
-	private byte[] PICTURE5_CRC;
+	private long PICTURE0_LENGTH;        // Picture length of slot 0
+	private long PICTURE1_LENGTH;        // Picture length of slot 1
+	private long PICTURE2_LENGTH;        // Picture length of slot 2
+	private long PICTURE3_LENGTH;        // Picture length of slot 3
+	private long PICTURE4_LENGTH;        // Picture length of slot 4
+	private long PICTURE5_LENGTH;        // Picture length of slot 5
+	private long PICTURE0_TIME;          // Picture time of slot 0
+	private long PICTURE1_TIME;          // Picture time of slot 1
+	private long PICTURE2_TIME;          // Picture time of slot 2
+	private long PICTURE3_TIME;          // Picture time of slot 3
+	private long PICTURE4_TIME;          // Picture time of slot 4
+	private long PICTURE5_TIME;          // Picture time of slot 5
+	private byte[] PICTURE0_CRC;         // Picture CRC32 of slot 0
+	private byte[] PICTURE1_CRC;         // Picture CRC32 of slot 1
+	private byte[] PICTURE2_CRC;         // Picture CRC32 of slot 2
+	private byte[] PICTURE3_CRC;         // Picture CRC32 of slot 3
+	private byte[] PICTURE4_CRC;         // Picture CRC32 of slot 4
+	private byte[] PICTURE5_CRC;         // Picture CRC32 of slot 5
 
 	public TmPictureMeta(DataInputStream dis) throws IOException {
 		PICTURE0_LENGTH = (dis.readUnsignedByte() << 24) | (dis.readUnsignedByte() << 16) | (dis.readUnsignedByte() << 8) | dis.readUnsignedByte();

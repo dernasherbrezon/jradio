@@ -5,20 +5,20 @@ import java.io.IOException;
 
 public class TmAocsTle {
 
-	private int EPOCH_YEAR;
-	private float EPOCH_DAY;
-	private float MEAN_MOTION_DT;
-	private float MEAN_MOTION_DDT;
-	private float BSTAR;
-	private int EPHEMERIS_TYPE;
-	private int ELEMENT_NUMBER;
-	private float INCLINATION;
-	private float RAAN;
-	private double ECCENTRICITY;
-	private float ARG_PERIGEE;
-	private float MEAN_ANOMALY;
-	private float MEAN_MOTION;
-	private long REV_NUMBER;
+	private int EPOCH_YEAR;               //  Epoch Year	(Last two digits of year)
+	private float EPOCH_DAY;              //  Epoch	(Day of the year and fractional portion of the day)
+	private float MEAN_MOTION_DT;         //  First Time Derivative of the Mean Motion	
+	private float MEAN_MOTION_DDT;        //  Second Time Derivative of Mean Motion	
+	private float BSTAR;                  //  BSTAR drag term	
+	private int EPHEMERIS_TYPE;           //  The number 0	(originally this should have been "Ephemeris type")
+	private int ELEMENT_NUMBER;           //  Element number	
+	private float INCLINATION;            //  Inclination	
+	private float RAAN;                   //  Right Ascension of the Ascending Node	
+	private double ECCENTRICITY;          //  Eccentricity	
+	private float ARG_PERIGEE;            //  Argument of Perigee	
+	private float MEAN_ANOMALY;           //  Mean Anomaly	
+	private float MEAN_MOTION;            //  Mean Motion	
+	private long REV_NUMBER;              //  Revolution number at epoch	
 
 	public TmAocsTle(DataInputStream dis) throws IOException {
 		EPOCH_YEAR = dis.readUnsignedByte();

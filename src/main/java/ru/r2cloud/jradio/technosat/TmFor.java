@@ -5,10 +5,10 @@ import java.io.IOException;
 
 public class TmFor {
 
-	private float FOR_X_RATE;
-	private float FOR_Y_RATE;
-	private float FOR_Z_RATE;
-	private boolean FOR_HEALTHY;
+	private float FOR_X_RATE;        // angular rate X
+	private float FOR_Y_RATE;        // angular rate Y
+	private float FOR_Z_RATE;        // angular rate Z
+	private boolean FOR_HEALTHY;     // healthy
 
 	public TmFor(DataInputStream dis) throws IOException {
 		FOR_X_RATE = dis.readInt() * 0.000001f;

@@ -5,30 +5,30 @@ import java.io.IOException;
 
 public class HistoryBufferInfo {
 
-	private HistoryBufferType TMMTFHIST;
-	private HistoryBufferType TMMHSHIST;
-	private HighSpeedState TMMHSSTAT;
+	private HistoryBufferType TMMTFHIST;       // indicates the history buffer used to fill up transfer frames with history telemetry
+	private HistoryBufferType TMMHSHIST;       // indicates the history buffer used to fill up the high speed downlink
+	private HighSpeedState TMMHSSTAT;          // indicates the current state of highspeed telemetry transmissions
 
-	private int TMMBUSUSD;
-	private int TMMPLDUSD;
-	private int TMMDIAUSD;
-	private int TMMBUSCNT;
-	private int TMMPLDCNT;
-	private int TMMDIACNT;
-	private int TMMBUSCRE;
-	private int TMMPLDCRE;
-	private int TMMDIACRE;
-	private int TMMBUSFLP;
-	private int TMMPLDFLP;
-	private int TMMDIAFLP;
-	private int TMMBUSLSP;
-	private int TMMPLDLSP;
-	private int TMMDIALSP;
-	private int TMMSTDLSP;
-	private int TMMRTTLSP;
-	private int TMMBUSVOL;
-	private int TMMPLDVOL;
-	private int TMMDIAVOL;
+	private int TMMBUSUSD;            //  Used flash pages for bus history tm
+	private int TMMPLDUSD;            //  Used flash pages for payload history tm
+	private int TMMDIAUSD;            //  Used flash pages for diagnosis history tm
+	private int TMMBUSCNT;            //  Current count of bus history sourcepackets in memory
+	private int TMMPLDCNT;            //  Current count of payload history sourcepackets in memory
+	private int TMMDIACNT;            //  Current count of bus history sourcepackets in memory
+	private int TMMBUSCRE;            //  CRC error count for bus history sourcepackets
+	private int TMMPLDCRE;            //  CRC error count for payload history sourcepackets
+	private int TMMDIACRE;            //  CRC error count for diagnosis history sourcepackets
+	private int TMMBUSFLP;            //  Fill level of the bus history buffer
+	private int TMMPLDFLP;            //  Fill level of the payload history buffer
+	private int TMMDIAFLP;            //  Fill level of the diagnosis history buffer
+	private int TMMBUSLSP;            //  Current Count of bus history sourcepackets lost due to full fifo
+	private int TMMPLDLSP;            //  Current Count of payload history sourcepackets lost due to full fifo
+	private int TMMDIALSP;            //  Current Count of diagnosis history sourcepackets lost due to full fifo
+	private int TMMSTDLSP;            //  Current Count of standard TM sourcepackets lost due to full fifo
+	private int TMMRTTLSP;            //  Current Count of real time TM sourcepackets lost due to full fifo
+	private int TMMBUSVOL;            //  total bus history data stored in kByte
+	private int TMMPLDVOL;            //  total payload history data stored in kByte
+	private int TMMDIAVOL;            //  total diagnosis history data stored in kByte
 
 	public HistoryBufferInfo(DataInputStream dis) throws IOException {
 		int raw = dis.readUnsignedByte();

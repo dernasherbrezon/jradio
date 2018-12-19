@@ -5,15 +5,15 @@ import java.io.IOException;
 
 public class ObcTemperatures {
 
-	private int TMPAS;
-	private float TMPA1;
-	private float TMPB1;
-	private float TMPB2;
-	private float TMPB3;
-	private float TMPC1;
-	private float TMPC2;
-	private float TMPC3;
-	private float TMPC4;
+	private int TMPAS;        // Temp Sensor Set
+	private float TMPA1;      // Deck A Temp 1
+	private float TMPB1;      // Deck B Temp 1
+	private float TMPB2;      // Deck B Temp 2
+	private float TMPB3;      // Deck B Temp 3
+	private float TMPC1;      // Deck C Temp 1
+	private float TMPC2;      // Deck C Temp 2
+	private float TMPC3;      // Deck C Temp 3
+	private float TMPC4;      // Deck C Temp 4
 
 	public ObcTemperatures(DataInputStream dis) throws IOException {
 		int raw = dis.readUnsignedByte();

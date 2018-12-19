@@ -5,78 +5,78 @@ import java.io.IOException;
 
 public class TmNodeCtrlNodePower {
 
-	private float AOCS0_5V;
-	private float AOCS1_5V;
-	private float FOR0_5V;
-	private float FOR1_5V;
-	private float OBC0_5V;
-	private float OBC1_5V;
-	private float PDH0_5V;
-	private float PDH1_5V;
-	private float SOLID0_5V;
-	private float SOLID1_5V;
-	private float FDA0_5V;
-	private float FDA1_5V;
-	private float STELLA0_5V;
-	private float STELLA1_5V;
-	private float COM0_5V;
-	private float COM1_5V;
-	private float AOCS0_3V3;
-	private float AOCS1_3V3;
-	private float FOR0_3V3;
-	private float FOR1_3V3;
-	private float OBC0_3V3;
-	private float OBC1_3V3;
-	private float PDH0_3V3;
-	private float PDH1_3V3;
-	private float SOLID0_3V3;
-	private float SOLID1_3V3;
-	private float FDA0_3V3;
-	private float FDA1_3V3;
-	private float STELLA0_3V3;
-	private float STELLA1_3V3;
-	private float COM0_3V3;
-	private float COM1_3V3;
-	private float S_AOCS0_5V;
-	private float S_AOCS1_5V;
-	private float S_FOR0_5V;
-	private float S_FOR1_5V;
-	private float S_OBC0_5V;
-	private float S_OBC1_5V;
-	private int S_PDH0_5V;
-	private int S_PDH1_5V;
-	private float S_SOLID0_5V;
-	private float S_SOLID1_5V;
-	private float S_FDA0_5V;
-	private float S_FDA1_5V;
-	private float S_STELLA0_5V;
-	private float S_STELLA1_5V;
-	private float S_COM0_5V;
-	private float S_COM1_5V;
-	private float S_AOCS0_3V3;
-	private float S_AOCS1_3V3;
-	private float S_FOR0_3V3;
-	private float S_FOR1_3V3;
-	private float S_OBC0_3V3;
-	private float S_OBC1_3V3;
-	private float S_PDH0_3V3;
-	private float S_PDH1_3V3;
-	private float S_SOLID0_3V3;
-	private float S_SOLID1_3V3;
-	private float S_FDA0_3V3;
-	private float S_FDA1_3V3;
-	private float S_STELLA0_3V3;
-	private float S_STELLA1_3V3;
-	private float S_COM0_3V3;
-	private float S_COM1_3V3;
-	private float RWS00_V;
-	private float RWS10_V;
-	private float RWS20_V;
-	private float RWS30_V;
-	private int RWS00_C;
-	private int RWS10_C;
-	private int RWS20_C;
-	private int RWS30_C;
+	private float AOCS0_5V;           //   AOCS 0 5V
+	private float AOCS1_5V;           //   AOCS 1 5V
+	private float FOR0_5V;            //   FOR 0 5V
+	private float FOR1_5V;            //   FOR 1 5V
+	private float OBC0_5V;            //   OBC 0 5V
+	private float OBC1_5V;            //   OBC 1 5V
+	private float PDH0_5V;            //   PDH 0 5V
+	private float PDH1_5V;            //   PDH 1 5V
+	private float SOLID0_5V;          //   SOLID 0 5V
+	private float SOLID1_5V;          //   SOLID 1 5V
+	private float FDA0_5V;            //   FDA 0 5V
+	private float FDA1_5V;            //   FDA 1 5V
+	private float STELLA0_5V;         //   STELLA 0 5V
+	private float STELLA1_5V;         //   STELLA 1 5V
+	private float COM0_5V;            //   COM 0 5V
+	private float COM1_5V;            //   COM 1 5V
+	private float AOCS0_3V3;          //   AOCS 0 3V3
+	private float AOCS1_3V3;          //   AOCS 1 3V3
+	private float FOR0_3V3;           //   FOR 0 3V3
+	private float FOR1_3V3;           //   FOR 1 3V3
+	private float OBC0_3V3;           //   OBC 0 3V3
+	private float OBC1_3V3;           //   OBC 1 3V3
+	private float PDH0_3V3;           //   PDH 0 3V3
+	private float PDH1_3V3;           //   PDH 1 3V3
+	private float SOLID0_3V3;         //   SOLID 0 3V3
+	private float SOLID1_3V3;         //   SOLID 1 3V3
+	private float FDA0_3V3;           //   FDA 0 3V3
+	private float FDA1_3V3;           //   FDA 1 3V3
+	private float STELLA0_3V3;        //   STELLA 0 3V3
+	private float STELLA1_3V3;        //   STELLA 1 3V3
+	private float COM0_3V3;           //   COM 0 3V3
+	private float COM1_3V3;           //   COM 1 3V3
+	private float S_AOCS0_5V;         //   AOCS 0 5V
+	private float S_AOCS1_5V;         //   AOCS 1 5V
+	private float S_FOR0_5V;          //   FOR 0 5V
+	private float S_FOR1_5V;          //   FOR 1 5V
+	private float S_OBC0_5V;          //   OBC 0 5V
+	private float S_OBC1_5V;          //   OBC 1 5V
+	private int S_PDH0_5V;            //   PDH 0 5V
+	private int S_PDH1_5V;            //   PDH 1 5V
+	private float S_SOLID0_5V;        //   SOLID 0 5V
+	private float S_SOLID1_5V;        //   SOLID 1 5V
+	private float S_FDA0_5V;          //
+	private float S_FDA1_5V;          //
+	private float S_STELLA0_5V;       //   FDA 0 5V
+	private float S_STELLA1_5V;       //   FDA 1 5V
+	private float S_COM0_5V;          //   COM 0 5V
+	private float S_COM1_5V;          //   COM 1 5V
+	private float S_AOCS0_3V3;        //   AOCS 0 3V3
+	private float S_AOCS1_3V3;        //   AOCS 1 3V3
+	private float S_FOR0_3V3;         //   FOR 0 3V3
+	private float S_FOR1_3V3;         //   FOR 1 3V3
+	private float S_OBC0_3V3;         //   OBC 0 3V3
+	private float S_OBC1_3V3;         //   OBC 1 3V3
+	private float S_PDH0_3V3;         //   PDH 0 3V3
+	private float S_PDH1_3V3;         //   PDH 1 3V3
+	private float S_SOLID0_3V3;       //   SOLID 0 3V3
+	private float S_SOLID1_3V3;       //   SOLID 1 3V3
+	private float S_FDA0_3V3;         //   FDA 0 3V3
+	private float S_FDA1_3V3;         //   FDA 1 3V3
+	private float S_STELLA0_3V3;      //   STELLA 0 3V3
+	private float S_STELLA1_3V3;      //   STELLA 1 3V3
+	private float S_COM0_3V3;         //   COM 0 3V3
+	private float S_COM1_3V3;         //   COM 1 3V3
+	private float RWS00_V;            //   RWS00 Unreg
+	private float RWS10_V;            //   RWS10 Unreg
+	private float RWS20_V;            //   RWS20 Unreg
+	private float RWS30_V;            //   RWS30 Unreg
+	private int RWS00_C;              //   RWS00 Unreg
+	private int RWS10_C;              //   RWS10 Unreg
+	private int RWS20_C;              //   RWS20 Unreg
+	private int RWS30_C;              //   RWS30 Unreg
 
 	public TmNodeCtrlNodePower(DataInputStream dis) throws IOException {
 		AOCS0_5V = dis.readUnsignedByte() * 0.022f;
