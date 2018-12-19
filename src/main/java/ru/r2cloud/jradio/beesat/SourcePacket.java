@@ -3,7 +3,12 @@ package ru.r2cloud.jradio.beesat;
 import java.io.DataInputStream;
 import java.io.IOException;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 public class SourcePacket {
+
+	private static final Logger LOG = LoggerFactory.getLogger(SourcePacket.class);
 
 	private StdTmOBC stdTmObc;
 	private StdTmPDH stdTmPdh;
@@ -24,6 +29,13 @@ public class SourcePacket {
 	private TmFor tmFor;
 	private TmEpsCtrlBatteryPowerTemp tmEpsCtrlTemp;
 	private TmEpsCtrlPcuPower tmEpsCtrlPower;
+	private TmNodeCtrlNodePower tmNodeCtrlPower;
+	private TmCameraStatus tmCameraStatus;
+	private TmCameraPicture tmCameraPicture;
+	private TmPictureMeta tmPictureMeta;
+	private TmPictureMeta2 tmPictureMeta2;
+	private TmCameraPicture2 tmCameraPicture2;
+	private TmCameraStatus2 tmCameraStatus2;
 
 	private int length;
 	private byte virtualChannelIdentifier;
@@ -100,9 +112,29 @@ public class SourcePacket {
 		case 172:
 			tmEpsCtrlPower = new TmEpsCtrlPcuPower(dis);
 			break;
-//		case 173:
-			
+		case 173:
+			tmNodeCtrlPower = new TmNodeCtrlNodePower(dis);
+			break;
+		case 211:
+			tmCameraStatus = new TmCameraStatus(dis);
+			break;
+		case 220:
+			tmCameraPicture = new TmCameraPicture(dis);
+			break;
+		case 221:
+			tmPictureMeta = new TmPictureMeta(dis);
+			break;
+		case 225:
+			tmPictureMeta2 = new TmPictureMeta2(dis);
+			break;
+		case 240:
+			tmCameraPicture2 = new TmCameraPicture2(dis);
+			break;
+		case 241:
+			tmCameraStatus2 = new TmCameraStatus2(dis);
+			break;
 		default:
+			LOG.error("unknown source packet identifier: " + sourcePacketIdentifier);
 			break;
 		}
 		// validate crc?
