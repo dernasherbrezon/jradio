@@ -12,6 +12,7 @@ public class SourcePacket {
 
 	private Apid0 apid0;
 	private Apid1 apid1;
+	private Apid2 apid2;
 
 	private int PVN; // Packet version number
 	private boolean PT; // Packet Type Indicator
@@ -35,6 +36,8 @@ public class SourcePacket {
 			apid0 = new Apid0(dis);
 		} else if (APID == 1) {
 			apid1 = new Apid1(dis);
+		} else if (APID == 2) {
+			apid2 = new Apid2(dis);
 		} else {
 			LOG.error("unknown apid: " + APID);
 			dis.skipBytes(126);
