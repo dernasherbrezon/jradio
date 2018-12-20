@@ -232,6 +232,7 @@ public class Apid0 {
 		OBCTMFFP = bis.readUnsignedInt(15);
 		ACSQDES03 = bis.readShort() * 0.0001f;
 		ACSGYR = bis.readUnsignedInt(2);
+		bis.skipBits(2);
 	}
 
 	public float getVSABUS() {

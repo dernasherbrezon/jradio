@@ -376,6 +376,7 @@ public class Apid1 {
 		ACSAMY = bis.readShort() * -0.061f;
 		ACSAMZ = bis.readShort() * 0.061f;
 		ACSAMX = bis.readShort() * -0.061f;
+		bis.skipBits(3);
 	}
 
 	public boolean isOBCAID() {

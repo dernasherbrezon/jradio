@@ -15,6 +15,10 @@ public class SourcePacket {
 	private Apid2 apid2;
 	private Apid3 apid3;
 	private Apid4 apid4;
+	private Apid5 apid5;
+	private Apid6_12 apid6_12;
+	private Apid13 apid13;
+	private Apid14_29 apid14_29;
 
 	private int PVN; // Packet version number
 	private boolean PT; // Packet Type Indicator
@@ -44,6 +48,14 @@ public class SourcePacket {
 			apid3 = new Apid3(dis);
 		} else if (APID == 4) {
 			apid4 = new Apid4(dis);
+		} else if (APID == 5) {
+			apid5 = new Apid5(dis);
+		} else if (APID >= 6 && APID <= 12) {
+			apid6_12 = new Apid6_12(dis);
+		} else if (APID == 13) {
+			apid13 = new Apid13(dis);
+		} else if (APID >= 14 && APID <= 29) {
+			apid14_29 = new Apid14_29(dis);
 		} else {
 			LOG.error("unknown apid: " + APID);
 			dis.skipBytes(126);
