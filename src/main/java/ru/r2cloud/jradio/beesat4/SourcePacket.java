@@ -13,6 +13,8 @@ public class SourcePacket {
 	private Apid0 apid0;
 	private Apid1 apid1;
 	private Apid2 apid2;
+	private Apid3 apid3;
+	private Apid4 apid4;
 
 	private int PVN; // Packet version number
 	private boolean PT; // Packet Type Indicator
@@ -38,6 +40,10 @@ public class SourcePacket {
 			apid1 = new Apid1(dis);
 		} else if (APID == 2) {
 			apid2 = new Apid2(dis);
+		} else if (APID == 3) {
+			apid3 = new Apid3(dis);
+		} else if (APID == 4) {
+			apid4 = new Apid4(dis);
 		} else {
 			LOG.error("unknown apid: " + APID);
 			dis.skipBytes(126);
