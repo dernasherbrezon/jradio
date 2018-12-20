@@ -11,6 +11,7 @@ public class SourcePacket {
 	private static final Logger LOG = LoggerFactory.getLogger(SourcePacket.class);
 
 	private Apid0 apid0;
+	private Apid1 apid1;
 
 	private int PVN; // Packet version number
 	private boolean PT; // Packet Type Indicator
@@ -32,6 +33,8 @@ public class SourcePacket {
 		PDL = dis.readUnsignedShort();
 		if (APID == 0) {
 			apid0 = new Apid0(dis);
+		} else if (APID == 1) {
+			apid1 = new Apid1(dis);
 		} else {
 			LOG.error("unknown apid: " + APID);
 			dis.skipBytes(126);
