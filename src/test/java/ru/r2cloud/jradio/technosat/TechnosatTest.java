@@ -18,8 +18,6 @@ import ru.r2cloud.jradio.blocks.UnpackedToPacked;
 import ru.r2cloud.jradio.blocks.Window;
 import ru.r2cloud.jradio.kunspf.KunsPfTest;
 import ru.r2cloud.jradio.source.WavFileSource;
-import ru.r2cloud.jradio.technosat.Technosat;
-import ru.r2cloud.jradio.technosat.TechnosatBeacon;
 import ru.r2cloud.jradio.tubix20.CMX909bBeacon;
 
 public class TechnosatTest {
