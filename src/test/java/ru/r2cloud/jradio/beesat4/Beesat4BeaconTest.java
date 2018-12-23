@@ -33,7 +33,7 @@ public class Beesat4BeaconTest {
 		assertEquals(120.23926f, apid2.getCC0IN(), 0.0f);
 		assertEquals(22.583008, apid2.getCC0OUT(), 0.00001f);
 		Apid6_12 apid7 = beacon.getFrames().get(3).getPacket().getApid6_12();
-		assertEquals(-537731017, apid7.getCrc()[0]);
+		assertEquals(3757236279L, apid7.getCrc()[0]);
 		assertEquals(1736542853, apid7.getCrc()[1]);
 	}
 }

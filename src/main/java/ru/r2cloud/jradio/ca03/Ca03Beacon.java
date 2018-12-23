@@ -7,6 +7,7 @@ import java.nio.charset.StandardCharsets;
 
 import ru.r2cloud.jradio.Externalizable;
 import ru.r2cloud.jradio.csp.Header;
+import ru.r2cloud.jradio.util.StreamUtils;
 
 public class Ca03Beacon implements Externalizable {
 
@@ -79,20 +80,20 @@ public class Ca03Beacon implements Externalizable {
 		for (int i = 0; i < latchup.length; i++) {
 			latchup[i] = dis.readUnsignedShort();
 		}
-		wdtI2cTimeLeft = ((dis.readUnsignedByte() << 24) | (dis.readUnsignedByte() << 16) | (dis.readUnsignedByte() << 8) | dis.readUnsignedByte());
-		wdtGndTimeLeft = (((long)dis.readUnsignedByte() << 24) | (dis.readUnsignedByte() << 16) | (dis.readUnsignedByte() << 8) | dis.readUnsignedByte());
+		wdtI2cTimeLeft = StreamUtils.readUnsignedInt(dis);
+		wdtGndTimeLeft = StreamUtils.readUnsignedInt(dis);
 		wdtCspPingsLeft = new int[2];
 		for (int i = 0; i < wdtCspPingsLeft.length; i++) {
 			wdtCspPingsLeft[i] = dis.readUnsignedByte();
 		}
-		counterWdtI2c = ((dis.readUnsignedByte() << 24) | (dis.readUnsignedByte() << 16) | (dis.readUnsignedByte() << 8) | dis.readUnsignedByte());
-		counterWdtGnd = ((dis.readUnsignedByte() << 24) | (dis.readUnsignedByte() << 16) | (dis.readUnsignedByte() << 8) | dis.readUnsignedByte());
+		counterWdtI2c = StreamUtils.readUnsignedInt(dis);
+		counterWdtGnd = StreamUtils.readUnsignedInt(dis);
 
 		counterWdtCsp = new long[2];
 		for (int i = 0; i < counterWdtCsp.length; i++) {
-			counterWdtCsp[i] = ((dis.readUnsignedByte() << 24) | (dis.readUnsignedByte() << 16) | (dis.readUnsignedByte() << 8) | dis.readUnsignedByte());
+			counterWdtCsp[i] = StreamUtils.readUnsignedInt(dis);
 		}
-		counterBoot = ((dis.readUnsignedByte() << 24) | (dis.readUnsignedByte() << 16) | (dis.readUnsignedByte() << 8) | dis.readUnsignedByte());
+		counterBoot = StreamUtils.readUnsignedInt(dis);
 		temp = new int[6];
 		for (int i = 0; i < temp.length; i++) {
 			temp[i] = dis.readShort();

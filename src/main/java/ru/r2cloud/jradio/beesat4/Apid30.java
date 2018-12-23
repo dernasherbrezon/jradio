@@ -3,6 +3,8 @@ package ru.r2cloud.jradio.beesat4;
 import java.io.DataInputStream;
 import java.io.IOException;
 
+import ru.r2cloud.jradio.util.StreamUtils;
+
 public class Apid30 {
 
 	private float CPDHMCU; // PDH uC
@@ -76,8 +78,8 @@ public class Apid30 {
 		PDHCSH = dis.readUnsignedByte();
 		PDHBTIMG = dis.readUnsignedByte();
 		PDHSWVERSION = dis.readUnsignedShort();
-		PDHCSTSYS = (dis.readUnsignedByte() << 24) | (dis.readUnsignedByte() << 16) | (dis.readUnsignedByte() << 8) | dis.readUnsignedByte();
-		PDHCTSTUTC = (dis.readUnsignedByte() << 24) | (dis.readUnsignedByte() << 16) | (dis.readUnsignedByte() << 8) | dis.readUnsignedByte();
+		PDHCSTSYS = StreamUtils.readUnsignedInt(dis);
+		PDHCTSTUTC = StreamUtils.readUnsignedInt(dis);
 		GPSCTI = dis.readUnsignedByte();
 		GPSCTH = dis.readUnsignedByte();
 		GPSECH = dis.readUnsignedByte();

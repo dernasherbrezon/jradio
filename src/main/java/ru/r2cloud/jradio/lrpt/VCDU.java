@@ -142,7 +142,7 @@ public class VCDU {
 
 	private static void readSecondaryHeader(byte[] data, int index, Packet packet) {
 		packet.setNumberOfDays((data[index] & 0xFF) << 8 | (data[index + 1] & 0xFF));
-		packet.setMillisecondOfDay((data[index + 2] & 0xFF) << 24 | (data[index + 3] & 0xFF) << 16 | (data[index + 4] & 0xFF) << 8 | (data[index + 5] & 0xFF) << 0);
+		packet.setMillisecondOfDay(((long)data[index + 2] & 0xFF) << 24 | (data[index + 3] & 0xFF) << 16 | (data[index + 4] & 0xFF) << 8 | (data[index + 5] & 0xFF) << 0);
 		packet.setMicrosecondOfMillisecond((data[index + 6] & 0xFF) << 8 | (data[index + 7] & 0xFF) << 0);
 	}
 	

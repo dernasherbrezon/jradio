@@ -3,6 +3,8 @@ package ru.r2cloud.jradio.technosat;
 import java.io.DataInputStream;
 import java.io.IOException;
 
+import ru.r2cloud.jradio.util.StreamUtils;
+
 public class TmPictureMeta {
 
 	private long PICTURE0_LENGTH;        // Picture length of slot 0
@@ -25,12 +27,12 @@ public class TmPictureMeta {
 	private byte[] PICTURE5_CRC;         // Picture CRC32 of slot 5
 
 	public TmPictureMeta(DataInputStream dis) throws IOException {
-		PICTURE0_LENGTH = (dis.readUnsignedByte() << 24) | (dis.readUnsignedByte() << 16) | (dis.readUnsignedByte() << 8) | dis.readUnsignedByte();
-		PICTURE1_LENGTH = (dis.readUnsignedByte() << 24) | (dis.readUnsignedByte() << 16) | (dis.readUnsignedByte() << 8) | dis.readUnsignedByte();
-		PICTURE2_LENGTH = (dis.readUnsignedByte() << 24) | (dis.readUnsignedByte() << 16) | (dis.readUnsignedByte() << 8) | dis.readUnsignedByte();
-		PICTURE3_LENGTH = (dis.readUnsignedByte() << 24) | (dis.readUnsignedByte() << 16) | (dis.readUnsignedByte() << 8) | dis.readUnsignedByte();
-		PICTURE4_LENGTH = (dis.readUnsignedByte() << 24) | (dis.readUnsignedByte() << 16) | (dis.readUnsignedByte() << 8) | dis.readUnsignedByte();
-		PICTURE5_LENGTH = (dis.readUnsignedByte() << 24) | (dis.readUnsignedByte() << 16) | (dis.readUnsignedByte() << 8) | dis.readUnsignedByte();
+		PICTURE0_LENGTH = StreamUtils.readUnsignedInt(dis);
+		PICTURE1_LENGTH = StreamUtils.readUnsignedInt(dis);
+		PICTURE2_LENGTH = StreamUtils.readUnsignedInt(dis);
+		PICTURE3_LENGTH = StreamUtils.readUnsignedInt(dis);
+		PICTURE4_LENGTH = StreamUtils.readUnsignedInt(dis);
+		PICTURE5_LENGTH = StreamUtils.readUnsignedInt(dis);
 		PICTURE0_TIME = dis.readLong();
 		PICTURE1_TIME = dis.readLong();
 		PICTURE2_TIME = dis.readLong();

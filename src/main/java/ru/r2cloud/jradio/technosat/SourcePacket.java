@@ -6,6 +6,8 @@ import java.io.IOException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import ru.r2cloud.jradio.util.StreamUtils;
+
 public class SourcePacket {
 
 	private static final Logger LOG = LoggerFactory.getLogger(SourcePacket.class);
@@ -40,7 +42,7 @@ public class SourcePacket {
 	private int length;
 	private byte virtualChannelIdentifier;
 	private byte recordingTimeFraction;
-	private int recordingTimeSeconds; // since 01.01.2000
+	private long recordingTimeSeconds; // since 01.01.2000
 	private int nodeOfOrigin;
 	private int sourcePacketIdentifier;
 	private int crc;
@@ -50,7 +52,7 @@ public class SourcePacket {
 		int raw = dis.readUnsignedByte();
 		virtualChannelIdentifier = (byte) (raw >> 4);
 		recordingTimeFraction = (byte) (raw & 0xF);
-		recordingTimeSeconds = (dis.readUnsignedByte() << 24) | (dis.readUnsignedByte() << 16) | (dis.readUnsignedByte() << 8) | (dis.readUnsignedByte());
+		recordingTimeSeconds = StreamUtils.readUnsignedInt(dis);
 		nodeOfOrigin = dis.readUnsignedByte();
 		sourcePacketIdentifier = dis.readUnsignedByte();
 		switch (sourcePacketIdentifier) {
@@ -372,11 +374,11 @@ public class SourcePacket {
 		this.recordingTimeFraction = recordingTimeFraction;
 	}
 
-	public int getRecordingTimeSeconds() {
+	public long getRecordingTimeSeconds() {
 		return recordingTimeSeconds;
 	}
 
-	public void setRecordingTimeSeconds(int recordingTimeSeconds) {
+	public void setRecordingTimeSeconds(long recordingTimeSeconds) {
 		this.recordingTimeSeconds = recordingTimeSeconds;
 	}
 

@@ -3,6 +3,8 @@ package ru.r2cloud.jradio.beesat4;
 import java.io.DataInputStream;
 import java.io.IOException;
 
+import ru.r2cloud.jradio.util.StreamUtils;
+
 public class Apid40 {
 
 	private long[] GPSDT;       // GPS Data Time Slot X
@@ -29,7 +31,7 @@ public class Apid40 {
 		GPSSZ = new int[length];
 		GPSID = new int[length];
 		for (int i = 0; i < length; i++) {
-			GPSDT[i] = (dis.readUnsignedByte() << 24) | (dis.readUnsignedByte() << 16) | (dis.readUnsignedByte() << 8) | dis.readUnsignedByte();
+			GPSDT[i] = StreamUtils.readUnsignedInt(dis);
 			GPSSZ[i] = dis.readUnsignedShort();
 			GPSID[i] = dis.readUnsignedByte();
 		}

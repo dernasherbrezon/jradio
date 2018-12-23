@@ -3,6 +3,8 @@ package ru.r2cloud.jradio.technosat;
 import java.io.DataInputStream;
 import java.io.IOException;
 
+import ru.r2cloud.jradio.util.StreamUtils;
+
 public class NodeInfos {
 
 	private int CNTIMM;          // counts all immediate telecommands for this node
@@ -25,9 +27,9 @@ public class NodeInfos {
 		CNTREJ = dis.readUnsignedByte();
 		LSTCID = dis.readUnsignedByte();
 		MCUCUR = dis.readUnsignedShort() * 0.1f;
-		RSTSTS = (dis.readUnsignedByte() << 24) | (dis.readUnsignedByte() << 16) | (dis.readUnsignedByte() << 8) | dis.readUnsignedByte();
+		RSTSTS = StreamUtils.readUnsignedInt(dis);
 		BOTCNT = dis.readUnsignedShort();
-		TIMLOC = (dis.readUnsignedByte() << 24) | (dis.readUnsignedByte() << 16) | (dis.readUnsignedByte() << 8) | dis.readUnsignedByte();
+		TIMLOC = StreamUtils.readUnsignedInt(dis);
 		TMPINT = dis.readByte();
 	}
 

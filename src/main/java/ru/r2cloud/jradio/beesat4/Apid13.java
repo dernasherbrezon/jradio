@@ -3,6 +3,8 @@ package ru.r2cloud.jradio.beesat4;
 import java.io.DataInputStream;
 import java.io.IOException;
 
+import ru.r2cloud.jradio.util.StreamUtils;
+
 public class Apid13 {
 
 	private long[] IMHD00;    // Header slot #X Magic word
@@ -18,11 +20,11 @@ public class Apid13 {
 		IMHD03 = new long[4];
 		IMHD04 = new long[4];
 		for (int i = 0; i < 4; i++) {
-			IMHD00[i] = (dis.readUnsignedByte() << 24) | (dis.readUnsignedByte() << 16) | (dis.readUnsignedByte() << 8) | dis.readUnsignedByte();
-			IMHD01[i] = (dis.readUnsignedByte() << 24) | (dis.readUnsignedByte() << 16) | (dis.readUnsignedByte() << 8) | dis.readUnsignedByte();
-			IMHD02[i] = (dis.readUnsignedByte() << 24) | (dis.readUnsignedByte() << 16) | (dis.readUnsignedByte() << 8) | dis.readUnsignedByte();
-			IMHD03[i] = (dis.readUnsignedByte() << 24) | (dis.readUnsignedByte() << 16) | (dis.readUnsignedByte() << 8) | dis.readUnsignedByte();
-			IMHD04[i] = (dis.readUnsignedByte() << 24) | (dis.readUnsignedByte() << 16) | (dis.readUnsignedByte() << 8) | dis.readUnsignedByte();
+			IMHD00[i] = StreamUtils.readUnsignedInt(dis);
+			IMHD01[i] = StreamUtils.readUnsignedInt(dis);
+			IMHD02[i] = StreamUtils.readUnsignedInt(dis);
+			IMHD03[i] = StreamUtils.readUnsignedInt(dis);
+			IMHD04[i] = StreamUtils.readUnsignedInt(dis);
 		}
 		dis.skipBytes(46);
 	}

@@ -3,6 +3,8 @@ package ru.r2cloud.jradio.technosat;
 import java.io.DataInputStream;
 import java.io.IOException;
 
+import ru.r2cloud.jradio.util.StreamUtils;
+
 public class TmAocsTle {
 
 	private int EPOCH_YEAR;               //  Epoch Year	(Last two digits of year)
@@ -34,7 +36,7 @@ public class TmAocsTle {
 		ARG_PERIGEE = dis.readFloat();
 		MEAN_ANOMALY = dis.readFloat();
 		MEAN_MOTION = dis.readFloat();
-		REV_NUMBER = (dis.readUnsignedByte() << 24) | (dis.readUnsignedByte() << 16) | (dis.readUnsignedByte() << 8) | dis.readUnsignedByte();
+		REV_NUMBER = StreamUtils.readUnsignedInt(dis);
 	}
 
 	public int getEPOCH_YEAR() {

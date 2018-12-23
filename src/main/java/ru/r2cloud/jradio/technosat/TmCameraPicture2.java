@@ -3,6 +3,8 @@ package ru.r2cloud.jradio.technosat;
 import java.io.DataInputStream;
 import java.io.IOException;
 
+import ru.r2cloud.jradio.util.StreamUtils;
+
 public class TmCameraPicture2 {
 
 	private int PID;               // ID
@@ -19,7 +21,7 @@ public class TmCameraPicture2 {
 		TOTCH = dis.readUnsignedShort();
 		CRC32 = new byte[4];
 		dis.readFully(CRC32);
-		RECTM = (dis.readUnsignedByte() << 24) | (dis.readUnsignedByte() << 16) | (dis.readUnsignedByte() << 8) | dis.readUnsignedByte();
+		RECTM = StreamUtils.readUnsignedInt(dis);
 		TYPE = PictureType.valueOfCode(dis.readUnsignedByte());
 		PCHK = new byte[256];
 		dis.readFully(PCHK);

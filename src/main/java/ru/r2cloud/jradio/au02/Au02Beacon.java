@@ -9,6 +9,7 @@ import java.util.Arrays;
 
 import ru.r2cloud.jradio.Externalizable;
 import ru.r2cloud.jradio.csp.Header;
+import ru.r2cloud.jradio.util.StreamUtils;
 
 public class Au02Beacon implements Externalizable {
 
@@ -38,7 +39,7 @@ public class Au02Beacon implements Externalizable {
 		if (actualSkipped < Header.LENGTH) {
 			throw new EOFException();
 		}
-		timestamp = (dis.readUnsignedByte() << 24) | (dis.readUnsignedByte() << 16) | (dis.readUnsignedByte() << 8) | dis.readUnsignedByte();
+		timestamp = StreamUtils.readUnsignedInt(dis);
 		byte[] callsignBuf = new byte[6];
 		dis.readFully(callsignBuf);
 		callsign = new String(callsignBuf, StandardCharsets.ISO_8859_1);

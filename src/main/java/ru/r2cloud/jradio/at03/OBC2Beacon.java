@@ -4,6 +4,7 @@ import java.io.DataInputStream;
 import java.io.IOException;
 
 import ru.r2cloud.jradio.util.MathUtils;
+import ru.r2cloud.jradio.util.StreamUtils;
 
 public class OBC2Beacon {
 
@@ -110,12 +111,12 @@ public class OBC2Beacon {
 	private int CmdScripSlotLoaded2;
 
 	public OBC2Beacon(DataInputStream dis) throws IOException {
-		long rawDate = (dis.readUnsignedByte() << 24) | (dis.readUnsignedByte() << 16) | (dis.readUnsignedByte() << 8) | (dis.readUnsignedByte());
+		long rawDate = StreamUtils.readUnsignedInt(dis);
 		date = (int) (rawDate >> (32 - 14));
 		time = (int) ((rawDate >> (32 - 17)) & 0x1FFFF);
 		fix = (rawDate & 1) > 0;
 
-		long rawLatitude = (dis.readUnsignedByte() << 24) | (dis.readUnsignedByte() << 16) | (dis.readUnsignedByte() << 8) | (dis.readUnsignedByte());
+		long rawLatitude = StreamUtils.readUnsignedInt(dis);
 		numberOfSatellitesSeen = (int) (rawLatitude >> (32 - 4));
 		rawLatitude = (rawLatitude & 0xFFFFFFF);
 		// Bits: 1 sign, 7 deg, 7 mins int ,13 mins fract
@@ -128,7 +129,7 @@ public class OBC2Beacon {
 			latitude = -latitude;
 		}
 
-		long rawLongitude = ((dis.readUnsignedByte() << 48) | (dis.readUnsignedByte() << 40) | (dis.readUnsignedByte() << 32) | dis.readUnsignedByte() << 24) | (dis.readUnsignedByte() << 16) | (dis.readUnsignedByte() << 8) | (dis.readUnsignedByte());
+		long rawLongitude = (((long)dis.readUnsignedByte() << 48) | ((long)dis.readUnsignedByte() << 40) | ((long)dis.readUnsignedByte() << 32) | (long)dis.readUnsignedByte() << 24) | (dis.readUnsignedByte() << 16) | (dis.readUnsignedByte() << 8) | (dis.readUnsignedByte());
 		// ignore fill bits at the end
 		rawLongitude = rawLongitude >> 7;
 		altitude = (int) (rawLongitude & 0xFFFFF);
@@ -248,7 +249,7 @@ public class OBC2Beacon {
 
 		error_code = dis.readUnsignedByte();
 		error_code_before_reset = dis.readUnsignedByte();
-		resetsCounter = (dis.readUnsignedByte() << 24) | (dis.readUnsignedByte() << 16) | (dis.readUnsignedByte() << 8) | (dis.readUnsignedByte());
+		resetsCounter = StreamUtils.readUnsignedInt(dis);
 		TempSPXMinus = dis.readByte();
 		TempSPXPlus = dis.readByte();
 		TempSPYMinus = dis.readByte();

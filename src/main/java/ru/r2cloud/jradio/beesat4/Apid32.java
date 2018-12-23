@@ -3,6 +3,8 @@ package ru.r2cloud.jradio.beesat4;
 import java.io.DataInputStream;
 import java.io.IOException;
 
+import ru.r2cloud.jradio.util.StreamUtils;
+
 public class Apid32 {
 
 	private int[] ICID;                //  Image ID Slot X
@@ -28,7 +30,7 @@ public class Apid32 {
 		ICTRIES = new int[size];
 		for (int i = 0; i < size; i++) {
 			ICID[i] = dis.readUnsignedByte();
-			ICDATETIME[i] = (dis.readUnsignedByte() << 24) | (dis.readUnsignedByte() << 16) | (dis.readUnsignedByte() << 8) | dis.readUnsignedByte();
+			ICDATETIME[i] = StreamUtils.readUnsignedInt(dis);
 			ICSIZE[i] = dis.readUnsignedShort();
 			int raw = dis.readUnsignedByte();
 			ICTXDONE[i] = ((raw >> 7) & 0x1) > 0;

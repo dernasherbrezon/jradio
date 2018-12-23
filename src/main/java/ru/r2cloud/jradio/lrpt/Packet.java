@@ -9,7 +9,7 @@ public class Packet {
 	private int sequenceCount;
 	private int length;
 	private int numberOfDays = -1;
-	private int millisecondOfDay;
+	private long millisecondOfDay;
 	private int microsecondOfMillisecond;
 	private byte[] userData;
 
@@ -29,11 +29,11 @@ public class Packet {
 		this.numberOfDays = numberOfDays;
 	}
 
-	public int getMillisecondOfDay() {
+	public long getMillisecondOfDay() {
 		return millisecondOfDay;
 	}
 
-	public void setMillisecondOfDay(int millisecondOfDay) {
+	public void setMillisecondOfDay(long millisecondOfDay) {
 		this.millisecondOfDay = millisecondOfDay;
 	}
 

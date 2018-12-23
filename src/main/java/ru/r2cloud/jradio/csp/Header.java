@@ -3,6 +3,8 @@ package ru.r2cloud.jradio.csp;
 import java.io.DataInputStream;
 import java.io.IOException;
 
+import ru.r2cloud.jradio.util.StreamUtils;
+
 public class Header {
 
 	public static final int LENGTH = 4;
@@ -20,11 +22,11 @@ public class Header {
 	private boolean fcrc32; // Use CRC32 checksum
 
 	public Header(DataInputStream dis) throws IOException {
-		this(((dis.readUnsignedByte() << 24) | (dis.readUnsignedByte() << 16) | (dis.readUnsignedByte() << 8) | dis.readUnsignedByte()));
+		this(StreamUtils.readUnsignedInt(dis));
 	}
 
 	public Header(byte[] data) {
-		this((data[0] << 24) | (data[1] << 16) | (data[2] << 8) | data[3]);
+		this(((long)data[0] << 24) | (data[1] << 16) | (data[2] << 8) | data[3]);
 	}
 
 	private Header(long packed) {
