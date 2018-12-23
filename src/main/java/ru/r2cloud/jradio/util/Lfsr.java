@@ -25,6 +25,13 @@ public class Lfsr {
 		return output;
 	}
 
+	public byte nextBitDescramble(byte input) {
+		int output = (int) (popCount(shiftRegister & mask) % 2) ^ ((input & 0xFF) & 1);
+		int newbit = (input & 0xFF) & 1;
+		shiftRegister = ((shiftRegister >> 1) | (newbit << length));
+		return (byte)output;
+	}
+
 	public void reset() {
 		shiftRegister = seed;
 	}

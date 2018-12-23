@@ -1,5 +1,8 @@
 package ru.r2cloud.jradio.csp;
 
+import java.io.DataInputStream;
+import java.io.IOException;
+
 public class Header {
 
 	public static final int LENGTH = 4;
@@ -16,18 +19,25 @@ public class Header {
 	private boolean frdp; // Use RDP protocol
 	private boolean fcrc32; // Use CRC32 checksum
 
+	public Header(DataInputStream dis) throws IOException {
+		this(((dis.readUnsignedByte() << 24) | (dis.readUnsignedByte() << 16) | (dis.readUnsignedByte() << 8) | dis.readUnsignedByte()));
+	}
+
 	public Header(byte[] data) {
-		int packed = (data[0] << 24) | (data[1] << 16) | (data[2] << 8) | data[3];
-		priority = Priority.valufOfCode(packed >> 30 & 0x3);
-		source = (packed >> 25) & 0x1f;
-		destination = (packed >> 20) & 0x1f;
-		sourcePort = (packed >> 14) & 0x3f;
-		destinationPort = (packed >> 8) & 0x3f;
-		ffrag = (data[3] & 0x10) > 0;
-		fhmac = (data[3] & 0x08) > 0;
-		fxtea = (data[3] & 0x04) > 0;
-		frdp = (data[3] & 0x02) > 0;
-		fcrc32 = (data[3] & 0x01) > 0;
+		this((data[0] << 24) | (data[1] << 16) | (data[2] << 8) | data[3]);
+	}
+
+	private Header(long packed) {
+		priority = Priority.valufOfCode((int) (packed >> 30 & 0x3));
+		source = (int) ((packed >> 25) & 0x1f);
+		destination = (int) ((packed >> 20) & 0x1f);
+		sourcePort = (int) ((packed >> 14) & 0x3f);
+		destinationPort = (int) ((packed >> 8) & 0x3f);
+		ffrag = ((packed >> 4) & 0x1) > 0;
+		fhmac = ((packed >> 3) & 0x1) > 0;
+		fxtea = ((packed >> 2) & 0x1) > 0;
+		frdp = ((packed >> 1) & 0x1) > 0;
+		fcrc32 = ((packed >> 0) & 0x1) > 0;
 	}
 
 	public Priority getPriority() {
