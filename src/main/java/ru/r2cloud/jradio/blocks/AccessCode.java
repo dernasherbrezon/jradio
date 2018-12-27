@@ -1,12 +1,13 @@
 package ru.r2cloud.jradio.blocks;
 
-class AccessCode {
+public class AccessCode {
 
 	private long accessCode;
 	private long mask;
+	private int length;
 
-	AccessCode(String accessCodeBinary) {
-		int length = accessCodeBinary.length(); // # of bytes in string
+	public AccessCode(String accessCodeBinary) {
+		length = accessCodeBinary.length(); // # of bytes in string
 		if (length > 64) {
 			throw new IllegalArgumentException("access code with length: " + length + " is unsupported");
 		}
@@ -20,13 +21,17 @@ class AccessCode {
 		}
 	}
 
-	long correlate(long dataRegister) {
+	public long correlate(long dataRegister) {
 		long wrong_bits = (dataRegister ^ accessCode) & mask;
 		return calc(wrong_bits);
 	}
 
-	long getAccessCode() {
+	public long getAccessCode() {
 		return accessCode;
+	}
+	
+	public int getLength() {
+		return length;
 	}
 
 	private static long calc(long value) {
