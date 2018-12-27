@@ -107,7 +107,16 @@ public class MathUtils {
 		float result = (unsignedByte >> 5) + fiveBitResolution * (unsignedByte & 0x1f);
 		return result;
 	}
-	
+
+	public static int reverseBitsInByte(int x) {
+		int result = 0;
+		for (int i = 0; i < 8; i++) {
+			result = result << 1;
+			result = result | ((x >> i) & 0x1);
+		}
+		return result;
+	}
+
 	private MathUtils() {
 		// do nothing
 	}

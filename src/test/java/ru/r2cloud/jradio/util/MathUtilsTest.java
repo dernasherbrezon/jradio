@@ -18,4 +18,9 @@ public class MathUtilsTest {
 		assertEquals(1.41421f, MathUtils.abs(1.0f, 1.0f), 0.00001);
 	}
 	
+	@Test
+	public void testReverseBitsInByte() {
+		assertEquals(0b1100_0101, MathUtils.reverseBitsInByte(0b1010_0011));
+	}
+	
 }
