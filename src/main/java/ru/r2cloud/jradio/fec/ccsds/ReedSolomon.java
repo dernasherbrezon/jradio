@@ -127,7 +127,7 @@ public class ReedSolomon {
 				interleaved[i][j] = data[j * interleaving + i];
 			}
 			// decode each block
-			byte[] decoded = decode(interleaved[i]);
+			byte[] decoded = decodeData(interleaved[i]);
 			// interleave error-corrected results back
 			for (int j = 0; j < decoded.length; j++) {
 				result[j * interleaving + i] = decoded[j];

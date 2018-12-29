@@ -40,13 +40,7 @@ public class BitStuffing {
 				outputBitPosition++;
 			}
 		}
-
-		//fill wih zeroes remainder
-		if (outputBitPosition > 0) {
-			outputByte = outputByte << (8 - outputBitPosition);
-			result[outputSize] = (byte) outputByte;
-			outputSize++;
-		}
+		// outputBitPosition might be more than 0. But this byte should be skipped
 		return Arrays.copyOfRange(result, 0, outputSize);
 	}
 
