@@ -28,55 +28,55 @@ public class Eseo extends BeaconSource<EseoBeacon> {
 	protected EseoBeacon parseBeacon(byte[] raw) {
 		CorrelateAccessCode code = new CorrelateAccessCode(1, EseoBeacon.FLAG);
 		// start from last index in case of reed-solomon code block is having EseoBeacon flag
-		int endFlag = code.lastIndexOf(raw);
-		if (endFlag == -1) {
-			if (LOG.isDebugEnabled()) {
-				LOG.debug("unable to find end flag");
+		int endFlag = raw.length - 1;
+		while ((endFlag = code.lastIndexOf(raw, endFlag)) != -1) {
+			// 152bit
+			if (endFlag < 19) {
+				LOG.info("not enough data between flags: " + endFlag);
+				break;
 			}
-			return null;
-		}
-		// 152bit
-		if (endFlag < 19) {
-			LOG.info("not enough data between flags: " + endFlag);
-			return null;
-		}
 
-		for (int i = 0; i < endFlag; i++) {
-			raw[i] = (byte) MathUtils.reverseBitsInByte(raw[i] & 0xFF);
-		}
+			for (int i = 0; i < endFlag; i++) {
+				raw[i] = (byte) MathUtils.reverseBitsInByte(raw[i] & 0xFF);
+			}
 
-		raw = Arrays.copyOfRange(raw, 0, endFlag);
+			raw = Arrays.copyOfRange(raw, 0, endFlag);
 
-		try {
-			ReedSolomon rs = new ReedSolomon(8, 0x11d, 1, 1, 16);
-			byte[] data = rs.decodeData(raw);
-			data = BitStuffing.destuffOnes(data, 5);
-			Randomize.shuffle(data);
-			Nrzi.decode(data);
-			for (int i = 0; i < data.length; i++) {
-				data[i] = (byte) MathUtils.reverseBitsInByte(data[i] & 0xFF);
+			try {
+				ReedSolomon rs = new ReedSolomon(8, 0x11d, 1, 1, 16);
+				byte[] data = rs.decodeData(raw);
+				data = BitStuffing.destuffOnes(data, 5);
+				Randomize.shuffle(data);
+				Nrzi.decode(data);
+				for (int i = 0; i < data.length; i++) {
+					data[i] = (byte) MathUtils.reverseBitsInByte(data[i] & 0xFF);
+				}
+				if (Crc16Ccitt.calculate(data) != 0) {
+					LOG.info("crc mismatch");
+					continue;
+				}
+				byte[] packet = Arrays.copyOfRange(data, 0, data.length - 2);
+				EseoBeacon beacon = new EseoBeacon();
+				beacon.readExternal(packet);
+				Float beginSample = (Float) input.getContext().getCurrent().get(CorrelateAccessCodeTag.SOURCE_SAMPLE);
+				if (beginSample != null) {
+					beacon.setBeginSample(beginSample.longValue());
+				}
+				return beacon;
+			} catch (UncorrectableException e) {
+				if (LOG.isDebugEnabled()) {
+					LOG.debug("unable to decode reed solomon: " + e.getMessage());
+				}
+				continue;
+			} catch (IOException e) {
+				LOG.error("unable to parse beacon", e);
+				continue;
 			}
-			if (Crc16Ccitt.calculate(data) != 0) {
-				LOG.info("crc mismatch");
-				return null;
-			}
-			byte[] packet = Arrays.copyOfRange(data, 0, data.length - 2);
-			EseoBeacon beacon = new EseoBeacon();
-			beacon.readExternal(packet);
-			Float beginSample = (Float) input.getContext().getCurrent().get(CorrelateAccessCodeTag.SOURCE_SAMPLE);
-			if (beginSample != null) {
-				beacon.setBeginSample(beginSample.longValue());
-			}
-			return beacon;
-		} catch (UncorrectableException e) {
-			if (LOG.isDebugEnabled()) {
-				LOG.debug("unable to decode reed solomon: " + e.getMessage());
-			}
-			return null;
-		} catch (IOException e) {
-			LOG.error("unable to parse beacon", e);
-			return null;
 		}
+		if (endFlag == -1 && LOG.isDebugEnabled()) {
+			LOG.debug("unable to find end flag");
+		}
+		return null;
 	}
 
 }

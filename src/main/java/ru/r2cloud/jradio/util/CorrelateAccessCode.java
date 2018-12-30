@@ -25,8 +25,13 @@ public class CorrelateAccessCode {
 	}
 
 	public int lastIndexOf(byte[] data) {
+		return lastIndexOf(data, data.length - 1);
+	}
+
+	public int lastIndexOf(byte[] data, int fromIndex) {
 		long dataRegister = 0;
-		for (int i = data.length - 1; i >= 0; i--) {
+		int i = Math.min(fromIndex, data.length - 1);
+		for (; i >= 0; i--) {
 			dataRegister = (dataRegister >> 8) | ((data[i] & 0xFF) << (accessCode.getLength() - 8));
 			long nwrong = accessCode.correlate(dataRegister);
 			if (nwrong <= threshold) {

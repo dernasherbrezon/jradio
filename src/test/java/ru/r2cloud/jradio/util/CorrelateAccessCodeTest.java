@@ -23,4 +23,12 @@ public class CorrelateAccessCodeTest {
 		CorrelateAccessCode code = new CorrelateAccessCode(1, "0111111001111110");
 		assertEquals(6, code.lastIndexOf(new byte[] { 0x10, 0x7e, 0x50, 0x7e, 0x7e, 0x70, 0x7e, 0x7e }));
 	}
+	
+	@Test
+	public void testSuccessLastIndexOf2() {
+		CorrelateAccessCode code = new CorrelateAccessCode(1, "0111111001111110");
+		byte[] data = new byte[] { 0x10, 0x7e, 0x50, 0x7e, 0x7e, 0x70, 0x7e, 0x7e };
+		assertEquals(6, code.lastIndexOf(data));
+		assertEquals(3, code.lastIndexOf(data, 6));
+	}
 }
