@@ -54,11 +54,11 @@ public class Type1 {
 	private boolean UsageFaultUNALIGNED;// unaligned access usage fault
 	private boolean UsageFaultDIVBYZERO;// division by zero fault
 
-	private long OBD_CAN_TIMEOUT_ERROR;
-	private int OBD_WD_RESET_COUNT;
-	private int OBD_RS422M_ERR_COUNT;
-	private int OBD_RS422R_ERR_COUNT;
-	private int OBD_ERROR_COUNT;
+	private long OBD_CAN_TIMEOUT_ERROR; // CAN/CANopen interface timeout error
+	private int OBD_WD_RESET_COUNT; // Number of watchdog resets
+	private int OBD_RS422M_ERR_COUNT; // TMTC USART interface main error counter
+	private int OBD_RS422R_ERR_COUNT; // TMTC USART interface redundant error counter
+	private int OBD_ERROR_COUNT; // OBDH internal error counter
 
 	// OBD_TC_ERROR_1
 	private boolean PMMTcRequestNotAnswered;
@@ -201,18 +201,18 @@ public class Type1 {
 	private boolean INITCANOPEN;
 
 	private AcsState ACS_STATE; // AOCS mode of the state machine
-	private float ACS_OMEGA_P;
-	private float ACS_OMEGA_Q;
-	private float ACS_OMEGA_R;
-	private short PM_Current_Bp1;
-	private short PM_Current_Bp2;
-	private short PM_Current_Bp3;
-	private short PM_Current_Bp4;
-	private short PM_Current_Bp5;
-	private short PM_Current_Bp6;
-	private int PM_Voltage_Mb;
+	private float ACS_OMEGA_P; // Roll angular velocity
+	private float ACS_OMEGA_Q; // Pitch angular velocity
+	private float ACS_OMEGA_R; // Yaw angular velocity
+	private short PM_Current_Bp1; // Current of the battery pack 1
+	private short PM_Current_Bp2; // Current of the battery pack 2
+	private short PM_Current_Bp3; // Current of the battery pack 3
+	private short PM_Current_Bp4; // Current of the battery pack 4
+	private short PM_Current_Bp5; // Current of the battery pack 5
+	private short PM_Current_Bp6; // Current of the battery pack 6
+	private int PM_Voltage_Mb; // Voltage of the Main Bus
 
-	private int PM_SAFE_OPERATING_MODE;
+	private int PM_SAFE_OPERATING_MODE; // Operating mode of the power system
 	// 0x00 No safe
 	// 0x01 Safe mode 1: minor main bus power down
 	// 0x02 Safe mode 2: severe main bus power down
