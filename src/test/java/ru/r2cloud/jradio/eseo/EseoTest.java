@@ -1,5 +1,7 @@
 package ru.r2cloud.jradio.eseo;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
@@ -18,7 +20,7 @@ import ru.r2cloud.jradio.blocks.Window;
 import ru.r2cloud.jradio.source.WavFileSource;
 
 public class EseoTest {
-	
+
 	private Eseo input;
 
 	@Test
@@ -33,8 +35,13 @@ public class EseoTest {
 		TaggedStreamToPdu pdu = new TaggedStreamToPdu(new UnpackedToPacked(new FixedLengthTagger(correlateTag, 257 * 8), 1, Endianness.GR_MSB_FIRST, Byte.class));
 		input = new Eseo(pdu);
 		assertTrue(input.hasNext());
-//		EseoBeacon beacon = input.next();
-//		assertNotNull(beacon);
+		EseoBeacon beacon = input.next();
+		assertNotNull(beacon);
+		assertNotNull(beacon.getType1());
+		Type1 type1 = beacon.getType1();
+		//just basic assertions
+		assertEquals(AcsState.Safe, type1.getACS_STATE());
+		assertFalse(type1.isWheelOverCurrent());
 	}
 
 }
