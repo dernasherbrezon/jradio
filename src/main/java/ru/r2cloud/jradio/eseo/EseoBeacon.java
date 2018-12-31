@@ -20,6 +20,7 @@ public class EseoBeacon implements Externalizable {
 	private int pid;
 	private int beaconType;
 	private Type1 type1;
+	private Type2 type2;
 
 	// "U" frame
 	private UFrameControlType uFrameType;
@@ -54,6 +55,9 @@ public class EseoBeacon implements Externalizable {
 			switch (beaconType) {
 			case 3:
 				type1 = new Type1(dis);
+				break;
+			case 4:
+				type2 = new Type2(dis);
 				break;
 
 			default:
@@ -176,4 +180,11 @@ public class EseoBeacon implements Externalizable {
 		this.sFrameType = sFrameType;
 	}
 
+	public Type2 getType2() {
+		return type2;
+	}
+	
+	public void setType2(Type2 type2) {
+		this.type2 = type2;
+	}
 }
