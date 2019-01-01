@@ -24,6 +24,7 @@ public class EseoBeacon implements Externalizable {
 	private Type3 type3;
 	private Type4 type4;
 	private Type5 type5;
+	private Type6 type6;
 
 	// "U" frame
 	private UFrameControlType uFrameType;
@@ -70,6 +71,9 @@ public class EseoBeacon implements Externalizable {
 				break;
 			case 7:
 				type5 = new Type5(dis);
+				break;
+			case 8:
+				type6 = new Type6(dis);
 				break;
 			default:
 				throw new IllegalArgumentException("unsupported beacon type: " + beaconType);
@@ -221,5 +225,13 @@ public class EseoBeacon implements Externalizable {
 	
 	public void setType5(Type5 type5) {
 		this.type5 = type5;
+	}
+	
+	public Type6 getType6() {
+		return type6;
+	}
+	
+	public void setType6(Type6 type6) {
+		this.type6 = type6;
 	}
 }
