@@ -49,6 +49,11 @@ Forward error correction:
 Frequency correction:
   
   * GmskFrequencyCorrection. Calculates frequency correction based on 2 main GMSK spikes
+  
+Coding:
+ 
+  * NRZI
+  * Bit stuffing
 
 ## Supported satellites
 
@@ -62,6 +67,7 @@ Using the blocks above, you could decode signals from the following satellites:
   * AU02/AU03 (NORAD 42723/42731). Decode telemetry beacon. Based on [gr-satellites](https://github.com/daniestevez/gr-satellites). See the pipeline at the [Au02Test](https://github.com/dernasherbrezon/jradio/blob/master/src/test/java/ru/r2cloud/jradio/au02/Au02Test.java)
   * Technosat (NORAD 42829). Decode telemetry beacon. Based on [gr-satellites](https://github.com/daniestevez/gr-satellites) and [beesat-sdr](https://github.com/kappiman/beesat-sdr). See the pipeline at the [TechnosatTest](https://github.com/dernasherbrezon/jradio/blob/master/src/test/java/ru/r2cloud/jradio/technosat/TechnosatTest.java)
   * CA03 (NORAD 42734). Decode telemetry beacon. Based on [gr-satellites](https://github.com/daniestevez/gr-satellites). See the pipeline at the [Ca03Test](https://github.com/dernasherbrezon/jradio/blob/master/src/test/java/ru/r2cloud/jradio/ca03/Ca03Test.java)
+  * ESEO (NORAD 99912). Decode telemetry beacon. Based on [gr-satellites](https://github.com/daniestevez/gr-satellites). See the pipeline at the [EseoTest](https://github.com/dernasherbrezon/jradio/blob/master/src/test/java/ru/r2cloud/jradio/eseo/EseoTest.java)
   
 ## Doppler correction
 
