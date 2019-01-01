@@ -3,7 +3,7 @@ package ru.r2cloud.jradio.eseo;
 import java.io.DataInputStream;
 import java.io.IOException;
 
-import ru.r2cloud.jradio.util.StreamUtils;
+import ru.r2cloud.jradio.util.LittleEndianDataInputStream;
 
 public class Type6 {
 
@@ -81,7 +81,8 @@ public class Type6 {
 	private float ADE_OPRQ_Q_2; // Second element of the quaternion estimated from the filtered K matrix
 	private float ADE_OPRQ_Q_3; // Third element of the quaternion estimated from the filtered K matrix
 
-	public Type6(DataInputStream dis) throws IOException {
+	public Type6(DataInputStream source) throws IOException {
+		LittleEndianDataInputStream dis = new LittleEndianDataInputStream(source);
 		TRI_TMPX = dis.readUnsignedByte() * 0.5f - 40.0f;
 		TRI_TMPY = dis.readUnsignedByte() * 0.5f - 40.0f;
 		TRI_TMPZ = dis.readUnsignedByte() * 0.5f - 40.0f;
@@ -111,7 +112,10 @@ public class Type6 {
 		LMP_VTDIG = dis.readUnsignedByte() * 0.020f;
 		LMP_MEM = dis.readUnsignedByte() * 4096;
 		LMP_OFST = dis.readByte() * 4.88f;
-		LMP_SW = (dis.readUnsignedByte() << 16) | (dis.readUnsignedByte() << 8) | dis.readUnsignedByte();
+		int ch1 = dis.readUnsignedByte();
+		int ch2 = dis.readUnsignedByte();
+		int ch3 = dis.readUnsignedByte();
+		LMP_SW = (ch3 << 16) | (ch2 << 8) | ch1;
 		PCAM_MCUR_CURR = dis.readUnsignedByte();
 		PCAM_IMG_CURR = dis.readUnsignedByte();
 		PCAM_MCU_TEMP = dis.readShort() * 0.1f;
@@ -124,10 +128,10 @@ public class Type6 {
 		SCAM_IMG_TEMP = dis.readShort() * 0.1f;
 		SCAM_SDR1_TEMP = dis.readShort() * 0.1f;
 		SCAM_SDR2_TEMP = dis.readShort() * 0.1f;
-		AMS_OBC_P_UP = StreamUtils.readUnsignedInt(dis);
-		AMS_OBC_P_UP_DROPPED = StreamUtils.readUnsignedInt(dis);
-		AMS_OBC_MEM_STAT_1 = StreamUtils.readUnsignedInt(dis);
-		AMS_OBC_MEM_STAT_2 = StreamUtils.readUnsignedInt(dis);
+		AMS_OBC_P_UP = dis.readUnsignedInt();
+		AMS_OBC_P_UP_DROPPED = dis.readUnsignedInt();
+		AMS_OBC_MEM_STAT_1 = dis.readUnsignedInt();
+		AMS_OBC_MEM_STAT_2 = dis.readUnsignedInt();
 		AMS_EPS_DCDC_T = dis.readUnsignedByte();
 		AMS_VHF_FM_PA_T = dis.readUnsignedByte();
 		AMS_VHF_BPSK_PA_T = dis.readUnsignedByte();
@@ -149,7 +153,7 @@ public class Type6 {
 		GPS_TEMPERATURE_2 = dis.readShort() * 0.1f;
 		GPS_FREND_M_VOLT = dis.readUnsignedShort();
 		GPS_FREND_R_VOLT = dis.readUnsignedShort();
-		GPS_SECONDS_OF_WEEK = StreamUtils.readUnsignedInt(dis);
+		GPS_SECONDS_OF_WEEK = dis.readUnsignedInt();
 		ADE_In_Estimator_on = dis.readUnsignedByte();
 		ADE_In_Omega = dis.readUnsignedByte();
 		ADE_OPRQ_Q_1 = dis.readFloat();

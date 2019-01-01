@@ -1,7 +1,8 @@
 package ru.r2cloud.jradio.eseo;
 
-import java.io.DataInputStream;
 import java.io.IOException;
+
+import ru.r2cloud.jradio.util.LittleEndianDataInputStream;
 
 public class HSTXCommunicationCondition {
 
@@ -14,7 +15,7 @@ public class HSTXCommunicationCondition {
 	private int LEC0; // CAN Controller Last Error Code.
 	private boolean COMERR; // One or more errors in STX_COM_ERROR occurred.
 
-	public HSTXCommunicationCondition(DataInputStream dis) throws IOException {
+	public HSTXCommunicationCondition(LittleEndianDataInputStream dis) throws IOException {
 		CAN_TEC = dis.readUnsignedByte();
 		CAN_REC = dis.readUnsignedByte();
 

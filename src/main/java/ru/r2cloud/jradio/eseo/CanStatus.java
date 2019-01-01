@@ -1,7 +1,8 @@
 package ru.r2cloud.jradio.eseo;
 
-import java.io.DataInputStream;
 import java.io.IOException;
+
+import ru.r2cloud.jradio.util.LittleEndianDataInputStream;
 
 public class CanStatus {
 
@@ -32,7 +33,7 @@ public class CanStatus {
 	private boolean PayloadRedundantTransceiverLoopbackActive;
 	private boolean PayloadRedundantMarkedAsActiveBus;
 
-	public CanStatus(DataInputStream dis) throws IOException {
+	public CanStatus(LittleEndianDataInputStream dis) throws IOException {
 		int raw = dis.readUnsignedByte();
 		PlatformMainControllerCorrectlyInitialized = ((raw >> 7) & 0x1) > 0;
 		PlatformMainControllerInnormalMode = ((raw >> 6) & 0x1) > 0;

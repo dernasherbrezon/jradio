@@ -1,7 +1,8 @@
 package ru.r2cloud.jradio.eseo;
 
-import java.io.DataInputStream;
 import java.io.IOException;
+
+import ru.r2cloud.jradio.util.LittleEndianDataInputStream;
 
 public class HSTXStatus {
 
@@ -37,7 +38,7 @@ public class HSTXStatus {
 	private boolean TXLPF1_E; // Error in the 2nd stage of the TX LPF offset calibration of the RF Transceiver chip (LIME modem).
 	private boolean TXLPF0_E; // Error in the 1st stage of the TX LPF offset calibration of the RF Transceiver chip (LIME modem).
 
-	public HSTXStatus(DataInputStream dis) throws IOException {
+	public HSTXStatus(LittleEndianDataInputStream dis) throws IOException {
 		int raw = dis.readUnsignedByte();
 		SVC2_E = ((raw >> 7) & 0x1) > 0;
 		SVC1_E = ((raw >> 6) & 0x1) > 0;

@@ -1,7 +1,8 @@
 package ru.r2cloud.jradio.eseo;
 
-import java.io.DataInputStream;
 import java.io.IOException;
+
+import ru.r2cloud.jradio.util.LittleEndianDataInputStream;
 
 public class Rs485Error {
 
@@ -19,7 +20,7 @@ public class Rs485Error {
 	private boolean USARTMWMErrorParity;
 	private boolean USARTMWMErrorTimeout;
 	
-	public Rs485Error(DataInputStream dis) throws IOException {
+	public Rs485Error(LittleEndianDataInputStream dis) throws IOException {
 		int raw = dis.readUnsignedByte();
 		USARTMWMErrorConfigurationBRR = ((raw >> 7) & 0x1) > 0;
 		USARTMWMErrorConfigurationCR1 = ((raw >> 6) & 0x1) > 0;

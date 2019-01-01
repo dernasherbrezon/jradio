@@ -1,7 +1,8 @@
 package ru.r2cloud.jradio.eseo;
 
-import java.io.DataInputStream;
 import java.io.IOException;
+
+import ru.r2cloud.jradio.util.LittleEndianDataInputStream;
 
 public class AcsError {
 
@@ -37,7 +38,7 @@ public class AcsError {
 	private boolean AOCS_SW_ERROR3; // AOCS FDIR task overrun
 	private boolean AOCS_SW_ERROR4;
 
-	public AcsError(DataInputStream dis) throws IOException {
+	public AcsError(LittleEndianDataInputStream dis) throws IOException {
 		int raw = dis.readUnsignedByte();
 		SAFE_MODE = ((raw >> 7) & 0x1) > 0;
 		OMEGA_DET_WARNING = ((raw >> 6) & 0x1) > 0;

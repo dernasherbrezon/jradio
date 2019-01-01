@@ -1,7 +1,8 @@
 package ru.r2cloud.jradio.eseo;
 
-import java.io.DataInputStream;
 import java.io.IOException;
+
+import ru.r2cloud.jradio.util.LittleEndianDataInputStream;
 
 public class Rs422Status {
 
@@ -18,7 +19,7 @@ public class Rs422Status {
 	private boolean USARTTMTCRedundantPreviousTransmissionCompleted;
 	private boolean USARTTMTCRedundantIdleLineDetected;
 
-	public Rs422Status(DataInputStream dis) throws IOException {
+	public Rs422Status(LittleEndianDataInputStream dis) throws IOException {
 		int raw = dis.readUnsignedByte();
 		USARTTMTCMainInitializedCorrectly = ((raw >> 7) & 0x1) > 0;
 		USARTTMTCMainMarkedAsActive = ((raw >> 6) & 0x1) > 0;

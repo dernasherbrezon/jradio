@@ -3,7 +3,7 @@ package ru.r2cloud.jradio.eseo;
 import java.io.DataInputStream;
 import java.io.IOException;
 
-import ru.r2cloud.jradio.util.StreamUtils;
+import ru.r2cloud.jradio.util.LittleEndianDataInputStream;
 
 public class Type4 {
 
@@ -51,7 +51,8 @@ public class Type4 {
 	private float MT_TEMP1;  // TMP36 sensor inside Digital PCB
 	private float MT_TEMP2; // TMP36 sensor inside Digital PCB
 
-	public Type4(DataInputStream dis) throws IOException {
+	public Type4(DataInputStream source) throws IOException {
+		LittleEndianDataInputStream dis = new LittleEndianDataInputStream(source);
 		ACS_STATE = AcsState.valueOfCode(dis.readUnsignedByte());
 		ACS_SUN_MODE = SunMode.valueOfCode(dis.readUnsignedByte());
 		ACS_ERR = new AcsError(dis);
@@ -70,7 +71,7 @@ public class Type4 {
 		ACS_ORBIT_Vz = dis.readFloat();
 		ACS_STATE_TRANSITION = dis.readLong();
 		ACS_FDIR_MPS_time_err = dis.readFloat();
-		PM_SPIN_RATE = StreamUtils.readUnsignedInt(dis);
+		PM_SPIN_RATE = dis.readUnsignedInt();
 		SSM_uC_PCB_TEMP = dis.readShort() * 0.1f;
 		SS_ADC1_PCB_TEMP1 = dis.readShort() * 0.1f;
 		SS_ADC2_PCB_TEMP1 = dis.readShort() * 0.1f;

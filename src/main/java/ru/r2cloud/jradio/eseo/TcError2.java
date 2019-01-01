@@ -1,7 +1,8 @@
 package ru.r2cloud.jradio.eseo;
 
-import java.io.DataInputStream;
 import java.io.IOException;
+
+import ru.r2cloud.jradio.util.LittleEndianDataInputStream;
 
 public class TcError2 {
 
@@ -28,7 +29,7 @@ public class TcError2 {
 	private boolean ADEErrorCounterReached10;
 	private boolean SCAMErrorCounterReached10;
 
-	public TcError2(DataInputStream dis) throws IOException {
+	public TcError2(LittleEndianDataInputStream dis) throws IOException {
 		int raw = dis.readUnsignedByte();
 		PMMErrorCounterReached10 = ((raw >> 5) & 0x1) > 0;
 		PMRErrorCounterReached10 = ((raw >> 4) & 0x1) > 0;

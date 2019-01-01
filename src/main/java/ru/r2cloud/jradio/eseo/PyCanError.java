@@ -1,7 +1,8 @@
 package ru.r2cloud.jradio.eseo;
 
-import java.io.DataInputStream;
 import java.io.IOException;
+
+import ru.r2cloud.jradio.util.LittleEndianDataInputStream;
 
 public class PyCanError {
 
@@ -28,7 +29,7 @@ public class PyCanError {
 	private boolean ErrorPassive;
 	private boolean ErrorWarning;
 
-	public PyCanError(DataInputStream dis) throws IOException {
+	public PyCanError(LittleEndianDataInputStream dis) throws IOException {
 		int raw = dis.readUnsignedByte();
 		failedToRegisterDevice = ((raw >> 7) & 0x1) > 0;
 		unidentifiedDevice = ((raw >> 6) & 0x1) > 0;

@@ -3,6 +3,8 @@ package ru.r2cloud.jradio.eseo;
 import java.io.DataInputStream;
 import java.io.IOException;
 
+import ru.r2cloud.jradio.util.LittleEndianDataInputStream;
+
 public class Type2 {
 
 	private int PM_VOLTAGE_SP1_STRING_1_2; // Voltage of a single string of the solar panel 1
@@ -134,7 +136,8 @@ public class Type2 {
 	private boolean DOMActuator1CurrentOutOfRange;
 	private boolean DOMActuator2CurrentOutOfRange;
 
-	public Type2(DataInputStream dis) throws IOException {
+	public Type2(DataInputStream source) throws IOException {
+		LittleEndianDataInputStream dis = new LittleEndianDataInputStream(source);
 		PM_VOLTAGE_SP1_STRING_1_2 = dis.readUnsignedShort();
 		PM_VOLTAGE_SP1_STRING_3_4 = dis.readUnsignedShort();
 		PM_VOLTAGE_SP2_STRING_1_2 = dis.readUnsignedShort();

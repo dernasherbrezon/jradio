@@ -1,7 +1,8 @@
 package ru.r2cloud.jradio.eseo;
 
-import java.io.DataInputStream;
 import java.io.IOException;
+
+import ru.r2cloud.jradio.util.LittleEndianDataInputStream;
 
 public class Rs422Error {
 
@@ -32,7 +33,7 @@ public class Rs422Error {
 	private boolean USARTTMTCRedundantErrorParity;
 	private boolean USARTTMTCRedundantErrorTimeout;
 
-	public Rs422Error(DataInputStream dis) throws IOException {
+	public Rs422Error(LittleEndianDataInputStream dis) throws IOException {
 		int raw = dis.readUnsignedByte();
 		USARTTMTCMainErrorConfigurationBRR = ((raw >> 7) & 0x1) > 0;
 		USARTTMTCMainErrorConfigurationCR1 = ((raw >> 6) & 0x1) > 0;

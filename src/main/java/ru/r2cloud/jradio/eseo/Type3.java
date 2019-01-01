@@ -3,6 +3,8 @@ package ru.r2cloud.jradio.eseo;
 import java.io.DataInputStream;
 import java.io.IOException;
 
+import ru.r2cloud.jradio.util.LittleEndianDataInputStream;
+
 public class Type3 {
 
 	private ObdMode OBD_MODE;
@@ -47,7 +49,8 @@ public class Type3 {
 	private ObdError obdError2;
 	private ObdTempError obdTempError2;
 
-	public Type3(DataInputStream dis) throws IOException {
+	public Type3(DataInputStream source) throws IOException {
+		LittleEndianDataInputStream dis = new LittleEndianDataInputStream(source);
 		OBD_MODE = ObdMode.valueOfCode(dis.readUnsignedByte());
 		OBD_OLD_MODE = ObdMode.valueOfCode(dis.readUnsignedByte());
 		OBD_ACTIVE_TASK = dis.readUnsignedByte();

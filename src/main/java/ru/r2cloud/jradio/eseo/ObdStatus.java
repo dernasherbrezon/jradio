@@ -1,7 +1,8 @@
 package ru.r2cloud.jradio.eseo;
 
-import java.io.DataInputStream;
 import java.io.IOException;
+
+import ru.r2cloud.jradio.util.LittleEndianDataInputStream;
 
 public class ObdStatus {
 
@@ -35,7 +36,7 @@ public class ObdStatus {
 	private boolean INITPDUADC;
 	private boolean INITCANOPEN;
 
-	public ObdStatus(DataInputStream dis) throws IOException {
+	public ObdStatus(LittleEndianDataInputStream dis) throws IOException {
 		int raw = dis.readUnsignedByte();
 		INITASM = ((raw >> 7) & 0x1) > 0;
 		INITCOPYSECTION = ((raw >> 6) & 0x1) > 0;

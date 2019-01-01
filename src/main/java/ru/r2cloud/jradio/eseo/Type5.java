@@ -3,7 +3,7 @@ package ru.r2cloud.jradio.eseo;
 import java.io.DataInputStream;
 import java.io.IOException;
 
-import ru.r2cloud.jradio.util.StreamUtils;
+import ru.r2cloud.jradio.util.LittleEndianDataInputStream;
 
 public class Type5 {
 
@@ -58,7 +58,8 @@ public class Type5 {
 	private PlatformFdir PLATFORM_FDIR2;
 	private PlatformFdir PLATFORM_FDIR3; 
 	
-	public Type5(DataInputStream dis) throws IOException {
+	public Type5(DataInputStream source) throws IOException {
+		LittleEndianDataInputStream dis = new LittleEndianDataInputStream(source);
 		OBD_PLCAN_M_TXERR_COUNT = dis.readUnsignedShort();
 		OBD_PLCAN_M_RXERR_COUNT = dis.readUnsignedShort();
 		OBD_PLCAN_R_TXERR_COUNT = dis.readUnsignedShort();
@@ -67,7 +68,7 @@ public class Type5 {
 		OBD_PYCAN_M_RXERR_COUNT = dis.readUnsignedShort();
 		OBD_PYCAN_R_TXERR_COUNT = dis.readUnsignedShort();
 		OBD_PYCAN_R_RXERR_COUNT = dis.readUnsignedShort();
-		OBD_EDAC_ERROR_COUNT = StreamUtils.readUnsignedInt(dis);
+		OBD_EDAC_ERROR_COUNT = dis.readUnsignedInt();
 		OBD_RS422M_ERR_COUNT = dis.readUnsignedShort();
 		OBD_RS422R_ERR_COUNT = dis.readUnsignedShort();
 		OBD_ERROR_COUNT = dis.readUnsignedShort();
@@ -95,7 +96,7 @@ public class Type5 {
 		TTM_ERROR = new TtError(dis);
 		TTM_TEMP_1 = dis.readShort() * 0.1f;
 		TTM_TEMP_2 = dis.readShort() * 0.1f;
-		TTM_RX_AFC = dis.readByte() / 16.0f;
+		TTM_RX_AFC = dis.readByte() * 16.0f;
 		PLATFORM_FDIR = new PlatformFdir(dis);
 		
 		TTR_TX_STATUS = dis.readUnsignedByte();
@@ -106,7 +107,7 @@ public class Type5 {
 		TTR_ERROR = new TtError(dis);
 		TTR_TEMP_1 = dis.readShort() * 0.1f;
 		TTR_TEMP_2 = dis.readShort() * 0.1f;
-		TTR_RX_AFC = dis.readByte() / 16.0f;
+		TTR_RX_AFC = dis.readByte() * 16.0f;
 		
 		PLATFORM_FDIR1 = new PlatformFdir(dis);
 		PLATFORM_FDIR2 = new PlatformFdir(dis);

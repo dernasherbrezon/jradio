@@ -1,7 +1,8 @@
 package ru.r2cloud.jradio.eseo;
 
-import java.io.DataInputStream;
 import java.io.IOException;
+
+import ru.r2cloud.jradio.util.LittleEndianDataInputStream;
 
 public class HkError {
 
@@ -29,7 +30,7 @@ public class HkError {
 
 	private boolean SCAM;
 
-	public HkError(DataInputStream dis) throws IOException {
+	public HkError(LittleEndianDataInputStream dis) throws IOException {
 		int raw = dis.readUnsignedByte();
 
 		PMM = ((raw >> 5) & 0x1) > 0;

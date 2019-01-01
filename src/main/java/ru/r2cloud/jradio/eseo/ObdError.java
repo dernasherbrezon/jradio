@@ -1,7 +1,8 @@
 package ru.r2cloud.jradio.eseo;
 
-import java.io.DataInputStream;
 import java.io.IOException;
+
+import ru.r2cloud.jradio.util.LittleEndianDataInputStream;
 
 public class ObdError {
 
@@ -38,7 +39,7 @@ public class ObdError {
 	private boolean WDRESETLIMIT;
 	private boolean ASWIMAGEFailed;
 
-	public ObdError(DataInputStream dis) throws IOException {
+	public ObdError(LittleEndianDataInputStream dis) throws IOException {
 		int raw = dis.readUnsignedByte();
 		CPUTestFailed = ((raw >> 7) & 0x1) > 0;
 		FLASHRWFailed = ((raw >> 6) & 0x1) > 0;

@@ -1,7 +1,8 @@
 package ru.r2cloud.jradio.eseo;
 
-import java.io.DataInputStream;
 import java.io.IOException;
+
+import ru.r2cloud.jradio.util.LittleEndianDataInputStream;
 
 public class ObdTempError {
 
@@ -17,7 +18,7 @@ public class ObdTempError {
 	private boolean TEMP14_MMM;
 	private boolean TEMP15_MMR;
 
-	public ObdTempError(DataInputStream dis) throws IOException {
+	public ObdTempError(LittleEndianDataInputStream dis) throws IOException {
 		int raw = dis.readUnsignedByte();
 		TEMP1_PDU1 = ((raw >> 7) & 0x1) > 0;
 		TEMP2_BAT1 = ((raw >> 6) & 0x1) > 0;

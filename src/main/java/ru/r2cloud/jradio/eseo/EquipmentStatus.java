@@ -1,7 +1,8 @@
 package ru.r2cloud.jradio.eseo;
 
-import java.io.DataInputStream;
 import java.io.IOException;
+
+import ru.r2cloud.jradio.util.LittleEndianDataInputStream;
 
 public class EquipmentStatus {
 
@@ -29,7 +30,7 @@ public class EquipmentStatus {
 	private boolean SCAM;
 	private boolean DeOrbitMechanism;
 
-	public EquipmentStatus(DataInputStream dis) throws IOException {
+	public EquipmentStatus(LittleEndianDataInputStream dis) throws IOException {
 		int raw = dis.readUnsignedByte();
 		PowerManagementUnitMain = ((raw >> 5) & 0x1) > 0;
 		PowerManagementUnitRedundant = ((raw >> 4) & 0x1) > 0;

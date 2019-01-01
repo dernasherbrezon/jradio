@@ -1,7 +1,8 @@
 package ru.r2cloud.jradio.eseo;
 
-import java.io.DataInputStream;
 import java.io.IOException;
+
+import ru.r2cloud.jradio.util.LittleEndianDataInputStream;
 
 public class MtError {
 
@@ -19,7 +20,7 @@ public class MtError {
 	private boolean MTM12VOvercurrent;
 	private boolean MTM5VOvercurrent;
 
-	public MtError(DataInputStream dis) throws IOException {
+	public MtError(LittleEndianDataInputStream dis) throws IOException {
 		int raw = dis.readUnsignedByte();
 		MTMInternalError = ((raw >> 7) & 0x1) > 0;
 		WatchdogRebootError = ((raw >> 6) & 0x1) > 0;

@@ -3,7 +3,7 @@ package ru.r2cloud.jradio.eseo;
 import java.io.DataInputStream;
 import java.io.IOException;
 
-import ru.r2cloud.jradio.util.StreamUtils;
+import ru.r2cloud.jradio.util.LittleEndianDataInputStream;
 
 public class Type1 {
 
@@ -133,24 +133,22 @@ public class Type1 {
 	private TtTxStatus TMTCRedundantTransmitterSTATUS2;
 	private TtError TTRErrorCondition2;
 
-	public Type1(DataInputStream dis) throws IOException {
+	public Type1(DataInputStream source) throws IOException {
+		LittleEndianDataInputStream dis = new LittleEndianDataInputStream(source);
 		OBD_MODE = ObdMode.valueOfCode(dis.readUnsignedByte());
 		OBD_ACTIVE_TASK = dis.readUnsignedByte();
 
 		equipmentStatus = new EquipmentStatus(dis);
 		cpuError = new CpuError(dis);
 
-		OBD_CAN_TIMEOUT_ERROR = StreamUtils.readUnsignedInt(dis);
+		OBD_CAN_TIMEOUT_ERROR = dis.readUnsignedInt();
 		OBD_WD_RESET_COUNT = dis.readUnsignedByte();
 		OBD_RS422M_ERR_COUNT = dis.readUnsignedShort();
 		OBD_RS422R_ERR_COUNT = dis.readUnsignedShort();
 		OBD_ERROR_COUNT = dis.readUnsignedShort();
 
-		// OBD_TC_ERROR_1
 		tcError1 = new TcError1(dis);
-
-		// OBD_TC_ERROR_2
-		
+		tcError2 = new TcError2(dis);
 
 		rs422Status = new Rs422Status(dis);
 		rs422Error = new Rs422Error(dis);

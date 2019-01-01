@@ -1,7 +1,8 @@
 package ru.r2cloud.jradio.eseo;
 
-import java.io.DataInputStream;
 import java.io.IOException;
+
+import ru.r2cloud.jradio.util.LittleEndianDataInputStream;
 
 public class PlatformFdir {
 
@@ -26,7 +27,7 @@ public class PlatformFdir {
 	private boolean OBDHReprogrammingFailed;
 	private boolean OBDHReprogramming;
 
-	public PlatformFdir(DataInputStream dis) throws IOException {
+	public PlatformFdir(LittleEndianDataInputStream dis) throws IOException {
 		int raw = dis.readUnsignedByte();
 		PMM = ((raw >> 7) & 0x1) > 0;
 		PMR = ((raw >> 6) & 0x1) > 0;

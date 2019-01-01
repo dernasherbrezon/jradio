@@ -1,7 +1,8 @@
 package ru.r2cloud.jradio.eseo;
 
-import java.io.DataInputStream;
 import java.io.IOException;
+
+import ru.r2cloud.jradio.util.LittleEndianDataInputStream;
 
 public class HSTXMemoryCondition {
 
@@ -20,7 +21,7 @@ public class HSTXMemoryCondition {
 	private boolean M6AFULL;
 	private boolean M6FULL;
 
-	public HSTXMemoryCondition(DataInputStream dis) throws IOException {
+	public HSTXMemoryCondition(LittleEndianDataInputStream dis) throws IOException {
 		MBFAIL = dis.readUnsignedByte();
 		dis.skipBytes(1);
 

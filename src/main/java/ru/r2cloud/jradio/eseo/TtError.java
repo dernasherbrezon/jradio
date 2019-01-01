@@ -1,7 +1,8 @@
 package ru.r2cloud.jradio.eseo;
 
-import java.io.DataInputStream;
 import java.io.IOException;
+
+import ru.r2cloud.jradio.util.LittleEndianDataInputStream;
 
 public class TtError {
 
@@ -21,7 +22,7 @@ public class TtError {
 	private boolean CurrentOfTheHPAExceededLimit;
 	private boolean CurrentOfTheLNARTXExceededLimit;
 
-	public TtError(DataInputStream dis) throws IOException {
+	public TtError(LittleEndianDataInputStream dis) throws IOException {
 		int raw = dis.readUnsignedByte();
 		PLLFailedToLockInTheTransmitter = ((raw >> 7) & 0x1) > 0;
 		ChargePumpCurrentExceededLimitsInTX = ((raw >> 6) & 0x1) > 0;

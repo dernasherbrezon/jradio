@@ -1,7 +1,8 @@
 package ru.r2cloud.jradio.eseo;
 
-import java.io.DataInputStream;
 import java.io.IOException;
+
+import ru.r2cloud.jradio.util.LittleEndianDataInputStream;
 
 public class PmmError1 {
 
@@ -34,7 +35,7 @@ public class PmmError1 {
 	private boolean PowerBoardSensor1TemperatureOutOfRange;
 	private boolean PowerBoardSensor2TemperatureOutOfRange;
 
-	public PmmError1(DataInputStream dis) throws IOException {
+	public PmmError1(LittleEndianDataInputStream dis) throws IOException {
 		int raw = dis.readUnsignedByte();
 		SolarPanel1Sensor1TemperatureOutOfRange = ((raw >> 7) & 0x1) > 0;
 		SolarPanel1Sensor2TemperatureOutOfRange = ((raw >> 6) & 0x1) > 0;

@@ -1,7 +1,8 @@
 package ru.r2cloud.jradio.eseo;
 
-import java.io.DataInputStream;
 import java.io.IOException;
+
+import ru.r2cloud.jradio.util.LittleEndianDataInputStream;
 
 public class PlCanError {
 
@@ -30,7 +31,7 @@ public class PlCanError {
 	private boolean errorPassive;
 	private boolean errorWarning;
 
-	public PlCanError(DataInputStream dis) throws IOException {
+	public PlCanError(LittleEndianDataInputStream dis) throws IOException {
 
 		int raw = dis.readUnsignedByte();
 		failedToRegisterDevice = ((raw >> 7) & 0x1) > 0;

@@ -1,7 +1,8 @@
 package ru.r2cloud.jradio.eseo;
 
-import java.io.DataInputStream;
 import java.io.IOException;
+
+import ru.r2cloud.jradio.util.LittleEndianDataInputStream;
 
 public class CpuError {
 
@@ -25,7 +26,7 @@ public class CpuError {
 	private boolean UsageFaultUNALIGNED;// unaligned access usage fault
 	private boolean UsageFaultDIVBYZERO;// division by zero fault
 
-	public CpuError(DataInputStream dis) throws IOException {
+	public CpuError(LittleEndianDataInputStream dis) throws IOException {
 		int raw = dis.readUnsignedByte();
 		HardFaultVECTTBL = ((raw >> 7) & 0x1) > 0;
 		HardFaultFORCED = ((raw >> 6) & 0x1) > 0;

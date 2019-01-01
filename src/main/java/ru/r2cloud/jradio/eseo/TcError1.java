@@ -1,7 +1,8 @@
 package ru.r2cloud.jradio.eseo;
 
-import java.io.DataInputStream;
 import java.io.IOException;
+
+import ru.r2cloud.jradio.util.LittleEndianDataInputStream;
 
 public class TcError1 {
 
@@ -28,7 +29,7 @@ public class TcError1 {
 
 	private boolean SCAMTcRequestNotAnswered;
 	
-	public TcError1(DataInputStream dis) throws IOException {
+	public TcError1(LittleEndianDataInputStream dis) throws IOException {
 		int raw = dis.readUnsignedByte();
 		PMMTcRequestNotAnswered = ((raw >> 5) & 0x1) > 0;
 		PMRTcRequestNotAnswered = ((raw >> 4) & 0x1) > 0;

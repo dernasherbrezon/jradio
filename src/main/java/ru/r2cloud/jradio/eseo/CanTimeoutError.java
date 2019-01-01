@@ -1,7 +1,8 @@
 package ru.r2cloud.jradio.eseo;
 
-import java.io.DataInputStream;
 import java.io.IOException;
+
+import ru.r2cloud.jradio.util.LittleEndianDataInputStream;
 
 public class CanTimeoutError {
 
@@ -26,7 +27,7 @@ public class CanTimeoutError {
 	private boolean GPS;
 	private boolean SCAM;
 
-	public CanTimeoutError(DataInputStream dis) throws IOException {
+	public CanTimeoutError(LittleEndianDataInputStream dis) throws IOException {
 		int raw = dis.readUnsignedByte();
 		PMM = ((raw >> 5) & 0x1) > 0;
 		PMR = ((raw >> 4) & 0x1) > 0;

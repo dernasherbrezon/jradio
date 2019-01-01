@@ -1,7 +1,8 @@
 package ru.r2cloud.jradio.eseo;
 
-import java.io.DataInputStream;
 import java.io.IOException;
+
+import ru.r2cloud.jradio.util.LittleEndianDataInputStream;
 
 public class Rs485Status {
 
@@ -12,7 +13,7 @@ public class Rs485Status {
 	private boolean USARTMWMPreviousTransmissionCompleted;
 	private boolean USARTMWMIdleLineDetected;
 
-	public Rs485Status(DataInputStream dis) throws IOException {
+	public Rs485Status(LittleEndianDataInputStream dis) throws IOException {
 		int raw = dis.readUnsignedByte();
 		USARTMWMInitializedCorrectly = ((raw >> 7) & 0x1) > 0;
 		USARTMWMMarkedAsActive = ((raw >> 6) & 0x1) > 0;
