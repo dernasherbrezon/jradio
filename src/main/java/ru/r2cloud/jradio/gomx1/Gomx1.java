@@ -1,4 +1,4 @@
-package ru.r2cloud.jradio.au02;
+package ru.r2cloud.jradio.gomx1;
 
 import java.io.IOException;
 
@@ -13,17 +13,17 @@ import ru.r2cloud.jradio.fec.ccsds.Randomize;
 import ru.r2cloud.jradio.fec.ccsds.ReedSolomon;
 import ru.r2cloud.jradio.fec.ccsds.UncorrectableException;
 
-public class Au02 extends BeaconSource<Au02Beacon> {
-
-	private static final Logger LOG = LoggerFactory.getLogger(Au02.class);
+public class Gomx1 extends BeaconSource<Gomx1Beacon> {
+	
+	private static final Logger LOG = LoggerFactory.getLogger(Gomx1.class);
 	private final Golay golay = new Golay();
-
-	public Au02(TaggedStreamToPdu input) {
+	
+	public Gomx1(TaggedStreamToPdu input) {
 		super(input);
 	}
 
 	@Override
-	protected Au02Beacon parseBeacon(byte[] raw) {
+	protected Gomx1Beacon parseBeacon(byte[] raw) {
 		int lengthField = ((raw[0] & 0xFF) << 16) | ((raw[1] & 0xFF) << 8) | (raw[2] & 0xFF);
 		try {
 			lengthField = golay.decode(lengthField);
@@ -51,7 +51,7 @@ public class Au02 extends BeaconSource<Au02Beacon> {
 			if (rsFlag > 0) {
 				data = ReedSolomon.decode(data);
 			}
-			Au02Beacon beacon = new Au02Beacon();
+			Gomx1Beacon beacon = new Gomx1Beacon();
 			beacon.readExternal(data);
 			Float beginSample = (Float) input.getContext().getCurrent().get(CorrelateAccessCodeTag.SOURCE_SAMPLE);
 			if (beginSample != null) {

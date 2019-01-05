@@ -68,6 +68,7 @@ Using the blocks above, you could decode signals from the following satellites:
   * Technosat (NORAD 42829). Decode telemetry beacon. Based on [gr-satellites](https://github.com/daniestevez/gr-satellites) and [beesat-sdr](https://github.com/kappiman/beesat-sdr). See the pipeline at the [TechnosatTest](https://github.com/dernasherbrezon/jradio/blob/master/src/test/java/ru/r2cloud/jradio/technosat/TechnosatTest.java)
   * CA03 (NORAD 42734). Decode telemetry beacon. Based on [gr-satellites](https://github.com/daniestevez/gr-satellites). See the pipeline at the [Ca03Test](https://github.com/dernasherbrezon/jradio/blob/master/src/test/java/ru/r2cloud/jradio/ca03/Ca03Test.java)
   * ESEO (NORAD 99912). Decode telemetry beacon. Based on [gr-satellites](https://github.com/daniestevez/gr-satellites). See the pipeline at the [EseoTest](https://github.com/dernasherbrezon/jradio/blob/master/src/test/java/ru/r2cloud/jradio/eseo/EseoTest.java)
+  * GOMX-1. Decode telemetry beacon. Based on [gr-satellites](https://github.com/daniestevez/gr-satellites). See the pipeline at the [Gomx1Test](https://github.com/dernasherbrezon/jradio/blob/master/src/test/java/ru/r2cloud/jradio/gomx1/Gomx1Test.java)
   
 ## Doppler correction
 
