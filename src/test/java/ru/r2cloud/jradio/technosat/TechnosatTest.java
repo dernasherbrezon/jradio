@@ -1,5 +1,6 @@
 package ru.r2cloud.jradio.technosat;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
@@ -38,6 +39,11 @@ public class TechnosatTest {
 		assertTrue(input.hasNext());
 		TechnosatBeacon beacon = input.next();
 		assertNotNull(beacon);
+		assertEquals("DP0TBA", beacon.getCallsign());
+		assertTrue(beacon.getControl2().isAck());
+		assertEquals(80, beacon.getFrame().getSpacecraftIdentifier());
+		assertEquals(573993161, beacon.getFrame().getPackets().get(0).getRecordingTimeSeconds());
+		assertEquals(16.625f, beacon.getFrame().getPackets().get(12).getTmEpsCtrlPower().getBATVOLTA_ADC(), 0.0f);
 	}
 
 	@After
