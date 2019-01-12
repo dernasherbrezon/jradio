@@ -21,8 +21,9 @@ All blocks meant to be binary compatible with gnuradio versions. This will ensur
   * FixedLengthTagger
   * FloatToChar
   * FloatToComplex
-  * LowPassFilter and LowPassFilterComplex
   * FrequencyXlatingFIRFilter
+  * LowPassFilter and LowPassFilterComplex
+  * PolyphaseClockSyncComplex
   * Rail
   * RootRaisedCosineFilter
   * GUI Histogram Sink (Spectogram) 

@@ -7,19 +7,16 @@ public class FIRFilter {
 	private final float[] taps;
 
 	public FIRFilter(float[] taps) {
-		this.taps = new float[taps.length];
-		for (int i = taps.length - 1, j = 0; i >= 0; i--, j++) {
-			this.taps[j] = taps[i];
-		}
+		this.taps = taps;
 	}
 
 	public float filter(CircularArray circularArray) {
 		float dotProduct = 0;
 		int j = 0;
-		for (int i = circularArray.getCurrentPos() + 1; i < circularArray.getSize(); i++, j++) {
+		for (int i = circularArray.getCurrentPos(); i < circularArray.getSize(); i++, j++) {
 			dotProduct = dotProduct + circularArray.getArray()[i] * taps[j];
 		}
-		for (int i = 0; i <= circularArray.getCurrentPos(); i++, j++) {
+		for (int i = 0; i < circularArray.getCurrentPos(); i++, j++) {
 			dotProduct = dotProduct + circularArray.getArray()[i] * taps[j];
 		}
 		return dotProduct;

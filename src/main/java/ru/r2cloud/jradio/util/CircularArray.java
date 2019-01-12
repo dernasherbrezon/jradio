@@ -7,13 +7,13 @@ public class CircularArray {
 
 	public CircularArray(int size) {
 		array = new float[size];
-		currentPos = -1;
+		currentPos = array.length;
 	}
 
 	public void add(float value) {
-		currentPos++;
-		if (currentPos >= array.length) {
-			currentPos = 0;
+		currentPos--;
+		if (currentPos < 0) {
+			currentPos = array.length - 1;
 		}
 		array[currentPos] = value;
 	}
