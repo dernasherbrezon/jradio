@@ -1,6 +1,7 @@
 package ru.r2cloud.jradio.blocks;
 
 import ru.r2cloud.jradio.util.CircularArray;
+import ru.r2cloud.jradio.util.CircularComplexArray;
 
 public class FIRFilter {
 
@@ -22,17 +23,17 @@ public class FIRFilter {
 		return dotProduct;
 	}
 
-	public void filterComplex(float[] output, float[] input, float[] inputImg, int inputPos) {
+	public void filterComplex(float[] output, CircularComplexArray input) {
 		float dotProductReal = 0;
 		float dotProductImg = 0;
 		int j = 0;
-		for (int i = inputPos; i < input.length; i++, j++) {
-			dotProductReal = dotProductReal + input[i] * taps[j];
-			dotProductImg = dotProductImg + inputImg[i] * taps[j];
+		for (int i = input.getCurrentPos(); i < input.getSize(); i++, j++) {
+			dotProductReal = dotProductReal + input.getHistoryReal()[i] * taps[j];
+			dotProductImg = dotProductImg + input.getHistoryImg()[i] * taps[j];
 		}
-		for (int i = 0; i < inputPos; i++, j++) {
-			dotProductReal = dotProductReal + input[i] * taps[j];
-			dotProductImg = dotProductImg + inputImg[i] * taps[j];
+		for (int i = 0; i < input.getCurrentPos(); i++, j++) {
+			dotProductReal = dotProductReal + input.getHistoryReal()[i] * taps[j];
+			dotProductImg = dotProductImg + input.getHistoryImg()[i] * taps[j];
 		}
 		output[0] = dotProductReal;
 		output[1] = dotProductImg;

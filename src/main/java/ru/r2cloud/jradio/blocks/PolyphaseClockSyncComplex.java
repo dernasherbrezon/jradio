@@ -111,11 +111,11 @@ public class PolyphaseClockSyncComplex implements FloatInput {
 			array.add(source.readFloat(), source.readFloat());
 		}
 
-		d_filters[d_filtnum].filterComplex(currentComplex, array.getHistoryReal(), array.getHistoryImg(), array.getCurrentPos());
+		d_filters[d_filtnum].filterComplex(currentComplex, array);
 		d_k = d_k + d_rate_i + d_rate_f; // update phase
 
 		// Update the phase and rate estimates for this symbol
-		d_diff_filters[d_filtnum].filterComplex(currentComplexDiff, array.getHistoryReal(), array.getHistoryImg(), array.getCurrentPos());
+		d_diff_filters[d_filtnum].filterComplex(currentComplexDiff, array);
 		error_r = currentComplex[0] * currentComplexDiff[0];
 		error_i = currentComplex[1] * currentComplexDiff[1];
 		d_error = (error_i + error_r) / 2.0f; // average error from I&Q channel

@@ -1,6 +1,7 @@
 package ru.r2cloud.jradio.blocks;
 
 import ru.r2cloud.jradio.util.CircularArray;
+import ru.r2cloud.jradio.util.CircularComplexArray;
 
 public class MMSEFIRInterpolator {
 
@@ -159,14 +160,14 @@ public class MMSEFIRInterpolator {
 		return filters[imu].filter(input);
 	}
 
-	public void interpolateComplex(float[] output, float[] input, float[] inputImg, int inputPos, float mu) {
+	public void interpolateComplex(float[] output, CircularComplexArray input, float mu) {
 		int imu = (int) Math.rint(mu * NSTEPS);
 
 		if ((imu < 0) || (imu > NSTEPS)) {
 			throw new IllegalArgumentException("mmse_fir_interpolator_ff: imu out of bounds: " + imu);
 		}
 
-		filters[imu].filterComplex(output, input, inputImg, inputPos);
+		filters[imu].filterComplex(output, input);
 	}
 
 	public int getNumberOfTaps() {

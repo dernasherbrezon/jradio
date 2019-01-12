@@ -42,7 +42,7 @@ public class LowPassFilterComplex implements FloatInput {
 		float result;
 		if (real) {
 			array.add(source.readFloat(), source.readFloat());
-			filter.filterComplex(currentComplex, array.getHistoryReal(), array.getHistoryImg(), array.getCurrentPos());
+			filter.filterComplex(currentComplex, array);
 			if (samples != null) {
 				samples.mark();
 			}

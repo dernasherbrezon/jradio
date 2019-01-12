@@ -70,7 +70,7 @@ public class ClockRecoveryMMComplex implements FloatInput {
 			p2T = p1T;
 			p1T = p0T;
 			p0T = temp;
-			interp.interpolateComplex(p0T, array.getHistoryReal(), array.getHistoryImg(), array.getCurrentPos(), mu);
+			interp.interpolateComplex(p0T, array, mu);
 
 			temp = c2T;
 			c2T = c1T;
