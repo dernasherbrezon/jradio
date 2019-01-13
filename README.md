@@ -25,6 +25,7 @@ All blocks meant to be binary compatible with gnuradio versions. This will ensur
   * LowPassFilter and LowPassFilterComplex
   * PolyphaseClockSyncComplex
   * Rail
+  * Rms
   * RootRaisedCosineFilter
   * GUI Histogram Sink (Spectogram) 
   * TaggedStreamToPdu
