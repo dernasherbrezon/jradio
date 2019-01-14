@@ -1,13 +1,15 @@
 package ru.r2cloud.jradio;
 
+import java.io.EOFException;
 import java.io.IOException;
 
-public class SingleResultInput implements FloatInput {
+public class ArrayFloatInput implements FloatInput {
 
 	private final Context context;
-	private float result;
+	private float[] result;
+	private int index;
 
-	public SingleResultInput(float result) {
+	public ArrayFloatInput(float... result) {
 		this.result = result;
 		context = new Context();
 		context.setChannels(2);
@@ -20,7 +22,12 @@ public class SingleResultInput implements FloatInput {
 
 	@Override
 	public float readFloat() throws IOException {
-		return result;
+		if (index >= result.length) {
+			throw new EOFException();
+		}
+		float cur = result[index];
+		index++;
+		return cur;
 	}
 
 	@Override

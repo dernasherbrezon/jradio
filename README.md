@@ -17,6 +17,7 @@ All blocks meant to be binary compatible with gnuradio versions. This will ensur
   * ConstellationSoftDecoder
   * CorrelateAccessCodeTag
   * CostasLoop
+  * Divide
   * FIRFilter and ComplexFIRFilter
   * FixedLengthTagger
   * FloatToChar
