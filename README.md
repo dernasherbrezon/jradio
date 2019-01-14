@@ -14,6 +14,7 @@ All blocks meant to be binary compatible with gnuradio versions. This will ensur
   * BinarySlicer
   * ClockRecoveryMM and ClockRecoveryMMComplex
   * ComplexConjugate
+  * ComplexToReal
   * ConstellationSoftDecoder
   * CorrelateAccessCodeTag
   * CostasLoop

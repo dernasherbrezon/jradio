@@ -26,6 +26,9 @@ public class CostasLoop implements FloatInput {
 	private float img;
 
 	public CostasLoop(FloatInput source, float loopBw, int order, boolean useSnr) {
+		if (source.getContext().getChannels() != 2) {
+			throw new IllegalArgumentException("not a complex input: " + source.getContext().getChannels());
+		}
 		float damping = (float) Math.sqrt(2.0) / 2.0f;
 		float denom = (float) (1.0 + 2.0 * damping * loopBw + loopBw * loopBw);
 		alpha = (4 * damping * loopBw) / denom;
