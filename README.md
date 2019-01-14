@@ -27,6 +27,7 @@ All blocks meant to be binary compatible with gnuradio versions. This will ensur
   * PolyphaseClockSyncComplex
   * Rail
   * Rms
+  * RmsAgc. Out-of-tree block. For more details see [blog post](https://destevez.net/2017/08/agc-for-gr-satellites/)
   * RootRaisedCosineFilter
   * GUI Histogram Sink (Spectogram) 
   * TaggedStreamToPdu
