@@ -25,6 +25,7 @@ All blocks meant to be binary compatible with gnuradio versions. This will ensur
   * FloatToComplex
   * FrequencyXlatingFIRFilter
   * LowPassFilter and LowPassFilterComplex
+  * NrziDecode. Out-of-tree block. Performs nrzi decoding over unpacked stream of bytes
   * PolyphaseClockSyncComplex
   * Rail
   * Rms
