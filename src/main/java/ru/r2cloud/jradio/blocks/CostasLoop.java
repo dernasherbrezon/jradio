@@ -21,6 +21,7 @@ public class CostasLoop implements FloatInput {
 	private float freq = 0.0f;
 	private float error = 0.0f;
 	private final int order;
+	private final boolean useSnr;
 
 	private boolean outputReal = true;
 	private float img;
@@ -33,10 +34,11 @@ public class CostasLoop implements FloatInput {
 		float denom = (float) (1.0 + 2.0 * damping * loopBw + loopBw * loopBw);
 		alpha = (4 * damping * loopBw) / denom;
 		beta = (4 * loopBw * loopBw) / denom;
-		if (useSnr || order != 4) {
+		if (useSnr || (order != 4 && order != 2)) {
 			throw new IllegalArgumentException("unsupported snr: " + useSnr + " and order: " + order);
 		}
 		this.order = order;
+		this.useSnr = useSnr;
 		this.source = source;
 	}
 
@@ -55,16 +57,23 @@ public class CostasLoop implements FloatInput {
 
 			switch (order) {
 			case 4:
-				if (real > 0.0f) {
-					error = 1.0f;
-				} else {
-					error = -1.0f;
+				if (!useSnr) {
+					if (real > 0.0f) {
+						error = 1.0f;
+					} else {
+						error = -1.0f;
+					}
+					error *= img;
+					if (img > 0.0f) {
+						error -= (1.0f) * real;
+					} else {
+						error -= (-1.0f) * real;
+					}
 				}
-				error *= img;
-				if (img > 0.0f) {
-					error -= (1.0f) * real;
-				} else {
-					error -= (-1.0f) * real;
+				break;
+			case 2:
+				if (!useSnr) {
+					error = real * img;
 				}
 				break;
 			default:

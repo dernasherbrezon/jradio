@@ -7,6 +7,7 @@ import java.io.EOFException;
 import org.junit.After;
 import org.junit.Test;
 
+import ru.r2cloud.jradio.Context;
 import ru.r2cloud.jradio.source.InputStreamSource;
 
 public class CostasLoopTest {
@@ -15,7 +16,9 @@ public class CostasLoopTest {
 
 	@Test
 	public void test() throws Exception {
-		source = new CostasLoop(new InputStreamSource(CostasLoopTest.class.getClassLoader().getResourceAsStream("RRCF.bin")), 0.015f, 4, false);
+		Context context = new Context();
+		context.setChannels(2);
+		source = new CostasLoop(new InputStreamSource(CostasLoopTest.class.getClassLoader().getResourceAsStream("RRCF.bin"), context), 0.015f, 4, false);
 		try (InputStreamSource is = new InputStreamSource(CostasLoopTest.class.getClassLoader().getResourceAsStream("costas.bin"))) {
 			int index = 0;
 			while (true) {
