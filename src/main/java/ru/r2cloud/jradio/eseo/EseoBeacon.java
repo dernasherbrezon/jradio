@@ -5,6 +5,10 @@ import java.io.DataInputStream;
 import java.io.IOException;
 
 import ru.r2cloud.jradio.Externalizable;
+import ru.r2cloud.jradio.ax25.AddressSubfield;
+import ru.r2cloud.jradio.ax25.FrameType;
+import ru.r2cloud.jradio.ax25.SFrameControlType;
+import ru.r2cloud.jradio.ax25.UFrameControlType;
 
 public class EseoBeacon implements Externalizable {
 
@@ -83,7 +87,7 @@ public class EseoBeacon implements Externalizable {
 			uFrameType = UFrameControlType.valueOfCode(dis.readUnsignedByte());
 			break;
 		case S:
-			sFrameType = SFrameControlType.valueOfCode(dis.readUnsignedByte());
+			sFrameType = SFrameControlType.valueOfCode(dis.readUnsignedByte() & 0b0000_1111);
 			receiveSequenceNumber = dis.readUnsignedByte() >> 1;
 			break;
 		default:
