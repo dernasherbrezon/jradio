@@ -1,4 +1,4 @@
-package ru.r2cloud.jradio.eseo;
+package ru.r2cloud.jradio.ax25;
 
 import java.util.HashMap;
 import java.util.Map;

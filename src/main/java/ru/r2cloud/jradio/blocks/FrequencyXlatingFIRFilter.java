@@ -33,6 +33,9 @@ public class FrequencyXlatingFIRFilter implements FloatInput {
 		if (decimation < 1) {
 			throw new IllegalArgumentException("decimation expected to be more or equal 1. got: " + decimation);
 		}
+		if (source.getContext().getChannels() != 2) {
+			throw new IllegalArgumentException("not a complex input: " + source.getContext().getChannels());
+		}
 		this.source = source;
 		this.decimation = decimation;
 		float[] complexTaps = new float[taps.length * 2];

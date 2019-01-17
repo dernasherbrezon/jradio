@@ -4,7 +4,7 @@ import java.io.IOException;
 
 import ru.r2cloud.jradio.Context;
 import ru.r2cloud.jradio.FloatInput;
-import ru.r2cloud.jradio.util.CircularArray;
+import ru.r2cloud.jradio.util.CircularComplexArray;
 import ru.r2cloud.jradio.util.MathUtils;
 
 public class ClockRecoveryMMComplex implements FloatInput {
@@ -30,9 +30,7 @@ public class ClockRecoveryMMComplex implements FloatInput {
 	private float[] c2T = new float[2];
 	private float[] c0T = new float[2];
 
-	private CircularArray curBuf;
-	private CircularArray curBufImg;
-
+	private final CircularComplexArray array;
 	private boolean outputReal = true;
 	private float img;
 
@@ -50,8 +48,7 @@ public class ClockRecoveryMMComplex implements FloatInput {
 		this.source.getContext().setTotalSamples(null);
 		interp = new MMSEFIRInterpolator();
 		this.skip = interp.getNumberOfTaps() - 2;
-		curBuf = new CircularArray(interp.getNumberOfTaps());
-		curBufImg = new CircularArray(interp.getNumberOfTaps());
+		array = new CircularComplexArray(interp.getNumberOfTaps());
 		setOmega(omega);
 		
 		context = new Context(source.getContext());
@@ -64,8 +61,7 @@ public class ClockRecoveryMMComplex implements FloatInput {
 	public float readFloat() throws IOException {
 		if (outputReal) {
 			for (int i = 0; i < skip; i++) {
-				curBuf.add(source.readFloat());
-				curBufImg.add(source.readFloat());
+				array.add(source.readFloat(), source.readFloat());
 			}
 
 			float mm_val = 0;
@@ -74,7 +70,7 @@ public class ClockRecoveryMMComplex implements FloatInput {
 			p2T = p1T;
 			p1T = p0T;
 			p0T = temp;
-			interp.interpolateComplex(p0T, curBuf.getArray(), curBufImg.getArray(), curBuf.getCurrentPos(), mu);
+			interp.interpolateComplex(p0T, array, mu);
 
 			temp = c2T;
 			c2T = c1T;

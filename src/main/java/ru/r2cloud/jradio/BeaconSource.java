@@ -4,14 +4,12 @@ import java.io.Closeable;
 import java.io.IOException;
 import java.util.Iterator;
 
-import ru.r2cloud.jradio.blocks.TaggedStreamToPdu;
-
 public abstract class BeaconSource<T> implements Iterable<T>, Iterator<T>, Closeable {
 
-	protected final TaggedStreamToPdu input;
+	protected final MessageInput input;
 	private T current;
 
-	public BeaconSource(TaggedStreamToPdu input) {
+	public BeaconSource(MessageInput input) {
 		this.input = input;
 	}
 

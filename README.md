@@ -14,30 +14,38 @@ All blocks meant to be binary compatible with gnuradio versions. This will ensur
   * BinarySlicer
   * ClockRecoveryMM and ClockRecoveryMMComplex
   * ComplexConjugate
+  * ComplexToReal
   * ConstellationSoftDecoder
   * CorrelateAccessCodeTag
   * CostasLoop
+  * Descrambler
+  * Divide
   * FIRFilter and ComplexFIRFilter
+  * File Source (InputStreamSource)
+  * File Sink (OutputStreamSink)
   * FixedLengthTagger
   * FloatToChar
   * FloatToComplex
-  * LowPassFilter and LowPassFilterComplex
   * FrequencyXlatingFIRFilter
-  * Rail
-  * RootRaisedCosineFilter
   * GUI Histogram Sink (Spectogram) 
+  * HdlcReceiver. Out-of-tree block. Extracts HDLC frame from the unpacked stream of bytes
+  * LowPassFilter and LowPassFilterComplex
+  * Multiply
+  * MultiplyConst
+  * NrziDecode. Out-of-tree block. Performs nrzi decoding over unpacked stream of bytes
+  * osmocom source (RtlTcp)
+  * PolyphaseClockSyncComplex
+  * PeakDetection. Detect peaks in the FFT. Not a gnuradio block.
+  * QuadratureDemodulation
+  * Rail
+  * Rms
+  * RmsAgc. Out-of-tree block. For more details see [blog post](https://destevez.net/2017/08/agc-for-gr-satellites/)
+  * RootRaisedCosineFilter
+  * SigSource
   * TaggedStreamToPdu
   * UnpackedToPacked
   * WavFileSource
   * WavFileSink
-  * osmocom source (RtlTcp)
-  * File Source (InputStreamSource)
-  * File Sink (OutputStreamSink)
-  * Multiply
-  * MultiplyConst
-  * SigSource
-  * QuadratureDemodulation
-  * PeakDetection. Detect peaks in the FFT. Not a gnuradio block.
 
 Forward error correction:
 

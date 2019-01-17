@@ -26,7 +26,9 @@ public class ClockRecoveryMM implements FloatInput {
 	private int skip;
 
 	public ClockRecoveryMM(FloatInput source, float omega, float gainOmega, float mu, float gainMu, float omegaRelativeLimit) {
-		super();
+		if (source.getContext().getChannels() != 1) {
+			throw new IllegalArgumentException("not a float input: " + source.getContext().getChannels());
+		}
 		this.gainOmega = gainOmega;
 		this.mu = mu;
 		this.gainMu = gainMu;
