@@ -1,7 +1,6 @@
 package ru.r2cloud.jradio.blocks;
 
 import java.io.IOException;
-import java.util.Arrays;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -60,9 +59,8 @@ public class HdlcReceiver implements MessageInput {
 							ones = 0;
 							continue;
 						}
-						byte[] frameWithCrc = unpackedToPacked(packetLength);
-						byte[] frame = Arrays.copyOfRange(frameWithCrc, 0, frameWithCrc.length - 2);
-						int crc = extractFcs(frameWithCrc);
+						byte[] frame = unpackedToPacked(packetLength - 2 * 8);
+						int crc = extractFcs(packetLength);
 						if (Crc16Ccitt.calculateReverse(frame) != crc) {
 							packetLength = 0;
 							ones = 0;
@@ -89,10 +87,13 @@ public class HdlcReceiver implements MessageInput {
 		}
 	}
 
-	private static int extractFcs(byte[] frameWithCrc) {
-		int b1 = (frameWithCrc[frameWithCrc.length - 1] & 0xFF);
-		int b2 = (frameWithCrc[frameWithCrc.length - 2] & 0xFF);
-		return b1 << 8 | b2;
+	private int extractFcs(int packetLength) {
+		int result = 0;
+		for (int i = 0, j = packetLength - 1; i < 16; i++, j--) {
+			result = result << 1;
+			result = result | window[j];
+		}
+		return result;
 	}
 
 	private byte[] unpackedToPacked(int packetLength) {
