@@ -44,6 +44,13 @@ public class HdlcReceiverTest {
 		hdlc.readBytes();
 	}
 
+	@Test(expected = EOFException.class)
+	public void testNonIntegral() throws Exception {
+		int[] data = new int[] { 0xF1, 0xA7 };
+		hdlc = new HdlcReceiver(new ArrayByteInput(createMessage(randomBytes(2), FLAG, new int[] { 1 }, packedToUnpacked(createMessage(data, calculateCrc(data))), FLAG, randomBytes(5))), 1000);
+		hdlc.readBytes();
+	}
+
 	@After
 	public void stop() throws Exception {
 		if (hdlc != null) {

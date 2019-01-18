@@ -54,14 +54,15 @@ public class HdlcReceiver implements MessageInput {
 						foundStartFlag = true;
 					} else {
 						// pop back 7bits of the last flag
-						byte[] frameWithCrc = unpackedToPacked(packetLength - FLAG_LENGTH);
-						if (frameWithCrc.length <= 2) {
+						packetLength = packetLength - FLAG_LENGTH;
+						if (packetLength % 8 != 0 || packetLength / 8 <= 2) {
 							packetLength = 0;
 							ones = 0;
 							continue;
 						}
+						byte[] frameWithCrc = unpackedToPacked(packetLength);
 						byte[] frame = Arrays.copyOfRange(frameWithCrc, 0, frameWithCrc.length - 2);
-						int crc = ((frameWithCrc[frameWithCrc.length - 1] & 0xFF) << 8) | (frameWithCrc[frameWithCrc.length - 2] & 0xFF);
+						int crc = extractFcs(frameWithCrc);
 						if (Crc16Ccitt.calculateReverse(frame) != crc) {
 							packetLength = 0;
 							ones = 0;
@@ -86,6 +87,12 @@ public class HdlcReceiver implements MessageInput {
 				ones = 0;
 			}
 		}
+	}
+
+	private static int extractFcs(byte[] frameWithCrc) {
+		int b1 = (frameWithCrc[frameWithCrc.length - 1] & 0xFF);
+		int b2 = (frameWithCrc[frameWithCrc.length - 2] & 0xFF);
+		return b1 << 8 | b2;
 	}
 
 	private byte[] unpackedToPacked(int packetLength) {
