@@ -12,6 +12,10 @@ public class LittleEndianDataInputStream {
 	public LittleEndianDataInputStream(DataInputStream dis) {
 		this.dis = dis;
 	}
+	
+	public int read(byte b[]) throws IOException {
+        return dis.read(b);
+    }
 
 	public final int readUnsignedByte() throws IOException {
 		return dis.readUnsignedByte();

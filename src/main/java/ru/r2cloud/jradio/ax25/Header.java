@@ -3,8 +3,6 @@ package ru.r2cloud.jradio.ax25;
 import java.io.DataInputStream;
 import java.io.IOException;
 
-import ru.r2cloud.jradio.util.MathUtils;
-
 public class Header {
 
 	private AddressSubfield destinationAddress;
@@ -19,7 +17,7 @@ public class Header {
 	public Header(DataInputStream dis) throws IOException {
 		destinationAddress = new AddressSubfield(dis);
 		sourceAddress = new AddressSubfield(dis);
-		int controlBits = MathUtils.reverseBitsInByte(dis.readUnsignedByte());
+		int controlBits = dis.readUnsignedByte();
 		if ((controlBits & 0b1) == 0) {
 			frameType = FrameType.I;
 			pid = dis.readUnsignedByte();
@@ -29,6 +27,9 @@ public class Header {
 		} else if ((controlBits & 0b11) == 0b11) {
 			frameType = FrameType.U;
 			uControlType = UFrameControlType.valueOfCode(controlBits);
+			if (uControlType.equals(UFrameControlType.UI)) {
+				pid = dis.readUnsignedByte();
+			}
 		} else {
 			throw new IllegalArgumentException();
 		}
@@ -93,7 +94,7 @@ public class Header {
 	public int getPid() {
 		return pid;
 	}
-	
+
 	public void setPid(int pid) {
 		this.pid = pid;
 	}
