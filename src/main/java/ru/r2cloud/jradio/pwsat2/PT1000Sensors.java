@@ -48,7 +48,7 @@ public class PT1000Sensors {
 	 * @param resistance
 	 * @return null - if out of range
 	 */
-	public static Float pt1000_res_to_temp(float resistance) {
+	public static Float getTemperature(float resistance) {
 		Entry<Integer, Float> startEntry = null;
 		Entry<Integer, Float> endEntry = null;
 		for (Entry<Integer, Float> cur : resistanceByTemp.entrySet()) {
@@ -63,14 +63,14 @@ public class PT1000Sensors {
 			return null;
 		}
 
-		float delta_res = Math.abs(startEntry.getValue() - endEntry.getValue());
-		int delta_temp = Math.abs(startEntry.getKey() - endEntry.getKey());
+		float deltaResistance = Math.abs(startEntry.getValue() - endEntry.getValue());
+		int deltaTemperature = Math.abs(startEntry.getKey() - endEntry.getKey());
 
-		if (delta_temp == 0) {
+		if (deltaTemperature == 0) {
 			return (float) startEntry.getKey();
 		}
 
-		float tempCoefficient = delta_res / delta_temp;
+		float tempCoefficient = deltaResistance / deltaTemperature;
 		return ((resistance - endEntry.getValue()) / tempCoefficient) + endEntry.getKey();
 	}
 }
