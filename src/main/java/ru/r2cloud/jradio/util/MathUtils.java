@@ -122,6 +122,12 @@ public class MathUtils {
 		return result;
 	}
 
+	public static float round(float value, int decimalPlaces) {
+		int r = (int) Math.pow(10, decimalPlaces);
+		long rounded = (long) (value * r);
+		return (float) rounded / r;
+	}
+
 	private MathUtils() {
 		// do nothing
 	}

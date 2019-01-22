@@ -21,6 +21,7 @@ public class PwSat2Beacon implements Externalizable {
 	private DownlinkApid apid;
 	private int seq;
 	private GenericFrame frame;
+	private BeaconFrame beaconFrame;
 
 	private byte[] rawData;
 	private long beginSample;
@@ -38,8 +39,7 @@ public class PwSat2Beacon implements Externalizable {
 		LittleEndianDataInputStream littleEndian = new LittleEndianDataInputStream(dis);
 		int marker = littleEndian.readUnsignedByte();
 		if (marker == 0xCD) {
-			// BEACON frame
-			// BeaconFrame(ensure_byte_list(payload)[1:])
+			beaconFrame = new BeaconFrame(littleEndian);
 		} else {
 			int temp = marker | (littleEndian.readUnsignedByte() << 8) | (littleEndian.readUnsignedByte() << 16);
 			apid = DownlinkApid.valueOfCode(temp & 0b00111111);
@@ -145,5 +145,13 @@ public class PwSat2Beacon implements Externalizable {
 	
 	public void setApid(DownlinkApid apid) {
 		this.apid = apid;
+	}
+	
+	public BeaconFrame getBeaconFrame() {
+		return beaconFrame;
+	}
+	
+	public void setBeaconFrame(BeaconFrame beaconFrame) {
+		this.beaconFrame = beaconFrame;
 	}
 }

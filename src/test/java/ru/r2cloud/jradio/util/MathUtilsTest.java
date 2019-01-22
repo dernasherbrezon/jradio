@@ -7,6 +7,11 @@ import org.junit.Test;
 public class MathUtilsTest {
 
 	@Test
+	public void testRounding() {
+		assertEquals(3.4f, MathUtils.round(3.45f, 1), 0.0f);
+	}
+	
+	@Test
 	public void testExp() {
 		float[] result = MathUtils.exp(0, (float)Math.PI);
 		assertEquals(-1.0, result[0], 0.00001);
