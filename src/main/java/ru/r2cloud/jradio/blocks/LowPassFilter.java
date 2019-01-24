@@ -18,12 +18,18 @@ public class LowPassFilter implements FloatInput {
 	private final FloatInput source;
 	private final FIRFilter filter;
 	private final CircularArray array;
+	private final int decimation;
+	private final Context context;
 
-	public LowPassFilter(FloatInput source, double gain, double cutoff_freq, double transition_width, Window window_type, double beta) {
+	public LowPassFilter(FloatInput source, int decimation, double gain, double cutoff_freq, double transition_width, Window window_type, double beta) {
+		if (decimation < 1) {
+			throw new IllegalArgumentException("decimation expected to be more or equal 1. got: " + decimation);
+		}
 		if (source.getContext().getChannels() != 1) {
 			throw new IllegalArgumentException("not a float input: " + source.getContext().getChannels());
 		}
 		this.source = source;
+		this.decimation = decimation;
 		float[] taps = Firdes.lowPass(gain, source.getContext().getSampleRate(), cutoff_freq, transition_width, window_type, beta);
 		this.filter = new FIRFilter(taps);
 		array = new CircularArray(taps.length);
@@ -32,6 +38,13 @@ public class LowPassFilter implements FloatInput {
 		} else {
 			samples = null;
 		}
+		context = new Context(source.getContext());
+		context.setSampleRate((long) context.getSampleRate() / decimation);
+		context.setTotalSamples(context.getTotalSamples() / decimation);
+	}
+
+	public LowPassFilter(FloatInput source, double gain, double cutoff_freq, double transition_width, Window window_type, double beta) {
+		this(source, 1, gain, cutoff_freq, transition_width, window_type, beta);
 	}
 
 	@Override
@@ -40,6 +53,9 @@ public class LowPassFilter implements FloatInput {
 		float result = filter.filter(array);
 		if (samples != null) {
 			samples.mark();
+		}
+		for (int i = 0; i < decimation - 1; i++) {
+			array.add(source.readFloat());
 		}
 		return result;
 	}
@@ -51,6 +67,6 @@ public class LowPassFilter implements FloatInput {
 
 	@Override
 	public Context getContext() {
-		return source.getContext();
+		return context;
 	}
 }
