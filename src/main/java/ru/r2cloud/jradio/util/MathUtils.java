@@ -6,6 +6,9 @@ public class MathUtils {
 	public final static float fourBitResolution = (float) (1 / Math.pow(2.0, 4));
 	public final static float thirteenBitResolution = (float) (1 / Math.pow(2.0, 13));
 
+	private static final double ONE_AND_HALF_PI = 3 * Math.PI / 2;
+	private static final double HALF_PI = Math.PI / 2;
+
 	private final static double TAN_MAP_RES = 0.003921569;
 	private final static int TAN_MAP_SIZE = 255;
 
@@ -24,6 +27,18 @@ public class MathUtils {
 		return result;
 	}
 
+	public static float[] expj(float phase) {
+		float[] result = new float[2];
+		result[0] = (float) Math.cos(phase);
+		result[1] = (float) Math.sin(phase);
+		return result;
+	}
+
+	public static void multiply(float num, float[] complex) {
+		complex[0] = complex[0] * num;
+		complex[1] = complex[1] * num;
+	}
+
 	public static float abs(float real, float img) {
 		return (float) Math.sqrt(real * real + img * img);
 	}
@@ -38,6 +53,20 @@ public class MathUtils {
 		result[1] = (img1 * real2 - real1 * img2) / (real2 * real2 + img2 * img2);
 	}
 
+	public static double fastCos(float phase, double sin) {
+		double result = Math.sqrt(1 - sin * sin);
+		if (phase >= 0 && (phase > HALF_PI) && sin >= 0.0) {
+			result = -result;
+		} else if (phase >= 0 && sin < 0.0 && phase < ONE_AND_HALF_PI) {
+			result = -result;
+		} else if (phase < 0 && sin >= 0.0 && phase > -ONE_AND_HALF_PI) {
+			result = -result;
+		} else if (phase < 0 && sin < 0.0 && phase < -HALF_PI) {
+			result = -result;
+		}
+		return result;
+	}
+	
 	public static float fastAtan(float y, float x) {
 		float x_abs, y_abs, z;
 		float alpha, angle, base_angle;
@@ -126,6 +155,13 @@ public class MathUtils {
 		int r = (int) Math.pow(10, decimalPlaces);
 		long rounded = (long) (value * r);
 		return (float) rounded / r;
+	}
+
+	public static float sinc(float x) {
+		if (x == 0) {
+			return 1;
+		}
+		return (float) (Math.sin(Math.PI * x) / (Math.PI * x));
 	}
 
 	private MathUtils() {
