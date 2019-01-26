@@ -10,15 +10,9 @@ public class CostasLoop implements FloatInput {
 
 	private static final double ONE_AND_HALF_PI = 3 * Math.PI / 2;
 	private static final double HALF_PI = Math.PI / 2;
-	private final static float M_TWOPI = (float) (2.0 * Math.PI);
 	private final FloatInput source;
+	private final ControlLoop controlLoop;
 
-	private final float alpha;
-	private final float beta;
-	private final float maxFreq = 1.0f;
-	private final float minFreq = -1.0f;
-	private float phase = 0.0f;
-	private float freq = 0.0f;
 	private float error = 0.0f;
 	private final int order;
 	private final boolean useSnr;
@@ -30,10 +24,7 @@ public class CostasLoop implements FloatInput {
 		if (source.getContext().getChannels() != 2) {
 			throw new IllegalArgumentException("not a complex input: " + source.getContext().getChannels());
 		}
-		float damping = (float) Math.sqrt(2.0) / 2.0f;
-		float denom = (float) (1.0 + 2.0 * damping * loopBw + loopBw * loopBw);
-		alpha = (4 * damping * loopBw) / denom;
-		beta = (4 * loopBw * loopBw) / denom;
+		controlLoop = new ControlLoop(loopBw, 1.0f, -1.0f);
 		if (useSnr || (order != 4 && order != 2)) {
 			throw new IllegalArgumentException("unsupported snr: " + useSnr + " and order: " + order);
 		}
@@ -48,7 +39,7 @@ public class CostasLoop implements FloatInput {
 			float origReal = source.readFloat();
 			img = source.readFloat();
 
-			float phaseToCalc = -phase;
+			float phaseToCalc = -controlLoop.getPhase();
 			double sinImg = Math.sin(phaseToCalc);
 			float cosReal = cos(phaseToCalc, sinImg);
 
@@ -81,21 +72,8 @@ public class CostasLoop implements FloatInput {
 			}
 			error = MathUtils.branchless_clip(error, 1.0f);
 
-			freq = freq + beta * error;
-			phase = phase + freq + alpha * error;
+			controlLoop.advanceLoop(error);
 
-			while (phase > M_TWOPI) {
-				phase -= M_TWOPI;
-			}
-			while (phase < -M_TWOPI) {
-				phase += M_TWOPI;
-			}
-
-			if (freq > maxFreq) {
-				freq = maxFreq;
-			} else if (freq < minFreq) {
-				freq = minFreq;
-			}
 			outputReal = !outputReal;
 			return real;
 		}
