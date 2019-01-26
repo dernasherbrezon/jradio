@@ -19,6 +19,16 @@ public class StreamUtils {
 		}
 		return baos.toByteArray();
 	}
+	
+	public static byte[] toByteArray(DataInputStream is) throws IOException {
+		byte[] buffer = new byte[64];
+		ByteArrayOutputStream baos = new ByteArrayOutputStream();
+		int n = 0;
+		while (-1 != (n = is.read(buffer))) {
+			baos.write(buffer, 0, n);
+		}
+		return baos.toByteArray();
+	}
 
 	private StreamUtils() {
 		// do nothing
