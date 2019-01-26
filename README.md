@@ -24,6 +24,7 @@ All blocks meant to be binary compatible with gnuradio versions. This will ensur
   * File Source (InputStreamSource)
   * File Sink (OutputStreamSink)
   * FixedLengthTagger
+  * FLL Band Edge
   * FloatToChar
   * FloatToComplex
   * FrequencyXlatingFIRFilter
