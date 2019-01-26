@@ -38,17 +38,18 @@ public class FrequencyXlatingFIRFilter implements FloatInput {
 		}
 		this.source = source;
 		this.decimation = decimation;
-		float[] complexTaps = new float[taps.length * 2];
+		float[] tapsReal = new float[taps.length];
+		float[] tapsImg = new float[taps.length];
 		float fwT0 = (float) (2 * Math.PI * centerFreq / source.getContext().getSampleRate());
 		for (int i = 0; i < taps.length; i++) {
 			float[] complex = MathUtils.exp(0, i * fwT0);
 			float[] curResult = new float[2];
 			MathUtils.multiply(curResult, taps[i], 0, complex[0], complex[1]);
-			complexTaps[2 * i] = curResult[0];
-			complexTaps[2 * i + 1] = curResult[1];
+			tapsReal[i] = curResult[0];
+			tapsImg[i] = curResult[1];
 		}
-		this.filter = new ComplexFIRFilter(complexTaps);
-		array = new CircularComplexArray(complexTaps.length / 2);
+		this.filter = new ComplexFIRFilter(tapsReal, tapsImg);
+		array = new CircularComplexArray(taps.length);
 		rotator = new Rotator(new float[] { 1.0f, 0.0f }, MathUtils.exp(0.0f, -fwT0 * decimation));
 		if (registry != null) {
 			samples = registry.meter(FrequencyXlatingFIRFilter.class.getName());
@@ -68,7 +69,7 @@ public class FrequencyXlatingFIRFilter implements FloatInput {
 				throw endOfStream;
 			}
 			array.add(source.readFloat(), source.readFloat());
-			filter.filterComplex(currentComplex, array.getHistoryReal(), array.getHistoryImg(), array.getCurrentPos());
+			filter.filterComplex(currentComplex, array);
 			rotator.rotate(currentComplex, currentComplex);
 			if (samples != null) {
 				samples.mark();

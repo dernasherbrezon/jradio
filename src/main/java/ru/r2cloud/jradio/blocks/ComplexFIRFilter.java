@@ -1,30 +1,30 @@
 package ru.r2cloud.jradio.blocks;
 
+import ru.r2cloud.jradio.util.CircularComplexArray;
+
 public class ComplexFIRFilter {
 
-	private final float[] taps;
+	private final float[] tapsReal;
+	private final float[] tapsImg;
 
-	public ComplexFIRFilter(float[] taps) {
-		this.taps = new float[taps.length];
-		for (int i = taps.length - 2, j = 0; i >= 0; i -= 2, j += 2) {
-			this.taps[j] = taps[i];
-			this.taps[j + 1] = taps[i + 1];
-		}
+	public ComplexFIRFilter(float[] tapsReal, float[] tapsImg) {
+		this.tapsReal = tapsReal;
+		this.tapsImg = tapsImg;
 	}
 
-	public void filterComplex(float[] output, float[] input, float[] inputImg, int inputPos) {
+	public void filterComplex(float[] output, CircularComplexArray array) {
 		int j = 0;
 
 		output[0] = 0.0f;
 		output[1] = 0.0f;
 
-		for (int i = inputPos - 1; i >= 0; i--, j += 2) {
-			output[0] += input[i] * taps[j] - inputImg[i] * taps[j + 1];
-			output[1] += input[i] * taps[j + 1] + inputImg[i] * taps[j];
+		for (int i = array.getCurrentPos(); i < array.getSize(); i++, j++) {
+			output[0] += array.getHistoryReal()[i] * tapsReal[j] - array.getHistoryImg()[i] * tapsImg[j];
+			output[1] += array.getHistoryReal()[i] * tapsImg[j] + array.getHistoryImg()[i] * tapsReal[j];
 		}
-		for (int i = input.length - 1; i >= inputPos; i--, j += 2) {
-			output[0] += input[i] * taps[j] - inputImg[i] * taps[j + 1];
-			output[1] += input[i] * taps[j + 1] + inputImg[i] * taps[j];
+		for (int i = 0; i < array.getCurrentPos(); i++, j++) {
+			output[0] += array.getHistoryReal()[i] * tapsReal[j] - array.getHistoryImg()[i] * tapsImg[j];
+			output[1] += array.getHistoryReal()[i] * tapsImg[j] + array.getHistoryImg()[i] * tapsReal[j];
 		}
 	}
 
