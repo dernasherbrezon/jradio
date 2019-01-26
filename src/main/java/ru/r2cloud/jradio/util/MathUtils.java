@@ -48,6 +48,10 @@ public class MathUtils {
 		result[1] = (real1 * img2 + real2 * img1);
 	}
 
+	public static float norm(float[] complex) {
+		return complex[0] * complex[0] + complex[1] * complex[1];
+	}
+
 	public static void divide(float[] result, float real1, float img1, float real2, float img2) {
 		result[0] = (real1 * real2 + img1 * img2) / (real2 * real2 + img2 * img2);
 		result[1] = (img1 * real2 - real1 * img2) / (real2 * real2 + img2 * img2);
@@ -66,7 +70,7 @@ public class MathUtils {
 		}
 		return result;
 	}
-	
+
 	public static float fastAtan(float y, float x) {
 		float x_abs, y_abs, z;
 		float alpha, angle, base_angle;
