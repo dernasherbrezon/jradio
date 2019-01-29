@@ -30,7 +30,14 @@ public class Ao40CorrelateAccessCodeTagTest {
 		input = new Ao40CorrelateAccessCodeTag(is, 8);
 		byte[] result = input.readBytes();
 		assertNotNull(result);
-		assertArrayEquals(data, result);
+		assertArrayEquals(rotatePhase180deg(data), result);
+	}
+
+	private static byte[] rotatePhase180deg(byte[] data) {
+		for (int i = 0; i < data.length; i++) {
+			data[i] = (byte) (data[i] ^ 0xFF);
+		}
+		return data;
 	}
 
 	private static byte[] prepend(byte[] data) {
