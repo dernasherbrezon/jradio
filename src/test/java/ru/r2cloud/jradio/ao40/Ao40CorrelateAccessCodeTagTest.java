@@ -1,4 +1,4 @@
-package ru.r2cloud.jradio.nayif1;
+package ru.r2cloud.jradio.ao40;
 
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertNotNull;
@@ -12,6 +12,7 @@ import java.util.Random;
 import org.junit.After;
 import org.junit.Test;
 
+import ru.r2cloud.jradio.ao40.Ao40CorrelateAccessCodeTag;
 import ru.r2cloud.jradio.source.InputStreamSource;
 import ru.r2cloud.jradio.util.StreamUtils;
 

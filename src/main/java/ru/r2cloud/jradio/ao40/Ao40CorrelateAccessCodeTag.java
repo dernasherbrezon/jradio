@@ -1,4 +1,4 @@
-package ru.r2cloud.jradio.nayif1;
+package ru.r2cloud.jradio.ao40;
 
 import java.io.IOException;
 
