@@ -43,21 +43,21 @@ public class Apid3 {
 	public Apid3(DataInputStream dis) throws IOException {
 		BitInputStream bis = new BitInputStream(dis);
 
-		ACSWCX = bis.readShort() * -0.5f;
-		ACSWCY = bis.readShort() * -0.5f;
-		ACSWCZ = bis.readShort() * 0.5f;
-		ACSM2Y = bis.readShort() * -7.642841368f + 7968.73f;
-		ACSM2Z = bis.readShort() * 8.032315024f - 10266.647f;
-		ACSM2X = bis.readShort() * -7.890292416f - 11584.291f;
-		ACSG2Y = bis.readShort() * -0.00104167f;
-		ACSG2Z = bis.readShort() * 0.00104167f;
-		ACSG2X = bis.readShort() * -0.00104167f;
-		ACSG1Y = bis.readShort() * -0.00875f;
-		ACSG1Z = bis.readShort() * -0.00875f;
-		ACSG1X = bis.readShort() * -0.00875f;
-		ACG1YM = bis.readShort() * -0.00875f;
-		ACG1ZM = bis.readShort() * -0.00875f;
-		ACG1XM = bis.readShort() * -0.00875f;
+		ACSWCX = bis.readUnsignedShort() * -0.5f;
+		ACSWCY = bis.readUnsignedShort() * -0.5f;
+		ACSWCZ = bis.readUnsignedShort() * 0.5f;
+		ACSM2Y = bis.readUnsignedShort() * -7.642841368f + 7968.73f;
+		ACSM2Z = bis.readUnsignedShort() * 8.032315024f - 10266.647f;
+		ACSM2X = bis.readUnsignedShort() * -7.890292416f - 11584.291f;
+		ACSG2Y = bis.readUnsignedShort() * -0.00104167f;
+		ACSG2Z = bis.readUnsignedShort() * 0.00104167f;
+		ACSG2X = bis.readUnsignedShort() * -0.00104167f;
+		ACSG1Y = bis.readUnsignedShort() * -0.00875f;
+		ACSG1Z = bis.readUnsignedShort() * -0.00875f;
+		ACSG1X = bis.readUnsignedShort() * -0.00875f;
+		ACG1YM = bis.readUnsignedShort() * -0.00875f;
+		ACG1ZM = bis.readUnsignedShort() * -0.00875f;
+		ACG1XM = bis.readUnsignedShort() * -0.00875f;
 		CSTUTC = bis.readUnsignedLong(32);
 		CSTSYS = bis.readUnsignedLong(32);
 		PCSYST = bis.readUnsignedLong(32);
@@ -65,16 +65,16 @@ public class Apid3 {
 		ASINTV = bis.readUnsignedInt(16);
 		ASCEST = bis.readUnsignedInt(8);
 		ASACTV = bis.readBoolean();
-		ACSWU0 = bis.readShort() * 0.00000001f;
-		ACSWU1 = bis.readShort() * 0.00000001f;
-		ACSWU2 = bis.readShort() * 0.00000001f;
-		ACSWQ0 = bis.readShort() * 0.0001f;
-		ACSWQ1 = bis.readShort() * 0.0001f;
-		ACSWQ2 = bis.readShort() * 0.0001f;
-		ACSWQ3 = bis.readShort() * 0.0001f;
-		ACSWA0 = bis.readShort();
-		ACSWA1 = bis.readShort();
-		ACSWA2 = bis.readShort();
+		ACSWU0 = bis.readUnsignedShort() * 0.00000001f;
+		ACSWU1 = bis.readUnsignedShort() * 0.00000001f;
+		ACSWU2 = bis.readUnsignedShort() * 0.00000001f;
+		ACSWQ0 = bis.readUnsignedShort() * 0.0001f;
+		ACSWQ1 = bis.readUnsignedShort() * 0.0001f;
+		ACSWQ2 = bis.readUnsignedShort() * 0.0001f;
+		ACSWQ3 = bis.readUnsignedShort() * 0.0001f;
+		ACSWA0 = bis.readUnsignedShort();
+		ACSWA1 = bis.readUnsignedShort();
+		ACSWA2 = bis.readUnsignedShort();
 		dis.skipBytes(56);
 	}
 

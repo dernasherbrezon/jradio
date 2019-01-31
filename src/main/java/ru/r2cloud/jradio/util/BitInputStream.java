@@ -69,8 +69,12 @@ public class BitInputStream {
 		return result > 0;
 	}
 
-	public short readShort() throws IOException {
+	public short readUnsignedShort() throws IOException {
 		return (short) readUnsignedInt(16);
+	}
+	
+	public int readUnsignedByte() throws IOException {
+		return readUnsignedInt(8);
 	}
 
 }

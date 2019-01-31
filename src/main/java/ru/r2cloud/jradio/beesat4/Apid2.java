@@ -261,8 +261,8 @@ public class Apid2 {
 		COBCEXT = bis.readUnsignedInt(12) * 0.0305175781f;
 		PCREST = bis.readUnsignedInt(16) * 2;
 		PCRESI = bis.readUnsignedInt(16) * 2;
-		TSMAX = bis.readShort() * 0.00390625f;
-		TSLSM = bis.readShort() * 0.125f + 25f;
+		TSMAX = bis.readUnsignedShort() * 0.00390625f;
+		TSLSM = bis.readUnsignedShort() * 0.125f + 25f;
 		TSL3G = ((byte) bis.readUnsignedInt(8)) * -1 + 35;
 		PS33VC = bis.readBoolean();
 		CGY2MF2 = bis.readUnsignedInt(12) * 0.0305175781f;
