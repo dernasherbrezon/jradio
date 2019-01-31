@@ -76,5 +76,9 @@ public class BitInputStream {
 	public int readUnsignedByte() throws IOException {
 		return readUnsignedInt(8);
 	}
+	
+	public void readFully(byte[] buf) throws IOException {
+		dis.readFully(buf);
+	}
 
 }

@@ -1,10 +1,14 @@
 package ru.r2cloud.jradio.ao40;
 
 import java.io.IOException;
+import java.util.UUID;
 
 import ru.r2cloud.jradio.ByteInput;
 import ru.r2cloud.jradio.Context;
+import ru.r2cloud.jradio.FloatValueSource;
 import ru.r2cloud.jradio.MessageInput;
+import ru.r2cloud.jradio.Tag;
+import ru.r2cloud.jradio.blocks.CorrelateAccessCodeTag;
 
 public class Ao40CorrelateAccessCodeTag implements MessageInput {
 
@@ -41,10 +45,17 @@ public class Ao40CorrelateAccessCodeTag implements MessageInput {
 			// solve phase ambiguity. ao40 is using BPSK, thus only 180deg phase ambiguity exists
 			if (matchType == 2) {
 				for (int i = 0; i < result.length; i++) {
-					//reverse soft bit
+					// reverse soft bit
 					result[i] = (byte) (result[i] ^ 0xFF);
 				}
 			}
+			Tag tag = new Tag();
+			tag.setId(UUID.randomUUID().toString());
+			FloatValueSource currentSample = getContext().getCurrentSample();
+			if (currentSample != null) {
+				tag.put(CorrelateAccessCodeTag.SOURCE_SAMPLE, currentSample.getValue());
+			}
+			getContext().put(tag.getId(), tag);
 			return result;
 		}
 	}
