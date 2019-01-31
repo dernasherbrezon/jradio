@@ -28,4 +28,8 @@ public enum FrameType {
 		return typeByCode.get(code);
 	}
 
+	public boolean isWholeOrbit() {
+		return code <= 12;
+	}
+
 }

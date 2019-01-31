@@ -18,6 +18,7 @@ import ru.r2cloud.jradio.blocks.FrequencyXlatingFIRFilter;
 import ru.r2cloud.jradio.blocks.PolyphaseClockSyncComplex;
 import ru.r2cloud.jradio.blocks.RmsAgc;
 import ru.r2cloud.jradio.blocks.Window;
+import ru.r2cloud.jradio.fec.ViterbiTest;
 import ru.r2cloud.jradio.kunspf.KunsPfTest;
 import ru.r2cloud.jradio.source.WavFileSource;
 
@@ -51,6 +52,8 @@ public class Ao73Test {
 		assertEquals(ResetCause.Otherreason, telemetry.getResetCause());
 		assertEquals(143.0, telemetry.getBusCurrent33(), 0.0f);
 		assertEquals(0.38553128f, telemetry.getForwardPower(), 0.0f);
+		System.out.println(ViterbiTest.bytesToHex(beacon.getPayload()));
+		
 	}
 
 	@After
