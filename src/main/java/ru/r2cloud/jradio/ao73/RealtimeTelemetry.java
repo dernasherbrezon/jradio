@@ -147,19 +147,19 @@ public class RealtimeTelemetry {
 		deploymentWaitAtNextBoot = dis.readBoolean();
 	}
 
-	private static float readXPlusTemperature(BitInputStream dis) throws IOException {
+	static float readXPlusTemperature(BitInputStream dis) throws IOException {
 		return (-0.2073f * dis.readUnsignedInt(10)) + 158.239f;
 	}
 
-	private static float readXMinusTemperature(BitInputStream dis) throws IOException {
+	static float readXMinusTemperature(BitInputStream dis) throws IOException {
 		return (-0.2083f * dis.readUnsignedInt(10)) + 159.227f;
 	}
 
-	private static float readYPlusTemperature(BitInputStream dis) throws IOException {
+	static float readYPlusTemperature(BitInputStream dis) throws IOException {
 		return (-0.2076f * dis.readUnsignedInt(10)) + 158.656f;
 	}
 
-	private static float readYMinusTemperature(BitInputStream dis) throws IOException {
+	static float readYMinusTemperature(BitInputStream dis) throws IOException {
 		return (-0.2087f * dis.readUnsignedInt(10)) + 159.045f;
 	}
 
