@@ -51,7 +51,7 @@ public class Ao73Test {
 		assertEquals(8140, telemetry.getBatteryVoltage());
 		assertEquals(ResetCause.Otherreason, telemetry.getResetCause());
 		assertEquals(143.0, telemetry.getBusCurrent33(), 0.0f);
-		assertEquals(0.38553128f, telemetry.getForwardPower(), 0.0f);
+		assertEquals(107.6030044555664f, telemetry.getForwardPower(), 0.0f);
 		System.out.println(ViterbiTest.bytesToHex(beacon.getPayload()));
 		
 	}

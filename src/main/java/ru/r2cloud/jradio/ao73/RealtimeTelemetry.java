@@ -1,14 +1,10 @@
 package ru.r2cloud.jradio.ao73;
 
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
 
 import ru.r2cloud.jradio.util.BitInputStream;
 
 public class RealtimeTelemetry {
-
-	private final static Map<Integer, Float> BOARD_TEMP_TABLE = new HashMap<>();
 
 	// EPS
 	private int solarPanelVoltageX;
@@ -80,25 +76,6 @@ public class RealtimeTelemetry {
 	private boolean softwareABF;
 	private boolean deploymentWaitAtNextBoot;
 
-	static {
-		BOARD_TEMP_TABLE.put(117, 59.7f);
-		BOARD_TEMP_TABLE.put(119, 54.8f);
-		BOARD_TEMP_TABLE.put(121, 48.7f);
-		BOARD_TEMP_TABLE.put(124, 42.6f);
-		BOARD_TEMP_TABLE.put(129, 32.3f);
-		BOARD_TEMP_TABLE.put(133, 27.3f);
-		BOARD_TEMP_TABLE.put(137, 18.7f);
-		BOARD_TEMP_TABLE.put(139, 15.9f);
-		BOARD_TEMP_TABLE.put(143, 12.7f);
-		BOARD_TEMP_TABLE.put(145, 6.6f);
-		BOARD_TEMP_TABLE.put(153, -3.5f);
-		BOARD_TEMP_TABLE.put(157, -11.6f);
-		BOARD_TEMP_TABLE.put(160, -13.6f);
-		BOARD_TEMP_TABLE.put(167, -23f);
-		BOARD_TEMP_TABLE.put(170, -27f);
-		BOARD_TEMP_TABLE.put(174, -31.7f);
-	}
-
 	public RealtimeTelemetry(BitInputStream dis) throws IOException {
 		solarPanelVoltageX = dis.readUnsignedShort();
 		solarPanelVoltageY = dis.readUnsignedShort();
@@ -138,15 +115,14 @@ public class RealtimeTelemetry {
 		transmitCurrent50VBus = 1.272f * dis.readUnsignedByte();
 
 		// PA
-		forwardPower = (float) Math.pow(0.005 * dis.readUnsignedByte(), 2.0629);
-		reversePower = (float) Math.pow(0.005 * dis.readUnsignedByte(), 2.0629);
-		deviceTemperature = BOARD_TEMP_TABLE.get(dis.readUnsignedByte());
+		forwardPower = 0.005f * (float)Math.pow(dis.readUnsignedByte(), 2.0629);
+		reversePower = 0.005f * (float)Math.pow(dis.readUnsignedByte(), 2.0629);
+		deviceTemperature = PaTemperature.getPaTemp(dis.readUnsignedByte());
 		busCurrent = 0.5496f * dis.readUnsignedByte() + 2.5435f;
 
 		// ANTS
-		// ISIS ANtS User manual?
-		antennaTemp0 = dis.readUnsignedByte();
-		antennaTemp1 = dis.readUnsignedByte();
+		antennaTemp0 = AntennasTemperatures.getTemperature(dis.readUnsignedByte());
+		antennaTemp1 = AntennasTemperatures.getTemperature(dis.readUnsignedByte());
 		antennaDeploymentVHFA = dis.readBoolean();
 		antennaDeploymentVHFB = dis.readBoolean();
 		antennaDeploymentUHFA = dis.readBoolean();
