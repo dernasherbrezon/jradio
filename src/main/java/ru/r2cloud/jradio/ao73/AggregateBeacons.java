@@ -3,12 +3,13 @@ package ru.r2cloud.jradio.ao73;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class AggregateBeacons {
 
 	public static List<WholeOrbitDataBatch> readWholeOrbit(List<Ao73Beacon> beacons) throws IOException {
-		//TODO sort by sequence number from realtime telemetry
+		Collections.sort(beacons, Ao73BeaconComparator.INSTACE);
 		ByteArrayOutputStream baos = null;
 		int lastIndex = 0;
 		Ao73Beacon firstBeacon = null;
@@ -29,9 +30,7 @@ public class AggregateBeacons {
 			lastIndex = cur.getFrameType().getCode();
 			if (lastIndex == 12 && firstBeacon != null) {
 				lastIndex = 0;
-				WholeOrbitDataBatch batch = new WholeOrbitDataBatch(baos.toByteArray());
-				batch.setBeginMillis(firstBeacon.getBeginMillis());
-				batch.setBeginSample(firstBeacon.getBeginSample());
+				WholeOrbitDataBatch batch = new WholeOrbitDataBatch(firstBeacon.getRealtimeTelemetry().getSequenceNumber(), baos.toByteArray());
 				result.add(batch);
 				baos = null;
 				firstBeacon = null;
@@ -45,9 +44,7 @@ public class AggregateBeacons {
 				// fill the gap between the last transmittion and the next one
 				baos.write(new byte[200]);
 			}
-			WholeOrbitDataBatch batch = new WholeOrbitDataBatch(baos.toByteArray());
-			batch.setBeginMillis(firstBeacon.getBeginMillis());
-			batch.setBeginSample(firstBeacon.getBeginSample());
+			WholeOrbitDataBatch batch = new WholeOrbitDataBatch(firstBeacon.getRealtimeTelemetry().getSequenceNumber(), baos.toByteArray());
 			result.add(batch);
 		}
 		

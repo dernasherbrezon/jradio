@@ -9,11 +9,10 @@ public class WholeOrbitDataBatch {
 
 	private WholeOrbit[] data = new WholeOrbit[104];
 	private String callsign;
+	private final int sequenceNumber;
 
-	private long beginSample;
-	private long beginMillis;
-
-	public WholeOrbitDataBatch(byte[] rawData) throws IOException {
+	public WholeOrbitDataBatch(int sequenceNumber, byte[] rawData) throws IOException {
+		this.sequenceNumber = sequenceNumber;
 		BitInputStream dis = new BitInputStream(rawData);
 		for (int i = 0; i < data.length; i++) {
 			data[i] = new WholeOrbit(dis);
@@ -21,22 +20,6 @@ public class WholeOrbitDataBatch {
 		byte[] callsignBytes = new byte[8];
 		dis.readFully(callsignBytes);
 		callsign = new String(callsignBytes, StandardCharsets.ISO_8859_1);
-	}
-
-	public long getBeginMillis() {
-		return beginMillis;
-	}
-
-	public void setBeginMillis(long beginMillis) {
-		this.beginMillis = beginMillis;
-	}
-
-	public long getBeginSample() {
-		return beginSample;
-	}
-
-	public void setBeginSample(long beginSample) {
-		this.beginSample = beginSample;
 	}
 
 	public WholeOrbit[] getData() {
@@ -54,5 +37,9 @@ public class WholeOrbitDataBatch {
 	public void setCallsign(String callsign) {
 		this.callsign = callsign;
 	}
+	
+	public int getSequenceNumber() {
+		return sequenceNumber;
+	}	
 
 }
