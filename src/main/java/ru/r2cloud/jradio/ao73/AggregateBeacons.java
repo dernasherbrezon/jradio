@@ -30,7 +30,7 @@ public class AggregateBeacons {
 				baos.write(new byte[200]);
 			}
 			baos.write(cur.getPayload());
-			lastIndex = cur.getFrameType().getCode();
+			lastIndex = cur.getFrameType().getIndex();
 			if (lastIndex == MAX_HIGH_RES_CHUNKS && firstBeacon != null) {
 				lastIndex = 0;
 				HighResolutionDataBatch batch = new HighResolutionDataBatch(firstBeacon.getRealtimeTelemetry().getSequenceNumber(), baos.toByteArray());
@@ -68,12 +68,12 @@ public class AggregateBeacons {
 				baos = new ByteArrayOutputStream();
 				firstBeacon = cur;
 			}
-			for (int i = lastIndex; i < (cur.getFrameType().getCode() - 1); i++) {
+			for (int i = lastIndex; i < (cur.getFrameType().getIndex() - 1); i++) {
 				// fill the gap between the last transmittion and the next one
 				baos.write(new byte[200]);
 			}
 			baos.write(cur.getPayload());
-			lastIndex = cur.getFrameType().getCode();
+			lastIndex = cur.getFrameType().getIndex();
 			if (lastIndex == MAX_WHOLE_ORBIT_CHUNKS && firstBeacon != null) {
 				lastIndex = 0;
 				WholeOrbitDataBatch batch = new WholeOrbitDataBatch(firstBeacon.getRealtimeTelemetry().getSequenceNumber(), baos.toByteArray());
