@@ -10,6 +10,50 @@ public class AggregateBeacons {
 	
 	private static final int MAX_WHOLE_ORBIT_CHUNKS = 12;
 	private static final int MAX_HIGH_RES_CHUNKS = 3;
+	private static final int MAX_FITTER_CHUNKS = 9;
+	
+	public static List<FitterMessageBatch> readFitterMessages(List<Ao73Beacon> beacons) throws IOException {
+		Collections.sort(beacons, Ao73BeaconComparator.INSTACE);
+		ByteArrayOutputStream baos = null;
+		int lastIndex = 0;
+		Ao73Beacon firstBeacon = null;
+		List<FitterMessageBatch> result = new ArrayList<>();
+		for (Ao73Beacon cur : beacons) {
+			if (!cur.getFrameType().isFitterMessage()) {
+				continue;
+			}
+			if (baos == null) {
+				baos = new ByteArrayOutputStream();
+				firstBeacon = cur;
+			}
+			for (int i = lastIndex; i < (cur.getFrameType().getIndex() - 1); i++) {
+				// fill the gap between the last transmittion and the next one
+				baos.write(new byte[200]);
+			}
+			baos.write(cur.getPayload());
+			lastIndex = cur.getFrameType().getIndex();
+			if (lastIndex == MAX_FITTER_CHUNKS && firstBeacon != null) {
+				lastIndex = 0;
+				FitterMessageBatch batch = new FitterMessageBatch(firstBeacon.getRealtimeTelemetry().getSequenceNumber(), baos.toByteArray());
+				result.add(batch);
+				baos = null;
+				firstBeacon = null;
+			}
+		}
+
+		if (baos != null && firstBeacon != null) {
+			for (int i = lastIndex; i <= MAX_FITTER_CHUNKS; i++) {
+				//TODO gaps will cause non-null values in wholeorbit.
+				//fiture out how to parse sparse byte array
+				// fill the gap between the last transmittion and the next one
+				baos.write(new byte[200]);
+			}
+			FitterMessageBatch batch = new FitterMessageBatch(firstBeacon.getRealtimeTelemetry().getSequenceNumber(), baos.toByteArray());
+			result.add(batch);
+		}
+		
+		return result;
+	}
 	
 	public static List<HighResolutionDataBatch> readHighResolutionData(List<Ao73Beacon> beacons) throws IOException {
 		Collections.sort(beacons, Ao73BeaconComparator.INSTACE);
