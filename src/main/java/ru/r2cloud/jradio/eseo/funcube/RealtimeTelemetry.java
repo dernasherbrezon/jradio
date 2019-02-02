@@ -54,6 +54,7 @@ public class RealtimeTelemetry {
 		current9V = 2.52778f * dis.readUnsignedByte();
 		int raw = dis.readUnsignedByte();
 		transmitterForwardPower = 0.0136f * raw * raw + 0.4995f * raw + 1E-12f;
+		raw = dis.readUnsignedByte();
 		transmitterReflectedPower = 0.0136f * raw * raw + 0.4995f * raw + 1E-12f;
 		FMPowerAmplifierTemperature = -0.789929f * dis.readUnsignedByte() + 97.5934f;
 		BPSKpowerAmplifierTemperature = -0.8104347f * dis.readUnsignedByte() + 91.93637f;

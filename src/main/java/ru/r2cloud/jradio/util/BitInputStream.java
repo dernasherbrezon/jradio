@@ -72,17 +72,25 @@ public class BitInputStream {
 	public int readUnsignedShort() throws IOException {
 		return readUnsignedInt(16);
 	}
-	
+
 	public short readShort() throws IOException {
-		return (short)readUnsignedInt(16);
+		return (short) readUnsignedInt(16);
 	}
-	
+
 	public int readUnsignedByte() throws IOException {
 		return readUnsignedInt(8);
 	}
-	
+
+	public byte readByte() throws IOException {
+		return (byte) readUnsignedInt(8);
+	}
+
 	public void readFully(byte[] buf) throws IOException {
 		dis.readFully(buf);
 	}
-	
+
+	public int readInt() throws IOException {
+		return (int) readUnsignedLong(32);
+	}
+
 }
