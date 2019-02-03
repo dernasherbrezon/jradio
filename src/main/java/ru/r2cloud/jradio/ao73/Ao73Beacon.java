@@ -3,11 +3,12 @@ package ru.r2cloud.jradio.ao73;
 import java.io.IOException;
 
 import ru.r2cloud.jradio.Externalizable;
+import ru.r2cloud.jradio.ao40.Ao40Header;
 import ru.r2cloud.jradio.util.BitInputStream;
 
 public class Ao73Beacon implements Externalizable {
 
-	private SatID id;
+	private int id;
 	private FrameType frameType;
 	private RealtimeTelemetry realtimeTelemetry;
 	private byte[] payload;
@@ -20,18 +21,19 @@ public class Ao73Beacon implements Externalizable {
 	public void readExternal(byte[] data) throws IOException {
 		this.rawData = data;
 		BitInputStream dis = new BitInputStream(data);
-		id = SatID.valueOfCode(dis.readUnsignedInt(2));
-		frameType = FrameType.valueOfCode(dis.readUnsignedInt(6));
+		Ao40Header ao40Header = new Ao40Header(dis);
+		id = ao40Header.getId();
+		frameType = FrameType.valueOfCode(ao40Header.getFrameType());
 		realtimeTelemetry = new RealtimeTelemetry(dis);
 		payload = new byte[200];
 		dis.readFully(payload);
 	}
 
-	public SatID getId() {
+	public int getId() {
 		return id;
 	}
-
-	public void setId(SatID id) {
+	
+	public void setId(int id) {
 		this.id = id;
 	}
 

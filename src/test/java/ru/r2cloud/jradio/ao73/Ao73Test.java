@@ -18,8 +18,6 @@ import ru.r2cloud.jradio.blocks.FrequencyXlatingFIRFilter;
 import ru.r2cloud.jradio.blocks.PolyphaseClockSyncComplex;
 import ru.r2cloud.jradio.blocks.RmsAgc;
 import ru.r2cloud.jradio.blocks.Window;
-import ru.r2cloud.jradio.fec.ViterbiTest;
-import ru.r2cloud.jradio.kunspf.KunsPfTest;
 import ru.r2cloud.jradio.source.WavFileSource;
 
 public class Ao73Test {
@@ -29,7 +27,7 @@ public class Ao73Test {
 	@Test
 	public void testDecodeTelemetry() throws Exception {
 		int nfilts = 16;
-		WavFileSource source = new WavFileSource(KunsPfTest.class.getClassLoader().getResourceAsStream("ao73.wav"));
+		WavFileSource source = new WavFileSource(Ao73Test.class.getClassLoader().getResourceAsStream("ao73.wav"));
 		float[] taps = Firdes.lowPass(1.0, source.getContext().getSampleRate(), 1300, 500, Window.WIN_HAMMING, 6.76);
 		FloatToComplex fc = new FloatToComplex(source);
 		FrequencyXlatingFIRFilter xlating = new FrequencyXlatingFIRFilter(fc, taps, 5, 1500);
@@ -52,8 +50,6 @@ public class Ao73Test {
 		assertEquals(ResetCause.Otherreason, telemetry.getResetCause());
 		assertEquals(143.0, telemetry.getBusCurrent33(), 0.0f);
 		assertEquals(107.6030044555664f, telemetry.getForwardPower(), 0.0f);
-		System.out.println(ViterbiTest.bytesToHex(beacon.getPayload()));
-		
 	}
 
 	@After

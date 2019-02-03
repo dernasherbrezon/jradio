@@ -13,7 +13,7 @@ public class EseoFuncubeBeaconTest {
 		data[1] = (byte) 0b00000100;
 		EseoFuncubeBeacon beacon = new EseoFuncubeBeacon();
 		beacon.readExternal(data);
-		assertEquals(0b11100000, beacon.getSatId());
-		assertEquals(0b10101000, beacon.getFrameType());
+		assertEquals(0b00000100, beacon.getHeader().getId());
+		assertEquals(0b00010101, beacon.getHeader().getFrameType());
 	}
 }
