@@ -33,6 +33,10 @@ public class LittleEndianDataInputStream implements DataInput {
 	}
 
 	public final long readUnsignedInt() throws IOException {
+		return readUnsignedInt(dis);
+	}
+	
+	public final static long readUnsignedInt(DataInputStream dis) throws IOException {
 		int ch1 = dis.read();
 		int ch2 = dis.read();
 		int ch3 = dis.read();
@@ -49,6 +53,10 @@ public class LittleEndianDataInputStream implements DataInput {
 
 	@Override
 	public final short readShort() throws IOException {
+		return readShort(dis);
+	}
+	
+	public static final short readShort(DataInputStream dis) throws IOException {
 		int ch1 = dis.read();
 		int ch2 = dis.read();
 		if ((ch1 | ch2) < 0)

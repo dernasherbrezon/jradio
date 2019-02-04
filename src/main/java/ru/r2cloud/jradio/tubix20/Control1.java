@@ -5,7 +5,7 @@ public class Control1 {
 	private MessageType type;
 	private int numberOfBlocks;
 	private int numberOfErrors;
-
+	
 	public MessageType getType() {
 		return type;
 	}
