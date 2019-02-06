@@ -83,6 +83,7 @@ Using the blocks above, you could decode signals from the following satellites:
   * Astrocast 0.1 (NORAD 43798). Decode telemetry beacon. Based on [gr-satellites](https://github.com/daniestevez/gr-satellites). See the pipeline at the [AstrocasatTest](https://github.com/dernasherbrezon/jradio/blob/master/src/test/java/ru/r2cloud/jradio/astrocasat/AstrocasatTest.java)
   * AO-73 (NORAD 39444). Decode telemetry beacon and aggregate payloads. Based on [gr-satellites](https://github.com/daniestevez/gr-satellites). See the pipeline at the [Ao73Test](https://github.com/dernasherbrezon/jradio/blob/master/src/test/java/ru/r2cloud/jradio/ao73/Ao73Test.java)
   * Nayif1 (NORAD 42017). Decode telemetry beacon and aggregate payloads. Based on [gr-satellites](https://github.com/daniestevez/gr-satellites). See the pipeline at the [Nayif1Test](https://github.com/dernasherbrezon/jradio/blob/master/src/test/java/ru/r2cloud/jradio/nayif1/Nayif1Test.java)
+  * Jy1sat (NORAD 43803). Decode telemetry beacon and aggregate payloads. Based on [gr-satellites](https://github.com/daniestevez/gr-satellites). See the pipeline at the [Nayif1Test](https://github.com/dernasherbrezon/jradio/blob/master/src/test/java/ru/r2cloud/jradio/jy1sat/Jy1satTest.java)
   * D-Star ONE (NORAD 43881). Decode telemetry beacon and aggregate payloads. Based on [gr-satellites](https://github.com/daniestevez/gr-satellites). See the pipeline at the [Dstar1Test](https://github.com/dernasherbrezon/jradio/blob/master/src/test/java/ru/r2cloud/jradio/dstar1/Dstar1Test.java)
   
   
