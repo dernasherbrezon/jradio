@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class VCDU {
-	
+
 	public static final int SIZE = 892;
-	public static final int VITERBI_SIZE = (SIZE / 4 + 32 ) * 4;
+	public static final int VITERBI_SIZE = (SIZE / 4 + 32) * 4;
 	public static final int VITERBI_TAIL_SIZE = (VITERBI_SIZE + 1) * 16;
 
 	private int version;
@@ -28,7 +28,7 @@ public class VCDU {
 		counter = (data[2] & 0xFF) << 16 | (data[3] & 0xFF) << 8 | (data[4] & 0xFF) << 0;
 		signalling = data[5];
 		insertZone = new IN_SDU();
-		insertZone.setEncryption(data[6] == 0xFF);
+		insertZone.setEncryption(data[6] == (byte) 0xFF);
 		insertZone.setKeyNumber(data[7]);
 		mPdu = new M_PDU();
 		mPdu.setSpareBits((byte) (data[8] >> 3));
@@ -61,8 +61,8 @@ public class VCDU {
 				} else {
 					previousPartial.setUserData(newUserData);
 				}
-				
-				//sometimes user data cannot be recovered even if VCDU is next
+
+				// sometimes user data cannot be recovered even if VCDU is next
 				int expectedLength = previousPartial.getLength() + 1;
 				if (previousPartial.isSecondaryHeader()) {
 					expectedLength -= 8;
@@ -131,7 +131,7 @@ public class VCDU {
 		// This bit shall be always set to 1 to indicate the presence of a secondary header.
 		packet.setSecondaryHeader((data[index] & (1 << 3)) > 0 ? true : false);
 		// This field defines the data route between two users application endpoints
-		packet.setApid(((data[index] & 0b0000_0111) << 8) | data[index + 1]);
+		packet.setApid(((data[index] & 0b0000_0111) << 8) | (data[index + 1]) & 0xFF);
 		// This flag is set to 11 indicating that the packet contains unsegmented User data.
 		packet.setSequence((byte) (data[index + 2] & 0xFF >> 6));
 		// This field is a modulo 16384 counter, which numbers the packets
@@ -142,10 +142,10 @@ public class VCDU {
 
 	private static void readSecondaryHeader(byte[] data, int index, Packet packet) {
 		packet.setNumberOfDays((data[index] & 0xFF) << 8 | (data[index + 1] & 0xFF));
-		packet.setMillisecondOfDay(((long)data[index + 2] & 0xFF) << 24 | (data[index + 3] & 0xFF) << 16 | (data[index + 4] & 0xFF) << 8 | (data[index + 5] & 0xFF) << 0);
+		packet.setMillisecondOfDay(((long) data[index + 2] & 0xFF) << 24 | (data[index + 3] & 0xFF) << 16 | (data[index + 4] & 0xFF) << 8 | (data[index + 5] & 0xFF) << 0);
 		packet.setMicrosecondOfMillisecond((data[index + 6] & 0xFF) << 8 | (data[index + 7] & 0xFF) << 0);
 	}
-	
+
 	public byte[] getData() {
 		return data;
 	}

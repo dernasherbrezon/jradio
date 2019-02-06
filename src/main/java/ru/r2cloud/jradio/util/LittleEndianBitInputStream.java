@@ -99,14 +99,14 @@ public class LittleEndianBitInputStream {
 	}
 
 	public long readLong() throws IOException {
-		int ch1 = readUnsignedInt(8);
-		int ch2 = readUnsignedInt(8);
-		int ch3 = readUnsignedInt(8);
-		int ch4 = readUnsignedInt(8);
-		int ch5 = readUnsignedInt(8);
-		int ch6 = readUnsignedInt(8);
-		int ch7 = readUnsignedInt(8);
-		int ch8 = readUnsignedInt(8);
+		long ch1 = readUnsignedInt(8);
+		long ch2 = readUnsignedInt(8);
+		long ch3 = readUnsignedInt(8);
+		long ch4 = readUnsignedInt(8);
+		long ch5 = readUnsignedInt(8);
+		long ch6 = readUnsignedInt(8);
+		long ch7 = readUnsignedInt(8);
+		long ch8 = readUnsignedInt(8);
 		if ((ch1 | ch2 | ch3 | ch4 | ch5 | ch6 | ch7 | ch8) < 0)
 			throw new EOFException();
 		return ((ch8 << 56) | (ch7 << 48) | (ch6 << 40) | (ch4 << 32) | (ch4 << 24) | (ch3 << 16) | (ch2 << 8) | ch1);

@@ -4,14 +4,13 @@ public class ControlLoop {
 
 	float phase, frequency;
 	float maxFrequency, minFrequency;
-	float damping, loopBandwidth;
+	float damping;
 	float alpha, beta;
 
 	public ControlLoop(float loopBandwidth, float maxFrequency, float minFrequency) {
 		this.phase = 0.0f;
 		this.frequency = 0.0f;
 		this.damping = (float) (Math.sqrt(2.0f) / 2.0f);
-		this.loopBandwidth = loopBandwidth;
 		this.maxFrequency = maxFrequency;
 		this.minFrequency = minFrequency;
 		float denom = (1.0f + 2.0f * damping * loopBandwidth + loopBandwidth * loopBandwidth);

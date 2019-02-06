@@ -94,11 +94,11 @@ public class FLLBandEdge implements FloatInput {
 
 			float k = (-N + i) / (2.0f * samps_per_sym);
 
-			tempComplex = MathUtils.expj(-(2 * (float) Math.PI) * (1 + rolloff) * k);
+			MathUtils.expj(tempComplex, -(2 * (float) Math.PI) * (1 + rolloff) * k);
 			MathUtils.multiply(tap, tempComplex);
 			d_taps_lowerReal[filter_size - i - 1] = tempComplex[0];
 			d_taps_lowerImg[filter_size - i - 1] = tempComplex[1];
-			tempComplex = MathUtils.expj((2 * (float) Math.PI) * (1 + rolloff) * k);
+			MathUtils.expj(tempComplex, (2 * (float) Math.PI) * (1 + rolloff) * k);
 			MathUtils.multiply(tap, tempComplex);
 			d_taps_upperReal[filter_size - i - 1] = tempComplex[0];
 			d_taps_upperImg[filter_size - i - 1] = tempComplex[1];

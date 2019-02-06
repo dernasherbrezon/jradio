@@ -23,7 +23,7 @@ public class AAUSAT4Beacon implements Externalizable {
 	// begin sample used to calculate begin millis
 	private long beginSample;
 	private long beginMillis;
-	
+
 	private byte[] rawData;
 
 	// # [ 1 byte | 20 bytes | 10 bytes | 7 bytes | 6 bytes | 20 bytes | 20
@@ -32,7 +32,7 @@ public class AAUSAT4Beacon implements Externalizable {
 	@Override
 	public void readExternal(byte[] rawData) throws IOException {
 		this.rawData = rawData;
-		length = (rawData[0] << 8) | rawData[1];
+		length = ((rawData[0] & 0xFF) << 8) | (rawData[1] & 0xFF);
 		header = new Header(Arrays.copyOfRange(rawData, 2, 2 + Header.LENGTH));
 		int endIndex = rawData.length;
 		if (header.isFhmac()) {
@@ -82,19 +82,19 @@ public class AAUSAT4Beacon implements Externalizable {
 			data.skipBytes(20);
 		}
 	}
-	
+
 	public byte[] getRawData() {
 		return rawData;
 	}
-	
+
 	public byte[] getHmac() {
 		return hmac;
 	}
-	
+
 	public Header getHeader() {
 		return header;
 	}
-	
+
 	public int getLength() {
 		return length;
 	}

@@ -170,7 +170,7 @@ public class MeteorImagePacket implements Iterable<int[]>, Iterator<int[]> {
 	private static int[] createWorksheetQuantizationTable(byte qualityValue) {
 		float compressionRatio;
 		if (qualityValue > 20 && qualityValue < 50) {
-			compressionRatio = 5000 / qualityValue;
+			compressionRatio = 5000.0f / qualityValue;
 		} else {
 			compressionRatio = 200 - 2 * qualityValue;
 		}

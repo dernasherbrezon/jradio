@@ -29,9 +29,13 @@ public class MathUtils {
 
 	public static float[] expj(float phase) {
 		float[] result = new float[2];
+		expj(result, phase);
+		return result;
+	}
+
+	public static void expj(float[] result, float phase) {
 		result[0] = (float) Math.cos(phase);
 		result[1] = (float) Math.sin(phase);
-		return result;
 	}
 
 	public static void multiply(float num, float[] complex) {

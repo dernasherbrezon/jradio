@@ -57,7 +57,7 @@ public class FrequencyXlatingFIRFilter implements FloatInput {
 			samples = null;
 		}
 		context = new Context(source.getContext());
-		context.setSampleRate((long) context.getSampleRate() / decimation);
+		context.setSampleRate(context.getSampleRate() / decimation);
 		context.setTotalSamples(context.getTotalSamples() / decimation);
 	}
 

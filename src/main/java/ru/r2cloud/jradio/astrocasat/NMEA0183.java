@@ -31,9 +31,6 @@ public class NMEA0183 {
 		time = sdf.parse(parts[9] + " " + parts[1]);
 		DecimalFormat format = createFormatter("##.##");
 		source = NMEA0183Source.valueOf(parts[0].substring(1, 3));
-		if( source == null ) {
-			throw new ParseException("unsupported source: " + parts[0], 0);
-		}
 		if (parts[2].equalsIgnoreCase("A")) {
 			status = true;
 		} else {

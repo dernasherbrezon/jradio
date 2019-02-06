@@ -34,7 +34,7 @@ public class AAUSAT4 extends BeaconSource<AAUSAT4Beacon> {
 
 	@Override
 	protected AAUSAT4Beacon parseBeacon(byte[] raw) {
-		byte fsm = hardDecode(raw);
+		int fsm = hardDecode(raw);
 		if (fsm == SHORT_PACKET_FSM) {
 			// short frame
 			LOG.info("short frame detected");
@@ -66,7 +66,7 @@ public class AAUSAT4 extends BeaconSource<AAUSAT4Beacon> {
 		return null;
 	}
 
-	private static byte hardDecode(byte[] raw) {
+	private static int hardDecode(byte[] raw) {
 		int result = 0;
 		for (int i = 0; i < 8; i++) {
 			byte toCheck;
@@ -77,7 +77,7 @@ public class AAUSAT4 extends BeaconSource<AAUSAT4Beacon> {
 			}
 			result = (result << 1) | (toCheck & 0x1);
 		}
-		return (byte) result;
+		return result;
 	}
 
 }

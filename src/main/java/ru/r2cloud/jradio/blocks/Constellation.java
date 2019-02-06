@@ -22,7 +22,7 @@ public class Constellation {
 		for (int i = 0; i < constell.length; i += 2) {
 			summedMagnitude += Math.sqrt(constell[i] * constell[i] + constell[i + 1] * constell[i + 1]);
 		}
-		float scalefactor = constell.length / 2 / summedMagnitude;
+		float scalefactor = (float) constell.length / 2 / summedMagnitude;
 		for (int i = 0; i < constell.length; i++) {
 			constell[i] = constell[i] * scalefactor;
 		}

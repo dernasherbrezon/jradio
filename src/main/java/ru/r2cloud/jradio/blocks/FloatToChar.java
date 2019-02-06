@@ -10,8 +10,8 @@ public class FloatToChar implements ByteInput {
 
 	private final FloatInput source;
 	private final float d_scale;
-	private final float min_val = -128;
-	private final float max_val = 127;
+	private final static float MIN_VAL = -128;
+	private final static float MAX_VAL = 127;
 
 	public FloatToChar(FloatInput source, float d_scale) {
 		this.source = source;
@@ -22,10 +22,10 @@ public class FloatToChar implements ByteInput {
 	public byte readByte() throws IOException {
 		float cur = 0.0f;
 		cur = source.readFloat() * d_scale;
-		if (cur > max_val) {
-			cur = max_val;
-		} else if (cur < min_val) {
-			cur = min_val;
+		if (cur > MAX_VAL) {
+			cur = MAX_VAL;
+		} else if (cur < MIN_VAL) {
+			cur = MIN_VAL;
 		}
 		return (byte) Math.rint(cur);
 	}
