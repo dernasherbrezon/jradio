@@ -9,7 +9,9 @@ import ru.r2cloud.jradio.util.BitInputStream;
 public class Jy1satBeacon implements Externalizable {
 	
 	private Ao40Header header;
-
+	private RealtimeTelemetry realtimeTelemetry;
+	private byte[] payload;
+	
 	private byte[] rawData;
 	private long beginSample;
 	private long beginMillis;
@@ -19,9 +21,27 @@ public class Jy1satBeacon implements Externalizable {
 		this.rawData = data;
 		BitInputStream dis = new BitInputStream(data);
 		header = new Ao40Header(dis);
-		//FIXME parse realtime telemetry and payload
+		realtimeTelemetry = new RealtimeTelemetry(dis);
+		payload = new byte[200];
+		dis.readFully(payload);
 	}
 	
+	public RealtimeTelemetry getRealtimeTelemetry() {
+		return realtimeTelemetry;
+	}
+
+	public void setRealtimeTelemetry(RealtimeTelemetry realtimeTelemetry) {
+		this.realtimeTelemetry = realtimeTelemetry;
+	}
+
+	public byte[] getPayload() {
+		return payload;
+	}
+
+	public void setPayload(byte[] payload) {
+		this.payload = payload;
+	}
+
 	public Ao40Header getHeader() {
 		return header;
 	}
