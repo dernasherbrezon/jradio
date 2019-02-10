@@ -25,7 +25,7 @@ public class VCDU {
 		id = new VCDUId();
 		id.setSpacecraftId(data[0] & 0b0011_1111 + (byte) (data[1] >> 6));
 		id.setVirtualChannelId(data[1] & 0b0011_1111);
-		counter = (data[2] & 0xFF) << 16 | (data[3] & 0xFF) << 8 | (data[4] & 0xFF) << 0;
+		counter = (data[2] & 0xFF) << 16 | (data[3] & 0xFF) << 8 | (data[4] & 0xFF);
 		signalling = data[5];
 		insertZone = new IN_SDU();
 		insertZone.setEncryption(data[6] == (byte) 0xFF);
@@ -142,8 +142,8 @@ public class VCDU {
 
 	private static void readSecondaryHeader(byte[] data, int index, Packet packet) {
 		packet.setNumberOfDays((data[index] & 0xFF) << 8 | (data[index + 1] & 0xFF));
-		packet.setMillisecondOfDay(((long) data[index + 2] & 0xFF) << 24 | (data[index + 3] & 0xFF) << 16 | (data[index + 4] & 0xFF) << 8 | (data[index + 5] & 0xFF) << 0);
-		packet.setMicrosecondOfMillisecond((data[index + 6] & 0xFF) << 8 | (data[index + 7] & 0xFF) << 0);
+		packet.setMillisecondOfDay(((long) data[index + 2] & 0xFF) << 24 | (data[index + 3] & 0xFF) << 16 | (data[index + 4] & 0xFF) << 8 | (data[index + 5] & 0xFF));
+		packet.setMicrosecondOfMillisecond((data[index + 6] & 0xFF) << 8 | (data[index + 7] & 0xFF));
 	}
 
 	public byte[] getData() {

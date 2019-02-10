@@ -41,9 +41,9 @@ public class RealtimeTelemetry {
 	private float sunSensorYM;
 	private float sunSensorZP;
 	private float sunSensorZM;
-	private float busVoltage33;
+	private int busVoltage33;
 	private int iMTQuptime;
-	private float busVoltage50;
+	private int busVoltage50;
 	private int receiverDoppler;
 	private int receiverRSSI;
 
@@ -387,11 +387,11 @@ public class RealtimeTelemetry {
 		this.sunSensorZM = sunSensorZM;
 	}
 
-	public float getBusVoltage33() {
+	public int getBusVoltage33() {
 		return busVoltage33;
 	}
 
-	public void setBusVoltage33(float busVoltage33) {
+	public void setBusVoltage33(int busVoltage33) {
 		this.busVoltage33 = busVoltage33;
 	}
 
@@ -403,11 +403,11 @@ public class RealtimeTelemetry {
 		this.iMTQuptime = iMTQuptime;
 	}
 
-	public float getBusVoltage50() {
+	public int getBusVoltage50() {
 		return busVoltage50;
 	}
 
-	public void setBusVoltage50(float busVoltage50) {
+	public void setBusVoltage50(int busVoltage50) {
 		this.busVoltage50 = busVoltage50;
 	}
 

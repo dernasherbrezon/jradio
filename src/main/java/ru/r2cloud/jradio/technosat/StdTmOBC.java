@@ -28,7 +28,7 @@ public class StdTmOBC {
 		TMMTFHIST = HistoryBufferType.valueOfCode(raw >> 6);
 		SAT_MODE = SatelliteMode.valueOfCode((raw >> 4) & 0x3);
 		TMMHSHIST = HistoryBufferType.valueOfCode((raw >> 2) & 0x3);
-		TMMHSSTAT = HighSpeedState.valueOfCode((raw >> 0) & 0x3);
+		TMMHSSTAT = HighSpeedState.valueOfCode(raw & 0x3);
 
 		dis.skipBytes(11);
 	}

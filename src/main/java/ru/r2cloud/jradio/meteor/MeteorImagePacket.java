@@ -172,7 +172,7 @@ public class MeteorImagePacket implements Iterator<int[]> {
 		if (qualityValue > 20 && qualityValue < 50) {
 			compressionRatio = 5000.0f / qualityValue;
 		} else {
-			compressionRatio = 200 - 2 * qualityValue;
+			compressionRatio = 200.0f - 2 * qualityValue;
 		}
 		int[] result = new int[initial_quantization_table.length];
 		for (int i = 0; i < result.length; i++) {
