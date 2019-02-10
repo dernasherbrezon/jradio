@@ -32,6 +32,7 @@ All blocks meant to be binary compatible with gnuradio versions. This will ensur
   * GUI Histogram Sink (Spectogram) 
   * HdlcReceiver. Out-of-tree block. Extracts HDLC frame from the unpacked stream of bytes
   * LowPassFilter and LowPassFilterComplex
+  * LMSDDEqualizer
   * Multiply
   * MultiplyConst
   * NrziDecode. Out-of-tree block. Performs nrzi decoding over unpacked stream of bytes

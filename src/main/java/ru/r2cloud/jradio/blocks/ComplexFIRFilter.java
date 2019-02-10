@@ -27,5 +27,17 @@ public class ComplexFIRFilter {
 			output[1] += array.getHistoryReal()[i] * tapsImg[j] + array.getHistoryImg()[i] * tapsReal[j];
 		}
 	}
+	
+	public int getNumTaps() {
+		return tapsReal.length;
+	}
+	
+	public float[] getTapsReal() {
+		return tapsReal;
+	}
+	
+	public float[] getTapsImg() {
+		return tapsImg;
+	}
 
 }
