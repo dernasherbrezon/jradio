@@ -53,7 +53,11 @@ public class LMSDDEqualizer implements FloatInput {
 				throw endOfStream;
 			}
 			for (int i = 0; i < skip; i++) {
-				array.add(source.readFloat(), source.readFloat());
+				try {
+					array.add(source.readFloat(), source.readFloat());
+				} catch (EOFException e) {
+					endOfStream = e;
+				}
 			}
 			filter.filterComplex(currentComplex, array);
 
