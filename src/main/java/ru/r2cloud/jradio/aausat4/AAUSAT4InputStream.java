@@ -7,7 +7,7 @@ import java.util.Iterator;
 
 import ru.r2cloud.jradio.util.IOUtils;
 
-public class AAUSAT4InputStream implements Iterable<AAUSAT4Beacon>, Iterator<AAUSAT4Beacon>, Closeable {
+public class AAUSAT4InputStream implements Iterator<AAUSAT4Beacon>, Closeable {
 
 	private final InputStream is;
 	private final byte readBuffer[] = new byte[8];
@@ -63,11 +63,6 @@ public class AAUSAT4InputStream implements Iterable<AAUSAT4Beacon>, Iterator<AAU
 	@Override
 	public void remove() {
 		throw new UnsupportedOperationException();
-	}
-
-	@Override
-	public Iterator<AAUSAT4Beacon> iterator() {
-		return this;
 	}
 
 	private final long readLong() throws IOException {

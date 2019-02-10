@@ -7,7 +7,7 @@ import java.util.Iterator;
 
 import ru.r2cloud.jradio.util.IOUtils;
 
-public class LRPTInputStream implements Iterable<VCDU>, Iterator<VCDU>, Closeable {
+public class LRPTInputStream implements Iterator<VCDU>, Closeable {
 
 	private final InputStream input;
 	private VCDU currentVcdu;
@@ -45,11 +45,6 @@ public class LRPTInputStream implements Iterable<VCDU>, Iterator<VCDU>, Closeabl
 	@Override
 	public void remove() {
 		throw new UnsupportedOperationException();
-	}
-
-	@Override
-	public Iterator<VCDU> iterator() {
-		return this;
 	}
 
 }

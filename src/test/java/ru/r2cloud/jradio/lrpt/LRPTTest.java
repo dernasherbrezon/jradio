@@ -48,7 +48,7 @@ public class LRPTTest {
 		assertEquals(47839268, packet.getMillisecondOfDay());
 		assertEquals(0, packet.getNumberOfDays());
 		assertTrue(packet.isSecondaryHeader());
-		assertEquals(2, packet.getSequence());
+		assertEquals(0, packet.getSequence());
 		assertEquals(4858, packet.getSequenceCount());
 		assertEquals(482, packet.getUserData().length);
 		assertEquals(0, packet.getVersion());
@@ -61,7 +61,7 @@ public class LRPTTest {
 		assertEquals(47839268, partial.getMillisecondOfDay());
 		assertEquals(0, partial.getNumberOfDays());
 		assertTrue(partial.isSecondaryHeader());
-		assertEquals(2, partial.getSequence());
+		assertEquals(0, partial.getSequence());
 		assertEquals(4859, partial.getSequenceCount());
 		assertEquals(318, partial.getUserData().length);
 		assertEquals(0, partial.getVersion());

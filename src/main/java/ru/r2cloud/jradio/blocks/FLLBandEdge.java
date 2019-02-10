@@ -78,6 +78,10 @@ public class FLLBandEdge implements FloatInput {
 			power += tap;
 			bb_taps[i] = tap;
 		}
+		
+		if (power == 0.0f) {
+			throw new IllegalArgumentException("invalid power: " + power);
+		}
 
 		float[] d_taps_lowerReal = new float[filter_size];
 		float[] d_taps_lowerImg = new float[filter_size];

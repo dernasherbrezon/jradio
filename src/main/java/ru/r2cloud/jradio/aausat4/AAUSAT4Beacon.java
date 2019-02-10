@@ -43,7 +43,7 @@ public class AAUSAT4Beacon implements Externalizable {
 			endIndex = endIndex - 2;
 		}
 		DataInputStream data = new DataInputStream(new ByteArrayInputStream(Arrays.copyOfRange(rawData, 2 + Header.LENGTH, endIndex)));
-		byte valid = data.readByte();
+		int valid = data.readUnsignedByte();
 		boolean eps_valid = (valid & (1 << 0)) > 0 ? true : false;
 		boolean com_valid = (valid & (1 << 1)) > 0 ? true : false;
 		boolean adcs1_valid = (valid & (1 << 2)) > 0 ? true : false;

@@ -4,7 +4,7 @@ import java.io.Closeable;
 import java.io.IOException;
 import java.util.Iterator;
 
-public abstract class BeaconSource<T> implements Iterable<T>, Iterator<T>, Closeable {
+public abstract class BeaconSource<T> implements Iterator<T>, Closeable {
 
 	protected final MessageInput input;
 	private T current;
@@ -48,11 +48,6 @@ public abstract class BeaconSource<T> implements Iterable<T>, Iterator<T>, Close
 	@Override
 	public void close() throws IOException {
 		input.close();
-	}
-
-	@Override
-	public Iterator<T> iterator() {
-		return this;
 	}
 
 }

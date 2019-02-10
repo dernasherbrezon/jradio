@@ -14,7 +14,7 @@ import ru.r2cloud.jradio.lrpt.VCDU;
 
 public class MeteorImage {
 
-	public static int METEOR_SPACECRAFT_ID = 0;
+	public static final int METEOR_SPACECRAFT_ID = 0;
 	private static final Logger LOG = LoggerFactory.getLogger(MeteorImage.class);
 	private static final int ADMIN_PACKET_APID = 70;
 

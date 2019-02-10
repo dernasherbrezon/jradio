@@ -65,7 +65,7 @@ public class PolyphaseClockSyncComplex implements FloatInput {
 		this.skip = 1;
 		this.array = new CircularComplexArray(d_taps_per_filter);
 		this.d_filters = createFilters(taps);
-		this.d_diff_filters = createFilters(create_diff_taps(taps));
+		this.d_diff_filters = createFilters(createDiffTaps(taps));
 		this.d_max_dev = maximumRateDeviation;
 	}
 
@@ -130,33 +130,37 @@ public class PolyphaseClockSyncComplex implements FloatInput {
 
 		// Keep our rate within a good range
 		d_rate_f = MathUtils.branchless_clip(d_rate_f, d_max_dev);
-		
-		toSkip += (int)Math.floor(samplesSymbol);
+
+		toSkip += (int) Math.floor(samplesSymbol);
 		skip = toSkip;
 	}
 
-	private float[] create_diff_taps(float[] taps) {
-		float[] diff_filter = new float[3];
-		diff_filter[0] = -1;
-		diff_filter[1] = 0;
-		diff_filter[2] = 1;
+	private float[] createDiffTaps(float[] taps) {
+		float[] diffFilter = new float[3];
+		diffFilter[0] = -1;
+		diffFilter[1] = 0;
+		diffFilter[2] = 1;
 
-		float pwr = 0;
+		float power = 0;
 		float[] result = new float[taps.length];
 		result[0] = 0;
 		for (int i = 0, k = 1; i < taps.length - 2; i++, k++) {
 			float tap = 0;
-			for (int j = 0; j < diff_filter.length; j++) {
-				tap += diff_filter[j] * taps[i + j];
+			for (int j = 0; j < diffFilter.length; j++) {
+				tap += diffFilter[j] * taps[i + j];
 			}
 			result[k] = tap;
-			pwr += Math.abs(tap);
+			power += Math.abs(tap);
+		}
+
+		if (power == 0.0f) {
+			throw new IllegalArgumentException("invalid power: " + power);
 		}
 		result[result.length - 1] = 0;
 
 		// Normalize the taps
 		for (int i = 0; i < result.length; i++) {
-			result[i] *= d_nfilters / pwr;
+			result[i] *= d_nfilters / power;
 			if (result[i] != result[i]) {
 				throw new IllegalArgumentException("create_diff_taps produced NaN");
 			}
@@ -179,8 +183,7 @@ public class PolyphaseClockSyncComplex implements FloatInput {
 			tmp_taps[i] = 0.0f;
 		}
 		FIRFilter[] filters = new FIRFilter[d_nfilters];
-		
-		
+
 		// Partition the filter
 		for (int i = 0; i < d_nfilters; i++) {
 			// Each channel uses all d_taps_per_filter with 0's if not enough taps to fill out

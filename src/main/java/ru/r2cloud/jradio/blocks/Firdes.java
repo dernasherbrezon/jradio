@@ -99,8 +99,10 @@ public class Firdes {
 			scale += taps[i];
 		}
 
-		for (int i = 0; i < ntaps; i++) {
-			taps[i] = (float) (taps[i] * gain / scale);
+		if (scale != 0.0f) {
+			for (int i = 0; i < ntaps; i++) {
+				taps[i] = (float) (taps[i] * gain / scale);
+			}
 		}
 
 		return taps;

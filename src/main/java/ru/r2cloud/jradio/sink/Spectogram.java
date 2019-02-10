@@ -43,7 +43,7 @@ public class Spectogram {
 			tempResults[i] = Float.NEGATIVE_INFINITY;
 		}
 		float sum = 0.0f;
-		int tempResulsSize = 0;
+		int tempResultsSize = 0;
 
 		int numberOfFftPerRow = (int) (source.getContext().getSampleRate() / (width * numRowsPerSecond));
 		int skipOnEveryRow = (int) source.getContext().getSampleRate() % (width * numRowsPerSecond);
@@ -80,7 +80,7 @@ public class Spectogram {
 					tempResults[currentRow * width + length + i] = temp;
 
 					sum += tempResults[currentRow * width + i] + tempResults[currentRow * width + length + i];
-					tempResulsSize += 2;
+					tempResultsSize += 2;
 				}
 
 				currentRow++;
@@ -98,12 +98,15 @@ public class Spectogram {
 				break;
 			}
 		}
-		double mean = sum / tempResulsSize;
+		if( tempResultsSize == 0 ) {
+			throw new IllegalArgumentException("tempResultsSize cannot be 0");
+		}
+		double mean = sum / tempResultsSize;
 		double standardDeviation = 0.0;
 		for (float curValue : tempResults) {
 			standardDeviation += Math.pow(curValue - mean, 2);
 		}
-		standardDeviation = Math.sqrt(standardDeviation / tempResulsSize);
+		standardDeviation = Math.sqrt(standardDeviation / tempResultsSize);
 		double min = mean - 2 * standardDeviation;
 		double max = mean + 6 * standardDeviation;
 

@@ -23,6 +23,9 @@ public class Constellation {
 		for (int i = 0; i < constell.length; i += 2) {
 			summedMagnitude += Math.sqrt(constell[i] * constell[i] + constell[i + 1] * constell[i + 1]);
 		}
+		if (summedMagnitude == 0.0f) {
+			throw new IllegalArgumentException("invalid magnitude: " + summedMagnitude);
+		}
 		float scalefactor = (float) constell.length / 2 / summedMagnitude;
 		for (int i = 0; i < constell.length; i++) {
 			constell[i] = constell[i] * scalefactor;

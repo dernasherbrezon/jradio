@@ -147,7 +147,7 @@ public class MeteorImagePacket implements Iterable<int[]>, Iterator<int[]> {
 				continue;
 			}
 			int bit;
-			if ((packet.getUserData()[currentByteIndex] & (1 << (7 - (bitIndex & 7)))) != 0) {
+			if (((packet.getUserData()[currentByteIndex] & 0xFF) & (1 << (7 - (bitIndex & 7)))) != 0) {
 				bit = 1;
 			} else {
 				bit = 0;

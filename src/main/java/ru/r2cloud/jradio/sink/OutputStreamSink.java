@@ -1,7 +1,6 @@
 package ru.r2cloud.jradio.sink;
 
 import java.io.Closeable;
-import java.io.EOFException;
 import java.io.IOException;
 import java.io.OutputStream;
 
@@ -23,7 +22,7 @@ public class OutputStreamSink implements Closeable {
 				out.write((v >>> 8) & 0xFF);
 				out.write((v >>> 16) & 0xFF);
 				out.write((v >>> 24) & 0xFF);
-			} catch (EOFException e) {
+			} catch (IOException e) {
 				out.flush();
 				break;
 			}

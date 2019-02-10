@@ -127,13 +127,13 @@ public class VCDU {
 
 	private static void readPrimaryHeader(byte[] data, int index, Packet packet) {
 		// 000 (CCSDS packet Version number 1)
-		packet.setVersion((byte) (data[index] & 0xFF >> 5));
+		packet.setVersion((byte) ((data[index] & 0xFF) >> 5));
 		// This bit shall be always set to 1 to indicate the presence of a secondary header.
-		packet.setSecondaryHeader((data[index] & (1 << 3)) > 0 ? true : false);
+		packet.setSecondaryHeader(((data[index] & 0xFF) & (1 << 3)) > 0 ? true : false);
 		// This field defines the data route between two users application endpoints
 		packet.setApid(((data[index] & 0b0000_0111) << 8) | (data[index + 1]) & 0xFF);
 		// This flag is set to 11 indicating that the packet contains unsegmented User data.
-		packet.setSequence((byte) (data[index + 2] & 0xFF >> 6));
+		packet.setSequence((byte) ((data[index + 2] & 0xFF) >> 6));
 		// This field is a modulo 16384 counter, which numbers the packets
 		packet.setSequenceCount(((data[index + 2] & 0b0011_1111) << 8) | (data[index + 3] & 0xFF));
 		// This field contains a sequential binary count "C" that expresses the length of the Secondary Header and the User Data. The value of "C" is the length (in octets) minus 1.

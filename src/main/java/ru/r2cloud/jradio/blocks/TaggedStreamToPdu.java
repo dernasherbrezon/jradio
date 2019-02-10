@@ -27,11 +27,8 @@ public class TaggedStreamToPdu implements MessageInput {
 				break;
 			}
 		} while (true);
-		if (tag == null) {
-			// shouldnt happen actually see above
-			throw new IOException("no tag found");
-		}
 
+		@SuppressWarnings("null")
 		int length = (Integer) tag.get(FixedLengthTagger.LENGTH);
 		byte[] result = new byte[length];
 		result[0] = firstByte;
