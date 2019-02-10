@@ -12,7 +12,7 @@ All blocks meant to be binary compatible with gnuradio versions. This will ensur
   * AdditiveScrambler
   * AGC
   * BinarySlicer
-  * ClockRecoveryMM and ClockRecoveryMMComplex
+  * [ClockRecoveryMM](https://www.tablix.org/~avian/blog/archives/2015/03/notes_on_m_m_clock_recovery/) and [ClockRecoveryMMComplex](https://www.tablix.org/~avian/blog/archives/2015/03/notes_on_m_m_clock_recovery/)
   * ComplexConjugate
   * ComplexToReal
   * ConstellationSoftDecoder
@@ -28,7 +28,7 @@ All blocks meant to be binary compatible with gnuradio versions. This will ensur
   * FLL Band Edge
   * FloatToChar
   * FloatToComplex
-  * FrequencyXlatingFIRFilter
+  * [FrequencyXlatingFIRFilter](http://blog.sdr.hu/grblocks/xlating-fir.html)
   * GUI Histogram Sink (Spectogram) 
   * HdlcReceiver. Out-of-tree block. Extracts HDLC frame from the unpacked stream of bytes
   * LowPassFilter and LowPassFilterComplex
