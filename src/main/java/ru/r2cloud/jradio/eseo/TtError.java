@@ -31,7 +31,7 @@ public class TtError {
 		RSSILowerThanTheSensitivityThreshold = ((raw >> 3) & 0x1) > 0;
 		PKTToGSExceedMaxLimit = ((raw >> 2) & 0x1) > 0;
 		MaximumAllowedFrequencyDeviationExceeded = ((raw >> 1) & 0x1) > 0;
-		WDTError = ((raw >> 0) & 0x1) > 0;
+		WDTError = (raw & 0x1) > 0;
 
 		raw = dis.readUnsignedByte();
 		RTEMSError = ((raw >> 7) & 0x1) > 0;

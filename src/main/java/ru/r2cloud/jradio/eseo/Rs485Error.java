@@ -29,7 +29,7 @@ public class Rs485Error {
 		USARTMWMErrorInterrupt = ((raw >> 3) & 0x1) > 0;
 		USARTMWMErrorBufferAll = ((raw >> 2) & 0x1) > 0;
 		USARTMWMErrorTimerConfiguration = ((raw >> 1) & 0x1) > 0;
-		USARTMWMErrorTXFull = ((raw >> 0) & 0x1) > 0;
+		USARTMWMErrorTXFull = (raw & 0x1) > 0;
 
 		raw = dis.readUnsignedByte();
 		USARTMWMErrorRXOverrun = ((raw >> 7) & 0x1) > 0;

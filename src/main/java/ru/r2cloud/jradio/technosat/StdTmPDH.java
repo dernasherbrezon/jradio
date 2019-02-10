@@ -19,7 +19,7 @@ public class StdTmPDH {
 		BOTSLT = (byte) ((raw >> 3) & 0x7);
 		SYNPPS = ((raw >> 2) & 0x1) > 0;
 		DISUTC = ((raw >> 1) & 0x1) > 0;
-		DULBSY = ((raw >> 0) & 0x1) > 0;
+		DULBSY = (raw & 0x1) > 0;
 	}
 
 	public byte getNODENO() {

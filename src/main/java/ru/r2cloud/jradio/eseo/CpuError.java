@@ -35,7 +35,7 @@ public class CpuError {
 		MemManageMSTKERR = ((raw >> 3) & 0x1) > 0;
 		MemManageMUNKSERR = ((raw >> 2) & 0x1) > 0;
 		MemManageMLSPERR = ((raw >> 1) & 0x1) > 0;
-		BusErrorSTKERR = ((raw >> 0) & 0x1) > 0;
+		BusErrorSTKERR = (raw & 0x1) > 0;
 
 		raw = dis.readUnsignedByte();
 		BusErrorUNSTKERR = ((raw >> 7) & 0x1) > 0;
@@ -45,7 +45,7 @@ public class CpuError {
 		BusErrorIMPRECISERR = ((raw >> 3) & 0x1) > 0;
 		UsageFaultNOCP = ((raw >> 2) & 0x1) > 0;
 		UsageFaultUNDEFINSTR = ((raw >> 1) & 0x1) > 0;
-		UsageFaultINVSTATE = ((raw >> 0) & 0x1) > 0;
+		UsageFaultINVSTATE = (raw & 0x1) > 0;
 
 		raw = dis.readUnsignedByte();
 		UsageFaultINVCP = ((raw >> 7) & 0x1) > 0;

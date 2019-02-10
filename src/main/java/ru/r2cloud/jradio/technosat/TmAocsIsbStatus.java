@@ -95,7 +95,7 @@ public class TmAocsIsbStatus {
 		SSU_00_BOUND = ((raw >> 3) & 0x1) > 0;
 		SSU_01_BOUND = ((raw >> 2) & 0x1) > 0;
 		SSU_02_BOUND = ((raw >> 1) & 0x1) > 0;
-		SSU_03_BOUND = ((raw >> 0) & 0x1) > 0;
+		SSU_03_BOUND = (raw & 0x1) > 0;
 
 		raw = dis.readUnsignedByte();
 		SSU_04_BOUND = ((raw >> 7) & 0x1) > 0;
@@ -105,7 +105,7 @@ public class TmAocsIsbStatus {
 		SSU_12_BOUND = ((raw >> 3) & 0x1) > 0;
 		SSU_13_BOUND = ((raw >> 2) & 0x1) > 0;
 		SSU_14_BOUND = ((raw >> 1) & 0x1) > 0;
-		SSU_15_BOUND = ((raw >> 0) & 0x1) > 0;
+		SSU_15_BOUND = (raw & 0x1) > 0;
 
 		raw = dis.readUnsignedByte();
 		MFSA_00_BOUND = ((raw >> 7) & 0x1) > 0;
@@ -115,7 +115,7 @@ public class TmAocsIsbStatus {
 		MFSA_04_BOUND = ((raw >> 3) & 0x1) > 0;
 		MFSA_05_BOUND = ((raw >> 2) & 0x1) > 0;
 		MFSA_10_BOUND = ((raw >> 1) & 0x1) > 0;
-		MFSA_11_BOUND = ((raw >> 0) & 0x1) > 0;
+		MFSA_11_BOUND = (raw & 0x1) > 0;
 
 		raw = dis.readUnsignedByte();
 		MFSA_12_BOUND = ((raw >> 7) & 0x1) > 0;
@@ -125,7 +125,7 @@ public class TmAocsIsbStatus {
 		GYRA_00_BOUND = ((raw >> 3) & 0x1) > 0;
 		GYRA_01_BOUND = ((raw >> 2) & 0x1) > 0;
 		GYRA_02_BOUND = ((raw >> 1) & 0x1) > 0;
-		GYRA_03_BOUND = ((raw >> 0) & 0x1) > 0;
+		GYRA_03_BOUND = (raw & 0x1) > 0;
 
 		raw = dis.readUnsignedByte();
 		GYRA_04_BOUND = ((raw >> 7) & 0x1) > 0;
@@ -135,7 +135,7 @@ public class TmAocsIsbStatus {
 		GYRA_12_BOUND = ((raw >> 3) & 0x1) > 0;
 		GYRA_13_BOUND = ((raw >> 2) & 0x1) > 0;
 		GYRA_14_BOUND = ((raw >> 1) & 0x1) > 0;
-		GYRA_15_BOUND = ((raw >> 0) & 0x1) > 0;
+		GYRA_15_BOUND = (raw & 0x1) > 0;
 
 		raw = dis.readUnsignedByte();
 		GYRA_T_00_BOUND = ((raw >> 7) & 0x1) > 0;
@@ -145,7 +145,7 @@ public class TmAocsIsbStatus {
 		GYRA_T_04_BOUND = ((raw >> 3) & 0x1) > 0;
 		GYRA_T_05_BOUND = ((raw >> 2) & 0x1) > 0;
 		GYRA_T_10_BOUND = ((raw >> 1) & 0x1) > 0;
-		GYRA_T_11_BOUND = ((raw >> 0) & 0x1) > 0;
+		GYRA_T_11_BOUND = (raw & 0x1) > 0;
 
 		raw = dis.readUnsignedByte();
 		GYRA_T_12_BOUND = ((raw >> 7) & 0x1) > 0;
@@ -155,7 +155,7 @@ public class TmAocsIsbStatus {
 		MFSA_F_00_ACTIV = ((raw >> 3) & 0x1) > 0;
 		MFSA_F_01_ACTIV = ((raw >> 2) & 0x1) > 0;
 		MFSA_F_02_ACTIV = ((raw >> 1) & 0x1) > 0;
-		MFSA_F_03_ACTIV = ((raw >> 0) & 0x1) > 0;
+		MFSA_F_03_ACTIV = (raw & 0x1) > 0;
 
 		raw = dis.readUnsignedByte();
 		MFSA_F_04_ACTIV = ((raw >> 7) & 0x1) > 0;
@@ -165,7 +165,7 @@ public class TmAocsIsbStatus {
 		MFSA_F_12_ACTIV = ((raw >> 3) & 0x1) > 0;
 		MFSA_F_13_ACTIV = ((raw >> 2) & 0x1) > 0;
 		MFSA_F_14_ACTIV = ((raw >> 1) & 0x1) > 0;
-		MFSA_F_15_ACTIV = ((raw >> 0) & 0x1) > 0;
+		MFSA_F_15_ACTIV = (raw & 0x1) > 0;
 
 		raw = dis.readUnsignedByte();
 		GYRA_F_00_ACTIV = ((raw >> 7) & 0x1) > 0;
@@ -175,7 +175,7 @@ public class TmAocsIsbStatus {
 		GYRA_F_04_ACTIV = ((raw >> 3) & 0x1) > 0;
 		GYRA_F_05_ACTIV = ((raw >> 2) & 0x1) > 0;
 		GYRA_F_10_ACTIV = ((raw >> 1) & 0x1) > 0;
-		GYRA_F_11_ACTIV = ((raw >> 0) & 0x1) > 0;
+		GYRA_F_11_ACTIV = (raw & 0x1) > 0;
 
 		raw = dis.readUnsignedByte();
 		GYRA_F_12_ACTIV = ((raw >> 7) & 0x1) > 0;

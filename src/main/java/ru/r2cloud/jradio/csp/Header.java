@@ -39,7 +39,7 @@ public class Header {
 		fhmac = ((packed >> 3) & 0x1) > 0;
 		fxtea = ((packed >> 2) & 0x1) > 0;
 		frdp = ((packed >> 1) & 0x1) > 0;
-		fcrc32 = ((packed >> 0) & 0x1) > 0;
+		fcrc32 = (packed & 0x1) > 0;
 	}
 
 	public Priority getPriority() {

@@ -2,18 +2,18 @@ package ru.r2cloud.jradio;
 
 public abstract class DopplerValueSource implements FloatValueSource {
 
-	private final long correctPeriodSamples;
+	private final float correctPeriodSamples;
 	private final long correctPeriodMillis;
 	private final long satelliteFrequency;
 	private long currentSample = 0;
-	private float nextShift = 0;
+	private long nextShift = 0;
 	private float currentShift = 0;
 	private long currentTimeMillis;
 	private float shiftPerSample;
 
 	public DopplerValueSource(float sampleRate, long satelliteFrequency, long correctPeriodMillis, long startTimeMillis) {
 		this.correctPeriodMillis = correctPeriodMillis;
-		this.correctPeriodSamples = (long) (sampleRate * ((float)correctPeriodMillis / 1000));
+		this.correctPeriodSamples = sampleRate * ((float)correctPeriodMillis / 1000);
 		this.currentTimeMillis = startTimeMillis;
 		this.satelliteFrequency = satelliteFrequency;
 		this.nextShift = satelliteFrequency - getDopplerFrequency(satelliteFrequency, currentTimeMillis);

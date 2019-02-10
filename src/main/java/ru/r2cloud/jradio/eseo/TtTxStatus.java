@@ -24,7 +24,7 @@ public class TtTxStatus {
 		ContinuousPLLLockIndicator = ((raw >> 3) & 0x1) > 0;
 		InstantaneousPLLLockIndicator = ((raw >> 2) & 0x1) > 0;
 		PLLFailedLockAtPowerUp = ((raw >> 1) & 0x1) > 0;
-		CalibrationComplete = ((raw >> 0) & 0x1) > 0;
+		CalibrationComplete = (raw & 0x1) > 0;
 	}
 
 	public boolean isLOCKPin() {

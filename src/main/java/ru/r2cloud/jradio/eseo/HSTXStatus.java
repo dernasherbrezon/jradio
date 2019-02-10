@@ -45,7 +45,7 @@ public class HSTXStatus {
 		CUR_2 = ((raw >> 3) & 0x1) > 0;
 		CUR_1 = ((raw >> 2) & 0x1) > 0;
 		VOL_2 = ((raw >> 1) & 0x1) > 0;
-		VOL_1 = ((raw >> 0) & 0x1) > 0;
+		VOL_1 = (raw & 0x1) > 0;
 
 		raw = dis.readUnsignedByte();
 		STE4_E = ((raw >> 7) & 0x1) > 0;
@@ -55,13 +55,13 @@ public class HSTXStatus {
 		TEMP_4 = ((raw >> 3) & 0x1) > 0;
 		TEMP_3 = ((raw >> 2) & 0x1) > 0;
 		TEMP_2 = ((raw >> 1) & 0x1) > 0;
-		TEMP_1 = ((raw >> 0) & 0x1) > 0;
+		TEMP_1 = (raw & 0x1) > 0;
 
 		raw = dis.readUnsignedByte();
 		LIME_E = ((raw >> 7) & 0x1) > 0;
 		VC_N_E = ((raw >> 6) & 0x1) > 0;
 		TX_INIT = ((raw >> 1) & 0x1) > 0;
-		HSTX_INIT = ((raw >> 0) & 0x1) > 0;
+		HSTX_INIT = (raw & 0x1) > 0;
 
 		raw = dis.readUnsignedByte();
 		STATERR = ((raw >> 7) & 0x1) > 0;
@@ -71,7 +71,7 @@ public class HSTXStatus {
 		VCOC_E = ((raw >> 3) & 0x1) > 0;
 		LPF_E = ((raw >> 2) & 0x1) > 0;
 		TXLPF1_E = ((raw >> 1) & 0x1) > 0;
-		TXLPF0_E = ((raw >> 0) & 0x1) > 0;
+		TXLPF0_E = (raw & 0x1) > 0;
 	}
 
 	public boolean isSVC2_E() {

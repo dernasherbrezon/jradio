@@ -51,7 +51,7 @@ public class StdTmEPS {
 		BOTSLT = (byte) ((raw >> 3) & 0x7);
 		SYNPPS = ((raw >> 2) & 0x1) > 0;
 		DISUTC = ((raw >> 1) & 0x1) > 0;
-		DULBSY = ((raw >> 0) & 0x1) > 0;
+		DULBSY = (raw & 0x1) > 0;
 		dis.skipBytes(1);
 		raw = dis.readUnsignedByte();
 		// skip first 6 bits
@@ -66,7 +66,7 @@ public class StdTmEPS {
 		PWRSTS05 = ((raw >> 3) & 0x1) > 0;
 		PWRSTS06 = ((raw >> 2) & 0x1) > 0;
 		PWRSTS07 = ((raw >> 1) & 0x1) > 0;
-		PWRSTS08 = ((raw >> 0) & 0x1) > 0;
+		PWRSTS08 = (raw & 0x1) > 0;
 
 		raw = dis.readUnsignedByte();
 		PWRSTS09 = ((raw >> 7) & 0x1) > 0;
@@ -76,7 +76,7 @@ public class StdTmEPS {
 		PWRSTS13 = ((raw >> 3) & 0x1) > 0;
 		PWRSTS14 = ((raw >> 2) & 0x1) > 0;
 		PWRSTS15 = ((raw >> 1) & 0x1) > 0;
-		PWRSTS16 = ((raw >> 0) & 0x1) > 0;
+		PWRSTS16 = (raw & 0x1) > 0;
 
 		raw = dis.readUnsignedByte();
 		PWRSTS18 = ((raw >> 7) & 0x1) > 0;

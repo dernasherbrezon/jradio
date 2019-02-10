@@ -17,7 +17,7 @@ public class Au02Beacon implements Externalizable {
 	private long timestamp;
 	private String callsign;
 	private byte flags;
-	private float batt_voltage;
+	private int batt_voltage;
 	private float current_in;
 	private float current_out;
 	private float rail3_current;
@@ -86,11 +86,11 @@ public class Au02Beacon implements Externalizable {
 		this.flags = flags;
 	}
 
-	public float getBatt_voltage() {
+	public int getBatt_voltage() {
 		return batt_voltage;
 	}
 
-	public void setBatt_voltage(float batt_voltage) {
+	public void setBatt_voltage(int batt_voltage) {
 		this.batt_voltage = batt_voltage;
 	}
 

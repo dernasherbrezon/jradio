@@ -45,7 +45,7 @@ public class ObdStatus {
 		INITCPU = ((raw >> 3) & 0x1) > 0;
 		INITFLASHRW = ((raw >> 2) & 0x1) > 0;
 		INITGPIO = ((raw >> 1) & 0x1) > 0;
-		INITINTERRUPT = ((raw >> 0) & 0x1) > 0;
+		INITINTERRUPT = (raw & 0x1) > 0;
 
 		raw = dis.readUnsignedByte();
 		INITINTERRUPTTEST = ((raw >> 7) & 0x1) > 0;
@@ -55,7 +55,7 @@ public class ObdStatus {
 		INITWDG = ((raw >> 3) & 0x1) > 0;
 		INITFAULTHAND = ((raw >> 2) & 0x1) > 0;
 		INITFLASH = ((raw >> 1) & 0x1) > 0;
-		INITSPIBUS = ((raw >> 0) & 0x1) > 0;
+		INITSPIBUS = (raw & 0x1) > 0;
 
 		raw = dis.readUnsignedByte();
 		INITCANCONF = ((raw >> 7) & 0x1) > 0;
@@ -65,7 +65,7 @@ public class ObdStatus {
 		INITCONSOLE = ((raw >> 3) & 0x1) > 0;
 		INITPOWONRESET = ((raw >> 2) & 0x1) > 0;
 		INITWDRESET = ((raw >> 1) & 0x1) > 0;
-		INITASWIMAGE = ((raw >> 0) & 0x1) > 0;
+		INITASWIMAGE = (raw & 0x1) > 0;
 
 		raw = dis.readUnsignedByte();
 		INITCOMPLETED = ((raw >> 7) & 0x1) > 0;

@@ -210,7 +210,7 @@ public class Type2 {
 		TMTCMain = ((raw >> 3) & 0x1) > 0;
 		TMTCRedundant = ((raw >> 2) & 0x1) > 0;
 		SunSensorMain = ((raw >> 1) & 0x1) > 0;
-		SunSensorRedundant = ((raw >> 0) & 0x1) > 0;
+		SunSensorRedundant = (raw & 0x1) > 0;
 
 		raw = dis.readUnsignedByte();
 		EarthSensor = ((raw >> 7) & 0x1) > 0;
@@ -220,7 +220,7 @@ public class Type2 {
 		MagnetometerMain = ((raw >> 3) & 0x1) > 0;
 		MagnetometerRedundant = ((raw >> 2) & 0x1) > 0;
 		MagneticTorquerMain = ((raw >> 1) & 0x1) > 0;
-		MagneticTorquerRedundant = ((raw >> 0) & 0x1) > 0;
+		MagneticTorquerRedundant = (raw & 0x1) > 0;
 
 		raw = dis.readUnsignedByte();
 		TRITEL = ((raw >> 7) & 0x1) > 0;
@@ -229,7 +229,7 @@ public class Type2 {
 		AMSATUK = ((raw >> 4) & 0x1) > 0;
 		STX = ((raw >> 3) & 0x1) > 0;
 		GPSReceiver = ((raw >> 2) & 0x1) > 0;
-		SCAM = ((raw >> 0) & 0x1) > 0;
+		SCAM = (raw & 0x1) > 0;
 
 		raw = dis.readUnsignedByte();
 		DeOrbitMechanism1 = ((raw >> 7) & 0x1) > 0;
@@ -247,7 +247,7 @@ public class Type2 {
 		TMTCRXMainCurrentOutOfRange = ((raw >> 3) & 0x1) > 0;
 		TMTCRXRedundantCurrentOutOfRange = ((raw >> 2) & 0x1) > 0;
 		SunSensorMainCurrentOutOfRange = ((raw >> 1) & 0x1) > 0;
-		SunSensorRedundantCurrentOutOfRange = ((raw >> 0) & 0x1) > 0;
+		SunSensorRedundantCurrentOutOfRange = (raw & 0x1) > 0;
 
 		raw = dis.readUnsignedByte();
 		EarthSensorCurrentOutOfRange = ((raw >> 7) & 0x1) > 0;
@@ -257,7 +257,7 @@ public class Type2 {
 		MagnetometerMainCurrentOutOfRange = ((raw >> 3) & 0x1) > 0;
 		MagnetometerRedundantCurrentOutOfRange = ((raw >> 2) & 0x1) > 0;
 		MagnetoTorquerMainCurrentOutOfRange = ((raw >> 1) & 0x1) > 0;
-		MagnetoTorquerRedundantCurrentOutOfRange = ((raw >> 0) & 0x1) > 0;
+		MagnetoTorquerRedundantCurrentOutOfRange = (raw & 0x1) > 0;
 
 		raw = dis.readUnsignedByte();
 		TRITELCurrentOutOfRange = ((raw >> 7) & 0x1) > 0;
@@ -267,7 +267,7 @@ public class Type2 {
 		STXCurrentOutOfRange = ((raw >> 3) & 0x1) > 0;
 		GPSCurrentOutOfRange = ((raw >> 2) & 0x1) > 0;
 
-		SCAMCurrentOutOfRange = ((raw >> 0) & 0x1) > 0;
+		SCAMCurrentOutOfRange = (raw & 0x1) > 0;
 
 		raw = dis.readUnsignedByte();
 		DeOrbitMechanism = ((raw >> 7) & 0x1) > 0;
@@ -277,7 +277,7 @@ public class Type2 {
 		MicropropulsionStartValveCurrentOutOfRange = ((raw >> 3) & 0x1) > 0;
 		MicropropulsionStartValveRedundantCurrentOutOfRange = ((raw >> 2) & 0x1) > 0;
 		DOMActuator1CurrentOutOfRange = ((raw >> 1) & 0x1) > 0;
-		DOMActuator2CurrentOutOfRange = ((raw >> 0) & 0x1) > 0;
+		DOMActuator2CurrentOutOfRange = (raw & 0x1) > 0;
 	}
 
 	public int getPM_VOLTAGE_SP1_STRING_1_2() {

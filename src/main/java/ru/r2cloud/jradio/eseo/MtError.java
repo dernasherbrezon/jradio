@@ -29,7 +29,7 @@ public class MtError {
 		MTMxCoilError = ((raw >> 3) & 0x1) > 0;
 		MTMyCoilError = ((raw >> 2) & 0x1) > 0;
 		MTMzCoilError = ((raw >> 1) & 0x1) > 0;
-		RTEMSError = ((raw >> 0) & 0x1) > 0;
+		RTEMSError = (raw & 0x1) > 0;
 
 		raw = dis.readUnsignedByte();
 		StandBy = ((raw >> 7) & 0x1) > 0;

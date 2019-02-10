@@ -38,7 +38,7 @@ public class HkError {
 		TMM = ((raw >> 3) & 0x1) > 0;
 		TMR = ((raw >> 2) & 0x1) > 0;
 		SSM = ((raw >> 1) & 0x1) > 0;
-		SSR = ((raw >> 0) & 0x1) > 0;
+		SSR = (raw & 0x1) > 0;
 
 		raw = dis.readUnsignedByte();
 		ESE = ((raw >> 7) & 0x1) > 0;
@@ -48,7 +48,7 @@ public class HkError {
 		MMM = ((raw >> 3) & 0x1) > 0;
 		MMR = ((raw >> 2) & 0x1) > 0;
 		MTM = ((raw >> 1) & 0x1) > 0;
-		MTR = ((raw >> 0) & 0x1) > 0;
+		MTR = (raw & 0x1) > 0;
 
 		raw = dis.readUnsignedByte();
 		TRI = ((raw >> 7) & 0x1) > 0;
@@ -57,7 +57,7 @@ public class HkError {
 		AMS = ((raw >> 4) & 0x1) > 0;
 		STX = ((raw >> 3) & 0x1) > 0;
 		GPS = ((raw >> 2) & 0x1) > 0;
-		SCAM = ((raw >> 0) & 0x1) > 0;
+		SCAM = (raw & 0x1) > 0;
 		dis.skipBytes(1);
 	}
 

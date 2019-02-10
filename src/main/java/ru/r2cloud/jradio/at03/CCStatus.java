@@ -17,7 +17,7 @@ public class CCStatus {
 		EN_I2C = ((b >> 3) & 1) > 0;
 		Bat1ConnectedToPV1 = ((b >> 2) & 1) > 0;
 		Bat2ConnectedToPV2 = ((b >> 1) & 1) > 0;
-		b3V3BackupOn = ((b >> 0) & 1) > 0;
+		b3V3BackupOn = (b & 1) > 0;
 	}
 
 	public CCMode getMode() {

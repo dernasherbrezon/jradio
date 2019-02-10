@@ -33,14 +33,14 @@ public class HSTXMemoryCondition {
 		M3AFULL = ((raw >> 3) & 0x1) > 0;
 		M3FULL = ((raw >> 2) & 0x1) > 0;
 		M1AFULL = ((raw >> 1) & 0x1) > 0;
-		M1FULL = ((raw >> 0) & 0x1) > 0;
+		M1FULL = (raw & 0x1) > 0;
 
 		raw = dis.readUnsignedByte();
 		MEMERR = ((raw >> 7) & 0x1) > 0;
 		M7AFULL = ((raw >> 3) & 0x1) > 0;
 		M7FULL = ((raw >> 2) & 0x1) > 0;
 		M6AFULL = ((raw >> 1) & 0x1) > 0;
-		M6FULL = ((raw >> 0) & 0x1) > 0;
+		M6FULL = (raw & 0x1) > 0;
 	}
 
 	public int getMBFAIL() {

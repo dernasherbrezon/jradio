@@ -36,7 +36,7 @@ public class TcError1 {
 		TMMTcRequestNotAnswered = ((raw >> 3) & 0x1) > 0;
 		TMRTcRequestNotAnswered = ((raw >> 2) & 0x1) > 0;
 		SSMTcRequestNotAnswered = ((raw >> 1) & 0x1) > 0;
-		SSRTcRequestNotAnswered = ((raw >> 0) & 0x1) > 0;
+		SSRTcRequestNotAnswered = (raw & 0x1) > 0;
 
 		raw = dis.readUnsignedByte();
 		ESETcRequestNotAnswered = ((raw >> 7) & 0x1) > 0;
@@ -46,7 +46,7 @@ public class TcError1 {
 		MMMTcRequestNotAnswered = ((raw >> 3) & 0x1) > 0;
 		MMRTcRequestNotAnswered = ((raw >> 2) & 0x1) > 0;
 		MTMTcRequestNotAnswered = ((raw >> 1) & 0x1) > 0;
-		MTRTcRequestNotAnswered = ((raw >> 0) & 0x1) > 0;
+		MTRTcRequestNotAnswered = (raw & 0x1) > 0;
 
 		raw = dis.readUnsignedByte();
 		TRITcRequestNotAnswered = ((raw >> 7) & 0x1) > 0;
@@ -56,7 +56,7 @@ public class TcError1 {
 		STXTcRequestNotAnswered = ((raw >> 3) & 0x1) > 0;
 		GPSTcRequestNotAnswered = ((raw >> 2) & 0x1) > 0;
 
-		SCAMTcRequestNotAnswered = ((raw >> 0) & 0x1) > 0;
+		SCAMTcRequestNotAnswered = (raw & 0x1) > 0;
 		dis.skipBytes(1);
 	}
 

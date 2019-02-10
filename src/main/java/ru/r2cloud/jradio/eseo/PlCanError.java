@@ -41,7 +41,7 @@ public class PlCanError {
 		failedToEnterInitializationMode = ((raw >> 3) & 0x1) > 0;
 		failedToExitInitializationStatus = ((raw >> 2) & 0x1) > 0;
 		loopbackCheckFailed = ((raw >> 1) & 0x1) > 0;
-		failedToAllocateTxBuffer = ((raw >> 0) & 0x1) > 0;
+		failedToAllocateTxBuffer = (raw & 0x1) > 0;
 
 		raw = dis.readUnsignedByte();
 		failedToAllocateRxBuffer = ((raw >> 7) & 0x1) > 0;
@@ -51,7 +51,7 @@ public class PlCanError {
 		thePreviousTransmissionFailed = ((raw >> 3) & 0x1) > 0;
 		RxBufferFull = ((raw >> 2) & 0x1) > 0;
 		FIFO0Overrun = ((raw >> 1) & 0x1) > 0;
-		FIFO0Full = ((raw >> 0) & 0x1) > 0;
+		FIFO0Full = (raw & 0x1) > 0;
 
 		raw = dis.readUnsignedByte();
 		FIFO1Overrun = ((raw >> 7) & 0x1) > 0;
@@ -61,7 +61,7 @@ public class PlCanError {
 
 		bussoff = ((raw >> 2) & 0x1) > 0;
 		errorPassive = ((raw >> 1) & 0x1) > 0;
-		errorWarning = ((raw >> 0) & 0x1) > 0;
+		errorWarning = (raw & 0x1) > 0;
 
 		dis.skipBytes(1);
 	}

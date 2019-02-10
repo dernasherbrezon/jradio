@@ -73,7 +73,7 @@ public class Firdes {
 		double scale = 0;
 		for (int i = 0; i < ntaps; i++) {
 			double x1, x2, x3, num, den;
-			double xindx = i - ntaps / 2;
+			double xindx = (double) i - ntaps / 2; // ntaps are expected to round here
 			x1 = Math.PI * xindx / spb;
 			x2 = 4 * alpha * xindx / spb;
 			x3 = x2 * x2 - 1;

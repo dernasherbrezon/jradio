@@ -47,7 +47,7 @@ public class AcsError {
 		MW_Failure = ((raw >> 3) & 0x1) > 0;
 		PWR_Failure = ((raw >> 2) & 0x1) > 0;
 		COMM_Error = ((raw >> 1) & 0x1) > 0;
-		ITEMS_MNG_Error = ((raw >> 0) & 0x1) > 0;
+		ITEMS_MNG_Error = (raw & 0x1) > 0;
 
 		raw = dis.readUnsignedByte();
 		MWM_State = ((raw >> 7) & 0x1) > 0;
@@ -57,7 +57,7 @@ public class AcsError {
 		MTM_y_State = ((raw >> 3) & 0x1) > 0;
 		MTR_y_State = ((raw >> 2) & 0x1) > 0;
 		MTM_z_State = ((raw >> 1) & 0x1) > 0;
-		MTR_z_State = ((raw >> 0) & 0x1) > 0;
+		MTR_z_State = (raw & 0x1) > 0;
 
 		raw = dis.readUnsignedByte();
 		MTM_state = ((raw >> 7) & 0x1) > 0;
@@ -67,7 +67,7 @@ public class AcsError {
 		SS2_State = ((raw >> 3) & 0x1) > 0;
 		CSS_State = ((raw >> 2) & 0x1) > 0;
 		ES_State = ((raw >> 1) & 0x1) > 0;
-		MMM_State = ((raw >> 0) & 0x1) > 0;
+		MMM_State = (raw & 0x1) > 0;
 
 		raw = dis.readUnsignedByte();
 		MMR_State = ((raw >> 7) & 0x1) > 0;
@@ -76,7 +76,7 @@ public class AcsError {
 		AOCS_SW_ERROR1 = ((raw >> 3) & 0x1) > 0;
 		AOCS_SW_ERROR2 = ((raw >> 2) & 0x1) > 0;
 		AOCS_SW_ERROR3 = ((raw >> 1) & 0x1) > 0;
-		AOCS_SW_ERROR4 = ((raw >> 0) & 0x1) > 0;
+		AOCS_SW_ERROR4 = (raw & 0x1) > 0;
 	}
 
 	public boolean isSAFE_MODE() {

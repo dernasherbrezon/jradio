@@ -198,7 +198,7 @@ public class Type1 {
 		ChannelCFailSSKO = ((raw >> 5) & 0x1) > 0;
 		ChannelDFailSSKO = ((raw >> 4) & 0x1) > 0;
 		ssmStatus = SsmStatus.valueOfCode((raw >> 1) & 0b111);
-		uCPCBOutOfTemp = ((raw >> 0) & 0x1) > 0;
+		uCPCBOutOfTemp = (raw & 0x1) > 0;
 
 		raw = dis.readUnsignedByte();
 		ADC1PCBOutOfTemp = ((raw >> 7) & 0x1) > 0;
@@ -208,7 +208,7 @@ public class Type1 {
 		Bus478VCurrentOutOfThreshold = ((raw >> 3) & 0x1) > 0;
 		Bus33VCurrentOutOfThreshold = ((raw >> 2) & 0x1) > 0;
 		Bus478VVoltageOutOfThreshold = ((raw >> 1) & 0x1) > 0;
-		Bus33VVoltageOutOfThreshold = ((raw >> 0) & 0x1) > 0;
+		Bus33VVoltageOutOfThreshold = (raw & 0x1) > 0;
 
 		// SS_ERROR_2
 		adc1ChannelXUsable = new boolean[12];
@@ -222,7 +222,7 @@ public class Type1 {
 		adc1ChannelXUsable[4] = ((raw >> 3) & 0x1) > 0;
 		adc1ChannelXUsable[5] = ((raw >> 2) & 0x1) > 0;
 		adc1ChannelXUsable[6] = ((raw >> 1) & 0x1) > 0;
-		adc1ChannelXUsable[7] = ((raw >> 0) & 0x1) > 0;
+		adc1ChannelXUsable[7] = (raw & 0x1) > 0;
 
 		raw = dis.readUnsignedByte();
 		adc1ChannelXUsable[8] = ((raw >> 7) & 0x1) > 0;
@@ -232,7 +232,7 @@ public class Type1 {
 		adc2ChannelXUsable[0] = ((raw >> 3) & 0x1) > 0;
 		adc2ChannelXUsable[1] = ((raw >> 2) & 0x1) > 0;
 		adc2ChannelXUsable[2] = ((raw >> 1) & 0x1) > 0;
-		adc2ChannelXUsable[3] = ((raw >> 0) & 0x1) > 0;
+		adc2ChannelXUsable[3] = (raw & 0x1) > 0;
 
 		raw = dis.readUnsignedByte();
 		adc2ChannelXUsable[4] = ((raw >> 7) & 0x1) > 0;
@@ -242,7 +242,7 @@ public class Type1 {
 		adc2ChannelXUsable[8] = ((raw >> 3) & 0x1) > 0;
 		adc2ChannelXUsable[9] = ((raw >> 2) & 0x1) > 0;
 		adc2ChannelXUsable[10] = ((raw >> 1) & 0x1) > 0;
-		adc2ChannelXUsable[11] = ((raw >> 0) & 0x1) > 0;
+		adc2ChannelXUsable[11] = (raw & 0x1) > 0;
 
 		// ESE_ERROR
 		raw = dis.readUnsignedByte();
@@ -251,7 +251,7 @@ public class Type1 {
 		TAUEdgeDetectionError = ((raw >> 5) & 0x1) > 0;
 		EseStandBy = ((raw >> 4) & 0x1) > 0;
 		eseStatus = EseStatus.valueOfCode((raw >> 1) & 0b111);
-		ESEInitError = ((raw >> 0) & 0x1) > 0;
+		ESEInitError = (raw & 0x1) > 0;
 
 		raw = dis.readUnsignedByte();
 		TAUOutOfTemperatureRange = ((raw >> 7) & 0x1) > 0;
@@ -261,7 +261,7 @@ public class Type1 {
 		Bus50VCurrentOutOfThreshold = ((raw >> 3) & 0x1) > 0;
 		BusEse33VCurrentOutOfThreshold = ((raw >> 2) & 0x1) > 0;
 		Bus50VVoltageOutOfThreshold = ((raw >> 1) & 0x1) > 0;
-		BusEse33VVoltageOutOfThreshold = ((raw >> 0) & 0x1) > 0;
+		BusEse33VVoltageOutOfThreshold = (raw & 0x1) > 0;
 
 		// MWR_ERROR
 		raw = dis.readUnsignedByte();
@@ -272,7 +272,7 @@ public class Type1 {
 		WheelIFOvercurrent = ((raw >> 3) & 0x1) > 0;
 		WheelIF15VOverheat = ((raw >> 2) & 0x1) > 0;
 		WheelOverCurrent = ((raw >> 1) & 0x1) > 0;
-		WDTRebootError = ((raw >> 0) & 0x1) > 0;
+		WDTRebootError = (raw & 0x1) > 0;
 
 		raw = dis.readUnsignedByte();
 		RTEMSError = ((raw >> 7) & 0x1) > 0;
@@ -283,7 +283,7 @@ public class Type1 {
 
 		// MWM_STATUS
 		raw = dis.readUnsignedByte();
-		mwmCondition = ((raw >> 0) & 0x1) > 0;
+		mwmCondition = (raw & 0x1) > 0;
 
 		raw = dis.readUnsignedByte();
 		mwmError = MwmError.valueOfCode(raw >> 4);
@@ -302,7 +302,7 @@ public class Type1 {
 
 		EERestored = ((raw >> 2) & 0x1) > 0;
 		EEWriteError = ((raw >> 1) & 0x1) > 0;
-		EEReadError = ((raw >> 0) & 0x1) > 0;
+		EEReadError = (raw & 0x1) > 0;
 
 		MMMFailCode = new MmError(dis);
 		MMRFailCode = new MmError(dis);

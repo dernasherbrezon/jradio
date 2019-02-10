@@ -8,7 +8,7 @@ import org.slf4j.LoggerFactory;
 
 import ru.r2cloud.jradio.lrpt.Packet;
 
-public class MeteorImagePacket implements Iterable<int[]>, Iterator<int[]> {
+public class MeteorImagePacket implements Iterator<int[]> {
 
 	private static final Logger LOG = LoggerFactory.getLogger(MeteorImagePacket.class);
 
@@ -187,11 +187,6 @@ public class MeteorImagePacket implements Iterable<int[]>, Iterator<int[]> {
 	@Override
 	public int[] next() {
 		return currentPixels;
-	}
-
-	@Override
-	public Iterator<int[]> iterator() {
-		return this;
 	}
 
 	@Override

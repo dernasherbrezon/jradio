@@ -18,7 +18,7 @@ public class CorrelateAccessCodeTag implements ByteInput {
 	private final ByteInput input;
 
 	private long dataRegister = 0;
-	private int threshold;
+	private long threshold;
 	private boolean soft;
 
 	private final AccessCode[] accessCodes;

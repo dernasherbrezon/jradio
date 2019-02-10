@@ -40,13 +40,13 @@ public class StdTmAOCS {
 		BOTSLT = (byte) ((raw >> 3) & 0x7);
 		SYNPPS = ((raw >> 2) & 0x1) > 0;
 		DISUTC = ((raw >> 1) & 0x1) > 0;
-		DULBSY = ((raw >> 0) & 0x1) > 0;
+		DULBSY = (raw & 0x1) > 0;
 
 		raw = dis.readUnsignedByte();
 		ACS_MODE = AcsMode.valueOfCode(raw >> 3);
 		MFS_RECEIVED = ((raw >> 2) & 0x1) > 0;
 		SSS_RECEIVED = ((raw >> 1) & 0x1) > 0;
-		GYR_RECEIVED = ((raw >> 0) & 0x1) > 0;
+		GYR_RECEIVED = (raw & 0x1) > 0;
 
 		raw = dis.readUnsignedByte();
 		FOR_RECEIVED = ((raw >> 7) & 0x1) > 0;
@@ -56,7 +56,7 @@ public class StdTmAOCS {
 		RW0_RECEIVED = ((raw >> 3) & 0x1) > 0;
 		RW1_RECEIVED = ((raw >> 2) & 0x1) > 0;
 		RW2_RECEIVED = ((raw >> 1) & 0x1) > 0;
-		RW3_RECEIVED = ((raw >> 0) & 0x1) > 0;
+		RW3_RECEIVED = (raw & 0x1) > 0;
 
 		STD_Q_S = dis.readShort() * 0.0001f;
 		STD_Q_X = dis.readShort() * 0.0001f;

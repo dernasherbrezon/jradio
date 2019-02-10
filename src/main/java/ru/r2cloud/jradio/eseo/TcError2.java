@@ -36,7 +36,7 @@ public class TcError2 {
 		TMMErrorCounterReached10 = ((raw >> 3) & 0x1) > 0;
 		TMRErrorCounterReached10 = ((raw >> 2) & 0x1) > 0;
 		SSMErrorCounterReached10 = ((raw >> 1) & 0x1) > 0;
-		SSRErrorCounterReached10 = ((raw >> 0) & 0x1) > 0;
+		SSRErrorCounterReached10 = (raw & 0x1) > 0;
 
 		raw = dis.readUnsignedByte();
 		ESEErrorCounterReached10 = ((raw >> 7) & 0x1) > 0;
@@ -46,7 +46,7 @@ public class TcError2 {
 		MMMErrorCounterReached10 = ((raw >> 3) & 0x1) > 0;
 		MMRErrorCounterReached10 = ((raw >> 2) & 0x1) > 0;
 		MTMErrorCounterReached10 = ((raw >> 1) & 0x1) > 0;
-		MTRErrorCounterReached10 = ((raw >> 0) & 0x1) > 0;
+		MTRErrorCounterReached10 = (raw & 0x1) > 0;
 
 		raw = dis.readUnsignedByte();
 		TRIErrorCounterReached10 = ((raw >> 7) & 0x1) > 0;
@@ -56,7 +56,7 @@ public class TcError2 {
 		STXErrorCounterReached10 = ((raw >> 3) & 0x1) > 0;
 		GPSErrorCounterReached10 = ((raw >> 2) & 0x1) > 0;
 		ADEErrorCounterReached10 = ((raw >> 1) & 0x1) > 0;
-		SCAMErrorCounterReached10 = ((raw >> 0) & 0x1) > 0;
+		SCAMErrorCounterReached10 = (raw & 0x1) > 0;
 		dis.skipBytes(1);
 	}
 

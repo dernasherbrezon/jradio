@@ -38,7 +38,7 @@ public class PyCanError {
 		failedToEnterInitialization = ((raw >> 3) & 0x1) > 0;
 		failedToExitInitialization = ((raw >> 2) & 0x1) > 0;
 		controllerConfigurationError = ((raw >> 1) & 0x1) > 0;
-		loopbackError = ((raw >> 0) & 0x1) > 0;
+		loopbackError = (raw & 0x1) > 0;
 
 		raw = dis.readUnsignedByte();
 		failedToIdentifyCallingController = ((raw >> 7) & 0x1) > 0;
@@ -48,7 +48,7 @@ public class PyCanError {
 		failedToSetControllerRegisters = ((raw >> 3) & 0x1) > 0;
 		TxFullError = ((raw >> 2) & 0x1) > 0;
 		NoMailboxAvailableError = ((raw >> 1) & 0x1) > 0;
-		TxFailedError = ((raw >> 0) & 0x1) > 0;
+		TxFailedError = (raw & 0x1) > 0;
 
 		raw = dis.readUnsignedByte();
 		RxFullError = ((raw >> 7) & 0x1) > 0;

@@ -23,7 +23,7 @@ public class MmError {
 		GenError = ((raw >> 4) & 0x1) > 0;
 		RTEMSError = ((raw >> 3) & 0x1) > 0;
 		StandBy = ((raw >> 2) & 0x1) > 0;
-		MMM5VOvercurrent = ((raw >> 0) & 0x1) > 0;
+		MMM5VOvercurrent = (raw & 0x1) > 0;
 
 		raw = dis.readUnsignedByte();
 		MMMDCDCOutOfTemperatureRange = ((raw >> 6) & 0x1) > 0;

@@ -27,7 +27,7 @@ public class ObdTempError {
 		TEMP8_HPA1 = ((raw >> 3) & 0x1) > 0;
 		TEMP10_TNK = ((raw >> 2) & 0x1) > 0;
 		TEMP11_BAT2 = ((raw >> 1) & 0x1) > 0;
-		TEMP12_MWM = ((raw >> 0) & 0x1) > 0;
+		TEMP12_MWM = (raw & 0x1) > 0;
 
 		raw = dis.readUnsignedByte();
 		TEMP13_MWR = ((raw >> 7) & 0x1) > 0;

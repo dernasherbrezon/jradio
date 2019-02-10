@@ -19,7 +19,7 @@ public class Status3 {
 		TemperatureWarningFlag = ((b >> 3) & 1) > 0;
 		CC1ConnectionOkayFlag = ((b >> 2) & 1) > 0;
 		CC2ConnectionOkayFlag = ((b >> 1) & 1) > 0;
-		RBF = ((b >> 0) & 1) > 0;
+		RBF = (b & 1) > 0;
 	}
 
 	public boolean isIs3V3BurstModeOn() {

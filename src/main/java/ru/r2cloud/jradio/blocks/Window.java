@@ -9,7 +9,7 @@ public enum Window {
 		switch (this) {
 		case WIN_HAMMING:
 			taps = new float[ntaps];
-			float M = ntaps - 1;
+			int M = ntaps - 1;
 
 			for (int n = 0; n < ntaps; n++) {
 				taps[n] = (float) (0.54 - 0.46 * Math.cos((2 * Math.PI * n) / M));

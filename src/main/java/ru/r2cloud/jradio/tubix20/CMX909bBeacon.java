@@ -113,7 +113,7 @@ public abstract class CMX909bBeacon implements Externalizable {
 		byte[] fecDeinterleaved = Deinterleave.deinterleaveBits(fecData, 4, data.length);
 		for (int i = 0; i < deinterleaved.length; i++) {
 			try {
-				deinterleaved[i] = (byte) Hamming.decode12_8((deinterleaved[i] << 4) | fecDeinterleaved[i]);
+				deinterleaved[i] = (byte) Hamming.decode12_8((deinterleaved[i] << 4) | (fecDeinterleaved[i] & 0xFF));
 			} catch (UncorrectableException e) {
 				if (LOG.isDebugEnabled()) {
 					LOG.debug("unable to correct data block");

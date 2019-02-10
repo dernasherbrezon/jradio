@@ -49,7 +49,7 @@ public class TmAocsMts {
 		MT_1_LOCKED = ((raw >> 3) & 0x1) > 0;
 		MT_2_LOCKED = ((raw >> 2) & 0x1) > 0;
 		MT_CURR_0_BOUND = ((raw >> 1) & 0x1) > 0;
-		MT_CURR_1_BOUND = ((raw >> 0) & 0x1) > 0;
+		MT_CURR_1_BOUND = (raw & 0x1) > 0;
 
 		raw = dis.readUnsignedByte();
 		MT_CURR_2_BOUND = ((raw >> 7) & 0x1) > 0;

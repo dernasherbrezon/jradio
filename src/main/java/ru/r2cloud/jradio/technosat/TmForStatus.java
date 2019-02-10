@@ -38,7 +38,7 @@ public class TmForStatus {
 		FOR_1_LOCKED = ((raw >> 3) & 0x1) > 0;
 		FOR_2_LOCKED = ((raw >> 2) & 0x1) > 0;
 		FOR_0_BOUND = ((raw >> 1) & 0x1) > 0;
-		FOR_1_BOUND = ((raw >> 0) & 0x1) > 0;
+		FOR_1_BOUND = (raw & 0x1) > 0;
 
 		raw = dis.readUnsignedByte();
 		FOR_2_BOUND = ((raw >> 7) & 0x1) > 0;

@@ -253,7 +253,7 @@ public class BeaconFrame {
 		freeSpace = dis.readUnsignedLong(32);
 
 		int raw = dis.readUnsignedByte();
-		Antenna1DeploymentSwitchChA = ((raw >> 0) & 0x1) > 0;
+		Antenna1DeploymentSwitchChA = (raw & 0x1) > 0;
 		Antenna2DeploymentSwitchChA = ((raw >> 1) & 0x1) > 0;
 		Antenna3DeploymentSwitchChA = ((raw >> 2) & 0x1) > 0;
 		Antenna4DeploymentSwitchChA = ((raw >> 3) & 0x1) > 0;
@@ -263,7 +263,7 @@ public class BeaconFrame {
 		Antenna4DeploymentSwitchChB = ((raw >> 7) & 0x1) > 0;
 
 		raw = dis.readUnsignedByte();
-		Antenna1TimeLimitReachedChA = ((raw >> 0) & 0x1) > 0;
+		Antenna1TimeLimitReachedChA = (raw & 0x1) > 0;
 		Antenna2TimeLimitReachedChA = ((raw >> 1) & 0x1) > 0;
 		Antenna3TimeLimitReachedChA = ((raw >> 2) & 0x1) > 0;
 		Antenna4TimeLimitReachedChA = ((raw >> 3) & 0x1) > 0;
@@ -273,7 +273,7 @@ public class BeaconFrame {
 		Antenna4TimeLimitReachedChB = ((raw >> 7) & 0x1) > 0;
 
 		raw = dis.readUnsignedByte();
-		Antenna1BurnActiveChA = ((raw >> 0) & 0x1) > 0;
+		Antenna1BurnActiveChA = (raw & 0x1) > 0;
 		Antenna2BurnActiveChA = ((raw >> 1) & 0x1) > 0;
 		Antenna3BurnActiveChA = ((raw >> 2) & 0x1) > 0;
 		Antenna4BurnActiveChA = ((raw >> 3) & 0x1) > 0;

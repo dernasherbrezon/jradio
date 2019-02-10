@@ -36,7 +36,7 @@ public class PlatformFdir {
 		OBDHMain = ((raw >> 3) & 0x1) > 0;
 		OBDHMainBootMode = ((raw >> 2) & 0x1) > 0;
 		OBDHRedundant = ((raw >> 1) & 0x1) > 0;
-		OBDHRedundantBootMode = ((raw >> 0) & 0x1) > 0;
+		OBDHRedundantBootMode = (raw & 0x1) > 0;
 
 		raw = dis.readUnsignedByte();
 		OBDMPingFailed = ((raw >> 7) & 0x1) > 0;
@@ -46,7 +46,7 @@ public class PlatformFdir {
 		TMMPingFailed = ((raw >> 3) & 0x1) > 0;
 		TMRPingFailed = ((raw >> 2) & 0x1) > 0;
 		S3 = ((raw >> 1) & 0x1) > 0;
-		S4 = ((raw >> 0) & 0x1) > 0;
+		S4 = (raw & 0x1) > 0;
 
 		raw = dis.readUnsignedByte();
 		IsolationSwitch = ((raw >> 7) & 0x1) > 0;

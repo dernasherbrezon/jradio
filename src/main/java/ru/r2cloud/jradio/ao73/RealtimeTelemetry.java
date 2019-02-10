@@ -32,9 +32,9 @@ public class RealtimeTelemetry {
 	private float solarPanelTempXM;
 	private float solarPanelTempYP;
 	private float solarPanelTempYM;
-	private float busVoltage33;
+	private int busVoltage33;
 	private float busCurrent33;
-	private float busVoltage50;
+	private int busVoltage50;
 
 	// RF
 	private int receiverDoppler;
@@ -347,11 +347,11 @@ public class RealtimeTelemetry {
 		this.solarPanelTempYM = solarPanelTempYM;
 	}
 
-	public float getBusVoltage33() {
+	public int getBusVoltage33() {
 		return busVoltage33;
 	}
 
-	public void setBusVoltage33(float busVoltage33) {
+	public void setBusVoltage33(int busVoltage33) {
 		this.busVoltage33 = busVoltage33;
 	}
 
@@ -363,11 +363,11 @@ public class RealtimeTelemetry {
 		this.busCurrent33 = busCurrent33;
 	}
 
-	public float getBusVoltage50() {
+	public int getBusVoltage50() {
 		return busVoltage50;
 	}
 
-	public void setBusVoltage50(float busVoltage50) {
+	public void setBusVoltage50(int busVoltage50) {
 		this.busVoltage50 = busVoltage50;
 	}
 

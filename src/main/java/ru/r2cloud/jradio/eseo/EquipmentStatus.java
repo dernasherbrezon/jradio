@@ -37,7 +37,7 @@ public class EquipmentStatus {
 		TMTCMain = ((raw >> 3) & 0x1) > 0;
 		TMTCRedundant = ((raw >> 2) & 0x1) > 0;
 		SunSensorMain = ((raw >> 1) & 0x1) > 0;
-		SunSensorRedundant = ((raw >> 0) & 0x1) > 0;
+		SunSensorRedundant = (raw & 0x1) > 0;
 
 		raw = dis.readUnsignedByte();
 		EarthSensor = ((raw >> 7) & 0x1) > 0;
@@ -47,7 +47,7 @@ public class EquipmentStatus {
 		MagnetometerMain = ((raw >> 3) & 0x1) > 0;
 		MagnetometerRedundant = ((raw >> 2) & 0x1) > 0;
 		MagneticTorquerMain = ((raw >> 1) & 0x1) > 0;
-		MagneticTorquerRedundant = ((raw >> 0) & 0x1) > 0;
+		MagneticTorquerRedundant = (raw & 0x1) > 0;
 
 		raw = dis.readUnsignedByte();
 		TRITEL = ((raw >> 7) & 0x1) > 0;
@@ -57,7 +57,7 @@ public class EquipmentStatus {
 		SBand = ((raw >> 3) & 0x1) > 0;
 		GPSReceiver = ((raw >> 2) & 0x1) > 0;
 		ADE = ((raw >> 1) & 0x1) > 0;
-		SCAM = ((raw >> 0) & 0x1) > 0;
+		SCAM = (raw & 0x1) > 0;
 
 		raw = dis.readUnsignedByte();
 		DeOrbitMechanism = ((raw >> 7) & 0x1) > 0;

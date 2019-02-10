@@ -19,7 +19,7 @@ public class Status1 {
 		is5V1On = ((b >> 3) & 1) > 0;
 		is5V2On = ((b >> 2) & 1) > 0;
 		is5V3On = ((b >> 1) & 1) > 0;
-		is5V4On = ((b >> 0) & 1) > 0;
+		is5V4On = (b & 1) > 0;
 	}
 
 	public boolean isIs3V31On() {

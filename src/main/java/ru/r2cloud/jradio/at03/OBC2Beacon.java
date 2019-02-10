@@ -155,7 +155,7 @@ public class OBC2Beacon {
 		eps_cc_used = ((b >> 3) & 1) > 0;
 		obc_powersave = ((b >> 2) & 1) > 0;
 		obc_3v3_spa_enabled = ((b >> 1) & 1) > 0;
-		task_sensors_running = ((b >> 0) & 1) > 0;
+		task_sensors_running = (b & 1) > 0;
 
 		b = dis.readUnsignedByte();
 		task_maintenance_running = ((b >> 7) & 1) > 0;
@@ -165,7 +165,7 @@ public class OBC2Beacon {
 		i2c1_initialized = ((b >> 3) & 1) > 0;
 		i2c2_initialized = ((b >> 2) & 1) > 0;
 		ssp0_initialized = ((b >> 1) & 1) > 0;
-		ssp1_initialized = ((b >> 0) & 1) > 0;
+		ssp1_initialized = (b & 1) > 0;
 
 		b = dis.readUnsignedByte();
 		supply_switches_initialized = ((b >> 7) & 1) > 0;
@@ -175,7 +175,7 @@ public class OBC2Beacon {
 		uart_gps_initialized = ((b >> 3) & 1) > 0;
 		uart_ttc2_initialized = ((b >> 2) & 1) > 0;
 		uart_mnlp_initialized = ((b >> 1) & 1) > 0;
-		uart_ttc1_initialized = ((b >> 0) & 1) > 0;
+		uart_ttc1_initialized = (b & 1) > 0;
 
 		b = dis.readUnsignedByte();
 		timer0_initialized = ((b >> 7) & 1) > 0;
@@ -185,7 +185,7 @@ public class OBC2Beacon {
 		eps_cc2_operational = ((b >> 3) & 1) > 0;
 		eeprom1_initialized = ((b >> 2) & 1) > 0;
 		eeprom2_initialized = ((b >> 1) & 1) > 0;
-		eeprom3_initialized = ((b >> 0) & 1) > 0;
+		eeprom3_initialized = (b & 1) > 0;
 
 		b = dis.readUnsignedByte();
 		mag_bp_initialized = ((b >> 7) & 1) > 0;
@@ -195,7 +195,7 @@ public class OBC2Beacon {
 		msp_initialized = ((b >> 3) & 1) > 0;
 		onboard_mag_initialized = ((b >> 2) & 1) > 0;
 		onboard_tmp100_initialized = ((b >> 1) & 1) > 0;
-		mpu_initialized = ((b >> 0) & 1) > 0;
+		mpu_initialized = (b & 1) > 0;
 
 		b = dis.readUnsignedByte();
 		flash1_initialized = ((b >> 7) & 1) > 0;
@@ -205,7 +205,7 @@ public class OBC2Beacon {
 		spc_initialized = ((b >> 3) & 1) > 0;
 		spd_initialized = ((b >> 2) & 1) > 0;
 		sa_initialized = ((b >> 1) & 1) > 0;
-		bp_initialized = ((b >> 0) & 1) > 0;
+		bp_initialized = (b & 1) > 0;
 
 		b = dis.readUnsignedByte();
 		gps_initialized = ((b >> 7) & 1) > 0;
@@ -215,7 +215,7 @@ public class OBC2Beacon {
 		spa_vcc_on = ((b >> 3) & 1) > 0;
 		spb_vcc_on = ((b >> 2) & 1) > 0;
 		spc_vcc_on = ((b >> 1) & 1) > 0;
-		spd_vcc_on = ((b >> 0) & 1) > 0;
+		spd_vcc_on = (b & 1) > 0;
 
 		b = dis.readUnsignedByte();
 		bp1_vcc_on = ((b >> 7) & 1) > 0;
@@ -225,7 +225,7 @@ public class OBC2Beacon {
 		i2c_sw_b_on = ((b >> 3) & 1) > 0;
 		i2c_sw_c_on = ((b >> 2) & 1) > 0;
 		i2c_sw_d_on = ((b >> 1) & 1) > 0;
-		onboard_mag_powersafe = ((b >> 0) & 1) > 0;
+		onboard_mag_powersafe = (b & 1) > 0;
 
 		b = dis.readUnsignedByte();
 		gyro_powesafe = ((b >> 7) & 1) > 0;
@@ -235,7 +235,7 @@ public class OBC2Beacon {
 		mag_bp_boom_powersave = ((b >> 3) & 1) > 0;
 		mnlp_5v_enabled = ((b >> 2) & 1) > 0;
 		rtc_oszillator_error = ((b >> 1) & 1) > 0;
-		eeprom_page_cycle_overflow = ((b >> 0) & 1) > 0;
+		eeprom_page_cycle_overflow = (b & 1) > 0;
 
 		b = dis.readUnsignedByte();
 		ssp0_frequent_errors = ((b >> 7) & 1) > 0;
@@ -245,7 +245,7 @@ public class OBC2Beacon {
 		i2c2_frequent_errors = ((b >> 3) & 1) > 0;
 		timer0_running = ((b >> 2) & 1) > 0;
 		timer1_running = ((b >> 1) & 1) > 0;
-		default_config_used = ((b >> 0) & 1) > 0;
+		default_config_used = (b & 1) > 0;
 
 		error_code = dis.readUnsignedByte();
 		error_code_before_reset = dis.readUnsignedByte();

@@ -43,7 +43,7 @@ public class PmmError1 {
 		SolarPanel2Sensor2TemperatureOutOfRange = ((raw >> 4) & 0x1) > 0;
 		SolarPanel3Sensor1TemperatureOutOfRange = ((raw >> 3) & 0x1) > 0;
 		SolarPanel3Sensor2TemperatureOutOfRange = ((raw >> 2) & 0x1) > 0;
-		BatteryPack1CurrentOutOfRange 			= ((raw >> 0) & 0x1) > 0;
+		BatteryPack1CurrentOutOfRange 			= (raw & 0x1) > 0;
 
 		raw = dis.readUnsignedByte();
 		BatteryPack2CurrentOutOfRange = ((raw >> 7) & 0x1) > 0;
@@ -53,7 +53,7 @@ public class PmmError1 {
 		BatteryPack6CurrentOutOfRange = ((raw >> 3) & 0x1) > 0;
 		Batterypack1Sensor1TemperatureOutOfRange = ((raw >> 2) & 0x1) > 0;
 		Batterypack1Sensor2TemperatureOutOfRange = ((raw >> 1) & 0x1) > 0;
-		Batterypack2Sensor1TemperatureOutOfRange = ((raw >> 0) & 0x1) > 0;
+		Batterypack2Sensor1TemperatureOutOfRange = (raw & 0x1) > 0;
 
 		raw = dis.readUnsignedByte();
 		Batterypack2Sensor2TemperatureOutOfRange = ((raw >> 7) & 0x1) > 0;
@@ -63,7 +63,7 @@ public class PmmError1 {
 		Batterypack4Sensor2TemperatureOutOfRange = ((raw >> 3) & 0x1) > 0;
 		Batterypack5Sensor1TemperatureOutOfRange = ((raw >> 2) & 0x1) > 0;
 		Batterypack5Sensor2TemperatureOutOfRange = ((raw >> 1) & 0x1) > 0;
-		Batterypack6Sensor1TemperatureOutOfRange = ((raw >> 0) & 0x1) > 0;
+		Batterypack6Sensor1TemperatureOutOfRange = (raw & 0x1) > 0;
 
 		raw = dis.readUnsignedByte();
 		Batterypack6Sensor2TemperatureOutOfRange = ((raw >> 7) & 0x1) > 0;

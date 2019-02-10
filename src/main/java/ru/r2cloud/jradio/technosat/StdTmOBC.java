@@ -23,7 +23,7 @@ public class StdTmOBC {
 		BOTSLT = (byte) ((raw >> 3) & 0x7);
 		SYNPPS = ((raw >> 2) & 0x1) > 0;
 		DISUTC = ((raw >> 1) & 0x1) > 0;
-		DULBSY = ((raw >> 0) & 0x1) > 0;
+		DULBSY = (raw & 0x1) > 0;
 		raw = dis.readUnsignedByte();
 		TMMTFHIST = HistoryBufferType.valueOfCode(raw >> 6);
 		SAT_MODE = SatelliteMode.valueOfCode((raw >> 4) & 0x3);

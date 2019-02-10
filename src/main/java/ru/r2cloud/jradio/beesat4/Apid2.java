@@ -125,11 +125,11 @@ public class Apid2 {
 	private float CCAN1;                // CAN Bus #1
 	private float COBCMCU;              // OBC µC
 	private float COBCEXT;              // OBC Peripheral
-	private float PCREST;               // PCU Time To Reset
-	private float PCRESI;               // PCU Reset Interval
+	private int PCREST;               // PCU Time To Reset
+	private int PCRESI;               // PCU Reset Interval
 	private float TSMAX;                // Temperature MAX21000
 	private float TSLSM;                // Temperature LSM303D
-	private float TSL3G;                // Temperature L3G4200D
+	private int TSL3G;                // Temperature L3G4200D
 	private boolean PS33VC;             // 3V3 main switch
 	private float CGY2MF2;              // Gyro #2 MFS #2
 	private float TWHLX;                // Wheel X
@@ -1217,19 +1217,19 @@ public class Apid2 {
 		COBCEXT = cOBCEXT;
 	}
 
-	public float getPCREST() {
+	public int getPCREST() {
 		return PCREST;
 	}
 
-	public void setPCREST(float pCREST) {
+	public void setPCREST(int pCREST) {
 		PCREST = pCREST;
 	}
 
-	public float getPCRESI() {
+	public int getPCRESI() {
 		return PCRESI;
 	}
 
-	public void setPCRESI(float pCRESI) {
+	public void setPCRESI(int pCRESI) {
 		PCRESI = pCRESI;
 	}
 
@@ -1249,11 +1249,11 @@ public class Apid2 {
 		TSLSM = tSLSM;
 	}
 
-	public float getTSL3G() {
+	public int getTSL3G() {
 		return TSL3G;
 	}
 
-	public void setTSL3G(float tSL3G) {
+	public void setTSL3G(int tSL3G) {
 		TSL3G = tSL3G;
 	}
 

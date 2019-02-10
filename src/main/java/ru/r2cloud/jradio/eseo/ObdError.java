@@ -48,7 +48,7 @@ public class ObdError {
 		USART2 = ((raw >> 3) & 0x1) > 0;
 		USART3 = ((raw >> 2) & 0x1) > 0;
 		USART4 = ((raw >> 1) & 0x1) > 0;
-		USART5 = ((raw >> 0) & 0x1) > 0;
+		USART5 = (raw & 0x1) > 0;
 
 		raw = dis.readUnsignedByte();
 		CPUTIMER = ((raw >> 7) & 0x1) > 0;
@@ -58,7 +58,7 @@ public class ObdError {
 		SPI1 = ((raw >> 3) & 0x1) > 0;
 		SPI2 = ((raw >> 2) & 0x1) > 0;
 		SPI3 = ((raw >> 1) & 0x1) > 0;
-		SPIDEVICE1 = ((raw >> 0) & 0x1) > 0;
+		SPIDEVICE1 = (raw & 0x1) > 0;
 
 		raw = dis.readUnsignedByte();
 		SPIDEVICE2 = ((raw >> 7) & 0x1) > 0;
@@ -68,7 +68,7 @@ public class ObdError {
 		SPIDEVICE6 = ((raw >> 3) & 0x1) > 0;
 		CAN1 = ((raw >> 2) & 0x1) > 0;
 		CAN2 = ((raw >> 1) & 0x1) > 0;
-		ADC = ((raw >> 0) & 0x1) > 0;
+		ADC = (raw & 0x1) > 0;
 
 		raw = dis.readUnsignedByte();
 		TIMER1 = ((raw >> 7) & 0x1) > 0;
@@ -78,7 +78,7 @@ public class ObdError {
 		TIMER5 = ((raw >> 3) & 0x1) > 0;
 		TIMER8 = ((raw >> 2) & 0x1) > 0;
 		WDRESETLIMIT = ((raw >> 1) & 0x1) > 0;
-		ASWIMAGEFailed = ((raw >> 0) & 0x1) > 0;
+		ASWIMAGEFailed = (raw & 0x1) > 0;
 	}
 
 	public boolean isCPUTestFailed() {

@@ -42,7 +42,7 @@ public class Rs422Error {
 		USARTTMTCMainErrorInterrupt = ((raw >> 3) & 0x1) > 0;
 		USARTTMTCMainErrorBufferAll = ((raw >> 2) & 0x1) > 0;
 		USARTTMTCMainErrorTimerConfiguration = ((raw >> 1) & 0x1) > 0;
-		USARTTMTCMainErrorTXFull = ((raw >> 0) & 0x1) > 0;
+		USARTTMTCMainErrorTXFull = (raw & 0x1) > 0;
 
 		raw = dis.readUnsignedByte();
 		USARTTMTCMainErrorRXOverrun = ((raw >> 7) & 0x1) > 0;
@@ -59,7 +59,7 @@ public class Rs422Error {
 		USARTTMTCRedundantErrorInterrupt = ((raw >> 3) & 0x1) > 0;
 		USARTTMTCRedundantErrorBufferAll = ((raw >> 2) & 0x1) > 0;
 		USARTTMTCRedundantErrorTimerConfiguration = ((raw >> 1) & 0x1) > 0;
-		USARTTMTCRedundantErrorTXFull = ((raw >> 0) & 0x1) > 0;
+		USARTTMTCRedundantErrorTXFull = (raw & 0x1) > 0;
 
 		raw = dis.readUnsignedByte();
 		USARTTMTCRedundantErrorRXOverrun = ((raw >> 7) & 0x1) > 0;
