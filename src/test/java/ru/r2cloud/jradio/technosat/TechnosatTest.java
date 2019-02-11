@@ -1,12 +1,11 @@
 package ru.r2cloud.jradio.technosat;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 import org.junit.After;
 import org.junit.Test;
 
+import ru.r2cloud.jradio.AssertJson;
 import ru.r2cloud.jradio.Endianness;
 import ru.r2cloud.jradio.blocks.BinarySlicer;
 import ru.r2cloud.jradio.blocks.ClockRecoveryMM;
@@ -37,13 +36,7 @@ public class TechnosatTest {
 		TaggedStreamToPdu pdu = new TaggedStreamToPdu(new UnpackedToPacked(new FixedLengthTagger(correlateTag, CMX909bBeacon.MAX_SIZE * 8), 1, Endianness.GR_MSB_FIRST, Byte.class));
 		input = new Technosat(pdu);
 		assertTrue(input.hasNext());
-		TechnosatBeacon beacon = input.next();
-		assertNotNull(beacon);
-		assertEquals("DP0TBA", beacon.getCallsign());
-		assertTrue(beacon.getHeader().getControl2().isAck());
-		assertEquals(80, beacon.getFrame().getSpacecraftIdentifier());
-		assertEquals(573993161, beacon.getFrame().getPackets().get(0).getRecordingTimeSeconds());
-		assertEquals(16.625f, beacon.getFrame().getPackets().get(12).getTmEpsCtrlPower().getBATVOLTA_ADC(), 0.0f);
+		AssertJson.assertObjectsEqual("TechnosatBeacon.json", input.next());
 	}
 
 	@After

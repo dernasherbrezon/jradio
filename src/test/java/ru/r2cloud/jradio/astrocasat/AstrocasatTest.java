@@ -1,12 +1,11 @@
 package ru.r2cloud.jradio.astrocasat;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 import org.junit.After;
 import org.junit.Test;
 
+import ru.r2cloud.jradio.AssertJson;
 import ru.r2cloud.jradio.Endianness;
 import ru.r2cloud.jradio.blocks.BinarySlicer;
 import ru.r2cloud.jradio.blocks.ClockRecoveryMM;
@@ -35,12 +34,7 @@ public class AstrocasatTest {
 		TaggedStreamToPdu pdu = new TaggedStreamToPdu(new UnpackedToPacked(new FixedLengthTagger(correlateTag, 255 * 8), 1, Endianness.GR_MSB_FIRST, Byte.class));
 		input = new Astrocast(pdu);
 		assertTrue(input.hasNext());
-		AstrocastBeacon beacon = input.next();
-		assertNotNull(beacon);
-		assertEquals(15455, beacon.getBeginSample());
-		assertEquals("HB9GSF", beacon.getHeader().getSourceAddress().getCallsign());
-		assertEquals(1546109632537L, beacon.getTelemetry().getTime().getTime());
-		assertEquals(-77, beacon.getTelemetry().getRssi());
+		AssertJson.assertObjectsEqual("AstrocastBeacon.json", input.next());
 	}
 
 	@After

@@ -1,0 +1,13 @@
+{
+  "source": "GP",
+  "time": "Aug 27, 2016 10:05:16 PM",
+  "status": true,
+  "latitude": 5133.82,
+  "latitudeDirection": "N",
+  "longitude": 2311.12,
+  "longitudeDirection": "W",
+  "speedOverGround": 13606.0,
+  "trackMadeGood": 54.7,
+  "magneticVariation": 20.3,
+  "magneticVariationDirection": "W"
+}

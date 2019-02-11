@@ -1,12 +1,11 @@
 package ru.r2cloud.jradio.dstar1;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 import org.junit.After;
 import org.junit.Test;
 
+import ru.r2cloud.jradio.AssertJson;
 import ru.r2cloud.jradio.Endianness;
 import ru.r2cloud.jradio.blocks.BinarySlicer;
 import ru.r2cloud.jradio.blocks.ClockRecoveryMM;
@@ -36,13 +35,7 @@ public class Dstar1Test {
 		TaggedStreamToPdu pdu = new TaggedStreamToPdu(new UnpackedToPacked(new FixedLengthTagger(correlateTag, CMX909bBeacon.MAX_SIZE * 8), 1, Endianness.GR_MSB_FIRST, Byte.class));
 		input = new Dstar1(pdu);
 		assertTrue(input.hasNext());
-		Dstar1Beacon beacon = input.next();
-		assertNotNull(beacon);
-		PayloadData payload = beacon.getPayload();
-		assertEquals(0.0036621094f, payload.getSolarZP(), 0.0f);
-		assertEquals(0.0015258789f, payload.getSSTotalCurrent(), 0.0f);
-		assertEquals(3.3203125f, payload.getSupply3v3(), 0.0f);
-		assertEquals(-28586, payload.getCrc16());
+		AssertJson.assertObjectsEqual("Dstar1Beacon.json", input.next());
 	}
 
 	@After

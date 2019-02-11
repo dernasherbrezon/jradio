@@ -1,13 +1,11 @@
 package ru.r2cloud.jradio.at03;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 import org.junit.After;
 import org.junit.Test;
 
+import ru.r2cloud.jradio.AssertJson;
 import ru.r2cloud.jradio.Endianness;
 import ru.r2cloud.jradio.blocks.BinarySlicer;
 import ru.r2cloud.jradio.blocks.ClockRecoveryMM;
@@ -36,21 +34,7 @@ public class At03Test {
 		TaggedStreamToPdu pdu = new TaggedStreamToPdu(new UnpackedToPacked(new FixedLengthTagger(correlateTag, 64 * 8), 1, Endianness.GR_MSB_FIRST, Byte.class));
 		input = new At03(pdu);
 		assertTrue(input.hasNext());
-		At03Beacon beacon = input.next();
-		assertNotNull(beacon);
-		assertEquals(BeaconType.OBC1, beacon.getType());
-		assertEquals("ON03AT", beacon.getCallsign());
-		assertEquals(719, beacon.getBeginSample());
-		OBC1Beacon obc1 = beacon.getObc1Beacon();
-		assertNotNull(obc1);
-		//check random fields
-		assertEquals(0.0625, obc1.getI_PV1_3V3(), 0.0f);
-		assertEquals(4.1875, obc1.getV_3V3_IN(), 0.0f);
-		assertEquals(4.125, obc1.getVcc_CC2(), 0.0f);
-		Status1 status1 = obc1.getStatus1();
-		assertNotNull(status1);
-		assertTrue(status1.isIs3V31On());
-		assertFalse(status1.isIs5V1On());
+		AssertJson.assertObjectsEqual("At03Beacon.json", input.next());
 	}
 
 	@After

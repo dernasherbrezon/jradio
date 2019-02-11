@@ -1,14 +1,11 @@
 package ru.r2cloud.jradio.sat3cat1;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
-
-import java.util.List;
 
 import org.junit.After;
 import org.junit.Test;
 
+import ru.r2cloud.jradio.AssertJson;
 import ru.r2cloud.jradio.Endianness;
 import ru.r2cloud.jradio.blocks.BinarySlicer;
 import ru.r2cloud.jradio.blocks.ClockRecoveryMM;
@@ -37,24 +34,7 @@ public class Sat3Cat1Test {
 		TaggedStreamToPdu pdu = new TaggedStreamToPdu(new UnpackedToPacked(new FixedLengthTagger(correlateTag, 255 * 8), 1, Endianness.GR_MSB_FIRST, Byte.class));
 		input = new Sat3Cat1(pdu);
 		assertTrue(input.hasNext());
-		Sat3Cat1Beacon beacon = input.next();
-		assertNotNull(beacon);
-		assertEquals(1476, beacon.getBeginSample());
-		assertEquals(0, beacon.getSensorId());
-		assertEquals(1543658358, beacon.getSpacecraftTime());
-		assertEquals(88, beacon.getStateOfCharge());
-		assertEquals(BeaconType.BEACON_TYPE_TEMP, beacon.getType());
-		List<MetricValue> temperatureSensors = beacon.getTemperaturSensors();
-		assertEquals(62, temperatureSensors.size());
-		MetricValue value = temperatureSensors.get(0);
-		assertEquals(1543658340, value.getTime());
-		assertEquals(284.0, value.getValue(), 0.0f);
-		value = temperatureSensors.get(1);
-		assertEquals(1543658195, value.getTime());
-		assertEquals(281.0, value.getValue(), 0.0f);
-		value = temperatureSensors.get(2);
-		assertEquals(1543658050, value.getTime());
-		assertEquals(281.0, value.getValue(), 0.0f);
+		AssertJson.assertObjectsEqual("Sat3Cat1Beacon.json", input.next());
 	}
 
 	@After

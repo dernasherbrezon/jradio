@@ -1,12 +1,11 @@
 package ru.r2cloud.jradio.jy1sat;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 import org.junit.After;
 import org.junit.Test;
 
+import ru.r2cloud.jradio.AssertJson;
 import ru.r2cloud.jradio.ao40.Ao40CorrelateAccessCodeTag;
 import ru.r2cloud.jradio.blocks.ComplexToReal;
 import ru.r2cloud.jradio.blocks.DelayOne;
@@ -44,13 +43,7 @@ public class Jy1satTest {
 		Ao40CorrelateAccessCodeTag tag = new Ao40CorrelateAccessCodeTag(f2char, 8);
 		input = new Jy1sat(tag);
 		assertTrue(input.hasNext());
-		Jy1satBeacon beacon = input.next();
-		assertNotNull(beacon);
-		RealtimeTelemetry telemetry = beacon.getRealtimeTelemetry();
-		assertEquals(-7.5131965f, telemetry.getAntennaTemp0(), 0.0f);
-		assertEquals(142.6915f, telemetry.getBusCurrent(), 0.0f);
-		assertEquals(33.920418f, telemetry.getForwardPower(), 0.0f);
-		assertEquals(85, telemetry.getImtqMcuTemp());
+		AssertJson.assertObjectsEqual("Jy1satBeacon.json", input.next());
 	}
 
 	@After

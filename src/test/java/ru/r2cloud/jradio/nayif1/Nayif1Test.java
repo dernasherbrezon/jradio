@@ -1,12 +1,11 @@
 package ru.r2cloud.jradio.nayif1;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 import org.junit.After;
 import org.junit.Test;
 
+import ru.r2cloud.jradio.AssertJson;
 import ru.r2cloud.jradio.ao40.Ao40CorrelateAccessCodeTag;
 import ru.r2cloud.jradio.blocks.ComplexToReal;
 import ru.r2cloud.jradio.blocks.DelayOne;
@@ -18,9 +17,6 @@ import ru.r2cloud.jradio.blocks.FrequencyXlatingFIRFilter;
 import ru.r2cloud.jradio.blocks.PolyphaseClockSyncComplex;
 import ru.r2cloud.jradio.blocks.RmsAgc;
 import ru.r2cloud.jradio.blocks.Window;
-import ru.r2cloud.jradio.nayif1.Nayif1;
-import ru.r2cloud.jradio.nayif1.Nayif1Beacon;
-import ru.r2cloud.jradio.nayif1.RealtimeTelemetry;
 import ru.r2cloud.jradio.source.WavFileSource;
 
 public class Nayif1Test {
@@ -45,15 +41,7 @@ public class Nayif1Test {
 		Ao40CorrelateAccessCodeTag tag = new Ao40CorrelateAccessCodeTag(f2char, 8);
 		input = new Nayif1(tag);
 		assertTrue(input.hasNext());
-		Nayif1Beacon beacon = input.next();
-		assertNotNull(beacon);
-		RealtimeTelemetry telemetry = beacon.getRealtimeTelemetry();
-		assertEquals(4453, telemetry.getPanelVolts1());
-		assertEquals(4488, telemetry.getPanelVolts2());
-		assertEquals(4344, telemetry.getPanelVolts3());
-		assertEquals(247, telemetry.getTxFwdPwr());
-		assertEquals(65, telemetry.getTxRevPwr());
-		assertEquals(207, telemetry.getTxTemp());
+		AssertJson.assertObjectsEqual("Nayif1Beacon.json", input.next());
 	}
 
 	@After

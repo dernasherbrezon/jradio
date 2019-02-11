@@ -1,10 +1,8 @@
 package ru.r2cloud.jradio.sat3cat1;
 
-import static org.junit.Assert.assertEquals;
-
-import java.util.List;
-
 import org.junit.Test;
+
+import ru.r2cloud.jradio.AssertJson;
 
 public class Sat3Cat1BeaconTest {
 
@@ -14,24 +12,7 @@ public class Sat3Cat1BeaconTest {
 				0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
 		Sat3Cat1Beacon beacon = new Sat3Cat1Beacon();
 		beacon.readExternal(data);
-		assertEquals(255, beacon.getSensorId());
-		assertEquals(1543658361, beacon.getSpacecraftTime());
-		assertEquals(88, beacon.getStateOfCharge());
-		assertEquals(BeaconType.BEACON_TYPE_STATE, beacon.getType());
-		assertEquals(6, beacon.getCurrentSensors().size());
-		assertFirstValue(1543658340, 37.0f, beacon.getCurrentSensors());
-		assertEquals(7, beacon.getVoltSensors().size());
-		assertFirstValue(1543658340, 8.66f, beacon.getVoltSensors());
-		assertEquals(7, beacon.getTemperaturSensors().size());
-		assertFirstValue(1543658340, 284.0f, beacon.getTemperaturSensors());
-		assertEquals(6, beacon.getIrradianceSensors().size());
-		assertFirstValue(1543658340, 0.103f, beacon.getIrradianceSensors());
-	}
-
-	private static void assertFirstValue(long expectedTime, float expectedValue, List<MetricValue> sensors) {
-		MetricValue first = sensors.get(0);
-		assertEquals(expectedTime, first.getTime());
-		assertEquals(expectedValue, first.getValue(), 0.0f);
+		AssertJson.assertObjectsEqual("Sat3Cat1Beacon-State.json", beacon);
 	}
 
 }

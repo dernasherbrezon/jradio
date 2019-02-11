@@ -1,12 +1,11 @@
 package ru.r2cloud.jradio.ca03;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 import org.junit.After;
 import org.junit.Test;
 
+import ru.r2cloud.jradio.AssertJson;
 import ru.r2cloud.jradio.Endianness;
 import ru.r2cloud.jradio.blocks.BinarySlicer;
 import ru.r2cloud.jradio.blocks.ClockRecoveryMM;
@@ -37,13 +36,7 @@ public class Ca03Test {
 		TaggedStreamToPdu pdu = new TaggedStreamToPdu(new UnpackedToPacked(new FixedLengthTagger(correlateTag, 180 * 8), 1, Endianness.GR_MSB_FIRST, Byte.class));
 		input = new Ca03(pdu);
 		assertTrue(input.hasNext());
-		Ca03Beacon beacon = input.next();
-		assertNotNull(beacon);
-		assertEquals("ON03CA", beacon.getCallsign());
-		assertEquals(3.9f, beacon.getCommTemp(), 0.0f);
-		assertEquals(620691456L, beacon.getCounterBoot());
-		assertEquals(3280994816L, beacon.getWdtGndTimeLeft());
-		assertEquals(521928704L, beacon.getWdtI2cTimeLeft());
+		AssertJson.assertObjectsEqual("Ca03Beacon.json", input.next());
 	}
 	
 	@Test
@@ -59,14 +52,7 @@ public class Ca03Test {
 		TaggedStreamToPdu pdu = new TaggedStreamToPdu(new UnpackedToPacked(new FixedLengthTagger(correlateTag, 180 * 8), 1, Endianness.GR_MSB_FIRST, Byte.class));
 		input = new Ca03(pdu);
 		assertTrue(input.hasNext());
-		Ca03Beacon beacon = input.next();
-		assertNotNull(beacon);
-		assertEquals("ON03CA", beacon.getCallsign());
-		assertEquals(22.0f, beacon.getCommTemp(), 0.0f);
-		assertEquals(16777216, beacon.getCounterBoot());
-		assertEquals(28478, beacon.getVbatt());
-		assertEquals(217579776L, beacon.getWdtGndTimeLeft());
-		assertEquals(521928704L, beacon.getWdtI2cTimeLeft());
+		AssertJson.assertObjectsEqual("Ca03Beacon-4800.json", input.next());
 	}
 
 	@After

@@ -1,12 +1,11 @@
 package ru.r2cloud.jradio.gomx1;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 import org.junit.After;
 import org.junit.Test;
 
+import ru.r2cloud.jradio.AssertJson;
 import ru.r2cloud.jradio.Endianness;
 import ru.r2cloud.jradio.au02.Au02Test;
 import ru.r2cloud.jradio.blocks.BinarySlicer;
@@ -49,13 +48,7 @@ public class Gomx1Test {
 		TaggedStreamToPdu pdu = new TaggedStreamToPdu(new UnpackedToPacked(new FixedLengthTagger(correlateTag, (255 + 3) * 8), 1, Endianness.GR_MSB_FIRST, Byte.class));
 		input = new Gomx1(pdu);
 		assertTrue(input.hasNext());
-		Gomx1Beacon beacon = input.next();
-		assertNotNull(beacon);
-		TypeA typeA = beacon.getTypeA();
-		assertNotNull(typeA);
-		assertEquals(1104, typeA.getComBootcount());
-		assertEquals(124, typeA.getBootcount());
-		assertEquals(8, typeA.getBootcause());
+		AssertJson.assertObjectsEqual("Gomx1Beacon.json", input.next());
 	}
 
 	@After

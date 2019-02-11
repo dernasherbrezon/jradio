@@ -1,14 +1,11 @@
 package ru.r2cloud.jradio.pwsat2;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
-
-import java.util.List;
 
 import org.junit.After;
 import org.junit.Test;
 
+import ru.r2cloud.jradio.AssertJson;
 import ru.r2cloud.jradio.blocks.BinarySlicer;
 import ru.r2cloud.jradio.blocks.ComplexToReal;
 import ru.r2cloud.jradio.blocks.CostasLoop;
@@ -47,21 +44,9 @@ public class PwSat2Test {
 		HdlcReceiver hdlc = new HdlcReceiver(descrambler, 10000);
 		input = new PwSat2(hdlc);
 		assertTrue(input.hasNext());
-		PwSat2Beacon beacon = input.next();
-		assertNotNull(beacon);
-		assertEquals(DownlinkApid.FileList, beacon.getApid());
-		FileListFrame frame = (FileListFrame) beacon.getFrame();
-		assertEquals(201, frame.getCorrelationId());
-		List<FileEntry> files = frame.getFiles();
-		assertFileEntry("pld_1_5.jpg", 12654, files.get(0));
-		assertFileEntry("pld_1_4.jpg", 4854, files.get(1));
+		AssertJson.assertObjectsEqual("PwSat2Beacon.json", input.next());
 	}
 	
-	private static void assertFileEntry(String name, long size, FileEntry actual) {
-		assertEquals(name, actual.getName());
-		assertEquals(size, actual.getSize());
-	}
-
 	@After
 	public void stop() throws Exception {
 		if (input != null) {

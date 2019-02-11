@@ -1,12 +1,11 @@
 package ru.r2cloud.jradio.au02;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 import org.junit.After;
 import org.junit.Test;
 
+import ru.r2cloud.jradio.AssertJson;
 import ru.r2cloud.jradio.Endianness;
 import ru.r2cloud.jradio.blocks.BinarySlicer;
 import ru.r2cloud.jradio.blocks.ClockRecoveryMM;
@@ -49,20 +48,7 @@ public class Au02Test {
 		TaggedStreamToPdu pdu = new TaggedStreamToPdu(new UnpackedToPacked(new FixedLengthTagger(correlateTag, (120 + 3) * 8), 1, Endianness.GR_MSB_FIRST, Byte.class));
 		input = new Au02(pdu);
 		assertTrue(input.hasNext());
-		Au02Beacon beacon = input.next();
-		assertNotNull(beacon);
-		assertEquals(11, beacon.getBat_temp());
-		assertEquals(8276.0, beacon.getBatt_voltage(), 0.0f);
-		assertEquals(3061, beacon.getBeginSample());
-		assertEquals("ON02AU", beacon.getCallsign());
-		assertEquals(10, beacon.getCom_temp());
-		assertEquals(1143.5294189453125, beacon.getCurrent_in(), 0.0f);
-		assertEquals(219.60784912109375, beacon.getCurrent_out(), 0.0f);
-		assertEquals(11, beacon.getEps_temp());
-		assertEquals(86, beacon.getFlags());
-		assertEquals(215.686279296875, beacon.getRail3_current(), 0.0f);
-		assertEquals(158.8235321044922, beacon.getRail5_current(), 0.0f);
-		assertEquals(2088005406, beacon.getTimestamp());
+		AssertJson.assertObjectsEqual("Au02Beacon.json", input.next());
 	}
 
 	@After

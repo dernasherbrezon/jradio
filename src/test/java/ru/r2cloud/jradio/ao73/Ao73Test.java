@@ -1,12 +1,11 @@
 package ru.r2cloud.jradio.ao73;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 import org.junit.After;
 import org.junit.Test;
 
+import ru.r2cloud.jradio.AssertJson;
 import ru.r2cloud.jradio.ao40.Ao40CorrelateAccessCodeTag;
 import ru.r2cloud.jradio.blocks.ComplexToReal;
 import ru.r2cloud.jradio.blocks.DelayOne;
@@ -42,14 +41,7 @@ public class Ao73Test {
 		Ao40CorrelateAccessCodeTag tag = new Ao40CorrelateAccessCodeTag(f2char, 8);
 		input = new Ao73(tag);
 		assertTrue(input.hasNext());
-		Ao73Beacon beacon = input.next();
-		assertNotNull(beacon);
-		assertEquals(238155, beacon.getBeginSample());
-		RealtimeTelemetry telemetry = beacon.getRealtimeTelemetry();
-		assertEquals(8140, telemetry.getBatteryVoltage());
-		assertEquals(ResetCause.Otherreason, telemetry.getResetCause());
-		assertEquals(143.0, telemetry.getBusCurrent33(), 0.0f);
-		assertEquals(107.6030044555664f, telemetry.getForwardPower(), 0.0f);
+		AssertJson.assertObjectsEqual("Ao73Beacon.json", input.next());
 	}
 
 	@After
