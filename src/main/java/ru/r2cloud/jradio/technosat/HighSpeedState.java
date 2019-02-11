@@ -8,7 +8,7 @@ public enum HighSpeedState {
 	OFF(0), Start(1), Sending(2), Pending(3);
 	
 	private final int code;
-	private final static Map<Integer, HighSpeedState> typeByCode = new HashMap<>();
+	private static final Map<Integer, HighSpeedState> typeByCode = new HashMap<>();
 
 	static {
 		for (HighSpeedState cur : HighSpeedState.values()) {

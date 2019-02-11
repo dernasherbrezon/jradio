@@ -9,8 +9,8 @@ public class MathUtils {
 	private static final double ONE_AND_HALF_PI = 3 * Math.PI / 2;
 	private static final double HALF_PI = Math.PI / 2;
 
-	private final static double TAN_MAP_RES = 0.003921569;
-	private final static int TAN_MAP_SIZE = 255;
+	private static final double TAN_MAP_RES = 0.003921569;
+	private static final int TAN_MAP_SIZE = 255;
 
 	public static float branchless_clip(float x, float clip) {
 		float x1 = Math.abs(x + clip);

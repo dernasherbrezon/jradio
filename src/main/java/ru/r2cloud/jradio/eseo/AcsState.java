@@ -8,7 +8,7 @@ public enum AcsState {
 	Safe(1), Nominal(2);
 
 	private final int code;
-	private final static Map<Integer, AcsState> typeByCode = new HashMap<>();
+	private static final Map<Integer, AcsState> typeByCode = new HashMap<>();
 
 	static {
 		for (AcsState cur : AcsState.values()) {

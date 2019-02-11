@@ -54,4 +54,8 @@ public class AntennasTemperatures {
     public static float getTemperature(final int value) {
         return ANTS_TEMPS[value];
     }
+    
+    private AntennasTemperatures() {
+    	//do nothing
+    }
 }

@@ -11,7 +11,7 @@ import ru.r2cloud.jradio.util.IOUtils;
 public class AAUSAT4InputStream implements Iterator<AAUSAT4Beacon>, Closeable {
 
 	private final InputStream is;
-	private final byte readBuffer[] = new byte[8];
+	private final byte[] readBuffer = new byte[8];
 
 	private AAUSAT4Beacon current = null;
 
@@ -73,7 +73,7 @@ public class AAUSAT4InputStream implements Iterator<AAUSAT4Beacon>, Closeable {
 
 	private final long readLong() throws IOException {
 		IOUtils.readFully(is, readBuffer);
-		return (((long) readBuffer[0] << 56) + ((long) (readBuffer[1] & 255) << 48) + ((long) (readBuffer[2] & 255) << 40) + ((long) (readBuffer[3] & 255) << 32) + ((long) (readBuffer[4] & 255) << 24) + ((readBuffer[5] & 255) << 16) + ((readBuffer[6] & 255) << 8) + ((readBuffer[7] & 255)));
+		return ((long) readBuffer[0] << 56) + ((long) (readBuffer[1] & 255) << 48) + ((long) (readBuffer[2] & 255) << 40) + ((long) (readBuffer[3] & 255) << 32) + ((long) (readBuffer[4] & 255) << 24) + ((readBuffer[5] & 255) << 16) + ((readBuffer[6] & 255) << 8) + ((readBuffer[7] & 255));
 	}
 
 }

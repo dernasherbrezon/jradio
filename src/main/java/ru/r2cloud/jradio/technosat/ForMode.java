@@ -8,7 +8,7 @@ public enum ForMode {
 	TEST(0), PUBLISH_TO_AOCS(1), HISTORY_ONLY(2);
 
 	private final int code;
-	private final static Map<Integer, ForMode> typeByCode = new HashMap<>();
+	private static final Map<Integer, ForMode> typeByCode = new HashMap<>();
 
 	static {
 		for (ForMode cur : ForMode.values()) {

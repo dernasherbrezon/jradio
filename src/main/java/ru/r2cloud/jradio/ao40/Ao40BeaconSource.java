@@ -13,11 +13,10 @@ import ru.r2cloud.jradio.fec.ccsds.UncorrectableException;
 public abstract class Ao40BeaconSource<T> extends BeaconSource<T> {
 
 	private static final Logger LOG = LoggerFactory.getLogger(Ao40BeaconSource.class);
-
 	private static final int RS_LENGTH = 128 + 32;
-
-	private final static int ROWS = 80;
-	private final static int COLS = 65;
+	private static final int ROWS = 80;
+	private static final int COLS = 65;
+	
 	private final ViterbiSoft viterbi;
 
 	public Ao40BeaconSource(MessageInput input) {
@@ -27,8 +26,10 @@ public abstract class Ao40BeaconSource<T> extends BeaconSource<T> {
 
 	@Override
 	protected T parseBeacon(byte[] raw) {
-		int col, row;
-		int coltop, rowstart;
+		int col;
+		int row;
+		int coltop;
+		int rowstart;
 		byte[] symbols = new byte[((RS_LENGTH + RS_LENGTH) * 8 + 6) * 2 + 65 + 3];
 		coltop = 0;
 		for (col = 1; col < ROWS; col++) { /* Skip first column as it's the sync vector */
@@ -58,7 +59,7 @@ public abstract class Ao40BeaconSource<T> extends BeaconSource<T> {
 			return parseAo40Beacon(packet);
 		} catch (UncorrectableException e) {
 			if (LOG.isDebugEnabled()) {
-				LOG.debug("unable to decode reed solomon: " + e.getMessage());
+				LOG.debug("unable to decode reed solomon: {}", e.getMessage());
 			}
 			return null;
 		}

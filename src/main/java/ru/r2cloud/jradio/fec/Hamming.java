@@ -7,7 +7,7 @@ import ru.r2cloud.jradio.fec.ccsds.UncorrectableException;
 
 public class Hamming {
 	
-	private final static Map<Integer, Integer> SYNDROME_12 = new HashMap<>();
+	private static final Map<Integer, Integer> SYNDROME_12 = new HashMap<>();
 	
 	static {
 		SYNDROME_12.put(0b1110, 0b1000_0000_0000);
@@ -24,7 +24,7 @@ public class Hamming {
 		SYNDROME_12.put(0b0001, 0b0000_0000_0001);
 	}
 
-	private final static int[] FEC_MATRIX_12b = new int[] { 
+	private static final int[] FEC_MATRIX_12b = new int[] { 
 			0b1110_1100_1000, 
 			0b1101_0011_0100, 
 			0b1011_1010_0010, 

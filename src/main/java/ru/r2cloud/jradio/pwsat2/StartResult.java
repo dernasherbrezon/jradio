@@ -8,7 +8,7 @@ public enum StartResult {
 	Success(0), Failure(1);
 	
 	private final int code;
-	private final static Map<Integer, StartResult> typeByCode = new HashMap<>();
+	private static final Map<Integer, StartResult> typeByCode = new HashMap<>();
 
 	static {
 		for (StartResult cur : StartResult.values()) {

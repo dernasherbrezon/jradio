@@ -8,7 +8,7 @@ public enum EseStatus {
 	OK(0b000), WDTRebootError(0b001), RTEMSError(0b010);
 
 	private final int code;
-	private final static Map<Integer, EseStatus> typeByCode = new HashMap<>();
+	private static final Map<Integer, EseStatus> typeByCode = new HashMap<>();
 
 	static {
 		for (EseStatus cur : EseStatus.values()) {

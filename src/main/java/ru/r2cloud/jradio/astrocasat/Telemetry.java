@@ -8,7 +8,7 @@ import java.util.regex.Pattern;
 
 public class Telemetry {
 
-	private final static Pattern COMMA = Pattern.compile(",");
+	private static final Pattern COMMA = Pattern.compile(",");
 
 	private Date time;
 	private float voltage; // volts

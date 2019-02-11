@@ -7,7 +7,7 @@ public enum ExperimentType {
 	Detumbling(1), EraseFlash(2), SunS(3), LEOP(4), RadFET(5), SADS(6), Sail(7), Fibo(8), Payload(9), Camera(10);
 	
 	private final int code;
-	private final static Map<Integer, ExperimentType> typeByCode = new HashMap<>();
+	private static final Map<Integer, ExperimentType> typeByCode = new HashMap<>();
 
 	static {
 		for (ExperimentType cur : ExperimentType.values()) {

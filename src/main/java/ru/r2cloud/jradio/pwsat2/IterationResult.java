@@ -8,7 +8,7 @@ public enum IterationResult {
 	NoResult(0), Finished(1), LoopImmediately(2), WaitForNextCycle(3), Failure(4);
 
 	private final int code;
-	private final static Map<Integer, IterationResult> typeByCode = new HashMap<>();
+	private static final Map<Integer, IterationResult> typeByCode = new HashMap<>();
 
 	static {
 		for (IterationResult cur : IterationResult.values()) {

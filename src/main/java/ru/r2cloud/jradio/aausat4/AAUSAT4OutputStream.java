@@ -7,7 +7,7 @@ import java.io.OutputStream;
 public class AAUSAT4OutputStream implements Closeable {
 
 	private final OutputStream os;
-	private final byte writeBuffer[] = new byte[8];
+	private final byte[] writeBuffer = new byte[8];
 
 	public AAUSAT4OutputStream(OutputStream os) {
 		this.os = os;

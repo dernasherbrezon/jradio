@@ -5,10 +5,10 @@ import java.util.Map;
 
 public enum PowerTrackingMode {
 	
-	Hardware(0), MPPT(1), FixedSWPPT(2);
+	HARDWARE(0), MPPT(1), FIXED_SWPPT(2);
 
 	private final int code;
-	private final static Map<Integer, PowerTrackingMode> typeByCode = new HashMap<>();
+	private static final Map<Integer, PowerTrackingMode> typeByCode = new HashMap<>();
 
 	static {
 		for (PowerTrackingMode cur : PowerTrackingMode.values()) {

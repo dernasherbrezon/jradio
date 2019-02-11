@@ -8,7 +8,7 @@ public enum BeaconType {
 	STACIE(0xC0), EPS(0xC1), OBC1(0x53), OBC2(0x56);
 
 	private final int code;
-	private final static Map<Integer, BeaconType> typeByCode = new HashMap<>();
+	private static final Map<Integer, BeaconType> typeByCode = new HashMap<>();
 
 	static {
 		for (BeaconType cur : BeaconType.values()) {

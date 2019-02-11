@@ -8,7 +8,7 @@ public enum PdhMode {
 	Idle(0), Wait(1), Configuration(2), CaptureMeta(3), CaptureImage(4), SaveMeta(5), SaveImage(6), DeleteSlot(7), ResetSlot(8), InitCamera(11);
 
 	private final int code;
-	private final static Map<Integer, PdhMode> typeByCode = new HashMap<>();
+	private static final Map<Integer, PdhMode> typeByCode = new HashMap<>();
 
 	static {
 		for (PdhMode cur : PdhMode.values()) {

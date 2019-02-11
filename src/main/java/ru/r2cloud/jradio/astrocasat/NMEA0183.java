@@ -9,7 +9,7 @@ import java.util.regex.Pattern;
 
 public class NMEA0183 {
 
-	private final static Pattern COMMA = Pattern.compile(",");
+	private static final Pattern COMMA = Pattern.compile(",");
 	private NMEA0183Source source;
 	private Date time;
 	private boolean status;

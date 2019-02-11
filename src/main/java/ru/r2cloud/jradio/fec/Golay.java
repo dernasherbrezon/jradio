@@ -8,7 +8,7 @@ import ru.r2cloud.jradio.fec.ccsds.UncorrectableException;
 public class Golay {
 
 	private static final Logger LOG = LoggerFactory.getLogger(Golay.class);
-	private final static int N = 12;
+	private static final int N = 12;
 	private final int[] H = new int[] { 0x8008ed, 0x4001db, 0x2003b5, 0x100769, 0x80ed1, 0x40da3, 0x20b47, 0x1068f, 0x8d1d, 0x4a3b, 0x2477, 0x1ffe };
 
 	public int encode(int data) {

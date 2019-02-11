@@ -52,7 +52,7 @@ public class ViterbiTest {
 		return data;
 	}
 	
-	private final static char[] hexArray = "0123456789ABCDEF".toCharArray();
+	private static final char[] hexArray = "0123456789ABCDEF".toCharArray();
 
 	public static String bytesToHex(byte[] bytes) {
 		char[] hexChars = new char[bytes.length * 2];

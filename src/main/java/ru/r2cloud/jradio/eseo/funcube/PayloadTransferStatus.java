@@ -8,7 +8,7 @@ public enum PayloadTransferStatus {
 	GetDataFromPayload(0x00), DownlinkDataToGround(0x01);
 	
 	private final int code;
-	private final static Map<Integer, PayloadTransferStatus> typeByCode = new HashMap<>();
+	private static final Map<Integer, PayloadTransferStatus> typeByCode = new HashMap<>();
 
 	static {
 		for (PayloadTransferStatus cur : PayloadTransferStatus.values()) {

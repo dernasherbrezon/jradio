@@ -8,7 +8,7 @@ public enum SatelliteMode {
 	SAFE(0), LEOP(1), NOMINAL(2);
 
 	private final int code;
-	private final static Map<Integer, SatelliteMode> typeByCode = new HashMap<>();
+	private static final Map<Integer, SatelliteMode> typeByCode = new HashMap<>();
 
 	static {
 		for (SatelliteMode cur : SatelliteMode.values()) {

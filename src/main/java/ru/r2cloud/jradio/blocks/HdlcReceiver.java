@@ -15,8 +15,8 @@ public class HdlcReceiver implements MessageInput {
 	private static final Logger LOG = LoggerFactory.getLogger(HdlcReceiver.class);
 
 	// flag is 01111110. last bit is always discarded
-	private final static int FLAG_LENGTH = 7;
-	private final static int FCS_LENGTH = 2;
+	private static final int FLAG_LENGTH = 7;
+	private static final int FCS_LENGTH = 2;
 	private final ByteInput input;
 	private final byte[] window;
 

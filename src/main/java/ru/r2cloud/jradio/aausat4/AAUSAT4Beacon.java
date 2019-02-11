@@ -37,39 +37,39 @@ public class AAUSAT4Beacon extends Beacon {
 		}
 		DataInputStream data = new DataInputStream(new ByteArrayInputStream(Arrays.copyOfRange(rawData, 2 + Header.LENGTH, endIndex)));
 		int valid = data.readUnsignedByte();
-		boolean eps_valid = (valid & (1 << 0)) > 0 ? true : false;
-		boolean com_valid = (valid & (1 << 1)) > 0 ? true : false;
-		boolean adcs1_valid = (valid & (1 << 2)) > 0 ? true : false;
-		boolean adcs2_valid = (valid & (1 << 3)) > 0 ? true : false;
-		boolean ais1_valid = (valid & (1 << 4)) > 0 ? true : false;
-		boolean ais2_valid = (valid & (1 << 5)) > 0 ? true : false;
+		boolean epsValid = (valid & (1 << 0)) > 0 ? true : false;
+		boolean comValid = (valid & (1 << 1)) > 0 ? true : false;
+		boolean adcs1Valid = (valid & (1 << 2)) > 0 ? true : false;
+		boolean adcs2Valid = (valid & (1 << 3)) > 0 ? true : false;
+		boolean ais1Valid = (valid & (1 << 4)) > 0 ? true : false;
+		boolean ais2Valid = (valid & (1 << 5)) > 0 ? true : false;
 
-		if (eps_valid) {
+		if (epsValid) {
 			eps = new EPS(data);
 		} else {
 			data.skipBytes(20);
 		}
-		if (com_valid) {
+		if (comValid) {
 			com = new COM(data);
 		} else {
 			data.skipBytes(10);
 		}
-		if (adcs1_valid) {
+		if (adcs1Valid) {
 			adcs1 = new ADCS1(data);
 		} else {
 			data.skipBytes(7);
 		}
-		if (adcs2_valid) {
+		if (adcs2Valid) {
 			adcs2 = new ADCS2(data);
 		} else {
 			data.skipBytes(6);
 		}
-		if (ais1_valid) {
+		if (ais1Valid) {
 			ais1 = new AIS(data);
 		} else {
 			data.skipBytes(20);
 		}
-		if (ais2_valid) {
+		if (ais2Valid) {
 			ais2 = new AIS(data);
 		} else {
 			data.skipBytes(20);

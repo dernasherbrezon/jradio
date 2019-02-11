@@ -8,7 +8,7 @@ public enum RFMode {
 	Receiveonly(0x00), LowPowerBPSK(0x01), HighPowerBPSK(0x02), LowPowerTransponder(0x03), HighPowerTransponder(0x04), Autonomous(0x05);
 
 	private final int code;
-	private final static Map<Integer, RFMode> typeByCode = new HashMap<>();
+	private static final Map<Integer, RFMode> typeByCode = new HashMap<>();
 
 	static {
 		for (RFMode cur : RFMode.values()) {

@@ -8,7 +8,7 @@ public enum FrameType {
 	WO1(1), WO2(2), WO3(3), WO4(4), WO5(5), WO6(6), WO7(7), WO8(8), WO9(9), WO10(10), WO11(11), WO12(12), HR1(13), FM1(14), FM2(15), FM3(16), HR2(17), FM4(18), FM5(19), FM6(20), HR3(21), FM7(22), FM8(23), FM9(24);
 
 	private final int code;
-	private final static Map<Integer, FrameType> typeByCode = new HashMap<>();
+	private static final Map<Integer, FrameType> typeByCode = new HashMap<>();
 
 	static {
 		for (FrameType cur : FrameType.values()) {

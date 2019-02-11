@@ -8,7 +8,7 @@ public enum AcsErrorCode {
 	UnknownMode(1), WheelSpeed(2), UnknownCommand(7), ToomanySunVecs(20), WrongSunSensor(22), ToofewSunVecs(23), WrongWheelNumber(24);
 
 	private final int code;
-	private final static Map<Integer, AcsErrorCode> typeByCode = new HashMap<>();
+	private static final Map<Integer, AcsErrorCode> typeByCode = new HashMap<>();
 
 	static {
 		for (AcsErrorCode cur : AcsErrorCode.values()) {

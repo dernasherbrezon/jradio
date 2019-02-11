@@ -2,7 +2,7 @@ package ru.r2cloud.jradio.fec;
 
 public class ViterbiSoft {
 
-	private final static int TAIL = 2;
+	private static final int TAIL = 2;
 	private final int[][] branchtab = new int[2][32];
 	private final long[] decisions;
 	private final byte[] resultWithTail;

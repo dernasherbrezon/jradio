@@ -8,7 +8,7 @@ public enum SunMode {
 	Eclipse(0), Sun(1);
 	
 	private final int code;
-	private final static Map<Integer, SunMode> typeByCode = new HashMap<>();
+	private static final Map<Integer, SunMode> typeByCode = new HashMap<>();
 
 	static {
 		for (SunMode cur : SunMode.values()) {

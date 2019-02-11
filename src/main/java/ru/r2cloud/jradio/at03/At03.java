@@ -29,14 +29,14 @@ public class At03 extends BeaconSource<At03Beacon> {
 			byte[] data = rs.decode(raw);
 			if (data.length != 48) {
 				if (LOG.isDebugEnabled()) {
-					LOG.debug("unexpected packet length: " + data.length);
+					LOG.debug("unexpected packet length: {}", data.length);
 				}
 				return null;
 			}
 			int crc = Crc16Arc.calculate(data);
 			if (crc != 0) {
 				if (LOG.isDebugEnabled()) {
-					LOG.debug("checksum mismtach: " + crc);
+					LOG.debug("checksum mismtach: {}", crc);
 				}
 				return null;
 			}
@@ -49,7 +49,7 @@ public class At03 extends BeaconSource<At03Beacon> {
 			return beacon;
 		} catch (UncorrectableException e) {
 			if (LOG.isDebugEnabled()) {
-				LOG.debug("unable to decode reed solomon: " + e.getMessage());
+				LOG.debug("unable to decode reed solomon: {}", e.getMessage());
 			}
 			return null;
 		} catch (IOException e) {

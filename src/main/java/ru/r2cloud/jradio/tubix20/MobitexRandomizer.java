@@ -3,7 +3,7 @@ package ru.r2cloud.jradio.tubix20;
 public class MobitexRandomizer {
 
 	// 511 cannot be packed into 64 bytes
-	private final static int[] sequence = new int[511 * 8];
+	private static final int[] sequence = new int[511 * 8];
 
 	static {
 		int scramble_shift_reg = 0x01FF;

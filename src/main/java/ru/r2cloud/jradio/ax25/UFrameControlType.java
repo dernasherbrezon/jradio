@@ -8,7 +8,7 @@ public enum UFrameControlType {
 	SABME(0b0111111), SABM(0b0011111), DISC(0b0100011), DM(0b0001111), UA(0b0110011), FRMR(0b1000111), UI(0b0000011), XID(0b1011111), TEST(0b1110011);
 
 	private final int code;
-	private final static Map<Integer, UFrameControlType> typeByCode = new HashMap<>();
+	private static final Map<Integer, UFrameControlType> typeByCode = new HashMap<>();
 
 	static {
 		for (UFrameControlType cur : UFrameControlType.values()) {

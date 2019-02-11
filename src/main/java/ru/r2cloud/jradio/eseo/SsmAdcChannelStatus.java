@@ -8,7 +8,7 @@ public enum SsmAdcChannelStatus {
 	OK(0b00), CHOUT0(0b01), CHFixValue(0b10), CHValueMoreTH(0b11);
 
 	private final int code;
-	private final static Map<Integer, SsmAdcChannelStatus> typeByCode = new HashMap<>();
+	private static final Map<Integer, SsmAdcChannelStatus> typeByCode = new HashMap<>();
 
 	static {
 		for (SsmAdcChannelStatus cur : SsmAdcChannelStatus.values()) {

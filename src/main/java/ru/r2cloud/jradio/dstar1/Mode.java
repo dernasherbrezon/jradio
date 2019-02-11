@@ -8,7 +8,7 @@ public enum Mode {
 	Safe(0x01), Nominal(0x02), Experimental(0x03);
 
 	private final int code;
-	private final static Map<Integer, Mode> typeByCode = new HashMap<>();
+	private static final Map<Integer, Mode> typeByCode = new HashMap<>();
 
 	static {
 		for (Mode cur : Mode.values()) {

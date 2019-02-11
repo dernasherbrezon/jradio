@@ -8,7 +8,7 @@ public enum BeaconType {
 	BEACON_TYPE_STATE(0xB0), BEACON_TYPE_VOLT(0xB1), BEACON_TYPE_CURR(0xB2), BEACON_TYPE_TEMP(0xB3), BEACON_TYPE_IRR(0xB4), BEACON_TYPE_SOC(0xB5);
 
 	private final int code;
-	private final static Map<Integer, BeaconType> typeByCode = new HashMap<>();
+	private static final Map<Integer, BeaconType> typeByCode = new HashMap<>();
 
 	static {
 		for (BeaconType cur : BeaconType.values()) {

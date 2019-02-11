@@ -8,7 +8,7 @@ public enum StacieOperationalMode {
 	Normal(0), Sleep(2), Beacon(3), Deployment(4), Shutdown(8);
 	
 	private final int code;
-	private final static Map<Integer, StacieOperationalMode> typeByCode = new HashMap<>();
+	private static final Map<Integer, StacieOperationalMode> typeByCode = new HashMap<>();
 
 	static {
 		for (StacieOperationalMode cur : StacieOperationalMode.values()) {

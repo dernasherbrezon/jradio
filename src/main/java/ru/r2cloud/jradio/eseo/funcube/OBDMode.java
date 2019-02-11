@@ -8,7 +8,7 @@ public enum OBDMode {
 	OBDHPowerUp(0x00), AOCSInitialization(0x01), AOCSDamping(0x02), AOCSNormalSUN(0x04), AOCSNormalECLIPSE(0x08), SafeModeS1(0x10), SafeModeS2(0x20), SafeModeS3(0x40);
 
 	private final int code;
-	private final static Map<Integer, OBDMode> typeByCode = new HashMap<>();
+	private static final Map<Integer, OBDMode> typeByCode = new HashMap<>();
 
 	static {
 		for (OBDMode cur : OBDMode.values()) {

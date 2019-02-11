@@ -10,8 +10,8 @@ public class FloatToChar implements ByteInput {
 
 	private final FloatInput source;
 	private final float d_scale;
-	private final static float MIN_VAL = -128;
-	private final static float MAX_VAL = 127;
+	private static final float MIN_VAL = -128;
+	private static final float MAX_VAL = 127;
 
 	public FloatToChar(FloatInput source, float d_scale) {
 		this.source = source;

@@ -9,7 +9,7 @@ public enum DownlinkApid {
 			0x1C), CopyBootTable(0x1D), SetInternalDetumblingMode(0x1E), SetAdcsMode(0x1F), StopSailDeployment(0x20), MemoryContent(0x21), BeaconError(0x22), StopAntennaDeployment(0x23), Telemetry(0x3f);
 
 	private final int code;
-	private final static Map<Integer, DownlinkApid> typeByCode = new HashMap<>();
+	private static final Map<Integer, DownlinkApid> typeByCode = new HashMap<>();
 
 	static {
 		for (DownlinkApid cur : DownlinkApid.values()) {

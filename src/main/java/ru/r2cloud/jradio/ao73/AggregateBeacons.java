@@ -140,5 +140,9 @@ public class AggregateBeacons {
 		
 		return result;
 	}
+	
+	private AggregateBeacons() {
+		//do nothing
+	}
 
 }

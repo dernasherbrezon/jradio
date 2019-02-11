@@ -8,7 +8,7 @@ public enum CCMode {
 	BootMode(0b00), FlightMode(0b01), SafeMode(0b10), unavailable(0b11);
 
 	private final int code;
-	private final static Map<Integer, CCMode> typeByCode = new HashMap<>();
+	private static final Map<Integer, CCMode> typeByCode = new HashMap<>();
 
 	static {
 		for (CCMode cur : CCMode.values()) {

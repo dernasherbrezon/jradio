@@ -2,7 +2,7 @@ package ru.r2cloud.jradio.fec.ccsds;
 
 public class Randomize {
 
-	private final static int[] sequence = new int[255];
+	private static final int[] sequence = new int[255];
 
 	static {
 		int[] x = new int[] { 1, 1, 1, 1, 1, 1, 1, 1, 1 };

@@ -8,7 +8,7 @@ public enum BatteryMode {
 	Normal(0), Undervoltage(1), Overvoltage(2);
 	
 	private final int code;
-	private final static Map<Integer, BatteryMode> typeByCode = new HashMap<>();
+	private static final Map<Integer, BatteryMode> typeByCode = new HashMap<>();
 
 	static {
 		for (BatteryMode cur : BatteryMode.values()) {

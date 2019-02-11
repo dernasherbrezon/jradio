@@ -5,7 +5,7 @@ import java.io.IOException;
 
 class TimeSource {
 
-	private final static int BEACON_SENSOR_DELTA_T = (60 * 2); // in seconds
+	private static final int BEACON_SENSOR_DELTA_T = (60 * 2); // in seconds
 
 	private final long spacecraftTime;
 	private final BeaconType type;

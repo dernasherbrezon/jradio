@@ -8,7 +8,7 @@ public enum HistoryBufferType {
 	BUS(0), PLD(1), DIAG(2), none(3);
 	
 	private final int code;
-	private final static Map<Integer, HistoryBufferType> typeByCode = new HashMap<>();
+	private static final Map<Integer, HistoryBufferType> typeByCode = new HashMap<>();
 
 	static {
 		for (HistoryBufferType cur : HistoryBufferType.values()) {

@@ -8,7 +8,7 @@ public enum PictureType {
 	REC(0), LIVE(1);
 	
 	private final int code;
-	private final static Map<Integer, PictureType> typeByCode = new HashMap<>();
+	private static final Map<Integer, PictureType> typeByCode = new HashMap<>();
 
 	static {
 		for (PictureType cur : PictureType.values()) {

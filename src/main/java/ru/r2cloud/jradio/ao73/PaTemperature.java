@@ -37,5 +37,7 @@ public class PaTemperature {
 		return PA_TEMPS[value];
 	}
 	
-
+	private PaTemperature() {
+		//do nothing
+	}
 }

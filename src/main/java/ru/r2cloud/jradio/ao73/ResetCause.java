@@ -8,7 +8,7 @@ public enum ResetCause {
 	PowerOnReset(0), ExternalReset(1), BrownOutReset(2), WDTreset(3), JTAGreset(4), Otherreason(5);
 
 	private final int code;
-	private final static Map<Integer, ResetCause> typeByCode = new HashMap<>();
+	private static final Map<Integer, ResetCause> typeByCode = new HashMap<>();
 
 	static {
 		for (ResetCause cur : ResetCause.values()) {
