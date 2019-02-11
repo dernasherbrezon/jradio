@@ -1,5 +1,6 @@
 package ru.r2cloud.jradio.pwsat2;
 
+import java.io.EOFException;
 import java.io.IOException;
 
 import ru.r2cloud.jradio.util.LittleEndianDataInputStream;
@@ -13,13 +14,13 @@ public class FileRemoveFrame extends GenericFrame {
 	}
 
 	@Override
-	public void readExternal(LittleEndianDataInputStream dis) {
+	public void readExternal(LittleEndianDataInputStream dis) throws IOException {
 		StringBuilder b = new StringBuilder();
 		try {
 			while (true) {
 				b.append((char) dis.readUnsignedByte());
 			}
-		} catch (IOException e) {
+		} catch (EOFException e) {
 			// do nothing
 		}
 		if (b.length() != 0) {

@@ -2,6 +2,7 @@ package ru.r2cloud.jradio.beesat4;
 
 import java.io.ByteArrayInputStream;
 import java.io.DataInputStream;
+import java.io.EOFException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -13,14 +14,14 @@ public class Beesat4Beacon extends CMX909bBeacon {
 	private List<TransferFrame> frames = new ArrayList<>();
 
 	@Override
-	protected void readFrameData(byte[] data) {
+	protected void readFrameData(byte[] data) throws IOException {
 		DataInputStream dis = new DataInputStream(new ByteArrayInputStream(data));
 		while (true) {
 			try {
 				TransferFrame cur = new TransferFrame();
 				cur.readExternal(dis);
 				frames.add(cur);
-			} catch (IOException e) {
+			} catch (EOFException e) {
 				break;
 			}
 		}

@@ -1,5 +1,6 @@
 package ru.r2cloud.jradio.pwsat2;
 
+import java.io.EOFException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -15,7 +16,7 @@ public class ErrorCountersFrame extends GenericFrame {
 	}
 
 	@Override
-	public void readExternal(LittleEndianDataInputStream dis) {
+	public void readExternal(LittleEndianDataInputStream dis) throws IOException {
 		counters = new ArrayList<>();
 		try {
 			for (int i = 0;; i++) {
@@ -27,7 +28,7 @@ public class ErrorCountersFrame extends GenericFrame {
 				cur.setDecrement(dis.readUnsignedByte());
 				counters.add(cur);
 			}
-		} catch (IOException e) {
+		} catch (EOFException e) {
 			// do nothing
 		}
 	}

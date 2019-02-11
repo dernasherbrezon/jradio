@@ -2,6 +2,7 @@ package ru.r2cloud.jradio.technosat;
 
 import java.io.ByteArrayInputStream;
 import java.io.DataInputStream;
+import java.io.EOFException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -25,7 +26,7 @@ public class TransferFrame {
 				SourcePacket cur = new SourcePacket();
 				cur.readExternal(dis);
 				packets.add(cur);
-			} catch (IOException e) {
+			} catch (EOFException e) {
 				break;
 			}
 		}
