@@ -5,10 +5,10 @@ import java.io.DataInputStream;
 import java.io.IOException;
 import java.util.Arrays;
 
-import ru.r2cloud.jradio.Externalizable;
+import ru.r2cloud.jradio.Beacon;
 import ru.r2cloud.jradio.csp.Header;
 
-public class AAUSAT4Beacon implements Externalizable {
+public class AAUSAT4Beacon extends Beacon {
 
 	private int length;
 	private Header header;
@@ -20,18 +20,11 @@ public class AAUSAT4Beacon implements Externalizable {
 	private AIS ais1;
 	private AIS ais2;
 
-	// begin sample used to calculate begin millis
-	private long beginSample;
-	private long beginMillis;
-
-	private byte[] rawData;
-
 	// # [ 1 byte | 20 bytes | 10 bytes | 7 bytes | 6 bytes | 20 bytes | 20
 	// bytes ]
 	// # [ Valid | EPS | COM | ADCS1 | ADCS2 | AIS1 | AIS2 ]
 	@Override
-	public void readExternal(byte[] rawData) throws IOException {
-		this.rawData = rawData;
+	public void readBeacon(byte[] rawData) throws IOException {
 		length = ((rawData[0] & 0xFF) << 8) | (rawData[1] & 0xFF);
 		header = new Header(Arrays.copyOfRange(rawData, 2, 2 + Header.LENGTH));
 		int endIndex = rawData.length;
@@ -83,10 +76,6 @@ public class AAUSAT4Beacon implements Externalizable {
 		}
 	}
 
-	public byte[] getRawData() {
-		return rawData;
-	}
-
 	public byte[] getHmac() {
 		return hmac;
 	}
@@ -97,14 +86,6 @@ public class AAUSAT4Beacon implements Externalizable {
 
 	public int getLength() {
 		return length;
-	}
-
-	public long getBeginSample() {
-		return beginSample;
-	}
-
-	public void setBeginSample(long beginSample) {
-		this.beginSample = beginSample;
 	}
 
 	public EPS getEps() {
@@ -155,11 +136,4 @@ public class AAUSAT4Beacon implements Externalizable {
 		this.ais2 = ais2;
 	}
 
-	public long getBeginMillis() {
-		return beginMillis;
-	}
-
-	public void setBeginMillis(long beginMillis) {
-		this.beginMillis = beginMillis;
-	}
 }

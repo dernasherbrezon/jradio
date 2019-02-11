@@ -5,13 +5,13 @@ import java.io.DataInputStream;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 
-import ru.r2cloud.jradio.Externalizable;
+import ru.r2cloud.jradio.Beacon;
 
 /**
  * Based on http://spacedatacenter.at/pegasus/img/hamoperatorsmanual10.pdf
  *
  */
-public class At03Beacon implements Externalizable {
+public class At03Beacon extends Beacon {
 
 	private BeaconType type;
 	private String callsign;
@@ -21,13 +21,8 @@ public class At03Beacon implements Externalizable {
 	private OBC1Beacon obc1Beacon;
 	private OBC2Beacon obc2Beacon;
 
-	private long beginSample;
-	private long beginMillis;
-	private byte[] rawData;
-
 	@Override
-	public void readExternal(byte[] data) throws IOException {
-		this.rawData = data;
+	public void readBeacon(byte[] data) throws IOException {
 		DataInputStream dis = new DataInputStream(new ByteArrayInputStream(data));
 
 		int beaconType = dis.readUnsignedByte();
@@ -102,30 +97,6 @@ public class At03Beacon implements Externalizable {
 
 	public void setObc2Beacon(OBC2Beacon obc2Beacon) {
 		this.obc2Beacon = obc2Beacon;
-	}
-
-	public long getBeginSample() {
-		return beginSample;
-	}
-
-	public void setBeginSample(long beginSample) {
-		this.beginSample = beginSample;
-	}
-
-	public long getBeginMillis() {
-		return beginMillis;
-	}
-
-	public void setBeginMillis(long beginMillis) {
-		this.beginMillis = beginMillis;
-	}
-
-	public byte[] getRawData() {
-		return rawData;
-	}
-
-	public void setRawData(byte[] rawData) {
-		this.rawData = rawData;
 	}
 
 }

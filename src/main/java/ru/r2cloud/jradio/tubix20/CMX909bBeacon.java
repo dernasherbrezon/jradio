@@ -10,14 +10,14 @@ import java.util.Arrays;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import ru.r2cloud.jradio.Externalizable;
+import ru.r2cloud.jradio.Beacon;
 import ru.r2cloud.jradio.crc.Crc16Ccitt;
 import ru.r2cloud.jradio.fec.Crc16CcittFec;
 import ru.r2cloud.jradio.fec.Hamming;
 import ru.r2cloud.jradio.fec.ccsds.UncorrectableException;
 import ru.r2cloud.jradio.util.Deinterleave;
 
-public abstract class CMX909bBeacon implements Externalizable {
+public abstract class CMX909bBeacon extends Beacon {
 
 	private static final Logger LOG = LoggerFactory.getLogger(CMX909bBeacon.class);
 
@@ -29,13 +29,8 @@ public abstract class CMX909bBeacon implements Externalizable {
 	private byte[] shortDataBlock;
 	private String callsign;
 
-	private long beginSample;
-	private long beginMillis;
-	private byte[] rawData;
-
 	@Override
-	public void readExternal(byte[] data) throws IOException {
-		this.rawData = data;
+	public void readBeacon(byte[] data) throws IOException {
 		DataInputStream dis = new DataInputStream(new ByteArrayInputStream(data));
 		try {
 			header = new CMX909bHeader(dis);
@@ -154,30 +149,6 @@ public abstract class CMX909bBeacon implements Externalizable {
 
 	public void setCallsign(String callsign) {
 		this.callsign = callsign;
-	}
-
-	public long getBeginSample() {
-		return beginSample;
-	}
-
-	public void setBeginSample(long beginSample) {
-		this.beginSample = beginSample;
-	}
-
-	public long getBeginMillis() {
-		return beginMillis;
-	}
-
-	public void setBeginMillis(long beginMillis) {
-		this.beginMillis = beginMillis;
-	}
-
-	public byte[] getRawData() {
-		return rawData;
-	}
-
-	public void setRawData(byte[] rawData) {
-		this.rawData = rawData;
 	}
 
 }

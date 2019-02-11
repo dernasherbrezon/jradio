@@ -4,11 +4,11 @@ import java.io.ByteArrayInputStream;
 import java.io.DataInputStream;
 import java.io.IOException;
 
-import ru.r2cloud.jradio.Externalizable;
+import ru.r2cloud.jradio.Beacon;
 import ru.r2cloud.jradio.csp.Header;
 import ru.r2cloud.jradio.util.StreamUtils;
 
-public class Gomx1Beacon implements Externalizable {
+public class Gomx1Beacon extends Beacon {
 
 	private Header header;
 	private long beaconTime;
@@ -17,13 +17,8 @@ public class Gomx1Beacon implements Externalizable {
 	private TypeA typeA;
 	private TypeB typeB;
 
-	private long beginSample;
-	private long beginMillis;
-	private byte[] rawData;
-
 	@Override
-	public void readExternal(byte[] data) throws IOException {
-		this.rawData = data;
+	public void readBeacon(byte[] data) throws IOException {
 		DataInputStream dis = new DataInputStream(new ByteArrayInputStream(data));
 		header = new Header(dis);
 		beaconTime = StreamUtils.readUnsignedInt(dis);
@@ -38,30 +33,6 @@ public class Gomx1Beacon implements Externalizable {
 		default:
 			throw new IOException("unknown beacon type: " + data.length);
 		}
-	}
-
-	public long getBeginSample() {
-		return beginSample;
-	}
-
-	public void setBeginSample(long beginSample) {
-		this.beginSample = beginSample;
-	}
-
-	public long getBeginMillis() {
-		return beginMillis;
-	}
-
-	public void setBeginMillis(long beginMillis) {
-		this.beginMillis = beginMillis;
-	}
-
-	public byte[] getRawData() {
-		return rawData;
-	}
-
-	public void setRawData(byte[] rawData) {
-		this.rawData = rawData;
 	}
 
 	public TypeA getTypeA() {

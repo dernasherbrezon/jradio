@@ -5,13 +5,12 @@ import java.io.DataInputStream;
 import java.io.IOException;
 import java.util.Arrays;
 
-import ru.r2cloud.jradio.Externalizable;
+import ru.r2cloud.jradio.Beacon;
 import ru.r2cloud.jradio.csp.Header;
 
-public class KunsPfBeacon implements Externalizable {
+public class KunsPfBeacon extends Beacon {
 
 	private Header header;
-	private byte[] rawData;
 
 	private int beaconCounter;
 	private int solarPanelVoltageX;
@@ -79,15 +78,11 @@ public class KunsPfBeacon implements Externalizable {
 	private int sunSensor4;
 	private int sunSensor5;
 
-	private long beginSample;
-	private long beginMillis;
-
 	private int imageBlock;
 	private byte[] imageChunk;
-
+	
 	@Override
-	public void readExternal(byte[] rawData) throws IOException {
-		this.rawData = rawData;
+	public void readBeacon(byte[] rawData) throws IOException {
 		header = new Header(Arrays.copyOfRange(rawData, 0, Header.LENGTH));
 		byte[] data = Arrays.copyOfRange(rawData, Header.LENGTH, rawData.length);
 		if (data.length == 134) {
@@ -95,7 +90,7 @@ public class KunsPfBeacon implements Externalizable {
 		} else if (data.length >= 88) {
 			readWODBeacon(data);
 		} else {
-			readBeacon(data);
+			readBeaconInternal(data);
 		}
 	}
 
@@ -104,7 +99,7 @@ public class KunsPfBeacon implements Externalizable {
 		imageChunk = Arrays.copyOfRange(data, 2, data.length - 4);
 	}
 
-	private void readBeacon(byte[] data) throws IOException {
+	private void readBeaconInternal(byte[] data) throws IOException {
 		DataInputStream dis = new DataInputStream(new ByteArrayInputStream(data));
 		beaconCounter = dis.readUnsignedShort();
 		solarPanelVoltageX = dis.readUnsignedByte() * 16;
@@ -198,14 +193,6 @@ public class KunsPfBeacon implements Externalizable {
 
 	public void setHeader(Header header) {
 		this.header = header;
-	}
-
-	public byte[] getRawData() {
-		return rawData;
-	}
-
-	public void setRawData(byte[] rawData) {
-		this.rawData = rawData;
 	}
 
 	public int getBeaconCounter() {
@@ -534,22 +521,6 @@ public class KunsPfBeacon implements Externalizable {
 
 	public void setSunSensor5(int sunSensor5) {
 		this.sunSensor5 = sunSensor5;
-	}
-
-	public long getBeginSample() {
-		return beginSample;
-	}
-
-	public void setBeginSample(long beginSample) {
-		this.beginSample = beginSample;
-	}
-
-	public long getBeginMillis() {
-		return beginMillis;
-	}
-
-	public void setBeginMillis(long beginMillis) {
-		this.beginMillis = beginMillis;
 	}
 
 	public float getObcTemp0() {

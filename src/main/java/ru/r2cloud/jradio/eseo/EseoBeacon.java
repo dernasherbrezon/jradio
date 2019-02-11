@@ -4,13 +4,13 @@ import java.io.ByteArrayInputStream;
 import java.io.DataInputStream;
 import java.io.IOException;
 
-import ru.r2cloud.jradio.Externalizable;
+import ru.r2cloud.jradio.Beacon;
 import ru.r2cloud.jradio.ax25.AddressSubfield;
 import ru.r2cloud.jradio.ax25.FrameType;
 import ru.r2cloud.jradio.ax25.SFrameControlType;
 import ru.r2cloud.jradio.ax25.UFrameControlType;
 
-public class EseoBeacon implements Externalizable {
+public class EseoBeacon extends Beacon {
 
 	public static final String FLAG = "0111111001111110";
 
@@ -36,13 +36,8 @@ public class EseoBeacon implements Externalizable {
 	// "S" frame
 	private SFrameControlType sFrameType;
 
-	private long beginSample;
-	private long beginMillis;
-	private byte[] rawData;
-
 	@Override
-	public void readExternal(byte[] data) throws IOException {
-		this.rawData = data;
+	public void readBeacon(byte[] data) throws IOException {
 		if (data.length == 21) {
 			frame = FrameType.U;
 		} else if (data.length == 22) {
@@ -93,30 +88,6 @@ public class EseoBeacon implements Externalizable {
 		default:
 			throw new IllegalArgumentException("unsupported frame type: " + frame);
 		}
-	}
-
-	public long getBeginSample() {
-		return beginSample;
-	}
-
-	public void setBeginSample(long beginSample) {
-		this.beginSample = beginSample;
-	}
-
-	public long getBeginMillis() {
-		return beginMillis;
-	}
-
-	public void setBeginMillis(long beginMillis) {
-		this.beginMillis = beginMillis;
-	}
-
-	public byte[] getRawData() {
-		return rawData;
-	}
-
-	public void setRawData(byte[] rawData) {
-		this.rawData = rawData;
 	}
 
 	public FrameType getFrame() {

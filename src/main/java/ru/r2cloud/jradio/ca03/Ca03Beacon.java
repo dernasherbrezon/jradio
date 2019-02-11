@@ -5,11 +5,11 @@ import java.io.DataInputStream;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 
-import ru.r2cloud.jradio.Externalizable;
+import ru.r2cloud.jradio.Beacon;
 import ru.r2cloud.jradio.csp.Header;
 import ru.r2cloud.jradio.util.StreamUtils;
 
-public class Ca03Beacon implements Externalizable {
+public class Ca03Beacon extends Beacon {
 
 	private Header header;
 	private int[] vboost; // Boost converter voltage in mV
@@ -39,12 +39,8 @@ public class Ca03Beacon implements Externalizable {
 	private float commTemp; // Radio temperature in C
 	private String callsign;
 
-	private byte[] rawData;
-	private long beginSample;
-	private long beginMillis;
-
 	@Override
-	public void readExternal(byte[] data) throws IOException {
+	public void readBeacon(byte[] data) throws IOException {
 		DataInputStream dis = new DataInputStream(new ByteArrayInputStream(data));
 		header = new Header(dis);
 
@@ -115,30 +111,6 @@ public class Ca03Beacon implements Externalizable {
 
 	public void setHeader(Header header) {
 		this.header = header;
-	}
-
-	public byte[] getRawData() {
-		return rawData;
-	}
-
-	public void setRawData(byte[] rawData) {
-		this.rawData = rawData;
-	}
-
-	public long getBeginSample() {
-		return beginSample;
-	}
-
-	public void setBeginSample(long beginSample) {
-		this.beginSample = beginSample;
-	}
-
-	public long getBeginMillis() {
-		return beginMillis;
-	}
-
-	public void setBeginMillis(long beginMillis) {
-		this.beginMillis = beginMillis;
 	}
 
 	public int[] getVboost() {

@@ -2,24 +2,19 @@ package ru.r2cloud.jradio.ao73;
 
 import java.io.IOException;
 
-import ru.r2cloud.jradio.Externalizable;
+import ru.r2cloud.jradio.Beacon;
 import ru.r2cloud.jradio.ao40.Ao40Header;
 import ru.r2cloud.jradio.util.BitInputStream;
 
-public class Ao73Beacon implements Externalizable {
+public class Ao73Beacon extends Beacon {
 
 	private int id;
 	private FrameType frameType;
 	private RealtimeTelemetry realtimeTelemetry;
 	private byte[] payload;
 
-	private byte[] rawData;
-	private long beginSample;
-	private long beginMillis;
-
 	@Override
-	public void readExternal(byte[] data) throws IOException {
-		this.rawData = data;
+	public void readBeacon(byte[] data) throws IOException {
 		BitInputStream dis = new BitInputStream(data);
 		Ao40Header ao40Header = new Ao40Header(dis);
 		id = ao40Header.getId();
@@ -43,30 +38,6 @@ public class Ao73Beacon implements Externalizable {
 
 	public void setFrameType(FrameType frameType) {
 		this.frameType = frameType;
-	}
-
-	public byte[] getRawData() {
-		return rawData;
-	}
-
-	public void setRawData(byte[] rawData) {
-		this.rawData = rawData;
-	}
-
-	public long getBeginSample() {
-		return beginSample;
-	}
-
-	public void setBeginSample(long beginSample) {
-		this.beginSample = beginSample;
-	}
-
-	public long getBeginMillis() {
-		return beginMillis;
-	}
-
-	public void setBeginMillis(long beginMillis) {
-		this.beginMillis = beginMillis;
 	}
 
 	public RealtimeTelemetry getRealtimeTelemetry() {

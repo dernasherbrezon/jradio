@@ -7,13 +7,13 @@ import java.io.IOException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import ru.r2cloud.jradio.Externalizable;
+import ru.r2cloud.jradio.Beacon;
 import ru.r2cloud.jradio.ax25.FrameType;
 import ru.r2cloud.jradio.ax25.Header;
 import ru.r2cloud.jradio.ax25.UFrameControlType;
 import ru.r2cloud.jradio.util.LittleEndianDataInputStream;
 
-public class PwSat2Beacon implements Externalizable {
+public class PwSat2Beacon extends Beacon {
 
 	private static final Logger LOG = LoggerFactory.getLogger(PwSat2Beacon.class);
 
@@ -23,13 +23,8 @@ public class PwSat2Beacon implements Externalizable {
 	private GenericFrame frame;
 	private BeaconFrame beaconFrame;
 
-	private byte[] rawData;
-	private long beginSample;
-	private long beginMillis;
-
 	@Override
-	public void readExternal(byte[] data) throws IOException {
-		this.rawData = data;
+	public void readBeacon(byte[] data) throws IOException {
 		DataInputStream dis = new DataInputStream(new ByteArrayInputStream(data));
 		header = new Header(dis);
 		// only i or U + UI have information
@@ -97,30 +92,6 @@ public class PwSat2Beacon implements Externalizable {
 				break;
 			}
 		}
-	}
-
-	public byte[] getRawData() {
-		return rawData;
-	}
-
-	public void setRawData(byte[] rawData) {
-		this.rawData = rawData;
-	}
-
-	public long getBeginMillis() {
-		return beginMillis;
-	}
-
-	public void setBeginMillis(long beginMillis) {
-		this.beginMillis = beginMillis;
-	}
-
-	public long getBeginSample() {
-		return beginSample;
-	}
-
-	public void setBeginSample(long beginSample) {
-		this.beginSample = beginSample;
 	}
 
 	public int getSeq() {

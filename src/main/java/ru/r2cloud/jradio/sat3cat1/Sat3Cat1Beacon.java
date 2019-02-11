@@ -6,9 +6,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import ru.r2cloud.jradio.Externalizable;
+import ru.r2cloud.jradio.Beacon;
 
-public class Sat3Cat1Beacon implements Externalizable {
+public class Sat3Cat1Beacon extends Beacon {
 
 	private long spacecraftTime;
 	private int stateOfCharge;
@@ -21,13 +21,8 @@ public class Sat3Cat1Beacon implements Externalizable {
 	private List<MetricValue> irradianceSensors = new ArrayList<>();
 	private List<MetricValue> stateOfChargeSensors = new ArrayList<>();
 
-	private long beginSample;
-	private long beginMillis;
-	private byte[] rawData;
-
 	@Override
-	public void readExternal(byte[] data) throws IOException {
-		this.rawData = data;
+	public void readBeacon(byte[] data) throws IOException {
 		DataInputStream dis = new DataInputStream(new ByteArrayInputStream(data));
 		int header = dis.readUnsignedByte();
 		if (header != 0x00) {
@@ -181,26 +176,6 @@ public class Sat3Cat1Beacon implements Externalizable {
 
 	public void setStateOfChargeSensors(List<MetricValue> stateOfChargeSensors) {
 		this.stateOfChargeSensors = stateOfChargeSensors;
-	}
-
-	public long getBeginMillis() {
-		return beginMillis;
-	}
-
-	public void setBeginMillis(long beginMillis) {
-		this.beginMillis = beginMillis;
-	}
-
-	public void setBeginSample(long beginSample) {
-		this.beginSample = beginSample;
-	}
-
-	public long getBeginSample() {
-		return beginSample;
-	}
-
-	public byte[] getRawData() {
-		return rawData;
 	}
 
 }

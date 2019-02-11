@@ -6,23 +6,18 @@ import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.text.ParseException;
 
-import ru.r2cloud.jradio.Externalizable;
+import ru.r2cloud.jradio.Beacon;
 import ru.r2cloud.jradio.ax25.Header;
 import ru.r2cloud.jradio.util.StreamUtils;
 
-public class AstrocastBeacon implements Externalizable {
+public class AstrocastBeacon extends Beacon {
 
 	private Header header;
 	private NMEA0183 gpsBeacon;
 	private Telemetry telemetry;
 
-	private byte[] rawData;
-	private long beginSample;
-	private long beginMillis;
-
 	@Override
-	public void readExternal(byte[] data) throws IOException {
-		this.rawData = data;
+	public void readBeacon(byte[] data) throws IOException {
 		DataInputStream dis = new DataInputStream(new ByteArrayInputStream(data));
 		header = new Header(dis);
 		byte[] strData = StreamUtils.toByteArray(dis);
@@ -66,30 +61,6 @@ public class AstrocastBeacon implements Externalizable {
 
 	public void setTelemetry(Telemetry telemetry) {
 		this.telemetry = telemetry;
-	}
-
-	public byte[] getRawData() {
-		return rawData;
-	}
-
-	public void setRawData(byte[] rawData) {
-		this.rawData = rawData;
-	}
-
-	public long getBeginSample() {
-		return beginSample;
-	}
-
-	public void setBeginSample(long beginSample) {
-		this.beginSample = beginSample;
-	}
-
-	public long getBeginMillis() {
-		return beginMillis;
-	}
-
-	public void setBeginMillis(long beginMillis) {
-		this.beginMillis = beginMillis;
 	}
 
 }
