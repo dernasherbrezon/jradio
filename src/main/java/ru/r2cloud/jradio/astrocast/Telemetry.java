@@ -1,4 +1,4 @@
-package ru.r2cloud.jradio.astrocasat;
+package ru.r2cloud.jradio.astrocast;
 
 import java.text.ParseException;
 import java.util.Calendar;

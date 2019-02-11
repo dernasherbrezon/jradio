@@ -5,6 +5,8 @@ import java.io.IOException;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
+import ru.r2cloud.jradio.blocks.CorrelateAccessCodeTag;
+
 public abstract class BeaconSource<T> implements Iterator<T>, Closeable {
 
 	protected final MessageInput input;
@@ -24,6 +26,13 @@ public abstract class BeaconSource<T> implements Iterator<T>, Closeable {
 				}
 				T beacon = parseBeacon(raw);
 				if (beacon != null) {
+					if (beacon instanceof Beacon) {
+						Beacon realBeacon = (Beacon) beacon;
+						Float beginSample = (Float) input.getContext().getCurrent().get(CorrelateAccessCodeTag.SOURCE_SAMPLE);
+						if (beginSample != null) {
+							realBeacon.setBeginSample(beginSample.longValue());
+						}
+					}
 					current = beacon;
 					return true;
 				}

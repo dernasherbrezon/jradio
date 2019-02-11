@@ -1,10 +1,11 @@
-package ru.r2cloud.jradio.astrocasat;
+package ru.r2cloud.jradio.astrocast;
 
 import java.text.ParseException;
 
 import org.junit.Test;
 
 import ru.r2cloud.jradio.AssertJson;
+import ru.r2cloud.jradio.astrocast.NMEA0183;
 
 public class NMEA0183Test {
 

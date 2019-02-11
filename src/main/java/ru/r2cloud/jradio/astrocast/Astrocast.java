@@ -1,4 +1,4 @@
-package ru.r2cloud.jradio.astrocasat;
+package ru.r2cloud.jradio.astrocast;
 
 import java.io.IOException;
 import java.util.Arrays;
@@ -8,7 +8,6 @@ import org.slf4j.LoggerFactory;
 
 import ru.r2cloud.jradio.BeaconSource;
 import ru.r2cloud.jradio.MessageInput;
-import ru.r2cloud.jradio.blocks.CorrelateAccessCodeTag;
 import ru.r2cloud.jradio.fec.ccsds.UncorrectableException;
 import ru.r2cloud.jradio.fec.rs.bch.ReedSolomon;
 import ru.r2cloud.jradio.util.MathUtils;
@@ -36,10 +35,6 @@ public class Astrocast extends BeaconSource<AstrocastBeacon> {
 			frame = Arrays.copyOfRange(frame, 0, frame.length - 2);
 			AstrocastBeacon result = new AstrocastBeacon();
 			result.readExternal(frame);
-			Float beginSample = (Float) input.getContext().getCurrent().get(CorrelateAccessCodeTag.SOURCE_SAMPLE);
-			if (beginSample != null) {
-				result.setBeginSample(beginSample.longValue());
-			}
 			return result;
 		} catch (UncorrectableException e) {
 			if (LOG.isDebugEnabled()) {

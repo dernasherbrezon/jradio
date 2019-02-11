@@ -6,7 +6,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import ru.r2cloud.jradio.BeaconSource;
-import ru.r2cloud.jradio.blocks.CorrelateAccessCodeTag;
 import ru.r2cloud.jradio.blocks.TaggedStreamToPdu;
 import ru.r2cloud.jradio.fec.Golay;
 import ru.r2cloud.jradio.fec.ccsds.Randomize;
@@ -53,10 +52,6 @@ public class Gomx1 extends BeaconSource<Gomx1Beacon> {
 			}
 			Gomx1Beacon beacon = new Gomx1Beacon();
 			beacon.readExternal(data);
-			Float beginSample = (Float) input.getContext().getCurrent().get(CorrelateAccessCodeTag.SOURCE_SAMPLE);
-			if (beginSample != null) {
-				beacon.setBeginSample(beginSample.longValue());
-			}
 			return beacon;
 		} catch (UncorrectableException e) {
 			if (LOG.isDebugEnabled()) {

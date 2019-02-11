@@ -1,4 +1,4 @@
-package ru.r2cloud.jradio.astrocasat;
+package ru.r2cloud.jradio.astrocast;
 
 import static org.junit.Assert.assertTrue;
 
@@ -7,6 +7,7 @@ import org.junit.Test;
 
 import ru.r2cloud.jradio.AssertJson;
 import ru.r2cloud.jradio.Endianness;
+import ru.r2cloud.jradio.astrocast.Astrocast;
 import ru.r2cloud.jradio.blocks.BinarySlicer;
 import ru.r2cloud.jradio.blocks.ClockRecoveryMM;
 import ru.r2cloud.jradio.blocks.CorrelateAccessCodeTag;
@@ -18,14 +19,14 @@ import ru.r2cloud.jradio.blocks.UnpackedToPacked;
 import ru.r2cloud.jradio.blocks.Window;
 import ru.r2cloud.jradio.source.WavFileSource;
 
-public class AstrocasatTest {
+public class AstrocastTest {
 
 	private Astrocast input;
 
 	@Test
 	public void testDecodeTelemetry() throws Exception {
 		float gainMu = 0.175f * 5;
-		WavFileSource source = new WavFileSource(AstrocasatTest.class.getClassLoader().getResourceAsStream("astrocast.wav"));
+		WavFileSource source = new WavFileSource(AstrocastTest.class.getClassLoader().getResourceAsStream("astrocast.wav"));
 		MultiplyConst mc = new MultiplyConst(source, 10.0f);
 		LowPassFilter lpf = new LowPassFilter(mc, 5, 1.0, 1000, 600, Window.WIN_HAMMING, 6.76);
 		ClockRecoveryMM clockRecovery = new ClockRecoveryMM(lpf, lpf.getContext().getSampleRate() / 1200, (float) (0.25 * gainMu * gainMu), 0.5f, gainMu, 0.005f);

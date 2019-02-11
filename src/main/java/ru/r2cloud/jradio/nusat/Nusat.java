@@ -7,7 +7,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import ru.r2cloud.jradio.BeaconSource;
-import ru.r2cloud.jradio.blocks.CorrelateAccessCodeTag;
 import ru.r2cloud.jradio.blocks.TaggedStreamToPdu;
 import ru.r2cloud.jradio.crc.Crc8;
 import ru.r2cloud.jradio.fec.ccsds.UncorrectableException;
@@ -43,10 +42,6 @@ public class Nusat extends BeaconSource<NusatBeacon> {
 			}
 			NusatBeacon beacon = new NusatBeacon();
 			beacon.readExternal(packet);
-			Float beginSample = (Float) input.getContext().getCurrent().get(CorrelateAccessCodeTag.SOURCE_SAMPLE);
-			if (beginSample != null) {
-				beacon.setBeginSample(beginSample.longValue());
-			}
 			return beacon;
 		} catch (UncorrectableException e) {
 			if (LOG.isDebugEnabled()) {

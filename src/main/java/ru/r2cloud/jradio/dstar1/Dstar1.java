@@ -7,11 +7,10 @@ import org.slf4j.LoggerFactory;
 
 import ru.r2cloud.jradio.BeaconSource;
 import ru.r2cloud.jradio.MessageInput;
-import ru.r2cloud.jradio.blocks.CorrelateAccessCodeTag;
 import ru.r2cloud.jradio.fec.ccsds.UncorrectableException;
 
 public class Dstar1 extends BeaconSource<Dstar1Beacon> {
-	
+
 	private static final Logger LOG = LoggerFactory.getLogger(Dstar1.class);
 
 	public Dstar1(MessageInput input) {
@@ -24,17 +23,14 @@ public class Dstar1 extends BeaconSource<Dstar1Beacon> {
 		try {
 			beacon.readExternal(raw);
 		} catch (IOException e) {
+			if (e.getCause() != null && e.getCause() instanceof UncorrectableException) {
+				if (LOG.isDebugEnabled()) {
+					LOG.debug("unable to decode reed solomon: " + e.getMessage());
+				}
+				return null;
+			}
 			LOG.error("unable to parse beacon", e);
 			return null;
-		} catch (UncorrectableException e) {
-			if (LOG.isDebugEnabled()) {
-				LOG.debug("unable to decode reed solomon: " + e.getMessage());
-			}
-			return null;
-		}
-		Float beginSample = (Float) input.getContext().getCurrent().get(CorrelateAccessCodeTag.SOURCE_SAMPLE);
-		if (beginSample != null) {
-			beacon.setBeginSample(beginSample.longValue());
 		}
 		return beacon;
 	}

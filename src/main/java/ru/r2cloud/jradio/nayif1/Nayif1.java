@@ -7,7 +7,6 @@ import org.slf4j.LoggerFactory;
 
 import ru.r2cloud.jradio.MessageInput;
 import ru.r2cloud.jradio.ao40.Ao40BeaconSource;
-import ru.r2cloud.jradio.blocks.CorrelateAccessCodeTag;
 
 public class Nayif1 extends Ao40BeaconSource<Nayif1Beacon> {
 
@@ -25,10 +24,6 @@ public class Nayif1 extends Ao40BeaconSource<Nayif1Beacon> {
 		} catch (IOException e) {
 			LOG.error("unable to parse beacon", e);
 			return null;
-		}
-		Float beginSample = (Float) input.getContext().getCurrent().get(CorrelateAccessCodeTag.SOURCE_SAMPLE);
-		if (beginSample != null) {
-			result.setBeginSample(beginSample.longValue());
 		}
 		return result;
 	}

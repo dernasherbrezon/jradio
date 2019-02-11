@@ -1,13 +1,16 @@
 package ru.r2cloud.jradio.blocks;
 
 import java.io.IOException;
+import java.util.UUID;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import ru.r2cloud.jradio.ByteInput;
 import ru.r2cloud.jradio.Context;
+import ru.r2cloud.jradio.FloatValueSource;
 import ru.r2cloud.jradio.MessageInput;
+import ru.r2cloud.jradio.Tag;
 import ru.r2cloud.jradio.crc.Crc16Ccitt;
 
 public class HdlcReceiver implements MessageInput {
@@ -66,6 +69,13 @@ public class HdlcReceiver implements MessageInput {
 							ones = 0;
 							continue;
 						}
+						Tag tag = new Tag();
+						tag.setId(UUID.randomUUID().toString());
+						FloatValueSource currentSample = getContext().getCurrentSample();
+						if (currentSample != null) {
+							tag.put(CorrelateAccessCodeTag.SOURCE_SAMPLE, currentSample.getValue());
+						}
+						getContext().put(tag.getId(), tag);
 						return frame;
 					}
 

@@ -7,7 +7,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import ru.r2cloud.jradio.BeaconSource;
-import ru.r2cloud.jradio.blocks.CorrelateAccessCodeTag;
 import ru.r2cloud.jradio.blocks.TaggedStreamToPdu;
 import ru.r2cloud.jradio.crc.Crc16Arc;
 import ru.r2cloud.jradio.fec.ccsds.UncorrectableException;
@@ -42,10 +41,6 @@ public class At03 extends BeaconSource<At03Beacon> {
 			}
 			At03Beacon beacon = new At03Beacon();
 			beacon.readExternal(Arrays.copyOfRange(data, 0, 46));
-			Float beginSample = (Float) input.getContext().getCurrent().get(CorrelateAccessCodeTag.SOURCE_SAMPLE);
-			if (beginSample != null) {
-				beacon.setBeginSample(beginSample.longValue());
-			}
 			return beacon;
 		} catch (UncorrectableException e) {
 			if (LOG.isDebugEnabled()) {

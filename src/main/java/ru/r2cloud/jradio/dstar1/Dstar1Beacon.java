@@ -4,26 +4,32 @@ import java.io.ByteArrayInputStream;
 import java.io.DataInputStream;
 import java.io.IOException;
 
+import ru.r2cloud.jradio.Beacon;
 import ru.r2cloud.jradio.fec.ccsds.UncorrectableException;
 import ru.r2cloud.jradio.tubix20.CMX909bBeacon;
 import ru.r2cloud.jradio.tubix20.CMX909bHeader;
 import ru.r2cloud.jradio.tubix20.MobitexRandomizer;
 
-public class Dstar1Beacon {
+public class Dstar1Beacon extends Beacon {
 
 	private CMX909bHeader header;
 	private PayloadData payload;
 
-	private long beginSample;
-	private long beginMillis;
-	private byte[] rawData;
-
-	public void readExternal(byte[] data) throws IOException, UncorrectableException {
-		this.rawData = data;
+	@Override
+	public void readBeacon(byte[] data) throws IOException {
 		DataInputStream dis = new DataInputStream(new ByteArrayInputStream(data));
-		header = new CMX909bHeader(dis);
+		try {
+			header = new CMX909bHeader(dis);
+		} catch (UncorrectableException e) {
+			throw new IOException(e);
+		}
 		MobitexRandomizer randomizer = new MobitexRandomizer();
-		byte[] dataFromBlocks = CMX909bBeacon.readDataBlocks(header, randomizer, dis);
+		byte[] dataFromBlocks;
+		try {
+			dataFromBlocks = CMX909bBeacon.readDataBlocks(header, randomizer, dis);
+		} catch (UncorrectableException e) {
+			throw new IOException(e);
+		}
 		if (dataFromBlocks != null) {
 			payload = new PayloadData(dataFromBlocks);
 		}
@@ -43,30 +49,6 @@ public class Dstar1Beacon {
 
 	public void setHeader(CMX909bHeader header) {
 		this.header = header;
-	}
-
-	public long getBeginSample() {
-		return beginSample;
-	}
-
-	public void setBeginSample(long beginSample) {
-		this.beginSample = beginSample;
-	}
-
-	public long getBeginMillis() {
-		return beginMillis;
-	}
-
-	public void setBeginMillis(long beginMillis) {
-		this.beginMillis = beginMillis;
-	}
-
-	public byte[] getRawData() {
-		return rawData;
-	}
-
-	public void setRawData(byte[] rawData) {
-		this.rawData = rawData;
 	}
 
 }

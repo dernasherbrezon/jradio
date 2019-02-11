@@ -7,7 +7,6 @@ import org.slf4j.LoggerFactory;
 
 import ru.r2cloud.jradio.BeaconSource;
 import ru.r2cloud.jradio.blocks.AdditiveScrambler;
-import ru.r2cloud.jradio.blocks.CorrelateAccessCodeTag;
 import ru.r2cloud.jradio.blocks.TaggedStreamToPdu;
 import ru.r2cloud.jradio.fec.ccsds.UncorrectableException;
 import ru.r2cloud.jradio.fec.rs.bch.ReedSolomon;
@@ -30,10 +29,6 @@ public class Sat3Cat1 extends BeaconSource<Sat3Cat1Beacon> {
 			byte[] data = rs.decode(raw);
 			Sat3Cat1Beacon beacon = new Sat3Cat1Beacon();
 			beacon.readExternal(data);
-			Float beginSample = (Float) input.getContext().getCurrent().get(CorrelateAccessCodeTag.SOURCE_SAMPLE);
-			if (beginSample != null) {
-				beacon.setBeginSample(beginSample.longValue());
-			}
 			return beacon;
 		} catch (UncorrectableException e) {
 			if (LOG.isDebugEnabled()) {

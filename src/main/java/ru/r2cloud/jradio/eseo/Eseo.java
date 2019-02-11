@@ -7,7 +7,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import ru.r2cloud.jradio.BeaconSource;
-import ru.r2cloud.jradio.blocks.CorrelateAccessCodeTag;
 import ru.r2cloud.jradio.blocks.TaggedStreamToPdu;
 import ru.r2cloud.jradio.crc.Crc16Ccitt;
 import ru.r2cloud.jradio.fec.ccsds.ReedSolomon;
@@ -58,10 +57,6 @@ public class Eseo extends BeaconSource<EseoBeacon> {
 				byte[] packet = Arrays.copyOfRange(data, 0, data.length - 2);
 				EseoBeacon beacon = new EseoBeacon();
 				beacon.readExternal(packet);
-				Float beginSample = (Float) input.getContext().getCurrent().get(CorrelateAccessCodeTag.SOURCE_SAMPLE);
-				if (beginSample != null) {
-					beacon.setBeginSample(beginSample.longValue());
-				}
 				return beacon;
 			} catch (UncorrectableException e) {
 				if (LOG.isDebugEnabled()) {
