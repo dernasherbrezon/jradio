@@ -4,13 +4,14 @@ import java.io.Closeable;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 
 import ru.r2cloud.jradio.util.IOUtils;
 
 public class LRPTInputStream implements Iterator<VCDU>, Closeable {
 
 	private final InputStream input;
-	private VCDU currentVcdu;
+	private VCDU currentVcdu = null;
 	// previous is used for restoring partial packets
 	private VCDU previous = null;
 
@@ -33,12 +34,16 @@ public class LRPTInputStream implements Iterator<VCDU>, Closeable {
 			previous = currentVcdu;
 			return true;
 		} catch (IOException e) {
+			currentVcdu = null;
 			return false;
 		}
 	}
 
 	@Override
 	public VCDU next() {
+		if (currentVcdu == null) {
+			throw new NoSuchElementException();
+		}
 		return currentVcdu;
 	}
 

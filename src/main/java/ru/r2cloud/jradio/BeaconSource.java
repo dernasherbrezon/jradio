@@ -3,11 +3,12 @@ package ru.r2cloud.jradio;
 import java.io.Closeable;
 import java.io.IOException;
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 
 public abstract class BeaconSource<T> implements Iterator<T>, Closeable {
 
 	protected final MessageInput input;
-	private T current;
+	private T current = null;
 
 	public BeaconSource(MessageInput input) {
 		this.input = input;
@@ -26,8 +27,8 @@ public abstract class BeaconSource<T> implements Iterator<T>, Closeable {
 					current = beacon;
 					return true;
 				}
-				continue;
 			} catch (IOException e) {
+				current = null;
 				return false;
 			}
 		}
@@ -37,6 +38,9 @@ public abstract class BeaconSource<T> implements Iterator<T>, Closeable {
 
 	@Override
 	public T next() {
+		if (current == null) {
+			throw new NoSuchElementException();
+		}
 		return current;
 	}
 

@@ -1,6 +1,7 @@
 package ru.r2cloud.jradio.meteor;
 
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 
 import org.jtransforms.dct.DoubleDCT_2D;
 import org.slf4j.Logger;
@@ -26,6 +27,7 @@ public class MeteorImagePacket implements Iterator<int[]> {
 	private int[] currentPixels = new int[64];
 	private int[] worksheetQuantizationTable;
 	private final double[] dct = new double[8 * 8];
+	private boolean hasNext = false;
 
 	private final static int MAX_MCU_PER_PACKET = 14;
 	private final static byte[] initial_quantization_table = new byte[] { 16, 11, 10, 16, 24, 40, 51, 61, 12, 12, 14, 19, 26, 58, 60, 55, 14, 13, 16, 24, 40, 57, 69, 56, 14, 17, 22, 29, 51, 87, 80, 62, 18, 22, 37, 56, 68, 109, 103, 77, 24, 35, 55, 64, 81, 104, 113, 92, 49, 64, 78, 87, 103, 121, 120, 101, 72, 92, 95, 98, 112, 100, 103, 99 };
@@ -68,6 +70,11 @@ public class MeteorImagePacket implements Iterator<int[]> {
 
 	@Override
 	public boolean hasNext() {
+		hasNext = hasNextInternal();
+		return hasNext;
+	}
+
+	private boolean hasNextInternal() {
 		if (currentMcu >= MAX_MCU_PER_PACKET) {
 			return false;
 		}
@@ -186,6 +193,9 @@ public class MeteorImagePacket implements Iterator<int[]> {
 
 	@Override
 	public int[] next() {
+		if (!hasNext) {
+			throw new NoSuchElementException();
+		}
 		return currentPixels;
 	}
 

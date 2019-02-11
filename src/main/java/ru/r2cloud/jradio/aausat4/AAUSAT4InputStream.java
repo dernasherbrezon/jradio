@@ -4,6 +4,7 @@ import java.io.Closeable;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 
 import ru.r2cloud.jradio.util.IOUtils;
 
@@ -12,7 +13,7 @@ public class AAUSAT4InputStream implements Iterator<AAUSAT4Beacon>, Closeable {
 	private final InputStream is;
 	private final byte readBuffer[] = new byte[8];
 
-	private AAUSAT4Beacon current;
+	private AAUSAT4Beacon current = null;
 
 	public AAUSAT4InputStream(InputStream is) {
 		this.is = is;
@@ -23,6 +24,7 @@ public class AAUSAT4InputStream implements Iterator<AAUSAT4Beacon>, Closeable {
 		try {
 			int fsm = is.read();
 			if (fsm < 0) {
+				current = null;
 				return false;
 			}
 			switch (fsm) {
@@ -46,12 +48,16 @@ public class AAUSAT4InputStream implements Iterator<AAUSAT4Beacon>, Closeable {
 				throw new IllegalArgumentException("unsupported fsm found: " + fsm);
 			}
 		} catch (IOException e) {
+			current = null;
 			return false;
 		}
 	}
 
 	@Override
 	public AAUSAT4Beacon next() {
+		if (current == null) {
+			throw new NoSuchElementException();
+		}
 		return current;
 	}
 
