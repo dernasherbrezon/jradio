@@ -127,14 +127,14 @@ public class KunsPfBeacon implements Externalizable {
 		txCount = dis.readUnsignedShort();
 		rxCount = dis.readUnsignedShort();
 
-		obcTemp0 = dis.readUnsignedByte() - 100;
-		obcTemp1 = dis.readUnsignedByte() - 100;
+		obcTemp0 = dis.readUnsignedByte() - 100.0f;
+		obcTemp1 = dis.readUnsignedByte() - 100.0f;
 
 		angVelocityMag = dis.readUnsignedByte();
 
-		magnetometerX = dis.readByte() * 6;
-		magnetometerY = dis.readByte() * 6;
-		magnetometerZ = dis.readByte() * 6;
+		magnetometerX = dis.readByte() * 6.0f;
+		magnetometerY = dis.readByte() * 6.0f;
+		magnetometerZ = dis.readByte() * 6.0f;
 
 		mainAxisOfRotation = dis.readUnsignedByte();
 	}

@@ -50,8 +50,8 @@ public class ViterbiSoft {
 		// use flat array for perf reasons
 		// flat array will store decisions 0 and 1 one by one
 		for (int i = 0; i < data.length; i += 2) {
-			sym0 = 128 + data[i]; // convert to unsigned
-			sym1 = 128 + data[i + 1]; // convert to unsigned
+			sym0 = 128L + data[i]; // convert to unsigned
+			sym1 = 128L + data[i + 1]; // convert to unsigned
 			decisions[i + 0] = 0;
 			decisions[i + 1] = 0;
 			for (int b = 0; b < 32; b++) {
