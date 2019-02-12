@@ -19,6 +19,7 @@ import ru.r2cloud.jradio.blocks.QuadratureDemodulation;
 import ru.r2cloud.jradio.blocks.TaggedStreamToPdu;
 import ru.r2cloud.jradio.blocks.UnpackedToPacked;
 import ru.r2cloud.jradio.blocks.Window;
+import ru.r2cloud.jradio.gomx1.AX100Decoder;
 import ru.r2cloud.jradio.source.SigSource;
 import ru.r2cloud.jradio.source.WavFileSource;
 import ru.r2cloud.jradio.source.Waveform;
@@ -46,7 +47,8 @@ public class Au02Test {
 		CorrelateAccessCodeTag correlateTag = new CorrelateAccessCodeTag(bs, 4, "11000011101010100110011001010101", false);
 		// in actual decoder should be 255 instead of 120
 		TaggedStreamToPdu pdu = new TaggedStreamToPdu(new UnpackedToPacked(new FixedLengthTagger(correlateTag, (120 + 3) * 8), 1, Endianness.GR_MSB_FIRST, Byte.class));
-		input = new Au02(pdu);
+		AX100Decoder ax100 = new AX100Decoder(pdu, false, true, true);
+		input = new Au02(ax100);
 		assertTrue(input.hasNext());
 		AssertJson.assertObjectsEqual("Au02Beacon.json", input.next());
 	}

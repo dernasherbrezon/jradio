@@ -46,7 +46,8 @@ public class Gomx1Test {
 		BinarySlicer bs = new BinarySlicer(clockRecovery);
 		CorrelateAccessCodeTag correlateTag = new CorrelateAccessCodeTag(bs, 4, "11000011101010100110011001010101", false);
 		TaggedStreamToPdu pdu = new TaggedStreamToPdu(new UnpackedToPacked(new FixedLengthTagger(correlateTag, (255 + 3) * 8), 1, Endianness.GR_MSB_FIRST, Byte.class));
-		input = new Gomx1(pdu);
+		AX100Decoder ax100 = new AX100Decoder(pdu, false, false, false);
+		input = new Gomx1(ax100);
 		assertTrue(input.hasNext());
 		AssertJson.assertObjectsEqual("Gomx1Beacon.json", input.next());
 	}

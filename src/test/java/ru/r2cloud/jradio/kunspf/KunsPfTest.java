@@ -16,6 +16,7 @@ import ru.r2cloud.jradio.blocks.MultiplyConst;
 import ru.r2cloud.jradio.blocks.TaggedStreamToPdu;
 import ru.r2cloud.jradio.blocks.UnpackedToPacked;
 import ru.r2cloud.jradio.blocks.Window;
+import ru.r2cloud.jradio.gomx1.AX100Decoder;
 import ru.r2cloud.jradio.source.WavFileSource;
 
 public class KunsPfTest {
@@ -34,7 +35,8 @@ public class KunsPfTest {
 		// 73 choosen as an estimated packet length in test.
 		// in real prod, it better to have max - 255
 		TaggedStreamToPdu pdu = new TaggedStreamToPdu(new UnpackedToPacked(new FixedLengthTagger(correlateTag, 73 * 8), 1, Endianness.GR_MSB_FIRST, Byte.class));
-		input = new KunsPf(pdu);
+		AX100Decoder ax100 = new AX100Decoder(pdu, false, true, true);
+		input = new KunsPf(ax100);
 		assertTrue(input.hasNext());
 		AssertJson.assertObjectsEqual("KunsPfBeacon.json", input.next());
 	}
