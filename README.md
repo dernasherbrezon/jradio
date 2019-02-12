@@ -11,6 +11,7 @@ All blocks meant to be binary compatible with gnuradio versions. This will ensur
 
   * AdditiveScrambler
   * AGC
+  * [AX100Decoder](https://gomspace.com/UserFiles/Subsystems/datasheet/gs-ds-nanocom-ax100-33.pdf). Out-of-tree block. Support ASM + Golay mode.
   * BinarySlicer
   * [ClockRecoveryMM](https://www.tablix.org/~avian/blog/archives/2015/03/notes_on_m_m_clock_recovery/) and [ClockRecoveryMMComplex](https://www.tablix.org/~avian/blog/archives/2015/03/notes_on_m_m_clock_recovery/)
   * ComplexConjugate
