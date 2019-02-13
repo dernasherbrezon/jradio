@@ -4,7 +4,7 @@ import java.util.LinkedList;
 
 public class Viterbi {
 	
-	private static final int TAIL = 2;
+	public static final int TAIL = 2;
 	private byte[] metrics1 = new byte[64];
 	private byte[] metrics2 = new byte[64];
 

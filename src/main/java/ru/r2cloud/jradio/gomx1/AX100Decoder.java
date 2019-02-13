@@ -56,6 +56,18 @@ public class AX100Decoder implements MessageInput {
 		if (frameLength + 3 > raw.length) {
 			throw new IOException("not enough data: " + raw.length + " expected: " + frameLength);
 		}
+		int minFrameLength = 0;
+		if (rsFlag > 0 || forceReedSolomon) {
+			minFrameLength = 255 - 222;
+		}
+		if (viterbiFlag > 0 || forceViterbi) {
+			minFrameLength = minFrameLength * 2 + ru.r2cloud.jradio.fec.Viterbi.TAIL;
+		}
+		// sometimes frameLength might be corrupted and less than min frame length.
+		// fail fast here, rather than do computational heavy FEC
+		if (frameLength < minFrameLength) {
+			throw new UncorrectableException("frameLength is " + frameLength + " min expected: " + minFrameLength);
+		}
 		byte[] data = new byte[frameLength];
 		System.arraycopy(raw, 3, data, 0, frameLength);
 		if (viterbiFlag > 0 || forceViterbi) {
