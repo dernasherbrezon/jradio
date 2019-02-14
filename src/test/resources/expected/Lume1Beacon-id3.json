@@ -1,0 +1,92 @@
+{
+  "header": {
+    "priority": "CSP_PRIO_NORM",
+    "source": 1,
+    "destination": 15,
+    "sourcePort": 14,
+    "destinationPort": 29,
+    "ffrag": false,
+    "fhmac": false,
+    "fxtea": false,
+    "frdp": false,
+    "fcrc32": false
+  },
+  "versionNumber": 0,
+  "spacecraftId": 65,
+  "virtualChannelId": 1,
+  "virtualChannelFrameCounter": 214,
+  "firstHeaderPointer": 0,
+  "emptyFrame": false,
+  "ocf": true,
+  "sequenceFlags": 3,
+  "fixedLengthFrame": false,
+  "primaryHeader": {
+    "packetVersion": 0,
+    "packetType": 0,
+    "secondaryHeader": true,
+    "applicationProcessId": 1,
+    "sequenceFlag": 3,
+    "packetName": 16383,
+    "packetDataLength": 90
+  },
+  "secondaryHeader": {
+    "pusVersion": 1,
+    "timeReference": 0,
+    "serviceType": 3,
+    "messageSubtype": 25,
+    "typeCounter": 35177,
+    "destinationId": 1000,
+    "day": 17939,
+    "millisecondsOfTheDay": 37187006
+  },
+  "id": 3,
+  "b3TtcGssb": {
+    "nx": {
+      "rebootCount": 159,
+      "currentState": 0,
+      "antennaState": 1,
+      "attemptsTotal": 17
+    },
+    "ny": {
+      "rebootCount": 160,
+      "currentState": 0,
+      "antennaState": 1,
+      "attemptsTotal": 13
+    },
+    "px": {
+      "rebootCount": 159,
+      "currentState": 0,
+      "antennaState": 1,
+      "attemptsTotal": 8
+    },
+    "py": {
+      "rebootCount": 159,
+      "currentState": 0,
+      "antennaState": 1,
+      "attemptsTotal": 14
+    },
+    "tempBrd": 17.300001,
+    "lastRferr": 1881,
+    "lastRssi": -98,
+    "totRxBytes": 632912,
+    "rxBytes": 2864,
+    "totRxCount": 67921,
+    "rxCount": 179,
+    "totTxBytes": 141252786,
+    "txBytes": 4476924,
+    "totTxCount": 809239,
+    "txCount": 25145,
+    "tempPa": 21.800001,
+    "bootCause": 1,
+    "bgndRssi": -96,
+    "activeConf": 1,
+    "bootCount": 777,
+    "lastContact": 3120391459,
+    "txDuty": 6
+  },
+  "packetErrors": 60475,
+  "frameErrors": 0,
+  "frameErrorControl": 11,
+  "beginSample": 0,
+  "beginMillis": 0
+}
