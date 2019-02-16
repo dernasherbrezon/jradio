@@ -28,4 +28,8 @@ public class Crc16Cc11xx {
 		}
 		return crc;
 	}
+	
+	private Crc16Cc11xx() {
+		//do nothing
+	}
 }

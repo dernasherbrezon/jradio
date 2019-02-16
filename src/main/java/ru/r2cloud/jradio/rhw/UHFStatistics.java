@@ -11,8 +11,8 @@ public class UHFStatistics {
 	private int lastBootReason;
 	private boolean memoryViolationResetHasOccured;
 	private short internalTemp;
-	private long current_csp_packet_number;
-	private long allowed_relay_packet_count;
+	private long currentCspPacketNumber;
+	private long allowedRelayPacketCount;
 	private long rxCspFrameCount;
 	private long rxRelayFrameCount;
 	private long txCspFrameCount;
@@ -25,8 +25,8 @@ public class UHFStatistics {
 		lastBootReason = dis.readUnsignedShort();
 		memoryViolationResetHasOccured = dis.readUnsignedByte() > 0;
 		internalTemp = dis.readShort();
-		current_csp_packet_number = dis.readUnsignedInt();
-		allowed_relay_packet_count = dis.readUnsignedInt();
+		currentCspPacketNumber = dis.readUnsignedInt();
+		allowedRelayPacketCount = dis.readUnsignedInt();
 		rxCspFrameCount = dis.readUnsignedInt();
 		rxRelayFrameCount = dis.readUnsignedInt();
 		txCspFrameCount = dis.readUnsignedInt();
@@ -74,22 +74,6 @@ public class UHFStatistics {
 		this.internalTemp = internalTemp;
 	}
 
-	public long getCurrent_csp_packet_number() {
-		return current_csp_packet_number;
-	}
-
-	public void setCurrent_csp_packet_number(long current_csp_packet_number) {
-		this.current_csp_packet_number = current_csp_packet_number;
-	}
-
-	public long getAllowed_relay_packet_count() {
-		return allowed_relay_packet_count;
-	}
-
-	public void setAllowed_relay_packet_count(long allowed_relay_packet_count) {
-		this.allowed_relay_packet_count = allowed_relay_packet_count;
-	}
-
 	public long getRxCspFrameCount() {
 		return rxCspFrameCount;
 	}
@@ -128,6 +112,22 @@ public class UHFStatistics {
 
 	public void setTxFifoErrorCount(long txFifoErrorCount) {
 		this.txFifoErrorCount = txFifoErrorCount;
+	}
+
+	public long getCurrentCspPacketNumber() {
+		return currentCspPacketNumber;
+	}
+
+	public void setCurrentCspPacketNumber(long currentCspPacketNumber) {
+		this.currentCspPacketNumber = currentCspPacketNumber;
+	}
+
+	public long getAllowedRelayPacketCount() {
+		return allowedRelayPacketCount;
+	}
+
+	public void setAllowedRelayPacketCount(long allowedRelayPacketCount) {
+		this.allowedRelayPacketCount = allowedRelayPacketCount;
 	}
 
 }

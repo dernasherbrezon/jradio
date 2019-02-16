@@ -81,7 +81,7 @@ public class Lume1Beacon extends Beacon {
 			b5Temps = new B5Temps(bis);
 			break;
 		default:
-			LOG.info("unknown id: " + id);
+			LOG.info("unknown id: {}", id);
 			int userDataSize = primaryHeader.getPacketDataLength() + 1;
 			if (primaryHeader.isSecondaryHeader()) {
 				userDataSize -= SecondaryHeader.LENGTH_BYTES;

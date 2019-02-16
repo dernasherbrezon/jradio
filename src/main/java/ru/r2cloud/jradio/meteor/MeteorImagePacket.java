@@ -45,7 +45,7 @@ public class MeteorImagePacket implements Iterator<int[]> {
 	// map category (array index) to the number of bits in codeword. used to skip detected codeword and extract diff value
 	private static int[] codeLengthLookup = new int[] { 2, 3, 3, 3, 3, 3, 4, 5, 6, 7, 8, 9 };
 
-	private static final DoubleDCT_2D DCT = new DoubleDCT_2D(8, 8);
+	private static final DoubleDCT_2D DCTTransform = new DoubleDCT_2D(8, 8);
 
 	static {
 		setupAcCodes();
@@ -128,7 +128,7 @@ public class MeteorImagePacket implements Iterator<int[]> {
 		for (int i = 0; i < zigzagDct.length; i++) {
 			dct[i] = zigzagDct[zigzag_indexes[i]] * worksheetQuantizationTable[i];
 		}
-		DCT.inverse(dct, true);
+		DCTTransform.inverse(dct, true);
 		for (int i = 0; i < dct.length; i++) {
 			currentPixels[i] = (int) (Math.round(dct[i] + 128));
 			if (currentPixels[i] < 0) {
@@ -150,7 +150,7 @@ public class MeteorImagePacket implements Iterator<int[]> {
 			// this is fine, since not all bits will be used for matching codeword
 			// stuff the overflow with zeroes
 			if (currentByteIndex >= packet.getUserData().length) {
-				result = (result << 1) | 0;
+				result = result << 1;
 				continue;
 			}
 			int bit;

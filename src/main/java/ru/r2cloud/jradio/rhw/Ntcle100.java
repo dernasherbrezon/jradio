@@ -14,12 +14,12 @@ public class Ntcle100 {
 	// R_REF in Hello World
 	private static final int R_REF = 100000;
 
-	public static float calculate(int adc_val) {
-		if (adc_val == ADC_MAX_VALUE) {
+	public static float calculate(int adc) {
+		if (adc == ADC_MAX_VALUE) {
 			return Float.NaN;
 		}
-		float adc_ratio = (float)adc_val / ADC_MAX_VALUE;
-		float r2 = adc_ratio * TEMP_CALIB_R1_OHM / (1 - adc_ratio);
+		float adcRatio = (float)adc / ADC_MAX_VALUE;
+		float r2 = adcRatio * TEMP_CALIB_R1_OHM / (1 - adcRatio);
 		if (r2 == 0) {
 			return Float.NaN;
 		}

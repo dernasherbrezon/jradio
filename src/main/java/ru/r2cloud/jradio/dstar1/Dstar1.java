@@ -23,7 +23,7 @@ public class Dstar1 extends BeaconSource<Dstar1Beacon> {
 		try {
 			beacon.readExternal(raw);
 		} catch (IOException e) {
-			if (e.getCause() != null && e.getCause() instanceof UncorrectableException) {
+			if (e.getCause() instanceof UncorrectableException) {
 				if (LOG.isDebugEnabled()) {
 					LOG.debug("unable to decode reed solomon: " + e.getMessage());
 				}
