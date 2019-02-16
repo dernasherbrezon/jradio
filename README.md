@@ -13,6 +13,7 @@ All blocks meant to be binary compatible with gnuradio versions. This will ensur
   * AGC
   * [AX100Decoder](https://gomspace.com/UserFiles/Subsystems/datasheet/gs-ds-nanocom-ax100-33.pdf). Out-of-tree block. Support ASM + Golay mode.
   * BinarySlicer
+  * Cc11xxReceiver. Out-of-tree block. Decodes frames produced by [cc11xx](http://www.ti.com/product/CC1101/description). Based on [gr-cc11xx](https://github.com/andrepuschmann/gr-cc11xx)
   * [ClockRecoveryMM](https://www.tablix.org/~avian/blog/archives/2015/03/notes_on_m_m_clock_recovery/) and [ClockRecoveryMMComplex](https://www.tablix.org/~avian/blog/archives/2015/03/notes_on_m_m_clock_recovery/)
   * ComplexConjugate
   * ComplexToReal
@@ -86,8 +87,9 @@ Using the blocks above, you could decode signals from the following satellites:
   * AO-73 (NORAD 39444). Decode telemetry beacon and aggregate payloads. Based on [gr-satellites](https://github.com/daniestevez/gr-satellites). See the pipeline at the [Ao73Test](https://github.com/dernasherbrezon/jradio/blob/master/src/test/java/ru/r2cloud/jradio/ao73/Ao73Test.java)
   * Nayif1 (NORAD 42017). Decode telemetry beacon and aggregate payloads. Based on [gr-satellites](https://github.com/daniestevez/gr-satellites). See the pipeline at the [Nayif1Test](https://github.com/dernasherbrezon/jradio/blob/master/src/test/java/ru/r2cloud/jradio/nayif1/Nayif1Test.java)
   * Jy1sat (NORAD 43803). Decode telemetry beacon and aggregate payloads. Based on [gr-satellites](https://github.com/daniestevez/gr-satellites). See the pipeline at the [Nayif1Test](https://github.com/dernasherbrezon/jradio/blob/master/src/test/java/ru/r2cloud/jradio/jy1sat/Jy1satTest.java)
-  * D-Star ONE (NORAD 43881). Decode telemetry beacon and aggregate payloads. Based on [gr-satellites](https://github.com/daniestevez/gr-satellites). See the pipeline at the [Dstar1Test](https://github.com/dernasherbrezon/jradio/blob/master/src/test/java/ru/r2cloud/jradio/dstar1/Dstar1Test.java)
-  * Lume-1 (NORAD 43908) and AISTechSat 2(NORAD 43768). Decode telemetry beacon and aggregate payloads. Based on [gr-satellites](https://github.com/daniestevez/gr-satellites). See the pipeline at the [Lume1Test](https://github.com/dernasherbrezon/jradio/blob/master/src/test/java/ru/r2cloud/jradio/lume1/Lume1Test.java)
+  * D-Star ONE (NORAD 43881). Decode telemetry beacon. Based on [gr-satellites](https://github.com/daniestevez/gr-satellites). See the pipeline at the [Dstar1Test](https://github.com/dernasherbrezon/jradio/blob/master/src/test/java/ru/r2cloud/jradio/dstar1/Dstar1Test.java)
+  * Lume-1 (NORAD 43908) and AISTechSat 2(NORAD 43768). Decode telemetry beacon. Based on [gr-satellites](https://github.com/daniestevez/gr-satellites). See the pipeline at the [Lume1Test](https://github.com/dernasherbrezon/jradio/blob/master/src/test/java/ru/r2cloud/jradio/lume1/Lume1Test.java)
+  * Reactor Hello World (NORAD 43743). Decode telemetry beacon. Based on [gr-satellites](https://github.com/daniestevez/gr-satellites), [rhw-ham](https://github.com/ReaktorSpaceLab/rhw-ham). See the pipeline at the [ReaktorHelloWorldTest](https://github.com/dernasherbrezon/jradio/blob/master/src/test/java/ru/r2cloud/jradio/rhw/ReaktorHelloWorldTest.java)
   
   
 ## Doppler correction

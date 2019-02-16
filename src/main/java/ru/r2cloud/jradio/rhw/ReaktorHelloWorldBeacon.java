@@ -29,6 +29,9 @@ public class ReaktorHelloWorldBeacon extends Beacon {
 	private int uhfFailures;
 	private int deploymentSensed;
 	private int deploymentRounds;
+
+	private UHFStatistics uhfStatistics;
+
 	private long packetNumber;
 	private long signature;
 
@@ -44,18 +47,22 @@ public class ReaktorHelloWorldBeacon extends Beacon {
 			dis.skipBytes(1); // skip type
 			header = new Header(dis);
 			cspLength = dis.readUnsignedShort();
-			// all other fields are little endian
 			LittleEndianDataInputStream ldis = new LittleEndianDataInputStream(dis);
-			timestamp = ldis.readUnsignedInt();
-			canStatistics = new CanStatistics(ldis);
-			epsStatistics = new EpsStatistics(ldis);
-			adcData = new ADCData(ldis);
-			mpptStatistics = new MpptStatistics(ldis);
-			powerStatistics = new PowerStatistics(ldis);
-			uhfFailures = ldis.readUnsignedShort();
-			int raw = ldis.readUnsignedByte();
-			deploymentSensed = (raw & 0b1111);
-			deploymentRounds = raw >> 4;
+			// all other fields are little endian
+			if (cspLength == 98) {
+				timestamp = ldis.readUnsignedInt();
+				canStatistics = new CanStatistics(ldis);
+				epsStatistics = new EpsStatistics(ldis);
+				adcData = new ADCData(ldis);
+				mpptStatistics = new MpptStatistics(ldis);
+				powerStatistics = new PowerStatistics(ldis);
+				uhfFailures = ldis.readUnsignedShort();
+				int raw = ldis.readUnsignedByte();
+				deploymentSensed = (raw & 0b1111);
+				deploymentRounds = raw >> 4;
+			} else {
+				uhfStatistics = new UHFStatistics(ldis);
+			}
 
 			// trailing data in big endian
 			packetNumber = StreamUtils.readUnsignedInt(dis);
@@ -184,6 +191,14 @@ public class ReaktorHelloWorldBeacon extends Beacon {
 
 	public void setSignature(long signature) {
 		this.signature = signature;
+	}
+	
+	public UHFStatistics getUhfStatistics() {
+		return uhfStatistics;
+	}
+	
+	public void setUhfStatistics(UHFStatistics uhfStatistics) {
+		this.uhfStatistics = uhfStatistics;
 	}
 
 }
