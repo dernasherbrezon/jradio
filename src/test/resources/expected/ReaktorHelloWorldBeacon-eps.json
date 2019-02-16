@@ -1,0 +1,111 @@
+{
+  "type": "CSP",
+  "header": {
+    "priority": "CSP_PRIO_CRITICAL",
+    "source": 3,
+    "destination": 16,
+    "sourcePort": 3,
+    "destinationPort": 3,
+    "ffrag": false,
+    "fhmac": false,
+    "fxtea": false,
+    "frdp": false,
+    "fcrc32": false
+  },
+  "cspLength": 98,
+  "timestamp": 1543567489,
+  "canStatistics": {
+    "rxFrameCount": 221356,
+    "txFrameCount": 3504759,
+    "errorCount": 143
+  },
+  "epsStatistics": {
+    "bootCount": 94,
+    "periodicBootCount": 10,
+    "bootReasons": [
+      2,
+      6,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      6,
+      2,
+      2
+    ],
+    "lastBootReason": 6,
+    "totalUptimeSeconds": 94942,
+    "uptimeSeconds": 198,
+    "memoryViolationResetHasOccured": false,
+    "internalTemp": -2
+  },
+  "adcData": {
+    "spxpCurr": 2.85,
+    "spxnCurr": 133.95,
+    "spypCurr": 211.84999,
+    "spynCurr": 43.7,
+    "spXV": 5595.22,
+    "spYV": 4784.5503,
+    "batCurr": -91.2,
+    "batV": 8332.0,
+    "uhfCurr3v3": 32.55,
+    "uhfCurr5v": 3.0,
+    "payloadCurr": 288.99002,
+    "adcsCurr": -233.59,
+    "gpsCurr": 45.022003,
+    "obcCurr": -136.87,
+    "sns3v3": 3332.0,
+    "sns5v": 4992.0,
+    "sns12v1": 11.4,
+    "sns12v2": 0.0,
+    "tempSns1": 11.600525,
+    "tempSns2": 8.15387
+  },
+  "mpptStatistics": {
+    "currentMpptValue1": 1973,
+    "currentMpptValue2": 2205
+  },
+  "powerStatistics": {
+    "target": {
+      "payload": true,
+      "gps": true,
+      "obc": false,
+      "adcs": false,
+      "batteryHeater1": false,
+      "batteryHeater2": false,
+      "charging": true,
+      "uhfA": true,
+      "uhfB": false,
+      "toggle3v3": true,
+      "toggle5v": true,
+      "antennaDeployment1": false,
+      "antennaDeployment2": false
+    },
+    "actual": {
+      "payload": true,
+      "gps": true,
+      "obc": false,
+      "adcs": false,
+      "batteryHeater1": false,
+      "batteryHeater2": false,
+      "charging": true,
+      "uhfA": true,
+      "uhfB": false,
+      "toggle3v3": true,
+      "toggle5v": true,
+      "antennaDeployment1": false,
+      "antennaDeployment2": false
+    },
+    "state": false
+  },
+  "uhfFailures": 4,
+  "deploymentSensed": 15,
+  "deploymentRounds": 3,
+  "packetNumber": 539165734,
+  "signature": 4252675071,
+  "beginSample": 0,
+  "beginMillis": 0
+}
