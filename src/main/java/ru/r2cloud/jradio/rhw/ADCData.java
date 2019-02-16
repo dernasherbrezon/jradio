@@ -80,7 +80,7 @@ public class ADCData {
 	}
 
 	private static float adc5vToMilliVolt(int adc) {
-		return (adc * ADC_REFERENCE_5V) / ADC_MAX_VALUE;
+		return ((float)adc * ADC_REFERENCE_5V) / ADC_MAX_VALUE;
 	}
 
 	private static float adcToSolarPanelVoltageMilliVolt(int adc) {
@@ -100,7 +100,7 @@ public class ADCData {
 	}
 
 	private static float adc3v3ToMilliVolt(int adc) {
-		return (adc * ADC_REFERENCE_3V3) / ADC_MAX_VALUE;
+		return ((float)adc * ADC_REFERENCE_3V3) / ADC_MAX_VALUE;
 	}
 
 	private static float adcToCom5vCurrentMilliAmper(int adc) {
