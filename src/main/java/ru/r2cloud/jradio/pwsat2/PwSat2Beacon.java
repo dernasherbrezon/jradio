@@ -93,7 +93,7 @@ public class PwSat2Beacon extends Beacon {
 				fileList = new FileListFrame(littleEndian);
 				break;
 			default:
-				LOG.info("unknown apid: " + apid);
+				LOG.info("unknown apid: {}", apid);
 				break;
 			}
 		}
