@@ -5,7 +5,7 @@ import java.util.Map;
 
 public enum CCMode {
 
-	BootMode(0b00), FlightMode(0b01), SafeMode(0b10), unavailable(0b11);
+	BOOT_MODE(0b00), FLIGHT_MODE(0b01), SAFE_MODE(0b10), UNAVAILABLE(0b11);
 
 	private final int code;
 	private static final Map<Integer, CCMode> typeByCode = new HashMap<>();

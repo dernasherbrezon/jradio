@@ -4,19 +4,19 @@ public class CCStatus {
 
 	private CCMode mode;
 	private boolean mcTimeoutFlag;
-	private boolean RBF;
-	private boolean EN_I2C;
-	private boolean Bat1ConnectedToPV1;
-	private boolean Bat2ConnectedToPV2;
+	private boolean rbf;
+	private boolean enI2c;
+	private boolean bat1ConnectedToPV1;
+	private boolean bat2ConnectedToPV2;
 	private boolean b3V3BackupOn;
 
 	public CCStatus(int b) {
 		mode = CCMode.valueOfCode((b >> 6) & 0b11);
 		mcTimeoutFlag = ((b >> 5) & 1) > 0;
-		RBF = ((b >> 4) & 1) > 0;
-		EN_I2C = ((b >> 3) & 1) > 0;
-		Bat1ConnectedToPV1 = ((b >> 2) & 1) > 0;
-		Bat2ConnectedToPV2 = ((b >> 1) & 1) > 0;
+		rbf = ((b >> 4) & 1) > 0;
+		enI2c = ((b >> 3) & 1) > 0;
+		bat1ConnectedToPV1 = ((b >> 2) & 1) > 0;
+		bat2ConnectedToPV2 = ((b >> 1) & 1) > 0;
 		b3V3BackupOn = (b & 1) > 0;
 	}
 
@@ -36,36 +36,36 @@ public class CCStatus {
 		this.mcTimeoutFlag = mcTimeoutFlag;
 	}
 
-	public boolean isRBF() {
-		return RBF;
+	public boolean isRbf() {
+		return rbf;
 	}
 
-	public void setRBF(boolean rBF) {
-		RBF = rBF;
+	public void setRbf(boolean rbf) {
+		this.rbf = rbf;
 	}
 
-	public boolean isEN_I2C() {
-		return EN_I2C;
+	public boolean isEnI2c() {
+		return enI2c;
 	}
 
-	public void setEN_I2C(boolean eN_I2C) {
-		EN_I2C = eN_I2C;
+	public void setEnI2c(boolean enI2c) {
+		this.enI2c = enI2c;
 	}
 
 	public boolean isBat1ConnectedToPV1() {
-		return Bat1ConnectedToPV1;
+		return bat1ConnectedToPV1;
 	}
 
 	public void setBat1ConnectedToPV1(boolean bat1ConnectedToPV1) {
-		Bat1ConnectedToPV1 = bat1ConnectedToPV1;
+		this.bat1ConnectedToPV1 = bat1ConnectedToPV1;
 	}
 
 	public boolean isBat2ConnectedToPV2() {
-		return Bat2ConnectedToPV2;
+		return bat2ConnectedToPV2;
 	}
 
 	public void setBat2ConnectedToPV2(boolean bat2ConnectedToPV2) {
-		Bat2ConnectedToPV2 = bat2ConnectedToPV2;
+		this.bat2ConnectedToPV2 = bat2ConnectedToPV2;
 	}
 
 	public boolean isB3V3BackupOn() {

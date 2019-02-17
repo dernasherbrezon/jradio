@@ -16,7 +16,7 @@
     "batteryTemp": 9,
     "latchUpCount5v": 0,
     "latchUpCount33v": 0,
-    "resetCause": "Otherreason",
+    "resetCause": "OTHER_REASON",
     "powerPointTrackingMode": "MPPT",
     "sunSensorXP": 157.4098,
     "sunSensorYP": 157.8256,

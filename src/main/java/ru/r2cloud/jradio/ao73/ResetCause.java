@@ -5,7 +5,7 @@ import java.util.Map;
 
 public enum ResetCause {
 
-	PowerOnReset(0), ExternalReset(1), BrownOutReset(2), WDTreset(3), JTAGreset(4), Otherreason(5);
+	POWER_ON_RESET(0), EXTERNAL_RESET(1), BROWN_OUT_RESET(2), WDT_RESET(3), JTAG_RESET(4), OTHER_REASON(5);
 
 	private final int code;
 	private static final Map<Integer, ResetCause> typeByCode = new HashMap<>();
