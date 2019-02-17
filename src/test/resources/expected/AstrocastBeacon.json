@@ -16,7 +16,7 @@
   },
   "gpsBeacon": {
     "source": "GP",
-    "time": "Aug 27, 2016 10:05:16 PM",
+    "time": 1472331916038,
     "status": true,
     "latitude": 5133.82,
     "latitudeDirection": "N",
@@ -28,7 +28,7 @@
     "magneticVariationDirection": "W"
   },
   "telemetry": {
-    "time": "Dec 29, 2018 6:53:52 PM",
+    "time": 1546109632537,
     "voltage": 3.112,
     "current": 771.0,
     "temperature": 7.0,

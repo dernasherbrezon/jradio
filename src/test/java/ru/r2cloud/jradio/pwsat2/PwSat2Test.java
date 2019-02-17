@@ -46,7 +46,7 @@ public class PwSat2Test {
 		assertTrue(input.hasNext());
 		AssertJson.assertObjectsEqual("PwSat2Beacon.json", input.next());
 	}
-	
+
 	@After
 	public void stop() throws Exception {
 		if (input != null) {

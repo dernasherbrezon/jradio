@@ -5,83 +5,111 @@ import static org.junit.Assert.fail;
 
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.Map.Entry;
+import java.lang.reflect.Array;
+import java.lang.reflect.Method;
+import java.lang.reflect.Modifier;
+import java.util.Date;
+import java.util.List;
 
 import com.google.gson.Gson;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
+import com.google.gson.GsonBuilder;
 
 public class AssertJson {
 
-	private static final Gson GSON = new Gson();
+	private static final Gson GSON = new GsonBuilder().registerTypeAdapter(Date.class, new DateAdapter()).create();
 
 	public static void assertObjectsEqual(String jsonFilename, Object actualObject) {
 		assertNotNull(actualObject);
-		JsonElement expected;
+		Object expected;
 		try (InputStreamReader reader = new InputStreamReader(AssertJson.class.getResourceAsStream("/expected/" + jsonFilename))) {
-			expected = GSON.fromJson(reader, JsonElement.class);
+			expected = GSON.fromJson(reader, actualObject.getClass());
 		} catch (IOException e) {
 			throw new RuntimeException(e);
 		}
-		JsonElement actual = GSON.toJsonTree(actualObject);
-		StringBuilder message = new StringBuilder();
 
-		assertElements(message, "", expected, actual);
+		StringBuilder message = new StringBuilder();
+		assertElements(message, "", expected, actualObject);
 
 		if (message.length() > 0) {
 			fail(message.toString());
 		}
 	}
 
-	private static void assertElements(StringBuilder message, String fieldName, JsonElement expected, JsonElement actual) {
+	private static void assertElements(StringBuilder message, String fieldName, Object expected, Object actual) {
+		if (expected == null && actual != null) {
+			message.append("expected " + fieldName + " null. got: " + actual);
+			return;
+		}
+		if (expected != null && actual == null) {
+			message.append("expected " + fieldName + " non-null. got null");
+			return;
+		}
+		// could be &&, but using || to be on the safe side
+		if (expected == null || actual == null) {
+			return;
+		}
 		if (expected.getClass() != actual.getClass()) {
 			message.append("invalid type. " + fieldName + " expected: " + expected.getClass() + " actual: " + actual.getClass() + "\n");
 			return;
 		}
-		if (expected.isJsonNull()) {
-			return;
-		}
-		if (expected.isJsonArray()) {
-			JsonArray expectedArray = expected.getAsJsonArray();
-			JsonArray actualArray = actual.getAsJsonArray();
-			if (expectedArray.size() != actualArray.size()) {
-				message.append("invalid array size. " + fieldName + " expected: " + expectedArray.size() + " actual: " + actualArray.size() + "\n");
-			} else {
-				for (int i = 0; i < expectedArray.size(); i++) {
-					JsonElement expectedElement = expectedArray.get(i);
-					JsonElement actualElement = actualArray.get(i);
-					assertElements(message, "index: " + i, expectedElement, actualElement);
-				}
+		if (expected.getClass().isPrimitive()) {
+			if (!expected.equals(actual)) {
+				message.append(fieldName + " expected: " + expected + " actual: " + actual + "\n");
 			}
-			return;
-		}
-		if (expected.isJsonPrimitive()) {
-			String expectedValue = expected.getAsString();
-			String actualValue = actual.getAsString();
-			if (!expectedValue.equals(actualValue)) {
-				message.append(fieldName + " expected: " + expectedValue + " actual: " + actualValue + "\n");
-			}
-			return;
-		}
-		if (expected.isJsonObject()) {
-			JsonObject expectedObject = expected.getAsJsonObject();
-			JsonObject actualObject = actual.getAsJsonObject();
-			// if expected has more fields, then actual missing fields will be reported
-			if (expectedObject.size() < actualObject.size()) {
-				message.append("invalid size of fields. " + fieldName + " expected: " + expectedObject.size() + " actual: " + actualObject.size() + "\n");
-			} else {
-				for (Entry<String, JsonElement> cur : expectedObject.entrySet()) {
-					JsonElement actualField = actualObject.get(cur.getKey());
-					if (actualField == null) {
-						message.append(fieldName + " missing field: " + cur.getKey() + "\n");
-						continue;
+		} else if ((expected.getClass().getPackage() != null && expected.getClass().getPackage().getName().startsWith("java"))) {
+			if (expected instanceof List) {
+				@SuppressWarnings("rawtypes")
+				List expectedList = (List) expected;
+				@SuppressWarnings("rawtypes")
+				List actualList = (List) actual;
+				if (expectedList.size() != actualList.size()) {
+					message.append("invalid list size. " + fieldName + " expected: " + expectedList.size() + " actual: " + actualList.size() + "\n");
+				} else {
+					for (int i = 0; i < expectedList.size(); i++) {
+						assertElements(message, fieldName + " - " + i, expectedList.get(i), actualList.get(i));
 					}
-					assertElements(message, cur.getKey(), cur.getValue(), actualField);
+				}
+			} else {
+				if (!expected.equals(actual)) {
+					message.append(fieldName + " expected: " + expected + " actual: " + actual + "\n");
 				}
 			}
-			return;
+		} else if (expected.getClass().isArray()) {
+			int expectedLength = Array.getLength(expected);
+			int actualLength = Array.getLength(actual);
+			if (expectedLength != actualLength) {
+				message.append("invalid array size. " + fieldName + " expected: " + expectedLength + " actual: " + actualLength + "\n");
+			} else {
+				for (int i = 0; i < expectedLength; i++) {
+					Object expectedValue = Array.get(expected, i);
+					Object actualValue = Array.get(actual, i);
+					assertElements(message, fieldName + " - " + i, expectedValue, actualValue);
+				}
+			}
+		} else {
+			Method[] methods = expected.getClass().getDeclaredMethods();
+			for (Method m : methods) {
+				if (!Modifier.isPublic(m.getModifiers())) {
+					continue;
+				}
+				String curField;
+				if (m.getName().startsWith("get")) {
+					curField = m.getName().substring(3);
+				} else if (m.getName().startsWith("is")) {
+					curField = m.getName().substring(2);
+				} else {
+					continue;
+				}
+				try {
+					Object actualValue = m.invoke(actual);
+					Object expectedValue = m.invoke(expected);
+					assertElements(message, curField, expectedValue, actualValue);
+				} catch (Exception e) {
+					e.printStackTrace();
+					fail(e.getMessage());
+				}
+			}
 		}
-		throw new IllegalArgumentException("unknown json type: " + expected);
 	}
+
 }

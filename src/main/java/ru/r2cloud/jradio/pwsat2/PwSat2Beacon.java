@@ -20,8 +20,13 @@ public class PwSat2Beacon extends Beacon {
 	private Header header;
 	private DownlinkApid apid;
 	private int seq;
-	private GenericFrame frame;
+	private GenericFrame genericFrame;
+	private ErrorCountersFrame errorCounters;
+	private BootSlotsInfoFrame bootSlots;
 	private BeaconFrame beaconFrame;
+	private FileRemoveFrame fileRemove;
+	private FileSendFrame fileSend;
+	private FileListFrame fileList;
 
 	@Override
 	public void readBeacon(byte[] data) throws IOException {
@@ -70,22 +75,22 @@ public class PwSat2Beacon extends Beacon {
 			case MemoryContent:
 			case BeaconError:
 			case StopAntennaDeployment:
-				frame = new GenericFrame(littleEndian);
+				genericFrame = new GenericFrame(littleEndian);
 				break;
 			case ErrorCounters:
-				frame = new ErrorCountersFrame(littleEndian);
+				errorCounters = new ErrorCountersFrame(littleEndian);
 				break;
 			case BootSlotsInfo:
-				frame = new BootSlotsInfoFrame(littleEndian);
+				bootSlots = new BootSlotsInfoFrame(littleEndian);
 				break;
 			case FileRemove:
-				frame = new FileRemoveFrame(littleEndian);
+				fileRemove = new FileRemoveFrame(littleEndian);
 				break;
 			case FileSend:
-				frame = new FileSendFrame(littleEndian);
+				fileSend = new FileSendFrame(littleEndian);
 				break;
 			case FileList:
-				frame = new FileListFrame(littleEndian);
+				fileList = new FileListFrame(littleEndian);
 				break;
 			default:
 				LOG.info("unknown apid: " + apid);
@@ -102,27 +107,76 @@ public class PwSat2Beacon extends Beacon {
 		this.seq = seq;
 	}
 
-	public GenericFrame getFrame() {
-		return frame;
-	}
-
-	public void setFrame(GenericFrame frame) {
-		this.frame = frame;
-	}
-	
 	public DownlinkApid getApid() {
 		return apid;
 	}
-	
+
 	public void setApid(DownlinkApid apid) {
 		this.apid = apid;
 	}
-	
+
 	public BeaconFrame getBeaconFrame() {
 		return beaconFrame;
 	}
-	
+
 	public void setBeaconFrame(BeaconFrame beaconFrame) {
 		this.beaconFrame = beaconFrame;
 	}
+
+	public Header getHeader() {
+		return header;
+	}
+
+	public void setHeader(Header header) {
+		this.header = header;
+	}
+
+	public GenericFrame getGenericFrame() {
+		return genericFrame;
+	}
+
+	public void setGenericFrame(GenericFrame genericFrame) {
+		this.genericFrame = genericFrame;
+	}
+
+	public ErrorCountersFrame getErrorCounters() {
+		return errorCounters;
+	}
+
+	public void setErrorCounters(ErrorCountersFrame errorCounters) {
+		this.errorCounters = errorCounters;
+	}
+
+	public BootSlotsInfoFrame getBootSlots() {
+		return bootSlots;
+	}
+
+	public void setBootSlots(BootSlotsInfoFrame bootSlots) {
+		this.bootSlots = bootSlots;
+	}
+
+	public FileRemoveFrame getFileRemove() {
+		return fileRemove;
+	}
+
+	public void setFileRemove(FileRemoveFrame fileRemove) {
+		this.fileRemove = fileRemove;
+	}
+
+	public FileSendFrame getFileSend() {
+		return fileSend;
+	}
+
+	public void setFileSend(FileSendFrame fileSend) {
+		this.fileSend = fileSend;
+	}
+
+	public FileListFrame getFileList() {
+		return fileList;
+	}
+
+	public void setFileList(FileListFrame fileList) {
+		this.fileList = fileList;
+	}
+
 }

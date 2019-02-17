@@ -7,7 +7,6 @@ import org.junit.Test;
 
 import ru.r2cloud.jradio.AssertJson;
 import ru.r2cloud.jradio.Endianness;
-import ru.r2cloud.jradio.astrocast.Astrocast;
 import ru.r2cloud.jradio.blocks.BinarySlicer;
 import ru.r2cloud.jradio.blocks.ClockRecoveryMM;
 import ru.r2cloud.jradio.blocks.CorrelateAccessCodeTag;

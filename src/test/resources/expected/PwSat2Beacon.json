@@ -16,7 +16,7 @@
   },
   "apid": "FileList",
   "seq": 0,
-  "frame": {
+  "fileList": {
     "files": [
       {
         "name": "pld_1_5.jpg",
