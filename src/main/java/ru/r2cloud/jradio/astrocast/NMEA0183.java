@@ -5,6 +5,7 @@ import java.text.DecimalFormatSymbols;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.TimeZone;
 import java.util.regex.Pattern;
 
 public class NMEA0183 {
@@ -28,6 +29,7 @@ public class NMEA0183 {
 			throw new ParseException("invalid number of fields: " + parts.length, 0);
 		}
 		SimpleDateFormat sdf = new SimpleDateFormat("ddMMyy HHmmss.SSS");
+		sdf.setTimeZone(TimeZone.getTimeZone("UTC"));
 		time = sdf.parse(parts[9] + " " + parts[1]);
 		DecimalFormat format = createFormatter("##.##");
 		source = NMEA0183Source.valueOf(parts[0].substring(1, 3));
