@@ -7,7 +7,7 @@
     "IdleRSSI": 32,
     "RXRSSI": 0,
     "AntennaDep": false,
-    "mode": "Normal",
+    "mode": "NORMAL",
     "TCompOn": true,
     "ResetCounter": 8,
     "UplinkError": 1,

@@ -5,7 +5,7 @@ import java.util.Map;
 
 public enum StacieOperationalMode {
 
-	Normal(0), Sleep(2), Beacon(3), Deployment(4), Shutdown(8);
+	NORMAL(0), SLEEP(2), BEACON(3), DEPLOYMENT(4), SHUTDOWN(8);
 	
 	private final int code;
 	private static final Map<Integer, StacieOperationalMode> typeByCode = new HashMap<>();

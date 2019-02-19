@@ -41,7 +41,7 @@
       "Bat2ConnectedToPV2": true,
       "is3V3On": true,
       "is5VOn": false,
-      "mode": "FlightMode"
+      "mode": "FLIGHT"
     },
     "Status3": {
       "is3V3BurstModeOn": false,

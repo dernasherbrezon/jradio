@@ -5,7 +5,7 @@ import java.util.Map;
 
 public enum Status2Mode {
 
-	DebugMode(0b000), BootMode(0b001), FlightMode(0b010), PowerDownMode(0b011), SafeMode(0b100);
+	DEBUG(0b000), BOOT(0b001), FLIGHT(0b010), POWER_DOWN(0b011), SAFE(0b100);
 
 	private final int code;
 	private static final Map<Integer, Status2Mode> typeByCode = new HashMap<>();
