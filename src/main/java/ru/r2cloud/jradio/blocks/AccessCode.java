@@ -42,7 +42,6 @@ public class AccessCode {
 		retVal = (retVal + (retVal >> 8));
 		retVal = (retVal + (retVal >> 16)) & 0x0000003F;
 		long retVal64 = retVal;
-		// retVal = valueVector[1];
 		retVal = (int) ((value & 0xFFFFFFFF00000000l) >> 31);
 		retVal = (retVal & 0x55555555) + (retVal >> 1 & 0x55555555);
 		retVal = (retVal & 0x33333333) + (retVal >> 2 & 0x33333333);
