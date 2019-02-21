@@ -352,8 +352,5 @@ public class ReedSolomon {
 		return result;
 	}
 
-	// private static int mod255(int x) {
-	// return x % 255;
-	// }
 
 }
