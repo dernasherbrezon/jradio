@@ -14,7 +14,7 @@ public class RealtimeTelemetry {
 	private int batteryVoltage;
 	private int totalSystemCurrent;
 	private int rebootCount;
-	private int EPSSoftwareErrors;
+	private int ePsSoftwareErrors;
 	private int boostConverterTempX;
 	private int boostConverterTempY;
 	private int boostConverterTempZ;
@@ -84,7 +84,7 @@ public class RealtimeTelemetry {
 		batteryVoltage = dis.readUnsignedShort();
 		totalSystemCurrent = dis.readUnsignedShort();
 		rebootCount = dis.readUnsignedShort();
-		EPSSoftwareErrors = dis.readUnsignedShort();
+		ePsSoftwareErrors = dis.readUnsignedShort();
 		boostConverterTempX = dis.readUnsignedByte();
 		boostConverterTempY = dis.readUnsignedByte();
 		boostConverterTempZ = dis.readUnsignedByte();
@@ -220,11 +220,11 @@ public class RealtimeTelemetry {
 	}
 
 	public int getEPSSoftwareErrors() {
-		return EPSSoftwareErrors;
+		return ePsSoftwareErrors;
 	}
 
 	public void setEPSSoftwareErrors(int ePSSoftwareErrors) {
-		EPSSoftwareErrors = ePSSoftwareErrors;
+		ePsSoftwareErrors = ePSSoftwareErrors;
 	}
 
 	public int getBoostConverterTempX() {

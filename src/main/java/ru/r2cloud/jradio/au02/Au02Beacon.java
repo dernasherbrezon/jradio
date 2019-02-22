@@ -18,13 +18,13 @@ public class Au02Beacon extends Beacon {
 	private String callsign;
 	private byte flags;
 	private int batt_voltage;
-	private float current_in;
-	private float current_out;
-	private float rail3_current;
-	private float rail5_current;
-	private byte com_temp;
-	private byte eps_temp;
-	private byte bat_temp;
+	private float currentIn;
+	private float currentOut;
+	private float rail3Current;
+	private float rail5Current;
+	private byte comTemp;
+	private byte epsTemp;
+	private byte batTemp;
 
 	@Override
 	public void readBeacon(byte[] data) throws IOException {
@@ -40,13 +40,13 @@ public class Au02Beacon extends Beacon {
 		callsign = new String(callsignBuf, StandardCharsets.ISO_8859_1);
 		flags = dis.readByte();
 		batt_voltage = dis.readUnsignedByte() * 16 + 4420;
-		current_in = (float) (dis.readUnsignedByte() * 2700.0 / 255.0);
-		current_out = (float) (dis.readUnsignedByte() * 4000.0 / 255.0);
-		rail3_current = (float) (dis.readUnsignedByte() * 5500.0 / 255.0);
-		rail5_current = (float) (dis.readUnsignedByte() * 4500.0 / 255.0);
-		com_temp = dis.readByte();
-		eps_temp = dis.readByte();
-		bat_temp = dis.readByte();
+		currentIn = (float) (dis.readUnsignedByte() * 2700.0 / 255.0);
+		currentOut = (float) (dis.readUnsignedByte() * 4000.0 / 255.0);
+		rail3Current = (float) (dis.readUnsignedByte() * 5500.0 / 255.0);
+		rail5Current = (float) (dis.readUnsignedByte() * 4500.0 / 255.0);
+		comTemp = dis.readByte();
+		epsTemp = dis.readByte();
+		batTemp = dis.readByte();
 	}
 
 	public Header getHeader() {
@@ -89,60 +89,60 @@ public class Au02Beacon extends Beacon {
 		this.batt_voltage = batt_voltage;
 	}
 
-	public float getCurrent_in() {
-		return current_in;
+	public float getCurrentIn() {
+		return currentIn;
 	}
 
-	public void setCurrent_in(float current_in) {
-		this.current_in = current_in;
+	public void setCurrentIn(float currentIn) {
+		this.currentIn = currentIn;
 	}
 
-	public float getCurrent_out() {
-		return current_out;
+	public float getCurrentOut() {
+		return currentOut;
 	}
 
-	public void setCurrent_out(float current_out) {
-		this.current_out = current_out;
+	public void setCurrentOut(float currentOut) {
+		this.currentOut = currentOut;
 	}
 
-	public float getRail3_current() {
-		return rail3_current;
+	public float getRail3Current() {
+		return rail3Current;
 	}
 
-	public void setRail3_current(float rail3_current) {
-		this.rail3_current = rail3_current;
+	public void setRail3Current(float rail3Current) {
+		this.rail3Current = rail3Current;
 	}
 
-	public float getRail5_current() {
-		return rail5_current;
+	public float getRail5Current() {
+		return rail5Current;
 	}
 
-	public void setRail5_current(float rail5_current) {
-		this.rail5_current = rail5_current;
+	public void setRail5Current(float rail5Current) {
+		this.rail5Current = rail5Current;
 	}
 
-	public byte getCom_temp() {
-		return com_temp;
+	public byte getComTemp() {
+		return comTemp;
 	}
 
-	public void setCom_temp(byte com_temp) {
-		this.com_temp = com_temp;
+	public void setComTemp(byte comTemp) {
+		this.comTemp = comTemp;
 	}
 
-	public byte getEps_temp() {
-		return eps_temp;
+	public byte getEpsTemp() {
+		return epsTemp;
 	}
 
-	public void setEps_temp(byte eps_temp) {
-		this.eps_temp = eps_temp;
+	public void setEpsTemp(byte epsTemp) {
+		this.epsTemp = epsTemp;
 	}
 
-	public byte getBat_temp() {
-		return bat_temp;
+	public byte getBatTemp() {
+		return batTemp;
 	}
 
-	public void setBat_temp(byte bat_temp) {
-		this.bat_temp = bat_temp;
+	public void setBatTemp(byte batTemp) {
+		this.batTemp = batTemp;
 	}
 
 }
