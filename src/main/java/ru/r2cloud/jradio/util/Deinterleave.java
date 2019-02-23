@@ -24,4 +24,14 @@ public class Deinterleave {
 		return deinterleaved;
 	}
 
+	public static byte[] deinterleaveBitsUnpacked(byte[] data, int offset, int cols, int rows) {
+		byte[] result = new byte[cols * rows];
+		for (int i = 0; i < cols; i++) {
+			for (int j = 0; j < rows; j++) {
+				result[j * cols + i] = data[offset + i * rows + j];
+			}
+		}
+		return result;
+	}
+
 }
