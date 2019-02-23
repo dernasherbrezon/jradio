@@ -5,6 +5,7 @@ import static org.junit.Assert.assertTrue;
 import org.junit.After;
 import org.junit.Test;
 
+import ru.r2cloud.jradio.AssertJson;
 import ru.r2cloud.jradio.blocks.BinarySlicer;
 import ru.r2cloud.jradio.blocks.ClockRecoveryMM;
 import ru.r2cloud.jradio.blocks.CorrelateAccessCodeTag;
@@ -24,7 +25,7 @@ public class SnetTest {
 
 	@Test
 	public void testDecodeTelemetry() throws Exception {
-		float gainMu = 0.175f * 3;
+		float gainMu = 0.175f;
 		WavFileSource source = new WavFileSource(SnetTest.class.getClassLoader().getResourceAsStream("snet_a.wav"));
 		FloatToComplex fc = new FloatToComplex(source);
 		float[] taps = Firdes.lowPass(1.0, source.getContext().getSampleRate(), 1200, 400, Window.WIN_HAMMING, 6.76);
@@ -37,6 +38,7 @@ public class SnetTest {
 		TaggedStreamToPdu pdu = new TaggedStreamToPdu(new FixedLengthTagger(correlateTag, 512 * 8));
 		input = new Snet(pdu);
 		assertTrue(input.hasNext());
+		AssertJson.assertObjectsEqual("SnetBeacon.json", input.next());
 	}
 
 	@After
