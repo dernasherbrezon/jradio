@@ -37,12 +37,12 @@ public class AAUSAT4Beacon extends Beacon {
 		}
 		DataInputStream data = new DataInputStream(new ByteArrayInputStream(Arrays.copyOfRange(rawData, 2 + Header.LENGTH, endIndex)));
 		int valid = data.readUnsignedByte();
-		boolean epsValid = (valid & (1 << 0)) > 0 ? true : false;
-		boolean comValid = (valid & (1 << 1)) > 0 ? true : false;
-		boolean adcs1Valid = (valid & (1 << 2)) > 0 ? true : false;
-		boolean adcs2Valid = (valid & (1 << 3)) > 0 ? true : false;
-		boolean ais1Valid = (valid & (1 << 4)) > 0 ? true : false;
-		boolean ais2Valid = (valid & (1 << 5)) > 0 ? true : false;
+		boolean epsValid = (valid & (1 << 0)) > 0;
+		boolean comValid = (valid & (1 << 1)) > 0;
+		boolean adcs1Valid = (valid & (1 << 2)) > 0;
+		boolean adcs2Valid = (valid & (1 << 3)) > 0;
+		boolean ais1Valid = (valid & (1 << 4)) > 0;
+		boolean ais2Valid = (valid & (1 << 5)) > 0;
 
 		if (epsValid) {
 			eps = new EPS(data);

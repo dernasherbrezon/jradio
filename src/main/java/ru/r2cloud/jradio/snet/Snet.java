@@ -156,7 +156,7 @@ public class Snet extends BeaconSource<SnetBeacon> {
 			throw new UncorrectableException("unsupported aiTypeSrc: " + header.getAiTypeSrc());
 		}
 
-		if (pdu == null) {
+		if (pdu == null && dataBitsPerCodeword != 0) {
 			int dataBytesPerBlock = CODEWORDS_PER_BLOCK * dataBitsPerCodeword / 8;
 			int numBlocks = (int) Math.ceil((float) header.getPduLength() / dataBytesPerBlock);
 			// correct errors BCH
