@@ -1,9 +1,13 @@
 package ru.r2cloud.jradio.snet;
 
+import java.io.ByteArrayInputStream;
+import java.io.DataInputStream;
 import java.io.IOException;
 
 import ru.r2cloud.jradio.Beacon;
 import ru.r2cloud.jradio.util.BitInputStream;
+import ru.r2cloud.jradio.util.LittleEndianBitInputStream;
+import ru.r2cloud.jradio.util.LittleEndianDataInputStream;
 
 public class SnetBeacon extends Beacon {
 
@@ -14,12 +18,14 @@ public class SnetBeacon extends Beacon {
 
 	@Override
 	public void readBeacon(byte[] data) throws IOException {
-		BitInputStream bis = new BitInputStream(data);
+		DataInputStream dis = new DataInputStream(new ByteArrayInputStream(data));
+		BitInputStream bis = new BitInputStream(dis);
+		LittleEndianBitInputStream lbis = new LittleEndianBitInputStream(new LittleEndianDataInputStream(dis));
 		snetHeader = new SnetFrameHeader(bis);
 		if (snetHeader.getFcidMajor() == 0 && snetHeader.getFcidSub() == 0) {
-			adcsTelemetry = new ADCSTelemetry(bis);
+			adcsTelemetry = new ADCSTelemetry(lbis);
 		} else if (snetHeader.getFcidMajor() == 9 && snetHeader.getFcidSub() == 0) {
-			epsTelemetry = new EPSTelemetry(bis);
+			epsTelemetry = new EPSTelemetry(lbis);
 		}
 	}
 

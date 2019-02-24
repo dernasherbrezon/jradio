@@ -67,9 +67,9 @@ public class LittleEndianBitInputStream {
 	}
 
 	public short readShortTwosComplement() throws IOException {
-		return (short)readIntTwosComplement(16);
+		return (short) readIntTwosComplement(16);
 	}
-	
+
 	public long readLongTwosComplement(int numberOfBits) throws IOException {
 		long val = readUnsignedLong(numberOfBits);
 		if ((val & (1 << (numberOfBits - 1))) != 0) { // if sign bit is set e.g., 8bit: 128-255
@@ -77,7 +77,7 @@ public class LittleEndianBitInputStream {
 		}
 		return val;
 	}
-	
+
 	public int readIntTwosComplement(int numberOfBits) throws IOException {
 		int val = readUnsignedInt(numberOfBits);
 		if ((val & (1 << (numberOfBits - 1))) != 0) { // if sign bit is set e.g., 8bit: 128-255
@@ -92,6 +92,10 @@ public class LittleEndianBitInputStream {
 
 	public int readUnsignedByte() throws IOException {
 		return readUnsignedInt(8);
+	}
+
+	public byte readByte() throws IOException {
+		return (byte) readUnsignedInt(8);
 	}
 
 	public int readUnsignedShort() throws IOException {

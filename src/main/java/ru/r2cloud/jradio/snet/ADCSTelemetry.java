@@ -2,7 +2,7 @@ package ru.r2cloud.jradio.snet;
 
 import java.io.IOException;
 
-import ru.r2cloud.jradio.util.BitInputStream;
+import ru.r2cloud.jradio.util.LittleEndianBitInputStream;
 
 public class ADCSTelemetry {
 
@@ -58,7 +58,7 @@ public class ADCSTelemetry {
 	private int targetDataDistance;
 	private int targetDataControlIsActive;
 
-	public ADCSTelemetry(BitInputStream bis) throws IOException {
+	public ADCSTelemetry(LittleEndianBitInputStream bis) throws IOException {
 		iModeChkListThisStepActive = bis.readByte();
 		iAttDetFinalState = bis.readUnsignedByte();
 		iSensorArrayAvailStatusGA = bis.readUnsignedByte();

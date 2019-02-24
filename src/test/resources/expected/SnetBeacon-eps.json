@@ -13,44 +13,44 @@
   },
   "epsTelemetry": {
     "solarPanelCurrent": [
-      40.96,
+      0.16,
       0.0,
       0.0,
-      40.96,
-      117.76,
-      76.8
+      0.16,
+      0.46,
+      0.3
     ],
-    "mainSolarVoltage": -17660,
+    "mainSolarVoltage": 1211,
     "battery": [
       {
-        "voltage": -8916.0,
+        "voltage": 11357.0,
         "inputCurrent": 0.0,
-        "outputCurrent": -295.16666
+        "outputCurrent": 937.5
       },
       {
-        "voltage": 6444.0,
-        "inputCurrent": -938.6667,
-        "outputCurrent": 1284.0
+        "voltage": 11289.0,
+        "inputCurrent": 17.666666,
+        "outputCurrent": 1029.0
       }
     ],
-    "sumVoltage": 14634.5,
-    "voltage3V3": -2867.75,
-    "voltage5V": -952.8,
+    "sumVoltage": 10937.0,
+    "voltage3V3": 3156.75,
+    "voltage5V": 5167.4,
     "temperatureOfBattery": [
-      0.04296875,
-      0.046875
+      11.0,
+      12.0
     ],
-    "temperatureOfObc": 3840.0,
-    "currentOfObc": 10752.0,
-    "voltageOfObc": -16884.0,
+    "temperatureOfObc": 15.0,
+    "currentOfObc": 42.0,
+    "voltageOfObc": 3262.0,
     "batteryCurrents": [
       {
-        "chargeCurrent": 320.0,
-        "dischargeCurrent": 2222.4167
+        "chargeCurrent": 1.25,
+        "dischargeCurrent": 968.6667
       },
       {
-        "chargeCurrent": 618.6667,
-        "dischargeCurrent": -2598.75
+        "chargeCurrent": 2.4166667,
+        "dischargeCurrent": 1013.8333
       }
     ]
   },

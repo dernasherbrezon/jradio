@@ -2,7 +2,7 @@ package ru.r2cloud.jradio.snet;
 
 import java.io.IOException;
 
-import ru.r2cloud.jradio.util.BitInputStream;
+import ru.r2cloud.jradio.util.LittleEndianBitInputStream;
 
 public class EPSTelemetry {
 
@@ -18,7 +18,7 @@ public class EPSTelemetry {
 	private float voltageOfObc;
 	private BatteryCurrent[] batteryCurrents;
 
-	public EPSTelemetry(BitInputStream bis) throws IOException {
+	public EPSTelemetry(LittleEndianBitInputStream bis) throws IOException {
 		solarPanelCurrent = new float[6];
 		for (int i = 0; i < solarPanelCurrent.length; i++) {
 			solarPanelCurrent[i] = bis.readShort() / 50.0f;

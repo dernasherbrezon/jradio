@@ -2,7 +2,7 @@ package ru.r2cloud.jradio.snet;
 
 import java.io.IOException;
 
-import ru.r2cloud.jradio.util.BitInputStream;
+import ru.r2cloud.jradio.util.LittleEndianBitInputStream;
 
 public class Battery {
 
@@ -10,7 +10,7 @@ public class Battery {
 	private float inputCurrent;
 	private float outputCurrent;
 
-	public Battery(BitInputStream bis) throws IOException {
+	public Battery(LittleEndianBitInputStream bis) throws IOException {
 		voltage = bis.readShort() / 2.0f;
 		inputCurrent = bis.readShort() / 12.0f;
 		outputCurrent = bis.readShort() / 6.0f;
