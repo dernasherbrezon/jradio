@@ -93,7 +93,7 @@ public class SourcePacket {
 		} else if (APID >= 60 && APID <= 66) {
 			apid60_66 = new Apid6_12(dis);
 		} else {
-			LOG.error("unknown apid: " + APID);
+			LOG.error("unknown apid: {}", APID);
 			dis.skipBytes(126);
 		}
 	}

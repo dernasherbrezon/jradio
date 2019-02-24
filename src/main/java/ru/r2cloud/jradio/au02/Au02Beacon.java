@@ -17,7 +17,7 @@ public class Au02Beacon extends Beacon {
 	private long timestamp;
 	private String callsign;
 	private byte flags;
-	private int batt_voltage;
+	private int battVoltage;
 	private float currentIn;
 	private float currentOut;
 	private float rail3Current;
@@ -39,7 +39,7 @@ public class Au02Beacon extends Beacon {
 		dis.readFully(callsignBuf);
 		callsign = new String(callsignBuf, StandardCharsets.ISO_8859_1);
 		flags = dis.readByte();
-		batt_voltage = dis.readUnsignedByte() * 16 + 4420;
+		battVoltage = dis.readUnsignedByte() * 16 + 4420;
 		currentIn = (float) (dis.readUnsignedByte() * 2700.0 / 255.0);
 		currentOut = (float) (dis.readUnsignedByte() * 4000.0 / 255.0);
 		rail3Current = (float) (dis.readUnsignedByte() * 5500.0 / 255.0);
@@ -81,12 +81,12 @@ public class Au02Beacon extends Beacon {
 		this.flags = flags;
 	}
 
-	public int getBatt_voltage() {
-		return batt_voltage;
+	public int getBattVoltage() {
+		return battVoltage;
 	}
 
-	public void setBatt_voltage(int batt_voltage) {
-		this.batt_voltage = batt_voltage;
+	public void setBattVoltage(int battVoltage) {
+		this.battVoltage = battVoltage;
 	}
 
 	public float getCurrentIn() {
