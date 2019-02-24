@@ -1,0 +1,59 @@
+{
+  "snetHeader": {
+    "crc": 10200,
+    "fcidMajor": 9,
+    "fcidSub": 0,
+    "urgent": false,
+    "checkCrc": true,
+    "multiFrame": false,
+    "timeTaggedSetting": true,
+    "timeTagged": true,
+    "dataLength": 50,
+    "timeTag": 1544824653000
+  },
+  "epsTelemetry": {
+    "solarPanelCurrent": [
+      40.96,
+      0.0,
+      0.0,
+      40.96,
+      117.76,
+      76.8
+    ],
+    "mainSolarVoltage": -17660,
+    "battery": [
+      {
+        "voltage": -8916.0,
+        "inputCurrent": 0.0,
+        "outputCurrent": -295.16666
+      },
+      {
+        "voltage": 6444.0,
+        "inputCurrent": -938.6667,
+        "outputCurrent": 1284.0
+      }
+    ],
+    "sumVoltage": 14634.5,
+    "voltage3V3": -2867.75,
+    "voltage5V": -952.8,
+    "temperatureOfBattery": [
+      0.04296875,
+      0.046875
+    ],
+    "temperatureOfObc": 3840.0,
+    "currentOfObc": 10752.0,
+    "voltageOfObc": -16884.0,
+    "batteryCurrents": [
+      {
+        "chargeCurrent": 320.0,
+        "dischargeCurrent": 2222.4167
+      },
+      {
+        "chargeCurrent": 618.6667,
+        "dischargeCurrent": -2598.75
+      }
+    ]
+  },
+  "beginSample": 0,
+  "beginMillis": 0
+}

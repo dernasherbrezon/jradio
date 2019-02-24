@@ -15,4 +15,12 @@ public class SnetBeaconTest {
 		AssertJson.assertObjectsEqual("SnetBeacon-adcs.json", beacon);
 	}
 
+	@Test
+	public void testDeserializeEps() throws Exception {
+		byte[] data = ViterbiTest.hexStringToByteArray("F35027D824002C329AC74D47080000000000080017000F00BB04BA580000F9153258D4001E187255A662ED64000B000C0F002A00BE0C0F00682D1D00862F");
+		SnetBeacon beacon = new SnetBeacon();
+		beacon.readBeacon(data);
+		AssertJson.assertObjectsEqual("SnetBeacon-eps.json", beacon);
+	}
+
 }
