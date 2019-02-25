@@ -92,6 +92,7 @@ Using the blocks above, you could decode signals from the following satellites:
   * Lume-1 (NORAD 43908) and AISTechSat 2(NORAD 43768). Decode telemetry beacon. Based on [gr-satellites](https://github.com/daniestevez/gr-satellites). See the pipeline at the [Lume1Test](https://github.com/dernasherbrezon/jradio/blob/master/src/test/java/ru/r2cloud/jradio/lume1/Lume1Test.java)
   * Reactor Hello World (NORAD 43743). Decode telemetry beacon. Based on [gr-satellites](https://github.com/daniestevez/gr-satellites), [rhw-ham](https://github.com/ReaktorSpaceLab/rhw-ham). See the pipeline at the [ReaktorHelloWorldTest](https://github.com/dernasherbrezon/jradio/blob/master/src/test/java/ru/r2cloud/jradio/rhw/ReaktorHelloWorldTest.java)
   * S-NET A,B,C,D (NORAD 43186, 43187, 43188, 43189). Decode telemetry beacon. Based on [gr-satellites](https://github.com/daniestevez/gr-satellites). See the pipeline at the [SnetTest](https://github.com/dernasherbrezon/jradio/blob/master/src/test/java/ru/r2cloud/jradio/snet/SnetTest.java)
+  * Suomi100 (NORAD 43804). Decode telemetry beacon. Based on [gr-satellites](https://github.com/daniestevez/gr-satellites). See the pipeline at the [Suomi100Test](https://github.com/dernasherbrezon/jradio/blob/master/src/test/java/ru/r2cloud/jradio/suomi100/Suomi100Test.java)
   
 ## Doppler correction
 

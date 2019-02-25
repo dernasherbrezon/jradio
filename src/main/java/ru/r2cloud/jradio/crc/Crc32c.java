@@ -38,8 +38,12 @@ public class Crc32c {
         };
 
 	public static long calculate(byte[] data) {
+		return calculate(data, 0, data.length);
+	}
+
+	public static long calculate(byte[] data, int offset, int length) {
 		long c = 0xFFFFFFFFL;
-		for (int i = 0; i < data.length; i++) {
+		for (int i = offset; i < offset + length; i++) {
 			c = table[(int) ((c ^ (data[i] & 0xFF)) & 0xFF)] ^ (c >> 8);
 		}
 		return c ^ 0xFFFFFFFFL;
