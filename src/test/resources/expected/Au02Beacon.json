@@ -14,7 +14,7 @@
   "timestamp": 2088005406,
   "callsign": "ON02AU",
   "flags": 86,
-  "batt_voltage": 8276,
+  "battVoltage": 8276,
   "currentIn": 1143.5294,
   "currentOut": 219.60785,
   "rail3Current": 215.68628,
