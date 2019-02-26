@@ -14,6 +14,10 @@ public class Beacon1Obc {
 	private int bootCount;
 	private long bootCause;
 	private long clock;
+	
+	public Beacon1Obc() {
+		//do nothing
+	}
 
 	public Beacon1Obc(DataInputStream dis) throws IOException {
 		timestamp = StreamUtils.readUnsignedInt(dis);

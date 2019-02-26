@@ -20,6 +20,10 @@ public class Beacon1Com {
 	private int config;
 	private long txCount;
 	private long rxCount;
+	
+	public Beacon1Com() {
+		//do nothing
+	}
 
 	public Beacon1Com(DataInputStream dis) throws IOException {
 		timestamp = StreamUtils.readUnsignedInt(dis);

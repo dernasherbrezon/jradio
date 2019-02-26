@@ -1,7 +1,10 @@
 package ru.r2cloud.jradio.suomi100;
 
+import static pl.pojo.tester.api.assertion.Assertions.assertPojoMethodsFor;
+
 import org.junit.Test;
 
+import pl.pojo.tester.api.assertion.Method;
 import ru.r2cloud.jradio.AssertJson;
 import ru.r2cloud.jradio.fec.ViterbiTest;
 
@@ -15,4 +18,16 @@ public class Suomi100BeaconTest {
 		AssertJson.assertObjectsEqual("Suomi100Beacon-1.json", beacon);
 	}
 	
+	@Test
+	public void testPojo() {
+		assertPojoMethodsFor(Suomi100Beacon.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
+		assertPojoMethodsFor(Beacon0.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
+		assertPojoMethodsFor(Beacon1.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
+		assertPojoMethodsFor(Beacon0Eps.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
+		assertPojoMethodsFor(Beacon1Eps.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
+		assertPojoMethodsFor(Beacon0Com.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
+		assertPojoMethodsFor(Beacon1Com.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
+		assertPojoMethodsFor(Beacon0Obc.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
+		assertPojoMethodsFor(Beacon1Obc.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
+	}
 }

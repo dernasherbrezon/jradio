@@ -12,6 +12,10 @@ public class Beacon0Com {
 	private short rssi;
 	private short rferr;
 	private short rssiBackground;
+	
+	public Beacon0Com() {
+		//do nothing
+	}
 
 	public Beacon0Com(DataInputStream dis) throws IOException {
 		timestamp = StreamUtils.readUnsignedInt(dis);

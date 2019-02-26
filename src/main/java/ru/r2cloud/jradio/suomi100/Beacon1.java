@@ -8,6 +8,10 @@ public class Beacon1 {
 	private Beacon1Eps eps;
 	private Beacon1Com com;
 	private Beacon1Obc obc;
+	
+	public Beacon1() {
+		//do nothing
+	}
 
 	public Beacon1(DataInputStream dis) throws IOException {
 		eps = new Beacon1Eps(dis);

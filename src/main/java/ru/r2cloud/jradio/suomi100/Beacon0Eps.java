@@ -16,6 +16,10 @@ public class Beacon0Eps {
 	private int battOutCurrent;
 	private short[] temperature;
 	private int battMode;
+	
+	public Beacon0Eps() {
+		//do nothing
+	}
 
 	public Beacon0Eps(DataInputStream dis) throws IOException {
 		timestamp = StreamUtils.readUnsignedInt(dis);

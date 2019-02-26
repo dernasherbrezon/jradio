@@ -19,6 +19,10 @@ public class Beacon1Eps {
 	private int[] latchup;
 	private int[] outVal;
 	private int pptMode;
+	
+	public Beacon1Eps() {
+		//do nothing
+	}
 
 	public Beacon1Eps(DataInputStream dis) throws IOException {
 		timestamp = StreamUtils.readUnsignedInt(dis);

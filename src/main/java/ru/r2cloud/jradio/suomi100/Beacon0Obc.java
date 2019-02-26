@@ -10,6 +10,10 @@ public class Beacon0Obc {
 	private long timestamp;
 	private int[] current;
 	private short[] temp;
+	
+	public Beacon0Obc() {
+		//do nothing
+	}
 
 	public Beacon0Obc(DataInputStream dis) throws IOException {
 		timestamp = StreamUtils.readUnsignedInt(dis);
