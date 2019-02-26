@@ -23,6 +23,10 @@ public class LTUFrameHeader {
 	private int pduLength;
 	private int crc13;
 	private int crc5;
+	
+	public LTUFrameHeader() {
+		//do nothing
+	}
 
 	public LTUFrameHeader(byte[] data) throws IOException {
 		BitInputStream bis = new BitInputStream(data);

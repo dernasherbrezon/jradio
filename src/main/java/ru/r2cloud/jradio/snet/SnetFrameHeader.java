@@ -19,6 +19,10 @@ public class SnetFrameHeader {
 	private boolean timeTagged;
 	private int dataLength;
 	private long timeTag;
+	
+	public SnetFrameHeader() {
+		//do nothing
+	}
 
 	public SnetFrameHeader(BitInputStream bis) throws IOException {
 		bis.skipBits(18);

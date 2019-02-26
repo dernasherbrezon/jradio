@@ -6,13 +6,13 @@ import ru.r2cloud.jradio.util.LittleEndianBitInputStream;
 
 public class ADCSTelemetry {
 
-	private byte iModeChkListThisStepActive;
-	private int iAttDetFinalState;
-	private int iSensorArrayAvailStatusGA;
-	private int iSensorArrayAvailStatusMFSA;
-	private int iSensorArrayAvailStatusSUSEA;
-	private int iActArrayAvailStatusRWA;
-	private int iActArrayAvailStatusMATA;
+	private byte modeChkListThisStepActive;
+	private int attDetFinalState;
+	private int sensorArrayAvailStatusGA;
+	private int sensorArrayAvailStatusMFSA;
+	private int sensorArrayAvailStatusSUSEA;
+	private int actArrayAvailStatusRWA;
+	private int actArrayAvailStatusMATA;
 	private int attDetMfsDistCorrMode;
 	private int attDetSuseDistCorrMode;
 
@@ -38,19 +38,19 @@ public class ADCSTelemetry {
 	private float sunXOptimal;
 	private float sunYOptimal;
 	private float sunZOptimal;
-	private float dCtrlTorqueRWAx;
-	private float dCtrlTorqueRWAy;
-	private float dCtrlTorqueRWAz;
-	private float dCtrlMagMomentMATAx;
-	private float dCtrlMagMomentMATAy;
-	private float dCtrlMagMomentMATAz;
-	private float iReadTorqueRWx;
-	private float iReadTorqueRWy;
-	private float iReadTorqueRWz;
+	private float ctrlTorqueRWAx;
+	private float ctrlTorqueRWAy;
+	private float ctrlTorqueRWAz;
+	private float ctrlMagMomentMATAx;
+	private float ctrlMagMomentMATAy;
+	private float ctrlMagMomentMATAz;
+	private float readTorqueRWx;
+	private float readTorqueRWy;
+	private float readTorqueRWz;
 
-	private int iReadRotSpeedRWx;
-	private int iReadRotSpeedRWy;
-	private int iReadRotSpeedRWz;
+	private int readRotSpeedRWx;
+	private int readRotSpeedRWy;
+	private int readRotSpeedRWz;
 	private float sgp4LatXPEF;
 	private float sgp4LongYPEF;
 	private float sgp4AltPEF;
@@ -58,14 +58,18 @@ public class ADCSTelemetry {
 	private int targetDataDistance;
 	private int targetDataControlIsActive;
 
+	public ADCSTelemetry() {
+		// do nothing
+	}
+
 	public ADCSTelemetry(LittleEndianBitInputStream bis) throws IOException {
-		iModeChkListThisStepActive = bis.readByte();
-		iAttDetFinalState = bis.readUnsignedByte();
-		iSensorArrayAvailStatusGA = bis.readUnsignedByte();
-		iSensorArrayAvailStatusMFSA = bis.readUnsignedByte();
-		iSensorArrayAvailStatusSUSEA = bis.readUnsignedByte();
-		iActArrayAvailStatusRWA = bis.readUnsignedByte();
-		iActArrayAvailStatusMATA = bis.readUnsignedByte();
+		modeChkListThisStepActive = bis.readByte();
+		attDetFinalState = bis.readUnsignedByte();
+		sensorArrayAvailStatusGA = bis.readUnsignedByte();
+		sensorArrayAvailStatusMFSA = bis.readUnsignedByte();
+		sensorArrayAvailStatusSUSEA = bis.readUnsignedByte();
+		actArrayAvailStatusRWA = bis.readUnsignedByte();
+		actArrayAvailStatusMATA = bis.readUnsignedByte();
 		attDetMfsDistCorrMode = bis.readUnsignedByte();
 		attDetSuseDistCorrMode = bis.readUnsignedByte();
 
@@ -92,18 +96,18 @@ public class ADCSTelemetry {
 		sunXOptimal = bis.readShort() / 32000.0f;
 		sunYOptimal = bis.readShort() / 32000.0f;
 		sunZOptimal = bis.readShort() / 32000.0f;
-		dCtrlTorqueRWAx = bis.readUnsignedByte() / 38484.0f;
-		dCtrlTorqueRWAy = bis.readUnsignedByte() / 38484.0f;
-		dCtrlTorqueRWAz = bis.readUnsignedByte() / 38484.0f;
-		dCtrlMagMomentMATAx = bis.readUnsignedByte() / 127.0f;
-		dCtrlMagMomentMATAy = bis.readUnsignedByte() / 127.0f;
-		dCtrlMagMomentMATAz = bis.readUnsignedByte() / 127.0f;
-		iReadTorqueRWx = bis.readUnsignedShort() / 9696969.0f;
-		iReadTorqueRWy = bis.readUnsignedShort() / 9696969.0f;
-		iReadTorqueRWz = bis.readUnsignedShort() / 9696969.0f;
-		iReadRotSpeedRWx = bis.readUnsignedShort();
-		iReadRotSpeedRWy = bis.readUnsignedShort();
-		iReadRotSpeedRWz = bis.readUnsignedShort();
+		ctrlTorqueRWAx = bis.readUnsignedByte() / 38484.0f;
+		ctrlTorqueRWAy = bis.readUnsignedByte() / 38484.0f;
+		ctrlTorqueRWAz = bis.readUnsignedByte() / 38484.0f;
+		ctrlMagMomentMATAx = bis.readUnsignedByte() / 127.0f;
+		ctrlMagMomentMATAy = bis.readUnsignedByte() / 127.0f;
+		ctrlMagMomentMATAz = bis.readUnsignedByte() / 127.0f;
+		readTorqueRWx = bis.readUnsignedShort() / 9696969.0f;
+		readTorqueRWy = bis.readUnsignedShort() / 9696969.0f;
+		readTorqueRWz = bis.readUnsignedShort() / 9696969.0f;
+		readRotSpeedRWx = bis.readUnsignedShort();
+		readRotSpeedRWy = bis.readUnsignedShort();
+		readRotSpeedRWz = bis.readUnsignedShort();
 		sgp4LatXPEF = bis.readUnsignedShort() / 355.0f;
 		sgp4LongYPEF = bis.readUnsignedShort() / 177.0f;
 		sgp4AltPEF = bis.readUnsignedByte() / 0.25f;
@@ -112,60 +116,60 @@ public class ADCSTelemetry {
 		targetDataControlIsActive = bis.readUnsignedByte();
 	}
 
-	public byte getiModeChkListThisStepActive() {
-		return iModeChkListThisStepActive;
+	public byte getModeChkListThisStepActive() {
+		return modeChkListThisStepActive;
 	}
 
-	public void setiModeChkListThisStepActive(byte iModeChkListThisStepActive) {
-		this.iModeChkListThisStepActive = iModeChkListThisStepActive;
+	public void setModeChkListThisStepActive(byte modeChkListThisStepActive) {
+		this.modeChkListThisStepActive = modeChkListThisStepActive;
 	}
 
-	public int getiAttDetFinalState() {
-		return iAttDetFinalState;
+	public int getAttDetFinalState() {
+		return attDetFinalState;
 	}
 
-	public void setiAttDetFinalState(int iAttDetFinalState) {
-		this.iAttDetFinalState = iAttDetFinalState;
+	public void setAttDetFinalState(int attDetFinalState) {
+		this.attDetFinalState = attDetFinalState;
 	}
 
-	public int getiSensorArrayAvailStatusGA() {
-		return iSensorArrayAvailStatusGA;
+	public int getSensorArrayAvailStatusGA() {
+		return sensorArrayAvailStatusGA;
 	}
 
-	public void setiSensorArrayAvailStatusGA(int iSensorArrayAvailStatusGA) {
-		this.iSensorArrayAvailStatusGA = iSensorArrayAvailStatusGA;
+	public void setSensorArrayAvailStatusGA(int sensorArrayAvailStatusGA) {
+		this.sensorArrayAvailStatusGA = sensorArrayAvailStatusGA;
 	}
 
-	public int getiSensorArrayAvailStatusMFSA() {
-		return iSensorArrayAvailStatusMFSA;
+	public int getSensorArrayAvailStatusMFSA() {
+		return sensorArrayAvailStatusMFSA;
 	}
 
-	public void setiSensorArrayAvailStatusMFSA(int iSensorArrayAvailStatusMFSA) {
-		this.iSensorArrayAvailStatusMFSA = iSensorArrayAvailStatusMFSA;
+	public void setSensorArrayAvailStatusMFSA(int sensorArrayAvailStatusMFSA) {
+		this.sensorArrayAvailStatusMFSA = sensorArrayAvailStatusMFSA;
 	}
 
-	public int getiSensorArrayAvailStatusSUSEA() {
-		return iSensorArrayAvailStatusSUSEA;
+	public int getSensorArrayAvailStatusSUSEA() {
+		return sensorArrayAvailStatusSUSEA;
 	}
 
-	public void setiSensorArrayAvailStatusSUSEA(int iSensorArrayAvailStatusSUSEA) {
-		this.iSensorArrayAvailStatusSUSEA = iSensorArrayAvailStatusSUSEA;
+	public void setSensorArrayAvailStatusSUSEA(int sensorArrayAvailStatusSUSEA) {
+		this.sensorArrayAvailStatusSUSEA = sensorArrayAvailStatusSUSEA;
 	}
 
-	public int getiActArrayAvailStatusRWA() {
-		return iActArrayAvailStatusRWA;
+	public int getActArrayAvailStatusRWA() {
+		return actArrayAvailStatusRWA;
 	}
 
-	public void setiActArrayAvailStatusRWA(int iActArrayAvailStatusRWA) {
-		this.iActArrayAvailStatusRWA = iActArrayAvailStatusRWA;
+	public void setActArrayAvailStatusRWA(int actArrayAvailStatusRWA) {
+		this.actArrayAvailStatusRWA = actArrayAvailStatusRWA;
 	}
 
-	public int getiActArrayAvailStatusMATA() {
-		return iActArrayAvailStatusMATA;
+	public int getActArrayAvailStatusMATA() {
+		return actArrayAvailStatusMATA;
 	}
 
-	public void setiActArrayAvailStatusMATA(int iActArrayAvailStatusMATA) {
-		this.iActArrayAvailStatusMATA = iActArrayAvailStatusMATA;
+	public void setActArrayAvailStatusMATA(int actArrayAvailStatusMATA) {
+		this.actArrayAvailStatusMATA = actArrayAvailStatusMATA;
 	}
 
 	public int getAttDetMfsDistCorrMode() {
@@ -352,100 +356,100 @@ public class ADCSTelemetry {
 		this.sunZOptimal = sunZOptimal;
 	}
 
-	public float getdCtrlTorqueRWAx() {
-		return dCtrlTorqueRWAx;
+	public float getCtrlTorqueRWAx() {
+		return ctrlTorqueRWAx;
 	}
 
-	public void setdCtrlTorqueRWAx(float dCtrlTorqueRWAx) {
-		this.dCtrlTorqueRWAx = dCtrlTorqueRWAx;
+	public void setCtrlTorqueRWAx(float ctrlTorqueRWAx) {
+		this.ctrlTorqueRWAx = ctrlTorqueRWAx;
 	}
 
-	public float getdCtrlTorqueRWAy() {
-		return dCtrlTorqueRWAy;
+	public float getCtrlTorqueRWAy() {
+		return ctrlTorqueRWAy;
 	}
 
-	public void setdCtrlTorqueRWAy(float dCtrlTorqueRWAy) {
-		this.dCtrlTorqueRWAy = dCtrlTorqueRWAy;
+	public void setCtrlTorqueRWAy(float ctrlTorqueRWAy) {
+		this.ctrlTorqueRWAy = ctrlTorqueRWAy;
 	}
 
-	public float getdCtrlTorqueRWAz() {
-		return dCtrlTorqueRWAz;
+	public float getCtrlTorqueRWAz() {
+		return ctrlTorqueRWAz;
 	}
 
-	public void setdCtrlTorqueRWAz(float dCtrlTorqueRWAz) {
-		this.dCtrlTorqueRWAz = dCtrlTorqueRWAz;
+	public void setCtrlTorqueRWAz(float ctrlTorqueRWAz) {
+		this.ctrlTorqueRWAz = ctrlTorqueRWAz;
 	}
 
-	public float getdCtrlMagMomentMATAx() {
-		return dCtrlMagMomentMATAx;
+	public float getCtrlMagMomentMATAx() {
+		return ctrlMagMomentMATAx;
 	}
 
-	public void setdCtrlMagMomentMATAx(float dCtrlMagMomentMATAx) {
-		this.dCtrlMagMomentMATAx = dCtrlMagMomentMATAx;
+	public void setCtrlMagMomentMATAx(float ctrlMagMomentMATAx) {
+		this.ctrlMagMomentMATAx = ctrlMagMomentMATAx;
 	}
 
-	public float getdCtrlMagMomentMATAy() {
-		return dCtrlMagMomentMATAy;
+	public float getCtrlMagMomentMATAy() {
+		return ctrlMagMomentMATAy;
 	}
 
-	public void setdCtrlMagMomentMATAy(float dCtrlMagMomentMATAy) {
-		this.dCtrlMagMomentMATAy = dCtrlMagMomentMATAy;
+	public void setCtrlMagMomentMATAy(float ctrlMagMomentMATAy) {
+		this.ctrlMagMomentMATAy = ctrlMagMomentMATAy;
 	}
 
-	public float getdCtrlMagMomentMATAz() {
-		return dCtrlMagMomentMATAz;
+	public float getCtrlMagMomentMATAz() {
+		return ctrlMagMomentMATAz;
 	}
 
-	public void setdCtrlMagMomentMATAz(float dCtrlMagMomentMATAz) {
-		this.dCtrlMagMomentMATAz = dCtrlMagMomentMATAz;
+	public void setCtrlMagMomentMATAz(float ctrlMagMomentMATAz) {
+		this.ctrlMagMomentMATAz = ctrlMagMomentMATAz;
 	}
 
-	public float getiReadTorqueRWx() {
-		return iReadTorqueRWx;
+	public float getReadTorqueRWx() {
+		return readTorqueRWx;
 	}
 
-	public void setiReadTorqueRWx(float iReadTorqueRWx) {
-		this.iReadTorqueRWx = iReadTorqueRWx;
+	public void setReadTorqueRWx(float readTorqueRWx) {
+		this.readTorqueRWx = readTorqueRWx;
 	}
 
-	public float getiReadTorqueRWy() {
-		return iReadTorqueRWy;
+	public float getReadTorqueRWy() {
+		return readTorqueRWy;
 	}
 
-	public void setiReadTorqueRWy(float iReadTorqueRWy) {
-		this.iReadTorqueRWy = iReadTorqueRWy;
+	public void setReadTorqueRWy(float readTorqueRWy) {
+		this.readTorqueRWy = readTorqueRWy;
 	}
 
-	public float getiReadTorqueRWz() {
-		return iReadTorqueRWz;
+	public float getReadTorqueRWz() {
+		return readTorqueRWz;
 	}
 
-	public void setiReadTorqueRWz(float iReadTorqueRWz) {
-		this.iReadTorqueRWz = iReadTorqueRWz;
+	public void setReadTorqueRWz(float readTorqueRWz) {
+		this.readTorqueRWz = readTorqueRWz;
 	}
 
-	public int getiReadRotSpeedRWx() {
-		return iReadRotSpeedRWx;
+	public int getReadRotSpeedRWx() {
+		return readRotSpeedRWx;
 	}
 
-	public void setiReadRotSpeedRWx(int iReadRotSpeedRWx) {
-		this.iReadRotSpeedRWx = iReadRotSpeedRWx;
+	public void setReadRotSpeedRWx(int readRotSpeedRWx) {
+		this.readRotSpeedRWx = readRotSpeedRWx;
 	}
 
-	public int getiReadRotSpeedRWy() {
-		return iReadRotSpeedRWy;
+	public int getReadRotSpeedRWy() {
+		return readRotSpeedRWy;
 	}
 
-	public void setiReadRotSpeedRWy(int iReadRotSpeedRWy) {
-		this.iReadRotSpeedRWy = iReadRotSpeedRWy;
+	public void setReadRotSpeedRWy(int readRotSpeedRWy) {
+		this.readRotSpeedRWy = readRotSpeedRWy;
 	}
 
-	public int getiReadRotSpeedRWz() {
-		return iReadRotSpeedRWz;
+	public int getReadRotSpeedRWz() {
+		return readRotSpeedRWz;
 	}
 
-	public void setiReadRotSpeedRWz(int iReadRotSpeedRWz) {
-		this.iReadRotSpeedRWz = iReadRotSpeedRWz;
+	public void setReadRotSpeedRWz(int readRotSpeedRWz) {
+		this.readRotSpeedRWz = readRotSpeedRWz;
 	}
 
 	public float getSgp4LatXPEF() {
@@ -495,5 +499,5 @@ public class ADCSTelemetry {
 	public void setTargetDataControlIsActive(int targetDataControlIsActive) {
 		this.targetDataControlIsActive = targetDataControlIsActive;
 	}
-	
+
 }

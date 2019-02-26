@@ -8,6 +8,10 @@ public class BatteryCurrent {
 
 	private float chargeCurrent;
 	private float dischargeCurrent;
+	
+	public BatteryCurrent() {
+		//do nothing
+	}
 
 	public BatteryCurrent(LittleEndianBitInputStream bis) throws IOException {
 		chargeCurrent = bis.readShort() / 12.0f;

@@ -9,6 +9,10 @@ public class Battery {
 	private float voltage;
 	private float inputCurrent;
 	private float outputCurrent;
+	
+	public Battery() {
+		//do nothing
+	}
 
 	public Battery(LittleEndianBitInputStream bis) throws IOException {
 		voltage = bis.readShort() / 2.0f;

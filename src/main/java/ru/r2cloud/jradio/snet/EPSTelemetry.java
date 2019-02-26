@@ -17,6 +17,10 @@ public class EPSTelemetry {
 	private float currentOfObc;
 	private float voltageOfObc;
 	private BatteryCurrent[] batteryCurrents;
+	
+	public EPSTelemetry() {
+		//do nothing
+	}
 
 	public EPSTelemetry(LittleEndianBitInputStream bis) throws IOException {
 		solarPanelCurrent = new float[6];

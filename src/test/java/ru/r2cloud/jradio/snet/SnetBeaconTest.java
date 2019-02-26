@@ -1,7 +1,10 @@
 package ru.r2cloud.jradio.snet;
 
+import static pl.pojo.tester.api.assertion.Assertions.assertPojoMethodsFor;
+
 import org.junit.Test;
 
+import pl.pojo.tester.api.assertion.Method;
 import ru.r2cloud.jradio.AssertJson;
 import ru.r2cloud.jradio.fec.ViterbiTest;
 
@@ -21,6 +24,17 @@ public class SnetBeaconTest {
 		SnetBeacon beacon = new SnetBeacon();
 		beacon.readBeacon(data);
 		AssertJson.assertObjectsEqual("SnetBeacon-eps.json", beacon);
+	}
+
+	@Test
+	public void testPojo() {
+		assertPojoMethodsFor(SnetBeacon.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
+		assertPojoMethodsFor(LTUFrameHeader.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
+		assertPojoMethodsFor(SnetFrameHeader.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
+		assertPojoMethodsFor(ADCSTelemetry.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
+		assertPojoMethodsFor(EPSTelemetry.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
+		assertPojoMethodsFor(BatteryCurrent.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
+		assertPojoMethodsFor(Battery.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
 	}
 
 }
