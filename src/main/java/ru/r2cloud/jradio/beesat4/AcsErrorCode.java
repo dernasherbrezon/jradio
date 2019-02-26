@@ -5,7 +5,7 @@ import java.util.Map;
 
 public enum AcsErrorCode {
 
-	UnknownMode(1), WheelSpeed(2), UnknownCommand(7), ToomanySunVecs(20), WrongSunSensor(22), ToofewSunVecs(23), WrongWheelNumber(24);
+	UNKNOWN_MODE(1), WHEEL_SPEED(2), UNKNOWN_COMMAND(7), TOO_MANY_SUN_VECS(20), WRONG_SUN_SENSOR(22), TOO_FEW_SUN_VECS(23), WRONG_WHEEL_NUMBER(24);
 
 	private final int code;
 	private static final Map<Integer, AcsErrorCode> typeByCode = new HashMap<>();

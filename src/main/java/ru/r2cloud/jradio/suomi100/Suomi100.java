@@ -25,7 +25,7 @@ public class Suomi100 extends BeaconSource<Suomi100Beacon> {
 			return null;
 		}
 		// validate frame crc32
-		long actualCrc32 = ((raw[raw.length - 4] & 0xFFL) << 24) | ((raw[raw.length - 3] & 0xFFL) << 16) | ((raw[raw.length - 2] & 0xFFL) << 8) | ((raw[raw.length - 1] & 0xFFL));
+		long actualCrc32 = ((raw[raw.length - 4] & 0xFFL) << 24) | ((raw[raw.length - 3] & 0xFFL) << 16) | ((raw[raw.length - 2] & 0xFFL) << 8) | (raw[raw.length - 1] & 0xFFL);
 		long expectedCrc32 = Crc32c.calculate(raw, 0, raw.length - CRC32_LENGTH);
 		if (actualCrc32 != expectedCrc32) {
 			if (LOG.isDebugEnabled()) {
@@ -34,7 +34,7 @@ public class Suomi100 extends BeaconSource<Suomi100Beacon> {
 			return null;
 		}
 		// validate data crc32
-		actualCrc32 = ((raw[raw.length - 8] & 0xFFL) << 24) | ((raw[raw.length - 7] & 0xFFL) << 16) | ((raw[raw.length - 6] & 0xFFL) << 8) | ((raw[raw.length - 5] & 0xFFL));
+		actualCrc32 = ((raw[raw.length - 8] & 0xFFL) << 24) | ((raw[raw.length - 7] & 0xFFL) << 16) | ((raw[raw.length - 6] & 0xFFL) << 8) | (raw[raw.length - 5] & 0xFFL);
 		expectedCrc32 = Crc32c.calculate(raw, Header.LENGTH, raw.length - (Header.LENGTH + 2 * CRC32_LENGTH));
 		if (actualCrc32 != expectedCrc32) {
 			if (LOG.isDebugEnabled()) {
