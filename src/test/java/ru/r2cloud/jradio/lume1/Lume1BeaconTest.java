@@ -1,10 +1,15 @@
 package ru.r2cloud.jradio.lume1;
 
+import static pl.pojo.tester.api.assertion.Assertions.assertPojoMethodsFor;
+
 import java.io.IOException;
 
 import org.junit.Test;
 
+import pl.pojo.tester.api.assertion.Method;
 import ru.r2cloud.jradio.AssertJson;
+import ru.r2cloud.jradio.ccsds.PrimaryHeader;
+import ru.r2cloud.jradio.ecss.SecondaryHeader;
 import ru.r2cloud.jradio.fec.ViterbiTest;
 
 public class Lume1BeaconTest {
@@ -39,6 +44,21 @@ public class Lume1BeaconTest {
 		Lume1Beacon beacon = new Lume1Beacon();
 		beacon.readBeacon(data);
 		AssertJson.assertObjectsEqual("Lume1Beacon-id5.json", beacon);
+	}
+
+	@Test
+	public void testPojo() {
+		assertPojoMethodsFor(Lume1Beacon.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
+		assertPojoMethodsFor(B1Obc.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
+		assertPojoMethodsFor(B2Eps.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
+		assertPojoMethodsFor(B3TtcGssb.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
+		assertPojoMethodsFor(B4Adcs.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
+		assertPojoMethodsFor(B5Temps.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
+
+		// even if they belong to separate package, they were introduced only here
+		// test them here
+		assertPojoMethodsFor(PrimaryHeader.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
+		assertPojoMethodsFor(SecondaryHeader.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
 	}
 
 }

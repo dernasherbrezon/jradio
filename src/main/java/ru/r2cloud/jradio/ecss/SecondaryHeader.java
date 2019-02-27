@@ -16,6 +16,10 @@ public class SecondaryHeader {
 	private int destinationId;
 	private int day;
 	private long millisecondsOfTheDay;
+	
+	public SecondaryHeader() {
+		//do nothing
+	}
 
 	public SecondaryHeader(BitInputStream bis) throws IOException {
 		pusVersion = bis.readUnsignedInt(4);

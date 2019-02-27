@@ -15,6 +15,10 @@ public class PrimaryHeader {
 	private int sequenceFlag;
 	private int packetName;
 	private int packetDataLength;
+	
+	public PrimaryHeader() {
+		//do nothing
+	}
 
 	public PrimaryHeader(BitInputStream bis) throws IOException {
 		packetVersion = bis.readUnsignedInt(3);

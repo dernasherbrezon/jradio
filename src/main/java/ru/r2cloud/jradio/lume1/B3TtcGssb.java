@@ -34,6 +34,10 @@ public class B3TtcGssb {
 	private int bootCount;
 	private long lastContact;
 	private int txDuty;
+	
+	public B3TtcGssb() {
+		//do nothing
+	}
 
 	public B3TtcGssb(BitInputStream bis) throws IOException {
 		nx = new GssbStatus(bis);

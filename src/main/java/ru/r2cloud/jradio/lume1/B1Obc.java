@@ -36,6 +36,10 @@ public class B1Obc {
 	private String swVersion;
 	private int trConn;
 	private int trConnActive;
+	
+	public B1Obc() {
+		//do nothing
+	}
 
 	public B1Obc(BitInputStream bis) throws IOException {
 		bootCause = bis.readUnsignedLong(32);

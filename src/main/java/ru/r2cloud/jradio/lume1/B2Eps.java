@@ -71,6 +71,10 @@ public class B2Eps {
 	private int vboostV2;
 	private int wdtCspc0;
 	private int wdtCspc1;
+	
+	public B2Eps() {
+		//do nothing
+	}
 
 	public B2Eps(BitInputStream bis) throws IOException {
 		outputOffDelta0 = bis.readUnsignedInt(16);
@@ -623,11 +627,11 @@ public class B2Eps {
 		this.wdtI2CTimeLeft = wdtI2CTimeLeft;
 	}
 
-	public int getvBatt() {
+	public int getVBatt() {
 		return vBatt;
 	}
 
-	public void setvBatt(int vBatt) {
+	public void setVBatt(int vBatt) {
 		this.vBatt = vBatt;
 	}
 

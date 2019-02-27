@@ -10,6 +10,10 @@ public class GssbStatus {
 	private int currentState;
 	private int antennaState;
 	private int attemptsTotal;
+	
+	public GssbStatus() {
+		//do nothing
+	}
 
 	public GssbStatus(BitInputStream bis) throws IOException {
 		rebootCount = bis.readUnsignedInt(8);

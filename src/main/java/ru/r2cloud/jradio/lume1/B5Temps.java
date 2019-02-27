@@ -31,6 +31,10 @@ public class B5Temps {
 	private float gyroTemp;
 	private float tempBrd;
 	private float tempPa;
+	
+	public B5Temps() {
+		//do nothing
+	}
 
 	public B5Temps(BitInputStream bis) throws IOException {
 		sunsTempPx = bis.readFloat();

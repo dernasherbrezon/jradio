@@ -73,4 +73,8 @@ public class PT1000Sensors {
 		float tempCoefficient = deltaResistance / deltaTemperature;
 		return ((resistance - endEntry.getValue()) / tempCoefficient) + endEntry.getKey();
 	}
+	
+	private PT1000Sensors() {
+		//do nothing
+	}
 }

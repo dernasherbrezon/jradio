@@ -40,6 +40,10 @@ public class B4Adcs {
 	private int curPwm;
 	private int curGps;
 	private int curWde;
+	
+	public B4Adcs() {
+		//do nothing
+	}
 
 	public B4Adcs(BitInputStream bis) throws IOException {
 		extMagValid = bis.readUnsignedByte();
