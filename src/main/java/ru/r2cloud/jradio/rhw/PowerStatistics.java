@@ -9,6 +9,10 @@ public class PowerStatistics {
 	private PowerLevels target;
 	private PowerLevels actual;
 	private boolean state;
+	
+	public PowerStatistics() {
+		//do nothing
+	}
 
 	public PowerStatistics(LittleEndianDataInputStream dis) throws IOException {
 		target = new PowerLevels(dis);

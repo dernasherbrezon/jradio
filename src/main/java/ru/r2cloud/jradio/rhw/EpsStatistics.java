@@ -14,6 +14,10 @@ public class EpsStatistics {
 	private long uptimeSeconds;
 	private boolean memoryViolationResetHasOccured;
 	private short internalTemp;
+	
+	public EpsStatistics() {
+		//do nothing
+	}
 
 	public EpsStatistics(LittleEndianDataInputStream dis) throws IOException {
 		bootCount = dis.readUnsignedInt();

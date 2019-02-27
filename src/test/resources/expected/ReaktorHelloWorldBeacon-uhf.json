@@ -1,0 +1,42 @@
+{
+  "type": "CSP",
+  "header": {
+    "priority": "CSP_PRIO_CRITICAL",
+    "source": 2,
+    "destination": 16,
+    "sourcePort": 3,
+    "destinationPort": 3,
+    "ffrag": false,
+    "fhmac": false,
+    "fxtea": false,
+    "frdp": false,
+    "fcrc32": false
+  },
+  "cspLength": 47,
+  "timestamp": 0,
+  "uhfFailures": 0,
+  "deploymentSensed": 0,
+  "deploymentRounds": 0,
+  "uhfStatistics": {
+    "canStatistics": {
+      "rxFrameCount": 22079860,
+      "txFrameCount": 1665346,
+      "errorCount": 24060
+    },
+    "bootCount": 906,
+    "lastBootReason": 6,
+    "memoryViolationResetHasOccured": false,
+    "internalTemp": 1,
+    "currentCspPacketNumber": 1062428,
+    "allowedRelayPacketCount": 94,
+    "rxCspFrameCount": 307855,
+    "rxRelayFrameCount": 6,
+    "txCspFrameCount": 751840,
+    "rxFifoErrorCount": 5,
+    "txFifoErrorCount": 0
+  },
+  "packetNumber": 3602727601,
+  "signature": 1497605594,
+  "beginSample": 0,
+  "beginMillis": 0
+}

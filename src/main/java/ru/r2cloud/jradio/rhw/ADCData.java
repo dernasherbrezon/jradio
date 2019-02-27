@@ -51,6 +51,10 @@ public class ADCData {
 	private float sns12v2;
 	private float tempSns1;
 	private float tempSns2;
+	
+	public ADCData() {
+		//do nothing
+	}
 
 	public ADCData(LittleEndianDataInputStream dis) throws IOException {
 		spxpCurr = adcToSolarPanelCurrentMilliAmper(dis.readUnsignedShort());

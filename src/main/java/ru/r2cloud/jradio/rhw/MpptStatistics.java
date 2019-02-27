@@ -8,6 +8,10 @@ public class MpptStatistics {
 
 	private int currentMpptValue1;
 	private int currentMpptValue2;
+	
+	public MpptStatistics() {
+		//do nothing
+	}
 
 	public MpptStatistics(LittleEndianDataInputStream dis) throws IOException {
 		currentMpptValue1 = dis.readUnsignedShort();

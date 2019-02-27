@@ -9,6 +9,10 @@ public class CanStatistics {
 	private long rxFrameCount;
 	private long txFrameCount;
 	private long errorCount;
+	
+	public CanStatistics() {
+		//do nothing
+	}
 
 	public CanStatistics(LittleEndianDataInputStream dis) throws IOException {
 		rxFrameCount = dis.readUnsignedInt();

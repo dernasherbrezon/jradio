@@ -18,6 +18,10 @@ public class UHFStatistics {
 	private long txCspFrameCount;
 	private long rxFifoErrorCount;
 	private long txFifoErrorCount;
+	
+	public UHFStatistics() {
+		//do nothing
+	}
 
 	public UHFStatistics(LittleEndianDataInputStream dis) throws IOException {
 		canStatistics = new CanStatistics(dis);
@@ -26,7 +30,7 @@ public class UHFStatistics {
 		memoryViolationResetHasOccured = dis.readUnsignedByte() > 0;
 		internalTemp = dis.readShort();
 		currentCspPacketNumber = dis.readUnsignedInt();
-		allowedRelayPacketCount = dis.readUnsignedInt();
+		allowedRelayPacketCount = dis.readUnsignedShort();
 		rxCspFrameCount = dis.readUnsignedInt();
 		rxRelayFrameCount = dis.readUnsignedInt();
 		txCspFrameCount = dis.readUnsignedInt();

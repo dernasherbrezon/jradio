@@ -19,6 +19,10 @@ public class PowerLevels {
 	private boolean toggle5v;
 	private boolean antennaDeployment1;
 	private boolean antennaDeployment2;
+	
+	public PowerLevels() {
+		//do nothing
+	}
 
 	public PowerLevels(LittleEndianDataInputStream dis) throws IOException {
 		int raw = dis.readUnsignedShort();

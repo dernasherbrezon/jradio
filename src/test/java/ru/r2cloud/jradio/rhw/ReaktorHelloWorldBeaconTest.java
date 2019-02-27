@@ -1,8 +1,12 @@
 package ru.r2cloud.jradio.rhw;
 
+import static pl.pojo.tester.api.assertion.Assertions.assertPojoMethodsFor;
+
 import org.junit.Test;
 
+import pl.pojo.tester.api.assertion.Method;
 import ru.r2cloud.jradio.AssertJson;
+import ru.r2cloud.jradio.fec.ViterbiTest;
 
 public class ReaktorHelloWorldBeaconTest {
 
@@ -15,6 +19,26 @@ public class ReaktorHelloWorldBeaconTest {
 		ReaktorHelloWorldBeacon result = new ReaktorHelloWorldBeacon();
 		result.readBeacon(data);
 		AssertJson.assertObjectsEqual("ReaktorHelloWorldBeacon-eps.json", result);
+	}
+
+	@Test
+	public void testUHFStatistics() throws Exception {
+		byte[] data = ViterbiTest.hexStringToByteArray("010500C300002F74E9500142691900FC5D00008A03000006000001001C3610005E008FB2040006000000E0780B000500000000000000D6BD42B15943A5DA");
+		ReaktorHelloWorldBeacon result = new ReaktorHelloWorldBeacon();
+		result.readBeacon(data);
+		AssertJson.assertObjectsEqual("ReaktorHelloWorldBeacon-uhf.json", result);
+	}
+
+	@Test
+	public void testPojo() {
+		assertPojoMethodsFor(ReaktorHelloWorldBeacon.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
+		assertPojoMethodsFor(CanStatistics.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
+		assertPojoMethodsFor(EpsStatistics.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
+		assertPojoMethodsFor(ADCData.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
+		assertPojoMethodsFor(MpptStatistics.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
+		assertPojoMethodsFor(PowerStatistics.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
+		assertPojoMethodsFor(UHFStatistics.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
+		assertPojoMethodsFor(PowerLevels.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
 	}
 
 }
