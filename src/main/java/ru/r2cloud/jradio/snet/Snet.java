@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory;
 
 import ru.r2cloud.jradio.BeaconSource;
 import ru.r2cloud.jradio.MessageInput;
+import ru.r2cloud.jradio.blocks.UnpackedToPacked;
 import ru.r2cloud.jradio.fec.Bch15;
 import ru.r2cloud.jradio.fec.ccsds.UncorrectableException;
 import ru.r2cloud.jradio.util.Deinterleave;
@@ -54,7 +55,7 @@ public class Snet extends BeaconSource<SnetBeacon> {
 		}
 
 		// 4. pack for parsing
-		byte[] header = pack(headerDataBits);
+		byte[] header = UnpackedToPacked.pack(headerDataBits);
 
 		LTUFrameHeader ltuHeader;
 		try {
@@ -122,7 +123,7 @@ public class Snet extends BeaconSource<SnetBeacon> {
 		SnetBeacon result = new SnetBeacon();
 		result.setHeader(ltuHeader);
 		try {
-			result.readExternal(pack(pdu));
+			result.readExternal(UnpackedToPacked.pack(pdu));
 		} catch (IOException e) {
 			LOG.error("unable to parse beacon", e);
 			return null;
@@ -198,13 +199,13 @@ public class Snet extends BeaconSource<SnetBeacon> {
 		return pdu;
 	}
 
-	private static byte[] pack(byte[] raw) {
-		byte[] result = new byte[raw.length / 8];
-		for (int i = 0; i < raw.length; i++) {
-			result[i / 8] <<= 1;
-			result[i / 8] |= raw[i];
-		}
-		return result;
-	}
+//	private static byte[] pack(byte[] raw) {
+//		byte[] result = new byte[raw.length / 8];
+//		for (int i = 0; i < raw.length; i++) {
+//			result[i / 8] <<= 1;
+//			result[i / 8] |= raw[i];
+//		}
+//		return result;
+//	}
 
 }

@@ -6,18 +6,17 @@ import org.junit.After;
 import org.junit.Test;
 
 import ru.r2cloud.jradio.AssertJson;
-import ru.r2cloud.jradio.Endianness;
-import ru.r2cloud.jradio.blocks.BinarySlicer;
 import ru.r2cloud.jradio.blocks.ClockRecoveryMM;
 import ru.r2cloud.jradio.blocks.ComplexConjugate;
 import ru.r2cloud.jradio.blocks.CorrelateAccessCodeTag;
 import ru.r2cloud.jradio.blocks.FixedLengthTagger;
+import ru.r2cloud.jradio.blocks.FloatToChar;
 import ru.r2cloud.jradio.blocks.FloatToComplex;
 import ru.r2cloud.jradio.blocks.LowPassFilterComplex;
 import ru.r2cloud.jradio.blocks.Multiply;
 import ru.r2cloud.jradio.blocks.QuadratureDemodulation;
+import ru.r2cloud.jradio.blocks.Rail;
 import ru.r2cloud.jradio.blocks.TaggedStreamToPdu;
-import ru.r2cloud.jradio.blocks.UnpackedToPacked;
 import ru.r2cloud.jradio.blocks.Window;
 import ru.r2cloud.jradio.gomx1.AX100Decoder;
 import ru.r2cloud.jradio.source.SigSource;
@@ -43,10 +42,11 @@ public class Au02Test {
 		float demodGain = (float) (1.0 / sensitivity);
 		QuadratureDemodulation qd = new QuadratureDemodulation(lpf, demodGain);
 		ClockRecoveryMM clockRecovery = new ClockRecoveryMM(qd, samplesPerSymbol, (float) (0.25 * gainMu * gainMu), 0.5f, gainMu, 0.005f);
-		BinarySlicer bs = new BinarySlicer(clockRecovery);
-		CorrelateAccessCodeTag correlateTag = new CorrelateAccessCodeTag(bs, 4, "11000011101010100110011001010101", false);
+		Rail rail = new Rail(clockRecovery, -1.0f, 1.0f);
+		FloatToChar f2char = new FloatToChar(rail, 127.0f);
+		CorrelateAccessCodeTag correlateTag = new CorrelateAccessCodeTag(f2char, 4, "11000011101010100110011001010101", true);
 		// in actual decoder should be 255 instead of 120
-		TaggedStreamToPdu pdu = new TaggedStreamToPdu(new UnpackedToPacked(new FixedLengthTagger(correlateTag, (120 + 3) * 8), 1, Endianness.GR_MSB_FIRST, Byte.class));
+		TaggedStreamToPdu pdu = new TaggedStreamToPdu(new FixedLengthTagger(correlateTag, (120 + 3) * 8));
 		AX100Decoder ax100 = new AX100Decoder(pdu, false, true, true);
 		input = new Au02(ax100);
 		assertTrue(input.hasNext());

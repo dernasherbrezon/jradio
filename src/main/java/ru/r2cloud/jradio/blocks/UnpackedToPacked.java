@@ -88,4 +88,28 @@ public class UnpackedToPacked implements ByteInput {
 		return input.getContext();
 	}
 
+	public static byte[] pack(byte[] hardDecisionBits, int offsetBits, int lengthBytes) {
+		byte[] result = new byte[lengthBytes];
+		int max = offsetBits + lengthBytes * 8;
+		for (int i = offsetBits, j = 0; i < max; i++, j++) {
+			result[j / 8] <<= 1;
+			result[j / 8] |= hardDecisionBits[i];
+		}
+		return result;
+	}
+	
+	public static byte[] packSoft(byte[] softDecisionBits, int offsetBits, int lengthBytes) {
+		byte[] result = new byte[lengthBytes];
+		int max = offsetBits + lengthBytes * 8;
+		for (int i = offsetBits, j = 0; i < max; i++, j++) {
+			result[j / 8] <<= 1;
+			result[j / 8] |= softDecisionBits[i] > 0 ? 1 : 0;
+		}
+		return result;
+	}
+
+	public static byte[] pack(byte[] raw) {
+		return pack(raw, 0, raw.length / 8);
+	}
+
 }

@@ -7,6 +7,7 @@ import org.slf4j.LoggerFactory;
 
 import ru.r2cloud.jradio.Context;
 import ru.r2cloud.jradio.MessageInput;
+import ru.r2cloud.jradio.blocks.UnpackedToPacked;
 import ru.r2cloud.jradio.fec.Golay;
 import ru.r2cloud.jradio.fec.ccsds.Randomize;
 import ru.r2cloud.jradio.fec.ccsds.ReedSolomon;
@@ -44,7 +45,8 @@ public class AX100Decoder implements MessageInput {
 	}
 
 	public byte[] decode(byte[] raw) throws IOException, UncorrectableException {
-		int lengthField = ((raw[0] & 0xFF) << 16) | ((raw[1] & 0xFF) << 8) | (raw[2] & 0xFF);
+		byte[] hardDecisionGolay = UnpackedToPacked.packSoft(raw, 0, 3);
+		int lengthField = ((hardDecisionGolay[0] & 0xFF) << 16) | ((hardDecisionGolay[1] & 0xFF) << 8) | (hardDecisionGolay[2] & 0xFF);
 		lengthField = golay.decode(lengthField);
 		int frameLength = lengthField & 0xFF;
 		int viterbiFlag = lengthField & 0x100;
@@ -53,7 +55,8 @@ public class AX100Decoder implements MessageInput {
 		if (LOG.isDebugEnabled()) {
 			LOG.debug("golay decoded. frameLength: {} viterbiFlag: {}, scramblerFlag: {}, rsFlag: {}", frameLength, viterbiFlag, scramblerFlag, rsFlag);
 		}
-		if (frameLength + 3 > raw.length) {
+		// raw is a soft decision
+		if ((frameLength + 3) * 8 > raw.length) {
 			throw new IOException("not enough data: " + raw.length + " expected: " + frameLength);
 		}
 		int minFrameLength = 0;
@@ -68,10 +71,13 @@ public class AX100Decoder implements MessageInput {
 		if (frameLength < minFrameLength) {
 			throw new UncorrectableException("frameLength is " + frameLength + " min expected: " + minFrameLength);
 		}
-		byte[] data = new byte[frameLength];
-		System.arraycopy(raw, 3, data, 0, frameLength);
+		byte[] data;
 		if (viterbiFlag > 0 || forceViterbi) {
-			data = ru.r2cloud.jradio.fec.Viterbi.decode(data, (byte) 0x6d, (byte) 0x4f, false);
+			data = new byte[frameLength * 8];
+			System.arraycopy(raw, 3 * 8, data, 0, data.length);
+			data = ru.r2cloud.jradio.fec.ViterbiSoft.decode(data, (byte) 0x6d, (byte) 0x4f, false);
+		} else {
+			data = UnpackedToPacked.packSoft(raw, 3 * 8, frameLength);
 		}
 		if (scramblerFlag > 0 || forceScrambler) {
 			Randomize.shuffle(data);
