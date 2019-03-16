@@ -39,6 +39,7 @@ public class MeteorImage {
 						channel.setCurrentY(0);
 						channel.setFirstPacket(cur.getSequenceCount());
 						channel.setFirstMcu(meteorPacket.getMcuNumber());
+						channel.setMillisecondOfDay(cur.getMillisecondOfDay());
 					} else {
 						channel.appendRows(ImageChannelUtil.calculateMissingRows(channel.getLastMcu(), channel.getLastPacket(), meteorPacket.getMcuNumber(), cur.getSequenceCount()));
 					}
@@ -115,7 +116,7 @@ public class MeteorImage {
 	private static ImageChannel findFirst(Collection<ImageChannel> all) {
 		ImageChannel result = null;
 		for (ImageChannel cur : all) {
-			if (result == null || cur.getFirstPacket() < result.getFirstPacket()) {
+			if (result == null || cur.getMillisecondOfDay() < result.getMillisecondOfDay()) {
 				result = cur;
 			}
 		}

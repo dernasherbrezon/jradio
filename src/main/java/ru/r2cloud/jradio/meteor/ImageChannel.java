@@ -11,6 +11,7 @@ public class ImageChannel {
 	private int currentX = 0;
 	private int currentY = 0;
 
+	private long millisecondOfDay;
 	private int firstPacket;
 	private int firstMcu;
 	private int lastPacket = -1;
@@ -105,5 +106,13 @@ public class ImageChannel {
 	
 	public void setLastMcu(int lastMcu) {
 		this.lastMcu = lastMcu;
+	}
+	
+	public long getMillisecondOfDay() {
+		return millisecondOfDay;
+	}
+	
+	public void setMillisecondOfDay(long millisecondOfDay) {
+		this.millisecondOfDay = millisecondOfDay;
 	}
 }
