@@ -1,6 +1,9 @@
 package ru.r2cloud.jradio.source;
 
 import java.io.EOFException;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 
@@ -21,7 +24,12 @@ public class RtlSdr implements FloatInput {
 	private int maxBytes;
 	private float framePos = 0;
 
-	public RtlSdr(InputStream iqStream, float sampleRate) {
+	public RtlSdr(File source, float sampleRate) throws FileNotFoundException {
+		// 2 channels each sample is 8bits
+		this(new FileInputStream(source), sampleRate, source.length() / 2);
+	}
+
+	public RtlSdr(InputStream iqStream, float sampleRate, Long totalSamples) {
 		if (iqStream == null) {
 			throw new IllegalArgumentException("iqstream cannot be null");
 		}
@@ -36,6 +44,7 @@ public class RtlSdr implements FloatInput {
 		context.setChannels(2);
 		context.setSampleSizeInBits(8);
 		context.setSampleRate(sampleRate);
+		context.setTotalSamples(totalSamples);
 		context.setCurrentSample(new FloatValueSource() {
 
 			@Override
@@ -43,6 +52,10 @@ public class RtlSdr implements FloatInput {
 				return framePos;
 			}
 		});
+	}
+
+	public RtlSdr(InputStream iqStream, float sampleRate) {
+		this(iqStream, sampleRate, null);
 	}
 
 	@Override

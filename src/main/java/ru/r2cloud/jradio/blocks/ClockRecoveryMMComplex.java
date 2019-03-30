@@ -42,19 +42,18 @@ public class ClockRecoveryMMComplex implements FloatInput {
 		this.gainMu = gainMu;
 		this.omegaRelativeLimit = omegaRelativeLimit;
 		this.source = source;
-		// this block decimates the stream
-		// however it is unknown in advance the decimation rate
-		// put null, to let downstream blocks aware of it
-		this.source.getContext().setTotalSamples(null);
 		interp = new MMSEFIRInterpolator();
 		this.skip = interp.getNumberOfTaps() - 2;
 		array = new CircularComplexArray(interp.getNumberOfTaps());
 		setOmega(omega);
-		
+
 		context = new Context(source.getContext());
-		//unpredictable number of samples will be dropped
+		// unpredictable number of samples will be dropped
 		context.setSampleRate(0.0f);
-		context.setTotalSamples(0L);
+		// this block decimates the stream
+		// however it is unknown in advance the decimation rate
+		// put null, to let downstream blocks aware of it
+		context.setTotalSamples(null);
 	}
 
 	@Override

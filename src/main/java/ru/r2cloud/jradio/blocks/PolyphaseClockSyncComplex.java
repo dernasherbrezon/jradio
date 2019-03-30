@@ -43,7 +43,7 @@ public class PolyphaseClockSyncComplex implements FloatInput {
 		context = new Context(source.getContext());
 		// unpredictable number of samples will be dropped
 		context.setSampleRate(0.0f);
-		context.setTotalSamples(0L);
+		context.setTotalSamples(null);
 
 		this.d_nfilters = d_nfilters;
 		this.samplesSymbol = (float) Math.floor(samplesSymbol);

@@ -40,7 +40,9 @@ public class LowPassFilter implements FloatInput {
 		}
 		context = new Context(source.getContext());
 		context.setSampleRate(context.getSampleRate() / decimation);
-		context.setTotalSamples(context.getTotalSamples() / decimation);
+		if (context.getTotalSamples() != null) {
+			context.setTotalSamples(context.getTotalSamples() / decimation);
+		}
 	}
 
 	public LowPassFilter(FloatInput source, double gain, double cutoff_freq, double transition_width, Window window_type, double beta) {
