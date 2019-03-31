@@ -199,13 +199,4 @@ public class Snet extends BeaconSource<SnetBeacon> {
 		return pdu;
 	}
 
-//	private static byte[] pack(byte[] raw) {
-//		byte[] result = new byte[raw.length / 8];
-//		for (int i = 0; i < raw.length; i++) {
-//			result[i / 8] <<= 1;
-//			result[i / 8] |= raw[i];
-//		}
-//		return result;
-//	}
-
 }
