@@ -55,6 +55,10 @@ public class EPSBeacon {
 	private byte temperatureCC2;
 	private CCStatus cc1Status;
 	private CCStatus cc2Status;
+	
+	public EPSBeacon() {
+		//do nothing
+	}
 
 	public EPSBeacon(DataInputStream dis) throws IOException {
 		iPV25V = convertfix34(dis.readByte());

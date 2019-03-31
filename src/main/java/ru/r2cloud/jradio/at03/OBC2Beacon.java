@@ -109,6 +109,10 @@ public class OBC2Beacon {
 	private boolean CmdScripSlotLoaded;
 	private int ScienceScriptSlotLoaded;
 	private int CmdScripSlotLoaded2;
+	
+	public OBC2Beacon() {
+		//do nothing
+	}
 
 	public OBC2Beacon(DataInputStream dis) throws IOException {
 		long rawDate = StreamUtils.readUnsignedInt(dis);

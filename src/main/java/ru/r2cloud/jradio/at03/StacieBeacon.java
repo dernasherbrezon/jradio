@@ -22,6 +22,10 @@ public class StacieBeacon {
 	private long sTime;
 	private int BeaconCount;
 
+	public StacieBeacon() {
+		// do nothing
+	}
+
 	public StacieBeacon(DataInputStream dis) throws IOException {
 		USP = dis.readUnsignedByte() | (dis.readUnsignedByte() << 8);
 		TRXTemp = dis.readByte();
@@ -38,7 +42,7 @@ public class StacieBeacon {
 		SID = dis.readByte();
 		TxSelReason = dis.readUnsignedByte();
 		reasonRemote = dis.readUnsignedByte();
-		sTime = dis.readUnsignedByte() | (dis.readUnsignedByte() << 8) | (dis.readUnsignedByte() << 16) | ((long)dis.readUnsignedByte() << 24);
+		sTime = dis.readUnsignedByte() | (dis.readUnsignedByte() << 8) | (dis.readUnsignedByte() << 16) | ((long) dis.readUnsignedByte() << 24);
 		dis.skipBytes(1);
 		BeaconCount = dis.readUnsignedByte();
 	}
@@ -155,11 +159,11 @@ public class StacieBeacon {
 		this.reasonRemote = reasonRemote;
 	}
 
-	public long getsTime() {
+	public long getSTime() {
 		return sTime;
 	}
 
-	public void setsTime(long sTime) {
+	public void setSTime(long sTime) {
 		this.sTime = sTime;
 	}
 

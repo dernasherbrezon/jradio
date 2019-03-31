@@ -53,6 +53,10 @@ public class OBC1Beacon {
 
 	private byte cmdCnt1;
 	private byte cmdCnt2;
+	
+	public OBC1Beacon() {
+		//do nothing
+	}
 
 	public OBC1Beacon(DataInputStream dis) throws IOException {
 		vPV1 = convertUfix35(dis.readUnsignedByte());
