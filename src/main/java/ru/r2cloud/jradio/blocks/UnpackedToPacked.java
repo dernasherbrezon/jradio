@@ -13,7 +13,6 @@ public class UnpackedToPacked implements ByteInput {
 	private final int bitsPerChunk;
 	private int index = 0;
 	private final Endianness endianness;
-	private final Class<?> outputType;
 
 	public UnpackedToPacked(ByteInput input, int bitsPerChunk, Endianness endianness, Class<?> outputType) {
 		this.input = input;
@@ -21,8 +20,10 @@ public class UnpackedToPacked implements ByteInput {
 		if (endianness != Endianness.GR_MSB_FIRST && endianness != Endianness.GR_LSB_FIRST) {
 			throw new IllegalArgumentException("unsupported endianness: " + endianness);
 		}
+		if (!outputType.equals(Byte.class)) {
+			throw new IllegalArgumentException("invalid type: " + outputType);
+		}
 		this.endianness = endianness;
-		this.outputType = outputType;
 	}
 
 	@Override
@@ -38,18 +39,15 @@ public class UnpackedToPacked implements ByteInput {
 
 	@Override
 	public byte readByte() throws IOException {
-		if (!outputType.equals(Byte.class)) {
-			throw new IOException("invalid type: " + outputType);
-		}
-		int index_tmp = index;
+		int indexTmp = index;
 		byte result = 0;
 		Tag tag = null;
 		switch (endianness) {
 		case GR_MSB_FIRST:
 			byte tmp = 0;
 			for (int j = 0; j < 8; j++) {
-				tmp = (byte) ((tmp << 1) | getBitBe1(input.readByte(), index_tmp, bitsPerChunk));
-				index_tmp++;
+				tmp = (byte) ((tmp << 1) | getBitBe1(input.readByte(), indexTmp, bitsPerChunk));
+				indexTmp++;
 				// reduce length of message
 				if (j == 0) {
 					tag = getContext().getCurrent();
@@ -63,8 +61,8 @@ public class UnpackedToPacked implements ByteInput {
 		case GR_LSB_FIRST:
 			long tmp2 = 0;
 			for (int j = 0; j < 8; j++) {
-				tmp2 = (tmp2 >> 1) | (getBitBe1(input.readByte(), index_tmp, bitsPerChunk) << (8 - 1));
-				index_tmp++;
+				tmp2 = (tmp2 >> 1) | (getBitBe1(input.readByte(), indexTmp, bitsPerChunk) << (8 - 1));
+				indexTmp++;
 				// reduce length of message
 				if (j == 0) {
 					tag = getContext().getCurrent();
@@ -79,7 +77,7 @@ public class UnpackedToPacked implements ByteInput {
 			throw new IllegalArgumentException("unsupported endianness: " + endianness);
 		}
 		getContext().setCurrent(tag);
-		index = index_tmp;
+		index = indexTmp;
 		return result;
 	}
 
