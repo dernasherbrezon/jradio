@@ -24,5 +24,12 @@ public class At03BeaconTest {
 		beacon.readExternal(data);
 		AssertJson.assertObjectsEqual("At03Beacon-Obc2.json", beacon);
 	}
+	
+	@Test
+	public void testObc1() throws IOException {
+		byte[] data = ViterbiTest.hexStringToByteArray("534F4E30334154868765860068000001FF7FF43A000000008383847AFCFC90320F484891EC5E0701003870010000");
+		At03Beacon beacon = new At03Beacon();
+		beacon.readExternal(data);
+	}
 
 }
