@@ -17,101 +17,101 @@ public class OBC2Beacon {
 	private double latitude;
 	private double longitude;
 	private int altitude;
-	private byte ADCSStatus;
-	private byte ADCSAngleDev;
-	private boolean crystal_oszillator_used;
-	private boolean power_source;
-	private boolean last_reset_source1;
-	private boolean last_reset_source2;
-	private boolean eps_cc_used;
-	private boolean obc_powersave;
-	private boolean obc_3v3_spa_enabled;
-	private boolean task_sensors_running;
-	private boolean task_maintenance_running;
-	private boolean statemachine_initialized;
-	private boolean rtc_synchronized;
-	private boolean i2c0_initialized;
-	private boolean i2c1_initialized;
-	private boolean i2c2_initialized;
-	private boolean ssp0_initialized;
-	private boolean ssp1_initialized;
-	private boolean supply_switches_initialized;
-	private boolean i2c_switches_initialized;
-	private boolean rtc_initialized;
-	private boolean adc_initialized;
-	private boolean uart_gps_initialized;
-	private boolean uart_ttc2_initialized;
-	private boolean uart_mnlp_initialized;
-	private boolean uart_ttc1_initialized;
-	private boolean timer0_initialized;
-	private boolean watchdog_initialized;
-	private boolean timer1_initialized;
-	private boolean eps_cc1_operational;
-	private boolean eps_cc2_operational;
-	private boolean eeprom1_initialized;
-	private boolean eeprom2_initialized;
-	private boolean eeprom3_initialized;
-	private boolean mag_bp_initialized;
-	private boolean mag_bp_boom_initialized;
-	private boolean gyro1_initialized;
-	private boolean gyro2_initialized;
-	private boolean msp_initialized;
-	private boolean onboard_mag_initialized;
-	private boolean onboard_tmp100_initialized;
-	private boolean mpu_initialized;
-	private boolean flash1_initialized;
-	private boolean flash2_initialized;
-	private boolean spa_initialized;
-	private boolean spb_initialized;
-	private boolean spc_initialized;
-	private boolean spd_initialized;
-	private boolean sa_initialized;
-	private boolean bp_initialized;
-	private boolean gps_initialized;
-	private boolean ttc1_initialized;
-	private boolean ttc2_initialized;
-	private boolean science_module_initialized;
-	private boolean spa_vcc_on;
-	private boolean spb_vcc_on;
-	private boolean spc_vcc_on;
-	private boolean spd_vcc_on;
-	private boolean bp1_vcc_on;
-	private boolean bp2_vcc_on;
-	private boolean sa_vcc_on;
-	private boolean i2c_sw_a_on;
-	private boolean i2c_sw_b_on;
-	private boolean i2c_sw_c_on;
-	private boolean i2c_sw_d_on;
-	private boolean onboard_mag_powersafe;
-	private boolean gyro_powesafe;
-	private boolean mpu_powersafe;
-	private boolean tmp100_powersafe;
-	private boolean mag_bp_powersave;
-	private boolean mag_bp_boom_powersave;
-	private boolean mnlp_5v_enabled;
-	private boolean rtc_oszillator_error;
-	private boolean eeprom_page_cycle_overflow;
-	private boolean ssp0_frequent_errors;
-	private boolean ssp1_frequent_errors;
-	private boolean i2c0_frequent_errors;
-	private boolean i2c1_frequent_errors;
-	private boolean i2c2_frequent_errors;
-	private boolean timer0_running;
-	private boolean timer1_running;
-	private boolean default_config_used;
-	private int error_code;
-	private int error_code_before_reset;
+	private byte adcsStatus;
+	private byte adcsAngleDev;
+	private boolean crystalOszillatorUsed;
+	private boolean powerSource;
+	private boolean lastResetSource1;
+	private boolean lastResetSource2;
+	private boolean epsCcUsed;
+	private boolean obcPowersave;
+	private boolean obc3v3SpaEnabled;
+	private boolean taskSensorsRunning;
+	private boolean taskMaintenanceRunning;
+	private boolean statemachineInitialized;
+	private boolean rtcSynchronized;
+	private boolean i2c0Initialized;
+	private boolean i2c1Initialized;
+	private boolean i2c2Initialized;
+	private boolean ssp0Initialized;
+	private boolean ssp1Initialized;
+	private boolean supplySwitchesInitialized;
+	private boolean i2cSwitchesInitialized;
+	private boolean rtcInitialized;
+	private boolean adcInitialized;
+	private boolean uartGpsInitialized;
+	private boolean uartTtc2Initialized;
+	private boolean uartMnlpInitialized;
+	private boolean uartTtc1Initialized;
+	private boolean timer0Initialized;
+	private boolean watchdogInitialized;
+	private boolean timer1Initialized;
+	private boolean epsCc1Operational;
+	private boolean epsCc2Operational;
+	private boolean eeprom1Initialized;
+	private boolean eeprom2Initialized;
+	private boolean eeprom3Initialized;
+	private boolean magBpInitialized;
+	private boolean magBpBoomInitialized;
+	private boolean gyro1Initialized;
+	private boolean gyro2Initialized;
+	private boolean mspInitialized;
+	private boolean onboardMagInitialized;
+	private boolean onboardTmp100Initialized;
+	private boolean mpuInitialized;
+	private boolean flash1Initialized;
+	private boolean flash2Initialized;
+	private boolean spaInitialized;
+	private boolean spbInitialized;
+	private boolean spcInitialized;
+	private boolean spdInitialized;
+	private boolean saInitialized;
+	private boolean bpInitialized;
+	private boolean gpsInitialized;
+	private boolean ttc1Initialized;
+	private boolean ttc2Initialized;
+	private boolean scienceModuleInitialized;
+	private boolean spaVccOn;
+	private boolean spbVccOn;
+	private boolean spcVccOn;
+	private boolean spdVccOn;
+	private boolean bp1VccOn;
+	private boolean bp2VccOn;
+	private boolean saVccOn;
+	private boolean i2cSwAOn;
+	private boolean i2cSwBOn;
+	private boolean i2cSwCOn;
+	private boolean i2cSwDOn;
+	private boolean onboardMagPowersafe;
+	private boolean gyroPowesafe;
+	private boolean mpuPowersafe;
+	private boolean tmp100Powersafe;
+	private boolean magBpPowersave;
+	private boolean magBpBoomPowersave;
+	private boolean mnlp5vEnabled;
+	private boolean rtcOszillatorError;
+	private boolean eepromPageCycleOverflow;
+	private boolean ssp0FrequentErrors;
+	private boolean ssp1FrequentErrors;
+	private boolean i2c0FrequentErrors;
+	private boolean i2c1FrequentErrors;
+	private boolean i2c2FrequentErrors;
+	private boolean timer0Running;
+	private boolean timer1Running;
+	private boolean defaultConfigUsed;
+	private int errorCode;
+	private int errorCodeBeforeReset;
 	private long resetsCounter;
-	private byte TempSPXMinus;
-	private byte TempSPXPlus;
-	private byte TempSPYMinus;
-	private byte TempSPYPlus;
-	private boolean CmdScripSlotLoaded;
-	private int ScienceScriptSlotLoaded;
-	private int CmdScripSlotLoaded2;
-	
+	private byte tempSPXMinus;
+	private byte tempSPXPlus;
+	private byte tempSPYMinus;
+	private byte tempSPYPlus;
+	private boolean cmdScripSlotLoaded;
+	private int scienceScriptSlotLoaded;
+	private int cmdScripSlotLoaded2;
+
 	public OBC2Beacon() {
-		//do nothing
+		// do nothing
 	}
 
 	public OBC2Beacon(DataInputStream dis) throws IOException {
@@ -133,7 +133,7 @@ public class OBC2Beacon {
 			latitude = -latitude;
 		}
 
-		long rawLongitude = (((long)dis.readUnsignedByte() << 48) | ((long)dis.readUnsignedByte() << 40) | ((long)dis.readUnsignedByte() << 32) | (long)dis.readUnsignedByte() << 24) | (dis.readUnsignedByte() << 16) | (dis.readUnsignedByte() << 8) | (dis.readUnsignedByte());
+		long rawLongitude = (((long) dis.readUnsignedByte() << 48) | ((long) dis.readUnsignedByte() << 40) | ((long) dis.readUnsignedByte() << 32) | (long) dis.readUnsignedByte() << 24) | (dis.readUnsignedByte() << 16) | (dis.readUnsignedByte() << 8) | (dis.readUnsignedByte());
 		// ignore fill bits at the end
 		rawLongitude = rawLongitude >> 7;
 		altitude = (int) (rawLongitude & 0xFFFFF);
@@ -148,121 +148,121 @@ public class OBC2Beacon {
 			longitude = -longitude;
 		}
 
-		ADCSStatus = dis.readByte();
-		ADCSAngleDev = dis.readByte();
+		adcsStatus = dis.readByte();
+		adcsAngleDev = dis.readByte();
 
 		int b = dis.readUnsignedByte();
-		crystal_oszillator_used = ((b >> 7) & 1) > 0;
-		power_source = ((b >> 6) & 1) > 0;
-		last_reset_source1 = ((b >> 5) & 1) > 0;
-		last_reset_source2 = ((b >> 4) & 1) > 0;
-		eps_cc_used = ((b >> 3) & 1) > 0;
-		obc_powersave = ((b >> 2) & 1) > 0;
-		obc_3v3_spa_enabled = ((b >> 1) & 1) > 0;
-		task_sensors_running = (b & 1) > 0;
+		crystalOszillatorUsed = ((b >> 7) & 1) > 0;
+		powerSource = ((b >> 6) & 1) > 0;
+		lastResetSource1 = ((b >> 5) & 1) > 0;
+		lastResetSource2 = ((b >> 4) & 1) > 0;
+		epsCcUsed = ((b >> 3) & 1) > 0;
+		obcPowersave = ((b >> 2) & 1) > 0;
+		obc3v3SpaEnabled = ((b >> 1) & 1) > 0;
+		taskSensorsRunning = (b & 1) > 0;
 
 		b = dis.readUnsignedByte();
-		task_maintenance_running = ((b >> 7) & 1) > 0;
-		statemachine_initialized = ((b >> 6) & 1) > 0;
-		rtc_synchronized = ((b >> 5) & 1) > 0;
-		i2c0_initialized = ((b >> 4) & 1) > 0;
-		i2c1_initialized = ((b >> 3) & 1) > 0;
-		i2c2_initialized = ((b >> 2) & 1) > 0;
-		ssp0_initialized = ((b >> 1) & 1) > 0;
-		ssp1_initialized = (b & 1) > 0;
+		taskMaintenanceRunning = ((b >> 7) & 1) > 0;
+		statemachineInitialized = ((b >> 6) & 1) > 0;
+		rtcSynchronized = ((b >> 5) & 1) > 0;
+		i2c0Initialized = ((b >> 4) & 1) > 0;
+		i2c1Initialized = ((b >> 3) & 1) > 0;
+		i2c2Initialized = ((b >> 2) & 1) > 0;
+		ssp0Initialized = ((b >> 1) & 1) > 0;
+		ssp1Initialized = (b & 1) > 0;
 
 		b = dis.readUnsignedByte();
-		supply_switches_initialized = ((b >> 7) & 1) > 0;
-		i2c_switches_initialized = ((b >> 6) & 1) > 0;
-		rtc_initialized = ((b >> 5) & 1) > 0;
-		adc_initialized = ((b >> 4) & 1) > 0;
-		uart_gps_initialized = ((b >> 3) & 1) > 0;
-		uart_ttc2_initialized = ((b >> 2) & 1) > 0;
-		uart_mnlp_initialized = ((b >> 1) & 1) > 0;
-		uart_ttc1_initialized = (b & 1) > 0;
+		supplySwitchesInitialized = ((b >> 7) & 1) > 0;
+		i2cSwitchesInitialized = ((b >> 6) & 1) > 0;
+		rtcInitialized = ((b >> 5) & 1) > 0;
+		adcInitialized = ((b >> 4) & 1) > 0;
+		uartGpsInitialized = ((b >> 3) & 1) > 0;
+		uartTtc2Initialized = ((b >> 2) & 1) > 0;
+		uartMnlpInitialized = ((b >> 1) & 1) > 0;
+		uartTtc1Initialized = (b & 1) > 0;
 
 		b = dis.readUnsignedByte();
-		timer0_initialized = ((b >> 7) & 1) > 0;
-		watchdog_initialized = ((b >> 6) & 1) > 0;
-		timer1_initialized = ((b >> 5) & 1) > 0;
-		eps_cc1_operational = ((b >> 4) & 1) > 0;
-		eps_cc2_operational = ((b >> 3) & 1) > 0;
-		eeprom1_initialized = ((b >> 2) & 1) > 0;
-		eeprom2_initialized = ((b >> 1) & 1) > 0;
-		eeprom3_initialized = (b & 1) > 0;
+		timer0Initialized = ((b >> 7) & 1) > 0;
+		watchdogInitialized = ((b >> 6) & 1) > 0;
+		timer1Initialized = ((b >> 5) & 1) > 0;
+		epsCc1Operational = ((b >> 4) & 1) > 0;
+		epsCc2Operational = ((b >> 3) & 1) > 0;
+		eeprom1Initialized = ((b >> 2) & 1) > 0;
+		eeprom2Initialized = ((b >> 1) & 1) > 0;
+		eeprom3Initialized = (b & 1) > 0;
 
 		b = dis.readUnsignedByte();
-		mag_bp_initialized = ((b >> 7) & 1) > 0;
-		mag_bp_boom_initialized = ((b >> 6) & 1) > 0;
-		gyro1_initialized = ((b >> 5) & 1) > 0;
-		gyro2_initialized = ((b >> 4) & 1) > 0;
-		msp_initialized = ((b >> 3) & 1) > 0;
-		onboard_mag_initialized = ((b >> 2) & 1) > 0;
-		onboard_tmp100_initialized = ((b >> 1) & 1) > 0;
-		mpu_initialized = (b & 1) > 0;
+		magBpInitialized = ((b >> 7) & 1) > 0;
+		magBpBoomInitialized = ((b >> 6) & 1) > 0;
+		gyro1Initialized = ((b >> 5) & 1) > 0;
+		gyro2Initialized = ((b >> 4) & 1) > 0;
+		mspInitialized = ((b >> 3) & 1) > 0;
+		onboardMagInitialized = ((b >> 2) & 1) > 0;
+		onboardTmp100Initialized = ((b >> 1) & 1) > 0;
+		mpuInitialized = (b & 1) > 0;
 
 		b = dis.readUnsignedByte();
-		flash1_initialized = ((b >> 7) & 1) > 0;
-		flash2_initialized = ((b >> 6) & 1) > 0;
-		spa_initialized = ((b >> 5) & 1) > 0;
-		spb_initialized = ((b >> 4) & 1) > 0;
-		spc_initialized = ((b >> 3) & 1) > 0;
-		spd_initialized = ((b >> 2) & 1) > 0;
-		sa_initialized = ((b >> 1) & 1) > 0;
-		bp_initialized = (b & 1) > 0;
+		flash1Initialized = ((b >> 7) & 1) > 0;
+		flash2Initialized = ((b >> 6) & 1) > 0;
+		spaInitialized = ((b >> 5) & 1) > 0;
+		spbInitialized = ((b >> 4) & 1) > 0;
+		spcInitialized = ((b >> 3) & 1) > 0;
+		spdInitialized = ((b >> 2) & 1) > 0;
+		saInitialized = ((b >> 1) & 1) > 0;
+		bpInitialized = (b & 1) > 0;
 
 		b = dis.readUnsignedByte();
-		gps_initialized = ((b >> 7) & 1) > 0;
-		ttc1_initialized = ((b >> 6) & 1) > 0;
-		ttc2_initialized = ((b >> 5) & 1) > 0;
-		science_module_initialized = ((b >> 4) & 1) > 0;
-		spa_vcc_on = ((b >> 3) & 1) > 0;
-		spb_vcc_on = ((b >> 2) & 1) > 0;
-		spc_vcc_on = ((b >> 1) & 1) > 0;
-		spd_vcc_on = (b & 1) > 0;
+		gpsInitialized = ((b >> 7) & 1) > 0;
+		ttc1Initialized = ((b >> 6) & 1) > 0;
+		ttc2Initialized = ((b >> 5) & 1) > 0;
+		scienceModuleInitialized = ((b >> 4) & 1) > 0;
+		spaVccOn = ((b >> 3) & 1) > 0;
+		spbVccOn = ((b >> 2) & 1) > 0;
+		spcVccOn = ((b >> 1) & 1) > 0;
+		spdVccOn = (b & 1) > 0;
 
 		b = dis.readUnsignedByte();
-		bp1_vcc_on = ((b >> 7) & 1) > 0;
-		bp2_vcc_on = ((b >> 6) & 1) > 0;
-		sa_vcc_on = ((b >> 5) & 1) > 0;
-		i2c_sw_a_on = ((b >> 4) & 1) > 0;
-		i2c_sw_b_on = ((b >> 3) & 1) > 0;
-		i2c_sw_c_on = ((b >> 2) & 1) > 0;
-		i2c_sw_d_on = ((b >> 1) & 1) > 0;
-		onboard_mag_powersafe = (b & 1) > 0;
+		bp1VccOn = ((b >> 7) & 1) > 0;
+		bp2VccOn = ((b >> 6) & 1) > 0;
+		saVccOn = ((b >> 5) & 1) > 0;
+		i2cSwAOn = ((b >> 4) & 1) > 0;
+		i2cSwBOn = ((b >> 3) & 1) > 0;
+		i2cSwCOn = ((b >> 2) & 1) > 0;
+		i2cSwDOn = ((b >> 1) & 1) > 0;
+		onboardMagPowersafe = (b & 1) > 0;
 
 		b = dis.readUnsignedByte();
-		gyro_powesafe = ((b >> 7) & 1) > 0;
-		mpu_powersafe = ((b >> 6) & 1) > 0;
-		tmp100_powersafe = ((b >> 5) & 1) > 0;
-		mag_bp_powersave = ((b >> 4) & 1) > 0;
-		mag_bp_boom_powersave = ((b >> 3) & 1) > 0;
-		mnlp_5v_enabled = ((b >> 2) & 1) > 0;
-		rtc_oszillator_error = ((b >> 1) & 1) > 0;
-		eeprom_page_cycle_overflow = (b & 1) > 0;
+		gyroPowesafe = ((b >> 7) & 1) > 0;
+		mpuPowersafe = ((b >> 6) & 1) > 0;
+		tmp100Powersafe = ((b >> 5) & 1) > 0;
+		magBpPowersave = ((b >> 4) & 1) > 0;
+		magBpBoomPowersave = ((b >> 3) & 1) > 0;
+		mnlp5vEnabled = ((b >> 2) & 1) > 0;
+		rtcOszillatorError = ((b >> 1) & 1) > 0;
+		eepromPageCycleOverflow = (b & 1) > 0;
 
 		b = dis.readUnsignedByte();
-		ssp0_frequent_errors = ((b >> 7) & 1) > 0;
-		ssp1_frequent_errors = ((b >> 6) & 1) > 0;
-		i2c0_frequent_errors = ((b >> 5) & 1) > 0;
-		i2c1_frequent_errors = ((b >> 4) & 1) > 0;
-		i2c2_frequent_errors = ((b >> 3) & 1) > 0;
-		timer0_running = ((b >> 2) & 1) > 0;
-		timer1_running = ((b >> 1) & 1) > 0;
-		default_config_used = (b & 1) > 0;
+		ssp0FrequentErrors = ((b >> 7) & 1) > 0;
+		ssp1FrequentErrors = ((b >> 6) & 1) > 0;
+		i2c0FrequentErrors = ((b >> 5) & 1) > 0;
+		i2c1FrequentErrors = ((b >> 4) & 1) > 0;
+		i2c2FrequentErrors = ((b >> 3) & 1) > 0;
+		timer0Running = ((b >> 2) & 1) > 0;
+		timer1Running = ((b >> 1) & 1) > 0;
+		defaultConfigUsed = (b & 1) > 0;
 
-		error_code = dis.readUnsignedByte();
-		error_code_before_reset = dis.readUnsignedByte();
+		errorCode = dis.readUnsignedByte();
+		errorCodeBeforeReset = dis.readUnsignedByte();
 		resetsCounter = StreamUtils.readUnsignedInt(dis);
-		TempSPXMinus = dis.readByte();
-		TempSPXPlus = dis.readByte();
-		TempSPYMinus = dis.readByte();
-		TempSPYPlus = dis.readByte();
+		tempSPXMinus = dis.readByte();
+		tempSPXPlus = dis.readByte();
+		tempSPYMinus = dis.readByte();
+		tempSPYPlus = dis.readByte();
 
 		int rawScript = dis.readUnsignedByte();
-		CmdScripSlotLoaded = (rawScript >> 7) > 0;
-		ScienceScriptSlotLoaded = (rawScript & 0x7F);
-		CmdScripSlotLoaded2 = dis.readUnsignedByte();
+		cmdScripSlotLoaded = (rawScript >> 7) > 0;
+		scienceScriptSlotLoaded = (rawScript & 0x7F);
+		cmdScripSlotLoaded2 = dis.readUnsignedByte();
 	}
 
 	public int getDate() {
@@ -321,676 +321,676 @@ public class OBC2Beacon {
 		this.altitude = altitude;
 	}
 
-	public byte getADCSStatus() {
-		return ADCSStatus;
+	public byte getAdcsStatus() {
+		return adcsStatus;
 	}
 
-	public void setADCSStatus(byte aDCSStatus) {
-		ADCSStatus = aDCSStatus;
+	public void setAdcsStatus(byte adcsStatus) {
+		this.adcsStatus = adcsStatus;
 	}
 
-	public byte getADCSAngleDev() {
-		return ADCSAngleDev;
+	public byte getAdcsAngleDev() {
+		return adcsAngleDev;
 	}
 
-	public void setADCSAngleDev(byte aDCSAngleDev) {
-		ADCSAngleDev = aDCSAngleDev;
+	public void setAdcsAngleDev(byte adcsAngleDev) {
+		this.adcsAngleDev = adcsAngleDev;
 	}
 
-	public boolean isCrystal_oszillator_used() {
-		return crystal_oszillator_used;
+	public boolean isCrystalOszillatorUsed() {
+		return crystalOszillatorUsed;
 	}
 
-	public void setCrystal_oszillator_used(boolean crystal_oszillator_used) {
-		this.crystal_oszillator_used = crystal_oszillator_used;
+	public void setCrystalOszillatorUsed(boolean crystalOszillatorUsed) {
+		this.crystalOszillatorUsed = crystalOszillatorUsed;
 	}
 
-	public boolean isPower_source() {
-		return power_source;
+	public boolean isPowerSource() {
+		return powerSource;
 	}
 
-	public void setPower_source(boolean power_source) {
-		this.power_source = power_source;
+	public void setPowerSource(boolean powerSource) {
+		this.powerSource = powerSource;
 	}
 
-	public boolean isLast_reset_source1() {
-		return last_reset_source1;
+	public boolean isLastResetSource1() {
+		return lastResetSource1;
 	}
 
-	public void setLast_reset_source1(boolean last_reset_source1) {
-		this.last_reset_source1 = last_reset_source1;
+	public void setLastResetSource1(boolean lastResetSource1) {
+		this.lastResetSource1 = lastResetSource1;
 	}
 
-	public boolean isLast_reset_source2() {
-		return last_reset_source2;
+	public boolean isLastResetSource2() {
+		return lastResetSource2;
 	}
 
-	public void setLast_reset_source2(boolean last_reset_source2) {
-		this.last_reset_source2 = last_reset_source2;
+	public void setLastResetSource2(boolean lastResetSource2) {
+		this.lastResetSource2 = lastResetSource2;
 	}
 
-	public boolean isEps_cc_used() {
-		return eps_cc_used;
+	public boolean isEpsCcUsed() {
+		return epsCcUsed;
 	}
 
-	public void setEps_cc_used(boolean eps_cc_used) {
-		this.eps_cc_used = eps_cc_used;
+	public void setEpsCcUsed(boolean epsCcUsed) {
+		this.epsCcUsed = epsCcUsed;
 	}
 
-	public boolean isObc_powersave() {
-		return obc_powersave;
+	public boolean isObcPowersave() {
+		return obcPowersave;
 	}
 
-	public void setObc_powersave(boolean obc_powersave) {
-		this.obc_powersave = obc_powersave;
+	public void setObcPowersave(boolean obcPowersave) {
+		this.obcPowersave = obcPowersave;
 	}
 
-	public boolean isObc_3v3_spa_enabled() {
-		return obc_3v3_spa_enabled;
+	public boolean isObc3v3SpaEnabled() {
+		return obc3v3SpaEnabled;
 	}
 
-	public void setObc_3v3_spa_enabled(boolean obc_3v3_spa_enabled) {
-		this.obc_3v3_spa_enabled = obc_3v3_spa_enabled;
+	public void setObc3v3SpaEnabled(boolean obc3v3SpaEnabled) {
+		this.obc3v3SpaEnabled = obc3v3SpaEnabled;
 	}
 
-	public boolean isTask_sensors_running() {
-		return task_sensors_running;
+	public boolean isTaskSensorsRunning() {
+		return taskSensorsRunning;
 	}
 
-	public void setTask_sensors_running(boolean task_sensors_running) {
-		this.task_sensors_running = task_sensors_running;
+	public void setTaskSensorsRunning(boolean taskSensorsRunning) {
+		this.taskSensorsRunning = taskSensorsRunning;
 	}
 
-	public boolean isTask_maintenance_running() {
-		return task_maintenance_running;
+	public boolean isTaskMaintenanceRunning() {
+		return taskMaintenanceRunning;
 	}
 
-	public void setTask_maintenance_running(boolean task_maintenance_running) {
-		this.task_maintenance_running = task_maintenance_running;
+	public void setTaskMaintenanceRunning(boolean taskMaintenanceRunning) {
+		this.taskMaintenanceRunning = taskMaintenanceRunning;
 	}
 
-	public boolean isStatemachine_initialized() {
-		return statemachine_initialized;
+	public boolean isStatemachineInitialized() {
+		return statemachineInitialized;
 	}
 
-	public void setStatemachine_initialized(boolean statemachine_initialized) {
-		this.statemachine_initialized = statemachine_initialized;
+	public void setStatemachineInitialized(boolean statemachineInitialized) {
+		this.statemachineInitialized = statemachineInitialized;
 	}
 
-	public boolean isRtc_synchronized() {
-		return rtc_synchronized;
+	public boolean isRtcSynchronized() {
+		return rtcSynchronized;
 	}
 
-	public void setRtc_synchronized(boolean rtc_synchronized) {
-		this.rtc_synchronized = rtc_synchronized;
+	public void setRtcSynchronized(boolean rtcSynchronized) {
+		this.rtcSynchronized = rtcSynchronized;
 	}
 
-	public boolean isI2c0_initialized() {
-		return i2c0_initialized;
+	public boolean isI2c0Initialized() {
+		return i2c0Initialized;
 	}
 
-	public void setI2c0_initialized(boolean i2c0_initialized) {
-		this.i2c0_initialized = i2c0_initialized;
+	public void setI2c0Initialized(boolean i2c0Initialized) {
+		this.i2c0Initialized = i2c0Initialized;
 	}
 
-	public boolean isI2c1_initialized() {
-		return i2c1_initialized;
+	public boolean isI2c1Initialized() {
+		return i2c1Initialized;
 	}
 
-	public void setI2c1_initialized(boolean i2c1_initialized) {
-		this.i2c1_initialized = i2c1_initialized;
+	public void setI2c1Initialized(boolean i2c1Initialized) {
+		this.i2c1Initialized = i2c1Initialized;
 	}
 
-	public boolean isI2c2_initialized() {
-		return i2c2_initialized;
+	public boolean isI2c2Initialized() {
+		return i2c2Initialized;
 	}
 
-	public void setI2c2_initialized(boolean i2c2_initialized) {
-		this.i2c2_initialized = i2c2_initialized;
+	public void setI2c2Initialized(boolean i2c2Initialized) {
+		this.i2c2Initialized = i2c2Initialized;
 	}
 
-	public boolean isSsp0_initialized() {
-		return ssp0_initialized;
+	public boolean isSsp0Initialized() {
+		return ssp0Initialized;
 	}
 
-	public void setSsp0_initialized(boolean ssp0_initialized) {
-		this.ssp0_initialized = ssp0_initialized;
+	public void setSsp0Initialized(boolean ssp0Initialized) {
+		this.ssp0Initialized = ssp0Initialized;
 	}
 
-	public boolean isSsp1_initialized() {
-		return ssp1_initialized;
+	public boolean isSsp1Initialized() {
+		return ssp1Initialized;
 	}
 
-	public void setSsp1_initialized(boolean ssp1_initialized) {
-		this.ssp1_initialized = ssp1_initialized;
+	public void setSsp1Initialized(boolean ssp1Initialized) {
+		this.ssp1Initialized = ssp1Initialized;
 	}
 
-	public boolean isSupply_switches_initialized() {
-		return supply_switches_initialized;
+	public boolean isSupplySwitchesInitialized() {
+		return supplySwitchesInitialized;
 	}
 
-	public void setSupply_switches_initialized(boolean supply_switches_initialized) {
-		this.supply_switches_initialized = supply_switches_initialized;
+	public void setSupplySwitchesInitialized(boolean supplySwitchesInitialized) {
+		this.supplySwitchesInitialized = supplySwitchesInitialized;
 	}
 
-	public boolean isI2c_switches_initialized() {
-		return i2c_switches_initialized;
+	public boolean isI2cSwitchesInitialized() {
+		return i2cSwitchesInitialized;
 	}
 
-	public void setI2c_switches_initialized(boolean i2c_switches_initialized) {
-		this.i2c_switches_initialized = i2c_switches_initialized;
+	public void setI2cSwitchesInitialized(boolean i2cSwitchesInitialized) {
+		this.i2cSwitchesInitialized = i2cSwitchesInitialized;
 	}
 
-	public boolean isRtc_initialized() {
-		return rtc_initialized;
+	public boolean isRtcInitialized() {
+		return rtcInitialized;
 	}
 
-	public void setRtc_initialized(boolean rtc_initialized) {
-		this.rtc_initialized = rtc_initialized;
+	public void setRtcInitialized(boolean rtcInitialized) {
+		this.rtcInitialized = rtcInitialized;
 	}
 
-	public boolean isAdc_initialized() {
-		return adc_initialized;
+	public boolean isAdcInitialized() {
+		return adcInitialized;
 	}
 
-	public void setAdc_initialized(boolean adc_initialized) {
-		this.adc_initialized = adc_initialized;
+	public void setAdcInitialized(boolean adcInitialized) {
+		this.adcInitialized = adcInitialized;
 	}
 
-	public boolean isUart_gps_initialized() {
-		return uart_gps_initialized;
+	public boolean isUartGpsInitialized() {
+		return uartGpsInitialized;
 	}
 
-	public void setUart_gps_initialized(boolean uart_gps_initialized) {
-		this.uart_gps_initialized = uart_gps_initialized;
+	public void setUartGpsInitialized(boolean uartGpsInitialized) {
+		this.uartGpsInitialized = uartGpsInitialized;
 	}
 
-	public boolean isUart_ttc2_initialized() {
-		return uart_ttc2_initialized;
+	public boolean isUartTtc2Initialized() {
+		return uartTtc2Initialized;
 	}
 
-	public void setUart_ttc2_initialized(boolean uart_ttc2_initialized) {
-		this.uart_ttc2_initialized = uart_ttc2_initialized;
+	public void setUartTtc2Initialized(boolean uartTtc2Initialized) {
+		this.uartTtc2Initialized = uartTtc2Initialized;
 	}
 
-	public boolean isUart_mnlp_initialized() {
-		return uart_mnlp_initialized;
+	public boolean isUartMnlpInitialized() {
+		return uartMnlpInitialized;
 	}
 
-	public void setUart_mnlp_initialized(boolean uart_mnlp_initialized) {
-		this.uart_mnlp_initialized = uart_mnlp_initialized;
+	public void setUartMnlpInitialized(boolean uartMnlpInitialized) {
+		this.uartMnlpInitialized = uartMnlpInitialized;
 	}
 
-	public boolean isUart_ttc1_initialized() {
-		return uart_ttc1_initialized;
+	public boolean isUartTtc1Initialized() {
+		return uartTtc1Initialized;
 	}
 
-	public void setUart_ttc1_initialized(boolean uart_ttc1_initialized) {
-		this.uart_ttc1_initialized = uart_ttc1_initialized;
+	public void setUartTtc1Initialized(boolean uartTtc1Initialized) {
+		this.uartTtc1Initialized = uartTtc1Initialized;
 	}
 
-	public boolean isTimer0_initialized() {
-		return timer0_initialized;
+	public boolean isTimer0Initialized() {
+		return timer0Initialized;
 	}
 
-	public void setTimer0_initialized(boolean timer0_initialized) {
-		this.timer0_initialized = timer0_initialized;
+	public void setTimer0Initialized(boolean timer0Initialized) {
+		this.timer0Initialized = timer0Initialized;
 	}
 
-	public boolean isWatchdog_initialized() {
-		return watchdog_initialized;
+	public boolean isWatchdogInitialized() {
+		return watchdogInitialized;
 	}
 
-	public void setWatchdog_initialized(boolean watchdog_initialized) {
-		this.watchdog_initialized = watchdog_initialized;
+	public void setWatchdogInitialized(boolean watchdogInitialized) {
+		this.watchdogInitialized = watchdogInitialized;
 	}
 
-	public boolean isTimer1_initialized() {
-		return timer1_initialized;
+	public boolean isTimer1Initialized() {
+		return timer1Initialized;
 	}
 
-	public void setTimer1_initialized(boolean timer1_initialized) {
-		this.timer1_initialized = timer1_initialized;
+	public void setTimer1Initialized(boolean timer1Initialized) {
+		this.timer1Initialized = timer1Initialized;
 	}
 
-	public boolean isEps_cc1_operational() {
-		return eps_cc1_operational;
+	public boolean isEpsCc1Operational() {
+		return epsCc1Operational;
 	}
 
-	public void setEps_cc1_operational(boolean eps_cc1_operational) {
-		this.eps_cc1_operational = eps_cc1_operational;
+	public void setEpsCc1Operational(boolean epsCc1Operational) {
+		this.epsCc1Operational = epsCc1Operational;
 	}
 
-	public boolean isEps_cc2_operational() {
-		return eps_cc2_operational;
+	public boolean isEpsCc2Operational() {
+		return epsCc2Operational;
 	}
 
-	public void setEps_cc2_operational(boolean eps_cc2_operational) {
-		this.eps_cc2_operational = eps_cc2_operational;
+	public void setEpsCc2Operational(boolean epsCc2Operational) {
+		this.epsCc2Operational = epsCc2Operational;
 	}
 
-	public boolean isEeprom1_initialized() {
-		return eeprom1_initialized;
+	public boolean isEeprom1Initialized() {
+		return eeprom1Initialized;
 	}
 
-	public void setEeprom1_initialized(boolean eeprom1_initialized) {
-		this.eeprom1_initialized = eeprom1_initialized;
+	public void setEeprom1Initialized(boolean eeprom1Initialized) {
+		this.eeprom1Initialized = eeprom1Initialized;
 	}
 
-	public boolean isEeprom2_initialized() {
-		return eeprom2_initialized;
+	public boolean isEeprom2Initialized() {
+		return eeprom2Initialized;
 	}
 
-	public void setEeprom2_initialized(boolean eeprom2_initialized) {
-		this.eeprom2_initialized = eeprom2_initialized;
+	public void setEeprom2Initialized(boolean eeprom2Initialized) {
+		this.eeprom2Initialized = eeprom2Initialized;
 	}
 
-	public boolean isEeprom3_initialized() {
-		return eeprom3_initialized;
+	public boolean isEeprom3Initialized() {
+		return eeprom3Initialized;
 	}
 
-	public void setEeprom3_initialized(boolean eeprom3_initialized) {
-		this.eeprom3_initialized = eeprom3_initialized;
+	public void setEeprom3Initialized(boolean eeprom3Initialized) {
+		this.eeprom3Initialized = eeprom3Initialized;
 	}
 
-	public boolean isMag_bp_initialized() {
-		return mag_bp_initialized;
+	public boolean isMagBpInitialized() {
+		return magBpInitialized;
 	}
 
-	public void setMag_bp_initialized(boolean mag_bp_initialized) {
-		this.mag_bp_initialized = mag_bp_initialized;
+	public void setMagBpInitialized(boolean magBpInitialized) {
+		this.magBpInitialized = magBpInitialized;
 	}
 
-	public boolean isMag_bp_boom_initialized() {
-		return mag_bp_boom_initialized;
+	public boolean isMagBpBoomInitialized() {
+		return magBpBoomInitialized;
 	}
 
-	public void setMag_bp_boom_initialized(boolean mag_bp_boom_initialized) {
-		this.mag_bp_boom_initialized = mag_bp_boom_initialized;
+	public void setMagBpBoomInitialized(boolean magBpBoomInitialized) {
+		this.magBpBoomInitialized = magBpBoomInitialized;
 	}
 
-	public boolean isGyro1_initialized() {
-		return gyro1_initialized;
+	public boolean isGyro1Initialized() {
+		return gyro1Initialized;
 	}
 
-	public void setGyro1_initialized(boolean gyro1_initialized) {
-		this.gyro1_initialized = gyro1_initialized;
+	public void setGyro1Initialized(boolean gyro1Initialized) {
+		this.gyro1Initialized = gyro1Initialized;
 	}
 
-	public boolean isGyro2_initialized() {
-		return gyro2_initialized;
+	public boolean isGyro2Initialized() {
+		return gyro2Initialized;
 	}
 
-	public void setGyro2_initialized(boolean gyro2_initialized) {
-		this.gyro2_initialized = gyro2_initialized;
+	public void setGyro2Initialized(boolean gyro2Initialized) {
+		this.gyro2Initialized = gyro2Initialized;
 	}
 
-	public boolean isMsp_initialized() {
-		return msp_initialized;
+	public boolean isMspInitialized() {
+		return mspInitialized;
 	}
 
-	public void setMsp_initialized(boolean msp_initialized) {
-		this.msp_initialized = msp_initialized;
+	public void setMspInitialized(boolean mspInitialized) {
+		this.mspInitialized = mspInitialized;
 	}
 
-	public boolean isOnboard_mag_initialized() {
-		return onboard_mag_initialized;
+	public boolean isOnboardMagInitialized() {
+		return onboardMagInitialized;
 	}
 
-	public void setOnboard_mag_initialized(boolean onboard_mag_initialized) {
-		this.onboard_mag_initialized = onboard_mag_initialized;
+	public void setOnboardMagInitialized(boolean onboardMagInitialized) {
+		this.onboardMagInitialized = onboardMagInitialized;
 	}
 
-	public boolean isOnboard_tmp100_initialized() {
-		return onboard_tmp100_initialized;
+	public boolean isOnboardTmp100Initialized() {
+		return onboardTmp100Initialized;
 	}
 
-	public void setOnboard_tmp100_initialized(boolean onboard_tmp100_initialized) {
-		this.onboard_tmp100_initialized = onboard_tmp100_initialized;
+	public void setOnboardTmp100Initialized(boolean onboardTmp100Initialized) {
+		this.onboardTmp100Initialized = onboardTmp100Initialized;
 	}
 
-	public boolean isMpu_initialized() {
-		return mpu_initialized;
+	public boolean isMpuInitialized() {
+		return mpuInitialized;
 	}
 
-	public void setMpu_initialized(boolean mpu_initialized) {
-		this.mpu_initialized = mpu_initialized;
+	public void setMpuInitialized(boolean mpuInitialized) {
+		this.mpuInitialized = mpuInitialized;
 	}
 
-	public boolean isFlash1_initialized() {
-		return flash1_initialized;
+	public boolean isFlash1Initialized() {
+		return flash1Initialized;
 	}
 
-	public void setFlash1_initialized(boolean flash1_initialized) {
-		this.flash1_initialized = flash1_initialized;
+	public void setFlash1Initialized(boolean flash1Initialized) {
+		this.flash1Initialized = flash1Initialized;
 	}
 
-	public boolean isFlash2_initialized() {
-		return flash2_initialized;
+	public boolean isFlash2Initialized() {
+		return flash2Initialized;
 	}
 
-	public void setFlash2_initialized(boolean flash2_initialized) {
-		this.flash2_initialized = flash2_initialized;
+	public void setFlash2Initialized(boolean flash2Initialized) {
+		this.flash2Initialized = flash2Initialized;
 	}
 
-	public boolean isSpa_initialized() {
-		return spa_initialized;
+	public boolean isSpaInitialized() {
+		return spaInitialized;
 	}
 
-	public void setSpa_initialized(boolean spa_initialized) {
-		this.spa_initialized = spa_initialized;
+	public void setSpaInitialized(boolean spaInitialized) {
+		this.spaInitialized = spaInitialized;
 	}
 
-	public boolean isSpb_initialized() {
-		return spb_initialized;
+	public boolean isSpbInitialized() {
+		return spbInitialized;
 	}
 
-	public void setSpb_initialized(boolean spb_initialized) {
-		this.spb_initialized = spb_initialized;
+	public void setSpbInitialized(boolean spbInitialized) {
+		this.spbInitialized = spbInitialized;
 	}
 
-	public boolean isSpc_initialized() {
-		return spc_initialized;
+	public boolean isSpcInitialized() {
+		return spcInitialized;
 	}
 
-	public void setSpc_initialized(boolean spc_initialized) {
-		this.spc_initialized = spc_initialized;
+	public void setSpcInitialized(boolean spcInitialized) {
+		this.spcInitialized = spcInitialized;
 	}
 
-	public boolean isSpd_initialized() {
-		return spd_initialized;
+	public boolean isSpdInitialized() {
+		return spdInitialized;
 	}
 
-	public void setSpd_initialized(boolean spd_initialized) {
-		this.spd_initialized = spd_initialized;
+	public void setSpdInitialized(boolean spdInitialized) {
+		this.spdInitialized = spdInitialized;
 	}
 
-	public boolean isSa_initialized() {
-		return sa_initialized;
+	public boolean isSaInitialized() {
+		return saInitialized;
 	}
 
-	public void setSa_initialized(boolean sa_initialized) {
-		this.sa_initialized = sa_initialized;
+	public void setSaInitialized(boolean saInitialized) {
+		this.saInitialized = saInitialized;
 	}
 
-	public boolean isBp_initialized() {
-		return bp_initialized;
+	public boolean isBpInitialized() {
+		return bpInitialized;
 	}
 
-	public void setBp_initialized(boolean bp_initialized) {
-		this.bp_initialized = bp_initialized;
+	public void setBpInitialized(boolean bpInitialized) {
+		this.bpInitialized = bpInitialized;
 	}
 
-	public boolean isGps_initialized() {
-		return gps_initialized;
+	public boolean isGpsInitialized() {
+		return gpsInitialized;
 	}
 
-	public void setGps_initialized(boolean gps_initialized) {
-		this.gps_initialized = gps_initialized;
+	public void setGpsInitialized(boolean gpsInitialized) {
+		this.gpsInitialized = gpsInitialized;
 	}
 
-	public boolean isTtc1_initialized() {
-		return ttc1_initialized;
+	public boolean isTtc1Initialized() {
+		return ttc1Initialized;
 	}
 
-	public void setTtc1_initialized(boolean ttc1_initialized) {
-		this.ttc1_initialized = ttc1_initialized;
+	public void setTtc1Initialized(boolean ttc1Initialized) {
+		this.ttc1Initialized = ttc1Initialized;
 	}
 
-	public boolean isTtc2_initialized() {
-		return ttc2_initialized;
+	public boolean isTtc2Initialized() {
+		return ttc2Initialized;
 	}
 
-	public void setTtc2_initialized(boolean ttc2_initialized) {
-		this.ttc2_initialized = ttc2_initialized;
+	public void setTtc2Initialized(boolean ttc2Initialized) {
+		this.ttc2Initialized = ttc2Initialized;
 	}
 
-	public boolean isScience_module_initialized() {
-		return science_module_initialized;
+	public boolean isScienceModuleInitialized() {
+		return scienceModuleInitialized;
 	}
 
-	public void setScience_module_initialized(boolean science_module_initialized) {
-		this.science_module_initialized = science_module_initialized;
+	public void setScienceModuleInitialized(boolean scienceModuleInitialized) {
+		this.scienceModuleInitialized = scienceModuleInitialized;
 	}
 
-	public boolean isSpa_vcc_on() {
-		return spa_vcc_on;
+	public boolean isSpaVccOn() {
+		return spaVccOn;
 	}
 
-	public void setSpa_vcc_on(boolean spa_vcc_on) {
-		this.spa_vcc_on = spa_vcc_on;
+	public void setSpaVccOn(boolean spaVccOn) {
+		this.spaVccOn = spaVccOn;
 	}
 
-	public boolean isSpb_vcc_on() {
-		return spb_vcc_on;
+	public boolean isSpbVccOn() {
+		return spbVccOn;
 	}
 
-	public void setSpb_vcc_on(boolean spb_vcc_on) {
-		this.spb_vcc_on = spb_vcc_on;
+	public void setSpbVccOn(boolean spbVccOn) {
+		this.spbVccOn = spbVccOn;
 	}
 
-	public boolean isSpc_vcc_on() {
-		return spc_vcc_on;
+	public boolean isSpcVccOn() {
+		return spcVccOn;
 	}
 
-	public void setSpc_vcc_on(boolean spc_vcc_on) {
-		this.spc_vcc_on = spc_vcc_on;
+	public void setSpcVccOn(boolean spcVccOn) {
+		this.spcVccOn = spcVccOn;
 	}
 
-	public boolean isSpd_vcc_on() {
-		return spd_vcc_on;
+	public boolean isSpdVccOn() {
+		return spdVccOn;
 	}
 
-	public void setSpd_vcc_on(boolean spd_vcc_on) {
-		this.spd_vcc_on = spd_vcc_on;
+	public void setSpdVccOn(boolean spdVccOn) {
+		this.spdVccOn = spdVccOn;
 	}
 
-	public boolean isBp1_vcc_on() {
-		return bp1_vcc_on;
+	public boolean isBp1VccOn() {
+		return bp1VccOn;
 	}
 
-	public void setBp1_vcc_on(boolean bp1_vcc_on) {
-		this.bp1_vcc_on = bp1_vcc_on;
+	public void setBp1VccOn(boolean bp1VccOn) {
+		this.bp1VccOn = bp1VccOn;
 	}
 
-	public boolean isBp2_vcc_on() {
-		return bp2_vcc_on;
+	public boolean isBp2VccOn() {
+		return bp2VccOn;
 	}
 
-	public void setBp2_vcc_on(boolean bp2_vcc_on) {
-		this.bp2_vcc_on = bp2_vcc_on;
+	public void setBp2VccOn(boolean bp2VccOn) {
+		this.bp2VccOn = bp2VccOn;
 	}
 
-	public boolean isSa_vcc_on() {
-		return sa_vcc_on;
+	public boolean isSaVccOn() {
+		return saVccOn;
 	}
 
-	public void setSa_vcc_on(boolean sa_vcc_on) {
-		this.sa_vcc_on = sa_vcc_on;
+	public void setSaVccOn(boolean saVccOn) {
+		this.saVccOn = saVccOn;
 	}
 
-	public boolean isI2c_sw_a_on() {
-		return i2c_sw_a_on;
+	public boolean isI2cSwAOn() {
+		return i2cSwAOn;
 	}
 
-	public void setI2c_sw_a_on(boolean i2c_sw_a_on) {
-		this.i2c_sw_a_on = i2c_sw_a_on;
+	public void setI2cSwAOn(boolean i2cSwAOn) {
+		this.i2cSwAOn = i2cSwAOn;
 	}
 
-	public boolean isI2c_sw_b_on() {
-		return i2c_sw_b_on;
+	public boolean isI2cSwBOn() {
+		return i2cSwBOn;
 	}
 
-	public void setI2c_sw_b_on(boolean i2c_sw_b_on) {
-		this.i2c_sw_b_on = i2c_sw_b_on;
+	public void setI2cSwBOn(boolean i2cSwBOn) {
+		this.i2cSwBOn = i2cSwBOn;
 	}
 
-	public boolean isI2c_sw_c_on() {
-		return i2c_sw_c_on;
+	public boolean isI2cSwCOn() {
+		return i2cSwCOn;
 	}
 
-	public void setI2c_sw_c_on(boolean i2c_sw_c_on) {
-		this.i2c_sw_c_on = i2c_sw_c_on;
+	public void setI2cSwCOn(boolean i2cSwCOn) {
+		this.i2cSwCOn = i2cSwCOn;
 	}
 
-	public boolean isI2c_sw_d_on() {
-		return i2c_sw_d_on;
+	public boolean isI2cSwDOn() {
+		return i2cSwDOn;
 	}
 
-	public void setI2c_sw_d_on(boolean i2c_sw_d_on) {
-		this.i2c_sw_d_on = i2c_sw_d_on;
+	public void setI2cSwDOn(boolean i2cSwDOn) {
+		this.i2cSwDOn = i2cSwDOn;
 	}
 
-	public boolean isOnboard_mag_powersafe() {
-		return onboard_mag_powersafe;
+	public boolean isOnboardMagPowersafe() {
+		return onboardMagPowersafe;
 	}
 
-	public void setOnboard_mag_powersafe(boolean onboard_mag_powersafe) {
-		this.onboard_mag_powersafe = onboard_mag_powersafe;
+	public void setOnboardMagPowersafe(boolean onboardMagPowersafe) {
+		this.onboardMagPowersafe = onboardMagPowersafe;
 	}
 
-	public boolean isGyro_powesafe() {
-		return gyro_powesafe;
+	public boolean isGyroPowesafe() {
+		return gyroPowesafe;
 	}
 
-	public void setGyro_powesafe(boolean gyro_powesafe) {
-		this.gyro_powesafe = gyro_powesafe;
+	public void setGyroPowesafe(boolean gyroPowesafe) {
+		this.gyroPowesafe = gyroPowesafe;
 	}
 
-	public boolean isMpu_powersafe() {
-		return mpu_powersafe;
+	public boolean isMpuPowersafe() {
+		return mpuPowersafe;
 	}
 
-	public void setMpu_powersafe(boolean mpu_powersafe) {
-		this.mpu_powersafe = mpu_powersafe;
+	public void setMpuPowersafe(boolean mpuPowersafe) {
+		this.mpuPowersafe = mpuPowersafe;
 	}
 
-	public boolean isTmp100_powersafe() {
-		return tmp100_powersafe;
+	public boolean isTmp100Powersafe() {
+		return tmp100Powersafe;
 	}
 
-	public void setTmp100_powersafe(boolean tmp100_powersafe) {
-		this.tmp100_powersafe = tmp100_powersafe;
+	public void setTmp100Powersafe(boolean tmp100Powersafe) {
+		this.tmp100Powersafe = tmp100Powersafe;
 	}
 
-	public boolean isMag_bp_powersave() {
-		return mag_bp_powersave;
+	public boolean isMagBpPowersave() {
+		return magBpPowersave;
 	}
 
-	public void setMag_bp_powersave(boolean mag_bp_powersave) {
-		this.mag_bp_powersave = mag_bp_powersave;
+	public void setMagBpPowersave(boolean magBpPowersave) {
+		this.magBpPowersave = magBpPowersave;
 	}
 
-	public boolean isMag_bp_boom_powersave() {
-		return mag_bp_boom_powersave;
+	public boolean isMagBpBoomPowersave() {
+		return magBpBoomPowersave;
 	}
 
-	public void setMag_bp_boom_powersave(boolean mag_bp_boom_powersave) {
-		this.mag_bp_boom_powersave = mag_bp_boom_powersave;
+	public void setMagBpBoomPowersave(boolean magBpBoomPowersave) {
+		this.magBpBoomPowersave = magBpBoomPowersave;
 	}
 
-	public boolean isMnlp_5v_enabled() {
-		return mnlp_5v_enabled;
+	public boolean isMnlp5vEnabled() {
+		return mnlp5vEnabled;
 	}
 
-	public void setMnlp_5v_enabled(boolean mnlp_5v_enabled) {
-		this.mnlp_5v_enabled = mnlp_5v_enabled;
+	public void setMnlp5vEnabled(boolean mnlp5vEnabled) {
+		this.mnlp5vEnabled = mnlp5vEnabled;
 	}
 
-	public boolean isRtc_oszillator_error() {
-		return rtc_oszillator_error;
+	public boolean isRtcOszillatorError() {
+		return rtcOszillatorError;
 	}
 
-	public void setRtc_oszillator_error(boolean rtc_oszillator_error) {
-		this.rtc_oszillator_error = rtc_oszillator_error;
+	public void setRtcOszillatorError(boolean rtcOszillatorError) {
+		this.rtcOszillatorError = rtcOszillatorError;
 	}
 
-	public boolean isEeprom_page_cycle_overflow() {
-		return eeprom_page_cycle_overflow;
+	public boolean isEepromPageCycleOverflow() {
+		return eepromPageCycleOverflow;
 	}
 
-	public void setEeprom_page_cycle_overflow(boolean eeprom_page_cycle_overflow) {
-		this.eeprom_page_cycle_overflow = eeprom_page_cycle_overflow;
+	public void setEepromPageCycleOverflow(boolean eepromPageCycleOverflow) {
+		this.eepromPageCycleOverflow = eepromPageCycleOverflow;
 	}
 
-	public boolean isSsp0_frequent_errors() {
-		return ssp0_frequent_errors;
+	public boolean isSsp0FrequentErrors() {
+		return ssp0FrequentErrors;
 	}
 
-	public void setSsp0_frequent_errors(boolean ssp0_frequent_errors) {
-		this.ssp0_frequent_errors = ssp0_frequent_errors;
+	public void setSsp0FrequentErrors(boolean ssp0FrequentErrors) {
+		this.ssp0FrequentErrors = ssp0FrequentErrors;
 	}
 
-	public boolean isSsp1_frequent_errors() {
-		return ssp1_frequent_errors;
+	public boolean isSsp1FrequentErrors() {
+		return ssp1FrequentErrors;
 	}
 
-	public void setSsp1_frequent_errors(boolean ssp1_frequent_errors) {
-		this.ssp1_frequent_errors = ssp1_frequent_errors;
+	public void setSsp1FrequentErrors(boolean ssp1FrequentErrors) {
+		this.ssp1FrequentErrors = ssp1FrequentErrors;
 	}
 
-	public boolean isI2c0_frequent_errors() {
-		return i2c0_frequent_errors;
+	public boolean isI2c0FrequentErrors() {
+		return i2c0FrequentErrors;
 	}
 
-	public void setI2c0_frequent_errors(boolean i2c0_frequent_errors) {
-		this.i2c0_frequent_errors = i2c0_frequent_errors;
+	public void setI2c0FrequentErrors(boolean i2c0FrequentErrors) {
+		this.i2c0FrequentErrors = i2c0FrequentErrors;
 	}
 
-	public boolean isI2c1_frequent_errors() {
-		return i2c1_frequent_errors;
+	public boolean isI2c1FrequentErrors() {
+		return i2c1FrequentErrors;
 	}
 
-	public void setI2c1_frequent_errors(boolean i2c1_frequent_errors) {
-		this.i2c1_frequent_errors = i2c1_frequent_errors;
+	public void setI2c1FrequentErrors(boolean i2c1FrequentErrors) {
+		this.i2c1FrequentErrors = i2c1FrequentErrors;
 	}
 
-	public boolean isI2c2_frequent_errors() {
-		return i2c2_frequent_errors;
+	public boolean isI2c2FrequentErrors() {
+		return i2c2FrequentErrors;
 	}
 
-	public void setI2c2_frequent_errors(boolean i2c2_frequent_errors) {
-		this.i2c2_frequent_errors = i2c2_frequent_errors;
+	public void setI2c2FrequentErrors(boolean i2c2FrequentErrors) {
+		this.i2c2FrequentErrors = i2c2FrequentErrors;
 	}
 
-	public boolean isTimer0_running() {
-		return timer0_running;
+	public boolean isTimer0Running() {
+		return timer0Running;
 	}
 
-	public void setTimer0_running(boolean timer0_running) {
-		this.timer0_running = timer0_running;
+	public void setTimer0Running(boolean timer0Running) {
+		this.timer0Running = timer0Running;
 	}
 
-	public boolean isTimer1_running() {
-		return timer1_running;
+	public boolean isTimer1Running() {
+		return timer1Running;
 	}
 
-	public void setTimer1_running(boolean timer1_running) {
-		this.timer1_running = timer1_running;
+	public void setTimer1Running(boolean timer1Running) {
+		this.timer1Running = timer1Running;
 	}
 
-	public boolean isDefault_config_used() {
-		return default_config_used;
+	public boolean isDefaultConfigUsed() {
+		return defaultConfigUsed;
 	}
 
-	public void setDefault_config_used(boolean default_config_used) {
-		this.default_config_used = default_config_used;
+	public void setDefaultConfigUsed(boolean defaultConfigUsed) {
+		this.defaultConfigUsed = defaultConfigUsed;
 	}
 
-	public int getError_code() {
-		return error_code;
+	public int getErrorCode() {
+		return errorCode;
 	}
 
-	public void setError_code(int error_code) {
-		this.error_code = error_code;
+	public void setErrorCode(int errorCode) {
+		this.errorCode = errorCode;
 	}
 
-	public int getError_code_before_reset() {
-		return error_code_before_reset;
+	public int getErrorCodeBeforeReset() {
+		return errorCodeBeforeReset;
 	}
 
-	public void setError_code_before_reset(int error_code_before_reset) {
-		this.error_code_before_reset = error_code_before_reset;
+	public void setErrorCodeBeforeReset(int errorCodeBeforeReset) {
+		this.errorCodeBeforeReset = errorCodeBeforeReset;
 	}
 
 	public long getResetsCounter() {
@@ -1002,59 +1002,59 @@ public class OBC2Beacon {
 	}
 
 	public byte getTempSPXMinus() {
-		return TempSPXMinus;
+		return tempSPXMinus;
 	}
 
 	public void setTempSPXMinus(byte tempSPXMinus) {
-		TempSPXMinus = tempSPXMinus;
+		this.tempSPXMinus = tempSPXMinus;
 	}
 
 	public byte getTempSPXPlus() {
-		return TempSPXPlus;
+		return tempSPXPlus;
 	}
 
 	public void setTempSPXPlus(byte tempSPXPlus) {
-		TempSPXPlus = tempSPXPlus;
+		this.tempSPXPlus = tempSPXPlus;
 	}
 
 	public byte getTempSPYMinus() {
-		return TempSPYMinus;
+		return tempSPYMinus;
 	}
 
 	public void setTempSPYMinus(byte tempSPYMinus) {
-		TempSPYMinus = tempSPYMinus;
+		this.tempSPYMinus = tempSPYMinus;
 	}
 
 	public byte getTempSPYPlus() {
-		return TempSPYPlus;
+		return tempSPYPlus;
 	}
 
 	public void setTempSPYPlus(byte tempSPYPlus) {
-		TempSPYPlus = tempSPYPlus;
+		this.tempSPYPlus = tempSPYPlus;
 	}
 
 	public boolean isCmdScripSlotLoaded() {
-		return CmdScripSlotLoaded;
+		return cmdScripSlotLoaded;
 	}
 
 	public void setCmdScripSlotLoaded(boolean cmdScripSlotLoaded) {
-		CmdScripSlotLoaded = cmdScripSlotLoaded;
+		this.cmdScripSlotLoaded = cmdScripSlotLoaded;
 	}
 
 	public int getScienceScriptSlotLoaded() {
-		return ScienceScriptSlotLoaded;
+		return scienceScriptSlotLoaded;
 	}
 
 	public void setScienceScriptSlotLoaded(int scienceScriptSlotLoaded) {
-		ScienceScriptSlotLoaded = scienceScriptSlotLoaded;
+		this.scienceScriptSlotLoaded = scienceScriptSlotLoaded;
 	}
 
 	public int getCmdScripSlotLoaded2() {
-		return CmdScripSlotLoaded2;
+		return cmdScripSlotLoaded2;
 	}
 
 	public void setCmdScripSlotLoaded2(int cmdScripSlotLoaded2) {
-		CmdScripSlotLoaded2 = cmdScripSlotLoaded2;
+		this.cmdScripSlotLoaded2 = cmdScripSlotLoaded2;
 	}
 
 }
