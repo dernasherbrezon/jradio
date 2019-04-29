@@ -5,86 +5,86 @@ import java.io.IOException;
 
 public class StacieBeacon {
 
-	private int USP;
-	private byte TRXTemp;
-	private int IdleRSSI;
-	private int RXRSSI;
-	private boolean AntennaDep;
+	private int usp;
+	private byte trxTemp;
+	private int idleRSSI;
+	private int rxRSSI;
+	private boolean antennaDep;
 	private StacieOperationalMode mode;
-	private boolean TCompOn;
-	private int ResetCounter;
-	private int UplinkError;
-	private int OBCSendPacketcounter;
-	private int BeaconInterval;
-	private byte SID;
-	private int TxSelReason;
+	private boolean tCompOn;
+	private int resetCounter;
+	private int uplinkError;
+	private int obcSendPacketcounter;
+	private int beaconInterval;
+	private byte sid;
+	private int txSelReason;
 	private int reasonRemote;
 	private long sTime;
-	private int BeaconCount;
+	private int beaconCount;
 
 	public StacieBeacon() {
 		// do nothing
 	}
 
 	public StacieBeacon(DataInputStream dis) throws IOException {
-		USP = dis.readUnsignedByte() | (dis.readUnsignedByte() << 8);
-		TRXTemp = dis.readByte();
-		IdleRSSI = dis.readByte();
-		RXRSSI = dis.readByte();
-		AntennaDep = dis.readBoolean();
+		usp = dis.readUnsignedByte() | (dis.readUnsignedByte() << 8);
+		trxTemp = dis.readByte();
+		idleRSSI = dis.readByte();
+		rxRSSI = dis.readByte();
+		antennaDep = dis.readBoolean();
 		mode = StacieOperationalMode.valueOfCode(dis.readUnsignedByte());
-		TCompOn = dis.readBoolean();
-		ResetCounter = dis.readUnsignedByte() | (dis.readUnsignedByte() << 8);
-		UplinkError = dis.readUnsignedByte();
-		OBCSendPacketcounter = dis.readUnsignedByte();
-		BeaconInterval = dis.readUnsignedByte() | (dis.readUnsignedByte() << 8);
+		tCompOn = dis.readBoolean();
+		resetCounter = dis.readUnsignedByte() | (dis.readUnsignedByte() << 8);
+		uplinkError = dis.readUnsignedByte();
+		obcSendPacketcounter = dis.readUnsignedByte();
+		beaconInterval = dis.readUnsignedByte() | (dis.readUnsignedByte() << 8);
 		dis.skipBytes(8);
-		SID = dis.readByte();
-		TxSelReason = dis.readUnsignedByte();
+		sid = dis.readByte();
+		txSelReason = dis.readUnsignedByte();
 		reasonRemote = dis.readUnsignedByte();
 		sTime = dis.readUnsignedByte() | (dis.readUnsignedByte() << 8) | (dis.readUnsignedByte() << 16) | ((long) dis.readUnsignedByte() << 24);
 		dis.skipBytes(1);
-		BeaconCount = dis.readUnsignedByte();
+		beaconCount = dis.readUnsignedByte();
 	}
 
-	public int getUSP() {
-		return USP;
+	public int getUsp() {
+		return usp;
 	}
 
-	public void setUSP(int uSP) {
-		USP = uSP;
+	public void setUsp(int usp) {
+		this.usp = usp;
 	}
 
-	public byte getTRXTemp() {
-		return TRXTemp;
+	public byte getTrxTemp() {
+		return trxTemp;
 	}
 
-	public void setTRXTemp(byte tRXTemp) {
-		TRXTemp = tRXTemp;
+	public void setTrxTemp(byte trxTemp) {
+		this.trxTemp = trxTemp;
 	}
 
 	public int getIdleRSSI() {
-		return IdleRSSI;
+		return idleRSSI;
 	}
 
 	public void setIdleRSSI(int idleRSSI) {
-		IdleRSSI = idleRSSI;
+		this.idleRSSI = idleRSSI;
 	}
 
-	public int getRXRSSI() {
-		return RXRSSI;
+	public int getRxRSSI() {
+		return rxRSSI;
 	}
 
-	public void setRXRSSI(int rXRSSI) {
-		RXRSSI = rXRSSI;
+	public void setRxRSSI(int rxRSSI) {
+		this.rxRSSI = rxRSSI;
 	}
 
 	public boolean isAntennaDep() {
-		return AntennaDep;
+		return antennaDep;
 	}
 
 	public void setAntennaDep(boolean antennaDep) {
-		AntennaDep = antennaDep;
+		this.antennaDep = antennaDep;
 	}
 
 	public StacieOperationalMode getMode() {
@@ -95,60 +95,60 @@ public class StacieBeacon {
 		this.mode = mode;
 	}
 
-	public boolean isTCompOn() {
-		return TCompOn;
+	public boolean istCompOn() {
+		return tCompOn;
 	}
 
-	public void setTCompOn(boolean tCompOn) {
-		TCompOn = tCompOn;
+	public void settCompOn(boolean tCompOn) {
+		this.tCompOn = tCompOn;
 	}
 
 	public int getResetCounter() {
-		return ResetCounter;
+		return resetCounter;
 	}
 
 	public void setResetCounter(int resetCounter) {
-		ResetCounter = resetCounter;
+		this.resetCounter = resetCounter;
 	}
 
 	public int getUplinkError() {
-		return UplinkError;
+		return uplinkError;
 	}
 
 	public void setUplinkError(int uplinkError) {
-		UplinkError = uplinkError;
+		this.uplinkError = uplinkError;
 	}
 
-	public int getOBCSendPacketcounter() {
-		return OBCSendPacketcounter;
+	public int getObcSendPacketcounter() {
+		return obcSendPacketcounter;
 	}
 
-	public void setOBCSendPacketcounter(int oBCSendPacketcounter) {
-		OBCSendPacketcounter = oBCSendPacketcounter;
+	public void setObcSendPacketcounter(int obcSendPacketcounter) {
+		this.obcSendPacketcounter = obcSendPacketcounter;
 	}
 
 	public int getBeaconInterval() {
-		return BeaconInterval;
+		return beaconInterval;
 	}
 
 	public void setBeaconInterval(int beaconInterval) {
-		BeaconInterval = beaconInterval;
+		this.beaconInterval = beaconInterval;
 	}
 
-	public byte getSID() {
-		return SID;
+	public byte getSid() {
+		return sid;
 	}
 
-	public void setSID(byte sID) {
-		SID = sID;
+	public void setSid(byte sid) {
+		this.sid = sid;
 	}
 
 	public int getTxSelReason() {
-		return TxSelReason;
+		return txSelReason;
 	}
 
 	public void setTxSelReason(int txSelReason) {
-		TxSelReason = txSelReason;
+		this.txSelReason = txSelReason;
 	}
 
 	public int getReasonRemote() {
@@ -159,20 +159,20 @@ public class StacieBeacon {
 		this.reasonRemote = reasonRemote;
 	}
 
-	public long getSTime() {
+	public long getsTime() {
 		return sTime;
 	}
 
-	public void setSTime(long sTime) {
+	public void setsTime(long sTime) {
 		this.sTime = sTime;
 	}
 
 	public int getBeaconCount() {
-		return BeaconCount;
+		return beaconCount;
 	}
 
 	public void setBeaconCount(int beaconCount) {
-		BeaconCount = beaconCount;
+		this.beaconCount = beaconCount;
 	}
 
 }
