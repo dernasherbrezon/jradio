@@ -36,9 +36,9 @@
       "is5V4On": false
     },
     "status2": {
-      "PowerLowWarning": false,
-      "Bat1ConnectedToPV1": false,
-      "Bat2ConnectedToPV2": true,
+      "powerLowWarning": false,
+      "bat1ConnectedToPV1": false,
+      "bat2ConnectedToPV2": true,
       "is3V3On": true,
       "is5VOn": false,
       "mode": "FLIGHT"
@@ -46,12 +46,12 @@
     "status3": {
       "is3V3BurstModeOn": false,
       "is5VBurstModeOn": false,
-      "Bat1ConnectedToPV2": false,
-      "Bat2ConnectedToPV1": false,
-      "TemperatureWarningFlag": true,
-      "CC1ConnectionOkayFlag": true,
-      "CC2ConnectionOkayFlag": true,
-      "RBF": true
+      "bat1ConnectedToPV2": false,
+      "bat2ConnectedToPV1": false,
+      "temperatureWarningFlag": true,
+      "cc1ConnectionOkayFlag": true,
+      "cc2ConnectionOkayFlag": true,
+      "rbf": true
     },
     "statusCC1": true,
     "statusCC2": true,
