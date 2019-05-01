@@ -5,7 +5,7 @@ import java.util.Map;
 
 public enum AcsMode {
 
-	Suspend(0), InertialPointing(1), TargetPointing(2), EarthPointing(3), ZenitPointing(4), Damping(5), Slew(6), BlindDamping(7), Test(9), SlidingEarth(10), SlidingZenit(11), SlidingInertial(12), SlidingTarget(13);
+	SUSPEND(0), INERTIALPOINTING(1), TARGETPOINTING(2), EARTHPOINTING(3), ZENITPOINTING(4), DAMPING(5), SLEW(6), BLINDDAMPING(7), TEST(9), SLIDINGEARTH(10), SLIDINGZENIT(11), SLIDINGINERTIAL(12), SLIDINGTARGET(13);
 
 	private final int code;
 	private static final Map<Integer, AcsMode> typeByCode = new HashMap<>();
