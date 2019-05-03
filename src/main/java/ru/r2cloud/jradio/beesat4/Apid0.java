@@ -7,1112 +7,1112 @@ import ru.r2cloud.jradio.util.BitInputStream;
 
 public class Apid0 {
 
-	private float VSABUS;                     //   Solar array bus
-	private boolean PSANT0;                   //   Antenna release #0
-	private boolean PSANT1;                   //   Antenna release #1
-	private boolean PSGYR1;                   //   Gyroscope #1
-	private float VBAT0;                      //   Battery #0
-	private boolean PSUHF0;                   //   Transceiver #0
-	private boolean PSUHF1;                   //   Transceiver #1
-	private boolean PSTNC0;                   //   Terminal node controller #0
-	private boolean PSTNC1;                   //   Terminal node controller #1
-	private float VBAT1;                      //   Battery #1
-	private boolean PCGYMF;                   //   MAX21000 & LSM303
-	private boolean PSMCSX;                   //   Magnetic coil X
-	private boolean PSMCSY;                   //   Magnetic coil Y
-	private boolean PSMCSZ;                   //   Magnetic coil Z
-	private float V50BUS;                     //   5V bus
-	private boolean PSWHLS;                   //   Wheel drive electronic
-	private boolean PSOBC0;                   //   Onboard computer #0
-	private boolean PSOBC1;                   //   Onboard computer #1
-	private boolean PSPDH0;                   //   Payload data handling
-	private float V33BUS;                     //   3V3 bus
-	private boolean PSGPS;                    //   GPS receiver
-	private boolean PSSUNS;                   //   Sun sensor system
-	private boolean PSMFS0;                   //   Magnetic field sensor #0
-	private boolean PSMFS1;                   //   Magnetic field sensor #1
-	private float CC0OUT;                     //   Charger #0 output
-	private boolean PSTEMP;                   //   Temperature sensors
-	private boolean PSCAN0;                   //   CAN bus #0
-	private boolean PSCAN1;                   //   CAN Bus #1
-	private boolean PSCCW0;                   //   WDE CAN bus #0
-	private float CC1OUT;                     //   Charger #1 output
-	private boolean PSCCW1;                   //   WDE CAN bus #1
-	private boolean PS5VCN;                   //   5V main switch
-	private boolean PCBOBC;                   //   Startup OBDH ID
-	private float TBAT0;                      //   Battery #0
-	private float TBAT1;                      //   Battery #1
-	private int RXSIG0;                       //   TRX #0 signal strength
-	private int RXSIG1;                       //   TRX #1 signal strength
-	private float CWHL;                       //   Wheel drive electronic
-	private boolean TCRXID;                   //   Receiving TNC ID
-	private boolean OBCAID;                   //   Active OBC ID
-	private boolean TMTXRT;                   //   TX baudrate
-	private float CC0IN;                      //   Charger #0 input
-	private int CCTCIC;                       //   Ctr immediate TC
-	private int CCTCTT;                       //   Ctr time tagged TC
-	private int CCETCS;                       //   Err ctr command checksum
-	private int CCEIMC;                       //   Err ctr immediate TC
-	private int CCETTC;                       //   Err ctr time-tagged TC
-	private int CCETTG;                       //   Err ctr time tag
-	private int CCETCC;                       //   Err ctr command code
-	private float TCRXQU;                     //   Receiving TNC quality byte
-	private int TCFRCP;                       //   Free command pool
-	private int TMHKUR;                       //   Housekeeping update rate
-	private long CSTUTC;                      //   Onboard time UTC
-	private long CSTSYS;                      //   OBDH uptime
-	private boolean MCXPOL;                   //   Magnetic coil X polarity
-	private boolean MCYPOL;                   //   Magnetic coil Y polarity
-	private boolean MCZPOL;                   //   Magnetic coil Z polarity
-	private int OBCBAD;                       //   OBC boot slot
-	private boolean BEACON;                   //   Beacon mode
+	private float vsabus;                     //   Solar array bus
+	private boolean psant0;                   //   Antenna release #0
+	private boolean psant1;                   //   Antenna release #1
+	private boolean psgyr1;                   //   Gyroscope #1
+	private float vbat0;                      //   Battery #0
+	private boolean psuhf0;                   //   Transceiver #0
+	private boolean psuhf1;                   //   Transceiver #1
+	private boolean pstnc0;                   //   Terminal node controller #0
+	private boolean pstnc1;                   //   Terminal node controller #1
+	private float vbat1;                      //   Battery #1
+	private boolean pcgymf;                   //   MAX21000 & LSM303
+	private boolean psmcsx;                   //   Magnetic coil X
+	private boolean psmcsy;                   //   Magnetic coil Y
+	private boolean psmcsz;                   //   Magnetic coil Z
+	private float v50bus;                     //   5V bus
+	private boolean pswhls;                   //   Wheel drive electronic
+	private boolean psobc0;                   //   Onboard computer #0
+	private boolean psobc1;                   //   Onboard computer #1
+	private boolean pspdh0;                   //   Payload data handling
+	private float v33bus;                     //   3V3 bus
+	private boolean psgps;                    //   GPS receiver
+	private boolean pssuns;                   //   Sun sensor system
+	private boolean psmfs0;                   //   Magnetic field sensor #0
+	private boolean psmfs1;                   //   Magnetic field sensor #1
+	private float cc0out;                     //   Charger #0 output
+	private boolean pstemp;                   //   Temperature sensors
+	private boolean pscan0;                   //   CAN bus #0
+	private boolean pscan1;                   //   CAN Bus #1
+	private boolean psccw0;                   //   WDE CAN bus #0
+	private float cc1out;                     //   Charger #1 output
+	private boolean psccw1;                   //   WDE CAN bus #1
+	private boolean ps5vcn;                   //   5V main switch
+	private boolean pcbobc;                   //   Startup OBDH ID
+	private float tbat0;                      //   Battery #0
+	private float tbat1;                      //   Battery #1
+	private int rxsig0;                       //   TRX #0 signal strength
+	private int rxsig1;                       //   TRX #1 signal strength
+	private float cwhl;                       //   Wheel drive electronic
+	private boolean tcrxid;                   //   Receiving TNC ID
+	private boolean obcaid;                   //   Active OBC ID
+	private boolean tmtxrt;                   //   TX baudrate
+	private float cc0in;                      //   Charger #0 input
+	private int cctcic;                       //   Ctr immediate TC
+	private int cctctt;                       //   Ctr time tagged TC
+	private int ccetcs;                       //   Err ctr command checksum
+	private int cceimc;                       //   Err ctr immediate TC
+	private int ccettc;                       //   Err ctr time-tagged TC
+	private int ccettg;                       //   Err ctr time tag
+	private int ccetcc;                       //   Err ctr command code
+	private float tcrxqu;                     //   Receiving TNC quality byte
+	private int tcfrcp;                       //   Free command pool
+	private int tmhkur;                       //   Housekeeping update rate
+	private long cstutc;                      //   Onboard time UTC
+	private long cstsys;                      //   OBDH uptime
+	private boolean mcxpol;                   //   Magnetic coil X polarity
+	private boolean mcypol;                   //   Magnetic coil Y polarity
+	private boolean mczpol;                   //   Magnetic coil Z polarity
+	private int obcbad;                       //   OBC boot slot
+	private boolean beacon;                   //   Beacon mode
                                               
-	private SystemMode MODCOM;                //   Com system mode
-	private int OBCABC;                       //   Ctr active OBC boot
-	private SatelliteMode MODOBC;             //   Satellite mode
-	private int CCECAN;                       //   Err ctr CAN bus
-	private int OBCCAN;                       //   OBC selected CAN bus ID
-	private long PCSYST;                      //   PCU uptime
-	private int PCBCNT;                       //   Ctr PCU boot
-	private float CSAXN;                      //   Solar array X-
-	private float CC1IN;                      //   Charger #1 input
-	private float TPCU00;                     //   PCU ext. ADC #0
-	private float TMFS0;                      //   MFS #0
-	private int ACSWHX;                       //   Wheel speed X
-	private int ACSWHY;                       //   Wheel speed Y
-	private int ACSWHZ;                       //   Wheel speed Z
-	private float ACSQ00;                     //   ACS quaternion X
-	private float ACSQ01;                     //   ACS quaternion Y
-	private float ACSQ02;                     //   ACS quaternion Z
-	private float ACSQ03;                     //   ACS quaternion SC
-	private float ACSSUX;                     //   Sun vector X
-	private float ACSSUY;                     //   Sun vector Y
-	private float ACSSUZ;                     //   Sun vector Z
-	private int ACSM0X;                       //   MFS #0: Vector X
-	private int ACSM0Y;                       //   MFS #0: Vector Y
-	private int ACSM0Z;                       //   MFS #0: Vector Z
-	private float ACSQDES00;                  //   Desired quaternion X
-	private float ACSQDES01;                  //   Desired quaternion Y
-	private float ACSQDES02;                  //   Desired quaternion Z
-	private AcsMode MODACS;                   //   ACS mode
-	private boolean ACSGSC;                   //   G/S contact flag
-	private boolean ACSSHD;                   //   Shadow flag
-	private AcsErrorCode ACSERR;              //   ACS Error Code
-	private float ACSC1X;                     //   Gyro #1 rate X calibrated
-	private float ACSC1Y;                     //   Gyro #1 rate Y calibrated
-	private float ACSC1Z;                     //   Gyro #1 rate Z Calibrated
-	private float TOBC00;                     //   OBC ext. ADC #0
-	private float CSAXP;                      //   Solar array X+
-	private float CSAYP;                      //   Solar array Y+
-	private float CSAZP;                      //   Solar array Z+
-	private float CSAYN;                      //   Solar array Y-
-	private float CSAZN;                      //   Solar array Z-
-	private int ACSTEMEX;                     //   X Position ECI
-	private int ACSTEMEY;                     //   Y Position ECI
-	private int ACSTEMEZ;                     //   Z Position ECI
-	private int ACSEFX;                       //   X Position EF
-	private int ACSEFY;                       //   Y Position EF
-	private int ACSEFZ;                       //   Z Position EF
-	private AcsMode ACSCMOD;                  //   ACS current mode
-	private boolean OBCTMCE;                  //   Chip erase in progress
-	private int OBCTMFFP;                     //   Free pages on telemetry flash
-	private float ACSQDES03;                  //   Desired quaternion SC
-	private int ACSGYR;                       //   Gyro used by ACS
+	private SystemMode modcom;                //   Com system mode
+	private int obcabc;                       //   Ctr active OBC boot
+	private SatelliteMode modobc;             //   Satellite mode
+	private int ccecan;                       //   Err ctr CAN bus
+	private int obccan;                       //   OBC selected CAN bus ID
+	private long pcsyst;                      //   PCU uptime
+	private int pcbcnt;                       //   Ctr PCU boot
+	private float csaxn;                      //   Solar array X-
+	private float cc1in;                      //   Charger #1 input
+	private float tpcu00;                     //   PCU ext. ADC #0
+	private float tmfs0;                      //   MFS #0
+	private int acswhx;                       //   Wheel speed X
+	private int acswhy;                       //   Wheel speed Y
+	private int acswhz;                       //   Wheel speed Z
+	private float acsq00;                     //   ACS quaternion X
+	private float acsq01;                     //   ACS quaternion Y
+	private float acsq02;                     //   ACS quaternion Z
+	private float acsq03;                     //   ACS quaternion SC
+	private float acssux;                     //   Sun vector X
+	private float acssuy;                     //   Sun vector Y
+	private float acssuz;                     //   Sun vector Z
+	private int acsm0x;                       //   MFS #0: Vector X
+	private int acsm0y;                       //   MFS #0: Vector Y
+	private int acsm0z;                       //   MFS #0: Vector Z
+	private float acsqdes00;                  //   Desired quaternion X
+	private float acsqdes01;                  //   Desired quaternion Y
+	private float acsqdes02;                  //   Desired quaternion Z
+	private AcsMode modacs;                   //   ACS mode
+	private boolean acsgsc;                   //   G/S contact flag
+	private boolean acsshd;                   //   Shadow flag
+	private AcsErrorCode acserr;              //   ACS Error Code
+	private float acsc1x;                     //   Gyro #1 rate X calibrated
+	private float acsc1y;                     //   Gyro #1 rate Y calibrated
+	private float acsc1z;                     //   Gyro #1 rate Z Calibrated
+	private float tobc00;                     //   OBC ext. ADC #0
+	private float csaxp;                      //   Solar array X+
+	private float csayp;                      //   Solar array Y+
+	private float csazp;                      //   Solar array Z+
+	private float csayn;                      //   Solar array Y-
+	private float csazn;                      //   Solar array Z-
+	private int acstemex;                     //   X Position ECI
+	private int acstemey;                     //   Y Position ECI
+	private int acstemez;                     //   Z Position ECI
+	private int acsefx;                       //   X Position EF
+	private int acsefy;                       //   Y Position EF
+	private int acsefz;                       //   Z Position EF
+	private AcsMode acscmod;                  //   ACS current mode
+	private boolean obctmce;                  //   Chip erase in progress
+	private int obctmffp;                     //   Free pages on telemetry flash
+	private float acsqdes03;                  //   Desired quaternion SC
+	private int acsgyr;                       //   Gyro used by ACS
 
 	public Apid0(DataInputStream dis) throws IOException {
 		BitInputStream bis = new BitInputStream(dis);
-		VSABUS = bis.readUnsignedInt(12) * 0.0016197791f;
-		PSANT0 = bis.readBoolean();
-		PSANT1 = bis.readBoolean();
-		PSGYR1 = bis.readBoolean();
-		VBAT0 = bis.readUnsignedInt(12) * 0.0033725265f;
-		PSUHF0 = bis.readBoolean();
-		PSUHF1 = bis.readBoolean();
-		PSTNC0 = bis.readBoolean();
-		PSTNC1 = bis.readBoolean();
-		VBAT1 = bis.readUnsignedInt(12) * 0.0033725265f;
-		PCGYMF = bis.readBoolean();
-		PSMCSX = bis.readBoolean();
-		PSMCSY = bis.readBoolean();
-		PSMCSZ = bis.readBoolean();
-		V50BUS = bis.readUnsignedInt(12) * 0.0016197791f;
-		PSWHLS = bis.readBoolean();
-		PSOBC0 = bis.readBoolean();
-		PSOBC1 = bis.readBoolean();
-		PSPDH0 = bis.readBoolean();
-		V33BUS = bis.readUnsignedInt(12) * 0.0012207031f;
-		PSGPS = bis.readBoolean();
-		PSSUNS = bis.readBoolean();
-		PSMFS0 = bis.readBoolean();
-		PSMFS1 = bis.readBoolean();
-		CC0OUT = bis.readUnsignedInt(12) * 0.6103515625f;
-		PSTEMP = bis.readBoolean();
-		PSCAN0 = bis.readBoolean();
-		PSCAN1 = bis.readBoolean();
-		PSCCW0 = bis.readBoolean();
-		CC1OUT = bis.readUnsignedInt(12) * 0.6103515625f;
-		PSCCW1 = bis.readBoolean();
-		PS5VCN = bis.readBoolean();
-		PCBOBC = bis.readBoolean();
-		TBAT0 = bis.readUnsignedInt(12) * 0.244140625f - 50.0f;
-		TBAT1 = bis.readUnsignedInt(12) * 0.244140625f - 50.0f;
-		RXSIG0 = bis.readUnsignedInt(8);
-		RXSIG1 = bis.readUnsignedInt(8);
-		CWHL = bis.readUnsignedInt(12) * 0.3051757813f;
-		TCRXID = bis.readBoolean();
-		OBCAID = bis.readBoolean();
-		TMTXRT = bis.readBoolean();
-		CC0IN = bis.readUnsignedInt(12) * 0.3051757813f;
-		CCTCIC = bis.readUnsignedInt(8);
-		CCTCTT = bis.readUnsignedInt(8);
-		CCETCS = bis.readUnsignedInt(8);
-		CCEIMC = bis.readUnsignedInt(8);
-		CCETTC = bis.readUnsignedInt(8);
-		CCETTG = bis.readUnsignedInt(8);
-		CCETCC = bis.readUnsignedInt(8);
-		TCRXQU = bis.readUnsignedInt(8) * 0.0548780487f + 1.573172f;
-		TCFRCP = bis.readUnsignedInt(10);
-		TMHKUR = bis.readUnsignedInt(16);
-		CSTUTC = bis.readUnsignedLong(32);
-		CSTSYS = bis.readUnsignedLong(32);
-		MCXPOL = bis.readBoolean();
-		MCYPOL = bis.readBoolean();
-		MCZPOL = bis.readBoolean();
-		OBCBAD = bis.readUnsignedInt(4);
-		BEACON = bis.readBoolean();
+		vsabus = bis.readUnsignedInt(12) * 0.0016197791f;
+		psant0 = bis.readBoolean();
+		psant1 = bis.readBoolean();
+		psgyr1 = bis.readBoolean();
+		vbat0 = bis.readUnsignedInt(12) * 0.0033725265f;
+		psuhf0 = bis.readBoolean();
+		psuhf1 = bis.readBoolean();
+		pstnc0 = bis.readBoolean();
+		pstnc1 = bis.readBoolean();
+		vbat1 = bis.readUnsignedInt(12) * 0.0033725265f;
+		pcgymf = bis.readBoolean();
+		psmcsx = bis.readBoolean();
+		psmcsy = bis.readBoolean();
+		psmcsz = bis.readBoolean();
+		v50bus = bis.readUnsignedInt(12) * 0.0016197791f;
+		pswhls = bis.readBoolean();
+		psobc0 = bis.readBoolean();
+		psobc1 = bis.readBoolean();
+		pspdh0 = bis.readBoolean();
+		v33bus = bis.readUnsignedInt(12) * 0.0012207031f;
+		psgps = bis.readBoolean();
+		pssuns = bis.readBoolean();
+		psmfs0 = bis.readBoolean();
+		psmfs1 = bis.readBoolean();
+		cc0out = bis.readUnsignedInt(12) * 0.6103515625f;
+		pstemp = bis.readBoolean();
+		pscan0 = bis.readBoolean();
+		pscan1 = bis.readBoolean();
+		psccw0 = bis.readBoolean();
+		cc1out = bis.readUnsignedInt(12) * 0.6103515625f;
+		psccw1 = bis.readBoolean();
+		ps5vcn = bis.readBoolean();
+		pcbobc = bis.readBoolean();
+		tbat0 = bis.readUnsignedInt(12) * 0.244140625f - 50.0f;
+		tbat1 = bis.readUnsignedInt(12) * 0.244140625f - 50.0f;
+		rxsig0 = bis.readUnsignedInt(8);
+		rxsig1 = bis.readUnsignedInt(8);
+		cwhl = bis.readUnsignedInt(12) * 0.3051757813f;
+		tcrxid = bis.readBoolean();
+		obcaid = bis.readBoolean();
+		tmtxrt = bis.readBoolean();
+		cc0in = bis.readUnsignedInt(12) * 0.3051757813f;
+		cctcic = bis.readUnsignedInt(8);
+		cctctt = bis.readUnsignedInt(8);
+		ccetcs = bis.readUnsignedInt(8);
+		cceimc = bis.readUnsignedInt(8);
+		ccettc = bis.readUnsignedInt(8);
+		ccettg = bis.readUnsignedInt(8);
+		ccetcc = bis.readUnsignedInt(8);
+		tcrxqu = bis.readUnsignedInt(8) * 0.0548780487f + 1.573172f;
+		tcfrcp = bis.readUnsignedInt(10);
+		tmhkur = bis.readUnsignedInt(16);
+		cstutc = bis.readUnsignedLong(32);
+		cstsys = bis.readUnsignedLong(32);
+		mcxpol = bis.readBoolean();
+		mcypol = bis.readBoolean();
+		mczpol = bis.readBoolean();
+		obcbad = bis.readUnsignedInt(4);
+		beacon = bis.readBoolean();
 		bis.skipBits(3);
-		MODCOM = SystemMode.valueOfCode(bis.readUnsignedInt(4));
-		OBCABC = bis.readUnsignedInt(16);
-		MODOBC = SatelliteMode.valueOfCode(bis.readUnsignedInt(8));
-		CCECAN = bis.readUnsignedInt(8);
-		OBCCAN = bis.readUnsignedInt(8);
-		PCSYST = bis.readUnsignedLong(32);
-		PCBCNT = bis.readUnsignedInt(16);
-		CSAXN = bis.readUnsignedInt(12) * 0.152587891f;
-		CC1IN = bis.readUnsignedInt(12) * 0.3051757813f;
-		TPCU00 = bis.readUnsignedInt(12) * 0.125f;
-		TMFS0 = bis.readUnsignedInt(12) * 0.06103515625f - 50.0f;
-		ACSWHX = bis.readUnsignedShort();
-		ACSWHY = bis.readUnsignedShort();
-		ACSWHZ = bis.readUnsignedShort();
-		ACSQ00 = bis.readUnsignedShort() * 0.0001f;
-		ACSQ01 = bis.readUnsignedShort() * 0.0001f;
-		ACSQ02 = bis.readUnsignedShort() * 0.0001f;
-		ACSQ03 = bis.readUnsignedShort() * 0.0001f;
-		ACSSUX = bis.readUnsignedShort() * 0.0001f;
-		ACSSUY = bis.readUnsignedShort() * 0.0001f;
-		ACSSUZ = bis.readUnsignedShort() * 0.0001f;
-		ACSM0X = bis.readUnsignedShort() * 10;
-		ACSM0Y = bis.readUnsignedShort() * 10;
-		ACSM0Z = bis.readUnsignedShort() * 10;
-		ACSQDES00 = bis.readUnsignedShort() * 0.0001f;
-		ACSQDES01 = bis.readUnsignedShort() * 0.0001f;
-		ACSQDES02 = bis.readUnsignedShort() * 0.0001f;
-		MODACS = AcsMode.valueOfCode(bis.readUnsignedInt(4));
-		ACSGSC = bis.readBoolean();
-		ACSSHD = bis.readBoolean();
-		ACSERR = AcsErrorCode.valueOfCode(bis.readUnsignedInt(8));
-		ACSC1X = bis.readUnsignedShort() * 0.001f;
-		ACSC1Y = bis.readUnsignedShort() * 0.001f;
-		ACSC1Z = bis.readUnsignedShort() * 0.001f;
-		TOBC00 = bis.readUnsignedInt(12) * 0.125f;
-		CSAXP = bis.readUnsignedInt(12) * 0.152587891f;
-		CSAYP = bis.readUnsignedInt(12) * 0.152587891f;
-		CSAZP = bis.readUnsignedInt(12) * 0.152587891f;
-		CSAYN = bis.readUnsignedInt(12) * 0.152587891f;
-		CSAZN = bis.readUnsignedInt(12) * 0.152587891f;
-		ACSTEMEX = bis.readUnsignedShort();
-		ACSTEMEY = bis.readUnsignedShort();
-		ACSTEMEZ = bis.readUnsignedShort();
-		ACSEFX = bis.readUnsignedShort();
-		ACSEFY = bis.readUnsignedShort();
-		ACSEFZ = bis.readUnsignedShort();
-		ACSCMOD = AcsMode.valueOfCode(bis.readUnsignedInt(4));
-		OBCTMCE = bis.readBoolean();
-		OBCTMFFP = bis.readUnsignedInt(15);
-		ACSQDES03 = bis.readUnsignedShort() * 0.0001f;
-		ACSGYR = bis.readUnsignedInt(2);
+		modcom = SystemMode.valueOfCode(bis.readUnsignedInt(4));
+		obcabc = bis.readUnsignedInt(16);
+		modobc = SatelliteMode.valueOfCode(bis.readUnsignedInt(8));
+		ccecan = bis.readUnsignedInt(8);
+		obccan = bis.readUnsignedInt(8);
+		pcsyst = bis.readUnsignedLong(32);
+		pcbcnt = bis.readUnsignedInt(16);
+		csaxn = bis.readUnsignedInt(12) * 0.152587891f;
+		cc1in = bis.readUnsignedInt(12) * 0.3051757813f;
+		tpcu00 = bis.readUnsignedInt(12) * 0.125f;
+		tmfs0 = bis.readUnsignedInt(12) * 0.06103515625f - 50.0f;
+		acswhx = bis.readUnsignedShort();
+		acswhy = bis.readUnsignedShort();
+		acswhz = bis.readUnsignedShort();
+		acsq00 = bis.readUnsignedShort() * 0.0001f;
+		acsq01 = bis.readUnsignedShort() * 0.0001f;
+		acsq02 = bis.readUnsignedShort() * 0.0001f;
+		acsq03 = bis.readUnsignedShort() * 0.0001f;
+		acssux = bis.readUnsignedShort() * 0.0001f;
+		acssuy = bis.readUnsignedShort() * 0.0001f;
+		acssuz = bis.readUnsignedShort() * 0.0001f;
+		acsm0x = bis.readUnsignedShort() * 10;
+		acsm0y = bis.readUnsignedShort() * 10;
+		acsm0z = bis.readUnsignedShort() * 10;
+		acsqdes00 = bis.readUnsignedShort() * 0.0001f;
+		acsqdes01 = bis.readUnsignedShort() * 0.0001f;
+		acsqdes02 = bis.readUnsignedShort() * 0.0001f;
+		modacs = AcsMode.valueOfCode(bis.readUnsignedInt(4));
+		acsgsc = bis.readBoolean();
+		acsshd = bis.readBoolean();
+		acserr = AcsErrorCode.valueOfCode(bis.readUnsignedInt(8));
+		acsc1x = bis.readUnsignedShort() * 0.001f;
+		acsc1y = bis.readUnsignedShort() * 0.001f;
+		acsc1z = bis.readUnsignedShort() * 0.001f;
+		tobc00 = bis.readUnsignedInt(12) * 0.125f;
+		csaxp = bis.readUnsignedInt(12) * 0.152587891f;
+		csayp = bis.readUnsignedInt(12) * 0.152587891f;
+		csazp = bis.readUnsignedInt(12) * 0.152587891f;
+		csayn = bis.readUnsignedInt(12) * 0.152587891f;
+		csazn = bis.readUnsignedInt(12) * 0.152587891f;
+		acstemex = bis.readUnsignedShort();
+		acstemey = bis.readUnsignedShort();
+		acstemez = bis.readUnsignedShort();
+		acsefx = bis.readUnsignedShort();
+		acsefy = bis.readUnsignedShort();
+		acsefz = bis.readUnsignedShort();
+		acscmod = AcsMode.valueOfCode(bis.readUnsignedInt(4));
+		obctmce = bis.readBoolean();
+		obctmffp = bis.readUnsignedInt(15);
+		acsqdes03 = bis.readUnsignedShort() * 0.0001f;
+		acsgyr = bis.readUnsignedInt(2);
 		bis.skipBits(2);
 	}
 
-	public float getVSABUS() {
-		return VSABUS;
+	public float getVsabus() {
+		return vsabus;
 	}
 
-	public void setVSABUS(float vSABUS) {
-		VSABUS = vSABUS;
+	public void setVsabus(float vsabus) {
+		this.vsabus = vsabus;
 	}
 
-	public boolean isPSANT0() {
-		return PSANT0;
+	public boolean isPsant0() {
+		return psant0;
 	}
 
-	public void setPSANT0(boolean pSANT0) {
-		PSANT0 = pSANT0;
+	public void setPsant0(boolean psant0) {
+		this.psant0 = psant0;
 	}
 
-	public boolean isPSANT1() {
-		return PSANT1;
+	public boolean isPsant1() {
+		return psant1;
 	}
 
-	public void setPSANT1(boolean pSANT1) {
-		PSANT1 = pSANT1;
+	public void setPsant1(boolean psant1) {
+		this.psant1 = psant1;
 	}
 
-	public boolean isPSGYR1() {
-		return PSGYR1;
+	public boolean isPsgyr1() {
+		return psgyr1;
 	}
 
-	public void setPSGYR1(boolean pSGYR1) {
-		PSGYR1 = pSGYR1;
+	public void setPsgyr1(boolean psgyr1) {
+		this.psgyr1 = psgyr1;
 	}
 
-	public float getVBAT0() {
-		return VBAT0;
+	public float getVbat0() {
+		return vbat0;
 	}
 
-	public void setVBAT0(float vBAT0) {
-		VBAT0 = vBAT0;
+	public void setVbat0(float vbat0) {
+		this.vbat0 = vbat0;
 	}
 
-	public boolean isPSUHF0() {
-		return PSUHF0;
+	public boolean isPsuhf0() {
+		return psuhf0;
 	}
 
-	public void setPSUHF0(boolean pSUHF0) {
-		PSUHF0 = pSUHF0;
+	public void setPsuhf0(boolean psuhf0) {
+		this.psuhf0 = psuhf0;
 	}
 
-	public boolean isPSUHF1() {
-		return PSUHF1;
+	public boolean isPsuhf1() {
+		return psuhf1;
 	}
 
-	public void setPSUHF1(boolean pSUHF1) {
-		PSUHF1 = pSUHF1;
+	public void setPsuhf1(boolean psuhf1) {
+		this.psuhf1 = psuhf1;
 	}
 
-	public boolean isPSTNC0() {
-		return PSTNC0;
+	public boolean isPstnc0() {
+		return pstnc0;
 	}
 
-	public void setPSTNC0(boolean pSTNC0) {
-		PSTNC0 = pSTNC0;
+	public void setPstnc0(boolean pstnc0) {
+		this.pstnc0 = pstnc0;
 	}
 
-	public boolean isPSTNC1() {
-		return PSTNC1;
+	public boolean isPstnc1() {
+		return pstnc1;
 	}
 
-	public void setPSTNC1(boolean pSTNC1) {
-		PSTNC1 = pSTNC1;
+	public void setPstnc1(boolean pstnc1) {
+		this.pstnc1 = pstnc1;
 	}
 
-	public float getVBAT1() {
-		return VBAT1;
+	public float getVbat1() {
+		return vbat1;
 	}
 
-	public void setVBAT1(float vBAT1) {
-		VBAT1 = vBAT1;
+	public void setVbat1(float vbat1) {
+		this.vbat1 = vbat1;
 	}
 
-	public boolean isPCGYMF() {
-		return PCGYMF;
+	public boolean isPcgymf() {
+		return pcgymf;
 	}
 
-	public void setPCGYMF(boolean pCGYMF) {
-		PCGYMF = pCGYMF;
+	public void setPcgymf(boolean pcgymf) {
+		this.pcgymf = pcgymf;
 	}
 
-	public boolean isPSMCSX() {
-		return PSMCSX;
+	public boolean isPsmcsx() {
+		return psmcsx;
 	}
 
-	public void setPSMCSX(boolean pSMCSX) {
-		PSMCSX = pSMCSX;
+	public void setPsmcsx(boolean psmcsx) {
+		this.psmcsx = psmcsx;
 	}
 
-	public boolean isPSMCSY() {
-		return PSMCSY;
+	public boolean isPsmcsy() {
+		return psmcsy;
 	}
 
-	public void setPSMCSY(boolean pSMCSY) {
-		PSMCSY = pSMCSY;
+	public void setPsmcsy(boolean psmcsy) {
+		this.psmcsy = psmcsy;
 	}
 
-	public boolean isPSMCSZ() {
-		return PSMCSZ;
+	public boolean isPsmcsz() {
+		return psmcsz;
 	}
 
-	public void setPSMCSZ(boolean pSMCSZ) {
-		PSMCSZ = pSMCSZ;
+	public void setPsmcsz(boolean psmcsz) {
+		this.psmcsz = psmcsz;
 	}
 
-	public float getV50BUS() {
-		return V50BUS;
+	public float getV50bus() {
+		return v50bus;
 	}
 
-	public void setV50BUS(float v50bus) {
-		V50BUS = v50bus;
+	public void setV50bus(float v50bus) {
+		this.v50bus = v50bus;
 	}
 
-	public boolean isPSWHLS() {
-		return PSWHLS;
+	public boolean isPswhls() {
+		return pswhls;
 	}
 
-	public void setPSWHLS(boolean pSWHLS) {
-		PSWHLS = pSWHLS;
+	public void setPswhls(boolean pswhls) {
+		this.pswhls = pswhls;
 	}
 
-	public boolean isPSOBC0() {
-		return PSOBC0;
+	public boolean isPsobc0() {
+		return psobc0;
 	}
 
-	public void setPSOBC0(boolean pSOBC0) {
-		PSOBC0 = pSOBC0;
+	public void setPsobc0(boolean psobc0) {
+		this.psobc0 = psobc0;
 	}
 
-	public boolean isPSOBC1() {
-		return PSOBC1;
+	public boolean isPsobc1() {
+		return psobc1;
 	}
 
-	public void setPSOBC1(boolean pSOBC1) {
-		PSOBC1 = pSOBC1;
+	public void setPsobc1(boolean psobc1) {
+		this.psobc1 = psobc1;
 	}
 
-	public boolean isPSPDH0() {
-		return PSPDH0;
+	public boolean isPspdh0() {
+		return pspdh0;
 	}
 
-	public void setPSPDH0(boolean pSPDH0) {
-		PSPDH0 = pSPDH0;
+	public void setPspdh0(boolean pspdh0) {
+		this.pspdh0 = pspdh0;
 	}
 
-	public float getV33BUS() {
-		return V33BUS;
+	public float getV33bus() {
+		return v33bus;
 	}
 
-	public void setV33BUS(float v33bus) {
-		V33BUS = v33bus;
+	public void setV33bus(float v33bus) {
+		this.v33bus = v33bus;
 	}
 
-	public boolean isPSGPS() {
-		return PSGPS;
+	public boolean isPsgps() {
+		return psgps;
 	}
 
-	public void setPSGPS(boolean pSGPS) {
-		PSGPS = pSGPS;
+	public void setPsgps(boolean psgps) {
+		this.psgps = psgps;
 	}
 
-	public boolean isPSSUNS() {
-		return PSSUNS;
+	public boolean isPssuns() {
+		return pssuns;
 	}
 
-	public void setPSSUNS(boolean pSSUNS) {
-		PSSUNS = pSSUNS;
+	public void setPssuns(boolean pssuns) {
+		this.pssuns = pssuns;
 	}
 
-	public boolean isPSMFS0() {
-		return PSMFS0;
+	public boolean isPsmfs0() {
+		return psmfs0;
 	}
 
-	public void setPSMFS0(boolean pSMFS0) {
-		PSMFS0 = pSMFS0;
+	public void setPsmfs0(boolean psmfs0) {
+		this.psmfs0 = psmfs0;
 	}
 
-	public boolean isPSMFS1() {
-		return PSMFS1;
+	public boolean isPsmfs1() {
+		return psmfs1;
 	}
 
-	public void setPSMFS1(boolean pSMFS1) {
-		PSMFS1 = pSMFS1;
+	public void setPsmfs1(boolean psmfs1) {
+		this.psmfs1 = psmfs1;
 	}
 
-	public float getCC0OUT() {
-		return CC0OUT;
+	public float getCc0out() {
+		return cc0out;
 	}
 
-	public void setCC0OUT(float cC0OUT) {
-		CC0OUT = cC0OUT;
+	public void setCc0out(float cc0out) {
+		this.cc0out = cc0out;
 	}
 
-	public boolean isPSTEMP() {
-		return PSTEMP;
+	public boolean isPstemp() {
+		return pstemp;
 	}
 
-	public void setPSTEMP(boolean pSTEMP) {
-		PSTEMP = pSTEMP;
+	public void setPstemp(boolean pstemp) {
+		this.pstemp = pstemp;
 	}
 
-	public boolean isPSCAN0() {
-		return PSCAN0;
+	public boolean isPscan0() {
+		return pscan0;
 	}
 
-	public void setPSCAN0(boolean pSCAN0) {
-		PSCAN0 = pSCAN0;
+	public void setPscan0(boolean pscan0) {
+		this.pscan0 = pscan0;
 	}
 
-	public boolean isPSCAN1() {
-		return PSCAN1;
+	public boolean isPscan1() {
+		return pscan1;
 	}
 
-	public void setPSCAN1(boolean pSCAN1) {
-		PSCAN1 = pSCAN1;
+	public void setPscan1(boolean pscan1) {
+		this.pscan1 = pscan1;
 	}
 
-	public boolean isPSCCW0() {
-		return PSCCW0;
+	public boolean isPsccw0() {
+		return psccw0;
 	}
 
-	public void setPSCCW0(boolean pSCCW0) {
-		PSCCW0 = pSCCW0;
+	public void setPsccw0(boolean psccw0) {
+		this.psccw0 = psccw0;
 	}
 
-	public float getCC1OUT() {
-		return CC1OUT;
+	public float getCc1out() {
+		return cc1out;
 	}
 
-	public void setCC1OUT(float cC1OUT) {
-		CC1OUT = cC1OUT;
+	public void setCc1out(float cc1out) {
+		this.cc1out = cc1out;
 	}
 
-	public boolean isPSCCW1() {
-		return PSCCW1;
+	public boolean isPsccw1() {
+		return psccw1;
 	}
 
-	public void setPSCCW1(boolean pSCCW1) {
-		PSCCW1 = pSCCW1;
+	public void setPsccw1(boolean psccw1) {
+		this.psccw1 = psccw1;
 	}
 
-	public boolean isPS5VCN() {
-		return PS5VCN;
+	public boolean isPs5vcn() {
+		return ps5vcn;
 	}
 
-	public void setPS5VCN(boolean pS5VCN) {
-		PS5VCN = pS5VCN;
+	public void setPs5vcn(boolean ps5vcn) {
+		this.ps5vcn = ps5vcn;
 	}
 
-	public boolean isPCBOBC() {
-		return PCBOBC;
+	public boolean isPcbobc() {
+		return pcbobc;
 	}
 
-	public void setPCBOBC(boolean pCBOBC) {
-		PCBOBC = pCBOBC;
+	public void setPcbobc(boolean pcbobc) {
+		this.pcbobc = pcbobc;
 	}
 
-	public float getTBAT0() {
-		return TBAT0;
+	public float getTbat0() {
+		return tbat0;
 	}
 
-	public void setTBAT0(float tBAT0) {
-		TBAT0 = tBAT0;
+	public void setTbat0(float tbat0) {
+		this.tbat0 = tbat0;
 	}
 
-	public float getTBAT1() {
-		return TBAT1;
+	public float getTbat1() {
+		return tbat1;
 	}
 
-	public void setTBAT1(float tBAT1) {
-		TBAT1 = tBAT1;
+	public void setTbat1(float tbat1) {
+		this.tbat1 = tbat1;
 	}
 
-	public int getRXSIG0() {
-		return RXSIG0;
+	public int getRxsig0() {
+		return rxsig0;
 	}
 
-	public void setRXSIG0(int rXSIG0) {
-		RXSIG0 = rXSIG0;
+	public void setRxsig0(int rxsig0) {
+		this.rxsig0 = rxsig0;
 	}
 
-	public int getRXSIG1() {
-		return RXSIG1;
+	public int getRxsig1() {
+		return rxsig1;
 	}
 
-	public void setRXSIG1(int rXSIG1) {
-		RXSIG1 = rXSIG1;
+	public void setRxsig1(int rxsig1) {
+		this.rxsig1 = rxsig1;
 	}
 
-	public float getCWHL() {
-		return CWHL;
+	public float getCwhl() {
+		return cwhl;
 	}
 
-	public void setCWHL(float cWHL) {
-		CWHL = cWHL;
+	public void setCwhl(float cwhl) {
+		this.cwhl = cwhl;
 	}
 
-	public boolean isTCRXID() {
-		return TCRXID;
+	public boolean isTcrxid() {
+		return tcrxid;
 	}
 
-	public void setTCRXID(boolean tCRXID) {
-		TCRXID = tCRXID;
+	public void setTcrxid(boolean tcrxid) {
+		this.tcrxid = tcrxid;
 	}
 
-	public boolean isOBCAID() {
-		return OBCAID;
+	public boolean isObcaid() {
+		return obcaid;
 	}
 
-	public void setOBCAID(boolean oBCAID) {
-		OBCAID = oBCAID;
+	public void setObcaid(boolean obcaid) {
+		this.obcaid = obcaid;
 	}
 
-	public boolean isTMTXRT() {
-		return TMTXRT;
+	public boolean isTmtxrt() {
+		return tmtxrt;
 	}
 
-	public void setTMTXRT(boolean tMTXRT) {
-		TMTXRT = tMTXRT;
+	public void setTmtxrt(boolean tmtxrt) {
+		this.tmtxrt = tmtxrt;
 	}
 
-	public float getCC0IN() {
-		return CC0IN;
+	public float getCc0in() {
+		return cc0in;
 	}
 
-	public void setCC0IN(float cC0IN) {
-		CC0IN = cC0IN;
+	public void setCc0in(float cc0in) {
+		this.cc0in = cc0in;
 	}
 
-	public int getCCTCIC() {
-		return CCTCIC;
+	public int getCctcic() {
+		return cctcic;
 	}
 
-	public void setCCTCIC(int cCTCIC) {
-		CCTCIC = cCTCIC;
+	public void setCctcic(int cctcic) {
+		this.cctcic = cctcic;
 	}
 
-	public int getCCTCTT() {
-		return CCTCTT;
+	public int getCctctt() {
+		return cctctt;
 	}
 
-	public void setCCTCTT(int cCTCTT) {
-		CCTCTT = cCTCTT;
+	public void setCctctt(int cctctt) {
+		this.cctctt = cctctt;
 	}
 
-	public int getCCETCS() {
-		return CCETCS;
+	public int getCcetcs() {
+		return ccetcs;
 	}
 
-	public void setCCETCS(int cCETCS) {
-		CCETCS = cCETCS;
+	public void setCcetcs(int ccetcs) {
+		this.ccetcs = ccetcs;
 	}
 
-	public int getCCEIMC() {
-		return CCEIMC;
+	public int getCceimc() {
+		return cceimc;
 	}
 
-	public void setCCEIMC(int cCEIMC) {
-		CCEIMC = cCEIMC;
+	public void setCceimc(int cceimc) {
+		this.cceimc = cceimc;
 	}
 
-	public int getCCETTC() {
-		return CCETTC;
+	public int getCcettc() {
+		return ccettc;
 	}
 
-	public void setCCETTC(int cCETTC) {
-		CCETTC = cCETTC;
+	public void setCcettc(int ccettc) {
+		this.ccettc = ccettc;
 	}
 
-	public int getCCETTG() {
-		return CCETTG;
+	public int getCcettg() {
+		return ccettg;
 	}
 
-	public void setCCETTG(int cCETTG) {
-		CCETTG = cCETTG;
+	public void setCcettg(int ccettg) {
+		this.ccettg = ccettg;
 	}
 
-	public int getCCETCC() {
-		return CCETCC;
+	public int getCcetcc() {
+		return ccetcc;
 	}
 
-	public void setCCETCC(int cCETCC) {
-		CCETCC = cCETCC;
+	public void setCcetcc(int ccetcc) {
+		this.ccetcc = ccetcc;
 	}
 
-	public float getTCRXQU() {
-		return TCRXQU;
+	public float getTcrxqu() {
+		return tcrxqu;
 	}
 
-	public void setTCRXQU(float tCRXQU) {
-		TCRXQU = tCRXQU;
+	public void setTcrxqu(float tcrxqu) {
+		this.tcrxqu = tcrxqu;
 	}
 
-	public int getTCFRCP() {
-		return TCFRCP;
+	public int getTcfrcp() {
+		return tcfrcp;
 	}
 
-	public void setTCFRCP(int tCFRCP) {
-		TCFRCP = tCFRCP;
+	public void setTcfrcp(int tcfrcp) {
+		this.tcfrcp = tcfrcp;
 	}
 
-	public int getTMHKUR() {
-		return TMHKUR;
+	public int getTmhkur() {
+		return tmhkur;
 	}
 
-	public void setTMHKUR(int tMHKUR) {
-		TMHKUR = tMHKUR;
+	public void setTmhkur(int tmhkur) {
+		this.tmhkur = tmhkur;
 	}
 
-	public long getCSTUTC() {
-		return CSTUTC;
+	public long getCstutc() {
+		return cstutc;
 	}
 
-	public void setCSTUTC(long cSTUTC) {
-		CSTUTC = cSTUTC;
+	public void setCstutc(long cstutc) {
+		this.cstutc = cstutc;
 	}
 
-	public long getCSTSYS() {
-		return CSTSYS;
+	public long getCstsys() {
+		return cstsys;
 	}
 
-	public void setCSTSYS(long cSTSYS) {
-		CSTSYS = cSTSYS;
+	public void setCstsys(long cstsys) {
+		this.cstsys = cstsys;
 	}
 
-	public boolean isMCXPOL() {
-		return MCXPOL;
+	public boolean isMcxpol() {
+		return mcxpol;
 	}
 
-	public void setMCXPOL(boolean mCXPOL) {
-		MCXPOL = mCXPOL;
+	public void setMcxpol(boolean mcxpol) {
+		this.mcxpol = mcxpol;
 	}
 
-	public boolean isMCYPOL() {
-		return MCYPOL;
+	public boolean isMcypol() {
+		return mcypol;
 	}
 
-	public void setMCYPOL(boolean mCYPOL) {
-		MCYPOL = mCYPOL;
+	public void setMcypol(boolean mcypol) {
+		this.mcypol = mcypol;
 	}
 
-	public boolean isMCZPOL() {
-		return MCZPOL;
+	public boolean isMczpol() {
+		return mczpol;
 	}
 
-	public void setMCZPOL(boolean mCZPOL) {
-		MCZPOL = mCZPOL;
+	public void setMczpol(boolean mczpol) {
+		this.mczpol = mczpol;
 	}
 
-	public int getOBCBAD() {
-		return OBCBAD;
+	public int getObcbad() {
+		return obcbad;
 	}
 
-	public void setOBCBAD(int oBCBAD) {
-		OBCBAD = oBCBAD;
+	public void setObcbad(int obcbad) {
+		this.obcbad = obcbad;
 	}
 
-	public boolean isBEACON() {
-		return BEACON;
+	public boolean isBeacon() {
+		return beacon;
 	}
 
-	public void setBEACON(boolean bEACON) {
-		BEACON = bEACON;
+	public void setBeacon(boolean beacon) {
+		this.beacon = beacon;
 	}
 
-	public SystemMode getMODCOM() {
-		return MODCOM;
+	public SystemMode getModcom() {
+		return modcom;
 	}
 
-	public void setMODCOM(SystemMode mODCOM) {
-		MODCOM = mODCOM;
+	public void setModcom(SystemMode modcom) {
+		this.modcom = modcom;
 	}
 
-	public int getOBCABC() {
-		return OBCABC;
+	public int getObcabc() {
+		return obcabc;
 	}
 
-	public void setOBCABC(int oBCABC) {
-		OBCABC = oBCABC;
+	public void setObcabc(int obcabc) {
+		this.obcabc = obcabc;
 	}
 
-	public SatelliteMode getMODOBC() {
-		return MODOBC;
+	public SatelliteMode getModobc() {
+		return modobc;
 	}
 
-	public void setMODOBC(SatelliteMode mODOBC) {
-		MODOBC = mODOBC;
+	public void setModobc(SatelliteMode modobc) {
+		this.modobc = modobc;
 	}
 
-	public int getCCECAN() {
-		return CCECAN;
+	public int getCcecan() {
+		return ccecan;
 	}
 
-	public void setCCECAN(int cCECAN) {
-		CCECAN = cCECAN;
+	public void setCcecan(int ccecan) {
+		this.ccecan = ccecan;
 	}
 
-	public int getOBCCAN() {
-		return OBCCAN;
+	public int getObccan() {
+		return obccan;
 	}
 
-	public void setOBCCAN(int oBCCAN) {
-		OBCCAN = oBCCAN;
+	public void setObccan(int obccan) {
+		this.obccan = obccan;
 	}
 
-	public long getPCSYST() {
-		return PCSYST;
+	public long getPcsyst() {
+		return pcsyst;
 	}
 
-	public void setPCSYST(long pCSYST) {
-		PCSYST = pCSYST;
+	public void setPcsyst(long pcsyst) {
+		this.pcsyst = pcsyst;
 	}
 
-	public int getPCBCNT() {
-		return PCBCNT;
+	public int getPcbcnt() {
+		return pcbcnt;
 	}
 
-	public void setPCBCNT(int pCBCNT) {
-		PCBCNT = pCBCNT;
+	public void setPcbcnt(int pcbcnt) {
+		this.pcbcnt = pcbcnt;
 	}
 
-	public float getCSAXN() {
-		return CSAXN;
+	public float getCsaxn() {
+		return csaxn;
 	}
 
-	public void setCSAXN(float cSAXN) {
-		CSAXN = cSAXN;
+	public void setCsaxn(float csaxn) {
+		this.csaxn = csaxn;
 	}
 
-	public float getCC1IN() {
-		return CC1IN;
+	public float getCc1in() {
+		return cc1in;
 	}
 
-	public void setCC1IN(float cC1IN) {
-		CC1IN = cC1IN;
+	public void setCc1in(float cc1in) {
+		this.cc1in = cc1in;
 	}
 
-	public float getTPCU00() {
-		return TPCU00;
+	public float getTpcu00() {
+		return tpcu00;
 	}
 
-	public void setTPCU00(float tPCU00) {
-		TPCU00 = tPCU00;
+	public void setTpcu00(float tpcu00) {
+		this.tpcu00 = tpcu00;
 	}
 
-	public float getTMFS0() {
-		return TMFS0;
+	public float getTmfs0() {
+		return tmfs0;
 	}
 
-	public void setTMFS0(float tMFS0) {
-		TMFS0 = tMFS0;
+	public void setTmfs0(float tmfs0) {
+		this.tmfs0 = tmfs0;
 	}
 
-	public int getACSWHX() {
-		return ACSWHX;
+	public int getAcswhx() {
+		return acswhx;
 	}
 
-	public void setACSWHX(int aCSWHX) {
-		ACSWHX = aCSWHX;
+	public void setAcswhx(int acswhx) {
+		this.acswhx = acswhx;
 	}
 
-	public int getACSWHY() {
-		return ACSWHY;
+	public int getAcswhy() {
+		return acswhy;
 	}
 
-	public void setACSWHY(int aCSWHY) {
-		ACSWHY = aCSWHY;
+	public void setAcswhy(int acswhy) {
+		this.acswhy = acswhy;
 	}
 
-	public int getACSWHZ() {
-		return ACSWHZ;
+	public int getAcswhz() {
+		return acswhz;
 	}
 
-	public void setACSWHZ(int aCSWHZ) {
-		ACSWHZ = aCSWHZ;
+	public void setAcswhz(int acswhz) {
+		this.acswhz = acswhz;
 	}
 
-	public float getACSQ00() {
-		return ACSQ00;
+	public float getAcsq00() {
+		return acsq00;
 	}
 
-	public void setACSQ00(float aCSQ00) {
-		ACSQ00 = aCSQ00;
+	public void setAcsq00(float acsq00) {
+		this.acsq00 = acsq00;
 	}
 
-	public float getACSQ01() {
-		return ACSQ01;
+	public float getAcsq01() {
+		return acsq01;
 	}
 
-	public void setACSQ01(float aCSQ01) {
-		ACSQ01 = aCSQ01;
+	public void setAcsq01(float acsq01) {
+		this.acsq01 = acsq01;
 	}
 
-	public float getACSQ02() {
-		return ACSQ02;
+	public float getAcsq02() {
+		return acsq02;
 	}
 
-	public void setACSQ02(float aCSQ02) {
-		ACSQ02 = aCSQ02;
+	public void setAcsq02(float acsq02) {
+		this.acsq02 = acsq02;
 	}
 
-	public float getACSQ03() {
-		return ACSQ03;
+	public float getAcsq03() {
+		return acsq03;
 	}
 
-	public void setACSQ03(float aCSQ03) {
-		ACSQ03 = aCSQ03;
+	public void setAcsq03(float acsq03) {
+		this.acsq03 = acsq03;
 	}
 
-	public float getACSSUX() {
-		return ACSSUX;
+	public float getAcssux() {
+		return acssux;
 	}
 
-	public void setACSSUX(float aCSSUX) {
-		ACSSUX = aCSSUX;
+	public void setAcssux(float acssux) {
+		this.acssux = acssux;
 	}
 
-	public float getACSSUY() {
-		return ACSSUY;
+	public float getAcssuy() {
+		return acssuy;
 	}
 
-	public void setACSSUY(float aCSSUY) {
-		ACSSUY = aCSSUY;
+	public void setAcssuy(float acssuy) {
+		this.acssuy = acssuy;
 	}
 
-	public float getACSSUZ() {
-		return ACSSUZ;
+	public float getAcssuz() {
+		return acssuz;
 	}
 
-	public void setACSSUZ(float aCSSUZ) {
-		ACSSUZ = aCSSUZ;
+	public void setAcssuz(float acssuz) {
+		this.acssuz = acssuz;
 	}
 
-	public int getACSM0X() {
-		return ACSM0X;
+	public int getAcsm0x() {
+		return acsm0x;
 	}
 
-	public void setACSM0X(int aCSM0X) {
-		ACSM0X = aCSM0X;
+	public void setAcsm0x(int acsm0x) {
+		this.acsm0x = acsm0x;
 	}
 
-	public int getACSM0Y() {
-		return ACSM0Y;
+	public int getAcsm0y() {
+		return acsm0y;
 	}
 
-	public void setACSM0Y(int aCSM0Y) {
-		ACSM0Y = aCSM0Y;
+	public void setAcsm0y(int acsm0y) {
+		this.acsm0y = acsm0y;
 	}
 
-	public int getACSM0Z() {
-		return ACSM0Z;
+	public int getAcsm0z() {
+		return acsm0z;
 	}
 
-	public void setACSM0Z(int aCSM0Z) {
-		ACSM0Z = aCSM0Z;
+	public void setAcsm0z(int acsm0z) {
+		this.acsm0z = acsm0z;
 	}
 
-	public float getACSQDES00() {
-		return ACSQDES00;
+	public float getAcsqdes00() {
+		return acsqdes00;
 	}
 
-	public void setACSQDES00(float aCSQDES00) {
-		ACSQDES00 = aCSQDES00;
+	public void setAcsqdes00(float acsqdes00) {
+		this.acsqdes00 = acsqdes00;
 	}
 
-	public float getACSQDES01() {
-		return ACSQDES01;
+	public float getAcsqdes01() {
+		return acsqdes01;
 	}
 
-	public void setACSQDES01(float aCSQDES01) {
-		ACSQDES01 = aCSQDES01;
+	public void setAcsqdes01(float acsqdes01) {
+		this.acsqdes01 = acsqdes01;
 	}
 
-	public float getACSQDES02() {
-		return ACSQDES02;
+	public float getAcsqdes02() {
+		return acsqdes02;
 	}
 
-	public void setACSQDES02(float aCSQDES02) {
-		ACSQDES02 = aCSQDES02;
+	public void setAcsqdes02(float acsqdes02) {
+		this.acsqdes02 = acsqdes02;
 	}
 
-	public AcsMode getMODACS() {
-		return MODACS;
+	public AcsMode getModacs() {
+		return modacs;
 	}
 
-	public void setMODACS(AcsMode mODACS) {
-		MODACS = mODACS;
+	public void setModacs(AcsMode modacs) {
+		this.modacs = modacs;
 	}
 
-	public boolean isACSGSC() {
-		return ACSGSC;
+	public boolean isAcsgsc() {
+		return acsgsc;
 	}
 
-	public void setACSGSC(boolean aCSGSC) {
-		ACSGSC = aCSGSC;
+	public void setAcsgsc(boolean acsgsc) {
+		this.acsgsc = acsgsc;
 	}
 
-	public boolean isACSSHD() {
-		return ACSSHD;
+	public boolean isAcsshd() {
+		return acsshd;
 	}
 
-	public void setACSSHD(boolean aCSSHD) {
-		ACSSHD = aCSSHD;
+	public void setAcsshd(boolean acsshd) {
+		this.acsshd = acsshd;
 	}
 
-	public AcsErrorCode getACSERR() {
-		return ACSERR;
+	public AcsErrorCode getAcserr() {
+		return acserr;
 	}
 
-	public void setACSERR(AcsErrorCode aCSERR) {
-		ACSERR = aCSERR;
+	public void setAcserr(AcsErrorCode acserr) {
+		this.acserr = acserr;
 	}
 
-	public float getACSC1X() {
-		return ACSC1X;
+	public float getAcsc1x() {
+		return acsc1x;
 	}
 
-	public void setACSC1X(float aCSC1X) {
-		ACSC1X = aCSC1X;
+	public void setAcsc1x(float acsc1x) {
+		this.acsc1x = acsc1x;
 	}
 
-	public float getACSC1Y() {
-		return ACSC1Y;
+	public float getAcsc1y() {
+		return acsc1y;
 	}
 
-	public void setACSC1Y(float aCSC1Y) {
-		ACSC1Y = aCSC1Y;
+	public void setAcsc1y(float acsc1y) {
+		this.acsc1y = acsc1y;
 	}
 
-	public float getACSC1Z() {
-		return ACSC1Z;
+	public float getAcsc1z() {
+		return acsc1z;
 	}
 
-	public void setACSC1Z(float aCSC1Z) {
-		ACSC1Z = aCSC1Z;
+	public void setAcsc1z(float acsc1z) {
+		this.acsc1z = acsc1z;
 	}
 
-	public float getTOBC00() {
-		return TOBC00;
+	public float getTobc00() {
+		return tobc00;
 	}
 
-	public void setTOBC00(float tOBC00) {
-		TOBC00 = tOBC00;
+	public void setTobc00(float tobc00) {
+		this.tobc00 = tobc00;
 	}
 
-	public float getCSAXP() {
-		return CSAXP;
+	public float getCsaxp() {
+		return csaxp;
 	}
 
-	public void setCSAXP(float cSAXP) {
-		CSAXP = cSAXP;
+	public void setCsaxp(float csaxp) {
+		this.csaxp = csaxp;
 	}
 
-	public float getCSAYP() {
-		return CSAYP;
+	public float getCsayp() {
+		return csayp;
 	}
 
-	public void setCSAYP(float cSAYP) {
-		CSAYP = cSAYP;
+	public void setCsayp(float csayp) {
+		this.csayp = csayp;
 	}
 
-	public float getCSAZP() {
-		return CSAZP;
+	public float getCsazp() {
+		return csazp;
 	}
 
-	public void setCSAZP(float cSAZP) {
-		CSAZP = cSAZP;
+	public void setCsazp(float csazp) {
+		this.csazp = csazp;
 	}
 
-	public float getCSAYN() {
-		return CSAYN;
+	public float getCsayn() {
+		return csayn;
 	}
 
-	public void setCSAYN(float cSAYN) {
-		CSAYN = cSAYN;
+	public void setCsayn(float csayn) {
+		this.csayn = csayn;
 	}
 
-	public float getCSAZN() {
-		return CSAZN;
+	public float getCsazn() {
+		return csazn;
 	}
 
-	public void setCSAZN(float cSAZN) {
-		CSAZN = cSAZN;
+	public void setCsazn(float csazn) {
+		this.csazn = csazn;
 	}
 
-	public int getACSTEMEX() {
-		return ACSTEMEX;
+	public int getAcstemex() {
+		return acstemex;
 	}
 
-	public void setACSTEMEX(int aCSTEMEX) {
-		ACSTEMEX = aCSTEMEX;
+	public void setAcstemex(int acstemex) {
+		this.acstemex = acstemex;
 	}
 
-	public int getACSTEMEY() {
-		return ACSTEMEY;
+	public int getAcstemey() {
+		return acstemey;
 	}
 
-	public void setACSTEMEY(int aCSTEMEY) {
-		ACSTEMEY = aCSTEMEY;
+	public void setAcstemey(int acstemey) {
+		this.acstemey = acstemey;
 	}
 
-	public int getACSTEMEZ() {
-		return ACSTEMEZ;
+	public int getAcstemez() {
+		return acstemez;
 	}
 
-	public void setACSTEMEZ(int aCSTEMEZ) {
-		ACSTEMEZ = aCSTEMEZ;
+	public void setAcstemez(int acstemez) {
+		this.acstemez = acstemez;
 	}
 
-	public int getACSEFX() {
-		return ACSEFX;
+	public int getAcsefx() {
+		return acsefx;
 	}
 
-	public void setACSEFX(int aCSEFX) {
-		ACSEFX = aCSEFX;
+	public void setAcsefx(int acsefx) {
+		this.acsefx = acsefx;
 	}
 
-	public int getACSEFY() {
-		return ACSEFY;
+	public int getAcsefy() {
+		return acsefy;
 	}
 
-	public void setACSEFY(int aCSEFY) {
-		ACSEFY = aCSEFY;
+	public void setAcsefy(int acsefy) {
+		this.acsefy = acsefy;
 	}
 
-	public int getACSEFZ() {
-		return ACSEFZ;
+	public int getAcsefz() {
+		return acsefz;
 	}
 
-	public void setACSEFZ(int aCSEFZ) {
-		ACSEFZ = aCSEFZ;
+	public void setAcsefz(int acsefz) {
+		this.acsefz = acsefz;
 	}
 
-	public AcsMode getACSCMOD() {
-		return ACSCMOD;
+	public AcsMode getAcscmod() {
+		return acscmod;
 	}
 
-	public void setACSCMOD(AcsMode aCSCMOD) {
-		ACSCMOD = aCSCMOD;
+	public void setAcscmod(AcsMode acscmod) {
+		this.acscmod = acscmod;
 	}
 
-	public boolean isOBCTMCE() {
-		return OBCTMCE;
+	public boolean isObctmce() {
+		return obctmce;
 	}
 
-	public void setOBCTMCE(boolean oBCTMCE) {
-		OBCTMCE = oBCTMCE;
+	public void setObctmce(boolean obctmce) {
+		this.obctmce = obctmce;
 	}
 
-	public int getOBCTMFFP() {
-		return OBCTMFFP;
+	public int getObctmffp() {
+		return obctmffp;
 	}
 
-	public void setOBCTMFFP(int oBCTMFFP) {
-		OBCTMFFP = oBCTMFFP;
+	public void setObctmffp(int obctmffp) {
+		this.obctmffp = obctmffp;
 	}
 
-	public float getACSQDES03() {
-		return ACSQDES03;
+	public float getAcsqdes03() {
+		return acsqdes03;
 	}
 
-	public void setACSQDES03(float aCSQDES03) {
-		ACSQDES03 = aCSQDES03;
+	public void setAcsqdes03(float acsqdes03) {
+		this.acsqdes03 = acsqdes03;
 	}
 
-	public int getACSGYR() {
-		return ACSGYR;
+	public int getAcsgyr() {
+		return acsgyr;
 	}
 
-	public void setACSGYR(int aCSGYR) {
-		ACSGYR = aCSGYR;
+	public void setAcsgyr(int acsgyr) {
+		this.acsgyr = acsgyr;
 	}
 
 }
