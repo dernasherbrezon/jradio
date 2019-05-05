@@ -7,67 +7,66 @@ import ru.r2cloud.jradio.util.StreamUtils;
 
 public class Apid13 {
 
-	private long[] IMHD00;    // Header slot #X Magic word
-	private long[] IMHD01;    // Header slot #X CRC32, dept.
-	private long[] IMHD02;    // Header slot #X Image size
-	private long[] IMHD03;    // Header slot #X Base address
-	private long[] IMHD04;    // Header slot #X CRC32, calc.
+	private long[] imhd00; // Header slot #X Magic word
+	private long[] imhd01; // Header slot #X CRC32, dept.
+	private long[] imhd02; // Header slot #X Image size
+	private long[] imhd03; // Header slot #X Base address
+	private long[] imhd04; // Header slot #X CRC32, calc.
 
 	public Apid13(DataInputStream dis) throws IOException {
-		IMHD00 = new long[4];
-		IMHD01 = new long[4];
-		IMHD02 = new long[4];
-		IMHD03 = new long[4];
-		IMHD04 = new long[4];
+		imhd00 = new long[4];
+		imhd01 = new long[4];
+		imhd02 = new long[4];
+		imhd03 = new long[4];
+		imhd04 = new long[4];
 		for (int i = 0; i < 4; i++) {
-			IMHD00[i] = StreamUtils.readUnsignedInt(dis);
-			IMHD01[i] = StreamUtils.readUnsignedInt(dis);
-			IMHD02[i] = StreamUtils.readUnsignedInt(dis);
-			IMHD03[i] = StreamUtils.readUnsignedInt(dis);
-			IMHD04[i] = StreamUtils.readUnsignedInt(dis);
+			imhd00[i] = StreamUtils.readUnsignedInt(dis);
+			imhd01[i] = StreamUtils.readUnsignedInt(dis);
+			imhd02[i] = StreamUtils.readUnsignedInt(dis);
+			imhd03[i] = StreamUtils.readUnsignedInt(dis);
+			imhd04[i] = StreamUtils.readUnsignedInt(dis);
 		}
 		dis.skipBytes(46);
 	}
 
-	public long[] getIMHD00() {
-		return IMHD00;
+	public long[] getImhd00() {
+		return imhd00;
 	}
 
-	public void setIMHD00(long[] iMHD00) {
-		IMHD00 = iMHD00;
+	public void setImhd00(long[] imhd00) {
+		this.imhd00 = imhd00;
 	}
 
-	public long[] getIMHD01() {
-		return IMHD01;
+	public long[] getImhd01() {
+		return imhd01;
 	}
 
-	public void setIMHD01(long[] iMHD01) {
-		IMHD01 = iMHD01;
+	public void setImhd01(long[] imhd01) {
+		this.imhd01 = imhd01;
 	}
 
-	public long[] getIMHD02() {
-		return IMHD02;
+	public long[] getImhd02() {
+		return imhd02;
 	}
 
-	public void setIMHD02(long[] iMHD02) {
-		IMHD02 = iMHD02;
+	public void setImhd02(long[] imhd02) {
+		this.imhd02 = imhd02;
 	}
 
-	public long[] getIMHD03() {
-		return IMHD03;
+	public long[] getImhd03() {
+		return imhd03;
 	}
 
-	public void setIMHD03(long[] iMHD03) {
-		IMHD03 = iMHD03;
+	public void setImhd03(long[] imhd03) {
+		this.imhd03 = imhd03;
 	}
 
-	public long[] getIMHD04() {
-		return IMHD04;
+	public long[] getImhd04() {
+		return imhd04;
 	}
 
-	public void setIMHD04(long[] iMHD04) {
-		IMHD04 = iMHD04;
+	public void setImhd04(long[] imhd04) {
+		this.imhd04 = imhd04;
 	}
-	
-	
+
 }
