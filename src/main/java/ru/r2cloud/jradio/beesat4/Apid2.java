@@ -7,1310 +7,1310 @@ import ru.r2cloud.jradio.util.BitInputStream;
 
 public class Apid2 {
 
-	private float VSABUS;               // Solar array bus
-	private boolean PSANT0;             // Antenna release #0
-	private boolean PSANT1;             // Antenna release #1
-	private float VBAT0;                // Battery #0
-	private float VBAT1;                // Battery #1
-	private float V50BUS;               // 5V bus
-	private float V33BUS;               // 3V3 bus
-	private float CC0OUT;               // Charger #0 output
-	private boolean PSTEMP;             // Temperature sensors
-	private float CC1OUT;               // Charger #1 output
-	private boolean PS5VCN;             // 5V main switch
-	private float TBAT0;                // Battery #0
-	private boolean PCBEXT;             // External flash boot flag
-	private boolean PCCH00;             // PCDU check channel 00
-	private boolean PCCH01;             // PCDU check channel 01
-	private boolean PCCH02;             // PCDU check channel 02
-	private float TBAT1;                // Battery #1
-	private boolean PCCH03;             // PCDU check channel 03
-	private boolean PCCH04;             // PCDU check channel 04
-	private boolean PCCH05;             // PCDU check channel 05
-	private boolean PCCH06;             // PCDU check channel 06
-	private boolean PCCH07;             // PCDU check channel 07
-	private boolean PCCH08;             // PCDU check channel 08
-	private boolean PCCH09;             // PCDU check channel 09
-	private boolean PCCH10;             // PCDU check channel 10
-	private boolean PCCH11;             // PCDU check channel 11
-	private boolean PCCH12;             // PCDU check channel 12
-	private boolean PCCH13;             // PCDU check channel 13
-	private boolean PCCH14;             // PCDU check channel 14
-	private float CWHL;                 // Wheel drive electronic
-	private boolean PCCH15;             // PCDU check channel 15
-	private boolean PCCH16;             // PCDU check channel 16
-	private boolean PCCH17;             // PCDU check channel 17
-	private boolean PCCH18;             // PCDU check channel 18
-	private boolean PCCH19;             // PCDU check channel 19
-	private boolean PCCH20;             // PCDU check channel 20
-	private boolean PCCH21;             // PCDU check channel 21
-	private boolean PCCH22;             // PCDU check channel 22
-	private boolean PCCH23;             // PCDU check channel 23
-	private boolean PCCH24;             // PCDU check channel 24
-	private boolean PCCH25;             // PCDU check channel 25
-	private boolean PCCH26;             // PCDU check channel 26
-	private boolean OBCAID;             // Active OBC ID
-	private boolean PCCH27;             // PCDU check channel 27
-	private float CC0IN;                // Charger #0 input
-	private boolean PCCH28;             // PCDU check channel 28
-	private boolean PCCH29;             // PCDU check channel 29
-	private boolean PCCH30;             // PCDU check channel 30
-	private boolean PCCH31;             // PCDU check channel 31
-	private long CSTUTC;                // Onboard time UTC
-	private long CSTSYS;                // OBDH uptime
-	private int OBCBAD;                 // OBC boot slot
-	private int CESWMC;                 // Err ctr missing magic code
-	private SatelliteMode MODOBC;       // Satellite mode
-	private int PCTXEC;                 // Err ctr PCU CAN transmit
-	private int PCRXEC;                 // Err ctr PCU CAN receive
-	private int PCOFFC;                 // Err ctr PCU CAN offline
-	private int PCACKC;                 // Err ctr PCU CAN ack
-	private boolean PCCH32;             // PCDU check channel 32
-	private boolean PCCH33;             // PCDU check channel 33
-	private boolean PCCH34;             // PCDU check channel 34
-	private boolean PCCH35;             // PCDU check channel 35
-	private boolean PCCH36;             // PCDU check channel 36
-	private boolean PCCH37;             // PCDU check channel 37
-	private boolean PCCH38;             // PCDU check channel 38
-	private boolean PCCH39;             // PCDU check channel 39
-	private boolean PCCH40;             // PCDU check channel 40
-	private boolean PCCH41;             // PCDU check channel 41
-	private float CC1IN;                // Charger #1 input
-	private float CSAXP;                // Solar array X+
-	private float CSAYP;                // Solar array Y+
-	private float CSAZP;                // Solar array Z+
-	private float CSAXN;                // Solar array X-
-	private float CSAYN;                // Solar array Y-
-	private float CSAZN;                // Solar array Z-
-	private float CSSS;                 // Sunsensor System
-	private float CMFS0;                // Magnetic Field Sensor #0
-	private float CMFS1;                // Magnetic Field Sensor #1
-	private float CMCS;                 // Magnetic Coil System
-	private float VMFS0;                // Magnetic Field Sensor 0
-	private float VMFS1;                // Magnetic Field Sensor 1
-	private float TMFS1;                // MFS #1
-	private float CMCSXP;               // Magnetic Coil System X+
-	private float CMCSXN;               // Magnetic Coil System X-
-	private float CMCSYP;               // Magnetic Coil System Y+
-	private float CMCSYN;               // Magnetic Coil System Y-
-	private float CMCSZP;               // Magnetic Coil System Z+
-	private float CMCSZN;               // Magnetic Coil System Z-
-	private float TSAXP;                // Solar Array X+
-	private float TSAXN;                // Solar Array X-
-	private float TSAYP;                // Solar Array Y+
-	private float TSAYN;                // Solar Array Y-
-	private float TSAZP;                // Solar Array Z+
-	private float TSAZN;                // Solar Array Z-
-	private float TPCU01;               // PCU ext. ADC #1
-	private float TOBC01;               // OBC ext. ADC #1
-	private float TOBC02;               // OBC ext. ADC #2
-	private float TTRX0;                // TRX #0
-	private float TTRX1;                // TRX #1
-	private float CMFS0X;               // Magnetic Field Sensor #0 X
-	private float CMFS0Y;               // Magnetic Field Sensor #0 Y
-	private float CMFS0Z;               // Magnetic Field Sensor #0 Z
-	private float CMFS1X;               // Magnetic Field Sensor #1 X
-	private float CMFS1Y;               // Magnetic Field Sensor #1 Y
-	private float CMFS1Z;               // Magnetic Field Sensor #1 Z
-	private float CPCU;                 // Power Control Unit
-	private float COBC0;                // Onboard Computer #0
-	private float COBC1;                // Onboard Computer #1
-	private float CTNC0;                // Terminal Node Controller #0
-	private float CTNC1;                // Terminal Node Controller #1
-	private float CTRX0;                // Transceiver #0
-	private float CTRX1;                // Transceiver #1
-	private float CPDH;                 // Payload Data Handling
-	private float CGPS;                 // GPS Receiver
-	private float CCAN0;                // CAN Bus #0
-	private float CCAN1;                // CAN Bus #1
-	private float COBCMCU;              // OBC µC
-	private float COBCEXT;              // OBC Peripheral
-	private int PCREST;               // PCU Time To Reset
-	private int PCRESI;               // PCU Reset Interval
-	private float TSMAX;                // Temperature MAX21000
-	private float TSLSM;                // Temperature LSM303D
-	private int TSL3G;                // Temperature L3G4200D
-	private boolean PS33VC;             // 3V3 main switch
-	private float CGY2MF2;              // Gyro #2 MFS #2
-	private float TWHLX;                // Wheel X
-	private float TWHLY;                // Wheel Y
-	private float TWHLZ;                // Wheel Z
-	private int EPS_TCS_reserve;        // reserve bytes for EPS_TCS APID
-	private int OBCSW8;                 // OBC Software Revision
+	private float vsabus; // Solar array bus
+	private boolean psant0; // antenna release #0
+	private boolean psant1; // antenna release #1
+	private float vbat0; // battery #0
+	private float vbat1; // battery #1
+	private float v50bus; // 5v bus
+	private float v33bus; // 3v3 bus
+	private float cc0out; // charger #0 output
+	private boolean pstemp; // temperature sensors
+	private float cc1out; // charger #1 output
+	private boolean ps5vcn; // 5v main switch
+	private float tbat0; // battery #0
+	private boolean pcbext; // external flash boot flag
+	private boolean pcch00; // pcdu check channel 00
+	private boolean pcch01; // pcdu check channel 01
+	private boolean pcch02; // pcdu check channel 02
+	private float tbat1; // battery #1
+	private boolean pcch03; // pcdu check channel 03
+	private boolean pcch04; // pcdu check channel 04
+	private boolean pcch05; // pcdu check channel 05
+	private boolean pcch06; // pcdu check channel 06
+	private boolean pcch07; // pcdu check channel 07
+	private boolean pcch08; // pcdu check channel 08
+	private boolean pcch09; // pcdu check channel 09
+	private boolean pcch10; // pcdu check channel 10
+	private boolean pcch11; // pcdu check channel 11
+	private boolean pcch12; // pcdu check channel 12
+	private boolean pcch13; // pcdu check channel 13
+	private boolean pcch14; // pcdu check channel 14
+	private float cwhl; // wheel drive electronic
+	private boolean pcch15; // pcdu check channel 15
+	private boolean pcch16; // pcdu check channel 16
+	private boolean pcch17; // pcdu check channel 17
+	private boolean pcch18; // pcdu check channel 18
+	private boolean pcch19; // pcdu check channel 19
+	private boolean pcch20; // pcdu check channel 20
+	private boolean pcch21; // pcdu check channel 21
+	private boolean pcch22; // pcdu check channel 22
+	private boolean pcch23; // pcdu check channel 23
+	private boolean pcch24; // pcdu check channel 24
+	private boolean pcch25; // pcdu check channel 25
+	private boolean pcch26; // pcdu check channel 26
+	private boolean obcaid; // active obc id
+	private boolean pcch27; // pcdu check channel 27
+	private float cc0in; // charger #0 input
+	private boolean pcch28; // pcdu check channel 28
+	private boolean pcch29; // pcdu check channel 29
+	private boolean pcch30; // pcdu check channel 30
+	private boolean pcch31; // pcdu check channel 31
+	private long cstutc; // onboard time utc
+	private long cstsys; // obdh uptime
+	private int obcbad; // obc boot slot
+	private int ceswmc; // err ctr missing magic code
+	private SatelliteMode modobc; // Satellite mode
+	private int pctxec; // err ctr pcu can transmit
+	private int pcrxec; // err ctr pcu can receive
+	private int pcoffc; // err ctr pcu can offline
+	private int pcackc; // err ctr pcu can ack
+	private boolean pcch32; // pcdu check channel 32
+	private boolean pcch33; // pcdu check channel 33
+	private boolean pcch34; // pcdu check channel 34
+	private boolean pcch35; // pcdu check channel 35
+	private boolean pcch36; // pcdu check channel 36
+	private boolean pcch37; // pcdu check channel 37
+	private boolean pcch38; // pcdu check channel 38
+	private boolean pcch39; // pcdu check channel 39
+	private boolean pcch40; // pcdu check channel 40
+	private boolean pcch41; // pcdu check channel 41
+	private float cc1in; // charger #1 input
+	private float csaxp; // solar array x+
+	private float csayp; // solar array y+
+	private float csazp; // solar array z+
+	private float csaxn; // solar array x-
+	private float csayn; // solar array y-
+	private float csazn; // solar array z-
+	private float csss; // sunsensor system
+	private float cmfs0; // magnetic field sensor #0
+	private float cmfs1; // magnetic field sensor #1
+	private float cmcs; // magnetic coil system
+	private float vmfs0; // magnetic field sensor 0
+	private float vmfs1; // magnetic field sensor 1
+	private float tmfs1; // mfs #1
+	private float cmcsxp; // magnetic coil system x+
+	private float cmcsxn; // magnetic coil system x-
+	private float cmcsyp; // magnetic coil system y+
+	private float cmcsyn; // magnetic coil system y-
+	private float cmcszp; // magnetic coil system z+
+	private float cmcszn; // magnetic coil system z-
+	private float tsaxp; // solar array x+
+	private float tsaxn; // solar array x-
+	private float tsayp; // solar array y+
+	private float tsayn; // solar array y-
+	private float tsazp; // solar array z+
+	private float tsazn; // solar array z-
+	private float tpcu01; // pcu ext. adc #1
+	private float tobc01; // obc ext. adc #1
+	private float tobc02; // obc ext. adc #2
+	private float ttrx0; // trx #0
+	private float ttrx1; // trx #1
+	private float cmfs0x; // magnetic field sensor #0 x
+	private float cmfs0y; // magnetic field sensor #0 y
+	private float cmfs0z; // magnetic field sensor #0 z
+	private float cmfs1x; // magnetic field sensor #1 x
+	private float cmfs1y; // magnetic field sensor #1 y
+	private float cmfs1z; // magnetic field sensor #1 z
+	private float cpcu; // power control unit
+	private float cobc0; // onboard computer #0
+	private float cobc1; // onboard computer #1
+	private float ctnc0; // terminal node controller #0
+	private float ctnc1; // terminal node controller #1
+	private float ctrx0; // transceiver #0
+	private float ctrx1; // transceiver #1
+	private float cpdh; // payload data handling
+	private float cgps; // gps receiver
+	private float ccan0; // can bus #0
+	private float ccan1; // can bus #1
+	private float cobcmcu; // obc µc
+	private float cobcext; // obc peripheral
+	private int pcrest; // pcu time to reset
+	private int pcresi; // pcu reset interval
+	private float tsmax; // temperature max21000
+	private float tslsm; // temperature lsm303d
+	private int tsl3g; // temperature l3g4200d
+	private boolean ps33vc; // 3v3 main switch
+	private float cgy2mf2; // gyro #2 mfs #2
+	private float twhlx; // wheel x
+	private float twhly; // wheel y
+	private float twhlz; // wheel z
+	private int epsTcsReserve; // reserve bytes for eps_tcs apid
+	private int obcsw8; // obc software revision
 
 	public Apid2(DataInputStream dis) throws IOException {
 		BitInputStream bis = new BitInputStream(dis);
 
-		VSABUS = bis.readUnsignedInt(12) * 0.0016197791f;
-		PSANT0 = bis.readBoolean();
-		PSANT1 = bis.readBoolean();
-		VBAT0 = bis.readUnsignedInt(12) * 0.0033725265f;
-		VBAT1 = bis.readUnsignedInt(12) * 0.0033725265f;
-		V50BUS = bis.readUnsignedInt(12) * 0.0016197791f;
-		V33BUS = bis.readUnsignedInt(12) * 0.0012207031f;
-		CC0OUT = bis.readUnsignedInt(12) * 0.6103515625f;
-		PSTEMP = bis.readBoolean();
-		CC1OUT = bis.readUnsignedInt(12) * 0.6103515625f;
-		PS5VCN = bis.readBoolean();
-		TBAT0 = bis.readUnsignedInt(12) * 0.244140625f - 50.0f;
-		PCBEXT = bis.readBoolean();
-		PCCH00 = bis.readBoolean();
-		PCCH01 = bis.readBoolean();
-		PCCH02 = bis.readBoolean();
-		TBAT1 = bis.readUnsignedInt(12) * 0.244140625f - 50.0f;
-		PCCH03 = bis.readBoolean();
-		PCCH04 = bis.readBoolean();
-		PCCH05 = bis.readBoolean();
-		PCCH06 = bis.readBoolean();
-		PCCH07 = bis.readBoolean();
-		PCCH08 = bis.readBoolean();
-		PCCH09 = bis.readBoolean();
-		PCCH10 = bis.readBoolean();
-		PCCH11 = bis.readBoolean();
-		PCCH12 = bis.readBoolean();
-		PCCH13 = bis.readBoolean();
-		PCCH14 = bis.readBoolean();
-		CWHL = bis.readUnsignedInt(12) * 0.3051757813f;
-		PCCH15 = bis.readBoolean();
-		PCCH16 = bis.readBoolean();
-		PCCH17 = bis.readBoolean();
-		PCCH18 = bis.readBoolean();
-		PCCH19 = bis.readBoolean();
-		PCCH20 = bis.readBoolean();
-		PCCH21 = bis.readBoolean();
-		PCCH22 = bis.readBoolean();
-		PCCH23 = bis.readBoolean();
-		PCCH24 = bis.readBoolean();
-		PCCH25 = bis.readBoolean();
-		PCCH26 = bis.readBoolean();
-		OBCAID = bis.readBoolean();
-		PCCH27 = bis.readBoolean();
-		CC0IN = bis.readUnsignedInt(12) * 0.3051757813f;
-		PCCH28 = bis.readBoolean();
-		PCCH29 = bis.readBoolean();
-		PCCH30 = bis.readBoolean();
-		PCCH31 = bis.readBoolean();
-		CSTUTC = bis.readUnsignedLong(32);
-		CSTSYS = bis.readUnsignedLong(32);
-		OBCBAD = bis.readUnsignedInt(4);
-		CESWMC = bis.readUnsignedInt(8);
-		MODOBC = SatelliteMode.valueOfCode(bis.readUnsignedInt(8));
-		PCTXEC = bis.readUnsignedInt(8);
-		PCRXEC = bis.readUnsignedInt(8);
-		PCOFFC = bis.readUnsignedInt(8);
-		PCACKC = bis.readUnsignedInt(8);
-		PCCH32 = bis.readBoolean();
-		PCCH33 = bis.readBoolean();
-		PCCH34 = bis.readBoolean();
-		PCCH35 = bis.readBoolean();
-		PCCH36 = bis.readBoolean();
-		PCCH37 = bis.readBoolean();
-		PCCH38 = bis.readBoolean();
-		PCCH39 = bis.readBoolean();
-		PCCH40 = bis.readBoolean();
-		PCCH41 = bis.readBoolean();
-		CC1IN = bis.readUnsignedInt(12) * 0.3051757813f;
-		CSAXP = bis.readUnsignedInt(12) * 0.152587891f;
-		CSAYP = bis.readUnsignedInt(12) * 0.152587891f;
-		CSAZP = bis.readUnsignedInt(12) * 0.152587891f;
-		CSAXN = bis.readUnsignedInt(12) * 0.152587891f;
-		CSAYN = bis.readUnsignedInt(12) * 0.152587891f;
-		CSAZN = bis.readUnsignedInt(12) * 0.152587891f;
-		CSSS = bis.readUnsignedInt(12) * 0.0305175781f;
-		CMFS0 = bis.readUnsignedInt(12) * 0.0305175781f;
-		CMFS1 = bis.readUnsignedInt(12) * 0.0305175781f;
-		CMCS = bis.readUnsignedInt(12) * 0.152587891f;
-		VMFS0 = bis.readUnsignedInt(12) * 0.000886616f;
-		VMFS1 = bis.readUnsignedInt(12) * 0.000886616f;
-		TMFS1 = bis.readUnsignedInt(12) * 0.06103515625f - 50.0f;
-		CMCSXP = bis.readUnsignedInt(12) * 0.0305175781f;
-		CMCSXN = bis.readUnsignedInt(12) * 0.0305175781f;
-		CMCSYP = bis.readUnsignedInt(12) * 0.0305175781f;
-		CMCSYN = bis.readUnsignedInt(12) * 0.0305175781f;
-		CMCSZP = bis.readUnsignedInt(12) * 0.0305175781f;
-		CMCSZN = bis.readUnsignedInt(12) * 0.0305175781f;
-		TSAXP = bis.readUnsignedInt(10) * 0.244140625f - 50.0f;
-		TSAXN = bis.readUnsignedInt(10) * 0.244140625f - 50.0f;
-		TSAYP = bis.readUnsignedInt(10) * 0.244140625f - 50.0f;
-		TSAYN = bis.readUnsignedInt(10) * 0.244140625f - 50.0f;
-		TSAZP = bis.readUnsignedInt(10) * 0.244140625f - 50.0f;
-		TSAZN = bis.readUnsignedInt(10) * 0.244140625f - 50.0f;
-		TPCU01 = bis.readUnsignedInt(12) * 0.125f;
-		TOBC01 = bis.readUnsignedInt(12) * 0.125f;
-		TOBC02 = bis.readUnsignedInt(12) * 0.125f;
-		TTRX0 = bis.readUnsignedInt(8) * 0.9765625f - 50.0f;
-		TTRX1 = bis.readUnsignedInt(8) * 0.9765625f - 50.0f;
-		CMFS0X = bis.readUnsignedInt(12) * 0.003037316470f - 6.218905472637f;
-		CMFS0Y = bis.readUnsignedInt(12) * 0.003037316470f - 6.218905472637f;
-		CMFS0Z = bis.readUnsignedInt(12) * 0.003037316470f - 6.218905472637f;
-		CMFS1X = bis.readUnsignedInt(12) * 0.003037316470f - 6.218905472637f;
-		CMFS1Y = bis.readUnsignedInt(12) * 0.003037316470f - 6.218905472637f;
-		CMFS1Z = bis.readUnsignedInt(12) * 0.003037316470f - 6.218905472637f;
-		CPCU = bis.readUnsignedInt(12) * 0.0305175781f;
-		COBC0 = bis.readUnsignedInt(12) * 0.152587891f;
-		COBC1 = bis.readUnsignedInt(12) * 0.152587891f;
-		CTNC0 = bis.readUnsignedInt(12) * 0.0305175781f;
-		CTNC1 = bis.readUnsignedInt(12) * 0.0305175781f;
-		CTRX0 = bis.readUnsignedInt(12) * 0.152587891f;
-		CTRX1 = bis.readUnsignedInt(12) * 0.152587891f;
-		CPDH = bis.readUnsignedInt(12) * 0.152587891f;
-		CGPS = bis.readUnsignedInt(12) * 0.152587891f;
-		CCAN0 = bis.readUnsignedInt(12) * 0.0305175781f;
-		CCAN1 = bis.readUnsignedInt(12) * 0.0305175781f;
-		COBCMCU = bis.readUnsignedInt(12) * 0.0305175781f;
-		COBCEXT = bis.readUnsignedInt(12) * 0.0305175781f;
-		PCREST = bis.readUnsignedInt(16) * 2;
-		PCRESI = bis.readUnsignedInt(16) * 2;
-		TSMAX = bis.readUnsignedShort() * 0.00390625f;
-		TSLSM = bis.readUnsignedShort() * 0.125f + 25f;
-		TSL3G = ((byte) bis.readUnsignedInt(8)) * -1 + 35;
-		PS33VC = bis.readBoolean();
-		CGY2MF2 = bis.readUnsignedInt(12) * 0.0305175781f;
-		TWHLX = bis.readUnsignedInt(12) * 0.06103515625f - 50.0f;
-		TWHLY = bis.readUnsignedInt(12) * 0.06103515625f - 50.0f;
-		TWHLZ = bis.readUnsignedInt(12) * 0.06103515625f - 50.0f;
-		EPS_TCS_reserve = bis.readUnsignedInt(3);
-		OBCSW8 = bis.readUnsignedInt(8);
+		vsabus = bis.readUnsignedInt(12) * 0.0016197791f;
+		psant0 = bis.readBoolean();
+		psant1 = bis.readBoolean();
+		vbat0 = bis.readUnsignedInt(12) * 0.0033725265f;
+		vbat1 = bis.readUnsignedInt(12) * 0.0033725265f;
+		v50bus = bis.readUnsignedInt(12) * 0.0016197791f;
+		v33bus = bis.readUnsignedInt(12) * 0.0012207031f;
+		cc0out = bis.readUnsignedInt(12) * 0.6103515625f;
+		pstemp = bis.readBoolean();
+		cc1out = bis.readUnsignedInt(12) * 0.6103515625f;
+		ps5vcn = bis.readBoolean();
+		tbat0 = bis.readUnsignedInt(12) * 0.244140625f - 50.0f;
+		pcbext = bis.readBoolean();
+		pcch00 = bis.readBoolean();
+		pcch01 = bis.readBoolean();
+		pcch02 = bis.readBoolean();
+		tbat1 = bis.readUnsignedInt(12) * 0.244140625f - 50.0f;
+		pcch03 = bis.readBoolean();
+		pcch04 = bis.readBoolean();
+		pcch05 = bis.readBoolean();
+		pcch06 = bis.readBoolean();
+		pcch07 = bis.readBoolean();
+		pcch08 = bis.readBoolean();
+		pcch09 = bis.readBoolean();
+		pcch10 = bis.readBoolean();
+		pcch11 = bis.readBoolean();
+		pcch12 = bis.readBoolean();
+		pcch13 = bis.readBoolean();
+		pcch14 = bis.readBoolean();
+		cwhl = bis.readUnsignedInt(12) * 0.3051757813f;
+		pcch15 = bis.readBoolean();
+		pcch16 = bis.readBoolean();
+		pcch17 = bis.readBoolean();
+		pcch18 = bis.readBoolean();
+		pcch19 = bis.readBoolean();
+		pcch20 = bis.readBoolean();
+		pcch21 = bis.readBoolean();
+		pcch22 = bis.readBoolean();
+		pcch23 = bis.readBoolean();
+		pcch24 = bis.readBoolean();
+		pcch25 = bis.readBoolean();
+		pcch26 = bis.readBoolean();
+		obcaid = bis.readBoolean();
+		pcch27 = bis.readBoolean();
+		cc0in = bis.readUnsignedInt(12) * 0.3051757813f;
+		pcch28 = bis.readBoolean();
+		pcch29 = bis.readBoolean();
+		pcch30 = bis.readBoolean();
+		pcch31 = bis.readBoolean();
+		cstutc = bis.readUnsignedLong(32);
+		cstsys = bis.readUnsignedLong(32);
+		obcbad = bis.readUnsignedInt(4);
+		ceswmc = bis.readUnsignedInt(8);
+		modobc = SatelliteMode.valueOfCode(bis.readUnsignedInt(8));
+		pctxec = bis.readUnsignedInt(8);
+		pcrxec = bis.readUnsignedInt(8);
+		pcoffc = bis.readUnsignedInt(8);
+		pcackc = bis.readUnsignedInt(8);
+		pcch32 = bis.readBoolean();
+		pcch33 = bis.readBoolean();
+		pcch34 = bis.readBoolean();
+		pcch35 = bis.readBoolean();
+		pcch36 = bis.readBoolean();
+		pcch37 = bis.readBoolean();
+		pcch38 = bis.readBoolean();
+		pcch39 = bis.readBoolean();
+		pcch40 = bis.readBoolean();
+		pcch41 = bis.readBoolean();
+		cc1in = bis.readUnsignedInt(12) * 0.3051757813f;
+		csaxp = bis.readUnsignedInt(12) * 0.152587891f;
+		csayp = bis.readUnsignedInt(12) * 0.152587891f;
+		csazp = bis.readUnsignedInt(12) * 0.152587891f;
+		csaxn = bis.readUnsignedInt(12) * 0.152587891f;
+		csayn = bis.readUnsignedInt(12) * 0.152587891f;
+		csazn = bis.readUnsignedInt(12) * 0.152587891f;
+		csss = bis.readUnsignedInt(12) * 0.0305175781f;
+		cmfs0 = bis.readUnsignedInt(12) * 0.0305175781f;
+		cmfs1 = bis.readUnsignedInt(12) * 0.0305175781f;
+		cmcs = bis.readUnsignedInt(12) * 0.152587891f;
+		vmfs0 = bis.readUnsignedInt(12) * 0.000886616f;
+		vmfs1 = bis.readUnsignedInt(12) * 0.000886616f;
+		tmfs1 = bis.readUnsignedInt(12) * 0.06103515625f - 50.0f;
+		cmcsxp = bis.readUnsignedInt(12) * 0.0305175781f;
+		cmcsxn = bis.readUnsignedInt(12) * 0.0305175781f;
+		cmcsyp = bis.readUnsignedInt(12) * 0.0305175781f;
+		cmcsyn = bis.readUnsignedInt(12) * 0.0305175781f;
+		cmcszp = bis.readUnsignedInt(12) * 0.0305175781f;
+		cmcszn = bis.readUnsignedInt(12) * 0.0305175781f;
+		tsaxp = bis.readUnsignedInt(10) * 0.244140625f - 50.0f;
+		tsaxn = bis.readUnsignedInt(10) * 0.244140625f - 50.0f;
+		tsayp = bis.readUnsignedInt(10) * 0.244140625f - 50.0f;
+		tsayn = bis.readUnsignedInt(10) * 0.244140625f - 50.0f;
+		tsazp = bis.readUnsignedInt(10) * 0.244140625f - 50.0f;
+		tsazn = bis.readUnsignedInt(10) * 0.244140625f - 50.0f;
+		tpcu01 = bis.readUnsignedInt(12) * 0.125f;
+		tobc01 = bis.readUnsignedInt(12) * 0.125f;
+		tobc02 = bis.readUnsignedInt(12) * 0.125f;
+		ttrx0 = bis.readUnsignedInt(8) * 0.9765625f - 50.0f;
+		ttrx1 = bis.readUnsignedInt(8) * 0.9765625f - 50.0f;
+		cmfs0x = bis.readUnsignedInt(12) * 0.003037316470f - 6.218905472637f;
+		cmfs0y = bis.readUnsignedInt(12) * 0.003037316470f - 6.218905472637f;
+		cmfs0z = bis.readUnsignedInt(12) * 0.003037316470f - 6.218905472637f;
+		cmfs1x = bis.readUnsignedInt(12) * 0.003037316470f - 6.218905472637f;
+		cmfs1y = bis.readUnsignedInt(12) * 0.003037316470f - 6.218905472637f;
+		cmfs1z = bis.readUnsignedInt(12) * 0.003037316470f - 6.218905472637f;
+		cpcu = bis.readUnsignedInt(12) * 0.0305175781f;
+		cobc0 = bis.readUnsignedInt(12) * 0.152587891f;
+		cobc1 = bis.readUnsignedInt(12) * 0.152587891f;
+		ctnc0 = bis.readUnsignedInt(12) * 0.0305175781f;
+		ctnc1 = bis.readUnsignedInt(12) * 0.0305175781f;
+		ctrx0 = bis.readUnsignedInt(12) * 0.152587891f;
+		ctrx1 = bis.readUnsignedInt(12) * 0.152587891f;
+		cpdh = bis.readUnsignedInt(12) * 0.152587891f;
+		cgps = bis.readUnsignedInt(12) * 0.152587891f;
+		ccan0 = bis.readUnsignedInt(12) * 0.0305175781f;
+		ccan1 = bis.readUnsignedInt(12) * 0.0305175781f;
+		cobcmcu = bis.readUnsignedInt(12) * 0.0305175781f;
+		cobcext = bis.readUnsignedInt(12) * 0.0305175781f;
+		pcrest = bis.readUnsignedInt(16) * 2;
+		pcresi = bis.readUnsignedInt(16) * 2;
+		tsmax = bis.readUnsignedShort() * 0.00390625f;
+		tslsm = bis.readUnsignedShort() * 0.125f + 25f;
+		tsl3g = ((byte) bis.readUnsignedInt(8)) * -1 + 35;
+		ps33vc = bis.readBoolean();
+		cgy2mf2 = bis.readUnsignedInt(12) * 0.0305175781f;
+		twhlx = bis.readUnsignedInt(12) * 0.06103515625f - 50.0f;
+		twhly = bis.readUnsignedInt(12) * 0.06103515625f - 50.0f;
+		twhlz = bis.readUnsignedInt(12) * 0.06103515625f - 50.0f;
+		epsTcsReserve = bis.readUnsignedInt(3);
+		obcsw8 = bis.readUnsignedInt(8);
 	}
 
-	public float getVSABUS() {
-		return VSABUS;
+	public float getVsabus() {
+		return vsabus;
 	}
 
-	public void setVSABUS(float vSABUS) {
-		VSABUS = vSABUS;
+	public void setVsabus(float vsabus) {
+		this.vsabus = vsabus;
 	}
 
-	public boolean isPSANT0() {
-		return PSANT0;
+	public boolean isPsant0() {
+		return psant0;
 	}
 
-	public void setPSANT0(boolean pSANT0) {
-		PSANT0 = pSANT0;
+	public void setPsant0(boolean psant0) {
+		this.psant0 = psant0;
 	}
 
-	public boolean isPSANT1() {
-		return PSANT1;
+	public boolean isPsant1() {
+		return psant1;
 	}
 
-	public void setPSANT1(boolean pSANT1) {
-		PSANT1 = pSANT1;
+	public void setPsant1(boolean psant1) {
+		this.psant1 = psant1;
 	}
 
-	public float getVBAT0() {
-		return VBAT0;
+	public float getVbat0() {
+		return vbat0;
 	}
 
-	public void setVBAT0(float vBAT0) {
-		VBAT0 = vBAT0;
+	public void setVbat0(float vbat0) {
+		this.vbat0 = vbat0;
 	}
 
-	public float getVBAT1() {
-		return VBAT1;
+	public float getVbat1() {
+		return vbat1;
 	}
 
-	public void setVBAT1(float vBAT1) {
-		VBAT1 = vBAT1;
+	public void setVbat1(float vbat1) {
+		this.vbat1 = vbat1;
 	}
 
-	public float getV50BUS() {
-		return V50BUS;
+	public float getV50bus() {
+		return v50bus;
 	}
 
-	public void setV50BUS(float v50bus) {
-		V50BUS = v50bus;
+	public void setV50bus(float v50bus) {
+		this.v50bus = v50bus;
 	}
 
-	public float getV33BUS() {
-		return V33BUS;
+	public float getV33bus() {
+		return v33bus;
 	}
 
-	public void setV33BUS(float v33bus) {
-		V33BUS = v33bus;
+	public void setV33bus(float v33bus) {
+		this.v33bus = v33bus;
 	}
 
-	public float getCC0OUT() {
-		return CC0OUT;
+	public float getCc0out() {
+		return cc0out;
 	}
 
-	public void setCC0OUT(float cC0OUT) {
-		CC0OUT = cC0OUT;
+	public void setCc0out(float cc0out) {
+		this.cc0out = cc0out;
 	}
 
-	public boolean isPSTEMP() {
-		return PSTEMP;
+	public boolean isPstemp() {
+		return pstemp;
 	}
 
-	public void setPSTEMP(boolean pSTEMP) {
-		PSTEMP = pSTEMP;
+	public void setPstemp(boolean pstemp) {
+		this.pstemp = pstemp;
 	}
 
-	public float getCC1OUT() {
-		return CC1OUT;
+	public float getCc1out() {
+		return cc1out;
 	}
 
-	public void setCC1OUT(float cC1OUT) {
-		CC1OUT = cC1OUT;
+	public void setCc1out(float cc1out) {
+		this.cc1out = cc1out;
 	}
 
-	public boolean isPS5VCN() {
-		return PS5VCN;
+	public boolean isPs5vcn() {
+		return ps5vcn;
 	}
 
-	public void setPS5VCN(boolean pS5VCN) {
-		PS5VCN = pS5VCN;
+	public void setPs5vcn(boolean ps5vcn) {
+		this.ps5vcn = ps5vcn;
 	}
 
-	public float getTBAT0() {
-		return TBAT0;
+	public float getTbat0() {
+		return tbat0;
 	}
 
-	public void setTBAT0(float tBAT0) {
-		TBAT0 = tBAT0;
+	public void setTbat0(float tbat0) {
+		this.tbat0 = tbat0;
 	}
 
-	public boolean isPCBEXT() {
-		return PCBEXT;
+	public boolean isPcbext() {
+		return pcbext;
 	}
 
-	public void setPCBEXT(boolean pCBEXT) {
-		PCBEXT = pCBEXT;
+	public void setPcbext(boolean pcbext) {
+		this.pcbext = pcbext;
 	}
 
-	public boolean isPCCH00() {
-		return PCCH00;
+	public boolean isPcch00() {
+		return pcch00;
 	}
 
-	public void setPCCH00(boolean pCCH00) {
-		PCCH00 = pCCH00;
+	public void setPcch00(boolean pcch00) {
+		this.pcch00 = pcch00;
 	}
 
-	public boolean isPCCH01() {
-		return PCCH01;
+	public boolean isPcch01() {
+		return pcch01;
 	}
 
-	public void setPCCH01(boolean pCCH01) {
-		PCCH01 = pCCH01;
+	public void setPcch01(boolean pcch01) {
+		this.pcch01 = pcch01;
 	}
 
-	public boolean isPCCH02() {
-		return PCCH02;
+	public boolean isPcch02() {
+		return pcch02;
 	}
 
-	public void setPCCH02(boolean pCCH02) {
-		PCCH02 = pCCH02;
+	public void setPcch02(boolean pcch02) {
+		this.pcch02 = pcch02;
 	}
 
-	public float getTBAT1() {
-		return TBAT1;
+	public float getTbat1() {
+		return tbat1;
 	}
 
-	public void setTBAT1(float tBAT1) {
-		TBAT1 = tBAT1;
+	public void setTbat1(float tbat1) {
+		this.tbat1 = tbat1;
 	}
 
-	public boolean isPCCH03() {
-		return PCCH03;
+	public boolean isPcch03() {
+		return pcch03;
 	}
 
-	public void setPCCH03(boolean pCCH03) {
-		PCCH03 = pCCH03;
+	public void setPcch03(boolean pcch03) {
+		this.pcch03 = pcch03;
 	}
 
-	public boolean isPCCH04() {
-		return PCCH04;
+	public boolean isPcch04() {
+		return pcch04;
 	}
 
-	public void setPCCH04(boolean pCCH04) {
-		PCCH04 = pCCH04;
+	public void setPcch04(boolean pcch04) {
+		this.pcch04 = pcch04;
 	}
 
-	public boolean isPCCH05() {
-		return PCCH05;
+	public boolean isPcch05() {
+		return pcch05;
 	}
 
-	public void setPCCH05(boolean pCCH05) {
-		PCCH05 = pCCH05;
+	public void setPcch05(boolean pcch05) {
+		this.pcch05 = pcch05;
 	}
 
-	public boolean isPCCH06() {
-		return PCCH06;
+	public boolean isPcch06() {
+		return pcch06;
 	}
 
-	public void setPCCH06(boolean pCCH06) {
-		PCCH06 = pCCH06;
+	public void setPcch06(boolean pcch06) {
+		this.pcch06 = pcch06;
 	}
 
-	public boolean isPCCH07() {
-		return PCCH07;
+	public boolean isPcch07() {
+		return pcch07;
 	}
 
-	public void setPCCH07(boolean pCCH07) {
-		PCCH07 = pCCH07;
+	public void setPcch07(boolean pcch07) {
+		this.pcch07 = pcch07;
 	}
 
-	public boolean isPCCH08() {
-		return PCCH08;
+	public boolean isPcch08() {
+		return pcch08;
 	}
 
-	public void setPCCH08(boolean pCCH08) {
-		PCCH08 = pCCH08;
+	public void setPcch08(boolean pcch08) {
+		this.pcch08 = pcch08;
 	}
 
-	public boolean isPCCH09() {
-		return PCCH09;
+	public boolean isPcch09() {
+		return pcch09;
 	}
 
-	public void setPCCH09(boolean pCCH09) {
-		PCCH09 = pCCH09;
+	public void setPcch09(boolean pcch09) {
+		this.pcch09 = pcch09;
 	}
 
-	public boolean isPCCH10() {
-		return PCCH10;
+	public boolean isPcch10() {
+		return pcch10;
 	}
 
-	public void setPCCH10(boolean pCCH10) {
-		PCCH10 = pCCH10;
+	public void setPcch10(boolean pcch10) {
+		this.pcch10 = pcch10;
 	}
 
-	public boolean isPCCH11() {
-		return PCCH11;
+	public boolean isPcch11() {
+		return pcch11;
 	}
 
-	public void setPCCH11(boolean pCCH11) {
-		PCCH11 = pCCH11;
+	public void setPcch11(boolean pcch11) {
+		this.pcch11 = pcch11;
 	}
 
-	public boolean isPCCH12() {
-		return PCCH12;
+	public boolean isPcch12() {
+		return pcch12;
 	}
 
-	public void setPCCH12(boolean pCCH12) {
-		PCCH12 = pCCH12;
+	public void setPcch12(boolean pcch12) {
+		this.pcch12 = pcch12;
 	}
 
-	public boolean isPCCH13() {
-		return PCCH13;
+	public boolean isPcch13() {
+		return pcch13;
 	}
 
-	public void setPCCH13(boolean pCCH13) {
-		PCCH13 = pCCH13;
+	public void setPcch13(boolean pcch13) {
+		this.pcch13 = pcch13;
 	}
 
-	public boolean isPCCH14() {
-		return PCCH14;
+	public boolean isPcch14() {
+		return pcch14;
 	}
 
-	public void setPCCH14(boolean pCCH14) {
-		PCCH14 = pCCH14;
+	public void setPcch14(boolean pcch14) {
+		this.pcch14 = pcch14;
 	}
 
-	public float getCWHL() {
-		return CWHL;
+	public float getCwhl() {
+		return cwhl;
 	}
 
-	public void setCWHL(float cWHL) {
-		CWHL = cWHL;
+	public void setCwhl(float cwhl) {
+		this.cwhl = cwhl;
 	}
 
-	public boolean isPCCH15() {
-		return PCCH15;
+	public boolean isPcch15() {
+		return pcch15;
 	}
 
-	public void setPCCH15(boolean pCCH15) {
-		PCCH15 = pCCH15;
+	public void setPcch15(boolean pcch15) {
+		this.pcch15 = pcch15;
 	}
 
-	public boolean isPCCH16() {
-		return PCCH16;
+	public boolean isPcch16() {
+		return pcch16;
 	}
 
-	public void setPCCH16(boolean pCCH16) {
-		PCCH16 = pCCH16;
+	public void setPcch16(boolean pcch16) {
+		this.pcch16 = pcch16;
 	}
 
-	public boolean isPCCH17() {
-		return PCCH17;
+	public boolean isPcch17() {
+		return pcch17;
 	}
 
-	public void setPCCH17(boolean pCCH17) {
-		PCCH17 = pCCH17;
+	public void setPcch17(boolean pcch17) {
+		this.pcch17 = pcch17;
 	}
 
-	public boolean isPCCH18() {
-		return PCCH18;
+	public boolean isPcch18() {
+		return pcch18;
 	}
 
-	public void setPCCH18(boolean pCCH18) {
-		PCCH18 = pCCH18;
+	public void setPcch18(boolean pcch18) {
+		this.pcch18 = pcch18;
 	}
 
-	public boolean isPCCH19() {
-		return PCCH19;
+	public boolean isPcch19() {
+		return pcch19;
 	}
 
-	public void setPCCH19(boolean pCCH19) {
-		PCCH19 = pCCH19;
+	public void setPcch19(boolean pcch19) {
+		this.pcch19 = pcch19;
 	}
 
-	public boolean isPCCH20() {
-		return PCCH20;
+	public boolean isPcch20() {
+		return pcch20;
 	}
 
-	public void setPCCH20(boolean pCCH20) {
-		PCCH20 = pCCH20;
+	public void setPcch20(boolean pcch20) {
+		this.pcch20 = pcch20;
 	}
 
-	public boolean isPCCH21() {
-		return PCCH21;
+	public boolean isPcch21() {
+		return pcch21;
 	}
 
-	public void setPCCH21(boolean pCCH21) {
-		PCCH21 = pCCH21;
+	public void setPcch21(boolean pcch21) {
+		this.pcch21 = pcch21;
 	}
 
-	public boolean isPCCH22() {
-		return PCCH22;
+	public boolean isPcch22() {
+		return pcch22;
 	}
 
-	public void setPCCH22(boolean pCCH22) {
-		PCCH22 = pCCH22;
+	public void setPcch22(boolean pcch22) {
+		this.pcch22 = pcch22;
 	}
 
-	public boolean isPCCH23() {
-		return PCCH23;
+	public boolean isPcch23() {
+		return pcch23;
 	}
 
-	public void setPCCH23(boolean pCCH23) {
-		PCCH23 = pCCH23;
+	public void setPcch23(boolean pcch23) {
+		this.pcch23 = pcch23;
 	}
 
-	public boolean isPCCH24() {
-		return PCCH24;
+	public boolean isPcch24() {
+		return pcch24;
 	}
 
-	public void setPCCH24(boolean pCCH24) {
-		PCCH24 = pCCH24;
+	public void setPcch24(boolean pcch24) {
+		this.pcch24 = pcch24;
 	}
 
-	public boolean isPCCH25() {
-		return PCCH25;
+	public boolean isPcch25() {
+		return pcch25;
 	}
 
-	public void setPCCH25(boolean pCCH25) {
-		PCCH25 = pCCH25;
+	public void setPcch25(boolean pcch25) {
+		this.pcch25 = pcch25;
 	}
 
-	public boolean isPCCH26() {
-		return PCCH26;
+	public boolean isPcch26() {
+		return pcch26;
 	}
 
-	public void setPCCH26(boolean pCCH26) {
-		PCCH26 = pCCH26;
+	public void setPcch26(boolean pcch26) {
+		this.pcch26 = pcch26;
 	}
 
-	public boolean isOBCAID() {
-		return OBCAID;
+	public boolean isObcaid() {
+		return obcaid;
 	}
 
-	public void setOBCAID(boolean oBCAID) {
-		OBCAID = oBCAID;
+	public void setObcaid(boolean obcaid) {
+		this.obcaid = obcaid;
 	}
 
-	public boolean isPCCH27() {
-		return PCCH27;
+	public boolean isPcch27() {
+		return pcch27;
 	}
 
-	public void setPCCH27(boolean pCCH27) {
-		PCCH27 = pCCH27;
+	public void setPcch27(boolean pcch27) {
+		this.pcch27 = pcch27;
 	}
 
-	public float getCC0IN() {
-		return CC0IN;
+	public float getCc0in() {
+		return cc0in;
 	}
 
-	public void setCC0IN(float cC0IN) {
-		CC0IN = cC0IN;
+	public void setCc0in(float cc0in) {
+		this.cc0in = cc0in;
 	}
 
-	public boolean isPCCH28() {
-		return PCCH28;
+	public boolean isPcch28() {
+		return pcch28;
 	}
 
-	public void setPCCH28(boolean pCCH28) {
-		PCCH28 = pCCH28;
+	public void setPcch28(boolean pcch28) {
+		this.pcch28 = pcch28;
 	}
 
-	public boolean isPCCH29() {
-		return PCCH29;
+	public boolean isPcch29() {
+		return pcch29;
 	}
 
-	public void setPCCH29(boolean pCCH29) {
-		PCCH29 = pCCH29;
+	public void setPcch29(boolean pcch29) {
+		this.pcch29 = pcch29;
 	}
 
-	public boolean isPCCH30() {
-		return PCCH30;
+	public boolean isPcch30() {
+		return pcch30;
 	}
 
-	public void setPCCH30(boolean pCCH30) {
-		PCCH30 = pCCH30;
+	public void setPcch30(boolean pcch30) {
+		this.pcch30 = pcch30;
 	}
 
-	public boolean isPCCH31() {
-		return PCCH31;
+	public boolean isPcch31() {
+		return pcch31;
 	}
 
-	public void setPCCH31(boolean pCCH31) {
-		PCCH31 = pCCH31;
+	public void setPcch31(boolean pcch31) {
+		this.pcch31 = pcch31;
 	}
 
-	public long getCSTUTC() {
-		return CSTUTC;
+	public long getCstutc() {
+		return cstutc;
 	}
 
-	public void setCSTUTC(long cSTUTC) {
-		CSTUTC = cSTUTC;
+	public void setCstutc(long cstutc) {
+		this.cstutc = cstutc;
 	}
 
-	public long getCSTSYS() {
-		return CSTSYS;
+	public long getCstsys() {
+		return cstsys;
 	}
 
-	public void setCSTSYS(long cSTSYS) {
-		CSTSYS = cSTSYS;
+	public void setCstsys(long cstsys) {
+		this.cstsys = cstsys;
 	}
 
-	public int getOBCBAD() {
-		return OBCBAD;
+	public int getObcbad() {
+		return obcbad;
 	}
 
-	public void setOBCBAD(int oBCBAD) {
-		OBCBAD = oBCBAD;
+	public void setObcbad(int obcbad) {
+		this.obcbad = obcbad;
 	}
 
-	public int getCESWMC() {
-		return CESWMC;
+	public int getCeswmc() {
+		return ceswmc;
 	}
 
-	public void setCESWMC(int cESWMC) {
-		CESWMC = cESWMC;
+	public void setCeswmc(int ceswmc) {
+		this.ceswmc = ceswmc;
 	}
 
-	public SatelliteMode getMODOBC() {
-		return MODOBC;
+	public SatelliteMode getModobc() {
+		return modobc;
 	}
 
-	public void setMODOBC(SatelliteMode mODOBC) {
-		MODOBC = mODOBC;
+	public void setModobc(SatelliteMode modobc) {
+		this.modobc = modobc;
 	}
 
-	public int getPCTXEC() {
-		return PCTXEC;
+	public int getPctxec() {
+		return pctxec;
 	}
 
-	public void setPCTXEC(int pCTXEC) {
-		PCTXEC = pCTXEC;
+	public void setPctxec(int pctxec) {
+		this.pctxec = pctxec;
 	}
 
-	public int getPCRXEC() {
-		return PCRXEC;
+	public int getPcrxec() {
+		return pcrxec;
 	}
 
-	public void setPCRXEC(int pCRXEC) {
-		PCRXEC = pCRXEC;
+	public void setPcrxec(int pcrxec) {
+		this.pcrxec = pcrxec;
 	}
 
-	public int getPCOFFC() {
-		return PCOFFC;
+	public int getPcoffc() {
+		return pcoffc;
 	}
 
-	public void setPCOFFC(int pCOFFC) {
-		PCOFFC = pCOFFC;
+	public void setPcoffc(int pcoffc) {
+		this.pcoffc = pcoffc;
 	}
 
-	public int getPCACKC() {
-		return PCACKC;
+	public int getPcackc() {
+		return pcackc;
 	}
 
-	public void setPCACKC(int pCACKC) {
-		PCACKC = pCACKC;
+	public void setPcackc(int pcackc) {
+		this.pcackc = pcackc;
 	}
 
-	public boolean isPCCH32() {
-		return PCCH32;
+	public boolean isPcch32() {
+		return pcch32;
 	}
 
-	public void setPCCH32(boolean pCCH32) {
-		PCCH32 = pCCH32;
+	public void setPcch32(boolean pcch32) {
+		this.pcch32 = pcch32;
 	}
 
-	public boolean isPCCH33() {
-		return PCCH33;
+	public boolean isPcch33() {
+		return pcch33;
 	}
 
-	public void setPCCH33(boolean pCCH33) {
-		PCCH33 = pCCH33;
+	public void setPcch33(boolean pcch33) {
+		this.pcch33 = pcch33;
 	}
 
-	public boolean isPCCH34() {
-		return PCCH34;
+	public boolean isPcch34() {
+		return pcch34;
 	}
 
-	public void setPCCH34(boolean pCCH34) {
-		PCCH34 = pCCH34;
+	public void setPcch34(boolean pcch34) {
+		this.pcch34 = pcch34;
 	}
 
-	public boolean isPCCH35() {
-		return PCCH35;
+	public boolean isPcch35() {
+		return pcch35;
 	}
 
-	public void setPCCH35(boolean pCCH35) {
-		PCCH35 = pCCH35;
+	public void setPcch35(boolean pcch35) {
+		this.pcch35 = pcch35;
 	}
 
-	public boolean isPCCH36() {
-		return PCCH36;
+	public boolean isPcch36() {
+		return pcch36;
 	}
 
-	public void setPCCH36(boolean pCCH36) {
-		PCCH36 = pCCH36;
+	public void setPcch36(boolean pcch36) {
+		this.pcch36 = pcch36;
 	}
 
-	public boolean isPCCH37() {
-		return PCCH37;
+	public boolean isPcch37() {
+		return pcch37;
 	}
 
-	public void setPCCH37(boolean pCCH37) {
-		PCCH37 = pCCH37;
+	public void setPcch37(boolean pcch37) {
+		this.pcch37 = pcch37;
 	}
 
-	public boolean isPCCH38() {
-		return PCCH38;
+	public boolean isPcch38() {
+		return pcch38;
 	}
 
-	public void setPCCH38(boolean pCCH38) {
-		PCCH38 = pCCH38;
+	public void setPcch38(boolean pcch38) {
+		this.pcch38 = pcch38;
 	}
 
-	public boolean isPCCH39() {
-		return PCCH39;
+	public boolean isPcch39() {
+		return pcch39;
 	}
 
-	public void setPCCH39(boolean pCCH39) {
-		PCCH39 = pCCH39;
+	public void setPcch39(boolean pcch39) {
+		this.pcch39 = pcch39;
 	}
 
-	public boolean isPCCH40() {
-		return PCCH40;
+	public boolean isPcch40() {
+		return pcch40;
 	}
 
-	public void setPCCH40(boolean pCCH40) {
-		PCCH40 = pCCH40;
+	public void setPcch40(boolean pcch40) {
+		this.pcch40 = pcch40;
 	}
 
-	public boolean isPCCH41() {
-		return PCCH41;
+	public boolean isPcch41() {
+		return pcch41;
 	}
 
-	public void setPCCH41(boolean pCCH41) {
-		PCCH41 = pCCH41;
+	public void setPcch41(boolean pcch41) {
+		this.pcch41 = pcch41;
 	}
 
-	public float getCC1IN() {
-		return CC1IN;
+	public float getCc1in() {
+		return cc1in;
 	}
 
-	public void setCC1IN(float cC1IN) {
-		CC1IN = cC1IN;
+	public void setCc1in(float cc1in) {
+		this.cc1in = cc1in;
 	}
 
-	public float getCSAXP() {
-		return CSAXP;
+	public float getCsaxp() {
+		return csaxp;
 	}
 
-	public void setCSAXP(float cSAXP) {
-		CSAXP = cSAXP;
+	public void setCsaxp(float csaxp) {
+		this.csaxp = csaxp;
 	}
 
-	public float getCSAYP() {
-		return CSAYP;
+	public float getCsayp() {
+		return csayp;
 	}
 
-	public void setCSAYP(float cSAYP) {
-		CSAYP = cSAYP;
+	public void setCsayp(float csayp) {
+		this.csayp = csayp;
 	}
 
-	public float getCSAZP() {
-		return CSAZP;
+	public float getCsazp() {
+		return csazp;
 	}
 
-	public void setCSAZP(float cSAZP) {
-		CSAZP = cSAZP;
+	public void setCsazp(float csazp) {
+		this.csazp = csazp;
 	}
 
-	public float getCSAXN() {
-		return CSAXN;
+	public float getCsaxn() {
+		return csaxn;
 	}
 
-	public void setCSAXN(float cSAXN) {
-		CSAXN = cSAXN;
+	public void setCsaxn(float csaxn) {
+		this.csaxn = csaxn;
 	}
 
-	public float getCSAYN() {
-		return CSAYN;
+	public float getCsayn() {
+		return csayn;
 	}
 
-	public void setCSAYN(float cSAYN) {
-		CSAYN = cSAYN;
+	public void setCsayn(float csayn) {
+		this.csayn = csayn;
 	}
 
-	public float getCSAZN() {
-		return CSAZN;
+	public float getCsazn() {
+		return csazn;
 	}
 
-	public void setCSAZN(float cSAZN) {
-		CSAZN = cSAZN;
+	public void setCsazn(float csazn) {
+		this.csazn = csazn;
 	}
 
-	public float getCSSS() {
-		return CSSS;
+	public float getCsss() {
+		return csss;
 	}
 
-	public void setCSSS(float cSSS) {
-		CSSS = cSSS;
+	public void setCsss(float csss) {
+		this.csss = csss;
 	}
 
-	public float getCMFS0() {
-		return CMFS0;
+	public float getCmfs0() {
+		return cmfs0;
 	}
 
-	public void setCMFS0(float cMFS0) {
-		CMFS0 = cMFS0;
+	public void setCmfs0(float cmfs0) {
+		this.cmfs0 = cmfs0;
 	}
 
-	public float getCMFS1() {
-		return CMFS1;
+	public float getCmfs1() {
+		return cmfs1;
 	}
 
-	public void setCMFS1(float cMFS1) {
-		CMFS1 = cMFS1;
+	public void setCmfs1(float cmfs1) {
+		this.cmfs1 = cmfs1;
 	}
 
-	public float getCMCS() {
-		return CMCS;
+	public float getCmcs() {
+		return cmcs;
 	}
 
-	public void setCMCS(float cMCS) {
-		CMCS = cMCS;
+	public void setCmcs(float cmcs) {
+		this.cmcs = cmcs;
 	}
 
-	public float getVMFS0() {
-		return VMFS0;
+	public float getVmfs0() {
+		return vmfs0;
 	}
 
-	public void setVMFS0(float vMFS0) {
-		VMFS0 = vMFS0;
+	public void setVmfs0(float vmfs0) {
+		this.vmfs0 = vmfs0;
 	}
 
-	public float getVMFS1() {
-		return VMFS1;
+	public float getVmfs1() {
+		return vmfs1;
 	}
 
-	public void setVMFS1(float vMFS1) {
-		VMFS1 = vMFS1;
+	public void setVmfs1(float vmfs1) {
+		this.vmfs1 = vmfs1;
 	}
 
-	public float getTMFS1() {
-		return TMFS1;
+	public float getTmfs1() {
+		return tmfs1;
 	}
 
-	public void setTMFS1(float tMFS1) {
-		TMFS1 = tMFS1;
+	public void setTmfs1(float tmfs1) {
+		this.tmfs1 = tmfs1;
 	}
 
-	public float getCMCSXP() {
-		return CMCSXP;
+	public float getCmcsxp() {
+		return cmcsxp;
 	}
 
-	public void setCMCSXP(float cMCSXP) {
-		CMCSXP = cMCSXP;
+	public void setCmcsxp(float cmcsxp) {
+		this.cmcsxp = cmcsxp;
 	}
 
-	public float getCMCSXN() {
-		return CMCSXN;
+	public float getCmcsxn() {
+		return cmcsxn;
 	}
 
-	public void setCMCSXN(float cMCSXN) {
-		CMCSXN = cMCSXN;
+	public void setCmcsxn(float cmcsxn) {
+		this.cmcsxn = cmcsxn;
 	}
 
-	public float getCMCSYP() {
-		return CMCSYP;
+	public float getCmcsyp() {
+		return cmcsyp;
 	}
 
-	public void setCMCSYP(float cMCSYP) {
-		CMCSYP = cMCSYP;
+	public void setCmcsyp(float cmcsyp) {
+		this.cmcsyp = cmcsyp;
 	}
 
-	public float getCMCSYN() {
-		return CMCSYN;
+	public float getCmcsyn() {
+		return cmcsyn;
 	}
 
-	public void setCMCSYN(float cMCSYN) {
-		CMCSYN = cMCSYN;
+	public void setCmcsyn(float cmcsyn) {
+		this.cmcsyn = cmcsyn;
 	}
 
-	public float getCMCSZP() {
-		return CMCSZP;
+	public float getCmcszp() {
+		return cmcszp;
 	}
 
-	public void setCMCSZP(float cMCSZP) {
-		CMCSZP = cMCSZP;
+	public void setCmcszp(float cmcszp) {
+		this.cmcszp = cmcszp;
 	}
 
-	public float getCMCSZN() {
-		return CMCSZN;
+	public float getCmcszn() {
+		return cmcszn;
 	}
 
-	public void setCMCSZN(float cMCSZN) {
-		CMCSZN = cMCSZN;
+	public void setCmcszn(float cmcszn) {
+		this.cmcszn = cmcszn;
 	}
 
-	public float getTSAXP() {
-		return TSAXP;
+	public float getTsaxp() {
+		return tsaxp;
 	}
 
-	public void setTSAXP(float tSAXP) {
-		TSAXP = tSAXP;
+	public void setTsaxp(float tsaxp) {
+		this.tsaxp = tsaxp;
 	}
 
-	public float getTSAXN() {
-		return TSAXN;
+	public float getTsaxn() {
+		return tsaxn;
 	}
 
-	public void setTSAXN(float tSAXN) {
-		TSAXN = tSAXN;
+	public void setTsaxn(float tsaxn) {
+		this.tsaxn = tsaxn;
 	}
 
-	public float getTSAYP() {
-		return TSAYP;
+	public float getTsayp() {
+		return tsayp;
 	}
 
-	public void setTSAYP(float tSAYP) {
-		TSAYP = tSAYP;
+	public void setTsayp(float tsayp) {
+		this.tsayp = tsayp;
 	}
 
-	public float getTSAYN() {
-		return TSAYN;
+	public float getTsayn() {
+		return tsayn;
 	}
 
-	public void setTSAYN(float tSAYN) {
-		TSAYN = tSAYN;
+	public void setTsayn(float tsayn) {
+		this.tsayn = tsayn;
 	}
 
-	public float getTSAZP() {
-		return TSAZP;
+	public float getTsazp() {
+		return tsazp;
 	}
 
-	public void setTSAZP(float tSAZP) {
-		TSAZP = tSAZP;
+	public void setTsazp(float tsazp) {
+		this.tsazp = tsazp;
 	}
 
-	public float getTSAZN() {
-		return TSAZN;
+	public float getTsazn() {
+		return tsazn;
 	}
 
-	public void setTSAZN(float tSAZN) {
-		TSAZN = tSAZN;
+	public void setTsazn(float tsazn) {
+		this.tsazn = tsazn;
 	}
 
-	public float getTPCU01() {
-		return TPCU01;
+	public float getTpcu01() {
+		return tpcu01;
 	}
 
-	public void setTPCU01(float tPCU01) {
-		TPCU01 = tPCU01;
+	public void setTpcu01(float tpcu01) {
+		this.tpcu01 = tpcu01;
 	}
 
-	public float getTOBC01() {
-		return TOBC01;
+	public float getTobc01() {
+		return tobc01;
 	}
 
-	public void setTOBC01(float tOBC01) {
-		TOBC01 = tOBC01;
+	public void setTobc01(float tobc01) {
+		this.tobc01 = tobc01;
 	}
 
-	public float getTOBC02() {
-		return TOBC02;
+	public float getTobc02() {
+		return tobc02;
 	}
 
-	public void setTOBC02(float tOBC02) {
-		TOBC02 = tOBC02;
+	public void setTobc02(float tobc02) {
+		this.tobc02 = tobc02;
 	}
 
-	public float getTTRX0() {
-		return TTRX0;
+	public float getTtrx0() {
+		return ttrx0;
 	}
 
-	public void setTTRX0(float tTRX0) {
-		TTRX0 = tTRX0;
+	public void setTtrx0(float ttrx0) {
+		this.ttrx0 = ttrx0;
 	}
 
-	public float getTTRX1() {
-		return TTRX1;
+	public float getTtrx1() {
+		return ttrx1;
 	}
 
-	public void setTTRX1(float tTRX1) {
-		TTRX1 = tTRX1;
+	public void setTtrx1(float ttrx1) {
+		this.ttrx1 = ttrx1;
 	}
 
-	public float getCMFS0X() {
-		return CMFS0X;
+	public float getCmfs0x() {
+		return cmfs0x;
 	}
 
-	public void setCMFS0X(float cMFS0X) {
-		CMFS0X = cMFS0X;
+	public void setCmfs0x(float cmfs0x) {
+		this.cmfs0x = cmfs0x;
 	}
 
-	public float getCMFS0Y() {
-		return CMFS0Y;
+	public float getCmfs0y() {
+		return cmfs0y;
 	}
 
-	public void setCMFS0Y(float cMFS0Y) {
-		CMFS0Y = cMFS0Y;
+	public void setCmfs0y(float cmfs0y) {
+		this.cmfs0y = cmfs0y;
 	}
 
-	public float getCMFS0Z() {
-		return CMFS0Z;
+	public float getCmfs0z() {
+		return cmfs0z;
 	}
 
-	public void setCMFS0Z(float cMFS0Z) {
-		CMFS0Z = cMFS0Z;
+	public void setCmfs0z(float cmfs0z) {
+		this.cmfs0z = cmfs0z;
 	}
 
-	public float getCMFS1X() {
-		return CMFS1X;
+	public float getCmfs1x() {
+		return cmfs1x;
 	}
 
-	public void setCMFS1X(float cMFS1X) {
-		CMFS1X = cMFS1X;
+	public void setCmfs1x(float cmfs1x) {
+		this.cmfs1x = cmfs1x;
 	}
 
-	public float getCMFS1Y() {
-		return CMFS1Y;
+	public float getCmfs1y() {
+		return cmfs1y;
 	}
 
-	public void setCMFS1Y(float cMFS1Y) {
-		CMFS1Y = cMFS1Y;
+	public void setCmfs1y(float cmfs1y) {
+		this.cmfs1y = cmfs1y;
 	}
 
-	public float getCMFS1Z() {
-		return CMFS1Z;
+	public float getCmfs1z() {
+		return cmfs1z;
 	}
 
-	public void setCMFS1Z(float cMFS1Z) {
-		CMFS1Z = cMFS1Z;
+	public void setCmfs1z(float cmfs1z) {
+		this.cmfs1z = cmfs1z;
 	}
 
-	public float getCPCU() {
-		return CPCU;
+	public float getCpcu() {
+		return cpcu;
 	}
 
-	public void setCPCU(float cPCU) {
-		CPCU = cPCU;
+	public void setCpcu(float cpcu) {
+		this.cpcu = cpcu;
 	}
 
-	public float getCOBC0() {
-		return COBC0;
+	public float getCobc0() {
+		return cobc0;
 	}
 
-	public void setCOBC0(float cOBC0) {
-		COBC0 = cOBC0;
+	public void setCobc0(float cobc0) {
+		this.cobc0 = cobc0;
 	}
 
-	public float getCOBC1() {
-		return COBC1;
+	public float getCobc1() {
+		return cobc1;
 	}
 
-	public void setCOBC1(float cOBC1) {
-		COBC1 = cOBC1;
+	public void setCobc1(float cobc1) {
+		this.cobc1 = cobc1;
 	}
 
-	public float getCTNC0() {
-		return CTNC0;
+	public float getCtnc0() {
+		return ctnc0;
 	}
 
-	public void setCTNC0(float cTNC0) {
-		CTNC0 = cTNC0;
+	public void setCtnc0(float ctnc0) {
+		this.ctnc0 = ctnc0;
 	}
 
-	public float getCTNC1() {
-		return CTNC1;
+	public float getCtnc1() {
+		return ctnc1;
 	}
 
-	public void setCTNC1(float cTNC1) {
-		CTNC1 = cTNC1;
+	public void setCtnc1(float ctnc1) {
+		this.ctnc1 = ctnc1;
 	}
 
-	public float getCTRX0() {
-		return CTRX0;
+	public float getCtrx0() {
+		return ctrx0;
 	}
 
-	public void setCTRX0(float cTRX0) {
-		CTRX0 = cTRX0;
+	public void setCtrx0(float ctrx0) {
+		this.ctrx0 = ctrx0;
 	}
 
-	public float getCTRX1() {
-		return CTRX1;
+	public float getCtrx1() {
+		return ctrx1;
 	}
 
-	public void setCTRX1(float cTRX1) {
-		CTRX1 = cTRX1;
+	public void setCtrx1(float ctrx1) {
+		this.ctrx1 = ctrx1;
 	}
 
-	public float getCPDH() {
-		return CPDH;
+	public float getCpdh() {
+		return cpdh;
 	}
 
-	public void setCPDH(float cPDH) {
-		CPDH = cPDH;
+	public void setCpdh(float cpdh) {
+		this.cpdh = cpdh;
 	}
 
-	public float getCGPS() {
-		return CGPS;
+	public float getCgps() {
+		return cgps;
 	}
 
-	public void setCGPS(float cGPS) {
-		CGPS = cGPS;
+	public void setCgps(float cgps) {
+		this.cgps = cgps;
 	}
 
-	public float getCCAN0() {
-		return CCAN0;
+	public float getCcan0() {
+		return ccan0;
 	}
 
-	public void setCCAN0(float cCAN0) {
-		CCAN0 = cCAN0;
+	public void setCcan0(float ccan0) {
+		this.ccan0 = ccan0;
 	}
 
-	public float getCCAN1() {
-		return CCAN1;
+	public float getCcan1() {
+		return ccan1;
 	}
 
-	public void setCCAN1(float cCAN1) {
-		CCAN1 = cCAN1;
+	public void setCcan1(float ccan1) {
+		this.ccan1 = ccan1;
 	}
 
-	public float getCOBCMCU() {
-		return COBCMCU;
+	public float getCobcmcu() {
+		return cobcmcu;
 	}
 
-	public void setCOBCMCU(float cOBCMCU) {
-		COBCMCU = cOBCMCU;
+	public void setCobcmcu(float cobcmcu) {
+		this.cobcmcu = cobcmcu;
 	}
 
-	public float getCOBCEXT() {
-		return COBCEXT;
+	public float getCobcext() {
+		return cobcext;
 	}
 
-	public void setCOBCEXT(float cOBCEXT) {
-		COBCEXT = cOBCEXT;
+	public void setCobcext(float cobcext) {
+		this.cobcext = cobcext;
 	}
 
-	public int getPCREST() {
-		return PCREST;
+	public int getPcrest() {
+		return pcrest;
 	}
 
-	public void setPCREST(int pCREST) {
-		PCREST = pCREST;
+	public void setPcrest(int pcrest) {
+		this.pcrest = pcrest;
 	}
 
-	public int getPCRESI() {
-		return PCRESI;
+	public int getPcresi() {
+		return pcresi;
 	}
 
-	public void setPCRESI(int pCRESI) {
-		PCRESI = pCRESI;
+	public void setPcresi(int pcresi) {
+		this.pcresi = pcresi;
 	}
 
-	public float getTSMAX() {
-		return TSMAX;
+	public float getTsmax() {
+		return tsmax;
 	}
 
-	public void setTSMAX(float tSMAX) {
-		TSMAX = tSMAX;
+	public void setTsmax(float tsmax) {
+		this.tsmax = tsmax;
 	}
 
-	public float getTSLSM() {
-		return TSLSM;
+	public float getTslsm() {
+		return tslsm;
 	}
 
-	public void setTSLSM(float tSLSM) {
-		TSLSM = tSLSM;
+	public void setTslsm(float tslsm) {
+		this.tslsm = tslsm;
 	}
 
-	public int getTSL3G() {
-		return TSL3G;
+	public int getTsl3g() {
+		return tsl3g;
 	}
 
-	public void setTSL3G(int tSL3G) {
-		TSL3G = tSL3G;
+	public void setTsl3g(int tsl3g) {
+		this.tsl3g = tsl3g;
 	}
 
-	public boolean isPS33VC() {
-		return PS33VC;
+	public boolean isPs33vc() {
+		return ps33vc;
 	}
 
-	public void setPS33VC(boolean pS33VC) {
-		PS33VC = pS33VC;
+	public void setPs33vc(boolean ps33vc) {
+		this.ps33vc = ps33vc;
 	}
 
-	public float getCGY2MF2() {
-		return CGY2MF2;
+	public float getCgy2mf2() {
+		return cgy2mf2;
 	}
 
-	public void setCGY2MF2(float cGY2MF2) {
-		CGY2MF2 = cGY2MF2;
+	public void setCgy2mf2(float cgy2mf2) {
+		this.cgy2mf2 = cgy2mf2;
 	}
 
-	public float getTWHLX() {
-		return TWHLX;
+	public float getTwhlx() {
+		return twhlx;
 	}
 
-	public void setTWHLX(float tWHLX) {
-		TWHLX = tWHLX;
+	public void setTwhlx(float twhlx) {
+		this.twhlx = twhlx;
 	}
 
-	public float getTWHLY() {
-		return TWHLY;
+	public float getTwhly() {
+		return twhly;
 	}
 
-	public void setTWHLY(float tWHLY) {
-		TWHLY = tWHLY;
+	public void setTwhly(float twhly) {
+		this.twhly = twhly;
 	}
 
-	public float getTWHLZ() {
-		return TWHLZ;
+	public float getTwhlz() {
+		return twhlz;
 	}
 
-	public void setTWHLZ(float tWHLZ) {
-		TWHLZ = tWHLZ;
+	public void setTwhlz(float twhlz) {
+		this.twhlz = twhlz;
 	}
 
-	public int getEPS_TCS_reserve() {
-		return EPS_TCS_reserve;
+	public int getEpsTcsReserve() {
+		return epsTcsReserve;
 	}
 
-	public void setEPS_TCS_reserve(int ePS_TCS_reserve) {
-		EPS_TCS_reserve = ePS_TCS_reserve;
+	public void setEpsTcsReserve(int epsTcsReserve) {
+		this.epsTcsReserve = epsTcsReserve;
 	}
 
-	public int getOBCSW8() {
-		return OBCSW8;
+	public int getObcsw8() {
+		return obcsw8;
 	}
 
-	public void setOBCSW8(int oBCSW8) {
-		OBCSW8 = oBCSW8;
+	public void setObcsw8(int obcsw8) {
+		this.obcsw8 = obcsw8;
 	}
 
 }
