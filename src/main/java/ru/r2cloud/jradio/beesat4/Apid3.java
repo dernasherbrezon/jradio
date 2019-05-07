@@ -7,331 +7,331 @@ import ru.r2cloud.jradio.util.BitInputStream;
 
 public class Apid3 {
 
-	private float ACSWCX; // Commanded Wheel Speed X
-	private float ACSWCY; // Commanded Wheel Speed Y
-	private float ACSWCZ; // Commanded Wheel Speed Z
-	private float ACSM2Y; // MFS #2: Vector Y
-	private float ACSM2Z; // MFS #2: Vector Z
-	private float ACSM2X; // MFS #2: Vector X
-	private float ACSG2Y; // Gyro rate MAX21000 y-axis
-	private float ACSG2Z; // Gyro rate MAX21000 z-axis
-	private float ACSG2X; // Gyro rate MAX21000 x-axis
-	private float ACSG1Y; // Gyro #1 rate Y
-	private float ACSG1Z; // Gyro #1 rate Z
-	private float ACSG1X; // Gyro #1 rate X
-	private float ACG1YM; // Gyro #1 rate Y MEAN
-	private float ACG1ZM; // Gyro #1 rate Z MEAN
-	private float ACG1XM; // Gyro #1 rate X MEAN
-	private long CSTUTC; // Onboard time UTC
-	private long CSTSYS; // OBDH uptime
-	private long PCSYST; // PCU uptime
-	private long ASSTOP; // Auto Send Stop Time
-	private int ASINTV; // Auto Send Interval
-	private int ASCEST; // Auto Send Start Error
-	private boolean ASACTV; // Auto Send Active
-	private float ACSWU0; // Wheelcontroller U0
-	private float ACSWU1; // Wheelcontroller U1
-	private float ACSWU2; // Wheelcontroller U2
-	private float ACSWQ0; // Error Quaternion X
-	private float ACSWQ1; // Error Quaternion Y
-	private float ACSWQ2; // Error Quaternion Z
-	private float ACSWQ3; // Error Quaternion Scalar
-	private int ACSWA0; // Wheel Accelaration 0
-	private int ACSWA1; // Wheel Accelaration 1
-	private int ACSWA2; // Wheel Accelaration 2
+	private float acswcx; // commanded wheel speed X
+	private float acswcy; // commanded wheel speed Y
+	private float acswcz; // commanded wheel speed Z
+	private float acsm2y; // mfs #2: vector y
+	private float acsm2z; // mfs #2: vector z
+	private float acsm2x; // mfs #2: vector x
+	private float acsg2y; // gyro rate max21000 y-axis
+	private float acsg2z; // gyro rate max21000 z-axis
+	private float acsg2x; // gyro rate max21000 x-axis
+	private float acsg1y; // gyro #1 rate y
+	private float acsg1z; // gyro #1 rate z
+	private float acsg1x; // gyro #1 rate x
+	private float acg1ym; // gyro #1 rate y mean
+	private float acg1zm; // gyro #1 rate z mean
+	private float acg1xm; // gyro #1 rate x mean
+	private long cstutc; // onboard time utc
+	private long cstsys; // obdh uptime
+	private long pcsyst; // pcu uptime
+	private long asstop; // auto send stop time
+	private int asintv; // auto send interval
+	private int ascest; // auto send start error
+	private boolean asactv; // auto send active
+	private float acswu0; // wheelcontroller u0
+	private float acswu1; // wheelcontroller u1
+	private float acswu2; // wheelcontroller u2
+	private float acswq0; // error quaternion x
+	private float acswq1; // error quaternion y
+	private float acswq2; // error quaternion z
+	private float acswq3; // error quaternion scalar
+	private int acswa0; // wheel accelaration 0
+	private int acswa1; // wheel accelaration 1
+	private int acswa2; // wheel accelaration 2
 
 	public Apid3(DataInputStream dis) throws IOException {
 		BitInputStream bis = new BitInputStream(dis);
 
-		ACSWCX = bis.readUnsignedShort() * -0.5f;
-		ACSWCY = bis.readUnsignedShort() * -0.5f;
-		ACSWCZ = bis.readUnsignedShort() * 0.5f;
-		ACSM2Y = bis.readUnsignedShort() * -7.642841368f + 7968.73f;
-		ACSM2Z = bis.readUnsignedShort() * 8.032315024f - 10266.647f;
-		ACSM2X = bis.readUnsignedShort() * -7.890292416f - 11584.291f;
-		ACSG2Y = bis.readUnsignedShort() * -0.00104167f;
-		ACSG2Z = bis.readUnsignedShort() * 0.00104167f;
-		ACSG2X = bis.readUnsignedShort() * -0.00104167f;
-		ACSG1Y = bis.readUnsignedShort() * -0.00875f;
-		ACSG1Z = bis.readUnsignedShort() * -0.00875f;
-		ACSG1X = bis.readUnsignedShort() * -0.00875f;
-		ACG1YM = bis.readUnsignedShort() * -0.00875f;
-		ACG1ZM = bis.readUnsignedShort() * -0.00875f;
-		ACG1XM = bis.readUnsignedShort() * -0.00875f;
-		CSTUTC = bis.readUnsignedLong(32);
-		CSTSYS = bis.readUnsignedLong(32);
-		PCSYST = bis.readUnsignedLong(32);
-		ASSTOP = bis.readUnsignedLong(32);
-		ASINTV = bis.readUnsignedInt(16);
-		ASCEST = bis.readUnsignedInt(8);
-		ASACTV = bis.readBoolean();
-		ACSWU0 = bis.readUnsignedShort() * 0.00000001f;
-		ACSWU1 = bis.readUnsignedShort() * 0.00000001f;
-		ACSWU2 = bis.readUnsignedShort() * 0.00000001f;
-		ACSWQ0 = bis.readUnsignedShort() * 0.0001f;
-		ACSWQ1 = bis.readUnsignedShort() * 0.0001f;
-		ACSWQ2 = bis.readUnsignedShort() * 0.0001f;
-		ACSWQ3 = bis.readUnsignedShort() * 0.0001f;
-		ACSWA0 = bis.readUnsignedShort();
-		ACSWA1 = bis.readUnsignedShort();
-		ACSWA2 = bis.readUnsignedShort();
+		acswcx = bis.readUnsignedShort() * -0.5f;
+		acswcy = bis.readUnsignedShort() * -0.5f;
+		acswcz = bis.readUnsignedShort() * 0.5f;
+		acsm2y = bis.readUnsignedShort() * -7.642841368f + 7968.73f;
+		acsm2z = bis.readUnsignedShort() * 8.032315024f - 10266.647f;
+		acsm2x = bis.readUnsignedShort() * -7.890292416f - 11584.291f;
+		acsg2y = bis.readUnsignedShort() * -0.00104167f;
+		acsg2z = bis.readUnsignedShort() * 0.00104167f;
+		acsg2x = bis.readUnsignedShort() * -0.00104167f;
+		acsg1y = bis.readUnsignedShort() * -0.00875f;
+		acsg1z = bis.readUnsignedShort() * -0.00875f;
+		acsg1x = bis.readUnsignedShort() * -0.00875f;
+		acg1ym = bis.readUnsignedShort() * -0.00875f;
+		acg1zm = bis.readUnsignedShort() * -0.00875f;
+		acg1xm = bis.readUnsignedShort() * -0.00875f;
+		cstutc = bis.readUnsignedLong(32);
+		cstsys = bis.readUnsignedLong(32);
+		pcsyst = bis.readUnsignedLong(32);
+		asstop = bis.readUnsignedLong(32);
+		asintv = bis.readUnsignedInt(16);
+		ascest = bis.readUnsignedInt(8);
+		asactv = bis.readBoolean();
+		acswu0 = bis.readUnsignedShort() * 0.00000001f;
+		acswu1 = bis.readUnsignedShort() * 0.00000001f;
+		acswu2 = bis.readUnsignedShort() * 0.00000001f;
+		acswq0 = bis.readUnsignedShort() * 0.0001f;
+		acswq1 = bis.readUnsignedShort() * 0.0001f;
+		acswq2 = bis.readUnsignedShort() * 0.0001f;
+		acswq3 = bis.readUnsignedShort() * 0.0001f;
+		acswa0 = bis.readUnsignedShort();
+		acswa1 = bis.readUnsignedShort();
+		acswa2 = bis.readUnsignedShort();
 		dis.skipBytes(56);
 	}
 
-	public float getACSWCX() {
-		return ACSWCX;
+	public float getAcswcx() {
+		return acswcx;
 	}
 
-	public void setACSWCX(float aCSWCX) {
-		ACSWCX = aCSWCX;
+	public void setAcswcx(float acswcx) {
+		this.acswcx = acswcx;
 	}
 
-	public float getACSWCY() {
-		return ACSWCY;
+	public float getAcswcy() {
+		return acswcy;
 	}
 
-	public void setACSWCY(float aCSWCY) {
-		ACSWCY = aCSWCY;
+	public void setAcswcy(float acswcy) {
+		this.acswcy = acswcy;
 	}
 
-	public float getACSWCZ() {
-		return ACSWCZ;
+	public float getAcswcz() {
+		return acswcz;
 	}
 
-	public void setACSWCZ(float aCSWCZ) {
-		ACSWCZ = aCSWCZ;
+	public void setAcswcz(float acswcz) {
+		this.acswcz = acswcz;
 	}
 
-	public float getACSM2Y() {
-		return ACSM2Y;
+	public float getAcsm2y() {
+		return acsm2y;
 	}
 
-	public void setACSM2Y(float aCSM2Y) {
-		ACSM2Y = aCSM2Y;
+	public void setAcsm2y(float acsm2y) {
+		this.acsm2y = acsm2y;
 	}
 
-	public float getACSM2Z() {
-		return ACSM2Z;
+	public float getAcsm2z() {
+		return acsm2z;
 	}
 
-	public void setACSM2Z(float aCSM2Z) {
-		ACSM2Z = aCSM2Z;
+	public void setAcsm2z(float acsm2z) {
+		this.acsm2z = acsm2z;
 	}
 
-	public float getACSM2X() {
-		return ACSM2X;
+	public float getAcsm2x() {
+		return acsm2x;
 	}
 
-	public void setACSM2X(float aCSM2X) {
-		ACSM2X = aCSM2X;
+	public void setAcsm2x(float acsm2x) {
+		this.acsm2x = acsm2x;
 	}
 
-	public float getACSG2Y() {
-		return ACSG2Y;
+	public float getAcsg2y() {
+		return acsg2y;
 	}
 
-	public void setACSG2Y(float aCSG2Y) {
-		ACSG2Y = aCSG2Y;
+	public void setAcsg2y(float acsg2y) {
+		this.acsg2y = acsg2y;
 	}
 
-	public float getACSG2Z() {
-		return ACSG2Z;
+	public float getAcsg2z() {
+		return acsg2z;
 	}
 
-	public void setACSG2Z(float aCSG2Z) {
-		ACSG2Z = aCSG2Z;
+	public void setAcsg2z(float acsg2z) {
+		this.acsg2z = acsg2z;
 	}
 
-	public float getACSG2X() {
-		return ACSG2X;
+	public float getAcsg2x() {
+		return acsg2x;
 	}
 
-	public void setACSG2X(float aCSG2X) {
-		ACSG2X = aCSG2X;
+	public void setAcsg2x(float acsg2x) {
+		this.acsg2x = acsg2x;
 	}
 
-	public float getACSG1Y() {
-		return ACSG1Y;
+	public float getAcsg1y() {
+		return acsg1y;
 	}
 
-	public void setACSG1Y(float aCSG1Y) {
-		ACSG1Y = aCSG1Y;
+	public void setAcsg1y(float acsg1y) {
+		this.acsg1y = acsg1y;
 	}
 
-	public float getACSG1Z() {
-		return ACSG1Z;
+	public float getAcsg1z() {
+		return acsg1z;
 	}
 
-	public void setACSG1Z(float aCSG1Z) {
-		ACSG1Z = aCSG1Z;
+	public void setAcsg1z(float acsg1z) {
+		this.acsg1z = acsg1z;
 	}
 
-	public float getACSG1X() {
-		return ACSG1X;
+	public float getAcsg1x() {
+		return acsg1x;
 	}
 
-	public void setACSG1X(float aCSG1X) {
-		ACSG1X = aCSG1X;
+	public void setAcsg1x(float acsg1x) {
+		this.acsg1x = acsg1x;
 	}
 
-	public float getACG1YM() {
-		return ACG1YM;
+	public float getAcg1ym() {
+		return acg1ym;
 	}
 
-	public void setACG1YM(float aCG1YM) {
-		ACG1YM = aCG1YM;
+	public void setAcg1ym(float acg1ym) {
+		this.acg1ym = acg1ym;
 	}
 
-	public float getACG1ZM() {
-		return ACG1ZM;
+	public float getAcg1zm() {
+		return acg1zm;
 	}
 
-	public void setACG1ZM(float aCG1ZM) {
-		ACG1ZM = aCG1ZM;
+	public void setAcg1zm(float acg1zm) {
+		this.acg1zm = acg1zm;
 	}
 
-	public float getACG1XM() {
-		return ACG1XM;
+	public float getAcg1xm() {
+		return acg1xm;
 	}
 
-	public void setACG1XM(float aCG1XM) {
-		ACG1XM = aCG1XM;
+	public void setAcg1xm(float acg1xm) {
+		this.acg1xm = acg1xm;
 	}
 
-	public long getCSTUTC() {
-		return CSTUTC;
+	public long getCstutc() {
+		return cstutc;
 	}
 
-	public void setCSTUTC(long cSTUTC) {
-		CSTUTC = cSTUTC;
+	public void setCstutc(long cstutc) {
+		this.cstutc = cstutc;
 	}
 
-	public long getCSTSYS() {
-		return CSTSYS;
+	public long getCstsys() {
+		return cstsys;
 	}
 
-	public void setCSTSYS(long cSTSYS) {
-		CSTSYS = cSTSYS;
+	public void setCstsys(long cstsys) {
+		this.cstsys = cstsys;
 	}
 
-	public long getPCSYST() {
-		return PCSYST;
+	public long getPcsyst() {
+		return pcsyst;
 	}
 
-	public void setPCSYST(long pCSYST) {
-		PCSYST = pCSYST;
+	public void setPcsyst(long pcsyst) {
+		this.pcsyst = pcsyst;
 	}
 
-	public long getASSTOP() {
-		return ASSTOP;
+	public long getAsstop() {
+		return asstop;
 	}
 
-	public void setASSTOP(long aSSTOP) {
-		ASSTOP = aSSTOP;
+	public void setAsstop(long asstop) {
+		this.asstop = asstop;
 	}
 
-	public int getASINTV() {
-		return ASINTV;
+	public int getAsintv() {
+		return asintv;
 	}
 
-	public void setASINTV(int aSINTV) {
-		ASINTV = aSINTV;
+	public void setAsintv(int asintv) {
+		this.asintv = asintv;
 	}
 
-	public int getASCEST() {
-		return ASCEST;
+	public int getAscest() {
+		return ascest;
 	}
 
-	public void setASCEST(int aSCEST) {
-		ASCEST = aSCEST;
+	public void setAscest(int ascest) {
+		this.ascest = ascest;
 	}
 
-	public boolean isASACTV() {
-		return ASACTV;
+	public boolean isAsactv() {
+		return asactv;
 	}
 
-	public void setASACTV(boolean aSACTV) {
-		ASACTV = aSACTV;
+	public void setAsactv(boolean asactv) {
+		this.asactv = asactv;
 	}
 
-	public float getACSWU0() {
-		return ACSWU0;
+	public float getAcswu0() {
+		return acswu0;
 	}
 
-	public void setACSWU0(float aCSWU0) {
-		ACSWU0 = aCSWU0;
+	public void setAcswu0(float acswu0) {
+		this.acswu0 = acswu0;
 	}
 
-	public float getACSWU1() {
-		return ACSWU1;
+	public float getAcswu1() {
+		return acswu1;
 	}
 
-	public void setACSWU1(float aCSWU1) {
-		ACSWU1 = aCSWU1;
+	public void setAcswu1(float acswu1) {
+		this.acswu1 = acswu1;
 	}
 
-	public float getACSWU2() {
-		return ACSWU2;
+	public float getAcswu2() {
+		return acswu2;
 	}
 
-	public void setACSWU2(float aCSWU2) {
-		ACSWU2 = aCSWU2;
+	public void setAcswu2(float acswu2) {
+		this.acswu2 = acswu2;
 	}
 
-	public float getACSWQ0() {
-		return ACSWQ0;
+	public float getAcswq0() {
+		return acswq0;
 	}
 
-	public void setACSWQ0(float aCSWQ0) {
-		ACSWQ0 = aCSWQ0;
+	public void setAcswq0(float acswq0) {
+		this.acswq0 = acswq0;
 	}
 
-	public float getACSWQ1() {
-		return ACSWQ1;
+	public float getAcswq1() {
+		return acswq1;
 	}
 
-	public void setACSWQ1(float aCSWQ1) {
-		ACSWQ1 = aCSWQ1;
+	public void setAcswq1(float acswq1) {
+		this.acswq1 = acswq1;
 	}
 
-	public float getACSWQ2() {
-		return ACSWQ2;
+	public float getAcswq2() {
+		return acswq2;
 	}
 
-	public void setACSWQ2(float aCSWQ2) {
-		ACSWQ2 = aCSWQ2;
+	public void setAcswq2(float acswq2) {
+		this.acswq2 = acswq2;
 	}
 
-	public float getACSWQ3() {
-		return ACSWQ3;
+	public float getAcswq3() {
+		return acswq3;
 	}
 
-	public void setACSWQ3(float aCSWQ3) {
-		ACSWQ3 = aCSWQ3;
+	public void setAcswq3(float acswq3) {
+		this.acswq3 = acswq3;
 	}
 
-	public int getACSWA0() {
-		return ACSWA0;
+	public int getAcswa0() {
+		return acswa0;
 	}
 
-	public void setACSWA0(int aCSWA0) {
-		ACSWA0 = aCSWA0;
+	public void setAcswa0(int acswa0) {
+		this.acswa0 = acswa0;
 	}
 
-	public int getACSWA1() {
-		return ACSWA1;
+	public int getAcswa1() {
+		return acswa1;
 	}
 
-	public void setACSWA1(int aCSWA1) {
-		ACSWA1 = aCSWA1;
+	public void setAcswa1(int acswa1) {
+		this.acswa1 = acswa1;
 	}
 
-	public int getACSWA2() {
-		return ACSWA2;
+	public int getAcswa2() {
+		return acswa2;
 	}
 
-	public void setACSWA2(int aCSWA2) {
-		ACSWA2 = aCSWA2;
+	public void setAcswa2(int acswa2) {
+		this.acswa2 = acswa2;
 	}
 
 }
