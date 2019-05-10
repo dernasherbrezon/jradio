@@ -5,222 +5,222 @@ import java.io.IOException;
 
 public class Apid31 {
 
-	private int GPSWEEK;             // GPS Week
-	private int GPSUTC;              // GPS time to UTC offset
-	private double GPSSECW;          // GPS seconds of week
-	private double GPSPOSX;          // GPS position X
-	private double GPSPOSY;          // GPS position Y
-	private double GPSPOSZ;          // GPS position Z
-	private double GPSVELX;          // GPS velocity X
-	private double GPSVELY;          // GPS velocity Y
-	private double GPSVELZ;          // GPS velocity Z
-	private float GPSPDOP;           // Precision dilution of position
-	private int GPSALMWK;            // GPS almanac week
-	private int GPSDOFFS;            // GPS Doppler offset
-	private int GPSNAVSTAT;          // GPS navigation status
-	private int GPSNSAT;             // GPS number of tracked satellites
-	private int GPSBITPH;            // GPS Bit placeholder
-	private int GPSOUTF;             // GPS output format
-	private int GPSMODE;             // GPS mode
-	private int GPSUPDR;             // GPS update rate of navigation
-	private int GPSELEVM;            // GPS elevation mask
-	private int GPSPDOPM;            // GPS PDOP mask
-	private double GPSLTIME;         // GPS launch time
+	private int gpsweek; // gps week
+	private int gpsutc; // gps time to utc offset
+	private double gpssecw; // gps seconds of week
+	private double gpsposx; // gps position x
+	private double gpsposy; // gps position y
+	private double gpsposz; // gps position z
+	private double gpsvelx; // gps velocity x
+	private double gpsvely; // gps velocity y
+	private double gpsvelz; // gps velocity z
+	private float gpspdop; // precision dilution of position
+	private int gpsalmwk; // gps almanac week
+	private int gpsdoffs; // gps doppler offset
+	private int gpsnavstat; // gps navigation status
+	private int gpsnsat; // gps number of tracked satellites
+	private int gpsbitph; // gps bit placeholder
+	private int gpsoutf; // gps output format
+	private int gpsmode; // gps mode
+	private int gpsupdr; // gps update rate of navigation
+	private int gpselevm; // gps elevation mask
+	private int gpspdopm; // gps pdop mask
+	private double gpsltime; // gps launch time
 
 	public Apid31(DataInputStream dis) throws IOException {
-		GPSWEEK = dis.readUnsignedShort();
-		GPSUTC = dis.readUnsignedByte();
-		GPSSECW = dis.readDouble();
-		GPSPOSX = dis.readDouble();
-		GPSPOSY = dis.readDouble();
-		GPSPOSZ = dis.readDouble();
-		GPSVELX = dis.readDouble();
-		GPSVELY = dis.readDouble();
-		GPSVELZ = dis.readDouble();
-		GPSPDOP = dis.readFloat();
-		GPSALMWK = dis.readUnsignedShort();
-		GPSDOFFS = dis.readShort();
+		gpsweek = dis.readUnsignedShort();
+		gpsutc = dis.readUnsignedByte();
+		gpssecw = dis.readDouble();
+		gpsposx = dis.readDouble();
+		gpsposy = dis.readDouble();
+		gpsposz = dis.readDouble();
+		gpsvelx = dis.readDouble();
+		gpsvely = dis.readDouble();
+		gpsvelz = dis.readDouble();
+		gpspdop = dis.readFloat();
+		gpsalmwk = dis.readUnsignedShort();
+		gpsdoffs = dis.readShort();
 
 		int raw = dis.readUnsignedByte();
-		GPSNAVSTAT = (raw >> 6);
-		GPSNSAT = (raw & 0b111111);
+		gpsnavstat = (raw >> 6);
+		gpsnsat = (raw & 0b111111);
 
 		raw = dis.readUnsignedByte();
-		GPSBITPH = (raw >> 7);
-		GPSOUTF = (raw >> 6);
-		GPSMODE = ((raw >> 4) & 0b11);
-		GPSUPDR = (raw & 0b1111);
-		GPSELEVM = dis.readByte();
-		GPSPDOPM = dis.readUnsignedByte();
-		GPSLTIME = dis.readDouble();
+		gpsbitph = (raw >> 7);
+		gpsoutf = (raw >> 6);
+		gpsmode = ((raw >> 4) & 0b11);
+		gpsupdr = (raw & 0b1111);
+		gpselevm = dis.readByte();
+		gpspdopm = dis.readUnsignedByte();
+		gpsltime = dis.readDouble();
 	}
 
-	public int getGPSWEEK() {
-		return GPSWEEK;
+	public int getGpsweek() {
+		return gpsweek;
 	}
 
-	public void setGPSWEEK(int gPSWEEK) {
-		GPSWEEK = gPSWEEK;
+	public void setGpsweek(int gpsweek) {
+		this.gpsweek = gpsweek;
 	}
 
-	public int getGPSUTC() {
-		return GPSUTC;
+	public int getGpsutc() {
+		return gpsutc;
 	}
 
-	public void setGPSUTC(int gPSUTC) {
-		GPSUTC = gPSUTC;
+	public void setGpsutc(int gpsutc) {
+		this.gpsutc = gpsutc;
 	}
 
-	public double getGPSSECW() {
-		return GPSSECW;
+	public double getGpssecw() {
+		return gpssecw;
 	}
 
-	public void setGPSSECW(double gPSSECW) {
-		GPSSECW = gPSSECW;
+	public void setGpssecw(double gpssecw) {
+		this.gpssecw = gpssecw;
 	}
 
-	public double getGPSPOSX() {
-		return GPSPOSX;
+	public double getGpsposx() {
+		return gpsposx;
 	}
 
-	public void setGPSPOSX(double gPSPOSX) {
-		GPSPOSX = gPSPOSX;
+	public void setGpsposx(double gpsposx) {
+		this.gpsposx = gpsposx;
 	}
 
-	public double getGPSPOSY() {
-		return GPSPOSY;
+	public double getGpsposy() {
+		return gpsposy;
 	}
 
-	public void setGPSPOSY(double gPSPOSY) {
-		GPSPOSY = gPSPOSY;
+	public void setGpsposy(double gpsposy) {
+		this.gpsposy = gpsposy;
 	}
 
-	public double getGPSPOSZ() {
-		return GPSPOSZ;
+	public double getGpsposz() {
+		return gpsposz;
 	}
 
-	public void setGPSPOSZ(double gPSPOSZ) {
-		GPSPOSZ = gPSPOSZ;
+	public void setGpsposz(double gpsposz) {
+		this.gpsposz = gpsposz;
 	}
 
-	public double getGPSVELX() {
-		return GPSVELX;
+	public double getGpsvelx() {
+		return gpsvelx;
 	}
 
-	public void setGPSVELX(double gPSVELX) {
-		GPSVELX = gPSVELX;
+	public void setGpsvelx(double gpsvelx) {
+		this.gpsvelx = gpsvelx;
 	}
 
-	public double getGPSVELY() {
-		return GPSVELY;
+	public double getGpsvely() {
+		return gpsvely;
 	}
 
-	public void setGPSVELY(double gPSVELY) {
-		GPSVELY = gPSVELY;
+	public void setGpsvely(double gpsvely) {
+		this.gpsvely = gpsvely;
 	}
 
-	public double getGPSVELZ() {
-		return GPSVELZ;
+	public double getGpsvelz() {
+		return gpsvelz;
 	}
 
-	public void setGPSVELZ(double gPSVELZ) {
-		GPSVELZ = gPSVELZ;
+	public void setGpsvelz(double gpsvelz) {
+		this.gpsvelz = gpsvelz;
 	}
 
-	public float getGPSPDOP() {
-		return GPSPDOP;
+	public float getGpspdop() {
+		return gpspdop;
 	}
 
-	public void setGPSPDOP(float gPSPDOP) {
-		GPSPDOP = gPSPDOP;
+	public void setGpspdop(float gpspdop) {
+		this.gpspdop = gpspdop;
 	}
 
-	public int getGPSALMWK() {
-		return GPSALMWK;
+	public int getGpsalmwk() {
+		return gpsalmwk;
 	}
 
-	public void setGPSALMWK(int gPSALMWK) {
-		GPSALMWK = gPSALMWK;
+	public void setGpsalmwk(int gpsalmwk) {
+		this.gpsalmwk = gpsalmwk;
 	}
 
-	public int getGPSDOFFS() {
-		return GPSDOFFS;
+	public int getGpsdoffs() {
+		return gpsdoffs;
 	}
 
-	public void setGPSDOFFS(int gPSDOFFS) {
-		GPSDOFFS = gPSDOFFS;
+	public void setGpsdoffs(int gpsdoffs) {
+		this.gpsdoffs = gpsdoffs;
 	}
 
-	public int getGPSNAVSTAT() {
-		return GPSNAVSTAT;
+	public int getGpsnavstat() {
+		return gpsnavstat;
 	}
 
-	public void setGPSNAVSTAT(int gPSNAVSTAT) {
-		GPSNAVSTAT = gPSNAVSTAT;
+	public void setGpsnavstat(int gpsnavstat) {
+		this.gpsnavstat = gpsnavstat;
 	}
 
-	public int getGPSNSAT() {
-		return GPSNSAT;
+	public int getGpsnsat() {
+		return gpsnsat;
 	}
 
-	public void setGPSNSAT(int gPSNSAT) {
-		GPSNSAT = gPSNSAT;
+	public void setGpsnsat(int gpsnsat) {
+		this.gpsnsat = gpsnsat;
 	}
 
-	public int getGPSBITPH() {
-		return GPSBITPH;
+	public int getGpsbitph() {
+		return gpsbitph;
 	}
 
-	public void setGPSBITPH(int gPSBITPH) {
-		GPSBITPH = gPSBITPH;
+	public void setGpsbitph(int gpsbitph) {
+		this.gpsbitph = gpsbitph;
 	}
 
-	public int getGPSOUTF() {
-		return GPSOUTF;
+	public int getGpsoutf() {
+		return gpsoutf;
 	}
 
-	public void setGPSOUTF(int gPSOUTF) {
-		GPSOUTF = gPSOUTF;
+	public void setGpsoutf(int gpsoutf) {
+		this.gpsoutf = gpsoutf;
 	}
 
-	public int getGPSMODE() {
-		return GPSMODE;
+	public int getGpsmode() {
+		return gpsmode;
 	}
 
-	public void setGPSMODE(int gPSMODE) {
-		GPSMODE = gPSMODE;
+	public void setGpsmode(int gpsmode) {
+		this.gpsmode = gpsmode;
 	}
 
-	public int getGPSUPDR() {
-		return GPSUPDR;
+	public int getGpsupdr() {
+		return gpsupdr;
 	}
 
-	public void setGPSUPDR(int gPSUPDR) {
-		GPSUPDR = gPSUPDR;
+	public void setGpsupdr(int gpsupdr) {
+		this.gpsupdr = gpsupdr;
 	}
 
-	public int getGPSELEVM() {
-		return GPSELEVM;
+	public int getGpselevm() {
+		return gpselevm;
 	}
 
-	public void setGPSELEVM(int gPSELEVM) {
-		GPSELEVM = gPSELEVM;
+	public void setGpselevm(int gpselevm) {
+		this.gpselevm = gpselevm;
 	}
 
-	public int getGPSPDOPM() {
-		return GPSPDOPM;
+	public int getGpspdopm() {
+		return gpspdopm;
 	}
 
-	public void setGPSPDOPM(int gPSPDOPM) {
-		GPSPDOPM = gPSPDOPM;
+	public void setGpspdopm(int gpspdopm) {
+		this.gpspdopm = gpspdopm;
 	}
 
-	public double getGPSLTIME() {
-		return GPSLTIME;
+	public double getGpsltime() {
+		return gpsltime;
 	}
 
-	public void setGPSLTIME(double gPSLTIME) {
-		GPSLTIME = gPSLTIME;
+	public void setGpsltime(double gpsltime) {
+		this.gpsltime = gpsltime;
 	}
 
 }

@@ -3,12 +3,12 @@ package ru.r2cloud.jradio.beesat4;
 import java.io.DataInputStream;
 import java.io.IOException;
 
-public class Apid14_29 {
+public class Apid14U29 {
 
 	private int imageId; // Image ID of PDH Image, unique per Slot
 	private byte[] pdhImage; // PDH Image
 
-	public Apid14_29(DataInputStream dis) throws IOException {
+	public Apid14U29(DataInputStream dis) throws IOException {
 		imageId = dis.readUnsignedByte();
 		pdhImage = new byte[125];
 		dis.readFully(pdhImage);
