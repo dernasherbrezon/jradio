@@ -7,261 +7,261 @@ import ru.r2cloud.jradio.util.BitInputStream;
 
 public class Apid4 {
 
-	private int TMMRRP; // TM Memory Read Pointer
-	private int TMMRWP; // TM Memory Write Pointer
-	private long OBCSWV; // OBC Software Revision
-	private int APB4GT; // B4 Apid Gathering rate
-	private int APACGT; // ACS Apid Gathering rate
-	private int APEPGT; // EPS TCS OBC Apid Gathering rate
-	private int APAEGT; // ACS EXT Apid Gathering rate
-	private int APDEGT; // Debug Apid Gathering rate
-	private int APPDGT; // PDH Apid Gathering rate
-	private int APGPGT; // GPS Apid Gathering rate
-	private int APICGT; // Image Catalog Apid Gathering rate
-	private int APCTGT; // PDH GPS Catalog Apid Gathering rate
-	private long CSTUTC; // Onboard time UTC
-	private long CSTSYS; // OBDH uptime
-	private long PCSYST; // PCU uptime
-	private int CCTCCP; // Ctr Change Param
-	private int CCSUIN; // Ctr incoming SW Upload TC
-	private int CCSUHD; // Ctr handled SW Upload TC
-	private int CCESUC; // Err Ctr Check Image
-	private int CCESUL; // Err Ctr Load Block
-	private int CCESUE; // Err Ctr Erase Block
-	private int CCESUK; // Err Ctr Erase Sector
-	private int CCESUM; // Err Ctr CRC Upload Message
-	private int CCESUS; // Err Ctr Save Upload Message
-	private int APACCGT; // ACS Calibration APID Gathering rate
+	private int tmmrrp; // tm memory read pointer
+	private int tmmrwp; // tm memory write pointer
+	private long obcswv; // obc software revision
+	private int apb4gt; // b4 apid gathering rate
+	private int apacgt; // acs apid gathering rate
+	private int apepgt; // eps tcs obc apid gathering rate
+	private int apaegt; // acs ext apid gathering rate
+	private int apdegt; // debug apid gathering rate
+	private int appdgt; // pdh apid gathering rate
+	private int apgpgt; // gps apid gathering rate
+	private int apicgt; // image catalog apid gathering rate
+	private int apctgt; // pdh gps catalog apid gathering rate
+	private long cstutc; // onboard time utc
+	private long cstsys; // obdh uptime
+	private long pcsyst; // pcu uptime
+	private int cctccp; // ctr change param
+	private int ccsuin; // ctr incoming sw upload tc
+	private int ccsuhd; // ctr handled sw upload tc
+	private int ccesuc; // err ctr check image
+	private int ccesul; // err ctr load block
+	private int ccesue; // err ctr erase block
+	private int ccesuk; // err ctr erase sector
+	private int ccesum; // err ctr crc upload message
+	private int ccesus; // err ctr save upload message
+	private int apaccgt; // acs calibration apid gathering rate
 
 	public Apid4(DataInputStream dis) throws IOException {
 		BitInputStream bis = new BitInputStream(dis);
 
-		TMMRRP = bis.readUnsignedInt(16);
-		TMMRWP = bis.readUnsignedInt(16);
-		OBCSWV = bis.readUnsignedLong(32);
-		APB4GT = bis.readUnsignedInt(16);
-		APACGT = bis.readUnsignedInt(16);
-		APEPGT = bis.readUnsignedInt(16);
-		APAEGT = bis.readUnsignedInt(16);
-		APDEGT = bis.readUnsignedInt(16);
-		APPDGT = bis.readUnsignedInt(16);
-		APGPGT = bis.readUnsignedInt(16);
-		APICGT = bis.readUnsignedInt(16);
-		APCTGT = bis.readUnsignedInt(16);
-		CSTUTC = bis.readUnsignedLong(32);
-		CSTSYS = bis.readUnsignedLong(32);
-		PCSYST = bis.readUnsignedLong(32);
-		CCTCCP = bis.readUnsignedInt(8);
-		CCSUIN = bis.readUnsignedInt(12);
-		CCSUHD = bis.readUnsignedInt(12);
-		CCESUC = bis.readUnsignedInt(12);
-		CCESUL = bis.readUnsignedInt(12);
-		CCESUE = bis.readUnsignedInt(12);
-		CCESUK = bis.readUnsignedInt(12);
-		CCESUM = bis.readUnsignedInt(12);
-		CCESUS = bis.readUnsignedInt(12);
-		APACGT = bis.readUnsignedInt(16);
+		tmmrrp = bis.readUnsignedInt(16);
+		tmmrwp = bis.readUnsignedInt(16);
+		obcswv = bis.readUnsignedLong(32);
+		apb4gt = bis.readUnsignedInt(16);
+		apacgt = bis.readUnsignedInt(16);
+		apepgt = bis.readUnsignedInt(16);
+		apaegt = bis.readUnsignedInt(16);
+		apdegt = bis.readUnsignedInt(16);
+		appdgt = bis.readUnsignedInt(16);
+		apgpgt = bis.readUnsignedInt(16);
+		apicgt = bis.readUnsignedInt(16);
+		apctgt = bis.readUnsignedInt(16);
+		cstutc = bis.readUnsignedLong(32);
+		cstsys = bis.readUnsignedLong(32);
+		pcsyst = bis.readUnsignedLong(32);
+		cctccp = bis.readUnsignedInt(8);
+		ccsuin = bis.readUnsignedInt(12);
+		ccsuhd = bis.readUnsignedInt(12);
+		ccesuc = bis.readUnsignedInt(12);
+		ccesul = bis.readUnsignedInt(12);
+		ccesue = bis.readUnsignedInt(12);
+		ccesuk = bis.readUnsignedInt(12);
+		ccesum = bis.readUnsignedInt(12);
+		ccesus = bis.readUnsignedInt(12);
+		apacgt = bis.readUnsignedInt(16);
 		dis.skipBytes(73);
 	}
 
-	public int getTMMRRP() {
-		return TMMRRP;
+	public int getTmmrrp() {
+		return tmmrrp;
 	}
 
-	public void setTMMRRP(int tMMRRP) {
-		TMMRRP = tMMRRP;
+	public void setTmmrrp(int tmmrrp) {
+		this.tmmrrp = tmmrrp;
 	}
 
-	public int getTMMRWP() {
-		return TMMRWP;
+	public int getTmmrwp() {
+		return tmmrwp;
 	}
 
-	public void setTMMRWP(int tMMRWP) {
-		TMMRWP = tMMRWP;
+	public void setTmmrwp(int tmmrwp) {
+		this.tmmrwp = tmmrwp;
 	}
 
-	public long getOBCSWV() {
-		return OBCSWV;
+	public long getObcswv() {
+		return obcswv;
 	}
 
-	public void setOBCSWV(long oBCSWV) {
-		OBCSWV = oBCSWV;
+	public void setObcswv(long obcswv) {
+		this.obcswv = obcswv;
 	}
 
-	public int getAPB4GT() {
-		return APB4GT;
+	public int getApb4gt() {
+		return apb4gt;
 	}
 
-	public void setAPB4GT(int aPB4GT) {
-		APB4GT = aPB4GT;
+	public void setApb4gt(int apb4gt) {
+		this.apb4gt = apb4gt;
 	}
 
-	public int getAPACGT() {
-		return APACGT;
+	public int getApacgt() {
+		return apacgt;
 	}
 
-	public void setAPACGT(int aPACGT) {
-		APACGT = aPACGT;
+	public void setApacgt(int apacgt) {
+		this.apacgt = apacgt;
 	}
 
-	public int getAPEPGT() {
-		return APEPGT;
+	public int getApepgt() {
+		return apepgt;
 	}
 
-	public void setAPEPGT(int aPEPGT) {
-		APEPGT = aPEPGT;
+	public void setApepgt(int apepgt) {
+		this.apepgt = apepgt;
 	}
 
-	public int getAPAEGT() {
-		return APAEGT;
+	public int getApaegt() {
+		return apaegt;
 	}
 
-	public void setAPAEGT(int aPAEGT) {
-		APAEGT = aPAEGT;
+	public void setApaegt(int apaegt) {
+		this.apaegt = apaegt;
 	}
 
-	public int getAPDEGT() {
-		return APDEGT;
+	public int getApdegt() {
+		return apdegt;
 	}
 
-	public void setAPDEGT(int aPDEGT) {
-		APDEGT = aPDEGT;
+	public void setApdegt(int apdegt) {
+		this.apdegt = apdegt;
 	}
 
-	public int getAPPDGT() {
-		return APPDGT;
+	public int getAppdgt() {
+		return appdgt;
 	}
 
-	public void setAPPDGT(int aPPDGT) {
-		APPDGT = aPPDGT;
+	public void setAppdgt(int appdgt) {
+		this.appdgt = appdgt;
 	}
 
-	public int getAPGPGT() {
-		return APGPGT;
+	public int getApgpgt() {
+		return apgpgt;
 	}
 
-	public void setAPGPGT(int aPGPGT) {
-		APGPGT = aPGPGT;
+	public void setApgpgt(int apgpgt) {
+		this.apgpgt = apgpgt;
 	}
 
-	public int getAPICGT() {
-		return APICGT;
+	public int getApicgt() {
+		return apicgt;
 	}
 
-	public void setAPICGT(int aPICGT) {
-		APICGT = aPICGT;
+	public void setApicgt(int apicgt) {
+		this.apicgt = apicgt;
 	}
 
-	public int getAPCTGT() {
-		return APCTGT;
+	public int getApctgt() {
+		return apctgt;
 	}
 
-	public void setAPCTGT(int aPCTGT) {
-		APCTGT = aPCTGT;
+	public void setApctgt(int apctgt) {
+		this.apctgt = apctgt;
 	}
 
-	public long getCSTUTC() {
-		return CSTUTC;
+	public long getCstutc() {
+		return cstutc;
 	}
 
-	public void setCSTUTC(long cSTUTC) {
-		CSTUTC = cSTUTC;
+	public void setCstutc(long cstutc) {
+		this.cstutc = cstutc;
 	}
 
-	public long getCSTSYS() {
-		return CSTSYS;
+	public long getCstsys() {
+		return cstsys;
 	}
 
-	public void setCSTSYS(long cSTSYS) {
-		CSTSYS = cSTSYS;
+	public void setCstsys(long cstsys) {
+		this.cstsys = cstsys;
 	}
 
-	public long getPCSYST() {
-		return PCSYST;
+	public long getPcsyst() {
+		return pcsyst;
 	}
 
-	public void setPCSYST(long pCSYST) {
-		PCSYST = pCSYST;
+	public void setPcsyst(long pcsyst) {
+		this.pcsyst = pcsyst;
 	}
 
-	public int getCCTCCP() {
-		return CCTCCP;
+	public int getCctccp() {
+		return cctccp;
 	}
 
-	public void setCCTCCP(int cCTCCP) {
-		CCTCCP = cCTCCP;
+	public void setCctccp(int cctccp) {
+		this.cctccp = cctccp;
 	}
 
-	public int getCCSUIN() {
-		return CCSUIN;
+	public int getCcsuin() {
+		return ccsuin;
 	}
 
-	public void setCCSUIN(int cCSUIN) {
-		CCSUIN = cCSUIN;
+	public void setCcsuin(int ccsuin) {
+		this.ccsuin = ccsuin;
 	}
 
-	public int getCCSUHD() {
-		return CCSUHD;
+	public int getCcsuhd() {
+		return ccsuhd;
 	}
 
-	public void setCCSUHD(int cCSUHD) {
-		CCSUHD = cCSUHD;
+	public void setCcsuhd(int ccsuhd) {
+		this.ccsuhd = ccsuhd;
 	}
 
-	public int getCCESUC() {
-		return CCESUC;
+	public int getCcesuc() {
+		return ccesuc;
 	}
 
-	public void setCCESUC(int cCESUC) {
-		CCESUC = cCESUC;
+	public void setCcesuc(int ccesuc) {
+		this.ccesuc = ccesuc;
 	}
 
-	public int getCCESUL() {
-		return CCESUL;
+	public int getCcesul() {
+		return ccesul;
 	}
 
-	public void setCCESUL(int cCESUL) {
-		CCESUL = cCESUL;
+	public void setCcesul(int ccesul) {
+		this.ccesul = ccesul;
 	}
 
-	public int getCCESUE() {
-		return CCESUE;
+	public int getCcesue() {
+		return ccesue;
 	}
 
-	public void setCCESUE(int cCESUE) {
-		CCESUE = cCESUE;
+	public void setCcesue(int ccesue) {
+		this.ccesue = ccesue;
 	}
 
-	public int getCCESUK() {
-		return CCESUK;
+	public int getCcesuk() {
+		return ccesuk;
 	}
 
-	public void setCCESUK(int cCESUK) {
-		CCESUK = cCESUK;
+	public void setCcesuk(int ccesuk) {
+		this.ccesuk = ccesuk;
 	}
 
-	public int getCCESUM() {
-		return CCESUM;
+	public int getCcesum() {
+		return ccesum;
 	}
 
-	public void setCCESUM(int cCESUM) {
-		CCESUM = cCESUM;
+	public void setCcesum(int ccesum) {
+		this.ccesum = ccesum;
 	}
 
-	public int getCCESUS() {
-		return CCESUS;
+	public int getCcesus() {
+		return ccesus;
 	}
 
-	public void setCCESUS(int cCESUS) {
-		CCESUS = cCESUS;
+	public void setCcesus(int ccesus) {
+		this.ccesus = ccesus;
 	}
 
-	public int getAPACCGT() {
-		return APACCGT;
+	public int getApaccgt() {
+		return apaccgt;
 	}
 
-	public void setAPACCGT(int aPACCGT) {
-		APACCGT = aPACCGT;
+	public void setApaccgt(int apaccgt) {
+		this.apaccgt = apaccgt;
 	}
 
 }
