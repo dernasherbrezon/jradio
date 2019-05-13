@@ -7,180 +7,180 @@ import ru.r2cloud.jradio.util.StreamUtils;
 
 public class Apid40 {
 
-	private long[] GPSDT;       // GPS Data Time Slot X
-	private int[] GPSSZ;        // GPS Data Size in Chunks Slot X
-	private int[] GPSID;        // GPS Data ID Slot X
+	private long[] gpsdt; // gps data time slot x
+	private int[] gpssz; // gps data size in chunks slot X
+	private int[] gpsid; // gps data id slot x
 
-	private boolean[] ALMCH;    // Almanac Checksum OK Slot X
-	private int[] ALMDT;        // Almanac Date Slot X
-	private boolean[] TLECH;    // TLE Checksum OK Slot X
-	private int[] TLEDT;        // TLE Date Slot X
+	private boolean[] almch; // almanac checksum ok slot X
+	private int[] almdt; // almanac date slot x
+	private boolean[] tlech; // tle checksum ok slot x
+	private int[] tledt; // tle date slot x
 
-	private boolean[] AL0W;     // Slot 0 PRN XX Week OK
-	private boolean[] AL0V;     // Slot 0 PRN XX VFLG OK
-	private boolean[] AL1W;     // Slot 1 PRN XX Week OK
-	private boolean[] AL1V;     // Slot 1 PRN XX VFLG OK
-	private boolean[] AL2W;     // Slot 2 PRN XX Week OK
-	private boolean[] AL2V;     // Slot 2 PRN XX VFLG OK
-	private boolean[] AL3W;     // Slot 3 PRN XX Week OK
-	private boolean[] AL3V;     // Slot 3 PRN XX VFLG OK
+	private boolean[] al0w; // slot 0 prn xx week ok
+	private boolean[] al0v; // slot 0 prn xx vflg ok
+	private boolean[] al1w; // slot 1 prn xx week ok
+	private boolean[] al1v; // slot 1 prn xx vflg ok
+	private boolean[] al2w; // slot 2 prn xx week ok
+	private boolean[] al2v; // slot 2 prn xx vflg ok
+	private boolean[] al3w; // slot 3 prn xx week ok
+	private boolean[] al3v; // slot 3 prn xx vflg ok
 
 	public Apid40(DataInputStream dis) throws IOException {
 		int length = 8;
-		GPSDT = new long[length];
-		GPSSZ = new int[length];
-		GPSID = new int[length];
+		gpsdt = new long[length];
+		gpssz = new int[length];
+		gpsid = new int[length];
 		for (int i = 0; i < length; i++) {
-			GPSDT[i] = StreamUtils.readUnsignedInt(dis);
-			GPSSZ[i] = dis.readUnsignedShort();
-			GPSID[i] = dis.readUnsignedByte();
+			gpsdt[i] = StreamUtils.readUnsignedInt(dis);
+			gpssz[i] = dis.readUnsignedShort();
+			gpsid[i] = dis.readUnsignedByte();
 		}
 
 		length = 4;
-		ALMCH = new boolean[length];
-		ALMDT = new int[length];
-		TLECH = new boolean[length];
-		TLEDT = new int[length];
+		almch = new boolean[length];
+		almdt = new int[length];
+		tlech = new boolean[length];
+		tledt = new int[length];
 
 		for (int i = 0; i < length; i++) {
 			int raw = dis.readUnsignedByte();
-			ALMCH[i] = ((raw >> 7) & 0x1) > 0;
-			ALMDT[i] = ((raw & 0x7F) << 24) | (dis.readUnsignedByte() << 16) | (dis.readUnsignedByte() << 8) | dis.readUnsignedByte();
+			almch[i] = ((raw >> 7) & 0x1) > 0;
+			almdt[i] = ((raw & 0x7F) << 24) | (dis.readUnsignedByte() << 16) | (dis.readUnsignedByte() << 8) | dis.readUnsignedByte();
 			raw = dis.readUnsignedByte();
-			TLECH[i] = ((raw >> 7) & 0x1) > 0;
-			TLEDT[i] = ((raw & 0x7F) << 24) | (dis.readUnsignedByte() << 16) | (dis.readUnsignedByte() << 8) | dis.readUnsignedByte();
+			tlech[i] = ((raw >> 7) & 0x1) > 0;
+			tledt[i] = ((raw & 0x7F) << 24) | (dis.readUnsignedByte() << 16) | (dis.readUnsignedByte() << 8) | dis.readUnsignedByte();
 		}
 
-		AL0W = readBooleanArray(dis);
-		AL0V = readBooleanArray(dis);
-		AL1W = readBooleanArray(dis);
-		AL1V = readBooleanArray(dis);
-		AL2W = readBooleanArray(dis);
-		AL2V = readBooleanArray(dis);
-		AL3W = readBooleanArray(dis);
-		AL3V = readBooleanArray(dis);
+		al0w = readBooleanArray(dis);
+		al0v = readBooleanArray(dis);
+		al1w = readBooleanArray(dis);
+		al1v = readBooleanArray(dis);
+		al2w = readBooleanArray(dis);
+		al2v = readBooleanArray(dis);
+		al3w = readBooleanArray(dis);
+		al3v = readBooleanArray(dis);
 
 		dis.skipBytes(6);
 	}
 
-	public long[] getGPSDT() {
-		return GPSDT;
+	public long[] getGpsdt() {
+		return gpsdt;
 	}
 
-	public void setGPSDT(long[] gPSDT) {
-		GPSDT = gPSDT;
+	public void setGpsdt(long[] gpsdt) {
+		this.gpsdt = gpsdt;
 	}
 
-	public int[] getGPSSZ() {
-		return GPSSZ;
+	public int[] getGpssz() {
+		return gpssz;
 	}
 
-	public void setGPSSZ(int[] gPSSZ) {
-		GPSSZ = gPSSZ;
+	public void setGpssz(int[] gpssz) {
+		this.gpssz = gpssz;
 	}
 
-	public int[] getGPSID() {
-		return GPSID;
+	public int[] getGpsid() {
+		return gpsid;
 	}
 
-	public void setGPSID(int[] gPSID) {
-		GPSID = gPSID;
+	public void setGpsid(int[] gpsid) {
+		this.gpsid = gpsid;
 	}
 
-	public boolean[] getALMCH() {
-		return ALMCH;
+	public boolean[] getAlmch() {
+		return almch;
 	}
 
-	public void setALMCH(boolean[] aLMCH) {
-		ALMCH = aLMCH;
+	public void setAlmch(boolean[] almch) {
+		this.almch = almch;
 	}
 
-	public int[] getALMDT() {
-		return ALMDT;
+	public int[] getAlmdt() {
+		return almdt;
 	}
 
-	public void setALMDT(int[] aLMDT) {
-		ALMDT = aLMDT;
+	public void setAlmdt(int[] almdt) {
+		this.almdt = almdt;
 	}
 
-	public boolean[] getTLECH() {
-		return TLECH;
+	public boolean[] getTlech() {
+		return tlech;
 	}
 
-	public void setTLECH(boolean[] tLECH) {
-		TLECH = tLECH;
+	public void setTlech(boolean[] tlech) {
+		this.tlech = tlech;
 	}
 
-	public int[] getTLEDT() {
-		return TLEDT;
+	public int[] getTledt() {
+		return tledt;
 	}
 
-	public void setTLEDT(int[] tLEDT) {
-		TLEDT = tLEDT;
+	public void setTledt(int[] tledt) {
+		this.tledt = tledt;
 	}
 
-	public boolean[] getAL0W() {
-		return AL0W;
+	public boolean[] getAl0w() {
+		return al0w;
 	}
 
-	public void setAL0W(boolean[] aL0W) {
-		AL0W = aL0W;
+	public void setAl0w(boolean[] al0w) {
+		this.al0w = al0w;
 	}
 
-	public boolean[] getAL0V() {
-		return AL0V;
+	public boolean[] getAl0v() {
+		return al0v;
 	}
 
-	public void setAL0V(boolean[] aL0V) {
-		AL0V = aL0V;
+	public void setAl0v(boolean[] al0v) {
+		this.al0v = al0v;
 	}
 
-	public boolean[] getAL1W() {
-		return AL1W;
+	public boolean[] getAl1w() {
+		return al1w;
 	}
 
-	public void setAL1W(boolean[] aL1W) {
-		AL1W = aL1W;
+	public void setAl1w(boolean[] al1w) {
+		this.al1w = al1w;
 	}
 
-	public boolean[] getAL1V() {
-		return AL1V;
+	public boolean[] getAl1v() {
+		return al1v;
 	}
 
-	public void setAL1V(boolean[] aL1V) {
-		AL1V = aL1V;
+	public void setAl1v(boolean[] al1v) {
+		this.al1v = al1v;
 	}
 
-	public boolean[] getAL2W() {
-		return AL2W;
+	public boolean[] getAl2w() {
+		return al2w;
 	}
 
-	public void setAL2W(boolean[] aL2W) {
-		AL2W = aL2W;
+	public void setAl2w(boolean[] al2w) {
+		this.al2w = al2w;
 	}
 
-	public boolean[] getAL2V() {
-		return AL2V;
+	public boolean[] getAl2v() {
+		return al2v;
 	}
 
-	public void setAL2V(boolean[] aL2V) {
-		AL2V = aL2V;
+	public void setAl2v(boolean[] al2v) {
+		this.al2v = al2v;
 	}
 
-	public boolean[] getAL3W() {
-		return AL3W;
+	public boolean[] getAl3w() {
+		return al3w;
 	}
 
-	public void setAL3W(boolean[] aL3W) {
-		AL3W = aL3W;
+	public void setAl3w(boolean[] al3w) {
+		this.al3w = al3w;
 	}
 
-	public boolean[] getAL3V() {
-		return AL3V;
+	public boolean[] getAl3v() {
+		return al3v;
 	}
 
-	public void setAL3V(boolean[] aL3V) {
-		AL3V = aL3V;
+	public void setAl3v(boolean[] al3v) {
+		this.al3v = al3v;
 	}
 
 	private static boolean[] readBooleanArray(DataInputStream dis) throws IOException {
