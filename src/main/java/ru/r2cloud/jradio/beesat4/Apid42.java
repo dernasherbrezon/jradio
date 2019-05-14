@@ -5,159 +5,161 @@ import java.io.IOException;
 
 public class Apid42 {
 
-	private double TLEDOY;    // TLE Day of Year
-	private double TLEMEM;    // TLE Mean motion
-	private double TLEECC;    // TLE Eccentricity
-	private double TLEINC;    // TLE Inclination
-	private double TLEAOP;    // TLE Arg of Perigee
-	private double TLERAA;    // TLE Right Ascension of Ascending Node
-	private double TLEMAN;    // TLE Mean Anomaly
-	private double TLEDRT;    // TLE Drag Term
-	private double TLEXPC;    // TLE X Pole Coordinate
-	private double TLEYPC;    // TLE Y Pole Coordinate
-	private double TLETTD;    // TLE TT and UTC time difference
-	private double TLEUTD;    // TLE UT and UTC time difference
-	private double TLEDEP;    // TLE Correction nutation angle (Delta Epsilon)
-	private double TLEDPS;    // TLE Correction nutation angle (Delta Psi)
-	private int TLEYEA;       // TLE Year
+	private double tledoy;    // TLE Day of Year
+	private double tlemem;    // TLE Mean motion
+	private double tleecc;    // TLE Eccentricity
+	private double tleinc;    // TLE Inclination
+	private double tleaop;    // TLE Arg of Perigee
+	private double tleraa;    // TLE Right Ascension of Ascending Node
+	private double tleman;    // TLE Mean Anomaly
+	private double tledrt;    // TLE Drag Term
+	private double tlexpc;    // TLE X Pole Coordinate
+	private double tleypc;    // TLE Y Pole Coordinate
+	private double tlettd;    // TLE TT and UTC time difference
+	private double tleutd;    // TLE UT and UTC time difference
+	private double tledep;    // TLE Correction nutation angle (Delta Epsilon)
+	private double tledps;    // TLE Correction nutation angle (Delta Psi)
+	private int tleyea;       // TLE Year
 
 	public Apid42(DataInputStream dis) throws IOException {
-		TLEDOY = dis.readDouble();
-		TLEMEM = dis.readDouble();
-		TLEECC = dis.readDouble();
-		TLEINC = dis.readDouble();
-		TLEAOP = dis.readDouble();
-		TLERAA = dis.readDouble();
-		TLEMAN = dis.readDouble();
-		TLEDRT = dis.readDouble();
-		TLEXPC = dis.readDouble();
-		TLEYPC = dis.readDouble();
-		TLETTD = dis.readDouble();
-		TLEUTD = dis.readDouble();
-		TLEDEP = dis.readDouble();
-		TLEDPS = dis.readDouble();
-		TLEYEA = dis.readUnsignedShort();
+		tledoy = dis.readDouble();
+		tlemem = dis.readDouble();
+		tleecc = dis.readDouble();
+		tleinc = dis.readDouble();
+		tleaop = dis.readDouble();
+		tleraa = dis.readDouble();
+		tleman = dis.readDouble();
+		tledrt = dis.readDouble();
+		tlexpc = dis.readDouble();
+		tleypc = dis.readDouble();
+		tlettd = dis.readDouble();
+		tleutd = dis.readDouble();
+		tledep = dis.readDouble();
+		tledps = dis.readDouble();
+		tleyea = dis.readUnsignedShort();
 		dis.skipBytes(12);
 	}
 
-	public double getTLEDOY() {
-		return TLEDOY;
+	public double getTledoy() {
+		return tledoy;
 	}
 
-	public void setTLEDOY(double tLEDOY) {
-		TLEDOY = tLEDOY;
+	public void setTledoy(double tledoy) {
+		this.tledoy = tledoy;
 	}
 
-	public double getTLEMEM() {
-		return TLEMEM;
+	public double getTlemem() {
+		return tlemem;
 	}
 
-	public void setTLEMEM(double tLEMEM) {
-		TLEMEM = tLEMEM;
+	public void setTlemem(double tlemem) {
+		this.tlemem = tlemem;
 	}
 
-	public double getTLEECC() {
-		return TLEECC;
+	public double getTleecc() {
+		return tleecc;
 	}
 
-	public void setTLEECC(double tLEECC) {
-		TLEECC = tLEECC;
+	public void setTleecc(double tleecc) {
+		this.tleecc = tleecc;
 	}
 
-	public double getTLEINC() {
-		return TLEINC;
+	public double getTleinc() {
+		return tleinc;
 	}
 
-	public void setTLEINC(double tLEINC) {
-		TLEINC = tLEINC;
+	public void setTleinc(double tleinc) {
+		this.tleinc = tleinc;
 	}
 
-	public double getTLEAOP() {
-		return TLEAOP;
+	public double getTleaop() {
+		return tleaop;
 	}
 
-	public void setTLEAOP(double tLEAOP) {
-		TLEAOP = tLEAOP;
+	public void setTleaop(double tleaop) {
+		this.tleaop = tleaop;
 	}
 
-	public double getTLERAA() {
-		return TLERAA;
+	public double getTleraa() {
+		return tleraa;
 	}
 
-	public void setTLERAA(double tLERAA) {
-		TLERAA = tLERAA;
+	public void setTleraa(double tleraa) {
+		this.tleraa = tleraa;
 	}
 
-	public double getTLEMAN() {
-		return TLEMAN;
+	public double getTleman() {
+		return tleman;
 	}
 
-	public void setTLEMAN(double tLEMAN) {
-		TLEMAN = tLEMAN;
+	public void setTleman(double tleman) {
+		this.tleman = tleman;
 	}
 
-	public double getTLEDRT() {
-		return TLEDRT;
+	public double getTledrt() {
+		return tledrt;
 	}
 
-	public void setTLEDRT(double tLEDRT) {
-		TLEDRT = tLEDRT;
+	public void setTledrt(double tledrt) {
+		this.tledrt = tledrt;
 	}
 
-	public double getTLEXPC() {
-		return TLEXPC;
+	public double getTlexpc() {
+		return tlexpc;
 	}
 
-	public void setTLEXPC(double tLEXPC) {
-		TLEXPC = tLEXPC;
+	public void setTlexpc(double tlexpc) {
+		this.tlexpc = tlexpc;
 	}
 
-	public double getTLEYPC() {
-		return TLEYPC;
+	public double getTleypc() {
+		return tleypc;
 	}
 
-	public void setTLEYPC(double tLEYPC) {
-		TLEYPC = tLEYPC;
+	public void setTleypc(double tleypc) {
+		this.tleypc = tleypc;
 	}
 
-	public double getTLETTD() {
-		return TLETTD;
+	public double getTlettd() {
+		return tlettd;
 	}
 
-	public void setTLETTD(double tLETTD) {
-		TLETTD = tLETTD;
+	public void setTlettd(double tlettd) {
+		this.tlettd = tlettd;
 	}
 
-	public double getTLEUTD() {
-		return TLEUTD;
+	public double getTleutd() {
+		return tleutd;
 	}
 
-	public void setTLEUTD(double tLEUTD) {
-		TLEUTD = tLEUTD;
+	public void setTleutd(double tleutd) {
+		this.tleutd = tleutd;
 	}
 
-	public double getTLEDEP() {
-		return TLEDEP;
+	public double getTledep() {
+		return tledep;
 	}
 
-	public void setTLEDEP(double tLEDEP) {
-		TLEDEP = tLEDEP;
+	public void setTledep(double tledep) {
+		this.tledep = tledep;
 	}
 
-	public double getTLEDPS() {
-		return TLEDPS;
+	public double getTledps() {
+		return tledps;
 	}
 
-	public void setTLEDPS(double tLEDPS) {
-		TLEDPS = tLEDPS;
+	public void setTledps(double tledps) {
+		this.tledps = tledps;
 	}
 
-	public int getTLEYEA() {
-		return TLEYEA;
+	public int getTleyea() {
+		return tleyea;
 	}
 
-	public void setTLEYEA(int tLEYEA) {
-		TLEYEA = tLEYEA;
+	public void setTleyea(int tleyea) {
+		this.tleyea = tleyea;
 	}
+
+	
 
 }
