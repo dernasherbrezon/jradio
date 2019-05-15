@@ -25,7 +25,7 @@ public class SourcePacket {
 	private Apid6_12 apid33_39;
 	private Apid40 apid40;
 	private Apid42 apid42;
-	private Apid43_50 apid43_50;
+	private Apid43U50 apid43_50;
 	private Apid51_54 apid51_54;
 	private Apid57 apid57;
 	private Apid58 apid58;
@@ -81,7 +81,7 @@ public class SourcePacket {
 		} else if (APID == 42) {
 			apid42 = new Apid42(dis);
 		} else if (APID >= 43 && APID <= 50) {
-			apid43_50 = new Apid43_50(dis);
+			apid43_50 = new Apid43U50(dis);
 		} else if (APID >= 51 && APID <= 54) {
 			apid51_54 = new Apid51_54(dis);
 		} else if (APID == 57) {
@@ -218,11 +218,11 @@ public class SourcePacket {
 		this.apid42 = apid42;
 	}
 
-	public Apid43_50 getApid43_50() {
+	public Apid43U50 getApid43_50() {
 		return apid43_50;
 	}
 
-	public void setApid43_50(Apid43_50 apid43_50) {
+	public void setApid43_50(Apid43U50 apid43_50) {
 		this.apid43_50 = apid43_50;
 	}
 
