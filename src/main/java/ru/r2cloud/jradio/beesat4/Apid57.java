@@ -5,319 +5,319 @@ import java.io.IOException;
 
 public class Apid57 {
 
-	private float MAG0SX; // MFS #0 Scale X
-	private float MAG1SX; // MFS #1 Scale X
-	private float MAG2SX; // MFS #2 Scale X
-	private float MAG0OX; // MFS #0 Offset X
-	private float MAG1OX; // MFS #1 Offset X
-	private float MAG2OX; // MFS #3 Offset X
-	private float MAG0XZ; // MFS #0 Orthogonal X-Z
-	private float MAG1XZ; // MFS #1 Orthogonal X-Z
-	private float MAG2XZ; // MFS #2 Orthogonal X-Z
-	private float MAG0SY; // MFS #0 Scale Y
-	private float MAG1SY; // MFS #1 Scale Y
-	private float MAG2SY; // MFS #2 Scale Y
-	private float MAG0OY; // MFS #0 Offset Y
-	private float MAG1OY; // MFS #1 Offset Y
-	private float MAG2OY; // MFS #2 Offset Y
-	private float MAG0YX; // MFS #0 Orthogonal Y-X
-	private float MAG1YX; // MFS #1 Orthogonal Y-X
-	private float MAG2YX; // MFS #2 Orthogonal Y-X
-	private float MAG0YZ; // MFS #0 Orthogonal Y-Z
-	private float MAG1YZ; // MFS #1 Orthogonal Y-Z
-	private float MAG2YZ; // MFS #2 Orthogonal Y-Z
-	private float MAG0SZ; // MFS #0 Scale Z
-	private float MAG1SZ; // MFS #1 Scale Z
-	private float MAG2SZ; // MFS #2 Scale Z
-	private float MAG0OZ; // MFS #0 Offset Z
-	private float MAG1OZ; // MFS #1 Offset Z
-	private float MAG2OZ; // MFS #2 Offset Z
-	private float MAG0TX; // MFS #0 Incline Temp X
-	private float MAG0TY; // MFS #0 Incline Temp Y
-	private float MAG0TZ; // MFS #0 Incline Temp Z
-	private float MAG1TX; // MFS #1 Incline Temp X
+	private float mag0sx; // mfs #0 scale x
+	private float mag1sx; // mfs #1 scale x
+	private float mag2sx; // mfs #2 scale x
+	private float mag0ox; // mfs #0 offset x
+	private float mag1ox; // mfs #1 offset x
+	private float mag2ox; // mfs #3 offset x
+	private float mag0xz; // mfs #0 orthogonal x-z
+	private float mag1xz; // mfs #1 orthogonal x-z
+	private float mag2xz; // mfs #2 orthogonal x-z
+	private float mag0sy; // mfs #0 scale y
+	private float mag1sy; // mfs #1 scale y
+	private float mag2sy; // mfs #2 scale y
+	private float mag0oy; // mfs #0 offset y
+	private float mag1oy; // mfs #1 offset y
+	private float mag2oy; // mfs #2 offset y
+	private float mag0yx; // mfs #0 orthogonal y-x
+	private float mag1yx; // mfs #1 orthogonal y-x
+	private float mag2yx; // mfs #2 orthogonal y-x
+	private float mag0yz; // mfs #0 orthogonal y-z
+	private float mag1yz; // mfs #1 orthogonal y-z
+	private float mag2yz; // mfs #2 orthogonal y-z
+	private float mag0sz; // mfs #0 scale z
+	private float mag1sz; // mfs #1 scale z
+	private float mag2sz; // mfs #2 scale z
+	private float mag0oz; // mfs #0 offset z
+	private float mag1oz; // mfs #1 offset z
+	private float mag2oz; // mfs #2 offset z
+	private float mag0tx; // mfs #0 incline temp x
+	private float mag0ty; // mfs #0 incline temp y
+	private float mag0tz; // mfs #0 incline temp z
+	private float mag1tx; // mfs #1 incline temp x
 
 	public Apid57(DataInputStream dis) throws IOException {
-		MAG0SX = dis.readFloat();
-		MAG1SX = dis.readFloat();
-		MAG2SX = dis.readFloat();
-		MAG0OX = dis.readFloat();
-		MAG1OX = dis.readFloat();
-		MAG2OX = dis.readFloat();
-		MAG0XZ = dis.readFloat();
-		MAG1XZ = dis.readFloat();
-		MAG2XZ = dis.readFloat();
-		MAG0SY = dis.readFloat();
-		MAG1SY = dis.readFloat();
-		MAG2SY = dis.readFloat();
-		MAG0OY = dis.readFloat();
-		MAG1OY = dis.readFloat();
-		MAG2OY = dis.readFloat();
-		MAG0YX = dis.readFloat();
-		MAG1YX = dis.readFloat();
-		MAG2YX = dis.readFloat();
-		MAG0YZ = dis.readFloat();
-		MAG1YZ = dis.readFloat();
-		MAG2YZ = dis.readFloat();
-		MAG0SZ = dis.readFloat();
-		MAG1SZ = dis.readFloat();
-		MAG2SZ = dis.readFloat();
-		MAG0OZ = dis.readFloat();
-		MAG1OZ = dis.readFloat();
-		MAG2OZ = dis.readFloat();
-		MAG0TX = dis.readFloat();
-		MAG0TY = dis.readFloat();
-		MAG0TZ = dis.readFloat();
-		MAG1TX = dis.readFloat();
+		mag0sx = dis.readFloat();
+		mag1sx = dis.readFloat();
+		mag2sx = dis.readFloat();
+		mag0ox = dis.readFloat();
+		mag1ox = dis.readFloat();
+		mag2ox = dis.readFloat();
+		mag0xz = dis.readFloat();
+		mag1xz = dis.readFloat();
+		mag2xz = dis.readFloat();
+		mag0sy = dis.readFloat();
+		mag1sy = dis.readFloat();
+		mag2sy = dis.readFloat();
+		mag0oy = dis.readFloat();
+		mag1oy = dis.readFloat();
+		mag2oy = dis.readFloat();
+		mag0yx = dis.readFloat();
+		mag1yx = dis.readFloat();
+		mag2yx = dis.readFloat();
+		mag0yz = dis.readFloat();
+		mag1yz = dis.readFloat();
+		mag2yz = dis.readFloat();
+		mag0sz = dis.readFloat();
+		mag1sz = dis.readFloat();
+		mag2sz = dis.readFloat();
+		mag0oz = dis.readFloat();
+		mag1oz = dis.readFloat();
+		mag2oz = dis.readFloat();
+		mag0tx = dis.readFloat();
+		mag0ty = dis.readFloat();
+		mag0tz = dis.readFloat();
+		mag1tx = dis.readFloat();
 		dis.skipBytes(2);
 	}
 
-	public float getMAG0SX() {
-		return MAG0SX;
+	public float getMag0sx() {
+		return mag0sx;
 	}
 
-	public void setMAG0SX(float mAG0SX) {
-		MAG0SX = mAG0SX;
+	public void setMag0sx(float mag0sx) {
+		this.mag0sx = mag0sx;
 	}
 
-	public float getMAG1SX() {
-		return MAG1SX;
+	public float getMag1sx() {
+		return mag1sx;
 	}
 
-	public void setMAG1SX(float mAG1SX) {
-		MAG1SX = mAG1SX;
+	public void setMag1sx(float mag1sx) {
+		this.mag1sx = mag1sx;
 	}
 
-	public float getMAG2SX() {
-		return MAG2SX;
+	public float getMag2sx() {
+		return mag2sx;
 	}
 
-	public void setMAG2SX(float mAG2SX) {
-		MAG2SX = mAG2SX;
+	public void setMag2sx(float mag2sx) {
+		this.mag2sx = mag2sx;
 	}
 
-	public float getMAG0OX() {
-		return MAG0OX;
+	public float getMag0ox() {
+		return mag0ox;
 	}
 
-	public void setMAG0OX(float mAG0OX) {
-		MAG0OX = mAG0OX;
+	public void setMag0ox(float mag0ox) {
+		this.mag0ox = mag0ox;
 	}
 
-	public float getMAG1OX() {
-		return MAG1OX;
+	public float getMag1ox() {
+		return mag1ox;
 	}
 
-	public void setMAG1OX(float mAG1OX) {
-		MAG1OX = mAG1OX;
+	public void setMag1ox(float mag1ox) {
+		this.mag1ox = mag1ox;
 	}
 
-	public float getMAG2OX() {
-		return MAG2OX;
+	public float getMag2ox() {
+		return mag2ox;
 	}
 
-	public void setMAG2OX(float mAG2OX) {
-		MAG2OX = mAG2OX;
+	public void setMag2ox(float mag2ox) {
+		this.mag2ox = mag2ox;
 	}
 
-	public float getMAG0XZ() {
-		return MAG0XZ;
+	public float getMag0xz() {
+		return mag0xz;
 	}
 
-	public void setMAG0XZ(float mAG0XZ) {
-		MAG0XZ = mAG0XZ;
+	public void setMag0xz(float mag0xz) {
+		this.mag0xz = mag0xz;
 	}
 
-	public float getMAG1XZ() {
-		return MAG1XZ;
+	public float getMag1xz() {
+		return mag1xz;
 	}
 
-	public void setMAG1XZ(float mAG1XZ) {
-		MAG1XZ = mAG1XZ;
+	public void setMag1xz(float mag1xz) {
+		this.mag1xz = mag1xz;
 	}
 
-	public float getMAG2XZ() {
-		return MAG2XZ;
+	public float getMag2xz() {
+		return mag2xz;
 	}
 
-	public void setMAG2XZ(float mAG2XZ) {
-		MAG2XZ = mAG2XZ;
+	public void setMag2xz(float mag2xz) {
+		this.mag2xz = mag2xz;
 	}
 
-	public float getMAG0SY() {
-		return MAG0SY;
+	public float getMag0sy() {
+		return mag0sy;
 	}
 
-	public void setMAG0SY(float mAG0SY) {
-		MAG0SY = mAG0SY;
+	public void setMag0sy(float mag0sy) {
+		this.mag0sy = mag0sy;
 	}
 
-	public float getMAG1SY() {
-		return MAG1SY;
+	public float getMag1sy() {
+		return mag1sy;
 	}
 
-	public void setMAG1SY(float mAG1SY) {
-		MAG1SY = mAG1SY;
+	public void setMag1sy(float mag1sy) {
+		this.mag1sy = mag1sy;
 	}
 
-	public float getMAG2SY() {
-		return MAG2SY;
+	public float getMag2sy() {
+		return mag2sy;
 	}
 
-	public void setMAG2SY(float mAG2SY) {
-		MAG2SY = mAG2SY;
+	public void setMag2sy(float mag2sy) {
+		this.mag2sy = mag2sy;
 	}
 
-	public float getMAG0OY() {
-		return MAG0OY;
+	public float getMag0oy() {
+		return mag0oy;
 	}
 
-	public void setMAG0OY(float mAG0OY) {
-		MAG0OY = mAG0OY;
+	public void setMag0oy(float mag0oy) {
+		this.mag0oy = mag0oy;
 	}
 
-	public float getMAG1OY() {
-		return MAG1OY;
+	public float getMag1oy() {
+		return mag1oy;
 	}
 
-	public void setMAG1OY(float mAG1OY) {
-		MAG1OY = mAG1OY;
+	public void setMag1oy(float mag1oy) {
+		this.mag1oy = mag1oy;
 	}
 
-	public float getMAG2OY() {
-		return MAG2OY;
+	public float getMag2oy() {
+		return mag2oy;
 	}
 
-	public void setMAG2OY(float mAG2OY) {
-		MAG2OY = mAG2OY;
+	public void setMag2oy(float mag2oy) {
+		this.mag2oy = mag2oy;
 	}
 
-	public float getMAG0YX() {
-		return MAG0YX;
+	public float getMag0yx() {
+		return mag0yx;
 	}
 
-	public void setMAG0YX(float mAG0YX) {
-		MAG0YX = mAG0YX;
+	public void setMag0yx(float mag0yx) {
+		this.mag0yx = mag0yx;
 	}
 
-	public float getMAG1YX() {
-		return MAG1YX;
+	public float getMag1yx() {
+		return mag1yx;
 	}
 
-	public void setMAG1YX(float mAG1YX) {
-		MAG1YX = mAG1YX;
+	public void setMag1yx(float mag1yx) {
+		this.mag1yx = mag1yx;
 	}
 
-	public float getMAG2YX() {
-		return MAG2YX;
+	public float getMag2yx() {
+		return mag2yx;
 	}
 
-	public void setMAG2YX(float mAG2YX) {
-		MAG2YX = mAG2YX;
+	public void setMag2yx(float mag2yx) {
+		this.mag2yx = mag2yx;
 	}
 
-	public float getMAG0YZ() {
-		return MAG0YZ;
+	public float getMag0yz() {
+		return mag0yz;
 	}
 
-	public void setMAG0YZ(float mAG0YZ) {
-		MAG0YZ = mAG0YZ;
+	public void setMag0yz(float mag0yz) {
+		this.mag0yz = mag0yz;
 	}
 
-	public float getMAG1YZ() {
-		return MAG1YZ;
+	public float getMag1yz() {
+		return mag1yz;
 	}
 
-	public void setMAG1YZ(float mAG1YZ) {
-		MAG1YZ = mAG1YZ;
+	public void setMag1yz(float mag1yz) {
+		this.mag1yz = mag1yz;
 	}
 
-	public float getMAG2YZ() {
-		return MAG2YZ;
+	public float getMag2yz() {
+		return mag2yz;
 	}
 
-	public void setMAG2YZ(float mAG2YZ) {
-		MAG2YZ = mAG2YZ;
+	public void setMag2yz(float mag2yz) {
+		this.mag2yz = mag2yz;
 	}
 
-	public float getMAG0SZ() {
-		return MAG0SZ;
+	public float getMag0sz() {
+		return mag0sz;
 	}
 
-	public void setMAG0SZ(float mAG0SZ) {
-		MAG0SZ = mAG0SZ;
+	public void setMag0sz(float mag0sz) {
+		this.mag0sz = mag0sz;
 	}
 
-	public float getMAG1SZ() {
-		return MAG1SZ;
+	public float getMag1sz() {
+		return mag1sz;
 	}
 
-	public void setMAG1SZ(float mAG1SZ) {
-		MAG1SZ = mAG1SZ;
+	public void setMag1sz(float mag1sz) {
+		this.mag1sz = mag1sz;
 	}
 
-	public float getMAG2SZ() {
-		return MAG2SZ;
+	public float getMag2sz() {
+		return mag2sz;
 	}
 
-	public void setMAG2SZ(float mAG2SZ) {
-		MAG2SZ = mAG2SZ;
+	public void setMag2sz(float mag2sz) {
+		this.mag2sz = mag2sz;
 	}
 
-	public float getMAG0OZ() {
-		return MAG0OZ;
+	public float getMag0oz() {
+		return mag0oz;
 	}
 
-	public void setMAG0OZ(float mAG0OZ) {
-		MAG0OZ = mAG0OZ;
+	public void setMag0oz(float mag0oz) {
+		this.mag0oz = mag0oz;
 	}
 
-	public float getMAG1OZ() {
-		return MAG1OZ;
+	public float getMag1oz() {
+		return mag1oz;
 	}
 
-	public void setMAG1OZ(float mAG1OZ) {
-		MAG1OZ = mAG1OZ;
+	public void setMag1oz(float mag1oz) {
+		this.mag1oz = mag1oz;
 	}
 
-	public float getMAG2OZ() {
-		return MAG2OZ;
+	public float getMag2oz() {
+		return mag2oz;
 	}
 
-	public void setMAG2OZ(float mAG2OZ) {
-		MAG2OZ = mAG2OZ;
+	public void setMag2oz(float mag2oz) {
+		this.mag2oz = mag2oz;
 	}
 
-	public float getMAG0TX() {
-		return MAG0TX;
+	public float getMag0tx() {
+		return mag0tx;
 	}
 
-	public void setMAG0TX(float mAG0TX) {
-		MAG0TX = mAG0TX;
+	public void setMag0tx(float mag0tx) {
+		this.mag0tx = mag0tx;
 	}
 
-	public float getMAG0TY() {
-		return MAG0TY;
+	public float getMag0ty() {
+		return mag0ty;
 	}
 
-	public void setMAG0TY(float mAG0TY) {
-		MAG0TY = mAG0TY;
+	public void setMag0ty(float mag0ty) {
+		this.mag0ty = mag0ty;
 	}
 
-	public float getMAG0TZ() {
-		return MAG0TZ;
+	public float getMag0tz() {
+		return mag0tz;
 	}
 
-	public void setMAG0TZ(float mAG0TZ) {
-		MAG0TZ = mAG0TZ;
+	public void setMag0tz(float mag0tz) {
+		this.mag0tz = mag0tz;
 	}
 
-	public float getMAG1TX() {
-		return MAG1TX;
+	public float getMag1tx() {
+		return mag1tx;
 	}
 
-	public void setMAG1TX(float mAG1TX) {
-		MAG1TX = mAG1TX;
+	public void setMag1tx(float mag1tx) {
+		this.mag1tx = mag1tx;
 	}
 
 }
