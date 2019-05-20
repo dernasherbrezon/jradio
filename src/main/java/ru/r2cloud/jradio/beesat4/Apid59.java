@@ -5,321 +5,321 @@ import java.io.IOException;
 
 public class Apid59 {
 
-	private float ACSIXX;           //  Moment Of Inertia x,x
-	private float ACSIYX;           //  Moment Of Inertia y,x
-	private float ACSIZX;           //  Moment Of Inertia z,x
-	private float ACSIXY;           //  Moment Of Inertia x,y
-	private float ACSIYY;           //  Moment Of Inertia y,y
-	private float ACSIZY;           //  Moment Of Inertia z,y
-	private float ACSIXZ;           //  Moment Of Inertia x,z
-	private float ACSIYZ;           //  Moment Of Inertia y,z
-	private float ACSIZZ;           //  Moment Of Inertia z,z
-	private float ACSCDM;           //  c_dpm
-	private float ACSCSM;           //  c_slm
-	private float ACSKSM;           //  k_slm
-	private float ACSISM;           //  i_slm
-	private float ACSASM;           //  Slew Amplifier
-	private float ACSDSM;           //  Disturbance Amplifier
-	private float ACSDIX;           //  Dipole X
-	private float ACSDIY;           //  Dipole Y
-	private float ACSDIZ;           //  Dipole Z
-	private float ACSSEK;           //  SEPM k
-	private float ACSSEG;           //  SEPM g
-	private float ACSSEE;           //  SEPM epsilon
-	private float ACSSIK;           //  SIPM k
-	private float ACSSIG;           //  SIPM g
-	private float ACSSIE;           //  SIPM epsilon
-	private float ACSSTK;           //  STPM k
-	private float ACSSTG;           //  STPM g
-	private float ACSSTE;           //  STPM epsilon
-	private float ACSSZK;           //  ZPM k
-	private float ACSSZG;           //  ZPM g
-	private float ACSSZE;           //  ZPM epsilon
-                                    
-	private boolean ACSOSM;         //  Only Slew Mode
+	private float acsixx; // Moment Of Inertia x,x
+	private float acsiyx; // Moment Of Inertia y,x
+	private float acsizx; // Moment Of Inertia z,x
+	private float acsixy; // Moment Of Inertia x,y
+	private float acsiyy; // Moment Of Inertia y,y
+	private float acsizy; // Moment Of Inertia z,y
+	private float acsixz; // Moment Of Inertia x,z
+	private float acsiyz; // Moment Of Inertia y,z
+	private float acsizz; // Moment Of Inertia z,z
+	private float acscdm; // c_dpm
+	private float acscsm; // c_slm
+	private float acsksm; // k_slm
+	private float acsism; // i_slm
+	private float acsasm; // Slew Amplifier
+	private float acsdsm; // Disturbance Amplifier
+	private float acsdix; // Dipole X
+	private float acsdiy; // Dipole Y
+	private float acsdiz; // Dipole Z
+	private float acssek; // SEPM k
+	private float acsseg; // SEPM g
+	private float acssee; // SEPM epsilon
+	private float acssik; // SIPM k
+	private float acssig; // SIPM g
+	private float acssie; // SIPM epsilon
+	private float acsstk; // STPM k
+	private float acsstg; // STPM g
+	private float acsste; // STPM epsilon
+	private float acsszk; // ZPM k
+	private float acsszg; // ZPM g
+	private float acssze; // ZPM epsilon
+
+	private boolean acsosm; // Only Slew Mode
 
 	public Apid59(DataInputStream dis) throws IOException {
-		ACSIXX = dis.readFloat();
-		ACSIYX = dis.readFloat();
-		ACSIZX = dis.readFloat();
-		ACSIXY = dis.readFloat();
-		ACSIYY = dis.readFloat();
-		ACSIZY = dis.readFloat();
-		ACSIXZ = dis.readFloat();
-		ACSIYZ = dis.readFloat();
-		ACSIZZ = dis.readFloat();
-		ACSCDM = dis.readFloat();
-		ACSCSM = dis.readFloat();
-		ACSKSM = dis.readFloat();
-		ACSISM = dis.readFloat();
-		ACSASM = dis.readFloat();
-		ACSDSM = dis.readFloat();
-		ACSDIX = dis.readFloat();
-		ACSDIY = dis.readFloat();
-		ACSDIZ = dis.readFloat();
-		ACSSEK = dis.readFloat();
-		ACSSEG = dis.readFloat();
-		ACSSEE = dis.readFloat();
-		ACSSIK = dis.readFloat();
-		ACSSIG = dis.readFloat();
-		ACSSIE = dis.readFloat();
-		ACSSTK = dis.readFloat();
-		ACSSTG = dis.readFloat();
-		ACSSTE = dis.readFloat();
-		ACSSZK = dis.readFloat();
-		ACSSZG = dis.readFloat();
-		ACSSZE = dis.readFloat();
+		acsixx = dis.readFloat();
+		acsiyx = dis.readFloat();
+		acsizx = dis.readFloat();
+		acsixy = dis.readFloat();
+		acsiyy = dis.readFloat();
+		acsizy = dis.readFloat();
+		acsixz = dis.readFloat();
+		acsiyz = dis.readFloat();
+		acsizz = dis.readFloat();
+		acscdm = dis.readFloat();
+		acscsm = dis.readFloat();
+		acsksm = dis.readFloat();
+		acsism = dis.readFloat();
+		acsasm = dis.readFloat();
+		acsdsm = dis.readFloat();
+		acsdix = dis.readFloat();
+		acsdiy = dis.readFloat();
+		acsdiz = dis.readFloat();
+		acssek = dis.readFloat();
+		acsseg = dis.readFloat();
+		acssee = dis.readFloat();
+		acssik = dis.readFloat();
+		acssig = dis.readFloat();
+		acssie = dis.readFloat();
+		acsstk = dis.readFloat();
+		acsstg = dis.readFloat();
+		acsste = dis.readFloat();
+		acsszk = dis.readFloat();
+		acsszg = dis.readFloat();
+		acssze = dis.readFloat();
 		dis.skipBytes(5);
 		int raw = dis.readUnsignedByte();
-		ACSOSM = (raw & 0x1) > 0;
+		acsosm = (raw & 0x1) > 0;
 	}
 
-	public float getACSIXX() {
-		return ACSIXX;
+	public float getAcsixx() {
+		return acsixx;
 	}
 
-	public void setACSIXX(float aCSIXX) {
-		ACSIXX = aCSIXX;
+	public void setAcsixx(float acsixx) {
+		this.acsixx = acsixx;
 	}
 
-	public float getACSIYX() {
-		return ACSIYX;
+	public float getAcsiyx() {
+		return acsiyx;
 	}
 
-	public void setACSIYX(float aCSIYX) {
-		ACSIYX = aCSIYX;
+	public void setAcsiyx(float acsiyx) {
+		this.acsiyx = acsiyx;
 	}
 
-	public float getACSIZX() {
-		return ACSIZX;
+	public float getAcsizx() {
+		return acsizx;
 	}
 
-	public void setACSIZX(float aCSIZX) {
-		ACSIZX = aCSIZX;
+	public void setAcsizx(float acsizx) {
+		this.acsizx = acsizx;
 	}
 
-	public float getACSIXY() {
-		return ACSIXY;
+	public float getAcsixy() {
+		return acsixy;
 	}
 
-	public void setACSIXY(float aCSIXY) {
-		ACSIXY = aCSIXY;
+	public void setAcsixy(float acsixy) {
+		this.acsixy = acsixy;
 	}
 
-	public float getACSIYY() {
-		return ACSIYY;
+	public float getAcsiyy() {
+		return acsiyy;
 	}
 
-	public void setACSIYY(float aCSIYY) {
-		ACSIYY = aCSIYY;
+	public void setAcsiyy(float acsiyy) {
+		this.acsiyy = acsiyy;
 	}
 
-	public float getACSIZY() {
-		return ACSIZY;
+	public float getAcsizy() {
+		return acsizy;
 	}
 
-	public void setACSIZY(float aCSIZY) {
-		ACSIZY = aCSIZY;
+	public void setAcsizy(float acsizy) {
+		this.acsizy = acsizy;
 	}
 
-	public float getACSIXZ() {
-		return ACSIXZ;
+	public float getAcsixz() {
+		return acsixz;
 	}
 
-	public void setACSIXZ(float aCSIXZ) {
-		ACSIXZ = aCSIXZ;
+	public void setAcsixz(float acsixz) {
+		this.acsixz = acsixz;
 	}
 
-	public float getACSIYZ() {
-		return ACSIYZ;
+	public float getAcsiyz() {
+		return acsiyz;
 	}
 
-	public void setACSIYZ(float aCSIYZ) {
-		ACSIYZ = aCSIYZ;
+	public void setAcsiyz(float acsiyz) {
+		this.acsiyz = acsiyz;
 	}
 
-	public float getACSIZZ() {
-		return ACSIZZ;
+	public float getAcsizz() {
+		return acsizz;
 	}
 
-	public void setACSIZZ(float aCSIZZ) {
-		ACSIZZ = aCSIZZ;
+	public void setAcsizz(float acsizz) {
+		this.acsizz = acsizz;
 	}
 
-	public float getACSCDM() {
-		return ACSCDM;
+	public float getAcscdm() {
+		return acscdm;
 	}
 
-	public void setACSCDM(float aCSCDM) {
-		ACSCDM = aCSCDM;
+	public void setAcscdm(float acscdm) {
+		this.acscdm = acscdm;
 	}
 
-	public float getACSCSM() {
-		return ACSCSM;
+	public float getAcscsm() {
+		return acscsm;
 	}
 
-	public void setACSCSM(float aCSCSM) {
-		ACSCSM = aCSCSM;
+	public void setAcscsm(float acscsm) {
+		this.acscsm = acscsm;
 	}
 
-	public float getACSKSM() {
-		return ACSKSM;
+	public float getAcsksm() {
+		return acsksm;
 	}
 
-	public void setACSKSM(float aCSKSM) {
-		ACSKSM = aCSKSM;
+	public void setAcsksm(float acsksm) {
+		this.acsksm = acsksm;
 	}
 
-	public float getACSISM() {
-		return ACSISM;
+	public float getAcsism() {
+		return acsism;
 	}
 
-	public void setACSISM(float aCSISM) {
-		ACSISM = aCSISM;
+	public void setAcsism(float acsism) {
+		this.acsism = acsism;
 	}
 
-	public float getACSASM() {
-		return ACSASM;
+	public float getAcsasm() {
+		return acsasm;
 	}
 
-	public void setACSASM(float aCSASM) {
-		ACSASM = aCSASM;
+	public void setAcsasm(float acsasm) {
+		this.acsasm = acsasm;
 	}
 
-	public float getACSDSM() {
-		return ACSDSM;
+	public float getAcsdsm() {
+		return acsdsm;
 	}
 
-	public void setACSDSM(float aCSDSM) {
-		ACSDSM = aCSDSM;
+	public void setAcsdsm(float acsdsm) {
+		this.acsdsm = acsdsm;
 	}
 
-	public float getACSDIX() {
-		return ACSDIX;
+	public float getAcsdix() {
+		return acsdix;
 	}
 
-	public void setACSDIX(float aCSDIX) {
-		ACSDIX = aCSDIX;
+	public void setAcsdix(float acsdix) {
+		this.acsdix = acsdix;
 	}
 
-	public float getACSDIY() {
-		return ACSDIY;
+	public float getAcsdiy() {
+		return acsdiy;
 	}
 
-	public void setACSDIY(float aCSDIY) {
-		ACSDIY = aCSDIY;
+	public void setAcsdiy(float acsdiy) {
+		this.acsdiy = acsdiy;
 	}
 
-	public float getACSDIZ() {
-		return ACSDIZ;
+	public float getAcsdiz() {
+		return acsdiz;
 	}
 
-	public void setACSDIZ(float aCSDIZ) {
-		ACSDIZ = aCSDIZ;
+	public void setAcsdiz(float acsdiz) {
+		this.acsdiz = acsdiz;
 	}
 
-	public float getACSSEK() {
-		return ACSSEK;
+	public float getAcssek() {
+		return acssek;
 	}
 
-	public void setACSSEK(float aCSSEK) {
-		ACSSEK = aCSSEK;
+	public void setAcssek(float acssek) {
+		this.acssek = acssek;
 	}
 
-	public float getACSSEG() {
-		return ACSSEG;
+	public float getAcsseg() {
+		return acsseg;
 	}
 
-	public void setACSSEG(float aCSSEG) {
-		ACSSEG = aCSSEG;
+	public void setAcsseg(float acsseg) {
+		this.acsseg = acsseg;
 	}
 
-	public float getACSSEE() {
-		return ACSSEE;
+	public float getAcssee() {
+		return acssee;
 	}
 
-	public void setACSSEE(float aCSSEE) {
-		ACSSEE = aCSSEE;
+	public void setAcssee(float acssee) {
+		this.acssee = acssee;
 	}
 
-	public float getACSSIK() {
-		return ACSSIK;
+	public float getAcssik() {
+		return acssik;
 	}
 
-	public void setACSSIK(float aCSSIK) {
-		ACSSIK = aCSSIK;
+	public void setAcssik(float acssik) {
+		this.acssik = acssik;
 	}
 
-	public float getACSSIG() {
-		return ACSSIG;
+	public float getAcssig() {
+		return acssig;
 	}
 
-	public void setACSSIG(float aCSSIG) {
-		ACSSIG = aCSSIG;
+	public void setAcssig(float acssig) {
+		this.acssig = acssig;
 	}
 
-	public float getACSSIE() {
-		return ACSSIE;
+	public float getAcssie() {
+		return acssie;
 	}
 
-	public void setACSSIE(float aCSSIE) {
-		ACSSIE = aCSSIE;
+	public void setAcssie(float acssie) {
+		this.acssie = acssie;
 	}
 
-	public float getACSSTK() {
-		return ACSSTK;
+	public float getAcsstk() {
+		return acsstk;
 	}
 
-	public void setACSSTK(float aCSSTK) {
-		ACSSTK = aCSSTK;
+	public void setAcsstk(float acsstk) {
+		this.acsstk = acsstk;
 	}
 
-	public float getACSSTG() {
-		return ACSSTG;
+	public float getAcsstg() {
+		return acsstg;
 	}
 
-	public void setACSSTG(float aCSSTG) {
-		ACSSTG = aCSSTG;
+	public void setAcsstg(float acsstg) {
+		this.acsstg = acsstg;
 	}
 
-	public float getACSSTE() {
-		return ACSSTE;
+	public float getAcsste() {
+		return acsste;
 	}
 
-	public void setACSSTE(float aCSSTE) {
-		ACSSTE = aCSSTE;
+	public void setAcsste(float acsste) {
+		this.acsste = acsste;
 	}
 
-	public float getACSSZK() {
-		return ACSSZK;
+	public float getAcsszk() {
+		return acsszk;
 	}
 
-	public void setACSSZK(float aCSSZK) {
-		ACSSZK = aCSSZK;
+	public void setAcsszk(float acsszk) {
+		this.acsszk = acsszk;
 	}
 
-	public float getACSSZG() {
-		return ACSSZG;
+	public float getAcsszg() {
+		return acsszg;
 	}
 
-	public void setACSSZG(float aCSSZG) {
-		ACSSZG = aCSSZG;
+	public void setAcsszg(float acsszg) {
+		this.acsszg = acsszg;
 	}
 
-	public float getACSSZE() {
-		return ACSSZE;
+	public float getAcssze() {
+		return acssze;
 	}
 
-	public void setACSSZE(float aCSSZE) {
-		ACSSZE = aCSSZE;
+	public void setAcssze(float acssze) {
+		this.acssze = acssze;
 	}
 
-	public boolean isACSOSM() {
-		return ACSOSM;
+	public boolean isAcsosm() {
+		return acsosm;
 	}
 
-	public void setACSOSM(boolean aCSOSM) {
-		ACSOSM = aCSOSM;
+	public void setAcsosm(boolean acsosm) {
+		this.acsosm = acsosm;
 	}
 
 }
