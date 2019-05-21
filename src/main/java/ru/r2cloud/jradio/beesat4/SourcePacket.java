@@ -16,13 +16,13 @@ public class SourcePacket {
 	private Apid3 apid3;
 	private Apid4 apid4;
 	private Apid5 apid5;
-	private Apid6_12 apid6_12;
+	private Apid6U12 apid6_12;
 	private Apid13 apid13;
 	private Apid14U29 apid14_29;
 	private Apid30 apid30;
 	private Apid31 apid31;
 	private Apid32 apid32;
-	private Apid6_12 apid33_39;
+	private Apid6U12 apid33_39;
 	private Apid40 apid40;
 	private Apid42 apid42;
 	private Apid43U50 apid43_50;
@@ -30,7 +30,7 @@ public class SourcePacket {
 	private Apid57 apid57;
 	private Apid58 apid58;
 	private Apid59 apid59;
-	private Apid6_12 apid60_66;
+	private Apid6U12 apid60_66;
 
 	private int PVN; // Packet version number
 	private boolean PT; // Packet Type Indicator
@@ -63,7 +63,7 @@ public class SourcePacket {
 		} else if (APID == 5) {
 			apid5 = new Apid5(dis);
 		} else if (APID >= 6 && APID <= 12) {
-			apid6_12 = new Apid6_12(dis);
+			apid6_12 = new Apid6U12(dis);
 		} else if (APID == 13) {
 			apid13 = new Apid13(dis);
 		} else if (APID >= 14 && APID <= 29) {
@@ -75,7 +75,7 @@ public class SourcePacket {
 		} else if (APID == 32) {
 			apid32 = new Apid32(dis);
 		} else if (APID >= 33 && APID <= 39) {
-			apid33_39 = new Apid6_12(dis);
+			apid33_39 = new Apid6U12(dis);
 		} else if (APID == 40) {
 			apid40 = new Apid40(dis);
 		} else if (APID == 42) {
@@ -91,7 +91,7 @@ public class SourcePacket {
 		} else if (APID == 59) {
 			apid59 = new Apid59(dis);
 		} else if (APID >= 60 && APID <= 66) {
-			apid60_66 = new Apid6_12(dis);
+			apid60_66 = new Apid6U12(dis);
 		} else {
 			LOG.error("unknown apid: {}", APID);
 			dis.skipBytes(126);
@@ -146,11 +146,11 @@ public class SourcePacket {
 		this.apid5 = apid5;
 	}
 
-	public Apid6_12 getApid6_12() {
+	public Apid6U12 getApid6_12() {
 		return apid6_12;
 	}
 
-	public void setApid6_12(Apid6_12 apid6_12) {
+	public void setApid6_12(Apid6U12 apid6_12) {
 		this.apid6_12 = apid6_12;
 	}
 
@@ -194,11 +194,11 @@ public class SourcePacket {
 		this.apid32 = apid32;
 	}
 
-	public Apid6_12 getApid33_39() {
+	public Apid6U12 getApid33_39() {
 		return apid33_39;
 	}
 
-	public void setApid33_39(Apid6_12 apid33_39) {
+	public void setApid33_39(Apid6U12 apid33_39) {
 		this.apid33_39 = apid33_39;
 	}
 
@@ -258,11 +258,11 @@ public class SourcePacket {
 		this.apid59 = apid59;
 	}
 
-	public Apid6_12 getApid60_66() {
+	public Apid6U12 getApid60_66() {
 		return apid60_66;
 	}
 
-	public void setApid60_66(Apid6_12 apid60_66) {
+	public void setApid60_66(Apid6U12 apid60_66) {
 		this.apid60_66 = apid60_66;
 	}
 

@@ -5,7 +5,7 @@ import java.util.Map;
 
 public enum PdhMode {
 
-	Idle(0), Wait(1), Configuration(2), CaptureMeta(3), CaptureImage(4), SaveMeta(5), SaveImage(6), DeleteSlot(7), ResetSlot(8), InitCamera(11);
+	IDLE(0), WAIT(1), CONFIGURATION(2), CAPTUREMETA(3), CAPTUREIMAGE(4), SAVEMETA(5), SAVEIMAGE(6), DELETESLOT(7), RESETSLOT(8), INITCAMERA(11);
 
 	private final int code;
 	private static final Map<Integer, PdhMode> typeByCode = new HashMap<>();
