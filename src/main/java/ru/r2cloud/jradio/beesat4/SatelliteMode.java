@@ -5,7 +5,7 @@ import java.util.Map;
 
 public enum SatelliteMode {
 	
-	Safe(0), Standby(1), LEOP(2), Active(3);
+	SAFE(0), STANDBY(1), LEOP(2), ACTIVE(3);
 
 	private final int code;
 	private static final Map<Integer, SatelliteMode> typeByCode = new HashMap<>();
