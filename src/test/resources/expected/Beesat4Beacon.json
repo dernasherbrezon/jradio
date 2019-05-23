@@ -126,13 +126,13 @@
           "acsqdes03": 1.0,
           "acsgyr": 3
         },
-        "PVN": 0,
-        "PT": false,
-        "SHF": false,
-        "APID": 0,
-        "SEQFLAG": 3,
-        "PSC": 1611,
-        "PDL": 125
+        "pvn": 0,
+        "pt": false,
+        "shf": false,
+        "apid": 0,
+        "seqflag": 3,
+        "psc": 1611,
+        "pdl": 125
       }
     },
     {
@@ -335,13 +335,13 @@
           "acsamz": 0.0,
           "acsamx": -0.0
         },
-        "PVN": 0,
-        "PT": false,
-        "SHF": false,
-        "APID": 1,
-        "SEQFLAG": 3,
-        "PSC": 706,
-        "PDL": 125
+        "pvn": 0,
+        "pt": false,
+        "shf": false,
+        "apid": 1,
+        "seqflag": 3,
+        "psc": 706,
+        "pdl": 125
       }
     },
     {
@@ -491,13 +491,13 @@
           "epsTcsReserve": 7,
           "obcsw8": 150
         },
-        "PVN": 0,
-        "PT": false,
-        "SHF": false,
-        "APID": 2,
-        "SEQFLAG": 3,
-        "PSC": 706,
-        "PDL": 125
+        "pvn": 0,
+        "pt": false,
+        "shf": false,
+        "apid": 2,
+        "seqflag": 3,
+        "psc": 706,
+        "pdl": 125
       }
     },
     {
@@ -515,7 +515,7 @@
       "FHP": 0,
       "FECFD": 38403,
       "packet": {
-        "apid6_12": {
+        "apid6U12": {
           "crc": [
             3757236279,
             1736542853,
@@ -550,13 +550,13 @@
             3022599221
           ]
         },
-        "PVN": 0,
-        "PT": false,
-        "SHF": false,
-        "APID": 7,
-        "SEQFLAG": 3,
-        "PSC": 633,
-        "PDL": 125
+        "pvn": 0,
+        "pt": false,
+        "shf": false,
+        "apid": 7,
+        "seqflag": 3,
+        "psc": 633,
+        "pdl": 125
       }
     }
   ],
