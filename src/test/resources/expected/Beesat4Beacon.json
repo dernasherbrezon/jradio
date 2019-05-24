@@ -75,7 +75,7 @@
           "mczpol": false,
           "obcbad": 0,
           "beacon": false,
-          "modcom": "Transceive0",
+          "modcom": "TRANSCEIVE0",
           "obcabc": 4,
           "modobc": "ACTIVE",
           "ccecan": 0,

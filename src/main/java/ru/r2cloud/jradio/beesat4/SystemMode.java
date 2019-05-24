@@ -5,7 +5,7 @@ import java.util.Map;
 
 public enum SystemMode {
 	
-	Pause0(0), Pause1(1), Listen0(2), Listen1(3), Transceive0(4), Transceive1(5), Beacon0(6), Beacon1(7);
+	PAUSE0(0), PAUSE1(1), LISTEN0(2), LISTEN1(3), TRANSCEIVE0(4), TRANSCEIVE1(5), BEACON0(6), BEACON1(7);
 
 	private final int code;
 	private static final Map<Integer, SystemMode> typeByCode = new HashMap<>();
