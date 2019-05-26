@@ -33,7 +33,9 @@ public abstract class CMX909bBeacon extends Beacon {
 	public void readBeacon(byte[] data) throws IOException, UncorrectableException {
 		DataInputStream dis = new DataInputStream(new ByteArrayInputStream(data));
 		header = new CMX909bHeader(dis);
-
+		if (header.getControl1().getType() == null) {
+			throw new UncorrectableException("unknown message type");
+		}
 		byte[] callsignBytes = new byte[6];
 		dis.readFully(callsignBytes);
 		int expectedCallsignCrc = (dis.readUnsignedByte() << 8) | dis.readUnsignedByte();
@@ -44,14 +46,15 @@ public abstract class CMX909bBeacon extends Beacon {
 			}
 		}
 		callsign = new String(callsignBytes, StandardCharsets.ISO_8859_1);
-		if (header.getControl1().getType() == null) {
-			return;
-		}
+
 		MobitexRandomizer randomizer = new MobitexRandomizer();
 		switch (header.getControl1().getType()) {
 		case ACK:
 		case ERROR_CORRECTION:
 			shortDataBlock = readShortDataBlock(randomizer, dis);
+			if (shortDataBlock == null) {
+				throw new UncorrectableException("unable to recover short data block");
+			}
 			break;
 		default:
 			byte[] dataFromBlocks = readDataBlocks(header, randomizer, dis);
