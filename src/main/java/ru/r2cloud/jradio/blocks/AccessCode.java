@@ -2,7 +2,7 @@ package ru.r2cloud.jradio.blocks;
 
 public class AccessCode {
 
-	private long accessCode;
+	private long code;
 	private long mask;
 	private int length;
 
@@ -15,19 +15,19 @@ public class AccessCode {
 		// set len bottom bits to 1.
 		mask = (~0L >>> (64 - length));
 
-		accessCode = 0;
+		code = 0;
 		for (int i = 0; i < length; i++) {
-			accessCode = (accessCode << 1) | (Byte.valueOf(String.valueOf(accessCodeBinary.charAt(i))) & 1);
+			code = (code << 1) | (Byte.valueOf(String.valueOf(accessCodeBinary.charAt(i))) & 1);
 		}
 	}
 
 	public long correlate(long dataRegister) {
-		long wrong_bits = (dataRegister ^ accessCode) & mask;
-		return calc(wrong_bits);
+		long wrongBits = (dataRegister ^ code) & mask;
+		return calc(wrongBits);
 	}
 
 	public long getAccessCode() {
-		return accessCode;
+		return code;
 	}
 	
 	public int getLength() {

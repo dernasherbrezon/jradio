@@ -17,11 +17,11 @@ public class AdditiveScrambler {
 
 	public void shuffle(byte[] data) {
 		for (int i = 0; i < data.length; i++) {
-			int scramble_byte = 0x00;
+			int scrambleByte = 0x00;
 			for (int k = 0; k < bitsPerByte; k++) {
-				scramble_byte ^= (lfsr.nextBit() << k);
+				scrambleByte ^= (lfsr.nextBit() << k);
 			}
-			data[i] = (byte) ((data[i] & 0xFF) ^ scramble_byte);
+			data[i] = (byte) ((data[i] & 0xFF) ^ scrambleByte);
 		}
 		lfsr.reset();
 	}
