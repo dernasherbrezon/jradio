@@ -7,6 +7,7 @@ import org.slf4j.LoggerFactory;
 
 import ru.r2cloud.jradio.MessageInput;
 import ru.r2cloud.jradio.ao40.Ao40BeaconSource;
+import ru.r2cloud.jradio.fec.ccsds.UncorrectableException;
 
 public class Ao73 extends Ao40BeaconSource<Ao73Beacon> {
 
@@ -23,6 +24,11 @@ public class Ao73 extends Ao40BeaconSource<Ao73Beacon> {
 			result.readExternal(raw);
 		} catch (IOException e) {
 			LOG.error("unable to parse beacon", e);
+			return null;
+		} catch (UncorrectableException e) {
+			if (LOG.isDebugEnabled()) {
+				LOG.debug("unable to decode: " + e.getMessage());
+			}
 			return null;
 		}
 		return result;

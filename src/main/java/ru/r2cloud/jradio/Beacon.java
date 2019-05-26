@@ -2,6 +2,8 @@ package ru.r2cloud.jradio;
 
 import java.io.IOException;
 
+import ru.r2cloud.jradio.fec.ccsds.UncorrectableException;
+
 public abstract class Beacon implements Externalizable {
 
 	private byte[] rawData;
@@ -9,12 +11,12 @@ public abstract class Beacon implements Externalizable {
 	private long beginMillis;
 	
 	@Override
-	public void readExternal(byte[] data) throws IOException {
+	public void readExternal(byte[] data) throws IOException, UncorrectableException {
 		this.rawData = data;
 		readBeacon(data);
 	}
 	
-	public abstract void readBeacon(byte[] data) throws IOException;
+	public abstract void readBeacon(byte[] data) throws IOException, UncorrectableException;
 
 	public byte[] getRawData() {
 		return rawData;

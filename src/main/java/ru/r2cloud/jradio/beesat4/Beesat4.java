@@ -1,25 +1,25 @@
-package ru.r2cloud.jradio.dstar1;
+package ru.r2cloud.jradio.beesat4;
 
 import java.io.IOException;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import ru.r2cloud.jradio.BeaconSource;
-import ru.r2cloud.jradio.MessageInput;
+import ru.r2cloud.jradio.blocks.TaggedStreamToPdu;
 import ru.r2cloud.jradio.fec.ccsds.UncorrectableException;
+import ru.r2cloud.jradio.tubix20.TUBiX20;
 
-public class Dstar1 extends BeaconSource<Dstar1Beacon> {
+public class Beesat4 extends TUBiX20<Beesat4Beacon> {
 
-	private static final Logger LOG = LoggerFactory.getLogger(Dstar1.class);
+	private static final Logger LOG = LoggerFactory.getLogger(Beesat4.class);
 
-	public Dstar1(MessageInput input) {
+	public Beesat4(TaggedStreamToPdu input) {
 		super(input);
 	}
 
 	@Override
-	protected Dstar1Beacon parseBeacon(byte[] raw) {
-		Dstar1Beacon beacon = new Dstar1Beacon();
+	protected Beesat4Beacon parseBeacon(byte[] raw) {
+		Beesat4Beacon beacon = new Beesat4Beacon();
 		try {
 			beacon.readExternal(raw);
 		} catch (IOException e) {

@@ -16,20 +16,11 @@ public class Dstar1Beacon extends Beacon {
 	private PayloadData payload;
 
 	@Override
-	public void readBeacon(byte[] data) throws IOException {
+	public void readBeacon(byte[] data) throws IOException, UncorrectableException {
 		DataInputStream dis = new DataInputStream(new ByteArrayInputStream(data));
-		try {
-			header = new CMX909bHeader(dis);
-		} catch (UncorrectableException e) {
-			throw new IOException(e);
-		}
+		header = new CMX909bHeader(dis);
 		MobitexRandomizer randomizer = new MobitexRandomizer();
-		byte[] dataFromBlocks;
-		try {
-			dataFromBlocks = CMX909bBeacon.readDataBlocks(header, randomizer, dis);
-		} catch (UncorrectableException e) {
-			throw new IOException(e);
-		}
+		byte[] dataFromBlocks = CMX909bBeacon.readDataBlocks(header, randomizer, dis);
 		if (dataFromBlocks != null) {
 			payload = new PayloadData(dataFromBlocks);
 		}

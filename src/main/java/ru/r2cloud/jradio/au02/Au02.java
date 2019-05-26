@@ -7,6 +7,7 @@ import org.slf4j.LoggerFactory;
 
 import ru.r2cloud.jradio.BeaconSource;
 import ru.r2cloud.jradio.MessageInput;
+import ru.r2cloud.jradio.fec.ccsds.UncorrectableException;
 
 public class Au02 extends BeaconSource<Au02Beacon> {
 
@@ -24,6 +25,11 @@ public class Au02 extends BeaconSource<Au02Beacon> {
 			return beacon;
 		} catch (IOException e) {
 			LOG.error("unable to parse beacon", e);
+			return null;
+		} catch (UncorrectableException e) {
+			if (LOG.isDebugEnabled()) {
+				LOG.debug("unable to decode: " + e.getMessage());
+			}
 			return null;
 		}
 	}

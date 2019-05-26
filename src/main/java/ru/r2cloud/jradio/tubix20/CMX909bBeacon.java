@@ -30,13 +30,9 @@ public abstract class CMX909bBeacon extends Beacon {
 	private String callsign;
 
 	@Override
-	public void readBeacon(byte[] data) throws IOException {
+	public void readBeacon(byte[] data) throws IOException, UncorrectableException {
 		DataInputStream dis = new DataInputStream(new ByteArrayInputStream(data));
-		try {
-			header = new CMX909bHeader(dis);
-		} catch (UncorrectableException e) {
-			throw new IOException(e);
-		}
+		header = new CMX909bHeader(dis);
 
 		byte[] callsignBytes = new byte[6];
 		dis.readFully(callsignBytes);
@@ -58,15 +54,8 @@ public abstract class CMX909bBeacon extends Beacon {
 			shortDataBlock = readShortDataBlock(randomizer, dis);
 			break;
 		default:
-			byte[] dataFromBlocks;
-			try {
-				dataFromBlocks = readDataBlocks(header, randomizer, dis);
-				readFrameData(dataFromBlocks);
-			} catch (UncorrectableException e) {
-				if (LOG.isDebugEnabled()) {
-					LOG.debug("unable to correct data block");
-				}
-			}
+			byte[] dataFromBlocks = readDataBlocks(header, randomizer, dis);
+			readFrameData(dataFromBlocks);
 			break;
 		}
 	}

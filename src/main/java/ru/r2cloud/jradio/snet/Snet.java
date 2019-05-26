@@ -127,6 +127,11 @@ public class Snet extends BeaconSource<SnetBeacon> {
 		} catch (IOException e) {
 			LOG.error("unable to parse beacon", e);
 			return null;
+		} catch (UncorrectableException e) {
+			if (LOG.isDebugEnabled()) {
+				LOG.debug("unable to decode: " + e.getMessage());
+			}
+			return null;
 		}
 		return result;
 	}
