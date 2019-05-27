@@ -63,7 +63,7 @@ public class ClockRecoveryMMComplex implements FloatInput {
 				array.add(source.readFloat(), source.readFloat());
 			}
 
-			float mm_val = 0;
+			float mmVal = 0;
 
 			float[] temp = p2T;
 			p2T = p1T;
@@ -83,19 +83,18 @@ public class ClockRecoveryMMComplex implements FloatInput {
 			y[0] = calcReal(p0T, p2T, c1T);
 			y[1] = calcImg(p0T, p2T, c1T);
 
-			// u = y - x;
 			u[0] = y[0] - x[0];
 			u[1] = y[1] - x[1];
 
-			mm_val = u[0];
+			mmVal = u[0];
 			img = p0T[1];
 
 			// limit mm_val
-			mm_val = MathUtils.branchless_clip(mm_val, 1.0f);
+			mmVal = MathUtils.branchless_clip(mmVal, 1.0f);
 
-			omega = omega + gainOmega * mm_val;
+			omega = omega + gainOmega * mmVal;
 			omega = omegaMid + MathUtils.branchless_clip(omega - omegaMid, omegaLim);
-			mu = mu + omega + gainMu * mm_val;
+			mu = mu + omega + gainMu * mmVal;
 			this.skip = (int) Math.floor(mu);
 			mu = mu - (float) Math.floor(mu);
 
@@ -111,7 +110,7 @@ public class ClockRecoveryMMComplex implements FloatInput {
 		return img;
 	}
 
-	// formula (d_c_0T - d_c_2T) * conj(d_p_1T);
+	// formula is: (d_c_0T - d_c_2T) * conj(d_p_1T);
 	private static float calcReal(float[] z1, float[] z2, float[] z3) {
 		return (z1[0] - z2[0]) * z3[0] - (z1[1] - z2[1]) * (-z3[1]);
 	}
@@ -121,7 +120,8 @@ public class ClockRecoveryMMComplex implements FloatInput {
 	}
 
 	private static void slicer0deg(float[] result, float[] sample) {
-		float real = 0, imag = 0;
+		float real = 0;
+		float imag = 0;
 
 		if (sample[0] > 0) {
 			real = 1;
