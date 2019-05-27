@@ -81,7 +81,7 @@ public class Constellation {
 			float noisePower = 1.0f;
 			float d = (float) Math.exp(-distance / noisePower);
 
-			if (preDiffCode.length > 0) {
+			if (isApplyPreDiffCode()) {
 				v = preDiffCode[i];
 			} else {
 				v = i;
@@ -110,6 +110,10 @@ public class Constellation {
 		}
 
 		return result;
+	}
+	
+	public boolean isApplyPreDiffCode() {
+		return preDiffCode.length > 0;
 	}
 
 	public int getRotationalSymmetry() {
