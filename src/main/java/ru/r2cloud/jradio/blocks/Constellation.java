@@ -26,11 +26,11 @@ public class Constellation {
 		if (summedMagnitude == 0.0f) {
 			throw new IllegalArgumentException("invalid magnitude: " + summedMagnitude);
 		}
-		float scalefactor = (float) constell.length / 2 / summedMagnitude;
+		float scalefactor = getSize() / summedMagnitude;
 		for (int i = 0; i < constell.length; i++) {
 			constell[i] = constell[i] * scalefactor;
 		}
-		this.M = constell.length / 2;
+		this.M = getSize();
 		this.k = (int) (Math.log(M) / Math.log(2.0));
 		this.temp = new float[2 * k];
 		this.result = new float[k];
@@ -118,6 +118,14 @@ public class Constellation {
 
 	public int getDimensionality() {
 		return dimensionality;
+	}
+
+	public int getSize() {
+		return constell.length / 2;
+	}
+
+	public int getBitsPerSymbol() {
+		return (int) Math.floor(Math.log(getSize()) / Math.log(2.0));
 	}
 
 }
