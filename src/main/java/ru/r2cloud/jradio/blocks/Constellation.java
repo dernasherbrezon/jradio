@@ -131,5 +131,9 @@ public class Constellation {
 	public int getBitsPerSymbol() {
 		return (int) Math.floor(Math.log(getSize()) / Math.log(2.0));
 	}
+	
+	public int[] getPreDiffCode() {
+		return preDiffCode;
+	}
 
 }
