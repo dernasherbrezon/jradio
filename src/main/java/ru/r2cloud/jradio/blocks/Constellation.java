@@ -9,7 +9,7 @@ public class Constellation {
 
 	private final float[] temp;
 	private final float[] result;
-	private final int M;
+	private final int m;
 	private final int k;
 	private final int arity;
 
@@ -30,11 +30,11 @@ public class Constellation {
 		for (int i = 0; i < constell.length; i++) {
 			constell[i] = constell[i] * scalefactor;
 		}
-		this.M = getSize();
-		this.k = (int) (Math.log(M) / Math.log(2.0));
+		this.m = getSize();
+		this.k = (int) (Math.log(m) / Math.log(2.0));
 		this.temp = new float[2 * k];
 		this.result = new float[k];
-		this.arity = this.M / dimensionality;
+		this.arity = this.m / dimensionality;
 	}
 
 	public int hardDecisionMaker(float[] sample) {
@@ -72,7 +72,7 @@ public class Constellation {
 		for (int i = 0; i < temp.length; i++) {
 			temp[i] = 0.0f;
 		}
-		for (int i = 0; i < M; i++) {
+		for (int i = 0; i < m; i++) {
 			// Calculate the distance between the sample and the current
 			// constellation point.
 			float distance = (float) Math.sqrt((sample[0] - constell[2 * i]) * (sample[0] - constell[2 * i]) + (sample[1] - constell[2 * i + 1]) * (sample[1] - constell[2 * i + 1]));

@@ -2,10 +2,13 @@ package ru.r2cloud.jradio.blocks;
 
 public class ControlLoop {
 
-	float phase, frequency;
-	float maxFrequency, minFrequency;
-	float damping;
-	float alpha, beta;
+	private float phase;
+	private float frequency;
+	private float maxFrequency;
+	private float minFrequency;
+	private float damping;
+	private float alpha;
+	private float beta;
 
 	public ControlLoop(float loopBandwidth, float maxFrequency, float minFrequency) {
 		this.phase = 0.0f;
