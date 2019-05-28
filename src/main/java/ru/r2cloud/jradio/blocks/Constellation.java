@@ -135,5 +135,9 @@ public class Constellation {
 	public int[] getPreDiffCode() {
 		return preDiffCode;
 	}
+	
+	public float[] getConstell() {
+		return constell;
+	}
 
 }
