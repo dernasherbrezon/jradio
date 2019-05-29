@@ -23,12 +23,12 @@ public class CorrelateAccessCodeTag implements ByteInput {
 
 	private final AccessCode[] accessCodes;
 
-	public CorrelateAccessCodeTag(ByteInput input, int threshold, String access_code) {
-		this(input, threshold, Collections.singleton(access_code), false);
+	public CorrelateAccessCodeTag(ByteInput input, int threshold, String accessCode) {
+		this(input, threshold, Collections.singleton(accessCode), false);
 	}
 
-	public CorrelateAccessCodeTag(ByteInput input, int threshold, String access_code, boolean soft) {
-		this(input, threshold, Collections.singleton(access_code), soft);
+	public CorrelateAccessCodeTag(ByteInput input, int threshold, String accessCode, boolean soft) {
+		this(input, threshold, Collections.singleton(accessCode), soft);
 	}
 
 	public CorrelateAccessCodeTag(ByteInput input, int threshold, Set<String> accessCodesStr, boolean soft) {
@@ -67,8 +67,7 @@ public class CorrelateAccessCodeTag implements ByteInput {
 		for (int i = 0; i < accessCodes.length; i++) {
 			AccessCode cur = accessCodes[i];
 
-			long nwrong = threshold + 1;
-			nwrong = cur.correlate(dataRegister);
+			long nwrong = cur.correlate(dataRegister);
 			if (nwrong < minWrong) {
 				minWrong = nwrong;
 				minAccessCode = cur.getAccessCode();
