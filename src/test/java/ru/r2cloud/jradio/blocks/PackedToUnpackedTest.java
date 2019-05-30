@@ -17,6 +17,7 @@ public class PackedToUnpackedTest {
 		assertEquals(0b0, pack2Unpack.readByte());
 		assertEquals(0b1, pack2Unpack.readByte());
 		assertEquals(0b0, pack2Unpack.readByte());
+		assertEquals(8, pack2Unpack.getContext().getTotalSamples().longValue());
 
 		pack2Unpack = new PackedToUnpacked(new ArrayByteInput(0b10101010), 1, Endianness.GR_LSB_FIRST);
 		assertEquals(0b0, pack2Unpack.readByte());
@@ -27,10 +28,17 @@ public class PackedToUnpackedTest {
 		pack2Unpack = new PackedToUnpacked(new ArrayByteInput(0b10101010), 2, Endianness.GR_MSB_FIRST);
 		assertEquals(0b10, pack2Unpack.readByte());
 		assertEquals(0b10, pack2Unpack.readByte());
+		assertEquals(4, pack2Unpack.getContext().getTotalSamples().longValue());
 
 		pack2Unpack = new PackedToUnpacked(new ArrayByteInput(0b10101010), 2, Endianness.GR_LSB_FIRST);
 		assertEquals(0b01, pack2Unpack.readByte());
 		assertEquals(0b01, pack2Unpack.readByte());
+	}
+
+	@SuppressWarnings({ "unused", "resource" })
+	@Test(expected = IllegalArgumentException.class)
+	public void testUnsupportPartialChunks() {
+		new PackedToUnpacked(new ArrayByteInput(0b10101010), 3, Endianness.GR_MSB_FIRST);
 	}
 
 }

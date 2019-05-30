@@ -13,18 +13,24 @@ public class PackedToUnpacked implements ByteInput {
 	private int index = 0;
 	private int curByte = 0;
 	private final Endianness endianness;
+	private final Context context;
 
 	public PackedToUnpacked(ByteInput input, int bitsPerChunk, Endianness endianness) {
 		if (endianness != Endianness.GR_MSB_FIRST && endianness != Endianness.GR_LSB_FIRST) {
 			throw new IllegalArgumentException("unsupported endianness: " + endianness);
 		}
 		// 8 bits in 1 byte
-		if (bitsPerChunk < 1 || bitsPerChunk > 8) {
+		if (bitsPerChunk < 1 || bitsPerChunk > 8 || (8 % bitsPerChunk != 0)) {
 			throw new IllegalArgumentException("unsupported bits per chunk: " + bitsPerChunk);
 		}
 		this.input = input;
 		this.bitsPerChunk = bitsPerChunk;
 		this.endianness = endianness;
+		this.context = new Context(input.getContext());
+		context.setSampleRate(context.getSampleRate() * (8 / bitsPerChunk));
+		if (context.getTotalSamples() != null) {
+			context.setTotalSamples(context.getTotalSamples() * (8 / bitsPerChunk));
+		}
 	}
 
 	@Override
@@ -64,7 +70,7 @@ public class PackedToUnpacked implements ByteInput {
 
 	@Override
 	public Context getContext() {
-		return input.getContext();
+		return context;
 	}
 
 }

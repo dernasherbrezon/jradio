@@ -13,6 +13,7 @@ public class ArrayByteInput implements ByteInput {
 		this.result = result;
 		context = new Context();
 		context.setChannels(1);
+		context.setTotalSamples((long) result.length);
 	}
 
 	@Override
