@@ -2,35 +2,35 @@ package ru.r2cloud.jradio.blocks;
 
 public class Firdes {
 
-	public static float[] lowPass(double gain, double sampling_freq, double cutoff_freq, double transition_width, Window window_type, double beta) {
-		sanityCheck1f(sampling_freq, cutoff_freq, transition_width);
+	public static float[] lowPass(double gain, double samplingFrequency, double cutoffFrequency, double transitionWidth, Window windowType, double beta) {
+		sanityCheck1f(samplingFrequency, cutoffFrequency, transitionWidth);
 
-		int ntaps = computeNtaps(sampling_freq, transition_width, window_type, beta);
+		int ntaps = computeNtaps(samplingFrequency, transitionWidth, windowType, beta);
 
 		// construct the truncated ideal impulse response
 		// [sin(x)/x for the low pass case]
 		float[] taps = new float[ntaps];
-		float[] w = window_type.build(ntaps, beta);
+		float[] w = windowType.build(ntaps, beta);
 
-		int M = (ntaps - 1) / 2;
-		double fwT0 = 2 * Math.PI * cutoff_freq / sampling_freq;
+		int m = (ntaps - 1) / 2;
+		double fwT0 = 2 * Math.PI * cutoffFrequency / samplingFrequency;
 
-		for (int n = -M; n <= M; n++) {
+		for (int n = -m; n <= m; n++) {
 			if (n == 0)
-				taps[n + M] = (float) (fwT0 / Math.PI * w[n + M]);
+				taps[n + m] = (float) (fwT0 / Math.PI * w[n + m]);
 			else {
 				// a little algebra gets this into the more familiar sin(x)/x
 				// form
-				taps[n + M] = (float) (Math.sin(n * fwT0) / (n * Math.PI) * w[n + M]);
+				taps[n + m] = (float) (Math.sin(n * fwT0) / (n * Math.PI) * w[n + m]);
 			}
 		}
 
 		// find the factor to normalize the gain, fmax.
 		// For low-pass, gain @ zero freq = 1.0
 
-		double fmax = taps[0 + M];
-		for (int n = 1; n <= M; n++) {
-			fmax += 2 * taps[n + M];
+		double fmax = taps[0 + m];
+		for (int n = 1; n <= m; n++) {
+			fmax += 2 * taps[n + m];
 		}
 
 		gain /= fmax; // normalize
@@ -42,37 +42,41 @@ public class Firdes {
 		return taps;
 	}
 
-	private static void sanityCheck1f(double sampling_freq, double fa, double transition_width) {
-		if (sampling_freq <= 0.0) {
+	private static void sanityCheck1f(double samplingFrequency, double fa, double transitionWidth) {
+		if (samplingFrequency <= 0.0) {
 			throw new IllegalArgumentException("firdes check failed: sampling_freq > 0");
 		}
 
-		if (fa <= 0.0 || fa > sampling_freq / 2) {
+		if (fa <= 0.0 || fa > samplingFrequency / 2) {
 			throw new IllegalArgumentException("firdes check failed: 0 < fa <= sampling_freq / 2");
 		}
 
-		if (transition_width <= 0) {
+		if (transitionWidth <= 0) {
 			throw new IllegalArgumentException("firdes check failed: transition_width > 0");
 		}
 	}
 
-	private static int computeNtaps(double sampling_freq, double transition_width, Window window_type, double beta) {
-		double a = window_type.maxAttenuation(beta);
-		int ntaps = (int) (a * sampling_freq / (22.0 * transition_width));
+	private static int computeNtaps(double samplingFrequency, double transitionWidth, Window windowType, double beta) {
+		double a = windowType.maxAttenuation(beta);
+		int ntaps = (int) (a * samplingFrequency / (22.0 * transitionWidth));
 		if ((ntaps & 1) == 0) { // if even...
 			ntaps++; // ...make odd
 		}
 		return ntaps;
 	}
 
-	public static float[] rootRaisedCosine(float gain, float sampling_freq, float symbol_rate, float alpha, int ntaps) {
+	public static float[] rootRaisedCosine(float gain, float samplingFrequency, float symbolRate, float alpha, int ntaps) {
 		ntaps |= 1; // ensure that ntaps is odd
 
-		double spb = sampling_freq / symbol_rate; // samples per bit/symbol
+		double spb = samplingFrequency / symbolRate; // samples per bit/symbol
 		float[] taps = new float[ntaps];
 		double scale = 0;
 		for (int i = 0; i < ntaps; i++) {
-			double x1, x2, x3, num, den;
+			double x1;
+			double x2;
+			double x3;
+			double num;
+			double den;
 			double xindx = (double) i - ntaps / 2; // ntaps are expected to round here
 			x1 = Math.PI * xindx / spb;
 			x2 = 4 * alpha * xindx / spb;
@@ -115,5 +119,9 @@ public class Firdes {
 			complexTaps[2 * i + 1] = 0.0f;
 		}
 		return complexTaps;
+	}
+
+	private Firdes() {
+		// do nothing
 	}
 }
