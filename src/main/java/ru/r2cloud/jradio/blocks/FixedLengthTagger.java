@@ -13,7 +13,7 @@ public class FixedLengthTagger implements ByteInput {
 	public static final String LENGTH = "length";
 
 	private final ByteInput input;
-	private final int packet_len;
+	private final int packetLength;
 	private final byte[] window;
 	private final byte[] packet;
 	private int read = 0;
@@ -22,11 +22,11 @@ public class FixedLengthTagger implements ByteInput {
 	private int currentIndex = -1;
 	private LinkedList<Tag> currentTags = new LinkedList<>();
 
-	public FixedLengthTagger(ByteInput input, int packet_len) {
+	public FixedLengthTagger(ByteInput input, int packetLength) {
 		this.input = input;
-		this.packet_len = packet_len;
-		this.packet = new byte[packet_len];
-		this.window = new byte[packet_len];
+		this.packetLength = packetLength;
+		this.packet = new byte[packetLength];
+		this.window = new byte[packetLength];
 	}
 
 	@Override
@@ -64,11 +64,11 @@ public class FixedLengthTagger implements ByteInput {
 				boolean removeFirst = false;
 				for (int i = 0; i < currentTags.size(); i++) {
 					Tag cur = currentTags.get(i);
-					if ((Integer) cur.get(BEGIN_SAMPLE) + packet_len <= read + 1) {
+					if ((Integer) cur.get(BEGIN_SAMPLE) + packetLength <= read + 1) {
 						currentIndex = 0;
 						System.arraycopy(window, windowIndex, packet, 0, window.length - windowIndex);
 						System.arraycopy(window, 0, packet, window.length - windowIndex, windowIndex);
-						cur.put(LENGTH, packet_len);
+						cur.put(LENGTH, packetLength);
 						getContext().setCurrent(cur);
 						read++;
 						removeFirst = true;
