@@ -27,7 +27,7 @@ public class PackedToUnpacked implements ByteInput {
 		this.bitsPerChunk = bitsPerChunk;
 		this.endianness = endianness;
 		this.context = new Context(input.getContext());
-		context.setSampleRate(context.getSampleRate() * (8 / bitsPerChunk));
+		context.setSampleRate(context.getSampleRate() * (8 / (float) bitsPerChunk));
 		if (context.getTotalSamples() != null) {
 			context.setTotalSamples(context.getTotalSamples() * (8 / bitsPerChunk));
 		}
