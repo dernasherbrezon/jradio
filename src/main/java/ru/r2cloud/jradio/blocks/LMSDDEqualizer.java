@@ -10,7 +10,7 @@ import ru.r2cloud.jradio.util.CircularComplexArray;
 public class LMSDDEqualizer implements FloatInput {
 
 	private final FloatInput source;
-	private final float d_mu;
+	private final float mu;
 	private final int sps;
 	private final Constellation constellation;
 	private final float[] currentComplex = new float[2];
@@ -26,7 +26,7 @@ public class LMSDDEqualizer implements FloatInput {
 			throw new IllegalArgumentException("not a complex input: " + source.getContext().getChannels());
 		}
 		this.source = source;
-		this.d_mu = gain;
+		this.mu = gain;
 		this.sps = sps;
 		this.constellation = constellation;
 
@@ -64,19 +64,19 @@ public class LMSDDEqualizer implements FloatInput {
 			constellation.mapToPoints(constellation.hardDecisionMaker(currentComplex), mappedPoint);
 			float errorReal = mappedPoint[0] - currentComplex[0];
 			float errorImag = mappedPoint[1] - currentComplex[1];
-			// tap += d_mu*conj(in)*d_error;
+			// formula is tap += d_mu*conj(in)*d_error;
 			int i = 0;
 			for (int j = array.getCurrentPos(); j < array.getSize(); j++, i++) {
-				float real = filter.getTapsReal()[i] + d_mu * (array.getHistoryReal()[j] * errorReal + array.getHistoryImg()[j] * errorImag);
-				float imag = filter.getTapsImg()[i] + d_mu * (array.getHistoryReal()[j] * errorImag - array.getHistoryImg()[j] * errorReal);
-				filter.getTapsReal()[i] = real;
-				filter.getTapsImg()[i] = imag;
+				float curReal = filter.getTapsReal()[i] + mu * (array.getHistoryReal()[j] * errorReal + array.getHistoryImg()[j] * errorImag);
+				float curImag = filter.getTapsImg()[i] + mu * (array.getHistoryReal()[j] * errorImag - array.getHistoryImg()[j] * errorReal);
+				filter.getTapsReal()[i] = curReal;
+				filter.getTapsImg()[i] = curImag;
 			}
 			for (int j = 0; j < array.getCurrentPos(); j++, i++) {
-				float real = filter.getTapsReal()[i] + d_mu * (array.getHistoryReal()[j] * errorReal + array.getHistoryImg()[j] * errorImag);
-				float imag = filter.getTapsImg()[i] + d_mu * (array.getHistoryReal()[j] * errorImag - array.getHistoryImg()[j] * errorReal);
-				filter.getTapsReal()[i] = real;
-				filter.getTapsImg()[i] = imag;
+				float curReal = filter.getTapsReal()[i] + mu * (array.getHistoryReal()[j] * errorReal + array.getHistoryImg()[j] * errorImag);
+				float curImag = filter.getTapsImg()[i] + mu * (array.getHistoryReal()[j] * errorImag - array.getHistoryImg()[j] * errorReal);
+				filter.getTapsReal()[i] = curReal;
+				filter.getTapsImg()[i] = curImag;
 			}
 
 			skip = sps;
