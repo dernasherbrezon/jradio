@@ -21,7 +21,7 @@ public class LowPassFilter implements FloatInput {
 	private final int decimation;
 	private final Context context;
 
-	public LowPassFilter(FloatInput source, int decimation, double gain, double cutoff_freq, double transition_width, Window window_type, double beta) {
+	public LowPassFilter(FloatInput source, int decimation, double gain, double cutoffFrequency, double transitionWidth, Window windowType, double beta) {
 		if (decimation < 1) {
 			throw new IllegalArgumentException("decimation expected to be more or equal 1. got: " + decimation);
 		}
@@ -30,7 +30,7 @@ public class LowPassFilter implements FloatInput {
 		}
 		this.source = source;
 		this.decimation = decimation;
-		float[] taps = Firdes.lowPass(gain, source.getContext().getSampleRate(), cutoff_freq, transition_width, window_type, beta);
+		float[] taps = Firdes.lowPass(gain, source.getContext().getSampleRate(), cutoffFrequency, transitionWidth, windowType, beta);
 		this.filter = new FIRFilter(taps);
 		array = new CircularArray(taps.length);
 		if (registry != null) {
@@ -45,8 +45,8 @@ public class LowPassFilter implements FloatInput {
 		}
 	}
 
-	public LowPassFilter(FloatInput source, double gain, double cutoff_freq, double transition_width, Window window_type, double beta) {
-		this(source, 1, gain, cutoff_freq, transition_width, window_type, beta);
+	public LowPassFilter(FloatInput source, double gain, double cutoffFrequency, double transitionWidth, Window windowType, double beta) {
+		this(source, 1, gain, cutoffFrequency, transitionWidth, windowType, beta);
 	}
 
 	@Override
