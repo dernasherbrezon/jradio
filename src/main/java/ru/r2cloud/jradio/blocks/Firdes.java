@@ -65,7 +65,7 @@ public class Firdes {
 		return ntaps;
 	}
 
-	public static float[] rootRaisedCosine(float gain, float samplingFrequency, float symbolRate, float alpha, int ntaps) {
+	public static float[] rootRaisedCosine(double gain, double samplingFrequency, double symbolRate, double alpha, int ntaps) {
 		ntaps |= 1; // ensure that ntaps is odd
 
 		double spb = samplingFrequency / symbolRate; // samples per bit/symbol
