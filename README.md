@@ -43,6 +43,7 @@ All blocks meant to be binary compatible with gnuradio versions. This will ensur
   * NrziDecode. Out-of-tree block. Performs nrzi decoding over unpacked stream of bytes
   * osmocom source (RtlTcp)
   * PackedToUnpacked
+  * PolyphaseArbResamplerComplex
   * PolyphaseClockSyncComplex
   * PeakDetection. Detect peaks in the FFT. Not a gnuradio block.
   * QuadratureDemodulation
