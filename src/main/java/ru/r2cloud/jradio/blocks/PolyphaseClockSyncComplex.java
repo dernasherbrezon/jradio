@@ -13,21 +13,20 @@ public class PolyphaseClockSyncComplex implements FloatInput {
 	private final Context context;
 
 	private float samplesSymbol;
-	private int d_nfilters;
-	private int d_damping;
-	private float d_loop_bw;
-	private float d_alpha;
-	private float d_beta;
-	private float d_k;
-	private float d_rate;
-	private int d_rate_i;
-	private float d_rate_f;
-	private int d_filtnum;
-	private int d_taps_per_filter;
-	private final FIRFilter[] d_filters;
-	private final FIRFilter[] d_diff_filters;
-	private float d_max_dev;
-	private float d_error;
+	private int numberOfFilters;
+	private int damping;
+	private float alpha;
+	private float beta;
+	private float k;
+	private float rate;
+	private int rateI;
+	private float rateF;
+	private int filterNumber;
+	private int tapsPerFilter;
+	private final FIRFilter[] filters;
+	private final FIRFilter[] diffFilters;
+	private float maxDeviation;
+	private float error;
 	private int skip;
 	private final CircularComplexArray array;
 
@@ -35,7 +34,7 @@ public class PolyphaseClockSyncComplex implements FloatInput {
 	private final float[] currentComplexDiff = new float[2];
 	private boolean outputReal = true;
 
-	public PolyphaseClockSyncComplex(FloatInput source, float samplesSymbol, float loopBandwidth, float[] taps, int d_nfilters, int initialPhase, float maximumRateDeviation) {
+	public PolyphaseClockSyncComplex(FloatInput source, float samplesSymbol, float loopBandwidth, float[] taps, int numberOfFilters, int initialPhase, float maximumRateDeviation) {
 		if (source.getContext().getChannels() != 2) {
 			throw new IllegalArgumentException("not a complex input: " + source.getContext().getChannels());
 		}
@@ -45,28 +44,27 @@ public class PolyphaseClockSyncComplex implements FloatInput {
 		context.setSampleRate(0.0f);
 		context.setTotalSamples(null);
 
-		this.d_nfilters = d_nfilters;
+		this.numberOfFilters = numberOfFilters;
 		this.samplesSymbol = (float) Math.floor(samplesSymbol);
-		this.d_damping = 2 * d_nfilters;
-		this.d_loop_bw = loopBandwidth;
-		float denom = (1.0f + 2.0f * d_damping * d_loop_bw + d_loop_bw * d_loop_bw);
-		d_alpha = (4 * d_damping * d_loop_bw) / denom;
-		d_beta = (4 * d_loop_bw * d_loop_bw) / denom;
+		this.damping = 2 * numberOfFilters;
+		float denom = (1.0f + 2.0f * damping * loopBandwidth + loopBandwidth * loopBandwidth);
+		alpha = (4 * damping * loopBandwidth) / denom;
+		beta = (4 * loopBandwidth * loopBandwidth) / denom;
 
 		// Store the last filter between calls to work
 		// The accumulator keeps track of overflow to increment the stride correctly.
 		// set it here to the fractional difference based on the initial phaes
-		this.d_k = initialPhase;
-		this.d_rate = (samplesSymbol - (float) Math.floor(samplesSymbol)) * d_nfilters;
-		this.d_rate_i = (int) Math.floor(d_rate);
-		this.d_rate_f = d_rate - d_rate_i;
-		this.d_filtnum = (int) Math.floor(d_k);
-		this.d_taps_per_filter = (int) Math.ceil((double) taps.length / d_nfilters);
+		this.k = initialPhase;
+		this.rate = (samplesSymbol - (float) Math.floor(samplesSymbol)) * numberOfFilters;
+		this.rateI = (int) Math.floor(rate);
+		this.rateF = rate - rateI;
+		this.filterNumber = (int) Math.floor(k);
+		this.tapsPerFilter = (int) Math.ceil((double) taps.length / numberOfFilters);
 		this.skip = 1;
-		this.array = new CircularComplexArray(d_taps_per_filter);
-		this.d_filters = createFilters(taps);
-		this.d_diff_filters = createFilters(createDiffTaps(taps));
-		this.d_max_dev = maximumRateDeviation;
+		this.array = new CircularComplexArray(tapsPerFilter);
+		this.filters = createFilters(taps);
+		this.diffFilters = createFilters(createDiffTaps(taps));
+		this.maxDeviation = maximumRateDeviation;
 	}
 
 	@Override
@@ -88,22 +86,23 @@ public class PolyphaseClockSyncComplex implements FloatInput {
 	}
 
 	private void calculate() throws IOException {
-		float error_r, error_i;
+		float errorR;
+		float errorI;
 		int toSkip = 0;
 
-		d_filtnum = (int) Math.floor(d_k);
+		filterNumber = (int) Math.floor(k);
 
 		// Keep the current filter number in [0, d_nfilters]
 		// If we've run beyond the last filter, wrap around and go to next sample
 		// If we've gone below 0, wrap around and go to previous sample
-		while (d_filtnum >= d_nfilters) {
-			d_k -= d_nfilters;
-			d_filtnum -= d_nfilters;
+		while (filterNumber >= numberOfFilters) {
+			k -= numberOfFilters;
+			filterNumber -= numberOfFilters;
 			toSkip++;
 		}
-		while (d_filtnum < 0) {
-			d_k += d_nfilters;
-			d_filtnum += d_nfilters;
+		while (filterNumber < 0) {
+			k += numberOfFilters;
+			filterNumber += numberOfFilters;
 			toSkip--;
 		}
 
@@ -111,25 +110,25 @@ public class PolyphaseClockSyncComplex implements FloatInput {
 			array.add(source.readFloat(), source.readFloat());
 		}
 
-		d_filters[d_filtnum].filterComplex(currentComplex, array);
-		d_k = d_k + d_rate_i + d_rate_f; // update phase
+		filters[filterNumber].filterComplex(currentComplex, array);
+		k = k + rateI + rateF; // update phase
 
 		// Update the phase and rate estimates for this symbol
-		d_diff_filters[d_filtnum].filterComplex(currentComplexDiff, array);
-		error_r = currentComplex[0] * currentComplexDiff[0];
-		error_i = currentComplex[1] * currentComplexDiff[1];
-		d_error = (error_i + error_r) / 2.0f; // average error from I&Q channel
+		diffFilters[filterNumber].filterComplex(currentComplexDiff, array);
+		errorR = currentComplex[0] * currentComplexDiff[0];
+		errorI = currentComplex[1] * currentComplexDiff[1];
+		error = (errorI + errorR) / 2.0f; // average error from I&Q channel
 
 		// Run the control loop to update the current phase (k) and
 		// tracking rate estimates based on the error value
 		// Interpolating here to update rates for ever sps.
 		for (int s = 0; s < samplesSymbol; s++) {
-			d_rate_f = d_rate_f + d_beta * d_error;
-			d_k = d_k + d_rate_f + d_alpha * d_error;
+			rateF = rateF + beta * error;
+			k = k + rateF + alpha * error;
 		}
 
 		// Keep our rate within a good range
-		d_rate_f = MathUtils.branchless_clip(d_rate_f, d_max_dev);
+		rateF = MathUtils.branchless_clip(rateF, maxDeviation);
 
 		toSkip += (int) Math.floor(samplesSymbol);
 		skip = toSkip;
@@ -160,7 +159,7 @@ public class PolyphaseClockSyncComplex implements FloatInput {
 
 		// Normalize the taps
 		for (int i = 0; i < result.length; i++) {
-			result[i] *= d_nfilters / power;
+			result[i] *= numberOfFilters / power;
 			if (result[i] != result[i]) {
 				throw new IllegalArgumentException("create_diff_taps produced NaN");
 			}
@@ -171,25 +170,25 @@ public class PolyphaseClockSyncComplex implements FloatInput {
 
 	private FIRFilter[] createFilters(float[] taps) {
 		// Create d_numchan vectors to store each channel's taps
-		float[][] result = new float[d_nfilters][d_taps_per_filter];
+		float[][] result = new float[numberOfFilters][tapsPerFilter];
 
 		// Make a vector of the taps plus fill it out with 0's to fill
 		// each polyphase filter with exactly d_taps_per_filter
-		float[] tmp_taps = new float[d_nfilters * d_taps_per_filter];
+		float[] tmpTaps = new float[numberOfFilters * tapsPerFilter];
 		for (int i = 0; i < taps.length; i++) {
-			tmp_taps[i] = taps[i];
+			tmpTaps[i] = taps[i];
 		}
-		for (int i = taps.length; i < tmp_taps.length; i++) {
-			tmp_taps[i] = 0.0f;
+		for (int i = taps.length; i < tmpTaps.length; i++) {
+			tmpTaps[i] = 0.0f;
 		}
-		FIRFilter[] filters = new FIRFilter[d_nfilters];
+		FIRFilter[] filters = new FIRFilter[numberOfFilters];
 
 		// Partition the filter
-		for (int i = 0; i < d_nfilters; i++) {
+		for (int i = 0; i < numberOfFilters; i++) {
 			// Each channel uses all d_taps_per_filter with 0's if not enough taps to fill out
-			result[i] = new float[d_taps_per_filter];
-			for (int j = 0; j < d_taps_per_filter; j++) {
-				result[i][j] = tmp_taps[i + j * d_nfilters];
+			result[i] = new float[tapsPerFilter];
+			for (int j = 0; j < tapsPerFilter; j++) {
+				result[i][j] = tmpTaps[i + j * numberOfFilters];
 			}
 
 			// Build a filter for each channel and add it's taps to it
