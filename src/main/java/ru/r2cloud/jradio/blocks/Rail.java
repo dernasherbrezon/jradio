@@ -10,19 +10,19 @@ public class Rail implements FloatInput {
 
 	private final FloatInput source;
 
-	private final float d_mid;
-	private final float d_clip;
+	private final float mid;
+	private final float clip;
 
 	public Rail(FloatInput source, float lo, float hi) {
 		this.source = source;
 
-		d_mid = (lo + hi) / 2;
-		d_clip = hi - d_mid;
+		mid = (lo + hi) / 2;
+		clip = hi - mid;
 	}
 
 	@Override
 	public float readFloat() throws IOException {
-		return d_mid + MathUtils.branchless_clip(source.readFloat() - d_mid, d_clip);
+		return mid + MathUtils.branchless_clip(source.readFloat() - mid, clip);
 	}
 
 	@Override
