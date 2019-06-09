@@ -29,8 +29,8 @@ public class Rms implements FloatInput {
 	public float readFloat() throws IOException {
 		float inReal = source.readFloat();
 		float inImg = source.readFloat();
-		double mag_sqrd = inReal * inReal + inImg * inImg;
-		average = (float) (beta * average + alpha * mag_sqrd);
+		double magnitudeSquared = inReal * inReal + inImg * inImg;
+		average = (float) (beta * average + alpha * magnitudeSquared);
 		return (float)Math.sqrt(average);
 	}
 
