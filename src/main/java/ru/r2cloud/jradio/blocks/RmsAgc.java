@@ -34,8 +34,8 @@ public class RmsAgc implements FloatInput {
 		if (real) {
 			float inReal = source.readFloat();
 			float inImg = source.readFloat();
-			double mag_sqrd = inReal * inReal + inImg * inImg;
-			average = (float) (beta * average + alpha * mag_sqrd);
+			double magnitudeSquared = inReal * inReal + inImg * inImg;
+			average = (float) (beta * average + alpha * magnitudeSquared);
 			float rms = (float) Math.sqrt(average);
 			rms = rms * reference + 1e-20f;
 			MathUtils.divide(currentComplex, inReal, inImg, rms, 0.0f);
