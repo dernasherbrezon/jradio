@@ -2,17 +2,17 @@ package ru.r2cloud.jradio.blocks;
 
 public enum Window {
 
-	WIN_HAMMING, WIN_HANN, WIN_BLACKMAN, WIN_RECTANGULAR, WIN_KAISER, WIN_BLACKMAN_hARRIS, WIN_BARTLETT, WIN_FLATTOP;
+	WIN_HAMMING, WIN_HANN, WIN_BLACKMAN, WIN_RECTANGULAR, WIN_KAISER, WIN_BLACKMAN_HARRIS, WIN_BARTLETT, WIN_FLATTOP;
 
 	public float[] build(int ntaps, @SuppressWarnings("unused") double beta) {
 		float[] taps;
 		switch (this) {
 		case WIN_HAMMING:
 			taps = new float[ntaps];
-			int M = ntaps - 1;
+			int m = ntaps - 1;
 
 			for (int n = 0; n < ntaps; n++) {
-				taps[n] = (float) (0.54 - 0.46 * Math.cos((2 * Math.PI * n) / M));
+				taps[n] = (float) (0.54 - 0.46 * Math.cos((2 * Math.PI * n) / m));
 			}
 			return taps;
 //		case WIN_HANN:
@@ -39,7 +39,7 @@ public enum Window {
 			return 21;
 		case WIN_KAISER:
 			return (beta / 0.1102 + 8.7);
-		case WIN_BLACKMAN_hARRIS:
+		case WIN_BLACKMAN_HARRIS:
 			return 92;
 		case WIN_BARTLETT:
 			return 27;
