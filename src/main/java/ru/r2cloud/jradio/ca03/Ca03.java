@@ -30,7 +30,7 @@ public class Ca03 extends BeaconSource<Ca03Beacon> {
 			return current;
 		} catch (UncorrectableException e) {
 			if (LOG.isDebugEnabled()) {
-				LOG.debug("unable to decode reed solomon: " + e.getMessage());
+				LOG.debug("unable to decode reed solomon: {}", e.getMessage());
 			}
 			return null;
 		} catch (IOException e) {
