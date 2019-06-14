@@ -8,7 +8,7 @@ public class PeakDetectionUtil {
 
 	// algorithm was taken from https://www.sthu.org/blog/13-perstopology-peakdetection/index.html
 	public static List<Peak> getPersistentHomology(float[] seq) {
-		List<Peak> peaks = new ArrayList<Peak>();
+		List<Peak> peaks = new ArrayList<>();
 		Integer[] indices = new Integer[seq.length];
 		for (int i = 0; i < indices.length; i++) {
 			indices[i] = i;
@@ -63,4 +63,7 @@ public class PeakDetectionUtil {
 		return peaks;
 	}
 
+	private PeakDetectionUtil() {
+		//do nothing
+	}
 }
