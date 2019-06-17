@@ -53,7 +53,7 @@
     "switches": 12587011,
     "BatteryTemperature": -4048,
     "scheduledCommands": 0,
-    "mode": "Nominal",
+    "mode": "NOMINAL",
     "crc16": -28586
   },
   "beginSample": 87832,

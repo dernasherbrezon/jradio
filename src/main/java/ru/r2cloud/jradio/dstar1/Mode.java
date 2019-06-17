@@ -5,7 +5,7 @@ import java.util.Map;
 
 public enum Mode {
 	
-	Safe(0x01), Nominal(0x02), Experimental(0x03);
+	SAFE(0x01), NOMINAL(0x02), EXPERIMENTAL(0x03);
 
 	private final int code;
 	private static final Map<Integer, Mode> typeByCode = new HashMap<>();
