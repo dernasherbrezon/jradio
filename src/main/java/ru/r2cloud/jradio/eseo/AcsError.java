@@ -6,317 +6,317 @@ import ru.r2cloud.jradio.util.LittleEndianDataInputStream;
 
 public class AcsError {
 
-	private boolean SAFE_MODE; // Transition between Nominal to Detumbling & Safe has been triggered
-	private boolean OMEGA_DET_WARNING; // Angular velocity out of nominal range in Detumbling and Safe mode
-	private boolean ATTITUDE_ERROR; // Attitude Euler angles out of nominal range in Nominal mode
-	private boolean OMEGA_ERROR; // Angular velocity out of nominal range in Nominal mode
-	private boolean MW_Failure; // MW critical failure
-	private boolean PWR_Failure; // Severe low power (S2)
-	private boolean COMM_Error; // A communication error is occurred
-	private boolean ITEMS_MNG_Error; // Error between the items used and the PMU feedback
-	private boolean MWM_State; // MWM not reliable - from FDIR algorithm
-	private boolean MWR_State; // MWR not reliable - from FDIR algorithm
-	private boolean MTM_x_State; // MT Main on x-axis not reliable - from FDIR algorithm
-	private boolean MTR_x_State; // MTR on x-axis not reliable - from FDIR algorithm
-	private boolean MTM_y_State; // MT Main on y-axis not reliable - from FDIR algorithm
-	private boolean MTR_y_State; // MTR on y-axis not reliable - from FDIR algorithm
-	private boolean MTM_z_State; // MT Main on z-axis not reliable - from FDIR algorithm
-	private boolean MTR_z_State; // MTR on z-axis not reliable - from FDIR algorithm
-	private boolean MTM_state; // MT Main assembly not reliable
-	private boolean MTR_state; // MT Redundant assembly not reliable
-	private boolean MPS_State; // MPS not reliable - from FDIR algorithm
-	private boolean SS1_State; // SS1 not reliable - from FDIR algorithm
-	private boolean SS2_State; // SS2 not reliable - from FDIR algorithm
-	private boolean CSS_State; // CSS not reliable - from FDIR algorithm
-	private boolean ES_State; // ES not reliable - from FDIR algorithm
-	private boolean MMM_State; // MM Main not reliable - from FDIR algorithm
-	private boolean MMR_State; // MM Redundant not reliable - from FDIR algorithm
-	private boolean MPS_maneuver_ABORT; // MPS maneuver aborted from FDIR (MPS not reliable) or AOCS not in Nominal state
+	private boolean safeMode; // Transition between Nominal to Detumbling & Safe has been triggered
+	private boolean omegaDetWarning; // Angular velocity out of nominal range in Detumbling and Safe mode
+	private boolean attitudeError; // Attitude Euler angles out of nominal range in Nominal mode
+	private boolean omegaError; // Angular velocity out of nominal range in Nominal mode
+	private boolean mwFailure; // MW critical failure
+	private boolean pwrFailure; // Severe low power (S2)
+	private boolean commError; // A communication error is occurred
+	private boolean itemsMngError; // Error between the items used and the PMU feedback
+	private boolean mwmState; // MWM not reliable - from FDIR algorithm
+	private boolean mwrState; // MWR not reliable - from FDIR algorithm
+	private boolean mtmXState; // MT Main on x-axis not reliable - from FDIR algorithm
+	private boolean mtrXState; // MTR on x-axis not reliable - from FDIR algorithm
+	private boolean mtmYState; // MT Main on y-axis not reliable - from FDIR algorithm
+	private boolean mtrYState; // MTR on y-axis not reliable - from FDIR algorithm
+	private boolean mtmZState; // MT Main on z-axis not reliable - from FDIR algorithm
+	private boolean mtrZState; // MTR on z-axis not reliable - from FDIR algorithm
+	private boolean mtmState; // MT Main assembly not reliable
+	private boolean mtrState; // MT Redundant assembly not reliable
+	private boolean mpsState; // MPS not reliable - from FDIR algorithm
+	private boolean ss1State; // SS1 not reliable - from FDIR algorithm
+	private boolean ss2State; // SS2 not reliable - from FDIR algorithm
+	private boolean cssState; // CSS not reliable - from FDIR algorithm
+	private boolean esState; // ES not reliable - from FDIR algorithm
+	private boolean mmmState; // MM Main not reliable - from FDIR algorithm
+	private boolean mmrState; // MM Redundant not reliable - from FDIR algorithm
+	private boolean mpsMeneuverAbort; // MPS maneuver aborted from FDIR (MPS not reliable) or AOCS not in Nominal state
 
-	private boolean AOCS_SW_ERROR1; // TC execution returns an error
-	private boolean AOCS_SW_ERROR2; // AOCS task overrun
-	private boolean AOCS_SW_ERROR3; // AOCS FDIR task overrun
-	private boolean AOCS_SW_ERROR4;
+	private boolean aocsSwError1; // TC execution returns an error
+	private boolean aocsSwError2; // AOCS task overrun
+	private boolean aocsSwError3; // AOCS FDIR task overrun
+	private boolean aocsSwError4;
 
 	public AcsError(LittleEndianDataInputStream dis) throws IOException {
 		int raw = dis.readUnsignedByte();
-		SAFE_MODE = ((raw >> 7) & 0x1) > 0;
-		OMEGA_DET_WARNING = ((raw >> 6) & 0x1) > 0;
-		ATTITUDE_ERROR = ((raw >> 5) & 0x1) > 0;
-		OMEGA_ERROR = ((raw >> 4) & 0x1) > 0;
-		MW_Failure = ((raw >> 3) & 0x1) > 0;
-		PWR_Failure = ((raw >> 2) & 0x1) > 0;
-		COMM_Error = ((raw >> 1) & 0x1) > 0;
-		ITEMS_MNG_Error = (raw & 0x1) > 0;
+		safeMode = ((raw >> 7) & 0x1) > 0;
+		omegaDetWarning = ((raw >> 6) & 0x1) > 0;
+		attitudeError = ((raw >> 5) & 0x1) > 0;
+		omegaError = ((raw >> 4) & 0x1) > 0;
+		mwFailure = ((raw >> 3) & 0x1) > 0;
+		pwrFailure = ((raw >> 2) & 0x1) > 0;
+		commError = ((raw >> 1) & 0x1) > 0;
+		itemsMngError = (raw & 0x1) > 0;
 
 		raw = dis.readUnsignedByte();
-		MWM_State = ((raw >> 7) & 0x1) > 0;
-		MWR_State = ((raw >> 6) & 0x1) > 0;
-		MTM_x_State = ((raw >> 5) & 0x1) > 0;
-		MTR_x_State = ((raw >> 4) & 0x1) > 0;
-		MTM_y_State = ((raw >> 3) & 0x1) > 0;
-		MTR_y_State = ((raw >> 2) & 0x1) > 0;
-		MTM_z_State = ((raw >> 1) & 0x1) > 0;
-		MTR_z_State = (raw & 0x1) > 0;
+		mwmState = ((raw >> 7) & 0x1) > 0;
+		mwrState = ((raw >> 6) & 0x1) > 0;
+		mtmXState = ((raw >> 5) & 0x1) > 0;
+		mtrXState = ((raw >> 4) & 0x1) > 0;
+		mtmYState = ((raw >> 3) & 0x1) > 0;
+		mtrYState = ((raw >> 2) & 0x1) > 0;
+		mtmZState = ((raw >> 1) & 0x1) > 0;
+		mtrZState = (raw & 0x1) > 0;
 
 		raw = dis.readUnsignedByte();
-		MTM_state = ((raw >> 7) & 0x1) > 0;
-		MTR_state = ((raw >> 6) & 0x1) > 0;
-		MPS_State = ((raw >> 5) & 0x1) > 0;
-		SS1_State = ((raw >> 4) & 0x1) > 0;
-		SS2_State = ((raw >> 3) & 0x1) > 0;
-		CSS_State = ((raw >> 2) & 0x1) > 0;
-		ES_State = ((raw >> 1) & 0x1) > 0;
-		MMM_State = (raw & 0x1) > 0;
+		mtmState = ((raw >> 7) & 0x1) > 0;
+		mtrState = ((raw >> 6) & 0x1) > 0;
+		mpsState = ((raw >> 5) & 0x1) > 0;
+		ss1State = ((raw >> 4) & 0x1) > 0;
+		ss2State = ((raw >> 3) & 0x1) > 0;
+		cssState = ((raw >> 2) & 0x1) > 0;
+		esState = ((raw >> 1) & 0x1) > 0;
+		mmmState = (raw & 0x1) > 0;
 
 		raw = dis.readUnsignedByte();
-		MMR_State = ((raw >> 7) & 0x1) > 0;
-		MPS_maneuver_ABORT = ((raw >> 6) & 0x1) > 0;
+		mmrState = ((raw >> 7) & 0x1) > 0;
+		mpsMeneuverAbort = ((raw >> 6) & 0x1) > 0;
 
-		AOCS_SW_ERROR1 = ((raw >> 3) & 0x1) > 0;
-		AOCS_SW_ERROR2 = ((raw >> 2) & 0x1) > 0;
-		AOCS_SW_ERROR3 = ((raw >> 1) & 0x1) > 0;
-		AOCS_SW_ERROR4 = (raw & 0x1) > 0;
+		aocsSwError1 = ((raw >> 3) & 0x1) > 0;
+		aocsSwError2 = ((raw >> 2) & 0x1) > 0;
+		aocsSwError3 = ((raw >> 1) & 0x1) > 0;
+		aocsSwError4 = (raw & 0x1) > 0;
 	}
 
-	public boolean isSAFE_MODE() {
-		return SAFE_MODE;
+	public boolean isSafeMode() {
+		return safeMode;
 	}
 
-	public void setSAFE_MODE(boolean sAFE_MODE) {
-		SAFE_MODE = sAFE_MODE;
+	public void setSafeMode(boolean safeMode) {
+		this.safeMode = safeMode;
 	}
 
-	public boolean isOMEGA_DET_WARNING() {
-		return OMEGA_DET_WARNING;
+	public boolean isOmegaDetWarning() {
+		return omegaDetWarning;
 	}
 
-	public void setOMEGA_DET_WARNING(boolean oMEGA_DET_WARNING) {
-		OMEGA_DET_WARNING = oMEGA_DET_WARNING;
+	public void setOmegaDetWarning(boolean omegaDetWarning) {
+		this.omegaDetWarning = omegaDetWarning;
 	}
 
-	public boolean isATTITUDE_ERROR() {
-		return ATTITUDE_ERROR;
+	public boolean isAttitudeError() {
+		return attitudeError;
 	}
 
-	public void setATTITUDE_ERROR(boolean aTTITUDE_ERROR) {
-		ATTITUDE_ERROR = aTTITUDE_ERROR;
+	public void setAttitudeError(boolean attitudeError) {
+		this.attitudeError = attitudeError;
 	}
 
-	public boolean isOMEGA_ERROR() {
-		return OMEGA_ERROR;
+	public boolean isOmegaError() {
+		return omegaError;
 	}
 
-	public void setOMEGA_ERROR(boolean oMEGA_ERROR) {
-		OMEGA_ERROR = oMEGA_ERROR;
+	public void setOmegaError(boolean omegaError) {
+		this.omegaError = omegaError;
 	}
 
-	public boolean isMW_Failure() {
-		return MW_Failure;
+	public boolean isMwFailure() {
+		return mwFailure;
 	}
 
-	public void setMW_Failure(boolean mW_Failure) {
-		MW_Failure = mW_Failure;
+	public void setMwFailure(boolean mwFailure) {
+		this.mwFailure = mwFailure;
 	}
 
-	public boolean isPWR_Failure() {
-		return PWR_Failure;
+	public boolean isPwrFailure() {
+		return pwrFailure;
 	}
 
-	public void setPWR_Failure(boolean pWR_Failure) {
-		PWR_Failure = pWR_Failure;
+	public void setPwrFailure(boolean pwrFailure) {
+		this.pwrFailure = pwrFailure;
 	}
 
-	public boolean isCOMM_Error() {
-		return COMM_Error;
+	public boolean isCommError() {
+		return commError;
 	}
 
-	public void setCOMM_Error(boolean cOMM_Error) {
-		COMM_Error = cOMM_Error;
+	public void setCommError(boolean commError) {
+		this.commError = commError;
 	}
 
-	public boolean isITEMS_MNG_Error() {
-		return ITEMS_MNG_Error;
+	public boolean isItemsMngError() {
+		return itemsMngError;
 	}
 
-	public void setITEMS_MNG_Error(boolean iTEMS_MNG_Error) {
-		ITEMS_MNG_Error = iTEMS_MNG_Error;
+	public void setItemsMngError(boolean itemsMngError) {
+		this.itemsMngError = itemsMngError;
 	}
 
-	public boolean isMWM_State() {
-		return MWM_State;
+	public boolean isMwmState() {
+		return mwmState;
 	}
 
-	public void setMWM_State(boolean mWM_State) {
-		MWM_State = mWM_State;
+	public void setMwmState(boolean mwmState) {
+		this.mwmState = mwmState;
 	}
 
-	public boolean isMWR_State() {
-		return MWR_State;
+	public boolean isMwrState() {
+		return mwrState;
 	}
 
-	public void setMWR_State(boolean mWR_State) {
-		MWR_State = mWR_State;
+	public void setMwrState(boolean mwrState) {
+		this.mwrState = mwrState;
 	}
 
-	public boolean isMTM_x_State() {
-		return MTM_x_State;
+	public boolean isMtmXState() {
+		return mtmXState;
 	}
 
-	public void setMTM_x_State(boolean mTM_x_State) {
-		MTM_x_State = mTM_x_State;
+	public void setMtmXState(boolean mtmXState) {
+		this.mtmXState = mtmXState;
 	}
 
-	public boolean isMTR_x_State() {
-		return MTR_x_State;
+	public boolean isMtrXState() {
+		return mtrXState;
 	}
 
-	public void setMTR_x_State(boolean mTR_x_State) {
-		MTR_x_State = mTR_x_State;
+	public void setMtrXState(boolean mtrXState) {
+		this.mtrXState = mtrXState;
 	}
 
-	public boolean isMTM_y_State() {
-		return MTM_y_State;
+	public boolean isMtmYState() {
+		return mtmYState;
 	}
 
-	public void setMTM_y_State(boolean mTM_y_State) {
-		MTM_y_State = mTM_y_State;
+	public void setMtmYState(boolean mtmYState) {
+		this.mtmYState = mtmYState;
 	}
 
-	public boolean isMTR_y_State() {
-		return MTR_y_State;
+	public boolean isMtrYState() {
+		return mtrYState;
 	}
 
-	public void setMTR_y_State(boolean mTR_y_State) {
-		MTR_y_State = mTR_y_State;
+	public void setMtrYState(boolean mtrYState) {
+		this.mtrYState = mtrYState;
 	}
 
-	public boolean isMTM_z_State() {
-		return MTM_z_State;
+	public boolean isMtmZState() {
+		return mtmZState;
 	}
 
-	public void setMTM_z_State(boolean mTM_z_State) {
-		MTM_z_State = mTM_z_State;
+	public void setMtmZState(boolean mtmZState) {
+		this.mtmZState = mtmZState;
 	}
 
-	public boolean isMTR_z_State() {
-		return MTR_z_State;
+	public boolean isMtrZState() {
+		return mtrZState;
 	}
 
-	public void setMTR_z_State(boolean mTR_z_State) {
-		MTR_z_State = mTR_z_State;
+	public void setMtrZState(boolean mtrZState) {
+		this.mtrZState = mtrZState;
 	}
 
-	public boolean isMTM_state() {
-		return MTM_state;
+	public boolean isMtmState() {
+		return mtmState;
 	}
 
-	public void setMTM_state(boolean mTM_state) {
-		MTM_state = mTM_state;
+	public void setMtmState(boolean mtmState) {
+		this.mtmState = mtmState;
 	}
 
-	public boolean isMTR_state() {
-		return MTR_state;
+	public boolean isMtrState() {
+		return mtrState;
 	}
 
-	public void setMTR_state(boolean mTR_state) {
-		MTR_state = mTR_state;
+	public void setMtrState(boolean mtrState) {
+		this.mtrState = mtrState;
 	}
 
-	public boolean isMPS_State() {
-		return MPS_State;
+	public boolean isMpsState() {
+		return mpsState;
 	}
 
-	public void setMPS_State(boolean mPS_State) {
-		MPS_State = mPS_State;
+	public void setMpsState(boolean mpsState) {
+		this.mpsState = mpsState;
 	}
 
-	public boolean isSS1_State() {
-		return SS1_State;
+	public boolean isSs1State() {
+		return ss1State;
 	}
 
-	public void setSS1_State(boolean sS1_State) {
-		SS1_State = sS1_State;
+	public void setSs1State(boolean ss1State) {
+		this.ss1State = ss1State;
 	}
 
-	public boolean isSS2_State() {
-		return SS2_State;
+	public boolean isSs2State() {
+		return ss2State;
 	}
 
-	public void setSS2_State(boolean sS2_State) {
-		SS2_State = sS2_State;
+	public void setSs2State(boolean ss2State) {
+		this.ss2State = ss2State;
 	}
 
-	public boolean isCSS_State() {
-		return CSS_State;
+	public boolean isCssState() {
+		return cssState;
 	}
 
-	public void setCSS_State(boolean cSS_State) {
-		CSS_State = cSS_State;
+	public void setCssState(boolean cssState) {
+		this.cssState = cssState;
 	}
 
-	public boolean isES_State() {
-		return ES_State;
+	public boolean isEsState() {
+		return esState;
 	}
 
-	public void setES_State(boolean eS_State) {
-		ES_State = eS_State;
+	public void setEsState(boolean esState) {
+		this.esState = esState;
 	}
 
-	public boolean isMMM_State() {
-		return MMM_State;
+	public boolean isMmmState() {
+		return mmmState;
 	}
 
-	public void setMMM_State(boolean mMM_State) {
-		MMM_State = mMM_State;
+	public void setMmmState(boolean mmmState) {
+		this.mmmState = mmmState;
 	}
 
-	public boolean isMMR_State() {
-		return MMR_State;
+	public boolean isMmrState() {
+		return mmrState;
 	}
 
-	public void setMMR_State(boolean mMR_State) {
-		MMR_State = mMR_State;
+	public void setMmrState(boolean mmrState) {
+		this.mmrState = mmrState;
 	}
 
-	public boolean isMPS_maneuver_ABORT() {
-		return MPS_maneuver_ABORT;
+	public boolean isMpsMeneuverAbort() {
+		return mpsMeneuverAbort;
 	}
 
-	public void setMPS_maneuver_ABORT(boolean mPS_maneuver_ABORT) {
-		MPS_maneuver_ABORT = mPS_maneuver_ABORT;
+	public void setMpsMeneuverAbort(boolean mpsMeneuverAbort) {
+		this.mpsMeneuverAbort = mpsMeneuverAbort;
 	}
 
-	public boolean isAOCS_SW_ERROR1() {
-		return AOCS_SW_ERROR1;
+	public boolean isAocsSwError1() {
+		return aocsSwError1;
 	}
 
-	public void setAOCS_SW_ERROR1(boolean aOCS_SW_ERROR1) {
-		AOCS_SW_ERROR1 = aOCS_SW_ERROR1;
+	public void setAocsSwError1(boolean aocsSwError1) {
+		this.aocsSwError1 = aocsSwError1;
 	}
 
-	public boolean isAOCS_SW_ERROR2() {
-		return AOCS_SW_ERROR2;
+	public boolean isAocsSwError2() {
+		return aocsSwError2;
 	}
 
-	public void setAOCS_SW_ERROR2(boolean aOCS_SW_ERROR2) {
-		AOCS_SW_ERROR2 = aOCS_SW_ERROR2;
+	public void setAocsSwError2(boolean aocsSwError2) {
+		this.aocsSwError2 = aocsSwError2;
 	}
 
-	public boolean isAOCS_SW_ERROR3() {
-		return AOCS_SW_ERROR3;
+	public boolean isAocsSwError3() {
+		return aocsSwError3;
 	}
 
-	public void setAOCS_SW_ERROR3(boolean aOCS_SW_ERROR3) {
-		AOCS_SW_ERROR3 = aOCS_SW_ERROR3;
+	public void setAocsSwError3(boolean aocsSwError3) {
+		this.aocsSwError3 = aocsSwError3;
 	}
 
-	public boolean isAOCS_SW_ERROR4() {
-		return AOCS_SW_ERROR4;
+	public boolean isAocsSwError4() {
+		return aocsSwError4;
 	}
 
-	public void setAOCS_SW_ERROR4(boolean aOCS_SW_ERROR4) {
-		AOCS_SW_ERROR4 = aOCS_SW_ERROR4;
+	public void setAocsSwError4(boolean aocsSwError4) {
+		this.aocsSwError4 = aocsSwError4;
 	}
 
 }
