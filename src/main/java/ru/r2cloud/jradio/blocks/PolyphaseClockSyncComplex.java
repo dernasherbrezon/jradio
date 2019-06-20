@@ -26,7 +26,6 @@ public class PolyphaseClockSyncComplex implements FloatInput {
 	private final FIRFilter[] filters;
 	private final FIRFilter[] diffFilters;
 	private float maxDeviation;
-	private float error;
 	private int skip;
 	private final CircularComplexArray array;
 
@@ -117,7 +116,7 @@ public class PolyphaseClockSyncComplex implements FloatInput {
 		diffFilters[filterNumber].filterComplex(currentComplexDiff, array);
 		errorR = currentComplex[0] * currentComplexDiff[0];
 		errorI = currentComplex[1] * currentComplexDiff[1];
-		error = (errorI + errorR) / 2.0f; // average error from I&Q channel
+		float error = (errorI + errorR) / 2.0f; // average error from I&Q channel
 
 		// Run the control loop to update the current phase (k) and
 		// tracking rate estimates based on the error value
@@ -143,12 +142,12 @@ public class PolyphaseClockSyncComplex implements FloatInput {
 		float power = 0;
 		float[] result = new float[taps.length];
 		result[0] = 0;
-		for (int i = 0, k = 1; i < taps.length - 2; i++, k++) {
+		for (int i = 0, ii = 1; i < taps.length - 2; i++, ii++) {
 			float tap = 0;
 			for (int j = 0; j < diffFilter.length; j++) {
 				tap += diffFilter[j] * taps[i + j];
 			}
-			result[k] = tap;
+			result[ii] = tap;
 			power += Math.abs(tap);
 		}
 
@@ -170,7 +169,7 @@ public class PolyphaseClockSyncComplex implements FloatInput {
 
 	private FIRFilter[] createFilters(float[] taps) {
 		// Create d_numchan vectors to store each channel's taps
-		float[][] result = new float[numberOfFilters][tapsPerFilter];
+		float[][] curBatch = new float[numberOfFilters][tapsPerFilter];
 
 		// Make a vector of the taps plus fill it out with 0's to fill
 		// each polyphase filter with exactly d_taps_per_filter
@@ -181,20 +180,20 @@ public class PolyphaseClockSyncComplex implements FloatInput {
 		for (int i = taps.length; i < tmpTaps.length; i++) {
 			tmpTaps[i] = 0.0f;
 		}
-		FIRFilter[] filters = new FIRFilter[numberOfFilters];
+		FIRFilter[] result = new FIRFilter[numberOfFilters];
 
 		// Partition the filter
 		for (int i = 0; i < numberOfFilters; i++) {
 			// Each channel uses all d_taps_per_filter with 0's if not enough taps to fill out
-			result[i] = new float[tapsPerFilter];
+			curBatch[i] = new float[tapsPerFilter];
 			for (int j = 0; j < tapsPerFilter; j++) {
-				result[i][j] = tmpTaps[i + j * numberOfFilters];
+				curBatch[i][j] = tmpTaps[i + j * numberOfFilters];
 			}
 
 			// Build a filter for each channel and add it's taps to it
-			filters[i] = new FIRFilter(result[i]);
+			result[i] = new FIRFilter(curBatch[i]);
 		}
-		return filters;
+		return result;
 	}
 
 	@Override
