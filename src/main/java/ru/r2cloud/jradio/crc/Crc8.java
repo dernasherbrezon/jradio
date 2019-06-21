@@ -26,4 +26,8 @@ public class Crc8 {
 		}
 		return result;
 	}
+	
+	private Crc8() {
+		// do nothing
+	}
 }
