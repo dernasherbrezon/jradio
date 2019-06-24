@@ -209,7 +209,7 @@
       "INITPDUADC": true,
       "INITCANOPEN": false
     },
-    "ACS_STATE": "Safe",
+    "ACS_STATE": "SAFE",
     "ACS_OMEGA_P": 4.9836165E-38,
     "ACS_OMEGA_Q": 6.0154636E-20,
     "ACS_OMEGA_R": -2.4689753E-10,

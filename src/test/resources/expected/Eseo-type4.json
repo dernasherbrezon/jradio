@@ -13,7 +13,7 @@
   "pid": 240,
   "beaconType": 6,
   "type4": {
-    "ACS_STATE": "Safe",
+    "ACS_STATE": "SAFE",
     "ACS_SUN_MODE": "Sun",
     "ACS_ERR": {
       "safeMode": true,

@@ -5,7 +5,7 @@ import java.util.Map;
 
 public enum AcsState {
 
-	Safe(1), Nominal(2);
+	SAFE(1), NOMINAL(2);
 
 	private final int code;
 	private static final Map<Integer, AcsState> typeByCode = new HashMap<>();
