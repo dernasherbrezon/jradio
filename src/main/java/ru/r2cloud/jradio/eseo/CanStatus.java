@@ -6,275 +6,275 @@ import ru.r2cloud.jradio.util.LittleEndianDataInputStream;
 
 public class CanStatus {
 
-	private boolean PlatformMainControllerCorrectlyInitialized;
-	private boolean PlatformMainControllerInnormalMode;
-	private boolean PlatformMainControllerInloopbackMode;
-	private boolean PlatformMainControllerInsilentMode;
-	private boolean PlatformMainControllerInsilentLoopbackMode;
-	private boolean PlatformMainTransceiverLoopbackActive;
-	private boolean PlatformMainMarkedAsActiveBus;
-	private boolean PlatformRedundantControllerCorrectlyInitialized;
-	private boolean PlatformRedundantControllerInnormalMode;
-	private boolean PlatformRedundantControllerInloopbackMode;
-	private boolean PlatformRedundantControllerInsilentMode;
-	private boolean PlatformRedundantControllerInsilentLoopbackMode;
-	private boolean PlatformRedundantTransceiverLoopbackActive;
-	private boolean PlatformRedundantMarkedAsActiveBus;
-	private boolean PayloadMainControllerCorrectlyInitialized;
-	private boolean PayloadMainControllerInnormalMode;
-	private boolean PayloadMainControllerInloopbackMode;
-	private boolean PayloadMainControllerInsilentMode;
-	private boolean PayloadMaintransceiverLoopbackActive;
-	private boolean PayloadMainmarkedAsActiveBus;
-	private boolean PayloadRedundantControllerCorrectlyInitialized;
-	private boolean PayloadRedundantControllerInnormalMode;
-	private boolean PayloadRedundantControllerInloopbackMode;
-	private boolean PayloadRedundantControllerInsilentMode;
-	private boolean PayloadRedundantTransceiverLoopbackActive;
-	private boolean PayloadRedundantMarkedAsActiveBus;
+	private boolean platformMainControllerCorrectlyInitialized;
+	private boolean platformMainControllerInnormalMode;
+	private boolean platformMainControllerInloopbackMode;
+	private boolean platformMainControllerInsilentMode;
+	private boolean platformMainControllerInsilentLoopbackMode;
+	private boolean platformMainTransceiverLoopbackActive;
+	private boolean platformMainMarkedAsActiveBus;
+	private boolean platformRedundantControllerCorrectlyInitialized;
+	private boolean platformRedundantControllerInnormalMode;
+	private boolean platformRedundantControllerInloopbackMode;
+	private boolean platformRedundantControllerInsilentMode;
+	private boolean platformRedundantControllerInsilentLoopbackMode;
+	private boolean platformRedundantTransceiverLoopbackActive;
+	private boolean platformRedundantMarkedAsActiveBus;
+	private boolean payloadMainControllerCorrectlyInitialized;
+	private boolean payloadMainControllerInnormalMode;
+	private boolean payloadMainControllerInloopbackMode;
+	private boolean payloadMainControllerInsilentMode;
+	private boolean payloadMaintransceiverLoopbackActive;
+	private boolean payloadMainmarkedAsActiveBus;
+	private boolean payloadRedundantControllerCorrectlyInitialized;
+	private boolean payloadRedundantControllerInnormalMode;
+	private boolean payloadRedundantControllerInloopbackMode;
+	private boolean payloadRedundantControllerInsilentMode;
+	private boolean payloadRedundantTransceiverLoopbackActive;
+	private boolean payloadRedundantMarkedAsActiveBus;
 
 	public CanStatus(LittleEndianDataInputStream dis) throws IOException {
 		int raw = dis.readUnsignedByte();
-		PlatformMainControllerCorrectlyInitialized = ((raw >> 7) & 0x1) > 0;
-		PlatformMainControllerInnormalMode = ((raw >> 6) & 0x1) > 0;
-		PlatformMainControllerInloopbackMode = ((raw >> 5) & 0x1) > 0;
-		PlatformMainControllerInsilentMode = ((raw >> 4) & 0x1) > 0;
-		PlatformMainControllerInsilentLoopbackMode = ((raw >> 3) & 0x1) > 0;
-		PlatformMainTransceiverLoopbackActive = ((raw >> 2) & 0x1) > 0;
-		PlatformMainMarkedAsActiveBus = ((raw >> 1) & 0x1) > 0;
+		platformMainControllerCorrectlyInitialized = ((raw >> 7) & 0x1) > 0;
+		platformMainControllerInnormalMode = ((raw >> 6) & 0x1) > 0;
+		platformMainControllerInloopbackMode = ((raw >> 5) & 0x1) > 0;
+		platformMainControllerInsilentMode = ((raw >> 4) & 0x1) > 0;
+		platformMainControllerInsilentLoopbackMode = ((raw >> 3) & 0x1) > 0;
+		platformMainTransceiverLoopbackActive = ((raw >> 2) & 0x1) > 0;
+		platformMainMarkedAsActiveBus = ((raw >> 1) & 0x1) > 0;
 
 		raw = dis.readUnsignedByte();
-		PlatformRedundantControllerCorrectlyInitialized = ((raw >> 7) & 0x1) > 0;
-		PlatformRedundantControllerInnormalMode = ((raw >> 6) & 0x1) > 0;
-		PlatformRedundantControllerInloopbackMode = ((raw >> 5) & 0x1) > 0;
-		PlatformRedundantControllerInsilentMode = ((raw >> 4) & 0x1) > 0;
-		PlatformRedundantControllerInsilentLoopbackMode = ((raw >> 3) & 0x1) > 0;
-		PlatformRedundantTransceiverLoopbackActive = ((raw >> 2) & 0x1) > 0;
-		PlatformRedundantMarkedAsActiveBus = ((raw >> 1) & 0x1) > 0;
+		platformRedundantControllerCorrectlyInitialized = ((raw >> 7) & 0x1) > 0;
+		platformRedundantControllerInnormalMode = ((raw >> 6) & 0x1) > 0;
+		platformRedundantControllerInloopbackMode = ((raw >> 5) & 0x1) > 0;
+		platformRedundantControllerInsilentMode = ((raw >> 4) & 0x1) > 0;
+		platformRedundantControllerInsilentLoopbackMode = ((raw >> 3) & 0x1) > 0;
+		platformRedundantTransceiverLoopbackActive = ((raw >> 2) & 0x1) > 0;
+		platformRedundantMarkedAsActiveBus = ((raw >> 1) & 0x1) > 0;
 
 		raw = dis.readUnsignedByte();
-		PayloadMainControllerCorrectlyInitialized = ((raw >> 7) & 0x1) > 0;
-		PayloadMainControllerInnormalMode = ((raw >> 6) & 0x1) > 0;
-		PayloadMainControllerInloopbackMode = ((raw >> 5) & 0x1) > 0;
-		PayloadMainControllerInsilentMode = ((raw >> 4) & 0x1) > 0;
-		PayloadMaintransceiverLoopbackActive = ((raw >> 3) & 0x1) > 0;
-		PayloadMainmarkedAsActiveBus = ((raw >> 2) & 0x1) > 0;
+		payloadMainControllerCorrectlyInitialized = ((raw >> 7) & 0x1) > 0;
+		payloadMainControllerInnormalMode = ((raw >> 6) & 0x1) > 0;
+		payloadMainControllerInloopbackMode = ((raw >> 5) & 0x1) > 0;
+		payloadMainControllerInsilentMode = ((raw >> 4) & 0x1) > 0;
+		payloadMaintransceiverLoopbackActive = ((raw >> 3) & 0x1) > 0;
+		payloadMainmarkedAsActiveBus = ((raw >> 2) & 0x1) > 0;
 
 		raw = dis.readUnsignedByte();
-		PayloadRedundantControllerCorrectlyInitialized = ((raw >> 7) & 0x1) > 0;
-		PayloadRedundantControllerInnormalMode = ((raw >> 6) & 0x1) > 0;
-		PayloadRedundantControllerInloopbackMode = ((raw >> 5) & 0x1) > 0;
-		PayloadRedundantControllerInsilentMode = ((raw >> 4) & 0x1) > 0;
-		PayloadRedundantTransceiverLoopbackActive = ((raw >> 3) & 0x1) > 0;
-		PayloadRedundantMarkedAsActiveBus = ((raw >> 2) & 0x1) > 0;
+		payloadRedundantControllerCorrectlyInitialized = ((raw >> 7) & 0x1) > 0;
+		payloadRedundantControllerInnormalMode = ((raw >> 6) & 0x1) > 0;
+		payloadRedundantControllerInloopbackMode = ((raw >> 5) & 0x1) > 0;
+		payloadRedundantControllerInsilentMode = ((raw >> 4) & 0x1) > 0;
+		payloadRedundantTransceiverLoopbackActive = ((raw >> 3) & 0x1) > 0;
+		payloadRedundantMarkedAsActiveBus = ((raw >> 2) & 0x1) > 0;
 	}
 
 	public boolean isPlatformMainControllerCorrectlyInitialized() {
-		return PlatformMainControllerCorrectlyInitialized;
+		return platformMainControllerCorrectlyInitialized;
 	}
 
 	public void setPlatformMainControllerCorrectlyInitialized(boolean platformMainControllerCorrectlyInitialized) {
-		PlatformMainControllerCorrectlyInitialized = platformMainControllerCorrectlyInitialized;
+		this.platformMainControllerCorrectlyInitialized = platformMainControllerCorrectlyInitialized;
 	}
 
 	public boolean isPlatformMainControllerInnormalMode() {
-		return PlatformMainControllerInnormalMode;
+		return platformMainControllerInnormalMode;
 	}
 
 	public void setPlatformMainControllerInnormalMode(boolean platformMainControllerInnormalMode) {
-		PlatformMainControllerInnormalMode = platformMainControllerInnormalMode;
+		this.platformMainControllerInnormalMode = platformMainControllerInnormalMode;
 	}
 
 	public boolean isPlatformMainControllerInloopbackMode() {
-		return PlatformMainControllerInloopbackMode;
+		return platformMainControllerInloopbackMode;
 	}
 
 	public void setPlatformMainControllerInloopbackMode(boolean platformMainControllerInloopbackMode) {
-		PlatformMainControllerInloopbackMode = platformMainControllerInloopbackMode;
+		this.platformMainControllerInloopbackMode = platformMainControllerInloopbackMode;
 	}
 
 	public boolean isPlatformMainControllerInsilentMode() {
-		return PlatformMainControllerInsilentMode;
+		return platformMainControllerInsilentMode;
 	}
 
 	public void setPlatformMainControllerInsilentMode(boolean platformMainControllerInsilentMode) {
-		PlatformMainControllerInsilentMode = platformMainControllerInsilentMode;
+		this.platformMainControllerInsilentMode = platformMainControllerInsilentMode;
 	}
 
 	public boolean isPlatformMainControllerInsilentLoopbackMode() {
-		return PlatformMainControllerInsilentLoopbackMode;
+		return platformMainControllerInsilentLoopbackMode;
 	}
 
 	public void setPlatformMainControllerInsilentLoopbackMode(boolean platformMainControllerInsilentLoopbackMode) {
-		PlatformMainControllerInsilentLoopbackMode = platformMainControllerInsilentLoopbackMode;
+		this.platformMainControllerInsilentLoopbackMode = platformMainControllerInsilentLoopbackMode;
 	}
 
 	public boolean isPlatformMainTransceiverLoopbackActive() {
-		return PlatformMainTransceiverLoopbackActive;
+		return platformMainTransceiverLoopbackActive;
 	}
 
 	public void setPlatformMainTransceiverLoopbackActive(boolean platformMainTransceiverLoopbackActive) {
-		PlatformMainTransceiverLoopbackActive = platformMainTransceiverLoopbackActive;
+		this.platformMainTransceiverLoopbackActive = platformMainTransceiverLoopbackActive;
 	}
 
 	public boolean isPlatformMainMarkedAsActiveBus() {
-		return PlatformMainMarkedAsActiveBus;
+		return platformMainMarkedAsActiveBus;
 	}
 
 	public void setPlatformMainMarkedAsActiveBus(boolean platformMainMarkedAsActiveBus) {
-		PlatformMainMarkedAsActiveBus = platformMainMarkedAsActiveBus;
+		this.platformMainMarkedAsActiveBus = platformMainMarkedAsActiveBus;
 	}
 
 	public boolean isPlatformRedundantControllerCorrectlyInitialized() {
-		return PlatformRedundantControllerCorrectlyInitialized;
+		return platformRedundantControllerCorrectlyInitialized;
 	}
 
 	public void setPlatformRedundantControllerCorrectlyInitialized(boolean platformRedundantControllerCorrectlyInitialized) {
-		PlatformRedundantControllerCorrectlyInitialized = platformRedundantControllerCorrectlyInitialized;
+		this.platformRedundantControllerCorrectlyInitialized = platformRedundantControllerCorrectlyInitialized;
 	}
 
 	public boolean isPlatformRedundantControllerInnormalMode() {
-		return PlatformRedundantControllerInnormalMode;
+		return platformRedundantControllerInnormalMode;
 	}
 
 	public void setPlatformRedundantControllerInnormalMode(boolean platformRedundantControllerInnormalMode) {
-		PlatformRedundantControllerInnormalMode = platformRedundantControllerInnormalMode;
+		this.platformRedundantControllerInnormalMode = platformRedundantControllerInnormalMode;
 	}
 
 	public boolean isPlatformRedundantControllerInloopbackMode() {
-		return PlatformRedundantControllerInloopbackMode;
+		return platformRedundantControllerInloopbackMode;
 	}
 
 	public void setPlatformRedundantControllerInloopbackMode(boolean platformRedundantControllerInloopbackMode) {
-		PlatformRedundantControllerInloopbackMode = platformRedundantControllerInloopbackMode;
+		this.platformRedundantControllerInloopbackMode = platformRedundantControllerInloopbackMode;
 	}
 
 	public boolean isPlatformRedundantControllerInsilentMode() {
-		return PlatformRedundantControllerInsilentMode;
+		return platformRedundantControllerInsilentMode;
 	}
 
 	public void setPlatformRedundantControllerInsilentMode(boolean platformRedundantControllerInsilentMode) {
-		PlatformRedundantControllerInsilentMode = platformRedundantControllerInsilentMode;
+		this.platformRedundantControllerInsilentMode = platformRedundantControllerInsilentMode;
 	}
 
 	public boolean isPlatformRedundantControllerInsilentLoopbackMode() {
-		return PlatformRedundantControllerInsilentLoopbackMode;
+		return platformRedundantControllerInsilentLoopbackMode;
 	}
 
 	public void setPlatformRedundantControllerInsilentLoopbackMode(boolean platformRedundantControllerInsilentLoopbackMode) {
-		PlatformRedundantControllerInsilentLoopbackMode = platformRedundantControllerInsilentLoopbackMode;
+		this.platformRedundantControllerInsilentLoopbackMode = platformRedundantControllerInsilentLoopbackMode;
 	}
 
 	public boolean isPlatformRedundantTransceiverLoopbackActive() {
-		return PlatformRedundantTransceiverLoopbackActive;
+		return platformRedundantTransceiverLoopbackActive;
 	}
 
 	public void setPlatformRedundantTransceiverLoopbackActive(boolean platformRedundantTransceiverLoopbackActive) {
-		PlatformRedundantTransceiverLoopbackActive = platformRedundantTransceiverLoopbackActive;
+		this.platformRedundantTransceiverLoopbackActive = platformRedundantTransceiverLoopbackActive;
 	}
 
 	public boolean isPlatformRedundantMarkedAsActiveBus() {
-		return PlatformRedundantMarkedAsActiveBus;
+		return platformRedundantMarkedAsActiveBus;
 	}
 
 	public void setPlatformRedundantMarkedAsActiveBus(boolean platformRedundantMarkedAsActiveBus) {
-		PlatformRedundantMarkedAsActiveBus = platformRedundantMarkedAsActiveBus;
+		this.platformRedundantMarkedAsActiveBus = platformRedundantMarkedAsActiveBus;
 	}
 
 	public boolean isPayloadMainControllerCorrectlyInitialized() {
-		return PayloadMainControllerCorrectlyInitialized;
+		return payloadMainControllerCorrectlyInitialized;
 	}
 
 	public void setPayloadMainControllerCorrectlyInitialized(boolean payloadMainControllerCorrectlyInitialized) {
-		PayloadMainControllerCorrectlyInitialized = payloadMainControllerCorrectlyInitialized;
+		this.payloadMainControllerCorrectlyInitialized = payloadMainControllerCorrectlyInitialized;
 	}
 
 	public boolean isPayloadMainControllerInnormalMode() {
-		return PayloadMainControllerInnormalMode;
+		return payloadMainControllerInnormalMode;
 	}
 
 	public void setPayloadMainControllerInnormalMode(boolean payloadMainControllerInnormalMode) {
-		PayloadMainControllerInnormalMode = payloadMainControllerInnormalMode;
+		this.payloadMainControllerInnormalMode = payloadMainControllerInnormalMode;
 	}
 
 	public boolean isPayloadMainControllerInloopbackMode() {
-		return PayloadMainControllerInloopbackMode;
+		return payloadMainControllerInloopbackMode;
 	}
 
 	public void setPayloadMainControllerInloopbackMode(boolean payloadMainControllerInloopbackMode) {
-		PayloadMainControllerInloopbackMode = payloadMainControllerInloopbackMode;
+		this.payloadMainControllerInloopbackMode = payloadMainControllerInloopbackMode;
 	}
 
 	public boolean isPayloadMainControllerInsilentMode() {
-		return PayloadMainControllerInsilentMode;
+		return payloadMainControllerInsilentMode;
 	}
 
 	public void setPayloadMainControllerInsilentMode(boolean payloadMainControllerInsilentMode) {
-		PayloadMainControllerInsilentMode = payloadMainControllerInsilentMode;
+		this.payloadMainControllerInsilentMode = payloadMainControllerInsilentMode;
 	}
 
 	public boolean isPayloadMaintransceiverLoopbackActive() {
-		return PayloadMaintransceiverLoopbackActive;
+		return payloadMaintransceiverLoopbackActive;
 	}
 
 	public void setPayloadMaintransceiverLoopbackActive(boolean payloadMaintransceiverLoopbackActive) {
-		PayloadMaintransceiverLoopbackActive = payloadMaintransceiverLoopbackActive;
+		this.payloadMaintransceiverLoopbackActive = payloadMaintransceiverLoopbackActive;
 	}
 
 	public boolean isPayloadMainmarkedAsActiveBus() {
-		return PayloadMainmarkedAsActiveBus;
+		return payloadMainmarkedAsActiveBus;
 	}
 
 	public void setPayloadMainmarkedAsActiveBus(boolean payloadMainmarkedAsActiveBus) {
-		PayloadMainmarkedAsActiveBus = payloadMainmarkedAsActiveBus;
+		this.payloadMainmarkedAsActiveBus = payloadMainmarkedAsActiveBus;
 	}
 
 	public boolean isPayloadRedundantControllerCorrectlyInitialized() {
-		return PayloadRedundantControllerCorrectlyInitialized;
+		return payloadRedundantControllerCorrectlyInitialized;
 	}
 
 	public void setPayloadRedundantControllerCorrectlyInitialized(boolean payloadRedundantControllerCorrectlyInitialized) {
-		PayloadRedundantControllerCorrectlyInitialized = payloadRedundantControllerCorrectlyInitialized;
+		this.payloadRedundantControllerCorrectlyInitialized = payloadRedundantControllerCorrectlyInitialized;
 	}
 
 	public boolean isPayloadRedundantControllerInnormalMode() {
-		return PayloadRedundantControllerInnormalMode;
+		return payloadRedundantControllerInnormalMode;
 	}
 
 	public void setPayloadRedundantControllerInnormalMode(boolean payloadRedundantControllerInnormalMode) {
-		PayloadRedundantControllerInnormalMode = payloadRedundantControllerInnormalMode;
+		this.payloadRedundantControllerInnormalMode = payloadRedundantControllerInnormalMode;
 	}
 
 	public boolean isPayloadRedundantControllerInloopbackMode() {
-		return PayloadRedundantControllerInloopbackMode;
+		return payloadRedundantControllerInloopbackMode;
 	}
 
 	public void setPayloadRedundantControllerInloopbackMode(boolean payloadRedundantControllerInloopbackMode) {
-		PayloadRedundantControllerInloopbackMode = payloadRedundantControllerInloopbackMode;
+		this.payloadRedundantControllerInloopbackMode = payloadRedundantControllerInloopbackMode;
 	}
 
 	public boolean isPayloadRedundantControllerInsilentMode() {
-		return PayloadRedundantControllerInsilentMode;
+		return payloadRedundantControllerInsilentMode;
 	}
 
 	public void setPayloadRedundantControllerInsilentMode(boolean payloadRedundantControllerInsilentMode) {
-		PayloadRedundantControllerInsilentMode = payloadRedundantControllerInsilentMode;
+		this.payloadRedundantControllerInsilentMode = payloadRedundantControllerInsilentMode;
 	}
 
 	public boolean isPayloadRedundantTransceiverLoopbackActive() {
-		return PayloadRedundantTransceiverLoopbackActive;
+		return payloadRedundantTransceiverLoopbackActive;
 	}
 
 	public void setPayloadRedundantTransceiverLoopbackActive(boolean payloadRedundantTransceiverLoopbackActive) {
-		PayloadRedundantTransceiverLoopbackActive = payloadRedundantTransceiverLoopbackActive;
+		this.payloadRedundantTransceiverLoopbackActive = payloadRedundantTransceiverLoopbackActive;
 	}
 
 	public boolean isPayloadRedundantMarkedAsActiveBus() {
-		return PayloadRedundantMarkedAsActiveBus;
+		return payloadRedundantMarkedAsActiveBus;
 	}
 
 	public void setPayloadRedundantMarkedAsActiveBus(boolean payloadRedundantMarkedAsActiveBus) {
-		PayloadRedundantMarkedAsActiveBus = payloadRedundantMarkedAsActiveBus;
+		this.payloadRedundantMarkedAsActiveBus = payloadRedundantMarkedAsActiveBus;
 	}
 
 }
