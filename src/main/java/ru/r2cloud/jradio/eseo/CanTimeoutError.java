@@ -6,214 +6,214 @@ import ru.r2cloud.jradio.util.LittleEndianDataInputStream;
 
 public class CanTimeoutError {
 
-	private boolean PMM;
-	private boolean PMR;
-	private boolean TMM;
-	private boolean TMR;
-	private boolean SSM;
-	private boolean SSR;
-	private boolean ESE;
-	private boolean MWR;
-	private boolean MPS;
-	private boolean MMM;
-	private boolean MMR;
-	private boolean MTM;
-	private boolean MTR;
-	private boolean TRI;
-	private boolean LMP;
-	private boolean PCAM;
-	private boolean AMS;
-	private boolean STX;
-	private boolean GPS;
-	private boolean SCAM;
+	private boolean pmm;
+	private boolean pmr;
+	private boolean tmm;
+	private boolean tmr;
+	private boolean ssm;
+	private boolean ssr;
+	private boolean ese;
+	private boolean mwr;
+	private boolean mps;
+	private boolean mmm;
+	private boolean mmr;
+	private boolean mtm;
+	private boolean mtr;
+	private boolean tri;
+	private boolean lmp;
+	private boolean pcam;
+	private boolean ams;
+	private boolean stx;
+	private boolean gps;
+	private boolean scam;
 
 	public CanTimeoutError(LittleEndianDataInputStream dis) throws IOException {
 		int raw = dis.readUnsignedByte();
-		PMM = ((raw >> 5) & 0x1) > 0;
-		PMR = ((raw >> 4) & 0x1) > 0;
-		TMM = ((raw >> 3) & 0x1) > 0;
-		TMR = ((raw >> 2) & 0x1) > 0;
-		SSM = ((raw >> 1) & 0x1) > 0;
-		SSR = (raw & 0x1) > 0;
+		pmm = ((raw >> 5) & 0x1) > 0;
+		pmr = ((raw >> 4) & 0x1) > 0;
+		tmm = ((raw >> 3) & 0x1) > 0;
+		tmr = ((raw >> 2) & 0x1) > 0;
+		ssm = ((raw >> 1) & 0x1) > 0;
+		ssr = (raw & 0x1) > 0;
 
 		raw = dis.readUnsignedByte();
-		ESE = ((raw >> 7) & 0x1) > 0;
-		MWR = ((raw >> 6) & 0x1) > 0;
-		MPS = ((raw >> 4) & 0x1) > 0;
-		MMM = ((raw >> 3) & 0x1) > 0;
-		MMR = ((raw >> 2) & 0x1) > 0;
-		MTM = ((raw >> 1) & 0x1) > 0;
-		MTR = (raw & 0x1) > 0;
+		ese = ((raw >> 7) & 0x1) > 0;
+		mwr = ((raw >> 6) & 0x1) > 0;
+		mps = ((raw >> 4) & 0x1) > 0;
+		mmm = ((raw >> 3) & 0x1) > 0;
+		mmr = ((raw >> 2) & 0x1) > 0;
+		mtm = ((raw >> 1) & 0x1) > 0;
+		mtr = (raw & 0x1) > 0;
 
 		raw = dis.readUnsignedByte();
-		TRI = ((raw >> 7) & 0x1) > 0;
-		LMP = ((raw >> 6) & 0x1) > 0;
-		PCAM = ((raw >> 5) & 0x1) > 0;
-		AMS = ((raw >> 4) & 0x1) > 0;
-		STX = ((raw >> 3) & 0x1) > 0;
-		GPS = ((raw >> 2) & 0x1) > 0;
-		SCAM = (raw & 0x1) > 0;
+		tri = ((raw >> 7) & 0x1) > 0;
+		lmp = ((raw >> 6) & 0x1) > 0;
+		pcam = ((raw >> 5) & 0x1) > 0;
+		ams = ((raw >> 4) & 0x1) > 0;
+		stx = ((raw >> 3) & 0x1) > 0;
+		gps = ((raw >> 2) & 0x1) > 0;
+		scam = (raw & 0x1) > 0;
 		dis.skipBytes(1);
 	}
 
-	public boolean isPMM() {
-		return PMM;
+	public boolean isPmm() {
+		return pmm;
 	}
 
-	public void setPMM(boolean pMM) {
-		PMM = pMM;
+	public void setPmm(boolean pmm) {
+		this.pmm = pmm;
 	}
 
-	public boolean isPMR() {
-		return PMR;
+	public boolean isPmr() {
+		return pmr;
 	}
 
-	public void setPMR(boolean pMR) {
-		PMR = pMR;
+	public void setPmr(boolean pmr) {
+		this.pmr = pmr;
 	}
 
-	public boolean isTMM() {
-		return TMM;
+	public boolean isTmm() {
+		return tmm;
 	}
 
-	public void setTMM(boolean tMM) {
-		TMM = tMM;
+	public void setTmm(boolean tmm) {
+		this.tmm = tmm;
 	}
 
-	public boolean isTMR() {
-		return TMR;
+	public boolean isTmr() {
+		return tmr;
 	}
 
-	public void setTMR(boolean tMR) {
-		TMR = tMR;
+	public void setTmr(boolean tmr) {
+		this.tmr = tmr;
 	}
 
-	public boolean isSSM() {
-		return SSM;
+	public boolean isSsm() {
+		return ssm;
 	}
 
-	public void setSSM(boolean sSM) {
-		SSM = sSM;
+	public void setSsm(boolean ssm) {
+		this.ssm = ssm;
 	}
 
-	public boolean isSSR() {
-		return SSR;
+	public boolean isSsr() {
+		return ssr;
 	}
 
-	public void setSSR(boolean sSR) {
-		SSR = sSR;
+	public void setSsr(boolean ssr) {
+		this.ssr = ssr;
 	}
 
-	public boolean isESE() {
-		return ESE;
+	public boolean isEse() {
+		return ese;
 	}
 
-	public void setESE(boolean eSE) {
-		ESE = eSE;
+	public void setEse(boolean ese) {
+		this.ese = ese;
 	}
 
-	public boolean isMWR() {
-		return MWR;
+	public boolean isMwr() {
+		return mwr;
 	}
 
-	public void setMWR(boolean mWR) {
-		MWR = mWR;
+	public void setMwr(boolean mwr) {
+		this.mwr = mwr;
 	}
 
-	public boolean isMPS() {
-		return MPS;
+	public boolean isMps() {
+		return mps;
 	}
 
-	public void setMPS(boolean mPS) {
-		MPS = mPS;
+	public void setMps(boolean mps) {
+		this.mps = mps;
 	}
 
-	public boolean isMMM() {
-		return MMM;
+	public boolean isMmm() {
+		return mmm;
 	}
 
-	public void setMMM(boolean mMM) {
-		MMM = mMM;
+	public void setMmm(boolean mmm) {
+		this.mmm = mmm;
 	}
 
-	public boolean isMMR() {
-		return MMR;
+	public boolean isMmr() {
+		return mmr;
 	}
 
-	public void setMMR(boolean mMR) {
-		MMR = mMR;
+	public void setMmr(boolean mmr) {
+		this.mmr = mmr;
 	}
 
-	public boolean isMTM() {
-		return MTM;
+	public boolean isMtm() {
+		return mtm;
 	}
 
-	public void setMTM(boolean mTM) {
-		MTM = mTM;
+	public void setMtm(boolean mtm) {
+		this.mtm = mtm;
 	}
 
-	public boolean isMTR() {
-		return MTR;
+	public boolean isMtr() {
+		return mtr;
 	}
 
-	public void setMTR(boolean mTR) {
-		MTR = mTR;
+	public void setMtr(boolean mtr) {
+		this.mtr = mtr;
 	}
 
-	public boolean isTRI() {
-		return TRI;
+	public boolean isTri() {
+		return tri;
 	}
 
-	public void setTRI(boolean tRI) {
-		TRI = tRI;
+	public void setTri(boolean tri) {
+		this.tri = tri;
 	}
 
-	public boolean isLMP() {
-		return LMP;
+	public boolean isLmp() {
+		return lmp;
 	}
 
-	public void setLMP(boolean lMP) {
-		LMP = lMP;
+	public void setLmp(boolean lmp) {
+		this.lmp = lmp;
 	}
 
-	public boolean isPCAM() {
-		return PCAM;
+	public boolean isPcam() {
+		return pcam;
 	}
 
-	public void setPCAM(boolean pCAM) {
-		PCAM = pCAM;
+	public void setPcam(boolean pcam) {
+		this.pcam = pcam;
 	}
 
-	public boolean isAMS() {
-		return AMS;
+	public boolean isAms() {
+		return ams;
 	}
 
-	public void setAMS(boolean aMS) {
-		AMS = aMS;
+	public void setAms(boolean ams) {
+		this.ams = ams;
 	}
 
-	public boolean isSTX() {
-		return STX;
+	public boolean isStx() {
+		return stx;
 	}
 
-	public void setSTX(boolean sTX) {
-		STX = sTX;
+	public void setStx(boolean stx) {
+		this.stx = stx;
 	}
 
-	public boolean isGPS() {
-		return GPS;
+	public boolean isGps() {
+		return gps;
 	}
 
-	public void setGPS(boolean gPS) {
-		GPS = gPS;
+	public void setGps(boolean gps) {
+		this.gps = gps;
 	}
 
-	public boolean isSCAM() {
-		return SCAM;
+	public boolean isScam() {
+		return scam;
 	}
 
-	public void setSCAM(boolean sCAM) {
-		SCAM = sCAM;
+	public void setScam(boolean scam) {
+		this.scam = scam;
 	}
-	
+
 }
