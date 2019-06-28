@@ -6,245 +6,245 @@ import ru.r2cloud.jradio.util.LittleEndianDataInputStream;
 
 public class EquipmentStatus {
 
-	private boolean PowerManagementUnitMain;
-	private boolean PowerManagementUnitRedundant;
-	private boolean TMTCMain;
-	private boolean TMTCRedundant;
-	private boolean SunSensorMain;
-	private boolean SunSensorRedundant;
-	private boolean EarthSensor;
-	private boolean MomentumWheelMain;
-	private boolean MomentumWheelRedundant;
-	private boolean Micropropulsion;
-	private boolean MagnetometerMain;
-	private boolean MagnetometerRedundant;
-	private boolean MagneticTorquerMain;
-	private boolean MagneticTorquerRedundant;
-	private boolean TRITEL;
-	private boolean LangmuirProbe;
-	private boolean PCAM;
-	private boolean AMSATUK;
-	private boolean SBand;
-	private boolean GPSReceiver;
-	private boolean ADE;
-	private boolean SCAM;
-	private boolean DeOrbitMechanism;
+	private boolean powerManagementUnitMain;
+	private boolean powerManagementUnitRedundant;
+	private boolean tMTCMain;
+	private boolean tMTCRedundant;
+	private boolean sunSensorMain;
+	private boolean sunSensorRedundant;
+	private boolean earthSensor;
+	private boolean momentumWheelMain;
+	private boolean momentumWheelRedundant;
+	private boolean micropropulsion;
+	private boolean magnetometerMain;
+	private boolean magnetometerRedundant;
+	private boolean magneticTorquerMain;
+	private boolean magneticTorquerRedundant;
+	private boolean tRITEL;
+	private boolean langmuirProbe;
+	private boolean pCAM;
+	private boolean amsatUk;
+	private boolean sBand;
+	private boolean gpsReceiver;
+	private boolean aDE;
+	private boolean sCAM;
+	private boolean deOrbitMechanism;
 
 	public EquipmentStatus(LittleEndianDataInputStream dis) throws IOException {
 		int raw = dis.readUnsignedByte();
-		PowerManagementUnitMain = ((raw >> 5) & 0x1) > 0;
-		PowerManagementUnitRedundant = ((raw >> 4) & 0x1) > 0;
-		TMTCMain = ((raw >> 3) & 0x1) > 0;
-		TMTCRedundant = ((raw >> 2) & 0x1) > 0;
-		SunSensorMain = ((raw >> 1) & 0x1) > 0;
-		SunSensorRedundant = (raw & 0x1) > 0;
+		powerManagementUnitMain = ((raw >> 5) & 0x1) > 0;
+		powerManagementUnitRedundant = ((raw >> 4) & 0x1) > 0;
+		tMTCMain = ((raw >> 3) & 0x1) > 0;
+		tMTCRedundant = ((raw >> 2) & 0x1) > 0;
+		sunSensorMain = ((raw >> 1) & 0x1) > 0;
+		sunSensorRedundant = (raw & 0x1) > 0;
 
 		raw = dis.readUnsignedByte();
-		EarthSensor = ((raw >> 7) & 0x1) > 0;
-		MomentumWheelMain = ((raw >> 6) & 0x1) > 0;
-		MomentumWheelRedundant = ((raw >> 5) & 0x1) > 0;
-		Micropropulsion = ((raw >> 4) & 0x1) > 0;
-		MagnetometerMain = ((raw >> 3) & 0x1) > 0;
-		MagnetometerRedundant = ((raw >> 2) & 0x1) > 0;
-		MagneticTorquerMain = ((raw >> 1) & 0x1) > 0;
-		MagneticTorquerRedundant = (raw & 0x1) > 0;
+		earthSensor = ((raw >> 7) & 0x1) > 0;
+		momentumWheelMain = ((raw >> 6) & 0x1) > 0;
+		momentumWheelRedundant = ((raw >> 5) & 0x1) > 0;
+		micropropulsion = ((raw >> 4) & 0x1) > 0;
+		magnetometerMain = ((raw >> 3) & 0x1) > 0;
+		magnetometerRedundant = ((raw >> 2) & 0x1) > 0;
+		magneticTorquerMain = ((raw >> 1) & 0x1) > 0;
+		magneticTorquerRedundant = (raw & 0x1) > 0;
 
 		raw = dis.readUnsignedByte();
-		TRITEL = ((raw >> 7) & 0x1) > 0;
-		LangmuirProbe = ((raw >> 6) & 0x1) > 0;
-		PCAM = ((raw >> 5) & 0x1) > 0;
-		AMSATUK = ((raw >> 4) & 0x1) > 0;
-		SBand = ((raw >> 3) & 0x1) > 0;
-		GPSReceiver = ((raw >> 2) & 0x1) > 0;
-		ADE = ((raw >> 1) & 0x1) > 0;
-		SCAM = (raw & 0x1) > 0;
+		tRITEL = ((raw >> 7) & 0x1) > 0;
+		langmuirProbe = ((raw >> 6) & 0x1) > 0;
+		pCAM = ((raw >> 5) & 0x1) > 0;
+		amsatUk = ((raw >> 4) & 0x1) > 0;
+		sBand = ((raw >> 3) & 0x1) > 0;
+		gpsReceiver = ((raw >> 2) & 0x1) > 0;
+		aDE = ((raw >> 1) & 0x1) > 0;
+		sCAM = (raw & 0x1) > 0;
 
 		raw = dis.readUnsignedByte();
-		DeOrbitMechanism = ((raw >> 7) & 0x1) > 0;
+		deOrbitMechanism = ((raw >> 7) & 0x1) > 0;
 	}
 
 	public boolean isPowerManagementUnitMain() {
-		return PowerManagementUnitMain;
+		return powerManagementUnitMain;
 	}
 
 	public void setPowerManagementUnitMain(boolean powerManagementUnitMain) {
-		PowerManagementUnitMain = powerManagementUnitMain;
+		this.powerManagementUnitMain = powerManagementUnitMain;
 	}
 
 	public boolean isPowerManagementUnitRedundant() {
-		return PowerManagementUnitRedundant;
+		return powerManagementUnitRedundant;
 	}
 
 	public void setPowerManagementUnitRedundant(boolean powerManagementUnitRedundant) {
-		PowerManagementUnitRedundant = powerManagementUnitRedundant;
+		this.powerManagementUnitRedundant = powerManagementUnitRedundant;
 	}
 
-	public boolean isTMTCMain() {
-		return TMTCMain;
+	public boolean istMTCMain() {
+		return tMTCMain;
 	}
 
-	public void setTMTCMain(boolean tMTCMain) {
-		TMTCMain = tMTCMain;
+	public void settMTCMain(boolean tMTCMain) {
+		this.tMTCMain = tMTCMain;
 	}
 
-	public boolean isTMTCRedundant() {
-		return TMTCRedundant;
+	public boolean istMTCRedundant() {
+		return tMTCRedundant;
 	}
 
-	public void setTMTCRedundant(boolean tMTCRedundant) {
-		TMTCRedundant = tMTCRedundant;
+	public void settMTCRedundant(boolean tMTCRedundant) {
+		this.tMTCRedundant = tMTCRedundant;
 	}
 
 	public boolean isSunSensorMain() {
-		return SunSensorMain;
+		return sunSensorMain;
 	}
 
 	public void setSunSensorMain(boolean sunSensorMain) {
-		SunSensorMain = sunSensorMain;
+		this.sunSensorMain = sunSensorMain;
 	}
 
 	public boolean isSunSensorRedundant() {
-		return SunSensorRedundant;
+		return sunSensorRedundant;
 	}
 
 	public void setSunSensorRedundant(boolean sunSensorRedundant) {
-		SunSensorRedundant = sunSensorRedundant;
+		this.sunSensorRedundant = sunSensorRedundant;
 	}
 
 	public boolean isEarthSensor() {
-		return EarthSensor;
+		return earthSensor;
 	}
 
 	public void setEarthSensor(boolean earthSensor) {
-		EarthSensor = earthSensor;
+		this.earthSensor = earthSensor;
 	}
 
 	public boolean isMomentumWheelMain() {
-		return MomentumWheelMain;
+		return momentumWheelMain;
 	}
 
 	public void setMomentumWheelMain(boolean momentumWheelMain) {
-		MomentumWheelMain = momentumWheelMain;
+		this.momentumWheelMain = momentumWheelMain;
 	}
 
 	public boolean isMomentumWheelRedundant() {
-		return MomentumWheelRedundant;
+		return momentumWheelRedundant;
 	}
 
 	public void setMomentumWheelRedundant(boolean momentumWheelRedundant) {
-		MomentumWheelRedundant = momentumWheelRedundant;
+		this.momentumWheelRedundant = momentumWheelRedundant;
 	}
 
 	public boolean isMicropropulsion() {
-		return Micropropulsion;
+		return micropropulsion;
 	}
 
 	public void setMicropropulsion(boolean micropropulsion) {
-		Micropropulsion = micropropulsion;
+		this.micropropulsion = micropropulsion;
 	}
 
 	public boolean isMagnetometerMain() {
-		return MagnetometerMain;
+		return magnetometerMain;
 	}
 
 	public void setMagnetometerMain(boolean magnetometerMain) {
-		MagnetometerMain = magnetometerMain;
+		this.magnetometerMain = magnetometerMain;
 	}
 
 	public boolean isMagnetometerRedundant() {
-		return MagnetometerRedundant;
+		return magnetometerRedundant;
 	}
 
 	public void setMagnetometerRedundant(boolean magnetometerRedundant) {
-		MagnetometerRedundant = magnetometerRedundant;
+		this.magnetometerRedundant = magnetometerRedundant;
 	}
 
 	public boolean isMagneticTorquerMain() {
-		return MagneticTorquerMain;
+		return magneticTorquerMain;
 	}
 
 	public void setMagneticTorquerMain(boolean magneticTorquerMain) {
-		MagneticTorquerMain = magneticTorquerMain;
+		this.magneticTorquerMain = magneticTorquerMain;
 	}
 
 	public boolean isMagneticTorquerRedundant() {
-		return MagneticTorquerRedundant;
+		return magneticTorquerRedundant;
 	}
 
 	public void setMagneticTorquerRedundant(boolean magneticTorquerRedundant) {
-		MagneticTorquerRedundant = magneticTorquerRedundant;
+		this.magneticTorquerRedundant = magneticTorquerRedundant;
 	}
 
-	public boolean isTRITEL() {
-		return TRITEL;
+	public boolean istRITEL() {
+		return tRITEL;
 	}
 
-	public void setTRITEL(boolean tRITEL) {
-		TRITEL = tRITEL;
+	public void settRITEL(boolean tRITEL) {
+		this.tRITEL = tRITEL;
 	}
 
 	public boolean isLangmuirProbe() {
-		return LangmuirProbe;
+		return langmuirProbe;
 	}
 
 	public void setLangmuirProbe(boolean langmuirProbe) {
-		LangmuirProbe = langmuirProbe;
+		this.langmuirProbe = langmuirProbe;
 	}
 
-	public boolean isPCAM() {
-		return PCAM;
+	public boolean ispCAM() {
+		return pCAM;
 	}
 
-	public void setPCAM(boolean pCAM) {
-		PCAM = pCAM;
+	public void setpCAM(boolean pCAM) {
+		this.pCAM = pCAM;
 	}
 
-	public boolean isAMSATUK() {
-		return AMSATUK;
+	public boolean isAmsatUk() {
+		return amsatUk;
 	}
 
-	public void setAMSATUK(boolean aMSATUK) {
-		AMSATUK = aMSATUK;
+	public void setAmsatUk(boolean amsatUk) {
+		this.amsatUk = amsatUk;
 	}
 
-	public boolean isSBand() {
-		return SBand;
+	public boolean issBand() {
+		return sBand;
 	}
 
-	public void setSBand(boolean sBand) {
-		SBand = sBand;
+	public void setsBand(boolean sBand) {
+		this.sBand = sBand;
 	}
 
-	public boolean isGPSReceiver() {
-		return GPSReceiver;
+	public boolean isGpsReceiver() {
+		return gpsReceiver;
 	}
 
-	public void setGPSReceiver(boolean gPSReceiver) {
-		GPSReceiver = gPSReceiver;
+	public void setGpsReceiver(boolean gpsReceiver) {
+		this.gpsReceiver = gpsReceiver;
 	}
 
-	public boolean isADE() {
-		return ADE;
+	public boolean isaDE() {
+		return aDE;
 	}
 
-	public void setADE(boolean aDE) {
-		ADE = aDE;
+	public void setaDE(boolean aDE) {
+		this.aDE = aDE;
 	}
 
-	public boolean isSCAM() {
-		return SCAM;
+	public boolean issCAM() {
+		return sCAM;
 	}
 
-	public void setSCAM(boolean sCAM) {
-		SCAM = sCAM;
+	public void setsCAM(boolean sCAM) {
+		this.sCAM = sCAM;
 	}
 
 	public boolean isDeOrbitMechanism() {
-		return DeOrbitMechanism;
+		return deOrbitMechanism;
 	}
 
 	public void setDeOrbitMechanism(boolean deOrbitMechanism) {
-		DeOrbitMechanism = deOrbitMechanism;
+		this.deOrbitMechanism = deOrbitMechanism;
 	}
 
 }
