@@ -5,7 +5,7 @@ import java.util.Map;
 
 public enum EseStatus {
 
-	OK(0b000), WDTRebootError(0b001), RTEMSError(0b010);
+	OK(0b000), WDT_REBOOT_ERROR(0b001), RTEMS_ERROR(0b010);
 
 	private final int code;
 	private static final Map<Integer, EseStatus> typeByCode = new HashMap<>();
