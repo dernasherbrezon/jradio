@@ -31,7 +31,7 @@ public class Eseo extends BeaconSource<EseoBeacon> {
 		while ((endFlag = code.lastIndexOf(raw, endFlag)) != -1) {
 			// 152bit
 			if (endFlag < 19) {
-				LOG.info("not enough data between flags: " + endFlag);
+				LOG.info("not enough data between flags: {}", endFlag);
 				break;
 			}
 
@@ -60,12 +60,10 @@ public class Eseo extends BeaconSource<EseoBeacon> {
 				return beacon;
 			} catch (UncorrectableException e) {
 				if (LOG.isDebugEnabled()) {
-					LOG.debug("unable to decode reed solomon: " + e.getMessage());
+					LOG.debug("unable to decode reed solomon: {}", e.getMessage());
 				}
-				continue;
 			} catch (IOException e) {
 				LOG.error("unable to parse beacon", e);
-				continue;
 			}
 		}
 		if (endFlag == -1 && LOG.isDebugEnabled()) {
