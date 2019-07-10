@@ -20,10 +20,10 @@ public class PlCanError {
 	private boolean noTxMailboxAvailable;
 	private boolean thePreviousTransmissionFailed;
 	private boolean RxBufferFull;
-	private boolean FIFO0Overrun;
-	private boolean FIFO0Full;
-	private boolean FIFO1Overrun;
-	private boolean FIFO1Full;
+	private boolean fifo0Overrun;
+	private boolean fifo0Full;
+	private boolean fifo1Overrun;
+	private boolean fifo1Full;
 
 	private int lastErrorCode;
 
@@ -50,12 +50,12 @@ public class PlCanError {
 		noTxMailboxAvailable = ((raw >> 4) & 0x1) > 0;
 		thePreviousTransmissionFailed = ((raw >> 3) & 0x1) > 0;
 		RxBufferFull = ((raw >> 2) & 0x1) > 0;
-		FIFO0Overrun = ((raw >> 1) & 0x1) > 0;
-		FIFO0Full = (raw & 0x1) > 0;
+		fifo0Overrun = ((raw >> 1) & 0x1) > 0;
+		fifo0Full = (raw & 0x1) > 0;
 
 		raw = dis.readUnsignedByte();
-		FIFO1Overrun = ((raw >> 7) & 0x1) > 0;
-		FIFO1Full = ((raw >> 6) & 0x1) > 0;
+		fifo1Overrun = ((raw >> 7) & 0x1) > 0;
+		fifo1Full = ((raw >> 6) & 0x1) > 0;
 
 		lastErrorCode = ((raw >> 3) & 0b111);
 
@@ -178,36 +178,36 @@ public class PlCanError {
 		RxBufferFull = rxBufferFull;
 	}
 
-	public boolean isFIFO0Overrun() {
-		return FIFO0Overrun;
+	public boolean isFifo0Overrun() {
+		return fifo0Overrun;
 	}
 
-	public void setFIFO0Overrun(boolean fIFO0Overrun) {
-		FIFO0Overrun = fIFO0Overrun;
+	public void setFifo0Overrun(boolean fifo0Overrun) {
+		this.fifo0Overrun = fifo0Overrun;
 	}
 
-	public boolean isFIFO0Full() {
-		return FIFO0Full;
+	public boolean isFifo0Full() {
+		return fifo0Full;
 	}
 
-	public void setFIFO0Full(boolean fIFO0Full) {
-		FIFO0Full = fIFO0Full;
+	public void setFifo0Full(boolean fifo0Full) {
+		this.fifo0Full = fifo0Full;
 	}
 
-	public boolean isFIFO1Overrun() {
-		return FIFO1Overrun;
+	public boolean isFifo1Overrun() {
+		return fifo1Overrun;
 	}
 
-	public void setFIFO1Overrun(boolean fIFO1Overrun) {
-		FIFO1Overrun = fIFO1Overrun;
+	public void setFifo1Overrun(boolean fifo1Overrun) {
+		this.fifo1Overrun = fifo1Overrun;
 	}
 
-	public boolean isFIFO1Full() {
-		return FIFO1Full;
+	public boolean isFifo1Full() {
+		return fifo1Full;
 	}
 
-	public void setFIFO1Full(boolean fIFO1Full) {
-		FIFO1Full = fIFO1Full;
+	public void setFifo1Full(boolean fifo1Full) {
+		this.fifo1Full = fifo1Full;
 	}
 
 	public int getLastErrorCode() {
