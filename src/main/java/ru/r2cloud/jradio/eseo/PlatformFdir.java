@@ -6,214 +6,214 @@ import ru.r2cloud.jradio.util.LittleEndianDataInputStream;
 
 public class PlatformFdir {
 
-	private boolean PMM;
-	private boolean PMR;
-	private boolean PMMPingFailed;
-	private boolean PMRPingFailed;
-	private boolean OBDHMain;
-	private boolean OBDHMainBootMode;
-	private boolean OBDHRedundant;
-	private boolean OBDHRedundantBootMode;
-	private boolean OBDMPingFailed;
-	private boolean OBDRPingFailed;
-	private boolean TMM;
-	private boolean TMR;
-	private boolean TMMPingFailed;
-	private boolean TMRPingFailed;
-	private boolean S3;
-	private boolean S4;
-	private boolean IsolationSwitch;
-	private boolean DOMPyroFire;
-	private boolean OBDHReprogrammingFailed;
-	private boolean OBDHReprogramming;
+	private boolean pmm;
+	private boolean pmr;
+	private boolean pmmpingFailed;
+	private boolean pmrpingFailed;
+	private boolean obdhMain;
+	private boolean obdhMainBootMode;
+	private boolean obdhRedundant;
+	private boolean obdhRedundantBootMode;
+	private boolean obdmPingFailed;
+	private boolean obdrPingFailed;
+	private boolean tmm;
+	private boolean tmr;
+	private boolean tmmpingFailed;
+	private boolean tmrpingFailed;
+	private boolean s3;
+	private boolean s4;
+	private boolean isolationSwitch;
+	private boolean dompyroFire;
+	private boolean obdhReprogrammingFailed;
+	private boolean obdhReprogramming;
 
 	public PlatformFdir(LittleEndianDataInputStream dis) throws IOException {
 		int raw = dis.readUnsignedByte();
-		PMM = ((raw >> 7) & 0x1) > 0;
-		PMR = ((raw >> 6) & 0x1) > 0;
-		PMMPingFailed = ((raw >> 5) & 0x1) > 0;
-		PMRPingFailed = ((raw >> 4) & 0x1) > 0;
-		OBDHMain = ((raw >> 3) & 0x1) > 0;
-		OBDHMainBootMode = ((raw >> 2) & 0x1) > 0;
-		OBDHRedundant = ((raw >> 1) & 0x1) > 0;
-		OBDHRedundantBootMode = (raw & 0x1) > 0;
+		pmm = ((raw >> 7) & 0x1) > 0;
+		pmr = ((raw >> 6) & 0x1) > 0;
+		pmmpingFailed = ((raw >> 5) & 0x1) > 0;
+		pmrpingFailed = ((raw >> 4) & 0x1) > 0;
+		obdhMain = ((raw >> 3) & 0x1) > 0;
+		obdhMainBootMode = ((raw >> 2) & 0x1) > 0;
+		obdhRedundant = ((raw >> 1) & 0x1) > 0;
+		obdhRedundantBootMode = (raw & 0x1) > 0;
 
 		raw = dis.readUnsignedByte();
-		OBDMPingFailed = ((raw >> 7) & 0x1) > 0;
-		OBDRPingFailed = ((raw >> 6) & 0x1) > 0;
-		TMM = ((raw >> 5) & 0x1) > 0;
-		TMR = ((raw >> 4) & 0x1) > 0;
-		TMMPingFailed = ((raw >> 3) & 0x1) > 0;
-		TMRPingFailed = ((raw >> 2) & 0x1) > 0;
-		S3 = ((raw >> 1) & 0x1) > 0;
-		S4 = (raw & 0x1) > 0;
+		obdmPingFailed = ((raw >> 7) & 0x1) > 0;
+		obdrPingFailed = ((raw >> 6) & 0x1) > 0;
+		tmm = ((raw >> 5) & 0x1) > 0;
+		tmr = ((raw >> 4) & 0x1) > 0;
+		tmmpingFailed = ((raw >> 3) & 0x1) > 0;
+		tmrpingFailed = ((raw >> 2) & 0x1) > 0;
+		s3 = ((raw >> 1) & 0x1) > 0;
+		s4 = (raw & 0x1) > 0;
 
 		raw = dis.readUnsignedByte();
-		IsolationSwitch = ((raw >> 7) & 0x1) > 0;
-		DOMPyroFire = ((raw >> 6) & 0x1) > 0;
-		OBDHReprogrammingFailed = ((raw >> 3) & 0x1) > 0;
-		OBDHReprogramming = ((raw >> 2) & 0x1) > 0;
+		isolationSwitch = ((raw >> 7) & 0x1) > 0;
+		dompyroFire = ((raw >> 6) & 0x1) > 0;
+		obdhReprogrammingFailed = ((raw >> 3) & 0x1) > 0;
+		obdhReprogramming = ((raw >> 2) & 0x1) > 0;
 		dis.skipBytes(1);
 	}
 
-	public boolean isPMM() {
-		return PMM;
+	public boolean isPmm() {
+		return pmm;
 	}
 
-	public void setPMM(boolean pMM) {
-		PMM = pMM;
+	public void setPmm(boolean pmm) {
+		this.pmm = pmm;
 	}
 
-	public boolean isPMR() {
-		return PMR;
+	public boolean isPmr() {
+		return pmr;
 	}
 
-	public void setPMR(boolean pMR) {
-		PMR = pMR;
+	public void setPmr(boolean pmr) {
+		this.pmr = pmr;
 	}
 
-	public boolean isPMMPingFailed() {
-		return PMMPingFailed;
+	public boolean isPmmpingFailed() {
+		return pmmpingFailed;
 	}
 
-	public void setPMMPingFailed(boolean pMMPingFailed) {
-		PMMPingFailed = pMMPingFailed;
+	public void setPmmpingFailed(boolean pmmpingFailed) {
+		this.pmmpingFailed = pmmpingFailed;
 	}
 
-	public boolean isPMRPingFailed() {
-		return PMRPingFailed;
+	public boolean isPmrpingFailed() {
+		return pmrpingFailed;
 	}
 
-	public void setPMRPingFailed(boolean pMRPingFailed) {
-		PMRPingFailed = pMRPingFailed;
+	public void setPmrpingFailed(boolean pmrpingFailed) {
+		this.pmrpingFailed = pmrpingFailed;
 	}
 
-	public boolean isOBDHMain() {
-		return OBDHMain;
+	public boolean isObdhMain() {
+		return obdhMain;
 	}
 
-	public void setOBDHMain(boolean oBDHMain) {
-		OBDHMain = oBDHMain;
+	public void setObdhMain(boolean obdhMain) {
+		this.obdhMain = obdhMain;
 	}
 
-	public boolean isOBDHMainBootMode() {
-		return OBDHMainBootMode;
+	public boolean isObdhMainBootMode() {
+		return obdhMainBootMode;
 	}
 
-	public void setOBDHMainBootMode(boolean oBDHMainBootMode) {
-		OBDHMainBootMode = oBDHMainBootMode;
+	public void setObdhMainBootMode(boolean obdhMainBootMode) {
+		this.obdhMainBootMode = obdhMainBootMode;
 	}
 
-	public boolean isOBDHRedundant() {
-		return OBDHRedundant;
+	public boolean isObdhRedundant() {
+		return obdhRedundant;
 	}
 
-	public void setOBDHRedundant(boolean oBDHRedundant) {
-		OBDHRedundant = oBDHRedundant;
+	public void setObdhRedundant(boolean obdhRedundant) {
+		this.obdhRedundant = obdhRedundant;
 	}
 
-	public boolean isOBDHRedundantBootMode() {
-		return OBDHRedundantBootMode;
+	public boolean isObdhRedundantBootMode() {
+		return obdhRedundantBootMode;
 	}
 
-	public void setOBDHRedundantBootMode(boolean oBDHRedundantBootMode) {
-		OBDHRedundantBootMode = oBDHRedundantBootMode;
+	public void setObdhRedundantBootMode(boolean obdhRedundantBootMode) {
+		this.obdhRedundantBootMode = obdhRedundantBootMode;
 	}
 
-	public boolean isOBDMPingFailed() {
-		return OBDMPingFailed;
+	public boolean isObdmPingFailed() {
+		return obdmPingFailed;
 	}
 
-	public void setOBDMPingFailed(boolean oBDMPingFailed) {
-		OBDMPingFailed = oBDMPingFailed;
+	public void setObdmPingFailed(boolean obdmPingFailed) {
+		this.obdmPingFailed = obdmPingFailed;
 	}
 
-	public boolean isOBDRPingFailed() {
-		return OBDRPingFailed;
+	public boolean isObdrPingFailed() {
+		return obdrPingFailed;
 	}
 
-	public void setOBDRPingFailed(boolean oBDRPingFailed) {
-		OBDRPingFailed = oBDRPingFailed;
+	public void setObdrPingFailed(boolean obdrPingFailed) {
+		this.obdrPingFailed = obdrPingFailed;
 	}
 
-	public boolean isTMM() {
-		return TMM;
+	public boolean isTmm() {
+		return tmm;
 	}
 
-	public void setTMM(boolean tMM) {
-		TMM = tMM;
+	public void setTmm(boolean tmm) {
+		this.tmm = tmm;
 	}
 
-	public boolean isTMR() {
-		return TMR;
+	public boolean isTmr() {
+		return tmr;
 	}
 
-	public void setTMR(boolean tMR) {
-		TMR = tMR;
+	public void setTmr(boolean tmr) {
+		this.tmr = tmr;
 	}
 
-	public boolean isTMMPingFailed() {
-		return TMMPingFailed;
+	public boolean isTmmpingFailed() {
+		return tmmpingFailed;
 	}
 
-	public void setTMMPingFailed(boolean tMMPingFailed) {
-		TMMPingFailed = tMMPingFailed;
+	public void setTmmpingFailed(boolean tmmpingFailed) {
+		this.tmmpingFailed = tmmpingFailed;
 	}
 
-	public boolean isTMRPingFailed() {
-		return TMRPingFailed;
+	public boolean isTmrpingFailed() {
+		return tmrpingFailed;
 	}
 
-	public void setTMRPingFailed(boolean tMRPingFailed) {
-		TMRPingFailed = tMRPingFailed;
+	public void setTmrpingFailed(boolean tmrpingFailed) {
+		this.tmrpingFailed = tmrpingFailed;
 	}
 
 	public boolean isS3() {
-		return S3;
+		return s3;
 	}
 
 	public void setS3(boolean s3) {
-		S3 = s3;
+		this.s3 = s3;
 	}
 
 	public boolean isS4() {
-		return S4;
+		return s4;
 	}
 
 	public void setS4(boolean s4) {
-		S4 = s4;
+		this.s4 = s4;
 	}
 
 	public boolean isIsolationSwitch() {
-		return IsolationSwitch;
+		return isolationSwitch;
 	}
 
 	public void setIsolationSwitch(boolean isolationSwitch) {
-		IsolationSwitch = isolationSwitch;
+		this.isolationSwitch = isolationSwitch;
 	}
 
-	public boolean isDOMPyroFire() {
-		return DOMPyroFire;
+	public boolean isDompyroFire() {
+		return dompyroFire;
 	}
 
-	public void setDOMPyroFire(boolean dOMPyroFire) {
-		DOMPyroFire = dOMPyroFire;
+	public void setDompyroFire(boolean dompyroFire) {
+		this.dompyroFire = dompyroFire;
 	}
 
-	public boolean isOBDHReprogrammingFailed() {
-		return OBDHReprogrammingFailed;
+	public boolean isObdhReprogrammingFailed() {
+		return obdhReprogrammingFailed;
 	}
 
-	public void setOBDHReprogrammingFailed(boolean oBDHReprogrammingFailed) {
-		OBDHReprogrammingFailed = oBDHReprogrammingFailed;
+	public void setObdhReprogrammingFailed(boolean obdhReprogrammingFailed) {
+		this.obdhReprogrammingFailed = obdhReprogrammingFailed;
 	}
 
-	public boolean isOBDHReprogramming() {
-		return OBDHReprogramming;
+	public boolean isObdhReprogramming() {
+		return obdhReprogramming;
 	}
 
-	public void setOBDHReprogramming(boolean oBDHReprogramming) {
-		OBDHReprogramming = oBDHReprogramming;
+	public void setObdhReprogramming(boolean obdhReprogramming) {
+		this.obdhReprogramming = obdhReprogramming;
 	}
-	
+
 }
