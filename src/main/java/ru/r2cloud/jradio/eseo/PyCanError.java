@@ -9,7 +9,7 @@ public class PyCanError {
 	private boolean failedToRegisterDevice;
 	private boolean unidentifiedDevice;
 	private boolean initializationSemaphoreError;
-	private boolean SPIConfigurationError;
+	private boolean spiConfigurationError;
 	private boolean failedToEnterInitialization;
 	private boolean failedToExitInitialization;
 	private boolean controllerConfigurationError;
@@ -19,22 +19,22 @@ public class PyCanError {
 	private boolean failedToAllocateRxBuffer;
 	private boolean openSemaphoreError;
 	private boolean failedToSetControllerRegisters;
-	private boolean TxFullError;
-	private boolean NoMailboxAvailableError;
-	private boolean TxFailedError;
-	private boolean RxFullError;
-	private boolean FIFO0Overrun;
-	private boolean FIFO1Overrun;
+	private boolean txFullError;
+	private boolean noMailboxAvailableError;
+	private boolean txFailedError;
+	private boolean rxFullError;
+	private boolean fifo0Overrun;
+	private boolean fifo1Overrun;
 	private boolean busoff;
-	private boolean ErrorPassive;
-	private boolean ErrorWarning;
+	private boolean errorPassive;
+	private boolean errorWarning;
 
 	public PyCanError(LittleEndianDataInputStream dis) throws IOException {
 		int raw = dis.readUnsignedByte();
 		failedToRegisterDevice = ((raw >> 7) & 0x1) > 0;
 		unidentifiedDevice = ((raw >> 6) & 0x1) > 0;
 		initializationSemaphoreError = ((raw >> 5) & 0x1) > 0;
-		SPIConfigurationError = ((raw >> 4) & 0x1) > 0;
+		spiConfigurationError = ((raw >> 4) & 0x1) > 0;
 		failedToEnterInitialization = ((raw >> 3) & 0x1) > 0;
 		failedToExitInitialization = ((raw >> 2) & 0x1) > 0;
 		controllerConfigurationError = ((raw >> 1) & 0x1) > 0;
@@ -46,17 +46,17 @@ public class PyCanError {
 		failedToAllocateRxBuffer = ((raw >> 5) & 0x1) > 0;
 		openSemaphoreError = ((raw >> 4) & 0x1) > 0;
 		failedToSetControllerRegisters = ((raw >> 3) & 0x1) > 0;
-		TxFullError = ((raw >> 2) & 0x1) > 0;
-		NoMailboxAvailableError = ((raw >> 1) & 0x1) > 0;
-		TxFailedError = (raw & 0x1) > 0;
+		txFullError = ((raw >> 2) & 0x1) > 0;
+		noMailboxAvailableError = ((raw >> 1) & 0x1) > 0;
+		txFailedError = (raw & 0x1) > 0;
 
 		raw = dis.readUnsignedByte();
-		RxFullError = ((raw >> 7) & 0x1) > 0;
-		FIFO0Overrun = ((raw >> 6) & 0x1) > 0;
-		FIFO1Overrun = ((raw >> 5) & 0x1) > 0;
+		rxFullError = ((raw >> 7) & 0x1) > 0;
+		fifo0Overrun = ((raw >> 6) & 0x1) > 0;
+		fifo1Overrun = ((raw >> 5) & 0x1) > 0;
 		busoff = ((raw >> 4) & 0x1) > 0;
-		ErrorPassive = ((raw >> 3) & 0x1) > 0;
-		ErrorWarning = ((raw >> 2) & 0x1) > 0;
+		errorPassive = ((raw >> 3) & 0x1) > 0;
+		errorWarning = ((raw >> 2) & 0x1) > 0;
 		dis.skipBytes(1);
 	}
 
@@ -84,12 +84,12 @@ public class PyCanError {
 		this.initializationSemaphoreError = initializationSemaphoreError;
 	}
 
-	public boolean isSPIConfigurationError() {
-		return SPIConfigurationError;
+	public boolean isSpiConfigurationError() {
+		return spiConfigurationError;
 	}
 
-	public void setSPIConfigurationError(boolean sPIConfigurationError) {
-		SPIConfigurationError = sPIConfigurationError;
+	public void setSpiConfigurationError(boolean spiConfigurationError) {
+		this.spiConfigurationError = spiConfigurationError;
 	}
 
 	public boolean isFailedToEnterInitialization() {
@@ -165,51 +165,51 @@ public class PyCanError {
 	}
 
 	public boolean isTxFullError() {
-		return TxFullError;
+		return txFullError;
 	}
 
 	public void setTxFullError(boolean txFullError) {
-		TxFullError = txFullError;
+		this.txFullError = txFullError;
 	}
 
 	public boolean isNoMailboxAvailableError() {
-		return NoMailboxAvailableError;
+		return noMailboxAvailableError;
 	}
 
 	public void setNoMailboxAvailableError(boolean noMailboxAvailableError) {
-		NoMailboxAvailableError = noMailboxAvailableError;
+		this.noMailboxAvailableError = noMailboxAvailableError;
 	}
 
 	public boolean isTxFailedError() {
-		return TxFailedError;
+		return txFailedError;
 	}
 
 	public void setTxFailedError(boolean txFailedError) {
-		TxFailedError = txFailedError;
+		this.txFailedError = txFailedError;
 	}
 
 	public boolean isRxFullError() {
-		return RxFullError;
+		return rxFullError;
 	}
 
 	public void setRxFullError(boolean rxFullError) {
-		RxFullError = rxFullError;
+		this.rxFullError = rxFullError;
 	}
 
-	public boolean isFIFO0Overrun() {
-		return FIFO0Overrun;
+	public boolean isFifo0Overrun() {
+		return fifo0Overrun;
 	}
 
-	public void setFIFO0Overrun(boolean fIFO0Overrun) {
-		FIFO0Overrun = fIFO0Overrun;
+	public void setFifo0Overrun(boolean fifo0Overrun) {
+		this.fifo0Overrun = fifo0Overrun;
 	}
 
-	public boolean isFIFO1Overrun() {
-		return FIFO1Overrun;
+	public boolean isFifo1Overrun() {
+		return fifo1Overrun;
 	}
 
-	public void setFIFO1Overrun(boolean fIFO1Overrun) {
-		FIFO1Overrun = fIFO1Overrun;
+	public void setFifo1Overrun(boolean fifo1Overrun) {
+		this.fifo1Overrun = fifo1Overrun;
 	}
 
 	public boolean isBusoff() {
@@ -221,19 +221,19 @@ public class PyCanError {
 	}
 
 	public boolean isErrorPassive() {
-		return ErrorPassive;
+		return errorPassive;
 	}
 
 	public void setErrorPassive(boolean errorPassive) {
-		ErrorPassive = errorPassive;
+		this.errorPassive = errorPassive;
 	}
 
 	public boolean isErrorWarning() {
-		return ErrorWarning;
+		return errorWarning;
 	}
 
 	public void setErrorWarning(boolean errorWarning) {
-		ErrorWarning = errorWarning;
+		this.errorWarning = errorWarning;
 	}
 
 }
