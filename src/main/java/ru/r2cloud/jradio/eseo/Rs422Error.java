@@ -6,275 +6,275 @@ import ru.r2cloud.jradio.util.LittleEndianDataInputStream;
 
 public class Rs422Error {
 
-	private boolean USARTTMTCMainErrorConfigurationBRR;
-	private boolean USARTTMTCMainErrorConfigurationCR1;
-	private boolean USARTTMTCMainErrorConfigurationCR2;
-	private boolean USARTTMTCMainErrorConfigurationCR3;
-	private boolean USARTTMTCMainErrorInterrupt;
-	private boolean USARTTMTCMainErrorBufferAll;
-	private boolean USARTTMTCMainErrorTimerConfiguration;
-	private boolean USARTTMTCMainErrorTXFull;
-	private boolean USARTTMTCMainErrorRXOverrun;
-	private boolean USARTTMTCMainErrorNoise;
-	private boolean USARTTMTCMainErrorTraming;
-	private boolean USARTTMTCMainErrorParity;
-	private boolean USARTTMTCMainErrorTimeout;
-	private boolean USARTTMTCRedundantErrorConfigurationBRR;
-	private boolean USARTTMTCRedundantErrorConfigurationCR1;
-	private boolean USARTTMTCRedundantErrorConfigurationCR2;
-	private boolean USARTTMTCRedundantErrorConfigurationCR3;
-	private boolean USARTTMTCRedundantErrorInterrupt;
-	private boolean USARTTMTCRedundantErrorBufferAll;
-	private boolean USARTTMTCRedundantErrorTimerConfiguration;
-	private boolean USARTTMTCRedundantErrorTXFull;
-	private boolean USARTTMTCRedundantErrorRXOverrun;
-	private boolean USARTTMTCRedundantErrorNoise;
-	private boolean USARTTMTCRedundantErrorFraming;
-	private boolean USARTTMTCRedundantErrorParity;
-	private boolean USARTTMTCRedundantErrorTimeout;
+	private boolean usarttmtcMainErrorConfigurationBRR;
+	private boolean usarttmtcMainErrorConfigurationCR1;
+	private boolean usarttmtcMainErrorConfigurationCR2;
+	private boolean usarttmtcMainErrorConfigurationCR3;
+	private boolean usarttmtcMainErrorInterrupt;
+	private boolean usarttmtcMainErrorBufferAll;
+	private boolean usarttmtcMainErrorTimerConfiguration;
+	private boolean usarttmtcMainErrorTXFull;
+	private boolean usarttmtcMainErrorRXOverrun;
+	private boolean usarttmtcMainErrorNoise;
+	private boolean usarttmtcMainErrorTraming;
+	private boolean usarttmtcMainErrorParity;
+	private boolean usarttmtcMainErrorTimeout;
+	private boolean usarttmtcRedundantErrorConfigurationBRR;
+	private boolean usarttmtcRedundantErrorConfigurationCR1;
+	private boolean usarttmtcRedundantErrorConfigurationCR2;
+	private boolean usarttmtcRedundantErrorConfigurationCR3;
+	private boolean usarttmtcRedundantErrorInterrupt;
+	private boolean usarttmtcRedundantErrorBufferAll;
+	private boolean usarttmtcRedundantErrorTimerConfiguration;
+	private boolean usarttmtcRedundantErrorTXFull;
+	private boolean usarttmtcRedundantErrorRXOverrun;
+	private boolean usarttmtcRedundantErrorNoise;
+	private boolean usarttmtcRedundantErrorFraming;
+	private boolean usarttmtcRedundantErrorParity;
+	private boolean usarttmtcRedundantErrorTimeout;
 
 	public Rs422Error(LittleEndianDataInputStream dis) throws IOException {
 		int raw = dis.readUnsignedByte();
-		USARTTMTCMainErrorConfigurationBRR = ((raw >> 7) & 0x1) > 0;
-		USARTTMTCMainErrorConfigurationCR1 = ((raw >> 6) & 0x1) > 0;
-		USARTTMTCMainErrorConfigurationCR2 = ((raw >> 5) & 0x1) > 0;
-		USARTTMTCMainErrorConfigurationCR3 = ((raw >> 4) & 0x1) > 0;
-		USARTTMTCMainErrorInterrupt = ((raw >> 3) & 0x1) > 0;
-		USARTTMTCMainErrorBufferAll = ((raw >> 2) & 0x1) > 0;
-		USARTTMTCMainErrorTimerConfiguration = ((raw >> 1) & 0x1) > 0;
-		USARTTMTCMainErrorTXFull = (raw & 0x1) > 0;
+		usarttmtcMainErrorConfigurationBRR = ((raw >> 7) & 0x1) > 0;
+		usarttmtcMainErrorConfigurationCR1 = ((raw >> 6) & 0x1) > 0;
+		usarttmtcMainErrorConfigurationCR2 = ((raw >> 5) & 0x1) > 0;
+		usarttmtcMainErrorConfigurationCR3 = ((raw >> 4) & 0x1) > 0;
+		usarttmtcMainErrorInterrupt = ((raw >> 3) & 0x1) > 0;
+		usarttmtcMainErrorBufferAll = ((raw >> 2) & 0x1) > 0;
+		usarttmtcMainErrorTimerConfiguration = ((raw >> 1) & 0x1) > 0;
+		usarttmtcMainErrorTXFull = (raw & 0x1) > 0;
 
 		raw = dis.readUnsignedByte();
-		USARTTMTCMainErrorRXOverrun = ((raw >> 7) & 0x1) > 0;
-		USARTTMTCMainErrorNoise = ((raw >> 6) & 0x1) > 0;
-		USARTTMTCMainErrorTraming = ((raw >> 5) & 0x1) > 0;
-		USARTTMTCMainErrorParity = ((raw >> 4) & 0x1) > 0;
-		USARTTMTCMainErrorTimeout = ((raw >> 3) & 0x1) > 0;
+		usarttmtcMainErrorRXOverrun = ((raw >> 7) & 0x1) > 0;
+		usarttmtcMainErrorNoise = ((raw >> 6) & 0x1) > 0;
+		usarttmtcMainErrorTraming = ((raw >> 5) & 0x1) > 0;
+		usarttmtcMainErrorParity = ((raw >> 4) & 0x1) > 0;
+		usarttmtcMainErrorTimeout = ((raw >> 3) & 0x1) > 0;
 
 		raw = dis.readUnsignedByte();
-		USARTTMTCRedundantErrorConfigurationBRR = ((raw >> 7) & 0x1) > 0;
-		USARTTMTCRedundantErrorConfigurationCR1 = ((raw >> 6) & 0x1) > 0;
-		USARTTMTCRedundantErrorConfigurationCR2 = ((raw >> 5) & 0x1) > 0;
-		USARTTMTCRedundantErrorConfigurationCR3 = ((raw >> 4) & 0x1) > 0;
-		USARTTMTCRedundantErrorInterrupt = ((raw >> 3) & 0x1) > 0;
-		USARTTMTCRedundantErrorBufferAll = ((raw >> 2) & 0x1) > 0;
-		USARTTMTCRedundantErrorTimerConfiguration = ((raw >> 1) & 0x1) > 0;
-		USARTTMTCRedundantErrorTXFull = (raw & 0x1) > 0;
+		usarttmtcRedundantErrorConfigurationBRR = ((raw >> 7) & 0x1) > 0;
+		usarttmtcRedundantErrorConfigurationCR1 = ((raw >> 6) & 0x1) > 0;
+		usarttmtcRedundantErrorConfigurationCR2 = ((raw >> 5) & 0x1) > 0;
+		usarttmtcRedundantErrorConfigurationCR3 = ((raw >> 4) & 0x1) > 0;
+		usarttmtcRedundantErrorInterrupt = ((raw >> 3) & 0x1) > 0;
+		usarttmtcRedundantErrorBufferAll = ((raw >> 2) & 0x1) > 0;
+		usarttmtcRedundantErrorTimerConfiguration = ((raw >> 1) & 0x1) > 0;
+		usarttmtcRedundantErrorTXFull = (raw & 0x1) > 0;
 
 		raw = dis.readUnsignedByte();
-		USARTTMTCRedundantErrorRXOverrun = ((raw >> 7) & 0x1) > 0;
-		USARTTMTCRedundantErrorNoise = ((raw >> 6) & 0x1) > 0;
-		USARTTMTCRedundantErrorFraming = ((raw >> 5) & 0x1) > 0;
-		USARTTMTCRedundantErrorParity = ((raw >> 4) & 0x1) > 0;
-		USARTTMTCRedundantErrorTimeout = ((raw >> 3) & 0x1) > 0;
+		usarttmtcRedundantErrorRXOverrun = ((raw >> 7) & 0x1) > 0;
+		usarttmtcRedundantErrorNoise = ((raw >> 6) & 0x1) > 0;
+		usarttmtcRedundantErrorFraming = ((raw >> 5) & 0x1) > 0;
+		usarttmtcRedundantErrorParity = ((raw >> 4) & 0x1) > 0;
+		usarttmtcRedundantErrorTimeout = ((raw >> 3) & 0x1) > 0;
 	}
 
-	public boolean isUSARTTMTCMainErrorConfigurationBRR() {
-		return USARTTMTCMainErrorConfigurationBRR;
+	public boolean isUsarttmtcMainErrorConfigurationBRR() {
+		return usarttmtcMainErrorConfigurationBRR;
 	}
 
-	public void setUSARTTMTCMainErrorConfigurationBRR(boolean uSARTTMTCMainErrorConfigurationBRR) {
-		USARTTMTCMainErrorConfigurationBRR = uSARTTMTCMainErrorConfigurationBRR;
+	public void setUsarttmtcMainErrorConfigurationBRR(boolean usarttmtcMainErrorConfigurationBRR) {
+		this.usarttmtcMainErrorConfigurationBRR = usarttmtcMainErrorConfigurationBRR;
 	}
 
-	public boolean isUSARTTMTCMainErrorConfigurationCR1() {
-		return USARTTMTCMainErrorConfigurationCR1;
+	public boolean isUsarttmtcMainErrorConfigurationCR1() {
+		return usarttmtcMainErrorConfigurationCR1;
 	}
 
-	public void setUSARTTMTCMainErrorConfigurationCR1(boolean uSARTTMTCMainErrorConfigurationCR1) {
-		USARTTMTCMainErrorConfigurationCR1 = uSARTTMTCMainErrorConfigurationCR1;
+	public void setUsarttmtcMainErrorConfigurationCR1(boolean usarttmtcMainErrorConfigurationCR1) {
+		this.usarttmtcMainErrorConfigurationCR1 = usarttmtcMainErrorConfigurationCR1;
 	}
 
-	public boolean isUSARTTMTCMainErrorConfigurationCR2() {
-		return USARTTMTCMainErrorConfigurationCR2;
+	public boolean isUsarttmtcMainErrorConfigurationCR2() {
+		return usarttmtcMainErrorConfigurationCR2;
 	}
 
-	public void setUSARTTMTCMainErrorConfigurationCR2(boolean uSARTTMTCMainErrorConfigurationCR2) {
-		USARTTMTCMainErrorConfigurationCR2 = uSARTTMTCMainErrorConfigurationCR2;
+	public void setUsarttmtcMainErrorConfigurationCR2(boolean usarttmtcMainErrorConfigurationCR2) {
+		this.usarttmtcMainErrorConfigurationCR2 = usarttmtcMainErrorConfigurationCR2;
 	}
 
-	public boolean isUSARTTMTCMainErrorConfigurationCR3() {
-		return USARTTMTCMainErrorConfigurationCR3;
+	public boolean isUsarttmtcMainErrorConfigurationCR3() {
+		return usarttmtcMainErrorConfigurationCR3;
 	}
 
-	public void setUSARTTMTCMainErrorConfigurationCR3(boolean uSARTTMTCMainErrorConfigurationCR3) {
-		USARTTMTCMainErrorConfigurationCR3 = uSARTTMTCMainErrorConfigurationCR3;
+	public void setUsarttmtcMainErrorConfigurationCR3(boolean usarttmtcMainErrorConfigurationCR3) {
+		this.usarttmtcMainErrorConfigurationCR3 = usarttmtcMainErrorConfigurationCR3;
 	}
 
-	public boolean isUSARTTMTCMainErrorInterrupt() {
-		return USARTTMTCMainErrorInterrupt;
+	public boolean isUsarttmtcMainErrorInterrupt() {
+		return usarttmtcMainErrorInterrupt;
 	}
 
-	public void setUSARTTMTCMainErrorInterrupt(boolean uSARTTMTCMainErrorInterrupt) {
-		USARTTMTCMainErrorInterrupt = uSARTTMTCMainErrorInterrupt;
+	public void setUsarttmtcMainErrorInterrupt(boolean usarttmtcMainErrorInterrupt) {
+		this.usarttmtcMainErrorInterrupt = usarttmtcMainErrorInterrupt;
 	}
 
-	public boolean isUSARTTMTCMainErrorBufferAll() {
-		return USARTTMTCMainErrorBufferAll;
+	public boolean isUsarttmtcMainErrorBufferAll() {
+		return usarttmtcMainErrorBufferAll;
 	}
 
-	public void setUSARTTMTCMainErrorBufferAll(boolean uSARTTMTCMainErrorBufferAll) {
-		USARTTMTCMainErrorBufferAll = uSARTTMTCMainErrorBufferAll;
+	public void setUsarttmtcMainErrorBufferAll(boolean usarttmtcMainErrorBufferAll) {
+		this.usarttmtcMainErrorBufferAll = usarttmtcMainErrorBufferAll;
 	}
 
-	public boolean isUSARTTMTCMainErrorTimerConfiguration() {
-		return USARTTMTCMainErrorTimerConfiguration;
+	public boolean isUsarttmtcMainErrorTimerConfiguration() {
+		return usarttmtcMainErrorTimerConfiguration;
 	}
 
-	public void setUSARTTMTCMainErrorTimerConfiguration(boolean uSARTTMTCMainErrorTimerConfiguration) {
-		USARTTMTCMainErrorTimerConfiguration = uSARTTMTCMainErrorTimerConfiguration;
+	public void setUsarttmtcMainErrorTimerConfiguration(boolean usarttmtcMainErrorTimerConfiguration) {
+		this.usarttmtcMainErrorTimerConfiguration = usarttmtcMainErrorTimerConfiguration;
 	}
 
-	public boolean isUSARTTMTCMainErrorTXFull() {
-		return USARTTMTCMainErrorTXFull;
+	public boolean isUsarttmtcMainErrorTXFull() {
+		return usarttmtcMainErrorTXFull;
 	}
 
-	public void setUSARTTMTCMainErrorTXFull(boolean uSARTTMTCMainErrorTXFull) {
-		USARTTMTCMainErrorTXFull = uSARTTMTCMainErrorTXFull;
+	public void setUsarttmtcMainErrorTXFull(boolean usarttmtcMainErrorTXFull) {
+		this.usarttmtcMainErrorTXFull = usarttmtcMainErrorTXFull;
 	}
 
-	public boolean isUSARTTMTCMainErrorRXOverrun() {
-		return USARTTMTCMainErrorRXOverrun;
+	public boolean isUsarttmtcMainErrorRXOverrun() {
+		return usarttmtcMainErrorRXOverrun;
 	}
 
-	public void setUSARTTMTCMainErrorRXOverrun(boolean uSARTTMTCMainErrorRXOverrun) {
-		USARTTMTCMainErrorRXOverrun = uSARTTMTCMainErrorRXOverrun;
+	public void setUsarttmtcMainErrorRXOverrun(boolean usarttmtcMainErrorRXOverrun) {
+		this.usarttmtcMainErrorRXOverrun = usarttmtcMainErrorRXOverrun;
 	}
 
-	public boolean isUSARTTMTCMainErrorNoise() {
-		return USARTTMTCMainErrorNoise;
+	public boolean isUsarttmtcMainErrorNoise() {
+		return usarttmtcMainErrorNoise;
 	}
 
-	public void setUSARTTMTCMainErrorNoise(boolean uSARTTMTCMainErrorNoise) {
-		USARTTMTCMainErrorNoise = uSARTTMTCMainErrorNoise;
+	public void setUsarttmtcMainErrorNoise(boolean usarttmtcMainErrorNoise) {
+		this.usarttmtcMainErrorNoise = usarttmtcMainErrorNoise;
 	}
 
-	public boolean isUSARTTMTCMainErrorTraming() {
-		return USARTTMTCMainErrorTraming;
+	public boolean isUsarttmtcMainErrorTraming() {
+		return usarttmtcMainErrorTraming;
 	}
 
-	public void setUSARTTMTCMainErrorTraming(boolean uSARTTMTCMainErrorTraming) {
-		USARTTMTCMainErrorTraming = uSARTTMTCMainErrorTraming;
+	public void setUsarttmtcMainErrorTraming(boolean usarttmtcMainErrorTraming) {
+		this.usarttmtcMainErrorTraming = usarttmtcMainErrorTraming;
 	}
 
-	public boolean isUSARTTMTCMainErrorParity() {
-		return USARTTMTCMainErrorParity;
+	public boolean isUsarttmtcMainErrorParity() {
+		return usarttmtcMainErrorParity;
 	}
 
-	public void setUSARTTMTCMainErrorParity(boolean uSARTTMTCMainErrorParity) {
-		USARTTMTCMainErrorParity = uSARTTMTCMainErrorParity;
+	public void setUsarttmtcMainErrorParity(boolean usarttmtcMainErrorParity) {
+		this.usarttmtcMainErrorParity = usarttmtcMainErrorParity;
 	}
 
-	public boolean isUSARTTMTCMainErrorTimeout() {
-		return USARTTMTCMainErrorTimeout;
+	public boolean isUsarttmtcMainErrorTimeout() {
+		return usarttmtcMainErrorTimeout;
 	}
 
-	public void setUSARTTMTCMainErrorTimeout(boolean uSARTTMTCMainErrorTimeout) {
-		USARTTMTCMainErrorTimeout = uSARTTMTCMainErrorTimeout;
+	public void setUsarttmtcMainErrorTimeout(boolean usarttmtcMainErrorTimeout) {
+		this.usarttmtcMainErrorTimeout = usarttmtcMainErrorTimeout;
 	}
 
-	public boolean isUSARTTMTCRedundantErrorConfigurationBRR() {
-		return USARTTMTCRedundantErrorConfigurationBRR;
+	public boolean isUsarttmtcRedundantErrorConfigurationBRR() {
+		return usarttmtcRedundantErrorConfigurationBRR;
 	}
 
-	public void setUSARTTMTCRedundantErrorConfigurationBRR(boolean uSARTTMTCRedundantErrorConfigurationBRR) {
-		USARTTMTCRedundantErrorConfigurationBRR = uSARTTMTCRedundantErrorConfigurationBRR;
+	public void setUsarttmtcRedundantErrorConfigurationBRR(boolean usarttmtcRedundantErrorConfigurationBRR) {
+		this.usarttmtcRedundantErrorConfigurationBRR = usarttmtcRedundantErrorConfigurationBRR;
 	}
 
-	public boolean isUSARTTMTCRedundantErrorConfigurationCR1() {
-		return USARTTMTCRedundantErrorConfigurationCR1;
+	public boolean isUsarttmtcRedundantErrorConfigurationCR1() {
+		return usarttmtcRedundantErrorConfigurationCR1;
 	}
 
-	public void setUSARTTMTCRedundantErrorConfigurationCR1(boolean uSARTTMTCRedundantErrorConfigurationCR1) {
-		USARTTMTCRedundantErrorConfigurationCR1 = uSARTTMTCRedundantErrorConfigurationCR1;
+	public void setUsarttmtcRedundantErrorConfigurationCR1(boolean usarttmtcRedundantErrorConfigurationCR1) {
+		this.usarttmtcRedundantErrorConfigurationCR1 = usarttmtcRedundantErrorConfigurationCR1;
 	}
 
-	public boolean isUSARTTMTCRedundantErrorConfigurationCR2() {
-		return USARTTMTCRedundantErrorConfigurationCR2;
+	public boolean isUsarttmtcRedundantErrorConfigurationCR2() {
+		return usarttmtcRedundantErrorConfigurationCR2;
 	}
 
-	public void setUSARTTMTCRedundantErrorConfigurationCR2(boolean uSARTTMTCRedundantErrorConfigurationCR2) {
-		USARTTMTCRedundantErrorConfigurationCR2 = uSARTTMTCRedundantErrorConfigurationCR2;
+	public void setUsarttmtcRedundantErrorConfigurationCR2(boolean usarttmtcRedundantErrorConfigurationCR2) {
+		this.usarttmtcRedundantErrorConfigurationCR2 = usarttmtcRedundantErrorConfigurationCR2;
 	}
 
-	public boolean isUSARTTMTCRedundantErrorConfigurationCR3() {
-		return USARTTMTCRedundantErrorConfigurationCR3;
+	public boolean isUsarttmtcRedundantErrorConfigurationCR3() {
+		return usarttmtcRedundantErrorConfigurationCR3;
 	}
 
-	public void setUSARTTMTCRedundantErrorConfigurationCR3(boolean uSARTTMTCRedundantErrorConfigurationCR3) {
-		USARTTMTCRedundantErrorConfigurationCR3 = uSARTTMTCRedundantErrorConfigurationCR3;
+	public void setUsarttmtcRedundantErrorConfigurationCR3(boolean usarttmtcRedundantErrorConfigurationCR3) {
+		this.usarttmtcRedundantErrorConfigurationCR3 = usarttmtcRedundantErrorConfigurationCR3;
 	}
 
-	public boolean isUSARTTMTCRedundantErrorInterrupt() {
-		return USARTTMTCRedundantErrorInterrupt;
+	public boolean isUsarttmtcRedundantErrorInterrupt() {
+		return usarttmtcRedundantErrorInterrupt;
 	}
 
-	public void setUSARTTMTCRedundantErrorInterrupt(boolean uSARTTMTCRedundantErrorInterrupt) {
-		USARTTMTCRedundantErrorInterrupt = uSARTTMTCRedundantErrorInterrupt;
+	public void setUsarttmtcRedundantErrorInterrupt(boolean usarttmtcRedundantErrorInterrupt) {
+		this.usarttmtcRedundantErrorInterrupt = usarttmtcRedundantErrorInterrupt;
 	}
 
-	public boolean isUSARTTMTCRedundantErrorBufferAll() {
-		return USARTTMTCRedundantErrorBufferAll;
+	public boolean isUsarttmtcRedundantErrorBufferAll() {
+		return usarttmtcRedundantErrorBufferAll;
 	}
 
-	public void setUSARTTMTCRedundantErrorBufferAll(boolean uSARTTMTCRedundantErrorBufferAll) {
-		USARTTMTCRedundantErrorBufferAll = uSARTTMTCRedundantErrorBufferAll;
+	public void setUsarttmtcRedundantErrorBufferAll(boolean usarttmtcRedundantErrorBufferAll) {
+		this.usarttmtcRedundantErrorBufferAll = usarttmtcRedundantErrorBufferAll;
 	}
 
-	public boolean isUSARTTMTCRedundantErrorTimerConfiguration() {
-		return USARTTMTCRedundantErrorTimerConfiguration;
+	public boolean isUsarttmtcRedundantErrorTimerConfiguration() {
+		return usarttmtcRedundantErrorTimerConfiguration;
 	}
 
-	public void setUSARTTMTCRedundantErrorTimerConfiguration(boolean uSARTTMTCRedundantErrorTimerConfiguration) {
-		USARTTMTCRedundantErrorTimerConfiguration = uSARTTMTCRedundantErrorTimerConfiguration;
+	public void setUsarttmtcRedundantErrorTimerConfiguration(boolean usarttmtcRedundantErrorTimerConfiguration) {
+		this.usarttmtcRedundantErrorTimerConfiguration = usarttmtcRedundantErrorTimerConfiguration;
 	}
 
-	public boolean isUSARTTMTCRedundantErrorTXFull() {
-		return USARTTMTCRedundantErrorTXFull;
+	public boolean isUsarttmtcRedundantErrorTXFull() {
+		return usarttmtcRedundantErrorTXFull;
 	}
 
-	public void setUSARTTMTCRedundantErrorTXFull(boolean uSARTTMTCRedundantErrorTXFull) {
-		USARTTMTCRedundantErrorTXFull = uSARTTMTCRedundantErrorTXFull;
+	public void setUsarttmtcRedundantErrorTXFull(boolean usarttmtcRedundantErrorTXFull) {
+		this.usarttmtcRedundantErrorTXFull = usarttmtcRedundantErrorTXFull;
 	}
 
-	public boolean isUSARTTMTCRedundantErrorRXOverrun() {
-		return USARTTMTCRedundantErrorRXOverrun;
+	public boolean isUsarttmtcRedundantErrorRXOverrun() {
+		return usarttmtcRedundantErrorRXOverrun;
 	}
 
-	public void setUSARTTMTCRedundantErrorRXOverrun(boolean uSARTTMTCRedundantErrorRXOverrun) {
-		USARTTMTCRedundantErrorRXOverrun = uSARTTMTCRedundantErrorRXOverrun;
+	public void setUsarttmtcRedundantErrorRXOverrun(boolean usarttmtcRedundantErrorRXOverrun) {
+		this.usarttmtcRedundantErrorRXOverrun = usarttmtcRedundantErrorRXOverrun;
 	}
 
-	public boolean isUSARTTMTCRedundantErrorNoise() {
-		return USARTTMTCRedundantErrorNoise;
+	public boolean isUsarttmtcRedundantErrorNoise() {
+		return usarttmtcRedundantErrorNoise;
 	}
 
-	public void setUSARTTMTCRedundantErrorNoise(boolean uSARTTMTCRedundantErrorNoise) {
-		USARTTMTCRedundantErrorNoise = uSARTTMTCRedundantErrorNoise;
+	public void setUsarttmtcRedundantErrorNoise(boolean usarttmtcRedundantErrorNoise) {
+		this.usarttmtcRedundantErrorNoise = usarttmtcRedundantErrorNoise;
 	}
 
-	public boolean isUSARTTMTCRedundantErrorFraming() {
-		return USARTTMTCRedundantErrorFraming;
+	public boolean isUsarttmtcRedundantErrorFraming() {
+		return usarttmtcRedundantErrorFraming;
 	}
 
-	public void setUSARTTMTCRedundantErrorFraming(boolean uSARTTMTCRedundantErrorFraming) {
-		USARTTMTCRedundantErrorFraming = uSARTTMTCRedundantErrorFraming;
+	public void setUsarttmtcRedundantErrorFraming(boolean usarttmtcRedundantErrorFraming) {
+		this.usarttmtcRedundantErrorFraming = usarttmtcRedundantErrorFraming;
 	}
 
-	public boolean isUSARTTMTCRedundantErrorParity() {
-		return USARTTMTCRedundantErrorParity;
+	public boolean isUsarttmtcRedundantErrorParity() {
+		return usarttmtcRedundantErrorParity;
 	}
 
-	public void setUSARTTMTCRedundantErrorParity(boolean uSARTTMTCRedundantErrorParity) {
-		USARTTMTCRedundantErrorParity = uSARTTMTCRedundantErrorParity;
+	public void setUsarttmtcRedundantErrorParity(boolean usarttmtcRedundantErrorParity) {
+		this.usarttmtcRedundantErrorParity = usarttmtcRedundantErrorParity;
 	}
 
-	public boolean isUSARTTMTCRedundantErrorTimeout() {
-		return USARTTMTCRedundantErrorTimeout;
+	public boolean isUsarttmtcRedundantErrorTimeout() {
+		return usarttmtcRedundantErrorTimeout;
 	}
 
-	public void setUSARTTMTCRedundantErrorTimeout(boolean uSARTTMTCRedundantErrorTimeout) {
-		USARTTMTCRedundantErrorTimeout = uSARTTMTCRedundantErrorTimeout;
+	public void setUsarttmtcRedundantErrorTimeout(boolean usarttmtcRedundantErrorTimeout) {
+		this.usarttmtcRedundantErrorTimeout = usarttmtcRedundantErrorTimeout;
 	}
 
 }
