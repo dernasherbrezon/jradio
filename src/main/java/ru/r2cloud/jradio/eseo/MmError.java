@@ -6,91 +6,91 @@ import ru.r2cloud.jradio.util.LittleEndianDataInputStream;
 
 public class MmError {
 
-	private boolean InternalError;
-	private boolean WatchdogRebootError;
-	private boolean MMMSerialError;
-	private boolean GenError;
-	private boolean RTEMSError;
-	private boolean StandBy;
-	private boolean MMM5VOvercurrent;
-	private boolean MMMDCDCOutOfTemperatureRange;
+	private boolean internalError;
+	private boolean watchdogRebootError;
+	private boolean mmmSerialError;
+	private boolean genError;
+	private boolean rtemsError;
+	private boolean standBy;
+	private boolean mmm5VOvercurrent;
+	private boolean mmmDCDCOutOfTemperatureRange;
 
 	public MmError(LittleEndianDataInputStream dis) throws IOException {
 		int raw = dis.readUnsignedByte();
-		InternalError = ((raw >> 7) & 0x1) > 0;
-		WatchdogRebootError = ((raw >> 6) & 0x1) > 0;
-		MMMSerialError = ((raw >> 5) & 0x1) > 0;
-		GenError = ((raw >> 4) & 0x1) > 0;
-		RTEMSError = ((raw >> 3) & 0x1) > 0;
-		StandBy = ((raw >> 2) & 0x1) > 0;
-		MMM5VOvercurrent = (raw & 0x1) > 0;
+		internalError = ((raw >> 7) & 0x1) > 0;
+		watchdogRebootError = ((raw >> 6) & 0x1) > 0;
+		mmmSerialError = ((raw >> 5) & 0x1) > 0;
+		genError = ((raw >> 4) & 0x1) > 0;
+		rtemsError = ((raw >> 3) & 0x1) > 0;
+		standBy = ((raw >> 2) & 0x1) > 0;
+		mmm5VOvercurrent = (raw & 0x1) > 0;
 
 		raw = dis.readUnsignedByte();
-		MMMDCDCOutOfTemperatureRange = ((raw >> 6) & 0x1) > 0;
+		mmmDCDCOutOfTemperatureRange = ((raw >> 6) & 0x1) > 0;
 	}
 
 	public boolean isInternalError() {
-		return InternalError;
+		return internalError;
 	}
 
 	public void setInternalError(boolean internalError) {
-		InternalError = internalError;
+		this.internalError = internalError;
 	}
 
 	public boolean isWatchdogRebootError() {
-		return WatchdogRebootError;
+		return watchdogRebootError;
 	}
 
 	public void setWatchdogRebootError(boolean watchdogRebootError) {
-		WatchdogRebootError = watchdogRebootError;
+		this.watchdogRebootError = watchdogRebootError;
 	}
 
-	public boolean isMMMSerialError() {
-		return MMMSerialError;
+	public boolean isMmmSerialError() {
+		return mmmSerialError;
 	}
 
-	public void setMMMSerialError(boolean mMMSerialError) {
-		MMMSerialError = mMMSerialError;
+	public void setMmmSerialError(boolean mmmSerialError) {
+		this.mmmSerialError = mmmSerialError;
 	}
 
 	public boolean isGenError() {
-		return GenError;
+		return genError;
 	}
 
 	public void setGenError(boolean genError) {
-		GenError = genError;
+		this.genError = genError;
 	}
 
-	public boolean isRTEMSError() {
-		return RTEMSError;
+	public boolean isRtemsError() {
+		return rtemsError;
 	}
 
-	public void setRTEMSError(boolean rTEMSError) {
-		RTEMSError = rTEMSError;
+	public void setRtemsError(boolean rtemsError) {
+		this.rtemsError = rtemsError;
 	}
 
 	public boolean isStandBy() {
-		return StandBy;
+		return standBy;
 	}
 
 	public void setStandBy(boolean standBy) {
-		StandBy = standBy;
+		this.standBy = standBy;
 	}
 
-	public boolean isMMM5VOvercurrent() {
-		return MMM5VOvercurrent;
+	public boolean isMmm5VOvercurrent() {
+		return mmm5VOvercurrent;
 	}
 
-	public void setMMM5VOvercurrent(boolean mMM5VOvercurrent) {
-		MMM5VOvercurrent = mMM5VOvercurrent;
+	public void setMmm5VOvercurrent(boolean mmm5vOvercurrent) {
+		mmm5VOvercurrent = mmm5vOvercurrent;
 	}
 
-	public boolean isMMMDCDCOutOfTemperatureRange() {
-		return MMMDCDCOutOfTemperatureRange;
+	public boolean isMmmDCDCOutOfTemperatureRange() {
+		return mmmDCDCOutOfTemperatureRange;
 	}
 
-	public void setMMMDCDCOutOfTemperatureRange(boolean mMMDCDCOutOfTemperatureRange) {
-		MMMDCDCOutOfTemperatureRange = mMMDCDCOutOfTemperatureRange;
+	public void setMmmDCDCOutOfTemperatureRange(boolean mmmDCDCOutOfTemperatureRange) {
+		this.mmmDCDCOutOfTemperatureRange = mmmDCDCOutOfTemperatureRange;
 	}
 
 }
