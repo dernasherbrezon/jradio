@@ -6,141 +6,141 @@ import ru.r2cloud.jradio.util.LittleEndianDataInputStream;
 
 public class MtError {
 
-	private boolean MTMInternalError;
-	private boolean WatchdogRebootError;
-	private boolean MTMCommunicationError;
-	private boolean MTMGenError;
-	private boolean MTMxCoilError;
-	private boolean MTMyCoilError;
-	private boolean MTMzCoilError;
-	private boolean RTEMSError;
-	private boolean StandBy;
-	private boolean MTMDCDC12OutOfTemperatureRange;
-	private boolean MTMDCDC5OutOfTemperatureRange;
-	private boolean MTM12VOvercurrent;
-	private boolean MTM5VOvercurrent;
+	private boolean mtmInternalError;
+	private boolean watchdogRebootError;
+	private boolean mtmCommunicationError;
+	private boolean mtmGenError;
+	private boolean mtmxCoilError;
+	private boolean mtmyCoilError;
+	private boolean mtmzCoilError;
+	private boolean rteMSError;
+	private boolean standBy;
+	private boolean mtmDCDC12OutOfTemperatureRange;
+	private boolean mtmDCDC5OutOfTemperatureRange;
+	private boolean mtm12VOvercurrent;
+	private boolean mtm5VOvercurrent;
 
 	public MtError(LittleEndianDataInputStream dis) throws IOException {
 		int raw = dis.readUnsignedByte();
-		MTMInternalError = ((raw >> 7) & 0x1) > 0;
-		WatchdogRebootError = ((raw >> 6) & 0x1) > 0;
-		MTMCommunicationError = ((raw >> 5) & 0x1) > 0;
-		MTMGenError = ((raw >> 4) & 0x1) > 0;
-		MTMxCoilError = ((raw >> 3) & 0x1) > 0;
-		MTMyCoilError = ((raw >> 2) & 0x1) > 0;
-		MTMzCoilError = ((raw >> 1) & 0x1) > 0;
-		RTEMSError = (raw & 0x1) > 0;
+		mtmInternalError = ((raw >> 7) & 0x1) > 0;
+		watchdogRebootError = ((raw >> 6) & 0x1) > 0;
+		mtmCommunicationError = ((raw >> 5) & 0x1) > 0;
+		mtmGenError = ((raw >> 4) & 0x1) > 0;
+		mtmxCoilError = ((raw >> 3) & 0x1) > 0;
+		mtmyCoilError = ((raw >> 2) & 0x1) > 0;
+		mtmzCoilError = ((raw >> 1) & 0x1) > 0;
+		rteMSError = (raw & 0x1) > 0;
 
 		raw = dis.readUnsignedByte();
-		StandBy = ((raw >> 7) & 0x1) > 0;
-		MTMDCDC12OutOfTemperatureRange = ((raw >> 6) & 0x1) > 0;
-		MTMDCDC5OutOfTemperatureRange = ((raw >> 5) & 0x1) > 0;
-		MTM12VOvercurrent = ((raw >> 4) & 0x1) > 0;
-		MTM5VOvercurrent = ((raw >> 3) & 0x1) > 0;
+		standBy = ((raw >> 7) & 0x1) > 0;
+		mtmDCDC12OutOfTemperatureRange = ((raw >> 6) & 0x1) > 0;
+		mtmDCDC5OutOfTemperatureRange = ((raw >> 5) & 0x1) > 0;
+		mtm12VOvercurrent = ((raw >> 4) & 0x1) > 0;
+		mtm5VOvercurrent = ((raw >> 3) & 0x1) > 0;
 	}
 
-	public boolean isMTMInternalError() {
-		return MTMInternalError;
+	public boolean isMtmInternalError() {
+		return mtmInternalError;
 	}
 
-	public void setMTMInternalError(boolean mTMInternalError) {
-		MTMInternalError = mTMInternalError;
+	public void setMtmInternalError(boolean mtmInternalError) {
+		this.mtmInternalError = mtmInternalError;
 	}
 
 	public boolean isWatchdogRebootError() {
-		return WatchdogRebootError;
+		return watchdogRebootError;
 	}
 
 	public void setWatchdogRebootError(boolean watchdogRebootError) {
-		WatchdogRebootError = watchdogRebootError;
+		this.watchdogRebootError = watchdogRebootError;
 	}
 
-	public boolean isMTMCommunicationError() {
-		return MTMCommunicationError;
+	public boolean isMtmCommunicationError() {
+		return mtmCommunicationError;
 	}
 
-	public void setMTMCommunicationError(boolean mTMCommunicationError) {
-		MTMCommunicationError = mTMCommunicationError;
+	public void setMtmCommunicationError(boolean mtmCommunicationError) {
+		this.mtmCommunicationError = mtmCommunicationError;
 	}
 
-	public boolean isMTMGenError() {
-		return MTMGenError;
+	public boolean isMtmGenError() {
+		return mtmGenError;
 	}
 
-	public void setMTMGenError(boolean mTMGenError) {
-		MTMGenError = mTMGenError;
+	public void setMtmGenError(boolean mtmGenError) {
+		this.mtmGenError = mtmGenError;
 	}
 
-	public boolean isMTMxCoilError() {
-		return MTMxCoilError;
+	public boolean isMtmxCoilError() {
+		return mtmxCoilError;
 	}
 
-	public void setMTMxCoilError(boolean mTMxCoilError) {
-		MTMxCoilError = mTMxCoilError;
+	public void setMtmxCoilError(boolean mtmxCoilError) {
+		this.mtmxCoilError = mtmxCoilError;
 	}
 
-	public boolean isMTMyCoilError() {
-		return MTMyCoilError;
+	public boolean isMtmyCoilError() {
+		return mtmyCoilError;
 	}
 
-	public void setMTMyCoilError(boolean mTMyCoilError) {
-		MTMyCoilError = mTMyCoilError;
+	public void setMtmyCoilError(boolean mtmyCoilError) {
+		this.mtmyCoilError = mtmyCoilError;
 	}
 
-	public boolean isMTMzCoilError() {
-		return MTMzCoilError;
+	public boolean isMtmzCoilError() {
+		return mtmzCoilError;
 	}
 
-	public void setMTMzCoilError(boolean mTMzCoilError) {
-		MTMzCoilError = mTMzCoilError;
+	public void setMtmzCoilError(boolean mtmzCoilError) {
+		this.mtmzCoilError = mtmzCoilError;
 	}
 
-	public boolean isRTEMSError() {
-		return RTEMSError;
+	public boolean isRteMSError() {
+		return rteMSError;
 	}
 
-	public void setRTEMSError(boolean rTEMSError) {
-		RTEMSError = rTEMSError;
+	public void setRteMSError(boolean rteMSError) {
+		this.rteMSError = rteMSError;
 	}
 
 	public boolean isStandBy() {
-		return StandBy;
+		return standBy;
 	}
 
 	public void setStandBy(boolean standBy) {
-		StandBy = standBy;
+		this.standBy = standBy;
 	}
 
-	public boolean isMTMDCDC12OutOfTemperatureRange() {
-		return MTMDCDC12OutOfTemperatureRange;
+	public boolean isMtmDCDC12OutOfTemperatureRange() {
+		return mtmDCDC12OutOfTemperatureRange;
 	}
 
-	public void setMTMDCDC12OutOfTemperatureRange(boolean mTMDCDC12OutOfTemperatureRange) {
-		MTMDCDC12OutOfTemperatureRange = mTMDCDC12OutOfTemperatureRange;
+	public void setMtmDCDC12OutOfTemperatureRange(boolean mtmDCDC12OutOfTemperatureRange) {
+		this.mtmDCDC12OutOfTemperatureRange = mtmDCDC12OutOfTemperatureRange;
 	}
 
-	public boolean isMTMDCDC5OutOfTemperatureRange() {
-		return MTMDCDC5OutOfTemperatureRange;
+	public boolean isMtmDCDC5OutOfTemperatureRange() {
+		return mtmDCDC5OutOfTemperatureRange;
 	}
 
-	public void setMTMDCDC5OutOfTemperatureRange(boolean mTMDCDC5OutOfTemperatureRange) {
-		MTMDCDC5OutOfTemperatureRange = mTMDCDC5OutOfTemperatureRange;
+	public void setMtmDCDC5OutOfTemperatureRange(boolean mtmDCDC5OutOfTemperatureRange) {
+		this.mtmDCDC5OutOfTemperatureRange = mtmDCDC5OutOfTemperatureRange;
 	}
 
-	public boolean isMTM12VOvercurrent() {
-		return MTM12VOvercurrent;
+	public boolean isMtm12VOvercurrent() {
+		return mtm12VOvercurrent;
 	}
 
-	public void setMTM12VOvercurrent(boolean mTM12VOvercurrent) {
-		MTM12VOvercurrent = mTM12VOvercurrent;
+	public void setMtm12VOvercurrent(boolean mtm12vOvercurrent) {
+		mtm12VOvercurrent = mtm12vOvercurrent;
 	}
 
-	public boolean isMTM5VOvercurrent() {
-		return MTM5VOvercurrent;
+	public boolean isMtm5VOvercurrent() {
+		return mtm5VOvercurrent;
 	}
 
-	public void setMTM5VOvercurrent(boolean mTM5VOvercurrent) {
-		MTM5VOvercurrent = mTM5VOvercurrent;
+	public void setMtm5VOvercurrent(boolean mtm5vOvercurrent) {
+		mtm5VOvercurrent = mtm5vOvercurrent;
 	}
 
 }
