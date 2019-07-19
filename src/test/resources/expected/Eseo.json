@@ -428,7 +428,7 @@
     "WheelAngularVelocityError": false,
     "InitError": false,
     "mwmCondition": false,
-    "mwmError": "Deleted",
+    "mwmError": "DELETED",
     "mwmStatus": "RunningBootLoader",
     "MwmBootLoaderOk": false,
     "Memory1Ok": false,

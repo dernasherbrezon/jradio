@@ -5,7 +5,7 @@ import java.util.Map;
 
 public enum MwmError {
 
-	Deleted(0), NormalPowerOn(1), Softreset(2), WatchdogReset(3), CPUException(4), ParameterVerificationError(5), ProgramFlowError(6), CommunicationTimeout(7), BootLoaderStarted(8), ProgramCRCError(9), Idle(10), Idle2(11), ForbiddenInterrupt(12);
+	DELETED(0), NORMAL_POWER_ON(1), SOFT_RESET(2), WATCHDOG_RESET(3), CPU_EXCEPTION(4), PARAMETER_VERIFICATION_ERROR(5), PROGRAM_FLOW_ERROR(6), COMMUNICATION_TIMEOUT(7), BOOTLOADER_STARTED(8), PROGRAM_CRC_ERROR(9), IDLE(10), IDLE2(11), FORBIDDEN_INTERRUPT(12);
 
 	private final int code;
 	private static final Map<Integer, MwmError> typeByCode = new HashMap<>();
