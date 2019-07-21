@@ -429,7 +429,7 @@
     "InitError": false,
     "mwmCondition": false,
     "mwmError": "DELETED",
-    "mwmStatus": "RunningBootLoader",
+    "mwmStatus": "RUNNING_BOOT_LOADER",
     "MwmBootLoaderOk": false,
     "Memory1Ok": false,
     "Memory2Ok": false,

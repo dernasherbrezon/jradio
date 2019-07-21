@@ -5,7 +5,7 @@ import java.util.Map;
 
 public enum MwmStatus {
 
-	RunningBootLoader(0), RunningMemory1(1), RunningMemory2(2), FlashingMemory1(5), FlashingMemory2(6);
+	RUNNING_BOOT_LOADER(0), RUNNING_MEMORY1(1), RUNNING_MEMORY2(2), FLASHING_MEMORY1(5), FLASHING_MEMORY2(6);
 
 	private final int code;
 	private static final Map<Integer, MwmStatus> typeByCode = new HashMap<>();

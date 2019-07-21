@@ -6,335 +6,335 @@ import ru.r2cloud.jradio.util.LittleEndianDataInputStream;
 
 public class ObdError {
 
-	private boolean CPUTestFailed;
-	private boolean FLASHRWFailed;
-	private boolean INTERRUPTFailed;
-	private boolean USART1;
-	private boolean USART2;
-	private boolean USART3;
-	private boolean USART4;
-	private boolean USART5;
-	private boolean CPUTIMER;
-	private boolean RTC;
-	private boolean WDG;
-	private boolean FLASH;
-	private boolean SPI1;
-	private boolean SPI2;
-	private boolean SPI3;
-	private boolean SPIDEVICE1;
-	private boolean SPIDEVICE2;
-	private boolean SPIDEVICE3;
-	private boolean SPIDEVICE4;
-	private boolean SPIDEVICE5;
-	private boolean SPIDEVICE6;
-	private boolean CAN1;
-	private boolean CAN2;
-	private boolean ADC;
-	private boolean TIMER1;
-	private boolean TIMER2;
-	private boolean TIMER3;
-	private boolean TIMER4;
-	private boolean TIMER5;
-	private boolean TIMER8;
-	private boolean WDRESETLIMIT;
-	private boolean ASWIMAGEFailed;
+	private boolean cpuTestFailed;
+	private boolean flashRWFailed;
+	private boolean interruptFailed;
+	private boolean usart1;
+	private boolean usart2;
+	private boolean usart3;
+	private boolean usart4;
+	private boolean usart5;
+	private boolean cpuTimer;
+	private boolean rtc;
+	private boolean wdg;
+	private boolean flash;
+	private boolean spi1;
+	private boolean spi2;
+	private boolean spi3;
+	private boolean spiDevice1;
+	private boolean spiDevice2;
+	private boolean spiDevice3;
+	private boolean spiDevice4;
+	private boolean spiDevice5;
+	private boolean spiDevice6;
+	private boolean can1;
+	private boolean can2;
+	private boolean adc;
+	private boolean timer1;
+	private boolean timer2;
+	private boolean timer3;
+	private boolean timer4;
+	private boolean timer5;
+	private boolean timer8;
+	private boolean wdResetLimit;
+	private boolean aswImageFailed;
 
 	public ObdError(LittleEndianDataInputStream dis) throws IOException {
 		int raw = dis.readUnsignedByte();
-		CPUTestFailed = ((raw >> 7) & 0x1) > 0;
-		FLASHRWFailed = ((raw >> 6) & 0x1) > 0;
-		INTERRUPTFailed = ((raw >> 5) & 0x1) > 0;
-		USART1 = ((raw >> 4) & 0x1) > 0;
-		USART2 = ((raw >> 3) & 0x1) > 0;
-		USART3 = ((raw >> 2) & 0x1) > 0;
-		USART4 = ((raw >> 1) & 0x1) > 0;
-		USART5 = (raw & 0x1) > 0;
+		cpuTestFailed = ((raw >> 7) & 0x1) > 0;
+		flashRWFailed = ((raw >> 6) & 0x1) > 0;
+		interruptFailed = ((raw >> 5) & 0x1) > 0;
+		usart1 = ((raw >> 4) & 0x1) > 0;
+		usart2 = ((raw >> 3) & 0x1) > 0;
+		usart3 = ((raw >> 2) & 0x1) > 0;
+		usart4 = ((raw >> 1) & 0x1) > 0;
+		usart5 = (raw & 0x1) > 0;
 
 		raw = dis.readUnsignedByte();
-		CPUTIMER = ((raw >> 7) & 0x1) > 0;
-		RTC = ((raw >> 6) & 0x1) > 0;
-		WDG = ((raw >> 5) & 0x1) > 0;
-		FLASH = ((raw >> 4) & 0x1) > 0;
-		SPI1 = ((raw >> 3) & 0x1) > 0;
-		SPI2 = ((raw >> 2) & 0x1) > 0;
-		SPI3 = ((raw >> 1) & 0x1) > 0;
-		SPIDEVICE1 = (raw & 0x1) > 0;
+		cpuTimer = ((raw >> 7) & 0x1) > 0;
+		rtc = ((raw >> 6) & 0x1) > 0;
+		wdg = ((raw >> 5) & 0x1) > 0;
+		flash = ((raw >> 4) & 0x1) > 0;
+		spi1 = ((raw >> 3) & 0x1) > 0;
+		spi2 = ((raw >> 2) & 0x1) > 0;
+		spi3 = ((raw >> 1) & 0x1) > 0;
+		spiDevice1 = (raw & 0x1) > 0;
 
 		raw = dis.readUnsignedByte();
-		SPIDEVICE2 = ((raw >> 7) & 0x1) > 0;
-		SPIDEVICE3 = ((raw >> 6) & 0x1) > 0;
-		SPIDEVICE4 = ((raw >> 5) & 0x1) > 0;
-		SPIDEVICE5 = ((raw >> 4) & 0x1) > 0;
-		SPIDEVICE6 = ((raw >> 3) & 0x1) > 0;
-		CAN1 = ((raw >> 2) & 0x1) > 0;
-		CAN2 = ((raw >> 1) & 0x1) > 0;
-		ADC = (raw & 0x1) > 0;
+		spiDevice2 = ((raw >> 7) & 0x1) > 0;
+		spiDevice3 = ((raw >> 6) & 0x1) > 0;
+		spiDevice4 = ((raw >> 5) & 0x1) > 0;
+		spiDevice5 = ((raw >> 4) & 0x1) > 0;
+		spiDevice6 = ((raw >> 3) & 0x1) > 0;
+		can1 = ((raw >> 2) & 0x1) > 0;
+		can2 = ((raw >> 1) & 0x1) > 0;
+		adc = (raw & 0x1) > 0;
 
 		raw = dis.readUnsignedByte();
-		TIMER1 = ((raw >> 7) & 0x1) > 0;
-		TIMER2 = ((raw >> 6) & 0x1) > 0;
-		TIMER3 = ((raw >> 5) & 0x1) > 0;
-		TIMER4 = ((raw >> 4) & 0x1) > 0;
-		TIMER5 = ((raw >> 3) & 0x1) > 0;
-		TIMER8 = ((raw >> 2) & 0x1) > 0;
-		WDRESETLIMIT = ((raw >> 1) & 0x1) > 0;
-		ASWIMAGEFailed = (raw & 0x1) > 0;
+		timer1 = ((raw >> 7) & 0x1) > 0;
+		timer2 = ((raw >> 6) & 0x1) > 0;
+		timer3 = ((raw >> 5) & 0x1) > 0;
+		timer4 = ((raw >> 4) & 0x1) > 0;
+		timer5 = ((raw >> 3) & 0x1) > 0;
+		timer8 = ((raw >> 2) & 0x1) > 0;
+		wdResetLimit = ((raw >> 1) & 0x1) > 0;
+		aswImageFailed = (raw & 0x1) > 0;
 	}
 
-	public boolean isCPUTestFailed() {
-		return CPUTestFailed;
+	public boolean isCpuTestFailed() {
+		return cpuTestFailed;
 	}
 
-	public void setCPUTestFailed(boolean cPUTestFailed) {
-		CPUTestFailed = cPUTestFailed;
+	public void setCpuTestFailed(boolean cpuTestFailed) {
+		this.cpuTestFailed = cpuTestFailed;
 	}
 
-	public boolean isFLASHRWFailed() {
-		return FLASHRWFailed;
+	public boolean isFlashRWFailed() {
+		return flashRWFailed;
 	}
 
-	public void setFLASHRWFailed(boolean fLASHRWFailed) {
-		FLASHRWFailed = fLASHRWFailed;
+	public void setFlashRWFailed(boolean flashRWFailed) {
+		this.flashRWFailed = flashRWFailed;
 	}
 
-	public boolean isINTERRUPTFailed() {
-		return INTERRUPTFailed;
+	public boolean isInterruptFailed() {
+		return interruptFailed;
 	}
 
-	public void setINTERRUPTFailed(boolean iNTERRUPTFailed) {
-		INTERRUPTFailed = iNTERRUPTFailed;
+	public void setInterruptFailed(boolean interruptFailed) {
+		this.interruptFailed = interruptFailed;
 	}
 
-	public boolean isUSART1() {
-		return USART1;
+	public boolean isUsart1() {
+		return usart1;
 	}
 
-	public void setUSART1(boolean uSART1) {
-		USART1 = uSART1;
+	public void setUsart1(boolean usart1) {
+		this.usart1 = usart1;
 	}
 
-	public boolean isUSART2() {
-		return USART2;
+	public boolean isUsart2() {
+		return usart2;
 	}
 
-	public void setUSART2(boolean uSART2) {
-		USART2 = uSART2;
+	public void setUsart2(boolean usart2) {
+		this.usart2 = usart2;
 	}
 
-	public boolean isUSART3() {
-		return USART3;
+	public boolean isUsart3() {
+		return usart3;
 	}
 
-	public void setUSART3(boolean uSART3) {
-		USART3 = uSART3;
+	public void setUsart3(boolean usart3) {
+		this.usart3 = usart3;
 	}
 
-	public boolean isUSART4() {
-		return USART4;
+	public boolean isUsart4() {
+		return usart4;
 	}
 
-	public void setUSART4(boolean uSART4) {
-		USART4 = uSART4;
+	public void setUsart4(boolean usart4) {
+		this.usart4 = usart4;
 	}
 
-	public boolean isUSART5() {
-		return USART5;
+	public boolean isUsart5() {
+		return usart5;
 	}
 
-	public void setUSART5(boolean uSART5) {
-		USART5 = uSART5;
+	public void setUsart5(boolean usart5) {
+		this.usart5 = usart5;
 	}
 
-	public boolean isCPUTIMER() {
-		return CPUTIMER;
+	public boolean isCpuTimer() {
+		return cpuTimer;
 	}
 
-	public void setCPUTIMER(boolean cPUTIMER) {
-		CPUTIMER = cPUTIMER;
+	public void setCpuTimer(boolean cpuTimer) {
+		this.cpuTimer = cpuTimer;
 	}
 
-	public boolean isRTC() {
-		return RTC;
+	public boolean isRtc() {
+		return rtc;
 	}
 
-	public void setRTC(boolean rTC) {
-		RTC = rTC;
+	public void setRtc(boolean rtc) {
+		this.rtc = rtc;
 	}
 
-	public boolean isWDG() {
-		return WDG;
+	public boolean isWdg() {
+		return wdg;
 	}
 
-	public void setWDG(boolean wDG) {
-		WDG = wDG;
+	public void setWdg(boolean wdg) {
+		this.wdg = wdg;
 	}
 
-	public boolean isFLASH() {
-		return FLASH;
+	public boolean isFlash() {
+		return flash;
 	}
 
-	public void setFLASH(boolean fLASH) {
-		FLASH = fLASH;
+	public void setFlash(boolean flash) {
+		this.flash = flash;
 	}
 
-	public boolean isSPI1() {
-		return SPI1;
+	public boolean isSpi1() {
+		return spi1;
 	}
 
-	public void setSPI1(boolean sPI1) {
-		SPI1 = sPI1;
+	public void setSpi1(boolean spi1) {
+		this.spi1 = spi1;
 	}
 
-	public boolean isSPI2() {
-		return SPI2;
+	public boolean isSpi2() {
+		return spi2;
 	}
 
-	public void setSPI2(boolean sPI2) {
-		SPI2 = sPI2;
+	public void setSpi2(boolean spi2) {
+		this.spi2 = spi2;
 	}
 
-	public boolean isSPI3() {
-		return SPI3;
+	public boolean isSpi3() {
+		return spi3;
 	}
 
-	public void setSPI3(boolean sPI3) {
-		SPI3 = sPI3;
+	public void setSpi3(boolean spi3) {
+		this.spi3 = spi3;
 	}
 
-	public boolean isSPIDEVICE1() {
-		return SPIDEVICE1;
+	public boolean isSpiDevice1() {
+		return spiDevice1;
 	}
 
-	public void setSPIDEVICE1(boolean sPIDEVICE1) {
-		SPIDEVICE1 = sPIDEVICE1;
+	public void setSpiDevice1(boolean spiDevice1) {
+		this.spiDevice1 = spiDevice1;
 	}
 
-	public boolean isSPIDEVICE2() {
-		return SPIDEVICE2;
+	public boolean isSpiDevice2() {
+		return spiDevice2;
 	}
 
-	public void setSPIDEVICE2(boolean sPIDEVICE2) {
-		SPIDEVICE2 = sPIDEVICE2;
+	public void setSpiDevice2(boolean spiDevice2) {
+		this.spiDevice2 = spiDevice2;
 	}
 
-	public boolean isSPIDEVICE3() {
-		return SPIDEVICE3;
+	public boolean isSpiDevice3() {
+		return spiDevice3;
 	}
 
-	public void setSPIDEVICE3(boolean sPIDEVICE3) {
-		SPIDEVICE3 = sPIDEVICE3;
+	public void setSpiDevice3(boolean spiDevice3) {
+		this.spiDevice3 = spiDevice3;
 	}
 
-	public boolean isSPIDEVICE4() {
-		return SPIDEVICE4;
+	public boolean isSpiDevice4() {
+		return spiDevice4;
 	}
 
-	public void setSPIDEVICE4(boolean sPIDEVICE4) {
-		SPIDEVICE4 = sPIDEVICE4;
+	public void setSpiDevice4(boolean spiDevice4) {
+		this.spiDevice4 = spiDevice4;
 	}
 
-	public boolean isSPIDEVICE5() {
-		return SPIDEVICE5;
+	public boolean isSpiDevice5() {
+		return spiDevice5;
 	}
 
-	public void setSPIDEVICE5(boolean sPIDEVICE5) {
-		SPIDEVICE5 = sPIDEVICE5;
+	public void setSpiDevice5(boolean spiDevice5) {
+		this.spiDevice5 = spiDevice5;
 	}
 
-	public boolean isSPIDEVICE6() {
-		return SPIDEVICE6;
+	public boolean isSpiDevice6() {
+		return spiDevice6;
 	}
 
-	public void setSPIDEVICE6(boolean sPIDEVICE6) {
-		SPIDEVICE6 = sPIDEVICE6;
+	public void setSpiDevice6(boolean spiDevice6) {
+		this.spiDevice6 = spiDevice6;
 	}
 
-	public boolean isCAN1() {
-		return CAN1;
+	public boolean isCan1() {
+		return can1;
 	}
 
-	public void setCAN1(boolean cAN1) {
-		CAN1 = cAN1;
+	public void setCan1(boolean can1) {
+		this.can1 = can1;
 	}
 
-	public boolean isCAN2() {
-		return CAN2;
+	public boolean isCan2() {
+		return can2;
 	}
 
-	public void setCAN2(boolean cAN2) {
-		CAN2 = cAN2;
+	public void setCan2(boolean can2) {
+		this.can2 = can2;
 	}
 
-	public boolean isADC() {
-		return ADC;
+	public boolean isAdc() {
+		return adc;
 	}
 
-	public void setADC(boolean aDC) {
-		ADC = aDC;
+	public void setAdc(boolean adc) {
+		this.adc = adc;
 	}
 
-	public boolean isTIMER1() {
-		return TIMER1;
+	public boolean isTimer1() {
+		return timer1;
 	}
 
-	public void setTIMER1(boolean tIMER1) {
-		TIMER1 = tIMER1;
+	public void setTimer1(boolean timer1) {
+		this.timer1 = timer1;
 	}
 
-	public boolean isTIMER2() {
-		return TIMER2;
+	public boolean isTimer2() {
+		return timer2;
 	}
 
-	public void setTIMER2(boolean tIMER2) {
-		TIMER2 = tIMER2;
+	public void setTimer2(boolean timer2) {
+		this.timer2 = timer2;
 	}
 
-	public boolean isTIMER3() {
-		return TIMER3;
+	public boolean isTimer3() {
+		return timer3;
 	}
 
-	public void setTIMER3(boolean tIMER3) {
-		TIMER3 = tIMER3;
+	public void setTimer3(boolean timer3) {
+		this.timer3 = timer3;
 	}
 
-	public boolean isTIMER4() {
-		return TIMER4;
+	public boolean isTimer4() {
+		return timer4;
 	}
 
-	public void setTIMER4(boolean tIMER4) {
-		TIMER4 = tIMER4;
+	public void setTimer4(boolean timer4) {
+		this.timer4 = timer4;
 	}
 
-	public boolean isTIMER5() {
-		return TIMER5;
+	public boolean isTimer5() {
+		return timer5;
 	}
 
-	public void setTIMER5(boolean tIMER5) {
-		TIMER5 = tIMER5;
+	public void setTimer5(boolean timer5) {
+		this.timer5 = timer5;
 	}
 
-	public boolean isTIMER8() {
-		return TIMER8;
+	public boolean isTimer8() {
+		return timer8;
 	}
 
-	public void setTIMER8(boolean tIMER8) {
-		TIMER8 = tIMER8;
+	public void setTimer8(boolean timer8) {
+		this.timer8 = timer8;
 	}
 
-	public boolean isWDRESETLIMIT() {
-		return WDRESETLIMIT;
+	public boolean isWdResetLimit() {
+		return wdResetLimit;
 	}
 
-	public void setWDRESETLIMIT(boolean wDRESETLIMIT) {
-		WDRESETLIMIT = wDRESETLIMIT;
+	public void setWdResetLimit(boolean wdResetLimit) {
+		this.wdResetLimit = wdResetLimit;
 	}
 
-	public boolean isASWIMAGEFailed() {
-		return ASWIMAGEFailed;
+	public boolean isAswImageFailed() {
+		return aswImageFailed;
 	}
 
-	public void setASWIMAGEFailed(boolean aSWIMAGEFailed) {
-		ASWIMAGEFailed = aSWIMAGEFailed;
+	public void setAswImageFailed(boolean aswImageFailed) {
+		this.aswImageFailed = aswImageFailed;
 	}
-	
+
 }
