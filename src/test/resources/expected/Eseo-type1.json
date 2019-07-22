@@ -13,7 +13,7 @@
   "pid": 240,
   "beaconType": 3,
   "type1": {
-    "OBD_MODE": "SafeModeS2",
+    "OBD_MODE": "SAFE_MODE_S2",
     "OBD_ACTIVE_TASK": 15,
     "equipmentStatus": {
       "powerManagementUnitMain": true,
