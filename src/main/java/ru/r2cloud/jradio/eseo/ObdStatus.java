@@ -6,305 +6,305 @@ import ru.r2cloud.jradio.util.LittleEndianDataInputStream;
 
 public class ObdStatus {
 
-	private boolean INITASM;
-	private boolean INITCOPYSECTION;
-	private boolean INITCLEARBSS;
-	private boolean INITCLOCK;
-	private boolean INITCPU;
-	private boolean INITFLASHRW;
-	private boolean INITGPIO;
-	private boolean INITINTERRUPT;
-	private boolean INITINTERRUPTTEST;
-	private boolean INITUSART;
-	private boolean INITCPUTIMER;
-	private boolean INITRTC;
-	private boolean INITWDG;
-	private boolean INITFAULTHAND;
-	private boolean INITFLASH;
-	private boolean INITSPIBUS;
-	private boolean INITCANCONF;
-	private boolean INITCANTEST;
-	private boolean INITADC;
-	private boolean INITTIMER;
-	private boolean INITCONSOLE;
-	private boolean INITPOWONRESET;
-	private boolean INITWDRESET;
-	private boolean INITASWIMAGE;
-	private boolean INITCOMPLETED;
-	private boolean INITSTANDBYACTIVE;
-	private boolean INITTAU;
-	private boolean INITPDUADC;
-	private boolean INITCANOPEN;
+	private boolean initASM;
+	private boolean initCOPYSECTION;
+	private boolean initCLEARBSS;
+	private boolean initCLOCK;
+	private boolean initCPU;
+	private boolean initFLASHRW;
+	private boolean initGPIO;
+	private boolean initINTERRUPT;
+	private boolean initINTERRUPTTEST;
+	private boolean initUSART;
+	private boolean initCPUTIMER;
+	private boolean initRTC;
+	private boolean initWDG;
+	private boolean initFAULTHAND;
+	private boolean initFLASH;
+	private boolean initSPIBUS;
+	private boolean initCANCONF;
+	private boolean initCANTEST;
+	private boolean initADC;
+	private boolean initTIMER;
+	private boolean initCONSOLE;
+	private boolean initPOWONRESET;
+	private boolean initWDRESET;
+	private boolean initASWIMAGE;
+	private boolean initCOMPLETED;
+	private boolean initSTANDBYACTIVE;
+	private boolean initTAU;
+	private boolean initPDUADC;
+	private boolean initCANOPEN;
 
 	public ObdStatus(LittleEndianDataInputStream dis) throws IOException {
 		int raw = dis.readUnsignedByte();
-		INITASM = ((raw >> 7) & 0x1) > 0;
-		INITCOPYSECTION = ((raw >> 6) & 0x1) > 0;
-		INITCLEARBSS = ((raw >> 5) & 0x1) > 0;
-		INITCLOCK = ((raw >> 4) & 0x1) > 0;
-		INITCPU = ((raw >> 3) & 0x1) > 0;
-		INITFLASHRW = ((raw >> 2) & 0x1) > 0;
-		INITGPIO = ((raw >> 1) & 0x1) > 0;
-		INITINTERRUPT = (raw & 0x1) > 0;
+		initASM = ((raw >> 7) & 0x1) > 0;
+		initCOPYSECTION = ((raw >> 6) & 0x1) > 0;
+		initCLEARBSS = ((raw >> 5) & 0x1) > 0;
+		initCLOCK = ((raw >> 4) & 0x1) > 0;
+		initCPU = ((raw >> 3) & 0x1) > 0;
+		initFLASHRW = ((raw >> 2) & 0x1) > 0;
+		initGPIO = ((raw >> 1) & 0x1) > 0;
+		initINTERRUPT = (raw & 0x1) > 0;
 
 		raw = dis.readUnsignedByte();
-		INITINTERRUPTTEST = ((raw >> 7) & 0x1) > 0;
-		INITUSART = ((raw >> 6) & 0x1) > 0;
-		INITCPUTIMER = ((raw >> 5) & 0x1) > 0;
-		INITRTC = ((raw >> 4) & 0x1) > 0;
-		INITWDG = ((raw >> 3) & 0x1) > 0;
-		INITFAULTHAND = ((raw >> 2) & 0x1) > 0;
-		INITFLASH = ((raw >> 1) & 0x1) > 0;
-		INITSPIBUS = (raw & 0x1) > 0;
+		initINTERRUPTTEST = ((raw >> 7) & 0x1) > 0;
+		initUSART = ((raw >> 6) & 0x1) > 0;
+		initCPUTIMER = ((raw >> 5) & 0x1) > 0;
+		initRTC = ((raw >> 4) & 0x1) > 0;
+		initWDG = ((raw >> 3) & 0x1) > 0;
+		initFAULTHAND = ((raw >> 2) & 0x1) > 0;
+		initFLASH = ((raw >> 1) & 0x1) > 0;
+		initSPIBUS = (raw & 0x1) > 0;
 
 		raw = dis.readUnsignedByte();
-		INITCANCONF = ((raw >> 7) & 0x1) > 0;
-		INITCANTEST = ((raw >> 6) & 0x1) > 0;
-		INITADC = ((raw >> 5) & 0x1) > 0;
-		INITTIMER = ((raw >> 4) & 0x1) > 0;
-		INITCONSOLE = ((raw >> 3) & 0x1) > 0;
-		INITPOWONRESET = ((raw >> 2) & 0x1) > 0;
-		INITWDRESET = ((raw >> 1) & 0x1) > 0;
-		INITASWIMAGE = (raw & 0x1) > 0;
+		initCANCONF = ((raw >> 7) & 0x1) > 0;
+		initCANTEST = ((raw >> 6) & 0x1) > 0;
+		initADC = ((raw >> 5) & 0x1) > 0;
+		initTIMER = ((raw >> 4) & 0x1) > 0;
+		initCONSOLE = ((raw >> 3) & 0x1) > 0;
+		initPOWONRESET = ((raw >> 2) & 0x1) > 0;
+		initWDRESET = ((raw >> 1) & 0x1) > 0;
+		initASWIMAGE = (raw & 0x1) > 0;
 
 		raw = dis.readUnsignedByte();
-		INITCOMPLETED = ((raw >> 7) & 0x1) > 0;
-		INITSTANDBYACTIVE = ((raw >> 6) & 0x1) > 0;
-		INITTAU = ((raw >> 5) & 0x1) > 0;
-		INITPDUADC = ((raw >> 4) & 0x1) > 0;
-		INITCANOPEN = ((raw >> 3) & 0x1) > 0;
+		initCOMPLETED = ((raw >> 7) & 0x1) > 0;
+		initSTANDBYACTIVE = ((raw >> 6) & 0x1) > 0;
+		initTAU = ((raw >> 5) & 0x1) > 0;
+		initPDUADC = ((raw >> 4) & 0x1) > 0;
+		initCANOPEN = ((raw >> 3) & 0x1) > 0;
 	}
 
-	public boolean isINITASM() {
-		return INITASM;
+	public boolean isInitASM() {
+		return initASM;
 	}
 
-	public void setINITASM(boolean iNITASM) {
-		INITASM = iNITASM;
+	public void setInitASM(boolean initASM) {
+		this.initASM = initASM;
 	}
 
-	public boolean isINITCOPYSECTION() {
-		return INITCOPYSECTION;
+	public boolean isInitCOPYSECTION() {
+		return initCOPYSECTION;
 	}
 
-	public void setINITCOPYSECTION(boolean iNITCOPYSECTION) {
-		INITCOPYSECTION = iNITCOPYSECTION;
+	public void setInitCOPYSECTION(boolean initCOPYSECTION) {
+		this.initCOPYSECTION = initCOPYSECTION;
 	}
 
-	public boolean isINITCLEARBSS() {
-		return INITCLEARBSS;
+	public boolean isInitCLEARBSS() {
+		return initCLEARBSS;
 	}
 
-	public void setINITCLEARBSS(boolean iNITCLEARBSS) {
-		INITCLEARBSS = iNITCLEARBSS;
+	public void setInitCLEARBSS(boolean initCLEARBSS) {
+		this.initCLEARBSS = initCLEARBSS;
 	}
 
-	public boolean isINITCLOCK() {
-		return INITCLOCK;
+	public boolean isInitCLOCK() {
+		return initCLOCK;
 	}
 
-	public void setINITCLOCK(boolean iNITCLOCK) {
-		INITCLOCK = iNITCLOCK;
+	public void setInitCLOCK(boolean initCLOCK) {
+		this.initCLOCK = initCLOCK;
 	}
 
-	public boolean isINITCPU() {
-		return INITCPU;
+	public boolean isInitCPU() {
+		return initCPU;
 	}
 
-	public void setINITCPU(boolean iNITCPU) {
-		INITCPU = iNITCPU;
+	public void setInitCPU(boolean initCPU) {
+		this.initCPU = initCPU;
 	}
 
-	public boolean isINITFLASHRW() {
-		return INITFLASHRW;
+	public boolean isInitFLASHRW() {
+		return initFLASHRW;
 	}
 
-	public void setINITFLASHRW(boolean iNITFLASHRW) {
-		INITFLASHRW = iNITFLASHRW;
+	public void setInitFLASHRW(boolean initFLASHRW) {
+		this.initFLASHRW = initFLASHRW;
 	}
 
-	public boolean isINITGPIO() {
-		return INITGPIO;
+	public boolean isInitGPIO() {
+		return initGPIO;
 	}
 
-	public void setINITGPIO(boolean iNITGPIO) {
-		INITGPIO = iNITGPIO;
+	public void setInitGPIO(boolean initGPIO) {
+		this.initGPIO = initGPIO;
 	}
 
-	public boolean isINITINTERRUPT() {
-		return INITINTERRUPT;
+	public boolean isInitINTERRUPT() {
+		return initINTERRUPT;
 	}
 
-	public void setINITINTERRUPT(boolean iNITINTERRUPT) {
-		INITINTERRUPT = iNITINTERRUPT;
+	public void setInitINTERRUPT(boolean initINTERRUPT) {
+		this.initINTERRUPT = initINTERRUPT;
 	}
 
-	public boolean isINITINTERRUPTTEST() {
-		return INITINTERRUPTTEST;
+	public boolean isInitINTERRUPTTEST() {
+		return initINTERRUPTTEST;
 	}
 
-	public void setINITINTERRUPTTEST(boolean iNITINTERRUPTTEST) {
-		INITINTERRUPTTEST = iNITINTERRUPTTEST;
+	public void setInitINTERRUPTTEST(boolean initINTERRUPTTEST) {
+		this.initINTERRUPTTEST = initINTERRUPTTEST;
 	}
 
-	public boolean isINITUSART() {
-		return INITUSART;
+	public boolean isInitUSART() {
+		return initUSART;
 	}
 
-	public void setINITUSART(boolean iNITUSART) {
-		INITUSART = iNITUSART;
+	public void setInitUSART(boolean initUSART) {
+		this.initUSART = initUSART;
 	}
 
-	public boolean isINITCPUTIMER() {
-		return INITCPUTIMER;
+	public boolean isInitCPUTIMER() {
+		return initCPUTIMER;
 	}
 
-	public void setINITCPUTIMER(boolean iNITCPUTIMER) {
-		INITCPUTIMER = iNITCPUTIMER;
+	public void setInitCPUTIMER(boolean initCPUTIMER) {
+		this.initCPUTIMER = initCPUTIMER;
 	}
 
-	public boolean isINITRTC() {
-		return INITRTC;
+	public boolean isInitRTC() {
+		return initRTC;
 	}
 
-	public void setINITRTC(boolean iNITRTC) {
-		INITRTC = iNITRTC;
+	public void setInitRTC(boolean initRTC) {
+		this.initRTC = initRTC;
 	}
 
-	public boolean isINITWDG() {
-		return INITWDG;
+	public boolean isInitWDG() {
+		return initWDG;
 	}
 
-	public void setINITWDG(boolean iNITWDG) {
-		INITWDG = iNITWDG;
+	public void setInitWDG(boolean initWDG) {
+		this.initWDG = initWDG;
 	}
 
-	public boolean isINITFAULTHAND() {
-		return INITFAULTHAND;
+	public boolean isInitFAULTHAND() {
+		return initFAULTHAND;
 	}
 
-	public void setINITFAULTHAND(boolean iNITFAULTHAND) {
-		INITFAULTHAND = iNITFAULTHAND;
+	public void setInitFAULTHAND(boolean initFAULTHAND) {
+		this.initFAULTHAND = initFAULTHAND;
 	}
 
-	public boolean isINITFLASH() {
-		return INITFLASH;
+	public boolean isInitFLASH() {
+		return initFLASH;
 	}
 
-	public void setINITFLASH(boolean iNITFLASH) {
-		INITFLASH = iNITFLASH;
+	public void setInitFLASH(boolean initFLASH) {
+		this.initFLASH = initFLASH;
 	}
 
-	public boolean isINITSPIBUS() {
-		return INITSPIBUS;
+	public boolean isInitSPIBUS() {
+		return initSPIBUS;
 	}
 
-	public void setINITSPIBUS(boolean iNITSPIBUS) {
-		INITSPIBUS = iNITSPIBUS;
+	public void setInitSPIBUS(boolean initSPIBUS) {
+		this.initSPIBUS = initSPIBUS;
 	}
 
-	public boolean isINITCANCONF() {
-		return INITCANCONF;
+	public boolean isInitCANCONF() {
+		return initCANCONF;
 	}
 
-	public void setINITCANCONF(boolean iNITCANCONF) {
-		INITCANCONF = iNITCANCONF;
+	public void setInitCANCONF(boolean initCANCONF) {
+		this.initCANCONF = initCANCONF;
 	}
 
-	public boolean isINITCANTEST() {
-		return INITCANTEST;
+	public boolean isInitCANTEST() {
+		return initCANTEST;
 	}
 
-	public void setINITCANTEST(boolean iNITCANTEST) {
-		INITCANTEST = iNITCANTEST;
+	public void setInitCANTEST(boolean initCANTEST) {
+		this.initCANTEST = initCANTEST;
 	}
 
-	public boolean isINITADC() {
-		return INITADC;
+	public boolean isInitADC() {
+		return initADC;
 	}
 
-	public void setINITADC(boolean iNITADC) {
-		INITADC = iNITADC;
+	public void setInitADC(boolean initADC) {
+		this.initADC = initADC;
 	}
 
-	public boolean isINITTIMER() {
-		return INITTIMER;
+	public boolean isInitTIMER() {
+		return initTIMER;
 	}
 
-	public void setINITTIMER(boolean iNITTIMER) {
-		INITTIMER = iNITTIMER;
+	public void setInitTIMER(boolean initTIMER) {
+		this.initTIMER = initTIMER;
 	}
 
-	public boolean isINITCONSOLE() {
-		return INITCONSOLE;
+	public boolean isInitCONSOLE() {
+		return initCONSOLE;
 	}
 
-	public void setINITCONSOLE(boolean iNITCONSOLE) {
-		INITCONSOLE = iNITCONSOLE;
+	public void setInitCONSOLE(boolean initCONSOLE) {
+		this.initCONSOLE = initCONSOLE;
 	}
 
-	public boolean isINITPOWONRESET() {
-		return INITPOWONRESET;
+	public boolean isInitPOWONRESET() {
+		return initPOWONRESET;
 	}
 
-	public void setINITPOWONRESET(boolean iNITPOWONRESET) {
-		INITPOWONRESET = iNITPOWONRESET;
+	public void setInitPOWONRESET(boolean initPOWONRESET) {
+		this.initPOWONRESET = initPOWONRESET;
 	}
 
-	public boolean isINITWDRESET() {
-		return INITWDRESET;
+	public boolean isInitWDRESET() {
+		return initWDRESET;
 	}
 
-	public void setINITWDRESET(boolean iNITWDRESET) {
-		INITWDRESET = iNITWDRESET;
+	public void setInitWDRESET(boolean initWDRESET) {
+		this.initWDRESET = initWDRESET;
 	}
 
-	public boolean isINITASWIMAGE() {
-		return INITASWIMAGE;
+	public boolean isInitASWIMAGE() {
+		return initASWIMAGE;
 	}
 
-	public void setINITASWIMAGE(boolean iNITASWIMAGE) {
-		INITASWIMAGE = iNITASWIMAGE;
+	public void setInitASWIMAGE(boolean initASWIMAGE) {
+		this.initASWIMAGE = initASWIMAGE;
 	}
 
-	public boolean isINITCOMPLETED() {
-		return INITCOMPLETED;
+	public boolean isInitCOMPLETED() {
+		return initCOMPLETED;
 	}
 
-	public void setINITCOMPLETED(boolean iNITCOMPLETED) {
-		INITCOMPLETED = iNITCOMPLETED;
+	public void setInitCOMPLETED(boolean initCOMPLETED) {
+		this.initCOMPLETED = initCOMPLETED;
 	}
 
-	public boolean isINITSTANDBYACTIVE() {
-		return INITSTANDBYACTIVE;
+	public boolean isInitSTANDBYACTIVE() {
+		return initSTANDBYACTIVE;
 	}
 
-	public void setINITSTANDBYACTIVE(boolean iNITSTANDBYACTIVE) {
-		INITSTANDBYACTIVE = iNITSTANDBYACTIVE;
+	public void setInitSTANDBYACTIVE(boolean initSTANDBYACTIVE) {
+		this.initSTANDBYACTIVE = initSTANDBYACTIVE;
 	}
 
-	public boolean isINITTAU() {
-		return INITTAU;
+	public boolean isInitTAU() {
+		return initTAU;
 	}
 
-	public void setINITTAU(boolean iNITTAU) {
-		INITTAU = iNITTAU;
+	public void setInitTAU(boolean initTAU) {
+		this.initTAU = initTAU;
 	}
 
-	public boolean isINITPDUADC() {
-		return INITPDUADC;
+	public boolean isInitPDUADC() {
+		return initPDUADC;
 	}
 
-	public void setINITPDUADC(boolean iNITPDUADC) {
-		INITPDUADC = iNITPDUADC;
+	public void setInitPDUADC(boolean initPDUADC) {
+		this.initPDUADC = initPDUADC;
 	}
 
-	public boolean isINITCANOPEN() {
-		return INITCANOPEN;
+	public boolean isInitCANOPEN() {
+		return initCANOPEN;
 	}
 
-	public void setINITCANOPEN(boolean iNITCANOPEN) {
-		INITCANOPEN = iNITCANOPEN;
+	public void setInitCANOPEN(boolean initCANOPEN) {
+		this.initCANOPEN = initCANOPEN;
 	}
 
 }
