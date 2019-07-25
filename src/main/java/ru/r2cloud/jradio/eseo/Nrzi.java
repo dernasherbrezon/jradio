@@ -11,4 +11,8 @@ public class Nrzi {
 		}
 	}
 
+	private Nrzi() {
+		// do nothing
+	}
+
 }

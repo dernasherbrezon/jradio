@@ -16,10 +16,10 @@ public class PlCanError {
 	private boolean failedToAllocateTxBuffer;
 	private boolean failedToAllocateRxBuffer;
 	private boolean semaphoreRequestFailed;
-	private boolean TxBufferFull;
+	private boolean txBufferFull;
 	private boolean noTxMailboxAvailable;
 	private boolean thePreviousTransmissionFailed;
-	private boolean RxBufferFull;
+	private boolean rxBufferFull;
 	private boolean fifo0Overrun;
 	private boolean fifo0Full;
 	private boolean fifo1Overrun;
@@ -46,10 +46,10 @@ public class PlCanError {
 		raw = dis.readUnsignedByte();
 		failedToAllocateRxBuffer = ((raw >> 7) & 0x1) > 0;
 		semaphoreRequestFailed = ((raw >> 6) & 0x1) > 0;
-		TxBufferFull = ((raw >> 5) & 0x1) > 0;
+		txBufferFull = ((raw >> 5) & 0x1) > 0;
 		noTxMailboxAvailable = ((raw >> 4) & 0x1) > 0;
 		thePreviousTransmissionFailed = ((raw >> 3) & 0x1) > 0;
-		RxBufferFull = ((raw >> 2) & 0x1) > 0;
+		rxBufferFull = ((raw >> 2) & 0x1) > 0;
 		fifo0Overrun = ((raw >> 1) & 0x1) > 0;
 		fifo0Full = (raw & 0x1) > 0;
 
@@ -147,11 +147,11 @@ public class PlCanError {
 	}
 
 	public boolean isTxBufferFull() {
-		return TxBufferFull;
+		return txBufferFull;
 	}
 
 	public void setTxBufferFull(boolean txBufferFull) {
-		TxBufferFull = txBufferFull;
+		this.txBufferFull = txBufferFull;
 	}
 
 	public boolean isNoTxMailboxAvailable() {
@@ -171,11 +171,11 @@ public class PlCanError {
 	}
 
 	public boolean isRxBufferFull() {
-		return RxBufferFull;
+		return rxBufferFull;
 	}
 
 	public void setRxBufferFull(boolean rxBufferFull) {
-		RxBufferFull = rxBufferFull;
+		this.rxBufferFull = rxBufferFull;
 	}
 
 	public boolean isFifo0Overrun() {
