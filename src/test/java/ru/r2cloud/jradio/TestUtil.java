@@ -24,9 +24,12 @@ public class TestUtil {
 			throw new RuntimeException(e);
 		}
 	}
-	
-	public static void assertFloatInput(String expected, FloatInput actual) {
+
+	public static void assertFloatInput(int skip, String expected, FloatInput actual) {
 		try (InputStreamSource is = new InputStreamSource(TestUtil.class.getClassLoader().getResourceAsStream(expected))) {
+			for (int i = 0; i < skip; i++) {
+				is.readFloat();
+			}
 			int index = 0;
 			while (true) {
 				float expectedValue = is.readFloat();
@@ -39,6 +42,10 @@ public class TestUtil {
 		} catch (IOException e) {
 			throw new RuntimeException(e);
 		}
+	}
+
+	public static void assertFloatInput(String expected, FloatInput actual) {
+		assertFloatInput(0, expected, actual);
 	}
 
 	private TestUtil() {

@@ -18,6 +18,7 @@ All blocks meant to be binary compatible with gnuradio versions. This will ensur
   * [ClockRecoveryMM](https://www.tablix.org/~avian/blog/archives/2015/03/notes_on_m_m_clock_recovery/) and [ClockRecoveryMMComplex](https://www.tablix.org/~avian/blog/archives/2015/03/notes_on_m_m_clock_recovery/)
   * ComplexConjugate
   * ComplexToReal
+  * ConstellationModulator
   * ConstellationSoftDecoder
   * CorrelateAccessCodeTag
   * CostasLoop

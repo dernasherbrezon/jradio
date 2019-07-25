@@ -42,22 +42,24 @@ public class PackedToUnpacked implements ByteInput {
 		switch (endianness) {
 		case GR_MSB_FIRST:
 			int tmp = 0;
-			for (int j = 0; j < bitsPerChunk; j++, index++) {
+			for (int j = 0; j < bitsPerChunk; j++) {
 				tmp = (tmp << 1) | ((curByte >> (7 - index)) & 1);
+				index++;
 			}
 			result = (byte) tmp;
 			break;
 		case GR_LSB_FIRST:
 			int tmp2 = 0;
-			for (int j = 0; j < bitsPerChunk; j++, index++) {
+			for (int j = 0; j < bitsPerChunk; j++) {
 				tmp2 = (tmp2 << 1) | ((curByte >> index) & 1);
+				index++;
 			}
 			result = (byte) tmp2;
 			break;
 		default:
 			throw new IllegalArgumentException("unsupported endianness: " + endianness);
 		}
-		if (index >= 7) {
+		if (index > 7) {
 			index = 0;
 		}
 		return result;

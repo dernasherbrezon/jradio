@@ -10,6 +10,28 @@ import ru.r2cloud.jradio.Endianness;
 public class PackedToUnpackedTest {
 
 	@Test
+	public void testMultiple() throws Exception {
+		@SuppressWarnings("resource")
+		PackedToUnpacked pack2Unpack = new PackedToUnpacked(new ArrayByteInput(0, 1, 2), 1, Endianness.GR_MSB_FIRST);
+		// 0
+		for (int i = 0; i < 8; i++) {
+			assertEquals(0, pack2Unpack.readByte());
+		}
+		// 1
+		for (int i = 0; i < 7; i++) {
+			assertEquals(0, pack2Unpack.readByte());
+		}
+		assertEquals(1, pack2Unpack.readByte());
+		// 2
+		for (int i = 0; i < 6; i++) {
+			assertEquals(0, pack2Unpack.readByte());
+		}
+		assertEquals(1, pack2Unpack.readByte());
+		assertEquals(0, pack2Unpack.readByte());
+
+	}
+
+	@Test
 	public void testSuccess() throws Exception {
 		@SuppressWarnings("resource")
 		PackedToUnpacked pack2Unpack = new PackedToUnpacked(new ArrayByteInput(0b10101010), 1, Endianness.GR_MSB_FIRST);
