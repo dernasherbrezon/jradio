@@ -6,133 +6,133 @@ import ru.r2cloud.jradio.util.LittleEndianDataInputStream;
 
 public class Rs422Status {
 
-	private boolean USARTTMTCMainInitializedCorrectly;
-	private boolean USARTTMTCMainMarkedAsActive;
-	private boolean USARTTMTCMainRTSStatus;
-	private boolean USARTTMTCMainCTSStatus;
-	private boolean USARTTMTCMainPreviousTransmissionCompleted;
-	private boolean USARTTMTCMainIdleLineDetected;
-	private boolean USARTTMTCRedundantInitializedCorrectly;
-	private boolean USARTTMTCRedundantMarkedAsActive;
-	private boolean USARTTMTCRedundantRTSStatus;
-	private boolean USARTTMTCRedundantCTSStatus;
-	private boolean USARTTMTCRedundantPreviousTransmissionCompleted;
-	private boolean USARTTMTCRedundantIdleLineDetected;
+	private boolean usartTMTCMainInitializedCorrectly;
+	private boolean usartTMTCMainMarkedAsActive;
+	private boolean usartTMTCMainRTSStatus;
+	private boolean usartTMTCMainCTSStatus;
+	private boolean usartTMTCMainPreviousTransmissionCompleted;
+	private boolean usartTMTCMainIdleLineDetected;
+	private boolean usartTMTCRedundantInitializedCorrectly;
+	private boolean usartTMTCRedundantMarkedAsActive;
+	private boolean usartTMTCRedundantRTSStatus;
+	private boolean usartTMTCRedundantCTSStatus;
+	private boolean usartTMTCRedundantPreviousTransmissionCompleted;
+	private boolean usartTMTCRedundantIdleLineDetected;
 
 	public Rs422Status(LittleEndianDataInputStream dis) throws IOException {
 		int raw = dis.readUnsignedByte();
-		USARTTMTCMainInitializedCorrectly = ((raw >> 7) & 0x1) > 0;
-		USARTTMTCMainMarkedAsActive = ((raw >> 6) & 0x1) > 0;
-		USARTTMTCMainRTSStatus = ((raw >> 5) & 0x1) > 0;
-		USARTTMTCMainCTSStatus = ((raw >> 4) & 0x1) > 0;
-		USARTTMTCMainPreviousTransmissionCompleted = ((raw >> 3) & 0x1) > 0;
-		USARTTMTCMainIdleLineDetected = ((raw >> 2) & 0x1) > 0;
+		usartTMTCMainInitializedCorrectly = ((raw >> 7) & 0x1) > 0;
+		usartTMTCMainMarkedAsActive = ((raw >> 6) & 0x1) > 0;
+		usartTMTCMainRTSStatus = ((raw >> 5) & 0x1) > 0;
+		usartTMTCMainCTSStatus = ((raw >> 4) & 0x1) > 0;
+		usartTMTCMainPreviousTransmissionCompleted = ((raw >> 3) & 0x1) > 0;
+		usartTMTCMainIdleLineDetected = ((raw >> 2) & 0x1) > 0;
 
 		dis.skipBytes(1);
 		raw = dis.readUnsignedByte();
-		USARTTMTCRedundantInitializedCorrectly = ((raw >> 7) & 0x1) > 0;
-		USARTTMTCRedundantMarkedAsActive = ((raw >> 6) & 0x1) > 0;
-		USARTTMTCRedundantRTSStatus = ((raw >> 5) & 0x1) > 0;
-		USARTTMTCRedundantCTSStatus = ((raw >> 4) & 0x1) > 0;
-		USARTTMTCRedundantPreviousTransmissionCompleted = ((raw >> 3) & 0x1) > 0;
-		USARTTMTCRedundantIdleLineDetected = ((raw >> 2) & 0x1) > 0;
+		usartTMTCRedundantInitializedCorrectly = ((raw >> 7) & 0x1) > 0;
+		usartTMTCRedundantMarkedAsActive = ((raw >> 6) & 0x1) > 0;
+		usartTMTCRedundantRTSStatus = ((raw >> 5) & 0x1) > 0;
+		usartTMTCRedundantCTSStatus = ((raw >> 4) & 0x1) > 0;
+		usartTMTCRedundantPreviousTransmissionCompleted = ((raw >> 3) & 0x1) > 0;
+		usartTMTCRedundantIdleLineDetected = ((raw >> 2) & 0x1) > 0;
 		dis.skipBytes(1);
 	}
 
-	public boolean isUSARTTMTCMainInitializedCorrectly() {
-		return USARTTMTCMainInitializedCorrectly;
+	public boolean isUsartTMTCMainInitializedCorrectly() {
+		return usartTMTCMainInitializedCorrectly;
 	}
 
-	public void setUSARTTMTCMainInitializedCorrectly(boolean uSARTTMTCMainInitializedCorrectly) {
-		USARTTMTCMainInitializedCorrectly = uSARTTMTCMainInitializedCorrectly;
+	public void setUsartTMTCMainInitializedCorrectly(boolean usartTMTCMainInitializedCorrectly) {
+		this.usartTMTCMainInitializedCorrectly = usartTMTCMainInitializedCorrectly;
 	}
 
-	public boolean isUSARTTMTCMainMarkedAsActive() {
-		return USARTTMTCMainMarkedAsActive;
+	public boolean isUsartTMTCMainMarkedAsActive() {
+		return usartTMTCMainMarkedAsActive;
 	}
 
-	public void setUSARTTMTCMainMarkedAsActive(boolean uSARTTMTCMainMarkedAsActive) {
-		USARTTMTCMainMarkedAsActive = uSARTTMTCMainMarkedAsActive;
+	public void setUsartTMTCMainMarkedAsActive(boolean usartTMTCMainMarkedAsActive) {
+		this.usartTMTCMainMarkedAsActive = usartTMTCMainMarkedAsActive;
 	}
 
-	public boolean isUSARTTMTCMainRTSStatus() {
-		return USARTTMTCMainRTSStatus;
+	public boolean isUsartTMTCMainRTSStatus() {
+		return usartTMTCMainRTSStatus;
 	}
 
-	public void setUSARTTMTCMainRTSStatus(boolean uSARTTMTCMainRTSStatus) {
-		USARTTMTCMainRTSStatus = uSARTTMTCMainRTSStatus;
+	public void setUsartTMTCMainRTSStatus(boolean usartTMTCMainRTSStatus) {
+		this.usartTMTCMainRTSStatus = usartTMTCMainRTSStatus;
 	}
 
-	public boolean isUSARTTMTCMainCTSStatus() {
-		return USARTTMTCMainCTSStatus;
+	public boolean isUsartTMTCMainCTSStatus() {
+		return usartTMTCMainCTSStatus;
 	}
 
-	public void setUSARTTMTCMainCTSStatus(boolean uSARTTMTCMainCTSStatus) {
-		USARTTMTCMainCTSStatus = uSARTTMTCMainCTSStatus;
+	public void setUsartTMTCMainCTSStatus(boolean usartTMTCMainCTSStatus) {
+		this.usartTMTCMainCTSStatus = usartTMTCMainCTSStatus;
 	}
 
-	public boolean isUSARTTMTCMainPreviousTransmissionCompleted() {
-		return USARTTMTCMainPreviousTransmissionCompleted;
+	public boolean isUsartTMTCMainPreviousTransmissionCompleted() {
+		return usartTMTCMainPreviousTransmissionCompleted;
 	}
 
-	public void setUSARTTMTCMainPreviousTransmissionCompleted(boolean uSARTTMTCMainPreviousTransmissionCompleted) {
-		USARTTMTCMainPreviousTransmissionCompleted = uSARTTMTCMainPreviousTransmissionCompleted;
+	public void setUsartTMTCMainPreviousTransmissionCompleted(boolean usartTMTCMainPreviousTransmissionCompleted) {
+		this.usartTMTCMainPreviousTransmissionCompleted = usartTMTCMainPreviousTransmissionCompleted;
 	}
 
-	public boolean isUSARTTMTCMainIdleLineDetected() {
-		return USARTTMTCMainIdleLineDetected;
+	public boolean isUsartTMTCMainIdleLineDetected() {
+		return usartTMTCMainIdleLineDetected;
 	}
 
-	public void setUSARTTMTCMainIdleLineDetected(boolean uSARTTMTCMainIdleLineDetected) {
-		USARTTMTCMainIdleLineDetected = uSARTTMTCMainIdleLineDetected;
+	public void setUsartTMTCMainIdleLineDetected(boolean usartTMTCMainIdleLineDetected) {
+		this.usartTMTCMainIdleLineDetected = usartTMTCMainIdleLineDetected;
 	}
 
-	public boolean isUSARTTMTCRedundantInitializedCorrectly() {
-		return USARTTMTCRedundantInitializedCorrectly;
+	public boolean isUsartTMTCRedundantInitializedCorrectly() {
+		return usartTMTCRedundantInitializedCorrectly;
 	}
 
-	public void setUSARTTMTCRedundantInitializedCorrectly(boolean uSARTTMTCRedundantInitializedCorrectly) {
-		USARTTMTCRedundantInitializedCorrectly = uSARTTMTCRedundantInitializedCorrectly;
+	public void setUsartTMTCRedundantInitializedCorrectly(boolean usartTMTCRedundantInitializedCorrectly) {
+		this.usartTMTCRedundantInitializedCorrectly = usartTMTCRedundantInitializedCorrectly;
 	}
 
-	public boolean isUSARTTMTCRedundantMarkedAsActive() {
-		return USARTTMTCRedundantMarkedAsActive;
+	public boolean isUsartTMTCRedundantMarkedAsActive() {
+		return usartTMTCRedundantMarkedAsActive;
 	}
 
-	public void setUSARTTMTCRedundantMarkedAsActive(boolean uSARTTMTCRedundantMarkedAsActive) {
-		USARTTMTCRedundantMarkedAsActive = uSARTTMTCRedundantMarkedAsActive;
+	public void setUsartTMTCRedundantMarkedAsActive(boolean usartTMTCRedundantMarkedAsActive) {
+		this.usartTMTCRedundantMarkedAsActive = usartTMTCRedundantMarkedAsActive;
 	}
 
-	public boolean isUSARTTMTCRedundantRTSStatus() {
-		return USARTTMTCRedundantRTSStatus;
+	public boolean isUsartTMTCRedundantRTSStatus() {
+		return usartTMTCRedundantRTSStatus;
 	}
 
-	public void setUSARTTMTCRedundantRTSStatus(boolean uSARTTMTCRedundantRTSStatus) {
-		USARTTMTCRedundantRTSStatus = uSARTTMTCRedundantRTSStatus;
+	public void setUsartTMTCRedundantRTSStatus(boolean usartTMTCRedundantRTSStatus) {
+		this.usartTMTCRedundantRTSStatus = usartTMTCRedundantRTSStatus;
 	}
 
-	public boolean isUSARTTMTCRedundantCTSStatus() {
-		return USARTTMTCRedundantCTSStatus;
+	public boolean isUsartTMTCRedundantCTSStatus() {
+		return usartTMTCRedundantCTSStatus;
 	}
 
-	public void setUSARTTMTCRedundantCTSStatus(boolean uSARTTMTCRedundantCTSStatus) {
-		USARTTMTCRedundantCTSStatus = uSARTTMTCRedundantCTSStatus;
+	public void setUsartTMTCRedundantCTSStatus(boolean usartTMTCRedundantCTSStatus) {
+		this.usartTMTCRedundantCTSStatus = usartTMTCRedundantCTSStatus;
 	}
 
-	public boolean isUSARTTMTCRedundantPreviousTransmissionCompleted() {
-		return USARTTMTCRedundantPreviousTransmissionCompleted;
+	public boolean isUsartTMTCRedundantPreviousTransmissionCompleted() {
+		return usartTMTCRedundantPreviousTransmissionCompleted;
 	}
 
-	public void setUSARTTMTCRedundantPreviousTransmissionCompleted(boolean uSARTTMTCRedundantPreviousTransmissionCompleted) {
-		USARTTMTCRedundantPreviousTransmissionCompleted = uSARTTMTCRedundantPreviousTransmissionCompleted;
+	public void setUsartTMTCRedundantPreviousTransmissionCompleted(boolean usartTMTCRedundantPreviousTransmissionCompleted) {
+		this.usartTMTCRedundantPreviousTransmissionCompleted = usartTMTCRedundantPreviousTransmissionCompleted;
 	}
 
-	public boolean isUSARTTMTCRedundantIdleLineDetected() {
-		return USARTTMTCRedundantIdleLineDetected;
+	public boolean isUsartTMTCRedundantIdleLineDetected() {
+		return usartTMTCRedundantIdleLineDetected;
 	}
 
-	public void setUSARTTMTCRedundantIdleLineDetected(boolean uSARTTMTCRedundantIdleLineDetected) {
-		USARTTMTCRedundantIdleLineDetected = uSARTTMTCRedundantIdleLineDetected;
+	public void setUsartTMTCRedundantIdleLineDetected(boolean usartTMTCRedundantIdleLineDetected) {
+		this.usartTMTCRedundantIdleLineDetected = usartTMTCRedundantIdleLineDetected;
 	}
 
 }

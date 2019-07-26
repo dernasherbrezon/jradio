@@ -114,18 +114,18 @@
       "SCAMErrorCounterReached10": false
     },
     "rs422Status": {
-      "USARTTMTCMainInitializedCorrectly": false,
-      "USARTTMTCMainMarkedAsActive": false,
-      "USARTTMTCMainRTSStatus": false,
-      "USARTTMTCMainCTSStatus": false,
-      "USARTTMTCMainPreviousTransmissionCompleted": true,
-      "USARTTMTCMainIdleLineDetected": false,
-      "USARTTMTCRedundantInitializedCorrectly": false,
-      "USARTTMTCRedundantMarkedAsActive": false,
-      "USARTTMTCRedundantRTSStatus": true,
-      "USARTTMTCRedundantCTSStatus": true,
-      "USARTTMTCRedundantPreviousTransmissionCompleted": true,
-      "USARTTMTCRedundantIdleLineDetected": true
+      "usartTMTCMainInitializedCorrectly": false,
+      "usartTMTCMainMarkedAsActive": false,
+      "usartTMTCMainRTSStatus": false,
+      "usartTMTCMainCTSStatus": false,
+      "usartTMTCMainPreviousTransmissionCompleted": true,
+      "usartTMTCMainIdleLineDetected": false,
+      "usartTMTCRedundantInitializedCorrectly": false,
+      "usartTMTCRedundantMarkedAsActive": false,
+      "usartTMTCRedundantRTSStatus": true,
+      "usartTMTCRedundantCTSStatus": true,
+      "usartTMTCRedundantPreviousTransmissionCompleted": true,
+      "usartTMTCRedundantIdleLineDetected": true
     },
     "rs422Error": {
       "usarttmtcMainErrorConfigurationBRR": false,
