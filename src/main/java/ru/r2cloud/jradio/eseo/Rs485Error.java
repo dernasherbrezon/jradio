@@ -6,142 +6,142 @@ import ru.r2cloud.jradio.util.LittleEndianDataInputStream;
 
 public class Rs485Error {
 
-	private boolean USARTMWMErrorConfigurationBRR;
-	private boolean USARTMWMErrorConfigurationCR1;
-	private boolean USARTMWMErrorConfigurationCR2;
-	private boolean USARTMWMErrorConfigurationCR3;
-	private boolean USARTMWMErrorInterrupt;
-	private boolean USARTMWMErrorBufferAll;
-	private boolean USARTMWMErrorTimerConfiguration;
-	private boolean USARTMWMErrorTXFull;
-	private boolean USARTMWMErrorRXOverrun;
-	private boolean USARTMWMErrorNoise;
-	private boolean USARTMWMErrorFraming;
-	private boolean USARTMWMErrorParity;
-	private boolean USARTMWMErrorTimeout;
-	
+	private boolean usartMWMErrorConfigurationBRR;
+	private boolean usartMWMErrorConfigurationCR1;
+	private boolean usartMWMErrorConfigurationCR2;
+	private boolean usartMWMErrorConfigurationCR3;
+	private boolean usartMWMErrorInterrupt;
+	private boolean usartMWMErrorBufferAll;
+	private boolean usartMWMErrorTimerConfiguration;
+	private boolean usartMWMErrorTXFull;
+	private boolean usartMWMErrorRXOverrun;
+	private boolean usartMWMErrorNoise;
+	private boolean usartMWMErrorFraming;
+	private boolean usartMWMErrorParity;
+	private boolean usartMWMErrorTimeout;
+
 	public Rs485Error(LittleEndianDataInputStream dis) throws IOException {
 		int raw = dis.readUnsignedByte();
-		USARTMWMErrorConfigurationBRR = ((raw >> 7) & 0x1) > 0;
-		USARTMWMErrorConfigurationCR1 = ((raw >> 6) & 0x1) > 0;
-		USARTMWMErrorConfigurationCR2 = ((raw >> 5) & 0x1) > 0;
-		USARTMWMErrorConfigurationCR3 = ((raw >> 4) & 0x1) > 0;
-		USARTMWMErrorInterrupt = ((raw >> 3) & 0x1) > 0;
-		USARTMWMErrorBufferAll = ((raw >> 2) & 0x1) > 0;
-		USARTMWMErrorTimerConfiguration = ((raw >> 1) & 0x1) > 0;
-		USARTMWMErrorTXFull = (raw & 0x1) > 0;
+		usartMWMErrorConfigurationBRR = ((raw >> 7) & 0x1) > 0;
+		usartMWMErrorConfigurationCR1 = ((raw >> 6) & 0x1) > 0;
+		usartMWMErrorConfigurationCR2 = ((raw >> 5) & 0x1) > 0;
+		usartMWMErrorConfigurationCR3 = ((raw >> 4) & 0x1) > 0;
+		usartMWMErrorInterrupt = ((raw >> 3) & 0x1) > 0;
+		usartMWMErrorBufferAll = ((raw >> 2) & 0x1) > 0;
+		usartMWMErrorTimerConfiguration = ((raw >> 1) & 0x1) > 0;
+		usartMWMErrorTXFull = (raw & 0x1) > 0;
 
 		raw = dis.readUnsignedByte();
-		USARTMWMErrorRXOverrun = ((raw >> 7) & 0x1) > 0;
-		USARTMWMErrorNoise = ((raw >> 6) & 0x1) > 0;
-		USARTMWMErrorFraming = ((raw >> 5) & 0x1) > 0;
-		USARTMWMErrorParity = ((raw >> 4) & 0x1) > 0;
-		USARTMWMErrorTimeout = ((raw >> 3) & 0x1) > 0;
+		usartMWMErrorRXOverrun = ((raw >> 7) & 0x1) > 0;
+		usartMWMErrorNoise = ((raw >> 6) & 0x1) > 0;
+		usartMWMErrorFraming = ((raw >> 5) & 0x1) > 0;
+		usartMWMErrorParity = ((raw >> 4) & 0x1) > 0;
+		usartMWMErrorTimeout = ((raw >> 3) & 0x1) > 0;
 		dis.skipBytes(2);
 	}
 
-	public boolean isUSARTMWMErrorConfigurationBRR() {
-		return USARTMWMErrorConfigurationBRR;
+	public boolean isUsartMWMErrorConfigurationBRR() {
+		return usartMWMErrorConfigurationBRR;
 	}
 
-	public void setUSARTMWMErrorConfigurationBRR(boolean uSARTMWMErrorConfigurationBRR) {
-		USARTMWMErrorConfigurationBRR = uSARTMWMErrorConfigurationBRR;
+	public void setUsartMWMErrorConfigurationBRR(boolean usartMWMErrorConfigurationBRR) {
+		this.usartMWMErrorConfigurationBRR = usartMWMErrorConfigurationBRR;
 	}
 
-	public boolean isUSARTMWMErrorConfigurationCR1() {
-		return USARTMWMErrorConfigurationCR1;
+	public boolean isUsartMWMErrorConfigurationCR1() {
+		return usartMWMErrorConfigurationCR1;
 	}
 
-	public void setUSARTMWMErrorConfigurationCR1(boolean uSARTMWMErrorConfigurationCR1) {
-		USARTMWMErrorConfigurationCR1 = uSARTMWMErrorConfigurationCR1;
+	public void setUsartMWMErrorConfigurationCR1(boolean usartMWMErrorConfigurationCR1) {
+		this.usartMWMErrorConfigurationCR1 = usartMWMErrorConfigurationCR1;
 	}
 
-	public boolean isUSARTMWMErrorConfigurationCR2() {
-		return USARTMWMErrorConfigurationCR2;
+	public boolean isUsartMWMErrorConfigurationCR2() {
+		return usartMWMErrorConfigurationCR2;
 	}
 
-	public void setUSARTMWMErrorConfigurationCR2(boolean uSARTMWMErrorConfigurationCR2) {
-		USARTMWMErrorConfigurationCR2 = uSARTMWMErrorConfigurationCR2;
+	public void setUsartMWMErrorConfigurationCR2(boolean usartMWMErrorConfigurationCR2) {
+		this.usartMWMErrorConfigurationCR2 = usartMWMErrorConfigurationCR2;
 	}
 
-	public boolean isUSARTMWMErrorConfigurationCR3() {
-		return USARTMWMErrorConfigurationCR3;
+	public boolean isUsartMWMErrorConfigurationCR3() {
+		return usartMWMErrorConfigurationCR3;
 	}
 
-	public void setUSARTMWMErrorConfigurationCR3(boolean uSARTMWMErrorConfigurationCR3) {
-		USARTMWMErrorConfigurationCR3 = uSARTMWMErrorConfigurationCR3;
+	public void setUsartMWMErrorConfigurationCR3(boolean usartMWMErrorConfigurationCR3) {
+		this.usartMWMErrorConfigurationCR3 = usartMWMErrorConfigurationCR3;
 	}
 
-	public boolean isUSARTMWMErrorInterrupt() {
-		return USARTMWMErrorInterrupt;
+	public boolean isUsartMWMErrorInterrupt() {
+		return usartMWMErrorInterrupt;
 	}
 
-	public void setUSARTMWMErrorInterrupt(boolean uSARTMWMErrorInterrupt) {
-		USARTMWMErrorInterrupt = uSARTMWMErrorInterrupt;
+	public void setUsartMWMErrorInterrupt(boolean usartMWMErrorInterrupt) {
+		this.usartMWMErrorInterrupt = usartMWMErrorInterrupt;
 	}
 
-	public boolean isUSARTMWMErrorBufferAll() {
-		return USARTMWMErrorBufferAll;
+	public boolean isUsartMWMErrorBufferAll() {
+		return usartMWMErrorBufferAll;
 	}
 
-	public void setUSARTMWMErrorBufferAll(boolean uSARTMWMErrorBufferAll) {
-		USARTMWMErrorBufferAll = uSARTMWMErrorBufferAll;
+	public void setUsartMWMErrorBufferAll(boolean usartMWMErrorBufferAll) {
+		this.usartMWMErrorBufferAll = usartMWMErrorBufferAll;
 	}
 
-	public boolean isUSARTMWMErrorTimerConfiguration() {
-		return USARTMWMErrorTimerConfiguration;
+	public boolean isUsartMWMErrorTimerConfiguration() {
+		return usartMWMErrorTimerConfiguration;
 	}
 
-	public void setUSARTMWMErrorTimerConfiguration(boolean uSARTMWMErrorTimerConfiguration) {
-		USARTMWMErrorTimerConfiguration = uSARTMWMErrorTimerConfiguration;
+	public void setUsartMWMErrorTimerConfiguration(boolean usartMWMErrorTimerConfiguration) {
+		this.usartMWMErrorTimerConfiguration = usartMWMErrorTimerConfiguration;
 	}
 
-	public boolean isUSARTMWMErrorTXFull() {
-		return USARTMWMErrorTXFull;
+	public boolean isUsartMWMErrorTXFull() {
+		return usartMWMErrorTXFull;
 	}
 
-	public void setUSARTMWMErrorTXFull(boolean uSARTMWMErrorTXFull) {
-		USARTMWMErrorTXFull = uSARTMWMErrorTXFull;
+	public void setUsartMWMErrorTXFull(boolean usartMWMErrorTXFull) {
+		this.usartMWMErrorTXFull = usartMWMErrorTXFull;
 	}
 
-	public boolean isUSARTMWMErrorRXOverrun() {
-		return USARTMWMErrorRXOverrun;
+	public boolean isUsartMWMErrorRXOverrun() {
+		return usartMWMErrorRXOverrun;
 	}
 
-	public void setUSARTMWMErrorRXOverrun(boolean uSARTMWMErrorRXOverrun) {
-		USARTMWMErrorRXOverrun = uSARTMWMErrorRXOverrun;
+	public void setUsartMWMErrorRXOverrun(boolean usartMWMErrorRXOverrun) {
+		this.usartMWMErrorRXOverrun = usartMWMErrorRXOverrun;
 	}
 
-	public boolean isUSARTMWMErrorNoise() {
-		return USARTMWMErrorNoise;
+	public boolean isUsartMWMErrorNoise() {
+		return usartMWMErrorNoise;
 	}
 
-	public void setUSARTMWMErrorNoise(boolean uSARTMWMErrorNoise) {
-		USARTMWMErrorNoise = uSARTMWMErrorNoise;
+	public void setUsartMWMErrorNoise(boolean usartMWMErrorNoise) {
+		this.usartMWMErrorNoise = usartMWMErrorNoise;
 	}
 
-	public boolean isUSARTMWMErrorFraming() {
-		return USARTMWMErrorFraming;
+	public boolean isUsartMWMErrorFraming() {
+		return usartMWMErrorFraming;
 	}
 
-	public void setUSARTMWMErrorFraming(boolean uSARTMWMErrorFraming) {
-		USARTMWMErrorFraming = uSARTMWMErrorFraming;
+	public void setUsartMWMErrorFraming(boolean usartMWMErrorFraming) {
+		this.usartMWMErrorFraming = usartMWMErrorFraming;
 	}
 
-	public boolean isUSARTMWMErrorParity() {
-		return USARTMWMErrorParity;
+	public boolean isUsartMWMErrorParity() {
+		return usartMWMErrorParity;
 	}
 
-	public void setUSARTMWMErrorParity(boolean uSARTMWMErrorParity) {
-		USARTMWMErrorParity = uSARTMWMErrorParity;
+	public void setUsartMWMErrorParity(boolean usartMWMErrorParity) {
+		this.usartMWMErrorParity = usartMWMErrorParity;
 	}
 
-	public boolean isUSARTMWMErrorTimeout() {
-		return USARTMWMErrorTimeout;
+	public boolean isUsartMWMErrorTimeout() {
+		return usartMWMErrorTimeout;
 	}
 
-	public void setUSARTMWMErrorTimeout(boolean uSARTMWMErrorTimeout) {
-		USARTMWMErrorTimeout = uSARTMWMErrorTimeout;
+	public void setUsartMWMErrorTimeout(boolean usartMWMErrorTimeout) {
+		this.usartMWMErrorTimeout = usartMWMErrorTimeout;
 	}
-	
+
 }
