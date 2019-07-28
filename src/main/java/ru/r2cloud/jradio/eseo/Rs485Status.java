@@ -6,70 +6,70 @@ import ru.r2cloud.jradio.util.LittleEndianDataInputStream;
 
 public class Rs485Status {
 
-	private boolean USARTMWMInitializedCorrectly;
-	private boolean USARTMWMMarkedAsActive;
-	private boolean USARTMWMRTSStatus;
-	private boolean USARTMWMCTSStatus;
-	private boolean USARTMWMPreviousTransmissionCompleted;
-	private boolean USARTMWMIdleLineDetected;
+	private boolean usartMWMInitializedCorrectly;
+	private boolean usartMWMMarkedAsActive;
+	private boolean usartMWMRTSStatus;
+	private boolean usartMWMCTSStatus;
+	private boolean usartMWMPreviousTransmissionCompleted;
+	private boolean usartMWMIdleLineDetected;
 
 	public Rs485Status(LittleEndianDataInputStream dis) throws IOException {
 		int raw = dis.readUnsignedByte();
-		USARTMWMInitializedCorrectly = ((raw >> 7) & 0x1) > 0;
-		USARTMWMMarkedAsActive = ((raw >> 6) & 0x1) > 0;
-		USARTMWMRTSStatus = ((raw >> 5) & 0x1) > 0;
-		USARTMWMCTSStatus = ((raw >> 4) & 0x1) > 0;
-		USARTMWMPreviousTransmissionCompleted = ((raw >> 3) & 0x1) > 0;
-		USARTMWMIdleLineDetected = ((raw >> 2) & 0x1) > 0;
+		usartMWMInitializedCorrectly = ((raw >> 7) & 0x1) > 0;
+		usartMWMMarkedAsActive = ((raw >> 6) & 0x1) > 0;
+		usartMWMRTSStatus = ((raw >> 5) & 0x1) > 0;
+		usartMWMCTSStatus = ((raw >> 4) & 0x1) > 0;
+		usartMWMPreviousTransmissionCompleted = ((raw >> 3) & 0x1) > 0;
+		usartMWMIdleLineDetected = ((raw >> 2) & 0x1) > 0;
 		dis.skipBytes(3);
 	}
 
-	public boolean isUSARTMWMInitializedCorrectly() {
-		return USARTMWMInitializedCorrectly;
+	public boolean isUsartMWMInitializedCorrectly() {
+		return usartMWMInitializedCorrectly;
 	}
 
-	public void setUSARTMWMInitializedCorrectly(boolean uSARTMWMInitializedCorrectly) {
-		USARTMWMInitializedCorrectly = uSARTMWMInitializedCorrectly;
+	public void setUsartMWMInitializedCorrectly(boolean usartMWMInitializedCorrectly) {
+		this.usartMWMInitializedCorrectly = usartMWMInitializedCorrectly;
 	}
 
-	public boolean isUSARTMWMMarkedAsActive() {
-		return USARTMWMMarkedAsActive;
+	public boolean isUsartMWMMarkedAsActive() {
+		return usartMWMMarkedAsActive;
 	}
 
-	public void setUSARTMWMMarkedAsActive(boolean uSARTMWMMarkedAsActive) {
-		USARTMWMMarkedAsActive = uSARTMWMMarkedAsActive;
+	public void setUsartMWMMarkedAsActive(boolean usartMWMMarkedAsActive) {
+		this.usartMWMMarkedAsActive = usartMWMMarkedAsActive;
 	}
 
-	public boolean isUSARTMWMRTSStatus() {
-		return USARTMWMRTSStatus;
+	public boolean isUsartMWMRTSStatus() {
+		return usartMWMRTSStatus;
 	}
 
-	public void setUSARTMWMRTSStatus(boolean uSARTMWMRTSStatus) {
-		USARTMWMRTSStatus = uSARTMWMRTSStatus;
+	public void setUsartMWMRTSStatus(boolean usartMWMRTSStatus) {
+		this.usartMWMRTSStatus = usartMWMRTSStatus;
 	}
 
-	public boolean isUSARTMWMCTSStatus() {
-		return USARTMWMCTSStatus;
+	public boolean isUsartMWMCTSStatus() {
+		return usartMWMCTSStatus;
 	}
 
-	public void setUSARTMWMCTSStatus(boolean uSARTMWMCTSStatus) {
-		USARTMWMCTSStatus = uSARTMWMCTSStatus;
+	public void setUsartMWMCTSStatus(boolean usartMWMCTSStatus) {
+		this.usartMWMCTSStatus = usartMWMCTSStatus;
 	}
 
-	public boolean isUSARTMWMPreviousTransmissionCompleted() {
-		return USARTMWMPreviousTransmissionCompleted;
+	public boolean isUsartMWMPreviousTransmissionCompleted() {
+		return usartMWMPreviousTransmissionCompleted;
 	}
 
-	public void setUSARTMWMPreviousTransmissionCompleted(boolean uSARTMWMPreviousTransmissionCompleted) {
-		USARTMWMPreviousTransmissionCompleted = uSARTMWMPreviousTransmissionCompleted;
+	public void setUsartMWMPreviousTransmissionCompleted(boolean usartMWMPreviousTransmissionCompleted) {
+		this.usartMWMPreviousTransmissionCompleted = usartMWMPreviousTransmissionCompleted;
 	}
 
-	public boolean isUSARTMWMIdleLineDetected() {
-		return USARTMWMIdleLineDetected;
+	public boolean isUsartMWMIdleLineDetected() {
+		return usartMWMIdleLineDetected;
 	}
 
-	public void setUSARTMWMIdleLineDetected(boolean uSARTMWMIdleLineDetected) {
-		USARTMWMIdleLineDetected = uSARTMWMIdleLineDetected;
+	public void setUsartMWMIdleLineDetected(boolean usartMWMIdleLineDetected) {
+		this.usartMWMIdleLineDetected = usartMWMIdleLineDetected;
 	}
 
 }
