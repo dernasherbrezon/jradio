@@ -5,7 +5,7 @@ import java.util.Map;
 
 public enum SsmAdcChannelStatus {
 
-	OK(0b00), CHOUT0(0b01), CHFixValue(0b10), CHValueMoreTH(0b11);
+	OK(0b00), CHOUT0(0b01), CH_FIX_VALUE(0b10), CH_VALUE_MORE_TH(0b11);
 
 	private final int code;
 	private static final Map<Integer, SsmAdcChannelStatus> typeByCode = new HashMap<>();
