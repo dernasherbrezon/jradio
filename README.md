@@ -33,6 +33,7 @@ All blocks meant to be binary compatible with gnuradio versions. This will ensur
   * FLL Band Edge
   * FloatToChar
   * FloatToComplex
+  * FractionalResampler
   * [FrequencyXlatingFIRFilter](http://blog.sdr.hu/grblocks/xlating-fir.html)
   * GUI Histogram Sink (Spectogram) 
   * HdlcReceiver. Out-of-tree block. Extracts HDLC frame from the unpacked stream of bytes
