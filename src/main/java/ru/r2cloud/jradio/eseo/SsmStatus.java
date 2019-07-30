@@ -5,7 +5,7 @@ import java.util.Map;
 
 public enum SsmStatus {
 
-	OK(0b000), WDTRebootError(0b001), RTEMSError(0b010), StandBy(0b100);
+	OK(0b000), WDT_REBOOT_ERROR(0b001), RTEMS_ERROR(0b010), STANDBY(0b100);
 
 	private final int code;
 	private static final Map<Integer, SsmStatus> typeByCode = new HashMap<>();
