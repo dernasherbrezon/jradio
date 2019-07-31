@@ -6,226 +6,224 @@ import ru.r2cloud.jradio.util.LittleEndianDataInputStream;
 
 public class TcError1 {
 
-	private boolean PMMTcRequestNotAnswered;
-	private boolean PMRTcRequestNotAnswered;
-	private boolean TMMTcRequestNotAnswered;
-	private boolean TMRTcRequestNotAnswered;
-	private boolean SSMTcRequestNotAnswered;
-	private boolean SSRTcRequestNotAnswered;
-	private boolean ESETcRequestNotAnswered;
-	private boolean MWRTcRequestNotAnswered;
-	private boolean MWMTcRequestNotAnswered;
-	private boolean MPSTcRequestNotAnswered;
-	private boolean MMMTcRequestNotAnswered;
-	private boolean MMRTcRequestNotAnswered;
-	private boolean MTMTcRequestNotAnswered;
-	private boolean MTRTcRequestNotAnswered;
-	private boolean TRITcRequestNotAnswered;
-	private boolean LMPTcRequestNotAnswered;
-	private boolean CAMTcRequestNotAnswered;
-	private boolean AMSTcRequestNotAnswered;
-	private boolean STXTcRequestNotAnswered;
-	private boolean GPSTcRequestNotAnswered;
+	private boolean pmmTcRequestNotAnswered;
+	private boolean pmrTcRequestNotAnswered;
+	private boolean tmmTcRequestNotAnswered;
+	private boolean tmrTcRequestNotAnswered;
+	private boolean ssmTcRequestNotAnswered;
+	private boolean ssrTcRequestNotAnswered;
+	private boolean eseTcRequestNotAnswered;
+	private boolean mwrTcRequestNotAnswered;
+	private boolean mwmTcRequestNotAnswered;
+	private boolean mpsTcRequestNotAnswered;
+	private boolean mmmTcRequestNotAnswered;
+	private boolean mmrTcRequestNotAnswered;
+	private boolean mtmTcRequestNotAnswered;
+	private boolean mtrTcRequestNotAnswered;
+	private boolean triTcRequestNotAnswered;
+	private boolean lmpTcRequestNotAnswered;
+	private boolean camTcRequestNotAnswered;
+	private boolean amsTcRequestNotAnswered;
+	private boolean stxTcRequestNotAnswered;
+	private boolean gpsTcRequestNotAnswered;
+	private boolean scamTcRequestNotAnswered;
 
-	private boolean SCAMTcRequestNotAnswered;
-	
 	public TcError1(LittleEndianDataInputStream dis) throws IOException {
 		int raw = dis.readUnsignedByte();
-		PMMTcRequestNotAnswered = ((raw >> 5) & 0x1) > 0;
-		PMRTcRequestNotAnswered = ((raw >> 4) & 0x1) > 0;
-		TMMTcRequestNotAnswered = ((raw >> 3) & 0x1) > 0;
-		TMRTcRequestNotAnswered = ((raw >> 2) & 0x1) > 0;
-		SSMTcRequestNotAnswered = ((raw >> 1) & 0x1) > 0;
-		SSRTcRequestNotAnswered = (raw & 0x1) > 0;
+		pmmTcRequestNotAnswered = ((raw >> 5) & 0x1) > 0;
+		pmrTcRequestNotAnswered = ((raw >> 4) & 0x1) > 0;
+		tmmTcRequestNotAnswered = ((raw >> 3) & 0x1) > 0;
+		tmrTcRequestNotAnswered = ((raw >> 2) & 0x1) > 0;
+		ssmTcRequestNotAnswered = ((raw >> 1) & 0x1) > 0;
+		ssrTcRequestNotAnswered = (raw & 0x1) > 0;
 
 		raw = dis.readUnsignedByte();
-		ESETcRequestNotAnswered = ((raw >> 7) & 0x1) > 0;
-		MWRTcRequestNotAnswered = ((raw >> 6) & 0x1) > 0;
-		MWMTcRequestNotAnswered = ((raw >> 5) & 0x1) > 0;
-		MPSTcRequestNotAnswered = ((raw >> 4) & 0x1) > 0;
-		MMMTcRequestNotAnswered = ((raw >> 3) & 0x1) > 0;
-		MMRTcRequestNotAnswered = ((raw >> 2) & 0x1) > 0;
-		MTMTcRequestNotAnswered = ((raw >> 1) & 0x1) > 0;
-		MTRTcRequestNotAnswered = (raw & 0x1) > 0;
+		eseTcRequestNotAnswered = ((raw >> 7) & 0x1) > 0;
+		mwrTcRequestNotAnswered = ((raw >> 6) & 0x1) > 0;
+		mwmTcRequestNotAnswered = ((raw >> 5) & 0x1) > 0;
+		mpsTcRequestNotAnswered = ((raw >> 4) & 0x1) > 0;
+		mmmTcRequestNotAnswered = ((raw >> 3) & 0x1) > 0;
+		mmrTcRequestNotAnswered = ((raw >> 2) & 0x1) > 0;
+		mtmTcRequestNotAnswered = ((raw >> 1) & 0x1) > 0;
+		mtrTcRequestNotAnswered = (raw & 0x1) > 0;
 
 		raw = dis.readUnsignedByte();
-		TRITcRequestNotAnswered = ((raw >> 7) & 0x1) > 0;
-		LMPTcRequestNotAnswered = ((raw >> 6) & 0x1) > 0;
-		CAMTcRequestNotAnswered = ((raw >> 5) & 0x1) > 0;
-		AMSTcRequestNotAnswered = ((raw >> 4) & 0x1) > 0;
-		STXTcRequestNotAnswered = ((raw >> 3) & 0x1) > 0;
-		GPSTcRequestNotAnswered = ((raw >> 2) & 0x1) > 0;
-
-		SCAMTcRequestNotAnswered = (raw & 0x1) > 0;
+		triTcRequestNotAnswered = ((raw >> 7) & 0x1) > 0;
+		lmpTcRequestNotAnswered = ((raw >> 6) & 0x1) > 0;
+		camTcRequestNotAnswered = ((raw >> 5) & 0x1) > 0;
+		amsTcRequestNotAnswered = ((raw >> 4) & 0x1) > 0;
+		stxTcRequestNotAnswered = ((raw >> 3) & 0x1) > 0;
+		gpsTcRequestNotAnswered = ((raw >> 2) & 0x1) > 0;
+		scamTcRequestNotAnswered = (raw & 0x1) > 0;
 		dis.skipBytes(1);
 	}
 
-	public boolean isPMMTcRequestNotAnswered() {
-		return PMMTcRequestNotAnswered;
+	public boolean isPmmTcRequestNotAnswered() {
+		return pmmTcRequestNotAnswered;
 	}
 
-	public void setPMMTcRequestNotAnswered(boolean pMMTcRequestNotAnswered) {
-		PMMTcRequestNotAnswered = pMMTcRequestNotAnswered;
+	public void setPmmTcRequestNotAnswered(boolean pmmTcRequestNotAnswered) {
+		this.pmmTcRequestNotAnswered = pmmTcRequestNotAnswered;
 	}
 
-	public boolean isPMRTcRequestNotAnswered() {
-		return PMRTcRequestNotAnswered;
+	public boolean isPmrTcRequestNotAnswered() {
+		return pmrTcRequestNotAnswered;
 	}
 
-	public void setPMRTcRequestNotAnswered(boolean pMRTcRequestNotAnswered) {
-		PMRTcRequestNotAnswered = pMRTcRequestNotAnswered;
+	public void setPmrTcRequestNotAnswered(boolean pmrTcRequestNotAnswered) {
+		this.pmrTcRequestNotAnswered = pmrTcRequestNotAnswered;
 	}
 
-	public boolean isTMMTcRequestNotAnswered() {
-		return TMMTcRequestNotAnswered;
+	public boolean isTmmTcRequestNotAnswered() {
+		return tmmTcRequestNotAnswered;
 	}
 
-	public void setTMMTcRequestNotAnswered(boolean tMMTcRequestNotAnswered) {
-		TMMTcRequestNotAnswered = tMMTcRequestNotAnswered;
+	public void setTmmTcRequestNotAnswered(boolean tmmTcRequestNotAnswered) {
+		this.tmmTcRequestNotAnswered = tmmTcRequestNotAnswered;
 	}
 
-	public boolean isTMRTcRequestNotAnswered() {
-		return TMRTcRequestNotAnswered;
+	public boolean isTmrTcRequestNotAnswered() {
+		return tmrTcRequestNotAnswered;
 	}
 
-	public void setTMRTcRequestNotAnswered(boolean tMRTcRequestNotAnswered) {
-		TMRTcRequestNotAnswered = tMRTcRequestNotAnswered;
+	public void setTmrTcRequestNotAnswered(boolean tmrTcRequestNotAnswered) {
+		this.tmrTcRequestNotAnswered = tmrTcRequestNotAnswered;
 	}
 
-	public boolean isSSMTcRequestNotAnswered() {
-		return SSMTcRequestNotAnswered;
+	public boolean isSsmTcRequestNotAnswered() {
+		return ssmTcRequestNotAnswered;
 	}
 
-	public void setSSMTcRequestNotAnswered(boolean sSMTcRequestNotAnswered) {
-		SSMTcRequestNotAnswered = sSMTcRequestNotAnswered;
+	public void setSsmTcRequestNotAnswered(boolean ssmTcRequestNotAnswered) {
+		this.ssmTcRequestNotAnswered = ssmTcRequestNotAnswered;
 	}
 
-	public boolean isSSRTcRequestNotAnswered() {
-		return SSRTcRequestNotAnswered;
+	public boolean isSsrTcRequestNotAnswered() {
+		return ssrTcRequestNotAnswered;
 	}
 
-	public void setSSRTcRequestNotAnswered(boolean sSRTcRequestNotAnswered) {
-		SSRTcRequestNotAnswered = sSRTcRequestNotAnswered;
+	public void setSsrTcRequestNotAnswered(boolean ssrTcRequestNotAnswered) {
+		this.ssrTcRequestNotAnswered = ssrTcRequestNotAnswered;
 	}
 
-	public boolean isESETcRequestNotAnswered() {
-		return ESETcRequestNotAnswered;
+	public boolean isEseTcRequestNotAnswered() {
+		return eseTcRequestNotAnswered;
 	}
 
-	public void setESETcRequestNotAnswered(boolean eSETcRequestNotAnswered) {
-		ESETcRequestNotAnswered = eSETcRequestNotAnswered;
+	public void setEseTcRequestNotAnswered(boolean eseTcRequestNotAnswered) {
+		this.eseTcRequestNotAnswered = eseTcRequestNotAnswered;
 	}
 
-	public boolean isMWRTcRequestNotAnswered() {
-		return MWRTcRequestNotAnswered;
+	public boolean isMwrTcRequestNotAnswered() {
+		return mwrTcRequestNotAnswered;
 	}
 
-	public void setMWRTcRequestNotAnswered(boolean mWRTcRequestNotAnswered) {
-		MWRTcRequestNotAnswered = mWRTcRequestNotAnswered;
+	public void setMwrTcRequestNotAnswered(boolean mwrTcRequestNotAnswered) {
+		this.mwrTcRequestNotAnswered = mwrTcRequestNotAnswered;
 	}
 
-	public boolean isMWMTcRequestNotAnswered() {
-		return MWMTcRequestNotAnswered;
+	public boolean isMwmTcRequestNotAnswered() {
+		return mwmTcRequestNotAnswered;
 	}
 
-	public void setMWMTcRequestNotAnswered(boolean mWMTcRequestNotAnswered) {
-		MWMTcRequestNotAnswered = mWMTcRequestNotAnswered;
+	public void setMwmTcRequestNotAnswered(boolean mwmTcRequestNotAnswered) {
+		this.mwmTcRequestNotAnswered = mwmTcRequestNotAnswered;
 	}
 
-	public boolean isMPSTcRequestNotAnswered() {
-		return MPSTcRequestNotAnswered;
+	public boolean isMpsTcRequestNotAnswered() {
+		return mpsTcRequestNotAnswered;
 	}
 
-	public void setMPSTcRequestNotAnswered(boolean mPSTcRequestNotAnswered) {
-		MPSTcRequestNotAnswered = mPSTcRequestNotAnswered;
+	public void setMpsTcRequestNotAnswered(boolean mpsTcRequestNotAnswered) {
+		this.mpsTcRequestNotAnswered = mpsTcRequestNotAnswered;
 	}
 
-	public boolean isMMMTcRequestNotAnswered() {
-		return MMMTcRequestNotAnswered;
+	public boolean isMmmTcRequestNotAnswered() {
+		return mmmTcRequestNotAnswered;
 	}
 
-	public void setMMMTcRequestNotAnswered(boolean mMMTcRequestNotAnswered) {
-		MMMTcRequestNotAnswered = mMMTcRequestNotAnswered;
+	public void setMmmTcRequestNotAnswered(boolean mmmTcRequestNotAnswered) {
+		this.mmmTcRequestNotAnswered = mmmTcRequestNotAnswered;
 	}
 
-	public boolean isMMRTcRequestNotAnswered() {
-		return MMRTcRequestNotAnswered;
+	public boolean isMmrTcRequestNotAnswered() {
+		return mmrTcRequestNotAnswered;
 	}
 
-	public void setMMRTcRequestNotAnswered(boolean mMRTcRequestNotAnswered) {
-		MMRTcRequestNotAnswered = mMRTcRequestNotAnswered;
+	public void setMmrTcRequestNotAnswered(boolean mmrTcRequestNotAnswered) {
+		this.mmrTcRequestNotAnswered = mmrTcRequestNotAnswered;
 	}
 
-	public boolean isMTMTcRequestNotAnswered() {
-		return MTMTcRequestNotAnswered;
+	public boolean isMtmTcRequestNotAnswered() {
+		return mtmTcRequestNotAnswered;
 	}
 
-	public void setMTMTcRequestNotAnswered(boolean mTMTcRequestNotAnswered) {
-		MTMTcRequestNotAnswered = mTMTcRequestNotAnswered;
+	public void setMtmTcRequestNotAnswered(boolean mtmTcRequestNotAnswered) {
+		this.mtmTcRequestNotAnswered = mtmTcRequestNotAnswered;
 	}
 
-	public boolean isMTRTcRequestNotAnswered() {
-		return MTRTcRequestNotAnswered;
+	public boolean isMtrTcRequestNotAnswered() {
+		return mtrTcRequestNotAnswered;
 	}
 
-	public void setMTRTcRequestNotAnswered(boolean mTRTcRequestNotAnswered) {
-		MTRTcRequestNotAnswered = mTRTcRequestNotAnswered;
+	public void setMtrTcRequestNotAnswered(boolean mtrTcRequestNotAnswered) {
+		this.mtrTcRequestNotAnswered = mtrTcRequestNotAnswered;
 	}
 
-	public boolean isTRITcRequestNotAnswered() {
-		return TRITcRequestNotAnswered;
+	public boolean isTriTcRequestNotAnswered() {
+		return triTcRequestNotAnswered;
 	}
 
-	public void setTRITcRequestNotAnswered(boolean tRITcRequestNotAnswered) {
-		TRITcRequestNotAnswered = tRITcRequestNotAnswered;
+	public void setTriTcRequestNotAnswered(boolean triTcRequestNotAnswered) {
+		this.triTcRequestNotAnswered = triTcRequestNotAnswered;
 	}
 
-	public boolean isLMPTcRequestNotAnswered() {
-		return LMPTcRequestNotAnswered;
+	public boolean isLmpTcRequestNotAnswered() {
+		return lmpTcRequestNotAnswered;
 	}
 
-	public void setLMPTcRequestNotAnswered(boolean lMPTcRequestNotAnswered) {
-		LMPTcRequestNotAnswered = lMPTcRequestNotAnswered;
+	public void setLmpTcRequestNotAnswered(boolean lmpTcRequestNotAnswered) {
+		this.lmpTcRequestNotAnswered = lmpTcRequestNotAnswered;
 	}
 
-	public boolean isCAMTcRequestNotAnswered() {
-		return CAMTcRequestNotAnswered;
+	public boolean isCamTcRequestNotAnswered() {
+		return camTcRequestNotAnswered;
 	}
 
-	public void setCAMTcRequestNotAnswered(boolean cAMTcRequestNotAnswered) {
-		CAMTcRequestNotAnswered = cAMTcRequestNotAnswered;
+	public void setCamTcRequestNotAnswered(boolean camTcRequestNotAnswered) {
+		this.camTcRequestNotAnswered = camTcRequestNotAnswered;
 	}
 
-	public boolean isAMSTcRequestNotAnswered() {
-		return AMSTcRequestNotAnswered;
+	public boolean isAmsTcRequestNotAnswered() {
+		return amsTcRequestNotAnswered;
 	}
 
-	public void setAMSTcRequestNotAnswered(boolean aMSTcRequestNotAnswered) {
-		AMSTcRequestNotAnswered = aMSTcRequestNotAnswered;
+	public void setAmsTcRequestNotAnswered(boolean amsTcRequestNotAnswered) {
+		this.amsTcRequestNotAnswered = amsTcRequestNotAnswered;
 	}
 
-	public boolean isSTXTcRequestNotAnswered() {
-		return STXTcRequestNotAnswered;
+	public boolean isStxTcRequestNotAnswered() {
+		return stxTcRequestNotAnswered;
 	}
 
-	public void setSTXTcRequestNotAnswered(boolean sTXTcRequestNotAnswered) {
-		STXTcRequestNotAnswered = sTXTcRequestNotAnswered;
+	public void setStxTcRequestNotAnswered(boolean stxTcRequestNotAnswered) {
+		this.stxTcRequestNotAnswered = stxTcRequestNotAnswered;
 	}
 
-	public boolean isGPSTcRequestNotAnswered() {
-		return GPSTcRequestNotAnswered;
+	public boolean isGpsTcRequestNotAnswered() {
+		return gpsTcRequestNotAnswered;
 	}
 
-	public void setGPSTcRequestNotAnswered(boolean gPSTcRequestNotAnswered) {
-		GPSTcRequestNotAnswered = gPSTcRequestNotAnswered;
+	public void setGpsTcRequestNotAnswered(boolean gpsTcRequestNotAnswered) {
+		this.gpsTcRequestNotAnswered = gpsTcRequestNotAnswered;
 	}
 
-	public boolean isSCAMTcRequestNotAnswered() {
-		return SCAMTcRequestNotAnswered;
+	public boolean isScamTcRequestNotAnswered() {
+		return scamTcRequestNotAnswered;
 	}
 
-	public void setSCAMTcRequestNotAnswered(boolean sCAMTcRequestNotAnswered) {
-		SCAMTcRequestNotAnswered = sCAMTcRequestNotAnswered;
+	public void setScamTcRequestNotAnswered(boolean scamTcRequestNotAnswered) {
+		this.scamTcRequestNotAnswered = scamTcRequestNotAnswered;
 	}
-	
+
 }
