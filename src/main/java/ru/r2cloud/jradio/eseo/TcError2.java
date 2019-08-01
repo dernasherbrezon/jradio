@@ -6,234 +6,234 @@ import ru.r2cloud.jradio.util.LittleEndianDataInputStream;
 
 public class TcError2 {
 
-	private boolean PMMErrorCounterReached10;
-	private boolean PMRErrorCounterReached10;
-	private boolean TMMErrorCounterReached10;
-	private boolean TMRErrorCounterReached10;
-	private boolean SSMErrorCounterReached10;
-	private boolean SSRErrorCounterReached10;
-	private boolean ESEErrorCounterReached10;
-	private boolean MWRErrorCounterReached10;
-	private boolean MWMErrorCounterReached10;
-	private boolean MPSErrorCounterReached10;
-	private boolean MMMErrorCounterReached10;
-	private boolean MMRErrorCounterReached10;
-	private boolean MTMErrorCounterReached10;
-	private boolean MTRErrorCounterReached10;
-	private boolean TRIErrorCounterReached10;
-	private boolean LMPErrorCounterReached10;
-	private boolean CAMErrorCounterReached10;
-	private boolean AMSErrorCounterReached10;
-	private boolean STXErrorCounterReached10;
-	private boolean GPSErrorCounterReached10;
-	private boolean ADEErrorCounterReached10;
-	private boolean SCAMErrorCounterReached10;
+	private boolean pmmErrorCounterReached10;
+	private boolean pmrErrorCounterReached10;
+	private boolean tmmErrorCounterReached10;
+	private boolean tmrErrorCounterReached10;
+	private boolean ssmErrorCounterReached10;
+	private boolean ssrErrorCounterReached10;
+	private boolean eseErrorCounterReached10;
+	private boolean mwrErrorCounterReached10;
+	private boolean mwmErrorCounterReached10;
+	private boolean mpsErrorCounterReached10;
+	private boolean mmmErrorCounterReached10;
+	private boolean mmrErrorCounterReached10;
+	private boolean mtmErrorCounterReached10;
+	private boolean mtrErrorCounterReached10;
+	private boolean triErrorCounterReached10;
+	private boolean lmpErrorCounterReached10;
+	private boolean camErrorCounterReached10;
+	private boolean amsErrorCounterReached10;
+	private boolean stxErrorCounterReached10;
+	private boolean gpsErrorCounterReached10;
+	private boolean adeErrorCounterReached10;
+	private boolean scamErrorCounterReached10;
 
 	public TcError2(LittleEndianDataInputStream dis) throws IOException {
 		int raw = dis.readUnsignedByte();
-		PMMErrorCounterReached10 = ((raw >> 5) & 0x1) > 0;
-		PMRErrorCounterReached10 = ((raw >> 4) & 0x1) > 0;
-		TMMErrorCounterReached10 = ((raw >> 3) & 0x1) > 0;
-		TMRErrorCounterReached10 = ((raw >> 2) & 0x1) > 0;
-		SSMErrorCounterReached10 = ((raw >> 1) & 0x1) > 0;
-		SSRErrorCounterReached10 = (raw & 0x1) > 0;
+		pmmErrorCounterReached10 = ((raw >> 5) & 0x1) > 0;
+		pmrErrorCounterReached10 = ((raw >> 4) & 0x1) > 0;
+		tmmErrorCounterReached10 = ((raw >> 3) & 0x1) > 0;
+		tmrErrorCounterReached10 = ((raw >> 2) & 0x1) > 0;
+		ssmErrorCounterReached10 = ((raw >> 1) & 0x1) > 0;
+		ssrErrorCounterReached10 = (raw & 0x1) > 0;
 
 		raw = dis.readUnsignedByte();
-		ESEErrorCounterReached10 = ((raw >> 7) & 0x1) > 0;
-		MWRErrorCounterReached10 = ((raw >> 6) & 0x1) > 0;
-		MWMErrorCounterReached10 = ((raw >> 5) & 0x1) > 0;
-		MPSErrorCounterReached10 = ((raw >> 4) & 0x1) > 0;
-		MMMErrorCounterReached10 = ((raw >> 3) & 0x1) > 0;
-		MMRErrorCounterReached10 = ((raw >> 2) & 0x1) > 0;
-		MTMErrorCounterReached10 = ((raw >> 1) & 0x1) > 0;
-		MTRErrorCounterReached10 = (raw & 0x1) > 0;
+		eseErrorCounterReached10 = ((raw >> 7) & 0x1) > 0;
+		mwrErrorCounterReached10 = ((raw >> 6) & 0x1) > 0;
+		mwmErrorCounterReached10 = ((raw >> 5) & 0x1) > 0;
+		mpsErrorCounterReached10 = ((raw >> 4) & 0x1) > 0;
+		mmmErrorCounterReached10 = ((raw >> 3) & 0x1) > 0;
+		mmrErrorCounterReached10 = ((raw >> 2) & 0x1) > 0;
+		mtmErrorCounterReached10 = ((raw >> 1) & 0x1) > 0;
+		mtrErrorCounterReached10 = (raw & 0x1) > 0;
 
 		raw = dis.readUnsignedByte();
-		TRIErrorCounterReached10 = ((raw >> 7) & 0x1) > 0;
-		LMPErrorCounterReached10 = ((raw >> 6) & 0x1) > 0;
-		CAMErrorCounterReached10 = ((raw >> 5) & 0x1) > 0;
-		AMSErrorCounterReached10 = ((raw >> 4) & 0x1) > 0;
-		STXErrorCounterReached10 = ((raw >> 3) & 0x1) > 0;
-		GPSErrorCounterReached10 = ((raw >> 2) & 0x1) > 0;
-		ADEErrorCounterReached10 = ((raw >> 1) & 0x1) > 0;
-		SCAMErrorCounterReached10 = (raw & 0x1) > 0;
+		triErrorCounterReached10 = ((raw >> 7) & 0x1) > 0;
+		lmpErrorCounterReached10 = ((raw >> 6) & 0x1) > 0;
+		camErrorCounterReached10 = ((raw >> 5) & 0x1) > 0;
+		amsErrorCounterReached10 = ((raw >> 4) & 0x1) > 0;
+		stxErrorCounterReached10 = ((raw >> 3) & 0x1) > 0;
+		gpsErrorCounterReached10 = ((raw >> 2) & 0x1) > 0;
+		adeErrorCounterReached10 = ((raw >> 1) & 0x1) > 0;
+		scamErrorCounterReached10 = (raw & 0x1) > 0;
 		dis.skipBytes(1);
 	}
 
-	public boolean isPMMErrorCounterReached10() {
-		return PMMErrorCounterReached10;
+	public boolean isPmmErrorCounterReached10() {
+		return pmmErrorCounterReached10;
 	}
 
-	public void setPMMErrorCounterReached10(boolean pMMErrorCounterReached10) {
-		PMMErrorCounterReached10 = pMMErrorCounterReached10;
+	public void setPmmErrorCounterReached10(boolean pmmErrorCounterReached10) {
+		this.pmmErrorCounterReached10 = pmmErrorCounterReached10;
 	}
 
-	public boolean isPMRErrorCounterReached10() {
-		return PMRErrorCounterReached10;
+	public boolean isPmrErrorCounterReached10() {
+		return pmrErrorCounterReached10;
 	}
 
-	public void setPMRErrorCounterReached10(boolean pMRErrorCounterReached10) {
-		PMRErrorCounterReached10 = pMRErrorCounterReached10;
+	public void setPmrErrorCounterReached10(boolean pmrErrorCounterReached10) {
+		this.pmrErrorCounterReached10 = pmrErrorCounterReached10;
 	}
 
-	public boolean isTMMErrorCounterReached10() {
-		return TMMErrorCounterReached10;
+	public boolean isTmmErrorCounterReached10() {
+		return tmmErrorCounterReached10;
 	}
 
-	public void setTMMErrorCounterReached10(boolean tMMErrorCounterReached10) {
-		TMMErrorCounterReached10 = tMMErrorCounterReached10;
+	public void setTmmErrorCounterReached10(boolean tmmErrorCounterReached10) {
+		this.tmmErrorCounterReached10 = tmmErrorCounterReached10;
 	}
 
-	public boolean isTMRErrorCounterReached10() {
-		return TMRErrorCounterReached10;
+	public boolean isTmrErrorCounterReached10() {
+		return tmrErrorCounterReached10;
 	}
 
-	public void setTMRErrorCounterReached10(boolean tMRErrorCounterReached10) {
-		TMRErrorCounterReached10 = tMRErrorCounterReached10;
+	public void setTmrErrorCounterReached10(boolean tmrErrorCounterReached10) {
+		this.tmrErrorCounterReached10 = tmrErrorCounterReached10;
 	}
 
-	public boolean isSSMErrorCounterReached10() {
-		return SSMErrorCounterReached10;
+	public boolean isSsmErrorCounterReached10() {
+		return ssmErrorCounterReached10;
 	}
 
-	public void setSSMErrorCounterReached10(boolean sSMErrorCounterReached10) {
-		SSMErrorCounterReached10 = sSMErrorCounterReached10;
+	public void setSsmErrorCounterReached10(boolean ssmErrorCounterReached10) {
+		this.ssmErrorCounterReached10 = ssmErrorCounterReached10;
 	}
 
-	public boolean isSSRErrorCounterReached10() {
-		return SSRErrorCounterReached10;
+	public boolean isSsrErrorCounterReached10() {
+		return ssrErrorCounterReached10;
 	}
 
-	public void setSSRErrorCounterReached10(boolean sSRErrorCounterReached10) {
-		SSRErrorCounterReached10 = sSRErrorCounterReached10;
+	public void setSsrErrorCounterReached10(boolean ssrErrorCounterReached10) {
+		this.ssrErrorCounterReached10 = ssrErrorCounterReached10;
 	}
 
-	public boolean isESEErrorCounterReached10() {
-		return ESEErrorCounterReached10;
+	public boolean isEseErrorCounterReached10() {
+		return eseErrorCounterReached10;
 	}
 
-	public void setESEErrorCounterReached10(boolean eSEErrorCounterReached10) {
-		ESEErrorCounterReached10 = eSEErrorCounterReached10;
+	public void setEseErrorCounterReached10(boolean eseErrorCounterReached10) {
+		this.eseErrorCounterReached10 = eseErrorCounterReached10;
 	}
 
-	public boolean isMWRErrorCounterReached10() {
-		return MWRErrorCounterReached10;
+	public boolean isMwrErrorCounterReached10() {
+		return mwrErrorCounterReached10;
 	}
 
-	public void setMWRErrorCounterReached10(boolean mWRErrorCounterReached10) {
-		MWRErrorCounterReached10 = mWRErrorCounterReached10;
+	public void setMwrErrorCounterReached10(boolean mwrErrorCounterReached10) {
+		this.mwrErrorCounterReached10 = mwrErrorCounterReached10;
 	}
 
-	public boolean isMWMErrorCounterReached10() {
-		return MWMErrorCounterReached10;
+	public boolean isMwmErrorCounterReached10() {
+		return mwmErrorCounterReached10;
 	}
 
-	public void setMWMErrorCounterReached10(boolean mWMErrorCounterReached10) {
-		MWMErrorCounterReached10 = mWMErrorCounterReached10;
+	public void setMwmErrorCounterReached10(boolean mwmErrorCounterReached10) {
+		this.mwmErrorCounterReached10 = mwmErrorCounterReached10;
 	}
 
-	public boolean isMPSErrorCounterReached10() {
-		return MPSErrorCounterReached10;
+	public boolean isMpsErrorCounterReached10() {
+		return mpsErrorCounterReached10;
 	}
 
-	public void setMPSErrorCounterReached10(boolean mPSErrorCounterReached10) {
-		MPSErrorCounterReached10 = mPSErrorCounterReached10;
+	public void setMpsErrorCounterReached10(boolean mpsErrorCounterReached10) {
+		this.mpsErrorCounterReached10 = mpsErrorCounterReached10;
 	}
 
-	public boolean isMMMErrorCounterReached10() {
-		return MMMErrorCounterReached10;
+	public boolean isMmmErrorCounterReached10() {
+		return mmmErrorCounterReached10;
 	}
 
-	public void setMMMErrorCounterReached10(boolean mMMErrorCounterReached10) {
-		MMMErrorCounterReached10 = mMMErrorCounterReached10;
+	public void setMmmErrorCounterReached10(boolean mmmErrorCounterReached10) {
+		this.mmmErrorCounterReached10 = mmmErrorCounterReached10;
 	}
 
-	public boolean isMMRErrorCounterReached10() {
-		return MMRErrorCounterReached10;
+	public boolean isMmrErrorCounterReached10() {
+		return mmrErrorCounterReached10;
 	}
 
-	public void setMMRErrorCounterReached10(boolean mMRErrorCounterReached10) {
-		MMRErrorCounterReached10 = mMRErrorCounterReached10;
+	public void setMmrErrorCounterReached10(boolean mmrErrorCounterReached10) {
+		this.mmrErrorCounterReached10 = mmrErrorCounterReached10;
 	}
 
-	public boolean isMTMErrorCounterReached10() {
-		return MTMErrorCounterReached10;
+	public boolean isMtmErrorCounterReached10() {
+		return mtmErrorCounterReached10;
 	}
 
-	public void setMTMErrorCounterReached10(boolean mTMErrorCounterReached10) {
-		MTMErrorCounterReached10 = mTMErrorCounterReached10;
+	public void setMtmErrorCounterReached10(boolean mtmErrorCounterReached10) {
+		this.mtmErrorCounterReached10 = mtmErrorCounterReached10;
 	}
 
-	public boolean isMTRErrorCounterReached10() {
-		return MTRErrorCounterReached10;
+	public boolean isMtrErrorCounterReached10() {
+		return mtrErrorCounterReached10;
 	}
 
-	public void setMTRErrorCounterReached10(boolean mTRErrorCounterReached10) {
-		MTRErrorCounterReached10 = mTRErrorCounterReached10;
+	public void setMtrErrorCounterReached10(boolean mtrErrorCounterReached10) {
+		this.mtrErrorCounterReached10 = mtrErrorCounterReached10;
 	}
 
-	public boolean isTRIErrorCounterReached10() {
-		return TRIErrorCounterReached10;
+	public boolean isTriErrorCounterReached10() {
+		return triErrorCounterReached10;
 	}
 
-	public void setTRIErrorCounterReached10(boolean tRIErrorCounterReached10) {
-		TRIErrorCounterReached10 = tRIErrorCounterReached10;
+	public void setTriErrorCounterReached10(boolean triErrorCounterReached10) {
+		this.triErrorCounterReached10 = triErrorCounterReached10;
 	}
 
-	public boolean isLMPErrorCounterReached10() {
-		return LMPErrorCounterReached10;
+	public boolean isLmpErrorCounterReached10() {
+		return lmpErrorCounterReached10;
 	}
 
-	public void setLMPErrorCounterReached10(boolean lMPErrorCounterReached10) {
-		LMPErrorCounterReached10 = lMPErrorCounterReached10;
+	public void setLmpErrorCounterReached10(boolean lmpErrorCounterReached10) {
+		this.lmpErrorCounterReached10 = lmpErrorCounterReached10;
 	}
 
-	public boolean isCAMErrorCounterReached10() {
-		return CAMErrorCounterReached10;
+	public boolean isCamErrorCounterReached10() {
+		return camErrorCounterReached10;
 	}
 
-	public void setCAMErrorCounterReached10(boolean cAMErrorCounterReached10) {
-		CAMErrorCounterReached10 = cAMErrorCounterReached10;
+	public void setCamErrorCounterReached10(boolean camErrorCounterReached10) {
+		this.camErrorCounterReached10 = camErrorCounterReached10;
 	}
 
-	public boolean isAMSErrorCounterReached10() {
-		return AMSErrorCounterReached10;
+	public boolean isAmsErrorCounterReached10() {
+		return amsErrorCounterReached10;
 	}
 
-	public void setAMSErrorCounterReached10(boolean aMSErrorCounterReached10) {
-		AMSErrorCounterReached10 = aMSErrorCounterReached10;
+	public void setAmsErrorCounterReached10(boolean amsErrorCounterReached10) {
+		this.amsErrorCounterReached10 = amsErrorCounterReached10;
 	}
 
-	public boolean isSTXErrorCounterReached10() {
-		return STXErrorCounterReached10;
+	public boolean isStxErrorCounterReached10() {
+		return stxErrorCounterReached10;
 	}
 
-	public void setSTXErrorCounterReached10(boolean sTXErrorCounterReached10) {
-		STXErrorCounterReached10 = sTXErrorCounterReached10;
+	public void setStxErrorCounterReached10(boolean stxErrorCounterReached10) {
+		this.stxErrorCounterReached10 = stxErrorCounterReached10;
 	}
 
-	public boolean isGPSErrorCounterReached10() {
-		return GPSErrorCounterReached10;
+	public boolean isGpsErrorCounterReached10() {
+		return gpsErrorCounterReached10;
 	}
 
-	public void setGPSErrorCounterReached10(boolean gPSErrorCounterReached10) {
-		GPSErrorCounterReached10 = gPSErrorCounterReached10;
+	public void setGpsErrorCounterReached10(boolean gpsErrorCounterReached10) {
+		this.gpsErrorCounterReached10 = gpsErrorCounterReached10;
 	}
 
-	public boolean isADEErrorCounterReached10() {
-		return ADEErrorCounterReached10;
+	public boolean isAdeErrorCounterReached10() {
+		return adeErrorCounterReached10;
 	}
 
-	public void setADEErrorCounterReached10(boolean aDEErrorCounterReached10) {
-		ADEErrorCounterReached10 = aDEErrorCounterReached10;
+	public void setAdeErrorCounterReached10(boolean adeErrorCounterReached10) {
+		this.adeErrorCounterReached10 = adeErrorCounterReached10;
 	}
 
-	public boolean isSCAMErrorCounterReached10() {
-		return SCAMErrorCounterReached10;
+	public boolean isScamErrorCounterReached10() {
+		return scamErrorCounterReached10;
 	}
 
-	public void setSCAMErrorCounterReached10(boolean sCAMErrorCounterReached10) {
-		SCAMErrorCounterReached10 = sCAMErrorCounterReached10;
+	public void setScamErrorCounterReached10(boolean scamErrorCounterReached10) {
+		this.scamErrorCounterReached10 = scamErrorCounterReached10;
 	}
 
 }
