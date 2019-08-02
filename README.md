@@ -26,7 +26,7 @@ All blocks meant to be binary compatible with gnuradio versions. This will ensur
   * Descrambler
   * DifferentialEncoder
   * Divide
-  * FIRFilter and ComplexFIRFilter
+  * FIRFilterBlock
   * File Source (InputStreamSource)
   * File Sink (OutputStreamSink)
   * FixedLengthTagger
