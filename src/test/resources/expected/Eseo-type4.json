@@ -14,7 +14,7 @@
   "beaconType": 6,
   "type4": {
     "ACS_STATE": "SAFE",
-    "ACS_SUN_MODE": "Sun",
+    "ACS_SUN_MODE": "SUN",
     "ACS_ERR": {
       "safeMode": true,
       "omegaDetWarning": true,

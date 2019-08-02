@@ -5,7 +5,7 @@ import java.util.Map;
 
 public enum SunMode {
 
-	Eclipse(0), Sun(1);
+	ECLIPSE(0), SUN(1);
 	
 	private final int code;
 	private static final Map<Integer, SunMode> typeByCode = new HashMap<>();
