@@ -77,6 +77,10 @@ Coding:
   * NRZI
   * Bit stuffing
 
+Randomization
+ 
+  * xoroshiro128+
+
 ## Supported satellites
 
 Using the blocks above, you could decode signals from the following satellites:
