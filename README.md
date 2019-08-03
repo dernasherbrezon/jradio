@@ -80,6 +80,7 @@ Coding:
 Randomization
  
   * xoroshiro128+
+  * mt19937 (class MTRandom)
 
 ## Supported satellites
 
