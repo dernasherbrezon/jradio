@@ -9,6 +9,7 @@ Software radio decoding written in Java. The idea of this project is to get bloc
 
 All blocks meant to be binary compatible with gnuradio versions. This will ensure you got the same results when moving from gnuradio-companion to Java.
 
+  * Add
   * AdditiveScrambler
   * AGC
   * [AX100Decoder](https://gomspace.com/UserFiles/Subsystems/datasheet/gs-ds-nanocom-ax100-33.pdf). Out-of-tree block. Support ASM + Golay mode.

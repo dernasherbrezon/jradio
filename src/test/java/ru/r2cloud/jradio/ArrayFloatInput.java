@@ -9,6 +9,11 @@ public class ArrayFloatInput implements FloatInput {
 	private float[] result;
 	private int index;
 
+	public ArrayFloatInput(Context context, float... result) {
+		this.context = context;
+		this.result = result;
+	}
+
 	public ArrayFloatInput(float... result) {
 		this.result = result;
 		context = new Context();
