@@ -6,162 +6,161 @@ import ru.r2cloud.jradio.util.LittleEndianDataInputStream;
 
 public class TtError {
 
-	private boolean PLLFailedToLockInTheTransmitter;
-	private boolean ChargePumpCurrentExceededLimitsInTX;
-	private boolean PLLFailedToLockInTheReceiver;
-	private boolean ChargePumpCurrentExceededLimitsInRX;
-	private boolean RSSILowerThanTheSensitivityThreshold;
-	private boolean PKTToGSExceedMaxLimit;
-	private boolean MaximumAllowedFrequencyDeviationExceeded;
-	private boolean WDTError;
-	private boolean RTEMSError;
-	private boolean TemperatureOfTheRFSectionExceededLimits;
-	private boolean TemperatureOfTheDCDCSectionExceededLimits;
-	private boolean StandBy;
-	private boolean CurrentOfTheHPAIsInsufficient;
-	private boolean CurrentOfTheHPAExceededLimit;
-	private boolean CurrentOfTheLNARTXExceededLimit;
+	private boolean pllFailedToLockInTheTransmitter;
+	private boolean chargePumpCurrentExceededLimitsInTX;
+	private boolean pllFailedToLockInTheReceiver;
+	private boolean chargePumpCurrentExceededLimitsInRX;
+	private boolean rssiLowerThanTheSensitivityThreshold;
+	private boolean pktToGSExceedMaxLimit;
+	private boolean maximumAllowedFrequencyDeviationExceeded;
+	private boolean wdtError;
+	private boolean rtemsError;
+	private boolean temperatureOfTheRFSectionExceededLimits;
+	private boolean temperatureOfTheDCDCSectionExceededLimits;
+	private boolean standBy;
+	private boolean currentOfTheHPAIsInsufficient;
+	private boolean currentOfTheHPAExceededLimit;
+	private boolean currentOfTheLNARTXExceededLimit;
 
 	public TtError(LittleEndianDataInputStream dis) throws IOException {
 		int raw = dis.readUnsignedByte();
-		PLLFailedToLockInTheTransmitter = ((raw >> 7) & 0x1) > 0;
-		ChargePumpCurrentExceededLimitsInTX = ((raw >> 6) & 0x1) > 0;
-		PLLFailedToLockInTheReceiver = ((raw >> 5) & 0x1) > 0;
-		ChargePumpCurrentExceededLimitsInRX = ((raw >> 4) & 0x1) > 0;
-		RSSILowerThanTheSensitivityThreshold = ((raw >> 3) & 0x1) > 0;
-		PKTToGSExceedMaxLimit = ((raw >> 2) & 0x1) > 0;
-		MaximumAllowedFrequencyDeviationExceeded = ((raw >> 1) & 0x1) > 0;
-		WDTError = (raw & 0x1) > 0;
+		pllFailedToLockInTheTransmitter = ((raw >> 7) & 0x1) > 0;
+		chargePumpCurrentExceededLimitsInTX = ((raw >> 6) & 0x1) > 0;
+		pllFailedToLockInTheReceiver = ((raw >> 5) & 0x1) > 0;
+		chargePumpCurrentExceededLimitsInRX = ((raw >> 4) & 0x1) > 0;
+		rssiLowerThanTheSensitivityThreshold = ((raw >> 3) & 0x1) > 0;
+		pktToGSExceedMaxLimit = ((raw >> 2) & 0x1) > 0;
+		maximumAllowedFrequencyDeviationExceeded = ((raw >> 1) & 0x1) > 0;
+		wdtError = (raw & 0x1) > 0;
 
 		raw = dis.readUnsignedByte();
-		RTEMSError = ((raw >> 7) & 0x1) > 0;
-		TemperatureOfTheRFSectionExceededLimits = ((raw >> 6) & 0x1) > 0;
-		TemperatureOfTheDCDCSectionExceededLimits = ((raw >> 5) & 0x1) > 0;
-		StandBy = ((raw >> 4) & 0x1) > 0;
-		CurrentOfTheHPAIsInsufficient = ((raw >> 3) & 0x1) > 0;
-		CurrentOfTheHPAExceededLimit = ((raw >> 2) & 0x1) > 0;
-		CurrentOfTheLNARTXExceededLimit = ((raw >> 1) & 0x1) > 0;
+		rtemsError = ((raw >> 7) & 0x1) > 0;
+		temperatureOfTheRFSectionExceededLimits = ((raw >> 6) & 0x1) > 0;
+		temperatureOfTheDCDCSectionExceededLimits = ((raw >> 5) & 0x1) > 0;
+		standBy = ((raw >> 4) & 0x1) > 0;
+		currentOfTheHPAIsInsufficient = ((raw >> 3) & 0x1) > 0;
+		currentOfTheHPAExceededLimit = ((raw >> 2) & 0x1) > 0;
+		currentOfTheLNARTXExceededLimit = ((raw >> 1) & 0x1) > 0;
 	}
 
-	public boolean isPLLFailedToLockInTheTransmitter() {
-		return PLLFailedToLockInTheTransmitter;
+	public boolean isPllFailedToLockInTheTransmitter() {
+		return pllFailedToLockInTheTransmitter;
 	}
 
-	public void setPLLFailedToLockInTheTransmitter(boolean pLLFailedToLockInTheTransmitter) {
-		PLLFailedToLockInTheTransmitter = pLLFailedToLockInTheTransmitter;
+	public void setPllFailedToLockInTheTransmitter(boolean pllFailedToLockInTheTransmitter) {
+		this.pllFailedToLockInTheTransmitter = pllFailedToLockInTheTransmitter;
 	}
 
 	public boolean isChargePumpCurrentExceededLimitsInTX() {
-		return ChargePumpCurrentExceededLimitsInTX;
+		return chargePumpCurrentExceededLimitsInTX;
 	}
 
 	public void setChargePumpCurrentExceededLimitsInTX(boolean chargePumpCurrentExceededLimitsInTX) {
-		ChargePumpCurrentExceededLimitsInTX = chargePumpCurrentExceededLimitsInTX;
+		this.chargePumpCurrentExceededLimitsInTX = chargePumpCurrentExceededLimitsInTX;
 	}
 
-	public boolean isPLLFailedToLockInTheReceiver() {
-		return PLLFailedToLockInTheReceiver;
+	public boolean isPllFailedToLockInTheReceiver() {
+		return pllFailedToLockInTheReceiver;
 	}
 
-	public void setPLLFailedToLockInTheReceiver(boolean pLLFailedToLockInTheReceiver) {
-		PLLFailedToLockInTheReceiver = pLLFailedToLockInTheReceiver;
+	public void setPllFailedToLockInTheReceiver(boolean pllFailedToLockInTheReceiver) {
+		this.pllFailedToLockInTheReceiver = pllFailedToLockInTheReceiver;
 	}
 
 	public boolean isChargePumpCurrentExceededLimitsInRX() {
-		return ChargePumpCurrentExceededLimitsInRX;
+		return chargePumpCurrentExceededLimitsInRX;
 	}
 
 	public void setChargePumpCurrentExceededLimitsInRX(boolean chargePumpCurrentExceededLimitsInRX) {
-		ChargePumpCurrentExceededLimitsInRX = chargePumpCurrentExceededLimitsInRX;
+		this.chargePumpCurrentExceededLimitsInRX = chargePumpCurrentExceededLimitsInRX;
 	}
 
-	public boolean isRSSILowerThanTheSensitivityThreshold() {
-		return RSSILowerThanTheSensitivityThreshold;
+	public boolean isRssiLowerThanTheSensitivityThreshold() {
+		return rssiLowerThanTheSensitivityThreshold;
 	}
 
-	public void setRSSILowerThanTheSensitivityThreshold(boolean rSSILowerThanTheSensitivityThreshold) {
-		RSSILowerThanTheSensitivityThreshold = rSSILowerThanTheSensitivityThreshold;
+	public void setRssiLowerThanTheSensitivityThreshold(boolean rssiLowerThanTheSensitivityThreshold) {
+		this.rssiLowerThanTheSensitivityThreshold = rssiLowerThanTheSensitivityThreshold;
 	}
 
-	public boolean isPKTToGSExceedMaxLimit() {
-		return PKTToGSExceedMaxLimit;
+	public boolean isPktToGSExceedMaxLimit() {
+		return pktToGSExceedMaxLimit;
 	}
 
-	public void setPKTToGSExceedMaxLimit(boolean pKTToGSExceedMaxLimit) {
-		PKTToGSExceedMaxLimit = pKTToGSExceedMaxLimit;
+	public void setPktToGSExceedMaxLimit(boolean pktToGSExceedMaxLimit) {
+		this.pktToGSExceedMaxLimit = pktToGSExceedMaxLimit;
 	}
 
 	public boolean isMaximumAllowedFrequencyDeviationExceeded() {
-		return MaximumAllowedFrequencyDeviationExceeded;
+		return maximumAllowedFrequencyDeviationExceeded;
 	}
 
 	public void setMaximumAllowedFrequencyDeviationExceeded(boolean maximumAllowedFrequencyDeviationExceeded) {
-		MaximumAllowedFrequencyDeviationExceeded = maximumAllowedFrequencyDeviationExceeded;
+		this.maximumAllowedFrequencyDeviationExceeded = maximumAllowedFrequencyDeviationExceeded;
 	}
 
-	public boolean isWDTError() {
-		return WDTError;
+	public boolean isWdtError() {
+		return wdtError;
 	}
 
-	public void setWDTError(boolean wDTError) {
-		WDTError = wDTError;
+	public void setWdtError(boolean wdtError) {
+		this.wdtError = wdtError;
 	}
 
-	public boolean isRTEMSError() {
-		return RTEMSError;
+	public boolean isRtemsError() {
+		return rtemsError;
 	}
 
-	public void setRTEMSError(boolean rTEMSError) {
-		RTEMSError = rTEMSError;
+	public void setRtemsError(boolean rtemsError) {
+		this.rtemsError = rtemsError;
 	}
 
 	public boolean isTemperatureOfTheRFSectionExceededLimits() {
-		return TemperatureOfTheRFSectionExceededLimits;
+		return temperatureOfTheRFSectionExceededLimits;
 	}
 
 	public void setTemperatureOfTheRFSectionExceededLimits(boolean temperatureOfTheRFSectionExceededLimits) {
-		TemperatureOfTheRFSectionExceededLimits = temperatureOfTheRFSectionExceededLimits;
+		this.temperatureOfTheRFSectionExceededLimits = temperatureOfTheRFSectionExceededLimits;
 	}
 
 	public boolean isTemperatureOfTheDCDCSectionExceededLimits() {
-		return TemperatureOfTheDCDCSectionExceededLimits;
+		return temperatureOfTheDCDCSectionExceededLimits;
 	}
 
 	public void setTemperatureOfTheDCDCSectionExceededLimits(boolean temperatureOfTheDCDCSectionExceededLimits) {
-		TemperatureOfTheDCDCSectionExceededLimits = temperatureOfTheDCDCSectionExceededLimits;
+		this.temperatureOfTheDCDCSectionExceededLimits = temperatureOfTheDCDCSectionExceededLimits;
 	}
 
 	public boolean isStandBy() {
-		return StandBy;
+		return standBy;
 	}
 
 	public void setStandBy(boolean standBy) {
-		StandBy = standBy;
+		this.standBy = standBy;
 	}
 
 	public boolean isCurrentOfTheHPAIsInsufficient() {
-		return CurrentOfTheHPAIsInsufficient;
+		return currentOfTheHPAIsInsufficient;
 	}
 
 	public void setCurrentOfTheHPAIsInsufficient(boolean currentOfTheHPAIsInsufficient) {
-		CurrentOfTheHPAIsInsufficient = currentOfTheHPAIsInsufficient;
+		this.currentOfTheHPAIsInsufficient = currentOfTheHPAIsInsufficient;
 	}
 
 	public boolean isCurrentOfTheHPAExceededLimit() {
-		return CurrentOfTheHPAExceededLimit;
+		return currentOfTheHPAExceededLimit;
 	}
 
 	public void setCurrentOfTheHPAExceededLimit(boolean currentOfTheHPAExceededLimit) {
-		CurrentOfTheHPAExceededLimit = currentOfTheHPAExceededLimit;
+		this.currentOfTheHPAExceededLimit = currentOfTheHPAExceededLimit;
 	}
 
 	public boolean isCurrentOfTheLNARTXExceededLimit() {
-		return CurrentOfTheLNARTXExceededLimit;
+		return currentOfTheLNARTXExceededLimit;
 	}
 
 	public void setCurrentOfTheLNARTXExceededLimit(boolean currentOfTheLNARTXExceededLimit) {
-		CurrentOfTheLNARTXExceededLimit = currentOfTheLNARTXExceededLimit;
+		this.currentOfTheLNARTXExceededLimit = currentOfTheLNARTXExceededLimit;
 	}
-	
-	
+
 }
