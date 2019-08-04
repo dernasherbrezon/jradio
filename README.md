@@ -81,6 +81,7 @@ Randomization
  
   * xoroshiro128+
   * mt19937 (class MTRandom)
+  * RayleighRandom
 
 ## Supported satellites
 
