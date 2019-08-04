@@ -7,17 +7,17 @@ import ru.r2cloud.jradio.util.LittleEndianDataInputStream;
 
 public class Type1 {
 
-	private ObdMode OBD_MODE; // Current OBDH platform mode
-	private int OBD_ACTIVE_TASK; // OBDH task currently executing
+	private ObdMode obdMode; // Current OBDH platform mode
+	private int obdActiveTask; // OBDH task currently executing
 
 	private EquipmentStatus equipmentStatus;
 	private CpuError cpuError;
 
-	private long OBD_CAN_TIMEOUT_ERROR; // CAN/CANopen interface timeout error
-	private int OBD_WD_RESET_COUNT; // Number of watchdog resets
-	private int OBD_RS422M_ERR_COUNT; // TMTC USART interface main error counter
-	private int OBD_RS422R_ERR_COUNT; // TMTC USART interface redundant error counter
-	private int OBD_ERROR_COUNT; // OBDH internal error counter
+	private long obdCanTimeoutError; // CAN/CANopen interface timeout error
+	private int obdWdResetCount; // Number of watchdog resets
+	private int obdRs422mErrCount; // TMTC USART interface main error counter
+	private int obdRs422RErrCount; // TMTC USART interface redundant error counter
+	private int obdErrorCount; // OBDH internal error counter
 
 	private TcError1 tcError1;
 	private TcError2 tcError2;
@@ -28,19 +28,19 @@ public class Type1 {
 	private Rs485Error rs485Error;
 	private ObdStatus obdStatus;
 
-	private AcsState ACS_STATE; // AOCS mode of the state machine
-	private float ACS_OMEGA_P; // Roll angular velocity
-	private float ACS_OMEGA_Q; // Pitch angular velocity
-	private float ACS_OMEGA_R; // Yaw angular velocity
-	private short PM_Current_Bp1; // Current of the battery pack 1
-	private short PM_Current_Bp2; // Current of the battery pack 2
-	private short PM_Current_Bp3; // Current of the battery pack 3
-	private short PM_Current_Bp4; // Current of the battery pack 4
-	private short PM_Current_Bp5; // Current of the battery pack 5
-	private short PM_Current_Bp6; // Current of the battery pack 6
-	private int PM_Voltage_Mb; // Voltage of the Main Bus
+	private AcsState acsState; // AOCS mode of the state machine
+	private float acsOmegaP; // Roll angular velocity
+	private float acsOmegaQ; // Pitch angular velocity
+	private float acsOmegaR; // Yaw angular velocity
+	private short pmCurrentBp1; // Current of the battery pack 1
+	private short pmCurrentBp2; // Current of the battery pack 2
+	private short pmCurrentBp3; // Current of the battery pack 3
+	private short pmCurrentBp4; // Current of the battery pack 4
+	private short pmCurrentBp5; // Current of the battery pack 5
+	private short pmCurrentBp6; // Current of the battery pack 6
+	private int pmVoltageMb; // Voltage of the Main Bus
 
-	private int PM_SAFE_OPERATING_MODE; // Operating mode of the power system
+	private int pmSafeOperatingMode; // Operating mode of the power system
 	// 0x00 No safe
 	// 0x01 Safe mode 1: minor main bus power down
 	// 0x02 Safe mode 2: severe main bus power down
@@ -49,103 +49,103 @@ public class Type1 {
 
 	private PmmError1 pmmError1;
 
-	private TtTxStatus TMTCMainTransmitterSTATUS;
-	private TtError TTMErrorCondition;
-	private PlatformFdir TTMFDIRPlatformStatus;
+	private TtTxStatus tmtcMainTransmitterSTATUS;
+	private TtError ttmErrorCondition;
+	private PlatformFdir ttmfdirPlatformStatus;
 
-	private TtTxStatus TMTCRedundantTransmitterSTATUS;
-	private TtError TTRErrorCondition;
-	private PlatformFdir TTRFDIRPlatformStatus;
+	private TtTxStatus tmtcRedundantTransmitterSTATUS;
+	private TtError ttrErrorCondition;
+	private PlatformFdir ttrfdirPlatformStatus;
 
 	// SS_ERROR_1
 	private SsmAdcChannelStatus[] adc1;
 	private SsmAdcChannelStatus[] adc2;
-	private boolean ChannelAFailSSKO;
-	private boolean ChannelBFailSSKO;
-	private boolean ChannelCFailSSKO;
-	private boolean ChannelDFailSSKO;
+	private boolean channelAFailSSKO;
+	private boolean channelBFailSSKO;
+	private boolean channelCFailSSKO;
+	private boolean channelDFailSSKO;
 	private SsmStatus ssmStatus;
 	private boolean uCPCBOutOfTemp;
-	private boolean ADC1PCBOutOfTemp;
-	private boolean ADC2PCBOutOfTemp;
-	private boolean EXTCASEOutOfTemp;
-	private boolean DCDCOutOfTemp;
-	private boolean Bus478VCurrentOutOfThreshold;
-	private boolean Bus33VCurrentOutOfThreshold;
-	private boolean Bus478VVoltageOutOfThreshold;
-	private boolean Bus33VVoltageOutOfThreshold;
+	private boolean adc1PCBOutOfTemp;
+	private boolean adc2PCBOutOfTemp;
+	private boolean extCASEOutOfTemp;
+	private boolean dcdcOutOfTemp;
+	private boolean bus478VCurrentOutOfThreshold;
+	private boolean bus33VCurrentOutOfThreshold;
+	private boolean bus478VVoltageOutOfThreshold;
+	private boolean bus33VVoltageOutOfThreshold;
 
 	// SS_ERROR_2
 	private boolean[] adc1ChannelXUsable;
 	private boolean[] adc2ChannelXUsable;
 
 	// ESE_ERROR
-	private boolean TAUInternalError;
-	private boolean TAUTimeoutError;
-	private boolean TAUEdgeDetectionError;
-	private boolean EseStandBy;
+	private boolean tAUInternalError;
+	private boolean tAUTimeoutError;
+	private boolean tAUEdgeDetectionError;
+	private boolean eseStandBy;
 	private EseStatus eseStatus;
-	private boolean ESEInitError;
-	private boolean TAUOutOfTemperatureRange;
+	private boolean eseInitError;
+	private boolean tauOutOfTemperatureRange;
 	private boolean uCPCBOutOfTemperatureRange;
 	private boolean uCESEPowerPCBOutOfTemp;
-	private boolean Bus50VCurrentOutOfThreshold;
-	private boolean BusEse33VCurrentOutOfThreshold;
-	private boolean Bus50VVoltageOutOfThreshold;
-	private boolean BusEse33VVoltageOutOfThreshold;
+	private boolean bus50VCurrentOutOfThreshold;
+	private boolean busEse33VCurrentOutOfThreshold;
+	private boolean bus50VVoltageOutOfThreshold;
+	private boolean busEse33VVoltageOutOfThreshold;
 
 	// MWR_ERROR
-	private boolean WheelDriverFault;
-	private boolean WheelDriverOverheat;
-	private boolean WheelIF33VOverheat;
-	private boolean WheelDriverOvercurrent;
-	private boolean WheelIFOvercurrent;
-	private boolean WheelIF15VOverheat;
-	private boolean WheelOverCurrent;
-	private boolean WDTRebootError;
-	private boolean RTEMSError;
-	private boolean WheelDriverSerialError;
-	private boolean MwrStandBy;
-	private boolean WheelAngularVelocityError;
-	private boolean InitError;
+	private boolean wheelDriverFault;
+	private boolean wheelDriverOverheat;
+	private boolean wheelIF33VOverheat;
+	private boolean wheelDriverOvercurrent;
+	private boolean wheelIFOvercurrent;
+	private boolean wheelIF15VOverheat;
+	private boolean wheelOverCurrent;
+	private boolean wdtRebootError;
+	private boolean rtemsError;
+	private boolean wheelDriverSerialError;
+	private boolean mwrStandBy;
+	private boolean wheelAngularVelocityError;
+	private boolean initError;
 
 	// MWM_STATUS
 	private boolean mwmCondition;
 	private MwmError mwmError;
 	private MwmStatus mwmStatus;
-	private boolean MwmBootLoaderOk;
-	private boolean Memory1Ok;
-	private boolean Memory2Ok;
-	private boolean MemoryPreference;
-	private boolean OvertemperatureError;
-	private boolean TemperatureError;
-	private boolean TemperatureWarning;
-	private boolean EERestored;
-	private boolean EEWriteError;
-	private boolean EEReadError;
+	private boolean mwmBootLoaderOk;
+	private boolean memory1Ok;
+	private boolean memory2Ok;
+	private boolean memoryPreference;
+	private boolean overtemperatureError;
+	private boolean temperatureError;
+	private boolean temperatureWarning;
+	private boolean eeRestored;
+	private boolean eeWriteError;
+	private boolean eeReadError;
 
-	private MmError MMMFailCode;
-	private MmError MMRFailCode;
+	private MmError mmmFailCode;
+	private MmError mmrFailCode;
 
-	private MtError MTMFailCode;
-	private MtError MTRFailCode;
+	private MtError mtmFailCode;
+	private MtError mtrFailCode;
 
-	private TtTxStatus TMTCRedundantTransmitterSTATUS2;
-	private TtError TTRErrorCondition2;
+	private TtTxStatus tmtcRedundantTransmitterSTATUS2;
+	private TtError ttrErrorCondition2;
 
 	public Type1(DataInputStream source) throws IOException {
 		LittleEndianDataInputStream dis = new LittleEndianDataInputStream(source);
-		OBD_MODE = ObdMode.valueOfCode(dis.readUnsignedByte());
-		OBD_ACTIVE_TASK = dis.readUnsignedByte();
+		obdMode = ObdMode.valueOfCode(dis.readUnsignedByte());
+		obdActiveTask = dis.readUnsignedByte();
 
 		equipmentStatus = new EquipmentStatus(dis);
 		cpuError = new CpuError(dis);
 
-		OBD_CAN_TIMEOUT_ERROR = dis.readUnsignedInt();
-		OBD_WD_RESET_COUNT = dis.readUnsignedByte();
-		OBD_RS422M_ERR_COUNT = dis.readUnsignedShort();
-		OBD_RS422R_ERR_COUNT = dis.readUnsignedShort();
-		OBD_ERROR_COUNT = dis.readUnsignedShort();
+		obdCanTimeoutError = dis.readUnsignedInt();
+		obdWdResetCount = dis.readUnsignedByte();
+		obdRs422mErrCount = dis.readUnsignedShort();
+		obdRs422RErrCount = dis.readUnsignedShort();
+		obdErrorCount = dis.readUnsignedShort();
 
 		tcError1 = new TcError1(dis);
 		tcError2 = new TcError2(dis);
@@ -156,29 +156,29 @@ public class Type1 {
 		rs485Error = new Rs485Error(dis);
 		obdStatus = new ObdStatus(dis);
 
-		ACS_STATE = AcsState.valueOfCode(dis.readUnsignedByte());
-		ACS_OMEGA_P = dis.readFloat();
-		ACS_OMEGA_Q = dis.readFloat();
-		ACS_OMEGA_R = dis.readFloat();
-		PM_Current_Bp1 = dis.readShort();
-		PM_Current_Bp2 = dis.readShort();
-		PM_Current_Bp3 = dis.readShort();
-		PM_Current_Bp4 = dis.readShort();
-		PM_Current_Bp5 = dis.readShort();
-		PM_Current_Bp6 = dis.readShort();
-		PM_Voltage_Mb = dis.readUnsignedShort();
+		acsState = AcsState.valueOfCode(dis.readUnsignedByte());
+		acsOmegaP = dis.readFloat();
+		acsOmegaQ = dis.readFloat();
+		acsOmegaR = dis.readFloat();
+		pmCurrentBp1 = dis.readShort();
+		pmCurrentBp2 = dis.readShort();
+		pmCurrentBp3 = dis.readShort();
+		pmCurrentBp4 = dis.readShort();
+		pmCurrentBp5 = dis.readShort();
+		pmCurrentBp6 = dis.readShort();
+		pmVoltageMb = dis.readUnsignedShort();
 
-		PM_SAFE_OPERATING_MODE = dis.readUnsignedByte();
+		pmSafeOperatingMode = dis.readUnsignedByte();
 
 		pmmError1 = new PmmError1(dis);
 
-		TMTCMainTransmitterSTATUS = new TtTxStatus(dis);
-		TTMErrorCondition = new TtError(dis);
-		TTMFDIRPlatformStatus = new PlatformFdir(dis);
+		tmtcMainTransmitterSTATUS = new TtTxStatus(dis);
+		ttmErrorCondition = new TtError(dis);
+		ttmfdirPlatformStatus = new PlatformFdir(dis);
 
-		TMTCRedundantTransmitterSTATUS = new TtTxStatus(dis);
-		TTRErrorCondition = new TtError(dis);
-		TTRFDIRPlatformStatus = new PlatformFdir(dis);
+		tmtcRedundantTransmitterSTATUS = new TtTxStatus(dis);
+		ttrErrorCondition = new TtError(dis);
+		ttrfdirPlatformStatus = new PlatformFdir(dis);
 
 		// SS_ERROR_1
 		adc1 = new SsmAdcChannelStatus[4];
@@ -193,22 +193,22 @@ public class Type1 {
 		}
 
 		raw = dis.readUnsignedByte();
-		ChannelAFailSSKO = ((raw >> 7) & 0x1) > 0;
-		ChannelBFailSSKO = ((raw >> 6) & 0x1) > 0;
-		ChannelCFailSSKO = ((raw >> 5) & 0x1) > 0;
-		ChannelDFailSSKO = ((raw >> 4) & 0x1) > 0;
+		channelAFailSSKO = ((raw >> 7) & 0x1) > 0;
+		channelBFailSSKO = ((raw >> 6) & 0x1) > 0;
+		channelCFailSSKO = ((raw >> 5) & 0x1) > 0;
+		channelDFailSSKO = ((raw >> 4) & 0x1) > 0;
 		ssmStatus = SsmStatus.valueOfCode((raw >> 1) & 0b111);
 		uCPCBOutOfTemp = (raw & 0x1) > 0;
 
 		raw = dis.readUnsignedByte();
-		ADC1PCBOutOfTemp = ((raw >> 7) & 0x1) > 0;
-		ADC2PCBOutOfTemp = ((raw >> 6) & 0x1) > 0;
-		EXTCASEOutOfTemp = ((raw >> 5) & 0x1) > 0;
-		DCDCOutOfTemp = ((raw >> 4) & 0x1) > 0;
-		Bus478VCurrentOutOfThreshold = ((raw >> 3) & 0x1) > 0;
-		Bus33VCurrentOutOfThreshold = ((raw >> 2) & 0x1) > 0;
-		Bus478VVoltageOutOfThreshold = ((raw >> 1) & 0x1) > 0;
-		Bus33VVoltageOutOfThreshold = (raw & 0x1) > 0;
+		adc1PCBOutOfTemp = ((raw >> 7) & 0x1) > 0;
+		adc2PCBOutOfTemp = ((raw >> 6) & 0x1) > 0;
+		extCASEOutOfTemp = ((raw >> 5) & 0x1) > 0;
+		dcdcOutOfTemp = ((raw >> 4) & 0x1) > 0;
+		bus478VCurrentOutOfThreshold = ((raw >> 3) & 0x1) > 0;
+		bus33VCurrentOutOfThreshold = ((raw >> 2) & 0x1) > 0;
+		bus478VVoltageOutOfThreshold = ((raw >> 1) & 0x1) > 0;
+		bus33VVoltageOutOfThreshold = (raw & 0x1) > 0;
 
 		// SS_ERROR_2
 		adc1ChannelXUsable = new boolean[12];
@@ -246,40 +246,40 @@ public class Type1 {
 
 		// ESE_ERROR
 		raw = dis.readUnsignedByte();
-		TAUInternalError = ((raw >> 7) & 0x1) > 0;
-		TAUTimeoutError = ((raw >> 6) & 0x1) > 0;
-		TAUEdgeDetectionError = ((raw >> 5) & 0x1) > 0;
-		EseStandBy = ((raw >> 4) & 0x1) > 0;
+		tAUInternalError = ((raw >> 7) & 0x1) > 0;
+		tAUTimeoutError = ((raw >> 6) & 0x1) > 0;
+		tAUEdgeDetectionError = ((raw >> 5) & 0x1) > 0;
+		eseStandBy = ((raw >> 4) & 0x1) > 0;
 		eseStatus = EseStatus.valueOfCode((raw >> 1) & 0b111);
-		ESEInitError = (raw & 0x1) > 0;
+		eseInitError = (raw & 0x1) > 0;
 
 		raw = dis.readUnsignedByte();
-		TAUOutOfTemperatureRange = ((raw >> 7) & 0x1) > 0;
+		tauOutOfTemperatureRange = ((raw >> 7) & 0x1) > 0;
 		uCPCBOutOfTemperatureRange = ((raw >> 6) & 0x1) > 0;
 		uCESEPowerPCBOutOfTemp = ((raw >> 5) & 0x1) > 0;
 
-		Bus50VCurrentOutOfThreshold = ((raw >> 3) & 0x1) > 0;
-		BusEse33VCurrentOutOfThreshold = ((raw >> 2) & 0x1) > 0;
-		Bus50VVoltageOutOfThreshold = ((raw >> 1) & 0x1) > 0;
-		BusEse33VVoltageOutOfThreshold = (raw & 0x1) > 0;
+		bus50VCurrentOutOfThreshold = ((raw >> 3) & 0x1) > 0;
+		busEse33VCurrentOutOfThreshold = ((raw >> 2) & 0x1) > 0;
+		bus50VVoltageOutOfThreshold = ((raw >> 1) & 0x1) > 0;
+		busEse33VVoltageOutOfThreshold = (raw & 0x1) > 0;
 
 		// MWR_ERROR
 		raw = dis.readUnsignedByte();
-		WheelDriverFault = ((raw >> 7) & 0x1) > 0;
-		WheelDriverOverheat = ((raw >> 6) & 0x1) > 0;
-		WheelIF33VOverheat = ((raw >> 5) & 0x1) > 0;
-		WheelDriverOvercurrent = ((raw >> 4) & 0x1) > 0;
-		WheelIFOvercurrent = ((raw >> 3) & 0x1) > 0;
-		WheelIF15VOverheat = ((raw >> 2) & 0x1) > 0;
-		WheelOverCurrent = ((raw >> 1) & 0x1) > 0;
-		WDTRebootError = (raw & 0x1) > 0;
+		wheelDriverFault = ((raw >> 7) & 0x1) > 0;
+		wheelDriverOverheat = ((raw >> 6) & 0x1) > 0;
+		wheelIF33VOverheat = ((raw >> 5) & 0x1) > 0;
+		wheelDriverOvercurrent = ((raw >> 4) & 0x1) > 0;
+		wheelIFOvercurrent = ((raw >> 3) & 0x1) > 0;
+		wheelIF15VOverheat = ((raw >> 2) & 0x1) > 0;
+		wheelOverCurrent = ((raw >> 1) & 0x1) > 0;
+		wdtRebootError = (raw & 0x1) > 0;
 
 		raw = dis.readUnsignedByte();
-		RTEMSError = ((raw >> 7) & 0x1) > 0;
-		WheelDriverSerialError = ((raw >> 6) & 0x1) > 0;
-		MwrStandBy = ((raw >> 5) & 0x1) > 0;
-		WheelAngularVelocityError = ((raw >> 4) & 0x1) > 0;
-		InitError = ((raw >> 3) & 0x1) > 0;
+		rtemsError = ((raw >> 7) & 0x1) > 0;
+		wheelDriverSerialError = ((raw >> 6) & 0x1) > 0;
+		mwrStandBy = ((raw >> 5) & 0x1) > 0;
+		wheelAngularVelocityError = ((raw >> 4) & 0x1) > 0;
+		initError = ((raw >> 3) & 0x1) > 0;
 
 		// MWM_STATUS
 		raw = dis.readUnsignedByte();
@@ -290,50 +290,50 @@ public class Type1 {
 		mwmStatus = MwmStatus.valueOfCode(raw & 0b1111);
 
 		raw = dis.readUnsignedByte();
-		MwmBootLoaderOk = ((raw >> 7) & 0x1) > 0;
-		Memory1Ok = ((raw >> 6) & 0x1) > 0;
-		Memory2Ok = ((raw >> 5) & 0x1) > 0;
-		MemoryPreference = ((raw >> 4) & 0x1) > 0;
+		mwmBootLoaderOk = ((raw >> 7) & 0x1) > 0;
+		memory1Ok = ((raw >> 6) & 0x1) > 0;
+		memory2Ok = ((raw >> 5) & 0x1) > 0;
+		memoryPreference = ((raw >> 4) & 0x1) > 0;
 
 		raw = dis.readUnsignedByte();
-		OvertemperatureError = ((raw >> 6) & 0x1) > 0;
-		TemperatureError = ((raw >> 5) & 0x1) > 0;
-		TemperatureWarning = ((raw >> 4) & 0x1) > 0;
+		overtemperatureError = ((raw >> 6) & 0x1) > 0;
+		temperatureError = ((raw >> 5) & 0x1) > 0;
+		temperatureWarning = ((raw >> 4) & 0x1) > 0;
 
-		EERestored = ((raw >> 2) & 0x1) > 0;
-		EEWriteError = ((raw >> 1) & 0x1) > 0;
-		EEReadError = (raw & 0x1) > 0;
+		eeRestored = ((raw >> 2) & 0x1) > 0;
+		eeWriteError = ((raw >> 1) & 0x1) > 0;
+		eeReadError = (raw & 0x1) > 0;
 
-		MMMFailCode = new MmError(dis);
-		MMRFailCode = new MmError(dis);
+		mmmFailCode = new MmError(dis);
+		mmrFailCode = new MmError(dis);
 
-		MTMFailCode = new MtError(dis);
-		MTRFailCode = new MtError(dis);
+		mtmFailCode = new MtError(dis);
+		mtrFailCode = new MtError(dis);
 
-		TMTCRedundantTransmitterSTATUS2 = new TtTxStatus(dis);
-		TTRErrorCondition2 = new TtError(dis);
+		tmtcRedundantTransmitterSTATUS2 = new TtTxStatus(dis);
+		ttrErrorCondition2 = new TtError(dis);
 	}
 
-	public ObdMode getOBD_MODE() {
-		return OBD_MODE;
+	public ObdMode getObdMode() {
+		return obdMode;
 	}
 
-	public void setOBD_MODE(ObdMode oBD_MODE) {
-		OBD_MODE = oBD_MODE;
+	public void setObdMode(ObdMode obdMode) {
+		this.obdMode = obdMode;
 	}
 
-	public int getOBD_ACTIVE_TASK() {
-		return OBD_ACTIVE_TASK;
+	public int getObdActiveTask() {
+		return obdActiveTask;
 	}
 
-	public void setOBD_ACTIVE_TASK(int oBD_ACTIVE_TASK) {
-		OBD_ACTIVE_TASK = oBD_ACTIVE_TASK;
+	public void setObdActiveTask(int obdActiveTask) {
+		this.obdActiveTask = obdActiveTask;
 	}
 
 	public EquipmentStatus getEquipmentStatus() {
 		return equipmentStatus;
 	}
-	
+
 	public void setEquipmentStatus(EquipmentStatus equipmentStatus) {
 		this.equipmentStatus = equipmentStatus;
 	}
@@ -341,55 +341,55 @@ public class Type1 {
 	public CpuError getCpuError() {
 		return cpuError;
 	}
-	
+
 	public void setCpuError(CpuError cpuError) {
 		this.cpuError = cpuError;
 	}
 
-	public long getOBD_CAN_TIMEOUT_ERROR() {
-		return OBD_CAN_TIMEOUT_ERROR;
+	public long getObdCanTimeoutError() {
+		return obdCanTimeoutError;
 	}
 
-	public void setOBD_CAN_TIMEOUT_ERROR(long oBD_CAN_TIMEOUT_ERROR) {
-		OBD_CAN_TIMEOUT_ERROR = oBD_CAN_TIMEOUT_ERROR;
+	public void setObdCanTimeoutError(long obdCanTimeoutError) {
+		this.obdCanTimeoutError = obdCanTimeoutError;
 	}
 
-	public int getOBD_WD_RESET_COUNT() {
-		return OBD_WD_RESET_COUNT;
+	public int getObdWdResetCount() {
+		return obdWdResetCount;
 	}
 
-	public void setOBD_WD_RESET_COUNT(int oBD_WD_RESET_COUNT) {
-		OBD_WD_RESET_COUNT = oBD_WD_RESET_COUNT;
+	public void setObdWdResetCount(int obdWdResetCount) {
+		this.obdWdResetCount = obdWdResetCount;
 	}
 
-	public int getOBD_RS422M_ERR_COUNT() {
-		return OBD_RS422M_ERR_COUNT;
+	public int getObdRs422mErrCount() {
+		return obdRs422mErrCount;
 	}
 
-	public void setOBD_RS422M_ERR_COUNT(int oBD_RS422M_ERR_COUNT) {
-		OBD_RS422M_ERR_COUNT = oBD_RS422M_ERR_COUNT;
+	public void setObdRs422mErrCount(int obdRs422mErrCount) {
+		this.obdRs422mErrCount = obdRs422mErrCount;
 	}
 
-	public int getOBD_RS422R_ERR_COUNT() {
-		return OBD_RS422R_ERR_COUNT;
+	public int getObdRs422RErrCount() {
+		return obdRs422RErrCount;
 	}
 
-	public void setOBD_RS422R_ERR_COUNT(int oBD_RS422R_ERR_COUNT) {
-		OBD_RS422R_ERR_COUNT = oBD_RS422R_ERR_COUNT;
+	public void setObdRs422RErrCount(int obdRs422RErrCount) {
+		this.obdRs422RErrCount = obdRs422RErrCount;
 	}
 
-	public int getOBD_ERROR_COUNT() {
-		return OBD_ERROR_COUNT;
+	public int getObdErrorCount() {
+		return obdErrorCount;
 	}
 
-	public void setOBD_ERROR_COUNT(int oBD_ERROR_COUNT) {
-		OBD_ERROR_COUNT = oBD_ERROR_COUNT;
+	public void setObdErrorCount(int obdErrorCount) {
+		this.obdErrorCount = obdErrorCount;
 	}
 
 	public TcError1 getTcError1() {
 		return tcError1;
 	}
-	
+
 	public void setTcError1(TcError1 tcError1) {
 		this.tcError1 = tcError1;
 	}
@@ -397,7 +397,7 @@ public class Type1 {
 	public TcError2 getTcError2() {
 		return tcError2;
 	}
-	
+
 	public void setTcError2(TcError2 tcError2) {
 		this.tcError2 = tcError2;
 	}
@@ -405,7 +405,7 @@ public class Type1 {
 	public Rs422Status getRs422Status() {
 		return rs422Status;
 	}
-	
+
 	public void setRs422Status(Rs422Status rs422Status) {
 		this.rs422Status = rs422Status;
 	}
@@ -413,15 +413,15 @@ public class Type1 {
 	public Rs422Error getRs422Error() {
 		return rs422Error;
 	}
-	
+
 	public void setRs422Error(Rs422Error rs422Error) {
 		this.rs422Error = rs422Error;
 	}
-	
+
 	public Rs485Status getRs485Status() {
 		return rs485Status;
 	}
-	
+
 	public void setRs485Status(Rs485Status rs485Status) {
 		this.rs485Status = rs485Status;
 	}
@@ -429,7 +429,7 @@ public class Type1 {
 	public Rs485Error getRs485Error() {
 		return rs485Error;
 	}
-	
+
 	public void setRs485Error(Rs485Error rs485Error) {
 		this.rs485Error = rs485Error;
 	}
@@ -437,105 +437,105 @@ public class Type1 {
 	public ObdStatus getObdStatus() {
 		return obdStatus;
 	}
-	
+
 	public void setObdStatus(ObdStatus obdStatus) {
 		this.obdStatus = obdStatus;
 	}
 
-	public AcsState getACS_STATE() {
-		return ACS_STATE;
+	public AcsState getAcsState() {
+		return acsState;
 	}
 
-	public void setACS_STATE(AcsState aCS_STATE) {
-		ACS_STATE = aCS_STATE;
+	public void setAcsState(AcsState acsState) {
+		this.acsState = acsState;
 	}
 
-	public float getACS_OMEGA_P() {
-		return ACS_OMEGA_P;
+	public float getAcsOmegaP() {
+		return acsOmegaP;
 	}
 
-	public void setACS_OMEGA_P(float aCS_OMEGA_P) {
-		ACS_OMEGA_P = aCS_OMEGA_P;
+	public void setAcsOmegaP(float acsOmegaP) {
+		this.acsOmegaP = acsOmegaP;
 	}
 
-	public float getACS_OMEGA_Q() {
-		return ACS_OMEGA_Q;
+	public float getAcsOmegaQ() {
+		return acsOmegaQ;
 	}
 
-	public void setACS_OMEGA_Q(float aCS_OMEGA_Q) {
-		ACS_OMEGA_Q = aCS_OMEGA_Q;
+	public void setAcsOmegaQ(float acsOmegaQ) {
+		this.acsOmegaQ = acsOmegaQ;
 	}
 
-	public float getACS_OMEGA_R() {
-		return ACS_OMEGA_R;
+	public float getAcsOmegaR() {
+		return acsOmegaR;
 	}
 
-	public void setACS_OMEGA_R(float aCS_OMEGA_R) {
-		ACS_OMEGA_R = aCS_OMEGA_R;
+	public void setAcsOmegaR(float acsOmegaR) {
+		this.acsOmegaR = acsOmegaR;
 	}
 
-	public short getPM_Current_Bp1() {
-		return PM_Current_Bp1;
+	public short getPmCurrentBp1() {
+		return pmCurrentBp1;
 	}
 
-	public void setPM_Current_Bp1(short pM_Current_Bp1) {
-		PM_Current_Bp1 = pM_Current_Bp1;
+	public void setPmCurrentBp1(short pmCurrentBp1) {
+		this.pmCurrentBp1 = pmCurrentBp1;
 	}
 
-	public short getPM_Current_Bp2() {
-		return PM_Current_Bp2;
+	public short getPmCurrentBp2() {
+		return pmCurrentBp2;
 	}
 
-	public void setPM_Current_Bp2(short pM_Current_Bp2) {
-		PM_Current_Bp2 = pM_Current_Bp2;
+	public void setPmCurrentBp2(short pmCurrentBp2) {
+		this.pmCurrentBp2 = pmCurrentBp2;
 	}
 
-	public short getPM_Current_Bp3() {
-		return PM_Current_Bp3;
+	public short getPmCurrentBp3() {
+		return pmCurrentBp3;
 	}
 
-	public void setPM_Current_Bp3(short pM_Current_Bp3) {
-		PM_Current_Bp3 = pM_Current_Bp3;
+	public void setPmCurrentBp3(short pmCurrentBp3) {
+		this.pmCurrentBp3 = pmCurrentBp3;
 	}
 
-	public short getPM_Current_Bp4() {
-		return PM_Current_Bp4;
+	public short getPmCurrentBp4() {
+		return pmCurrentBp4;
 	}
 
-	public void setPM_Current_Bp4(short pM_Current_Bp4) {
-		PM_Current_Bp4 = pM_Current_Bp4;
+	public void setPmCurrentBp4(short pmCurrentBp4) {
+		this.pmCurrentBp4 = pmCurrentBp4;
 	}
 
-	public short getPM_Current_Bp5() {
-		return PM_Current_Bp5;
+	public short getPmCurrentBp5() {
+		return pmCurrentBp5;
 	}
 
-	public void setPM_Current_Bp5(short pM_Current_Bp5) {
-		PM_Current_Bp5 = pM_Current_Bp5;
+	public void setPmCurrentBp5(short pmCurrentBp5) {
+		this.pmCurrentBp5 = pmCurrentBp5;
 	}
 
-	public short getPM_Current_Bp6() {
-		return PM_Current_Bp6;
+	public short getPmCurrentBp6() {
+		return pmCurrentBp6;
 	}
 
-	public void setPM_Current_Bp6(short pM_Current_Bp6) {
-		PM_Current_Bp6 = pM_Current_Bp6;
+	public void setPmCurrentBp6(short pmCurrentBp6) {
+		this.pmCurrentBp6 = pmCurrentBp6;
 	}
 
-	public int getPM_Voltage_Mb() {
-		return PM_Voltage_Mb;
+	public int getPmVoltageMb() {
+		return pmVoltageMb;
 	}
 
-	public void setPM_Voltage_Mb(int pM_Voltage_Mb) {
-		PM_Voltage_Mb = pM_Voltage_Mb;
+	public void setPmVoltageMb(int pmVoltageMb) {
+		this.pmVoltageMb = pmVoltageMb;
 	}
 
-	public int getPM_SAFE_OPERATING_MODE() {
-		return PM_SAFE_OPERATING_MODE;
+	public int getPmSafeOperatingMode() {
+		return pmSafeOperatingMode;
 	}
 
-	public void setPM_SAFE_OPERATING_MODE(int pM_SAFE_OPERATING_MODE) {
-		PM_SAFE_OPERATING_MODE = pM_SAFE_OPERATING_MODE;
+	public void setPmSafeOperatingMode(int pmSafeOperatingMode) {
+		this.pmSafeOperatingMode = pmSafeOperatingMode;
 	}
 
 	public PmmError1 getPmmError1() {
@@ -546,52 +546,52 @@ public class Type1 {
 		this.pmmError1 = pmmError1;
 	}
 
-	public TtTxStatus getTMTCMainTransmitterSTATUS() {
-		return TMTCMainTransmitterSTATUS;
+	public TtTxStatus getTmtcMainTransmitterSTATUS() {
+		return tmtcMainTransmitterSTATUS;
 	}
 
-	public void setTMTCMainTransmitterSTATUS(TtTxStatus tMTCMainTransmitterSTATUS) {
-		TMTCMainTransmitterSTATUS = tMTCMainTransmitterSTATUS;
+	public void setTmtcMainTransmitterSTATUS(TtTxStatus tmtcMainTransmitterSTATUS) {
+		this.tmtcMainTransmitterSTATUS = tmtcMainTransmitterSTATUS;
 	}
 
-	public TtError getTTMErrorCondition() {
-		return TTMErrorCondition;
+	public TtError getTtmErrorCondition() {
+		return ttmErrorCondition;
 	}
 
-	public void setTTMErrorCondition(TtError tTMErrorCondition) {
-		TTMErrorCondition = tTMErrorCondition;
+	public void setTtmErrorCondition(TtError ttmErrorCondition) {
+		this.ttmErrorCondition = ttmErrorCondition;
 	}
 
-	public PlatformFdir getTTMFDIRPlatformStatus() {
-		return TTMFDIRPlatformStatus;
+	public PlatformFdir getTtmfdirPlatformStatus() {
+		return ttmfdirPlatformStatus;
 	}
 
-	public void setTTMFDIRPlatformStatus(PlatformFdir tTMFDIRPlatformStatus) {
-		TTMFDIRPlatformStatus = tTMFDIRPlatformStatus;
+	public void setTtmfdirPlatformStatus(PlatformFdir ttmfdirPlatformStatus) {
+		this.ttmfdirPlatformStatus = ttmfdirPlatformStatus;
 	}
 
-	public TtTxStatus getTMTCRedundantTransmitterSTATUS() {
-		return TMTCRedundantTransmitterSTATUS;
+	public TtTxStatus getTmtcRedundantTransmitterSTATUS() {
+		return tmtcRedundantTransmitterSTATUS;
 	}
 
-	public void setTMTCRedundantTransmitterSTATUS(TtTxStatus tMTCRedundantTransmitterSTATUS) {
-		TMTCRedundantTransmitterSTATUS = tMTCRedundantTransmitterSTATUS;
+	public void setTmtcRedundantTransmitterSTATUS(TtTxStatus tmtcRedundantTransmitterSTATUS) {
+		this.tmtcRedundantTransmitterSTATUS = tmtcRedundantTransmitterSTATUS;
 	}
 
-	public TtError getTTRErrorCondition() {
-		return TTRErrorCondition;
+	public TtError getTtrErrorCondition() {
+		return ttrErrorCondition;
 	}
 
-	public void setTTRErrorCondition(TtError tTRErrorCondition) {
-		TTRErrorCondition = tTRErrorCondition;
+	public void setTtrErrorCondition(TtError ttrErrorCondition) {
+		this.ttrErrorCondition = ttrErrorCondition;
 	}
 
-	public PlatformFdir getTTRFDIRPlatformStatus() {
-		return TTRFDIRPlatformStatus;
+	public PlatformFdir getTtrfdirPlatformStatus() {
+		return ttrfdirPlatformStatus;
 	}
 
-	public void setTTRFDIRPlatformStatus(PlatformFdir tTRFDIRPlatformStatus) {
-		TTRFDIRPlatformStatus = tTRFDIRPlatformStatus;
+	public void setTtrfdirPlatformStatus(PlatformFdir ttrfdirPlatformStatus) {
+		this.ttrfdirPlatformStatus = ttrfdirPlatformStatus;
 	}
 
 	public SsmAdcChannelStatus[] getAdc1() {
@@ -611,35 +611,35 @@ public class Type1 {
 	}
 
 	public boolean isChannelAFailSSKO() {
-		return ChannelAFailSSKO;
+		return channelAFailSSKO;
 	}
 
 	public void setChannelAFailSSKO(boolean channelAFailSSKO) {
-		ChannelAFailSSKO = channelAFailSSKO;
+		this.channelAFailSSKO = channelAFailSSKO;
 	}
 
 	public boolean isChannelBFailSSKO() {
-		return ChannelBFailSSKO;
+		return channelBFailSSKO;
 	}
 
 	public void setChannelBFailSSKO(boolean channelBFailSSKO) {
-		ChannelBFailSSKO = channelBFailSSKO;
+		this.channelBFailSSKO = channelBFailSSKO;
 	}
 
 	public boolean isChannelCFailSSKO() {
-		return ChannelCFailSSKO;
+		return channelCFailSSKO;
 	}
 
 	public void setChannelCFailSSKO(boolean channelCFailSSKO) {
-		ChannelCFailSSKO = channelCFailSSKO;
+		this.channelCFailSSKO = channelCFailSSKO;
 	}
 
 	public boolean isChannelDFailSSKO() {
-		return ChannelDFailSSKO;
+		return channelDFailSSKO;
 	}
 
 	public void setChannelDFailSSKO(boolean channelDFailSSKO) {
-		ChannelDFailSSKO = channelDFailSSKO;
+		this.channelDFailSSKO = channelDFailSSKO;
 	}
 
 	public SsmStatus getSsmStatus() {
@@ -658,68 +658,68 @@ public class Type1 {
 		this.uCPCBOutOfTemp = uCPCBOutOfTemp;
 	}
 
-	public boolean isADC1PCBOutOfTemp() {
-		return ADC1PCBOutOfTemp;
+	public boolean isAdc1PCBOutOfTemp() {
+		return adc1PCBOutOfTemp;
 	}
 
-	public void setADC1PCBOutOfTemp(boolean aDC1PCBOutOfTemp) {
-		ADC1PCBOutOfTemp = aDC1PCBOutOfTemp;
+	public void setAdc1PCBOutOfTemp(boolean adc1pcbOutOfTemp) {
+		adc1PCBOutOfTemp = adc1pcbOutOfTemp;
 	}
 
-	public boolean isADC2PCBOutOfTemp() {
-		return ADC2PCBOutOfTemp;
+	public boolean isAdc2PCBOutOfTemp() {
+		return adc2PCBOutOfTemp;
 	}
 
-	public void setADC2PCBOutOfTemp(boolean aDC2PCBOutOfTemp) {
-		ADC2PCBOutOfTemp = aDC2PCBOutOfTemp;
+	public void setAdc2PCBOutOfTemp(boolean adc2pcbOutOfTemp) {
+		adc2PCBOutOfTemp = adc2pcbOutOfTemp;
 	}
 
-	public boolean isEXTCASEOutOfTemp() {
-		return EXTCASEOutOfTemp;
+	public boolean isExtCASEOutOfTemp() {
+		return extCASEOutOfTemp;
 	}
 
-	public void setEXTCASEOutOfTemp(boolean eXTCASEOutOfTemp) {
-		EXTCASEOutOfTemp = eXTCASEOutOfTemp;
+	public void setExtCASEOutOfTemp(boolean extCASEOutOfTemp) {
+		this.extCASEOutOfTemp = extCASEOutOfTemp;
 	}
 
-	public boolean isDCDCOutOfTemp() {
-		return DCDCOutOfTemp;
+	public boolean isDcdcOutOfTemp() {
+		return dcdcOutOfTemp;
 	}
 
-	public void setDCDCOutOfTemp(boolean dCDCOutOfTemp) {
-		DCDCOutOfTemp = dCDCOutOfTemp;
+	public void setDcdcOutOfTemp(boolean dcdcOutOfTemp) {
+		this.dcdcOutOfTemp = dcdcOutOfTemp;
 	}
 
 	public boolean isBus478VCurrentOutOfThreshold() {
-		return Bus478VCurrentOutOfThreshold;
+		return bus478VCurrentOutOfThreshold;
 	}
 
 	public void setBus478VCurrentOutOfThreshold(boolean bus478vCurrentOutOfThreshold) {
-		Bus478VCurrentOutOfThreshold = bus478vCurrentOutOfThreshold;
+		bus478VCurrentOutOfThreshold = bus478vCurrentOutOfThreshold;
 	}
 
 	public boolean isBus33VCurrentOutOfThreshold() {
-		return Bus33VCurrentOutOfThreshold;
+		return bus33VCurrentOutOfThreshold;
 	}
 
 	public void setBus33VCurrentOutOfThreshold(boolean bus33vCurrentOutOfThreshold) {
-		Bus33VCurrentOutOfThreshold = bus33vCurrentOutOfThreshold;
+		bus33VCurrentOutOfThreshold = bus33vCurrentOutOfThreshold;
 	}
 
 	public boolean isBus478VVoltageOutOfThreshold() {
-		return Bus478VVoltageOutOfThreshold;
+		return bus478VVoltageOutOfThreshold;
 	}
 
 	public void setBus478VVoltageOutOfThreshold(boolean bus478vVoltageOutOfThreshold) {
-		Bus478VVoltageOutOfThreshold = bus478vVoltageOutOfThreshold;
+		bus478VVoltageOutOfThreshold = bus478vVoltageOutOfThreshold;
 	}
 
 	public boolean isBus33VVoltageOutOfThreshold() {
-		return Bus33VVoltageOutOfThreshold;
+		return bus33VVoltageOutOfThreshold;
 	}
 
 	public void setBus33VVoltageOutOfThreshold(boolean bus33vVoltageOutOfThreshold) {
-		Bus33VVoltageOutOfThreshold = bus33vVoltageOutOfThreshold;
+		bus33VVoltageOutOfThreshold = bus33vVoltageOutOfThreshold;
 	}
 
 	public boolean[] getAdc1ChannelXUsable() {
@@ -738,36 +738,36 @@ public class Type1 {
 		this.adc2ChannelXUsable = adc2ChannelXUsable;
 	}
 
-	public boolean isTAUInternalError() {
-		return TAUInternalError;
+	public boolean istAUInternalError() {
+		return tAUInternalError;
 	}
 
-	public void setTAUInternalError(boolean tAUInternalError) {
-		TAUInternalError = tAUInternalError;
+	public void settAUInternalError(boolean tAUInternalError) {
+		this.tAUInternalError = tAUInternalError;
 	}
 
-	public boolean isTAUTimeoutError() {
-		return TAUTimeoutError;
+	public boolean istAUTimeoutError() {
+		return tAUTimeoutError;
 	}
 
-	public void setTAUTimeoutError(boolean tAUTimeoutError) {
-		TAUTimeoutError = tAUTimeoutError;
+	public void settAUTimeoutError(boolean tAUTimeoutError) {
+		this.tAUTimeoutError = tAUTimeoutError;
 	}
 
-	public boolean isTAUEdgeDetectionError() {
-		return TAUEdgeDetectionError;
+	public boolean istAUEdgeDetectionError() {
+		return tAUEdgeDetectionError;
 	}
 
-	public void setTAUEdgeDetectionError(boolean tAUEdgeDetectionError) {
-		TAUEdgeDetectionError = tAUEdgeDetectionError;
+	public void settAUEdgeDetectionError(boolean tAUEdgeDetectionError) {
+		this.tAUEdgeDetectionError = tAUEdgeDetectionError;
 	}
 
 	public boolean isEseStandBy() {
-		return EseStandBy;
+		return eseStandBy;
 	}
 
 	public void setEseStandBy(boolean eseStandBy) {
-		EseStandBy = eseStandBy;
+		this.eseStandBy = eseStandBy;
 	}
 
 	public EseStatus getEseStatus() {
@@ -778,20 +778,20 @@ public class Type1 {
 		this.eseStatus = eseStatus;
 	}
 
-	public boolean isESEInitError() {
-		return ESEInitError;
+	public boolean isEseInitError() {
+		return eseInitError;
 	}
 
-	public void setESEInitError(boolean eSEInitError) {
-		ESEInitError = eSEInitError;
+	public void setEseInitError(boolean eseInitError) {
+		this.eseInitError = eseInitError;
 	}
 
-	public boolean isTAUOutOfTemperatureRange() {
-		return TAUOutOfTemperatureRange;
+	public boolean isTauOutOfTemperatureRange() {
+		return tauOutOfTemperatureRange;
 	}
 
-	public void setTAUOutOfTemperatureRange(boolean tAUOutOfTemperatureRange) {
-		TAUOutOfTemperatureRange = tAUOutOfTemperatureRange;
+	public void setTauOutOfTemperatureRange(boolean tauOutOfTemperatureRange) {
+		this.tauOutOfTemperatureRange = tauOutOfTemperatureRange;
 	}
 
 	public boolean isuCPCBOutOfTemperatureRange() {
@@ -811,139 +811,139 @@ public class Type1 {
 	}
 
 	public boolean isBus50VCurrentOutOfThreshold() {
-		return Bus50VCurrentOutOfThreshold;
+		return bus50VCurrentOutOfThreshold;
 	}
 
 	public void setBus50VCurrentOutOfThreshold(boolean bus50vCurrentOutOfThreshold) {
-		Bus50VCurrentOutOfThreshold = bus50vCurrentOutOfThreshold;
+		bus50VCurrentOutOfThreshold = bus50vCurrentOutOfThreshold;
 	}
 
 	public boolean isBusEse33VCurrentOutOfThreshold() {
-		return BusEse33VCurrentOutOfThreshold;
+		return busEse33VCurrentOutOfThreshold;
 	}
 
 	public void setBusEse33VCurrentOutOfThreshold(boolean busEse33VCurrentOutOfThreshold) {
-		BusEse33VCurrentOutOfThreshold = busEse33VCurrentOutOfThreshold;
+		this.busEse33VCurrentOutOfThreshold = busEse33VCurrentOutOfThreshold;
 	}
 
 	public boolean isBus50VVoltageOutOfThreshold() {
-		return Bus50VVoltageOutOfThreshold;
+		return bus50VVoltageOutOfThreshold;
 	}
 
 	public void setBus50VVoltageOutOfThreshold(boolean bus50vVoltageOutOfThreshold) {
-		Bus50VVoltageOutOfThreshold = bus50vVoltageOutOfThreshold;
+		bus50VVoltageOutOfThreshold = bus50vVoltageOutOfThreshold;
 	}
 
 	public boolean isBusEse33VVoltageOutOfThreshold() {
-		return BusEse33VVoltageOutOfThreshold;
+		return busEse33VVoltageOutOfThreshold;
 	}
 
 	public void setBusEse33VVoltageOutOfThreshold(boolean busEse33VVoltageOutOfThreshold) {
-		BusEse33VVoltageOutOfThreshold = busEse33VVoltageOutOfThreshold;
+		this.busEse33VVoltageOutOfThreshold = busEse33VVoltageOutOfThreshold;
 	}
 
 	public boolean isWheelDriverFault() {
-		return WheelDriverFault;
+		return wheelDriverFault;
 	}
 
 	public void setWheelDriverFault(boolean wheelDriverFault) {
-		WheelDriverFault = wheelDriverFault;
+		this.wheelDriverFault = wheelDriverFault;
 	}
 
 	public boolean isWheelDriverOverheat() {
-		return WheelDriverOverheat;
+		return wheelDriverOverheat;
 	}
 
 	public void setWheelDriverOverheat(boolean wheelDriverOverheat) {
-		WheelDriverOverheat = wheelDriverOverheat;
+		this.wheelDriverOverheat = wheelDriverOverheat;
 	}
 
 	public boolean isWheelIF33VOverheat() {
-		return WheelIF33VOverheat;
+		return wheelIF33VOverheat;
 	}
 
 	public void setWheelIF33VOverheat(boolean wheelIF33VOverheat) {
-		WheelIF33VOverheat = wheelIF33VOverheat;
+		this.wheelIF33VOverheat = wheelIF33VOverheat;
 	}
 
 	public boolean isWheelDriverOvercurrent() {
-		return WheelDriverOvercurrent;
+		return wheelDriverOvercurrent;
 	}
 
 	public void setWheelDriverOvercurrent(boolean wheelDriverOvercurrent) {
-		WheelDriverOvercurrent = wheelDriverOvercurrent;
+		this.wheelDriverOvercurrent = wheelDriverOvercurrent;
 	}
 
 	public boolean isWheelIFOvercurrent() {
-		return WheelIFOvercurrent;
+		return wheelIFOvercurrent;
 	}
 
 	public void setWheelIFOvercurrent(boolean wheelIFOvercurrent) {
-		WheelIFOvercurrent = wheelIFOvercurrent;
+		this.wheelIFOvercurrent = wheelIFOvercurrent;
 	}
 
 	public boolean isWheelIF15VOverheat() {
-		return WheelIF15VOverheat;
+		return wheelIF15VOverheat;
 	}
 
 	public void setWheelIF15VOverheat(boolean wheelIF15VOverheat) {
-		WheelIF15VOverheat = wheelIF15VOverheat;
+		this.wheelIF15VOverheat = wheelIF15VOverheat;
 	}
 
 	public boolean isWheelOverCurrent() {
-		return WheelOverCurrent;
+		return wheelOverCurrent;
 	}
 
 	public void setWheelOverCurrent(boolean wheelOverCurrent) {
-		WheelOverCurrent = wheelOverCurrent;
+		this.wheelOverCurrent = wheelOverCurrent;
 	}
 
-	public boolean isWDTRebootError() {
-		return WDTRebootError;
+	public boolean isWdtRebootError() {
+		return wdtRebootError;
 	}
 
-	public void setWDTRebootError(boolean wDTRebootError) {
-		WDTRebootError = wDTRebootError;
+	public void setWdtRebootError(boolean wdtRebootError) {
+		this.wdtRebootError = wdtRebootError;
 	}
 
-	public boolean isRTEMSError() {
-		return RTEMSError;
+	public boolean isRtemsError() {
+		return rtemsError;
 	}
 
-	public void setRTEMSError(boolean rTEMSError) {
-		RTEMSError = rTEMSError;
+	public void setRtemsError(boolean rtemsError) {
+		this.rtemsError = rtemsError;
 	}
 
 	public boolean isWheelDriverSerialError() {
-		return WheelDriverSerialError;
+		return wheelDriverSerialError;
 	}
 
 	public void setWheelDriverSerialError(boolean wheelDriverSerialError) {
-		WheelDriverSerialError = wheelDriverSerialError;
+		this.wheelDriverSerialError = wheelDriverSerialError;
 	}
 
 	public boolean isMwrStandBy() {
-		return MwrStandBy;
+		return mwrStandBy;
 	}
 
 	public void setMwrStandBy(boolean mwrStandBy) {
-		MwrStandBy = mwrStandBy;
+		this.mwrStandBy = mwrStandBy;
 	}
 
 	public boolean isWheelAngularVelocityError() {
-		return WheelAngularVelocityError;
+		return wheelAngularVelocityError;
 	}
 
 	public void setWheelAngularVelocityError(boolean wheelAngularVelocityError) {
-		WheelAngularVelocityError = wheelAngularVelocityError;
+		this.wheelAngularVelocityError = wheelAngularVelocityError;
 	}
 
 	public boolean isInitError() {
-		return InitError;
+		return initError;
 	}
 
 	public void setInitError(boolean initError) {
-		InitError = initError;
+		this.initError = initError;
 	}
 
 	public boolean isMwmCondition() {
@@ -971,131 +971,131 @@ public class Type1 {
 	}
 
 	public boolean isMwmBootLoaderOk() {
-		return MwmBootLoaderOk;
+		return mwmBootLoaderOk;
 	}
 
 	public void setMwmBootLoaderOk(boolean mwmBootLoaderOk) {
-		MwmBootLoaderOk = mwmBootLoaderOk;
+		this.mwmBootLoaderOk = mwmBootLoaderOk;
 	}
 
 	public boolean isMemory1Ok() {
-		return Memory1Ok;
+		return memory1Ok;
 	}
 
 	public void setMemory1Ok(boolean memory1Ok) {
-		Memory1Ok = memory1Ok;
+		this.memory1Ok = memory1Ok;
 	}
 
 	public boolean isMemory2Ok() {
-		return Memory2Ok;
+		return memory2Ok;
 	}
 
 	public void setMemory2Ok(boolean memory2Ok) {
-		Memory2Ok = memory2Ok;
+		this.memory2Ok = memory2Ok;
 	}
 
 	public boolean isMemoryPreference() {
-		return MemoryPreference;
+		return memoryPreference;
 	}
 
 	public void setMemoryPreference(boolean memoryPreference) {
-		MemoryPreference = memoryPreference;
+		this.memoryPreference = memoryPreference;
 	}
 
 	public boolean isOvertemperatureError() {
-		return OvertemperatureError;
+		return overtemperatureError;
 	}
 
 	public void setOvertemperatureError(boolean overtemperatureError) {
-		OvertemperatureError = overtemperatureError;
+		this.overtemperatureError = overtemperatureError;
 	}
 
 	public boolean isTemperatureError() {
-		return TemperatureError;
+		return temperatureError;
 	}
 
 	public void setTemperatureError(boolean temperatureError) {
-		TemperatureError = temperatureError;
+		this.temperatureError = temperatureError;
 	}
 
 	public boolean isTemperatureWarning() {
-		return TemperatureWarning;
+		return temperatureWarning;
 	}
 
 	public void setTemperatureWarning(boolean temperatureWarning) {
-		TemperatureWarning = temperatureWarning;
+		this.temperatureWarning = temperatureWarning;
 	}
 
-	public boolean isEERestored() {
-		return EERestored;
+	public boolean isEeRestored() {
+		return eeRestored;
 	}
 
-	public void setEERestored(boolean eERestored) {
-		EERestored = eERestored;
+	public void setEeRestored(boolean eeRestored) {
+		this.eeRestored = eeRestored;
 	}
 
-	public boolean isEEWriteError() {
-		return EEWriteError;
+	public boolean isEeWriteError() {
+		return eeWriteError;
 	}
 
-	public void setEEWriteError(boolean eEWriteError) {
-		EEWriteError = eEWriteError;
+	public void setEeWriteError(boolean eeWriteError) {
+		this.eeWriteError = eeWriteError;
 	}
 
-	public boolean isEEReadError() {
-		return EEReadError;
+	public boolean isEeReadError() {
+		return eeReadError;
 	}
 
-	public void setEEReadError(boolean eEReadError) {
-		EEReadError = eEReadError;
+	public void setEeReadError(boolean eeReadError) {
+		this.eeReadError = eeReadError;
 	}
 
-	public MmError getMMMFailCode() {
-		return MMMFailCode;
+	public MmError getMmmFailCode() {
+		return mmmFailCode;
 	}
 
-	public void setMMMFailCode(MmError mMMFailCode) {
-		MMMFailCode = mMMFailCode;
+	public void setMmmFailCode(MmError mmmFailCode) {
+		this.mmmFailCode = mmmFailCode;
 	}
 
-	public MmError getMMRFailCode() {
-		return MMRFailCode;
+	public MmError getMmrFailCode() {
+		return mmrFailCode;
 	}
 
-	public void setMMRFailCode(MmError mMRFailCode) {
-		MMRFailCode = mMRFailCode;
+	public void setMmrFailCode(MmError mmrFailCode) {
+		this.mmrFailCode = mmrFailCode;
 	}
 
-	public MtError getMTMFailCode() {
-		return MTMFailCode;
+	public MtError getMtmFailCode() {
+		return mtmFailCode;
 	}
 
-	public void setMTMFailCode(MtError mTMFailCode) {
-		MTMFailCode = mTMFailCode;
+	public void setMtmFailCode(MtError mtmFailCode) {
+		this.mtmFailCode = mtmFailCode;
 	}
 
-	public MtError getMTRFailCode() {
-		return MTRFailCode;
+	public MtError getMtrFailCode() {
+		return mtrFailCode;
 	}
 
-	public void setMTRFailCode(MtError mTRFailCode) {
-		MTRFailCode = mTRFailCode;
+	public void setMtrFailCode(MtError mtrFailCode) {
+		this.mtrFailCode = mtrFailCode;
 	}
 
-	public TtTxStatus getTMTCRedundantTransmitterSTATUS2() {
-		return TMTCRedundantTransmitterSTATUS2;
+	public TtTxStatus getTmtcRedundantTransmitterSTATUS2() {
+		return tmtcRedundantTransmitterSTATUS2;
 	}
 
-	public void setTMTCRedundantTransmitterSTATUS2(TtTxStatus tMTCRedundantTransmitterSTATUS2) {
-		TMTCRedundantTransmitterSTATUS2 = tMTCRedundantTransmitterSTATUS2;
+	public void setTmtcRedundantTransmitterSTATUS2(TtTxStatus tmtcRedundantTransmitterSTATUS2) {
+		this.tmtcRedundantTransmitterSTATUS2 = tmtcRedundantTransmitterSTATUS2;
 	}
 
-	public TtError getTTRErrorCondition2() {
-		return TTRErrorCondition2;
+	public TtError getTtrErrorCondition2() {
+		return ttrErrorCondition2;
 	}
 
-	public void setTTRErrorCondition2(TtError tTRErrorCondition2) {
-		TTRErrorCondition2 = tTRErrorCondition2;
+	public void setTtrErrorCondition2(TtError ttrErrorCondition2) {
+		this.ttrErrorCondition2 = ttrErrorCondition2;
 	}
 
 }
