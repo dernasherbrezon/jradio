@@ -7,1173 +7,1173 @@ import ru.r2cloud.jradio.util.LittleEndianDataInputStream;
 
 public class Type2 {
 
-	private int PM_VOLTAGE_SP1_STRING_1_2; // Voltage of a single string of the solar panel 1
-	private int PM_VOLTAGE_SP1_STRING_3_4; // Voltage of a single string of the solar panel 1
-	private int PM_VOLTAGE_SP2_STRING_1_2; // Voltage of a single string of the solar panel 1
-	private int PM_VOLTAGE_SP2_STRING_3_4; // Voltage of a single string of the solar panel 1
-	private int PM_VOLTAGE_SP3_STRING_1_2; // Voltage of a single string of the solar panel 2
-	private int PM_VOLTAGE_SP3_STRING_3_4; // Voltage of a single string of the solar panel 2
-	private int PM_Shunt_section_1; // Current of shunt section 1
-	private int PM_Shunt_section_2; // Current of shunt section 2
-	private int PM_Shunt_section_3; // Current of shunt section 3
-	private int PM_Shunt_section_4; // Current of shunt section 4
-	private int PM_Shunt_section_5; // Current of shunt section 5
-	private int PM_Shunt_section_6; // Current of shunt section 6
-	private float PM_Temp_Sp1_Sens_1; // Temperature of the solar panel 1
-	private float PM_Temp_Sp2_Sens_1; // Temperature of the solar panel 2
-	private float PM_Temp_Sp3_Sens_1; // Temperature of the solar panel 3
-	private short PM_Current_Bp1; // Current of the battery pack 1
-	private short PM_Current_Bp2; // Current of the battery pack 2
-	private short PM_Current_Bp3; // Current of the battery pack 3
-	private short PM_Current_Bp4; // Current of the battery pack 4
-	private short PM_Current_Bp5; // Current of the battery pack 5
-	private short PM_Current_Bp6; // Current of the battery pack 6
-	private float PM_Temp_Bp1_Sens_1; // Temperature of the battery pack 1
-	private float PM_Temp_Bp2_Sens_1; // Temperature of the battery pack 2
-	private float PM_Temp_Bp3_Sens_1; // Temperature of the battery pack 3
+	private int pmVoltageSp1String12; // Voltage of a single string of the solar panel 1
+	private int pmVoltageSp1String34; // Voltage of a single string of the solar panel 1
+	private int pmVoltageSp2String12; // Voltage of a single string of the solar panel 1
+	private int pmVoltageSp2String34; // Voltage of a single string of the solar panel 1
+	private int pmVoltageSp3String12; // Voltage of a single string of the solar panel 2
+	private int pmVoltageSp3String34; // Voltage of a single string of the solar panel 2
+	private int pmShuntSection1; // Current of shunt section 1
+	private int pmShuntSection2; // Current of shunt section 2
+	private int pmShuntSection3; // Current of shunt section 3
+	private int pmShuntSection4; // Current of shunt section 4
+	private int pmShuntSection5; // Current of shunt section 5
+	private int pmShuntSection6; // Current of shunt section 6
+	private float pmTempSp1Sens1; // Temperature of the solar panel 1
+	private float pmTempSp2Sens1; // Temperature of the solar panel 2
+	private float pmTempSp3Sens1; // Temperature of the solar panel 3
+	private short pmCurrentBp1; // Current of the battery pack 1
+	private short pmCurrentBp2; // Current of the battery pack 2
+	private short pmCurrentBp3; // Current of the battery pack 3
+	private short pmCurrentBp4; // Current of the battery pack 4
+	private short pmCurrentBp5; // Current of the battery pack 5
+	private short pmCurrentBp6; // Current of the battery pack 6
+	private float pmTempBp1Sens1; // Temperature of the battery pack 1
+	private float pmTempBp2Sens1; // Temperature of the battery pack 2
+	private float pmTempBp3Sens1; // Temperature of the battery pack 3
 
-	private float PM_Temp_Bp4_Sens_1; // Temperature of the battery pack 4
-	private float PM_Temp_Bp5_Sens_1; // Temperature of the battery pack 5
-	private float PM_Temp_Bp6_Sens_1; // Temperature of the battery pack 6
-	private int PM_Voltage_Mb; // Voltage of the Main Bus
+	private float pmTempBp4Sens1; // Temperature of the battery pack 4
+	private float pmTempBp5Sens1; // Temperature of the battery pack 5
+	private float pmTempBp6Sens1; // Temperature of the battery pack 6
+	private int pmVoltageMb; // Voltage of the Main Bus
 
-	private int PM_SAFE_OPERATING_MODE; // Operating mode of the power system
+	private int pmSafeOperatingMode; // Operating mode of the power system
 	// 0x00 No safe
 	// 0x01 Safe mode 1: minor main bus power down
 	// 0x02 Safe mode 2: severe main bus power down
 	// 0x04 Safe mode 3: critical main bus power down
 	// 0x08 Safe mode 4: silent main bus power down
 
-	private int PM_PDU_CONTROL; // PDU Control
+	private int pmPduControl; // PDU Control
 
-	private float PM_TEMP1; // Temperature of the power board - Sensor 1
-	private float PM_TEMP2; // Temperature of the power board - Sensor 2
-	private int PM_OBDH_MAIN_CURRENT; // Current drawn by OBDH main
-	private int PM_RX_MAIN_CURRENT; // Current drawn by the main RX
-	private int PM_TX_MAIN_CURRENT; // Current drawn by the main TX
-	private int PM_SS_MAIN_CURRENT; // Current drawn by the main Sun Sensor
-	private int PM_MM_MAIN_CURRENT; // Current drawn by the main magnetometer
-	private int PM_MW_MAIN_CURRENT; // Current drawn by the main Momentum Wheel
-	private int PM_MT_MAIN_CURRENT; // Current drawn by the main Magneto Torquer
-	private int PM_MPS_CURRENT; // Current drawn by MPS
-	private int PM_TRITEL_CURRENT; // Current drawn by TRITEL
-	private int PM_HSTX_CURRENT; // Current drawn by HSTX
-	private int PM_GPS_CURRENT; // Current drawn by GPS
-	private int PM_MPS_VALVE_M_CURRENT; // Current drawn by the MPS Start Valve main
-	private int PM_DOM_1_CURRENT; // Current drawn by the DOM actuator 1
-	private int PM_OBDH_RED_CURRENT; // Current drawn by OBDH redundant
-	private int PM_RX_RED_CURRENT; // Current drawn by the redundant RX
-	private int PM_TX_RED_CURRENT; // Current drawn by the redundant TX
-	private int PM_SS_RED_CURRENT; // Current drawn by the redundant Sun Sensor
-	private int PM_MM_RED_CURRENT; // Current drawn by the redundant magnetometer
-	private int PM_MW_RED_CURRENT; // Current drawn by the redundant Momentum Wheel
-	private int PM_MT_RED_CURRENT; // Current drawn by the redundant Magneto Torquer
-	private int PM_ES_CURRENT; // Current drawn by ES
-	private int PM_uCAM; // Current drawn by uCAM
-	private int PM_AMSAT_CURRENT; // Current drawn by the AMSAT payload
-	private int PM_LMP_CURRENT; // Current drawn by LMP
+	private float pmTemp1; // Temperature of the power board - Sensor 1
+	private float pmTemp2; // Temperature of the power board - Sensor 2
+	private int pmObdhMainCurrent; // Current drawn by OBDH main
+	private int pmRxMainCurrent; // Current drawn by the main RX
+	private int pmTxMainCurrent; // Current drawn by the main TX
+	private int pmSsMainCurrent; // Current drawn by the main Sun Sensor
+	private int pmMmMainCurrent; // Current drawn by the main magnetometer
+	private int pmMwMainCurrent; // Current drawn by the main Momentum Wheel
+	private int pmMtMainCurrent; // Current drawn by the main Magneto Torquer
+	private int pmMpsCurrent; // Current drawn by MPS
+	private int pmTritelCurrent; // Current drawn by TRITEL
+	private int pmHstxCurrent; // Current drawn by HSTX
+	private int pmGpsCurrent; // Current drawn by GPS
+	private int pmMpsValveMCurrent; // Current drawn by the MPS Start Valve main
+	private int pmDom1Current; // Current drawn by the DOM actuator 1
+	private int pmObdhRedCurrent; // Current drawn by OBDH redundant
+	private int pmRxRedCurrent; // Current drawn by the redundant RX
+	private int pmTxRedCurrent; // Current drawn by the redundant TX
+	private int pmSsRedCurrent; // Current drawn by the redundant Sun Sensor
+	private int pmMmRedCurrent; // Current drawn by the redundant magnetometer
+	private int pmMwRedCurrent; // Current drawn by the redundant Momentum Wheel
+	private int pmMtRedCurrent; // Current drawn by the redundant Magneto Torquer
+	private int pmEsCurrent; // Current drawn by ES
+	private int pmUCam; // Current drawn by uCAM
+	private int pmAmsatCurrent; // Current drawn by the AMSAT payload
+	private int pmLmpCurrent; // Current drawn by LMP
 
-	private boolean OBDHMain;
+	private boolean obdhMain;
 
-	private boolean TMTCMain;
-	private boolean TMTCRedundant;
-	private boolean SunSensorMain;
-	private boolean SunSensorRedundant;
-	private boolean EarthSensor;
-	private boolean MomentumWheelRedundant;
-	private boolean MomentumWheelMain;
-	private boolean MPS;
-	private boolean MagnetometerMain;
-	private boolean MagnetometerRedundant;
-	private boolean MagneticTorquerMain;
-	private boolean MagneticTorquerRedundant;
-	private boolean TRITEL;
-	private boolean LangmuirProbe;
-	private boolean PCAM;
-	private boolean AMSATUK;
-	private boolean STX;
-	private boolean GPSReceiver;
+	private boolean tmtcMain;
+	private boolean tmtcRedundant;
+	private boolean sunSensorMain;
+	private boolean sunSensorRedundant;
+	private boolean earthSensor;
+	private boolean momentumWheelRedundant;
+	private boolean momentumWheelMain;
+	private boolean mps;
+	private boolean magnetometerMain;
+	private boolean magnetometerRedundant;
+	private boolean magneticTorquerMain;
+	private boolean magneticTorquerRedundant;
+	private boolean tritel;
+	private boolean langmuirProbe;
+	private boolean pcam;
+	private boolean amsatUk;
+	private boolean stx;
+	private boolean gpsReceiver;
 
-	private boolean SCAM;
-	private boolean DeOrbitMechanism1;
-	private boolean OBDHRedundant;
-	private boolean HPAMain;
-	private boolean HPARedundant;
-	private boolean MPSValve1;
-	private boolean MPSValve12;
-	private boolean DeOrbitMechanism2;
+	private boolean scam;
+	private boolean deOrbitMechanism1;
+	private boolean obdhRedundant;
+	private boolean hpaMain;
+	private boolean hpaRedundant;
+	private boolean mpsValve1;
+	private boolean mpsValve12;
+	private boolean deOrbitMechanism2;
 
-	private PmmError1 pmERROR1;
+	private PmmError1 pmError1;
 
-	private boolean OBDHMainCurrentOutOfRange;
+	private boolean obdhMainCurrentOutOfRange;
 
-	private boolean TMTCRXMainCurrentOutOfRange;
-	private boolean TMTCRXRedundantCurrentOutOfRange;
-	private boolean SunSensorMainCurrentOutOfRange;
-	private boolean SunSensorRedundantCurrentOutOfRange;
-	private boolean EarthSensorCurrentOutOfRange;
-	private boolean MomentumWheelRedundantCurrentOutOfRange;
-	private boolean MomentumWheelMainCurrentOutOfRange;
-	private boolean MicropropulsionCurrentOutOfRange;
-	private boolean MagnetometerMainCurrentOutOfRange;
-	private boolean MagnetometerRedundantCurrentOutOfRange;
-	private boolean MagnetoTorquerMainCurrentOutOfRange;
-	private boolean MagnetoTorquerRedundantCurrentOutOfRange;
-	private boolean TRITELCurrentOutOfRange;
-	private boolean LMPCurrentOutOfRange;
-	private boolean uCAMCurrentOutOfRange;
-	private boolean AMSATCurrentOutOfRange;
-	private boolean STXCurrentOutOfRange;
-	private boolean GPSCurrentOutOfRange;
+	private boolean tmtcRxMainCurrentOutOfRange;
+	private boolean tmtcRxRedundantCurrentOutOfRange;
+	private boolean sunSensorMainCurrentOutOfRange;
+	private boolean sunSensorRedundantCurrentOutOfRange;
+	private boolean earthSensorCurrentOutOfRange;
+	private boolean momentumWheelRedundantCurrentOutOfRange;
+	private boolean momentumWheelMainCurrentOutOfRange;
+	private boolean micropropulsionCurrentOutOfRange;
+	private boolean magnetometerMainCurrentOutOfRange;
+	private boolean magnetometerRedundantCurrentOutOfRange;
+	private boolean magnetoTorquerMainCurrentOutOfRange;
+	private boolean magnetoTorquerRedundantCurrentOutOfRange;
+	private boolean tritelCurrentOutOfRange;
+	private boolean lmpCurrentOutOfRange;
+	private boolean ucamCurrentOutOfRange;
+	private boolean amsatCurrentOutOfRange;
+	private boolean stxCurrentOutOfRange;
+	private boolean gpsCurrentOutOfRange;
 
-	private boolean SCAMCurrentOutOfRange;
-	private boolean DeOrbitMechanism;
-	private boolean OBDHRedundantCurrentOutOfRange;
-	private boolean TXMainCurrentOutOfRange;
-	private boolean TXRedundantCurrentOutOfRange;
-	private boolean MicropropulsionStartValveCurrentOutOfRange;
-	private boolean MicropropulsionStartValveRedundantCurrentOutOfRange;
-	private boolean DOMActuator1CurrentOutOfRange;
-	private boolean DOMActuator2CurrentOutOfRange;
+	private boolean scamCurrentOutOfRange;
+	private boolean deOrbitMechanism;
+	private boolean obdhRedundantCurrentOutOfRange;
+	private boolean txMainCurrentOutOfRange;
+	private boolean txRedundantCurrentOutOfRange;
+	private boolean micropropulsionStartValveCurrentOutOfRange;
+	private boolean micropropulsionStartValveRedundantCurrentOutOfRange;
+	private boolean domActuator1CurrentOutOfRange;
+	private boolean domActuator2CurrentOutOfRange;
 
 	public Type2(DataInputStream source) throws IOException {
 		LittleEndianDataInputStream dis = new LittleEndianDataInputStream(source);
-		PM_VOLTAGE_SP1_STRING_1_2 = dis.readUnsignedShort();
-		PM_VOLTAGE_SP1_STRING_3_4 = dis.readUnsignedShort();
-		PM_VOLTAGE_SP2_STRING_1_2 = dis.readUnsignedShort();
-		PM_VOLTAGE_SP2_STRING_3_4 = dis.readUnsignedShort();
-		PM_VOLTAGE_SP3_STRING_1_2 = dis.readUnsignedShort();
-		PM_VOLTAGE_SP3_STRING_3_4 = dis.readUnsignedShort();
-		PM_Shunt_section_1 = dis.readUnsignedShort();
-		PM_Shunt_section_2 = dis.readUnsignedShort();
-		PM_Shunt_section_3 = dis.readUnsignedShort();
-		PM_Shunt_section_4 = dis.readUnsignedShort();
-		PM_Shunt_section_5 = dis.readUnsignedShort();
-		PM_Shunt_section_6 = dis.readUnsignedShort();
-		PM_Temp_Sp1_Sens_1 = dis.readShort() * 0.1f;
-		PM_Temp_Sp2_Sens_1 = dis.readShort() * 0.1f;
-		PM_Temp_Sp3_Sens_1 = dis.readShort() * 0.1f;
-		PM_Current_Bp1 = dis.readShort();
-		PM_Current_Bp2 = dis.readShort();
-		PM_Current_Bp3 = dis.readShort();
-		PM_Current_Bp4 = dis.readShort();
-		PM_Current_Bp5 = dis.readShort();
-		PM_Current_Bp6 = dis.readShort();
-		PM_Temp_Bp1_Sens_1 = dis.readShort() * 0.1f;
-		PM_Temp_Bp2_Sens_1 = dis.readShort() * 0.1f;
-		PM_Temp_Bp3_Sens_1 = dis.readShort() * 0.1f;
+		pmVoltageSp1String12 = dis.readUnsignedShort();
+		pmVoltageSp1String34 = dis.readUnsignedShort();
+		pmVoltageSp2String12 = dis.readUnsignedShort();
+		pmVoltageSp2String34 = dis.readUnsignedShort();
+		pmVoltageSp3String12 = dis.readUnsignedShort();
+		pmVoltageSp3String34 = dis.readUnsignedShort();
+		pmShuntSection1 = dis.readUnsignedShort();
+		pmShuntSection2 = dis.readUnsignedShort();
+		pmShuntSection3 = dis.readUnsignedShort();
+		pmShuntSection4 = dis.readUnsignedShort();
+		pmShuntSection5 = dis.readUnsignedShort();
+		pmShuntSection6 = dis.readUnsignedShort();
+		pmTempSp1Sens1 = dis.readShort() * 0.1f;
+		pmTempSp2Sens1 = dis.readShort() * 0.1f;
+		pmTempSp3Sens1 = dis.readShort() * 0.1f;
+		pmCurrentBp1 = dis.readShort();
+		pmCurrentBp2 = dis.readShort();
+		pmCurrentBp3 = dis.readShort();
+		pmCurrentBp4 = dis.readShort();
+		pmCurrentBp5 = dis.readShort();
+		pmCurrentBp6 = dis.readShort();
+		pmTempBp1Sens1 = dis.readShort() * 0.1f;
+		pmTempBp2Sens1 = dis.readShort() * 0.1f;
+		pmTempBp3Sens1 = dis.readShort() * 0.1f;
 
-		PM_Temp_Bp4_Sens_1 = dis.readShort() * 0.1f;
-		PM_Temp_Bp5_Sens_1 = dis.readShort() * 0.1f;
-		PM_Temp_Bp6_Sens_1 = dis.readShort() * 0.1f;
-		PM_Voltage_Mb = dis.readUnsignedShort();
+		pmTempBp4Sens1 = dis.readShort() * 0.1f;
+		pmTempBp5Sens1 = dis.readShort() * 0.1f;
+		pmTempBp6Sens1 = dis.readShort() * 0.1f;
+		pmVoltageMb = dis.readUnsignedShort();
 
-		PM_SAFE_OPERATING_MODE = dis.readUnsignedByte();
+		pmSafeOperatingMode = dis.readUnsignedByte();
 		// 0x00 No safe
 		// 0x01 Safe mode 1: minor main bus power down
 		// 0x02 Safe mode 2: severe main bus power down
 		// 0x04 Safe mode 3: critical main bus power down
 		// 0x08 Safe mode 4: silent main bus power down
 
-		PM_PDU_CONTROL = dis.readUnsignedByte();
+		pmPduControl = dis.readUnsignedByte();
 
-		PM_TEMP1 = dis.readUnsignedShort() * 0.1f;
-		PM_TEMP2 = dis.readUnsignedShort() * 0.1f;
-		PM_OBDH_MAIN_CURRENT = dis.readUnsignedShort();
-		PM_RX_MAIN_CURRENT = dis.readUnsignedShort();
-		PM_TX_MAIN_CURRENT = dis.readUnsignedShort();
-		PM_SS_MAIN_CURRENT = dis.readUnsignedShort();
-		PM_MM_MAIN_CURRENT = dis.readUnsignedShort();
-		PM_MW_MAIN_CURRENT = dis.readUnsignedShort();
-		PM_MT_MAIN_CURRENT = dis.readUnsignedShort();
-		PM_MPS_CURRENT = dis.readUnsignedShort();
-		PM_TRITEL_CURRENT = dis.readUnsignedShort();
-		PM_HSTX_CURRENT = dis.readUnsignedShort();
-		PM_GPS_CURRENT = dis.readUnsignedShort();
-		PM_MPS_VALVE_M_CURRENT = dis.readUnsignedShort();
-		PM_DOM_1_CURRENT = dis.readUnsignedShort();
-		PM_OBDH_RED_CURRENT = dis.readUnsignedShort();
-		PM_RX_RED_CURRENT = dis.readUnsignedShort();
-		PM_TX_RED_CURRENT = dis.readUnsignedShort();
-		PM_SS_RED_CURRENT = dis.readUnsignedShort();
-		PM_MM_RED_CURRENT = dis.readUnsignedShort();
-		PM_MW_RED_CURRENT = dis.readUnsignedShort();
-		PM_MT_RED_CURRENT = dis.readUnsignedShort();
-		PM_ES_CURRENT = dis.readUnsignedShort();
-		PM_uCAM = dis.readUnsignedShort();
-		PM_AMSAT_CURRENT = dis.readUnsignedShort();
-		PM_LMP_CURRENT = dis.readUnsignedShort();
+		pmTemp1 = dis.readUnsignedShort() * 0.1f;
+		pmTemp2 = dis.readUnsignedShort() * 0.1f;
+		pmObdhMainCurrent = dis.readUnsignedShort();
+		pmRxMainCurrent = dis.readUnsignedShort();
+		pmTxMainCurrent = dis.readUnsignedShort();
+		pmSsMainCurrent = dis.readUnsignedShort();
+		pmMmMainCurrent = dis.readUnsignedShort();
+		pmMwMainCurrent = dis.readUnsignedShort();
+		pmMtMainCurrent = dis.readUnsignedShort();
+		pmMpsCurrent = dis.readUnsignedShort();
+		pmTritelCurrent = dis.readUnsignedShort();
+		pmHstxCurrent = dis.readUnsignedShort();
+		pmGpsCurrent = dis.readUnsignedShort();
+		pmMpsValveMCurrent = dis.readUnsignedShort();
+		pmDom1Current = dis.readUnsignedShort();
+		pmObdhRedCurrent = dis.readUnsignedShort();
+		pmRxRedCurrent = dis.readUnsignedShort();
+		pmTxRedCurrent = dis.readUnsignedShort();
+		pmSsRedCurrent = dis.readUnsignedShort();
+		pmMmRedCurrent = dis.readUnsignedShort();
+		pmMwRedCurrent = dis.readUnsignedShort();
+		pmMtRedCurrent = dis.readUnsignedShort();
+		pmEsCurrent = dis.readUnsignedShort();
+		pmUCam = dis.readUnsignedShort();
+		pmAmsatCurrent = dis.readUnsignedShort();
+		pmLmpCurrent = dis.readUnsignedShort();
 
 		int raw = dis.readUnsignedByte();
-		OBDHMain = ((raw >> 7) & 0x1) > 0;
+		obdhMain = ((raw >> 7) & 0x1) > 0;
 
-		TMTCMain = ((raw >> 3) & 0x1) > 0;
-		TMTCRedundant = ((raw >> 2) & 0x1) > 0;
-		SunSensorMain = ((raw >> 1) & 0x1) > 0;
-		SunSensorRedundant = (raw & 0x1) > 0;
-
-		raw = dis.readUnsignedByte();
-		EarthSensor = ((raw >> 7) & 0x1) > 0;
-		MomentumWheelRedundant = ((raw >> 6) & 0x1) > 0;
-		MomentumWheelMain = ((raw >> 5) & 0x1) > 0;
-		MPS = ((raw >> 4) & 0x1) > 0;
-		MagnetometerMain = ((raw >> 3) & 0x1) > 0;
-		MagnetometerRedundant = ((raw >> 2) & 0x1) > 0;
-		MagneticTorquerMain = ((raw >> 1) & 0x1) > 0;
-		MagneticTorquerRedundant = (raw & 0x1) > 0;
+		tmtcMain = ((raw >> 3) & 0x1) > 0;
+		tmtcRedundant = ((raw >> 2) & 0x1) > 0;
+		sunSensorMain = ((raw >> 1) & 0x1) > 0;
+		sunSensorRedundant = (raw & 0x1) > 0;
 
 		raw = dis.readUnsignedByte();
-		TRITEL = ((raw >> 7) & 0x1) > 0;
-		LangmuirProbe = ((raw >> 6) & 0x1) > 0;
-		PCAM = ((raw >> 5) & 0x1) > 0;
-		AMSATUK = ((raw >> 4) & 0x1) > 0;
-		STX = ((raw >> 3) & 0x1) > 0;
-		GPSReceiver = ((raw >> 2) & 0x1) > 0;
-		SCAM = (raw & 0x1) > 0;
+		earthSensor = ((raw >> 7) & 0x1) > 0;
+		momentumWheelRedundant = ((raw >> 6) & 0x1) > 0;
+		momentumWheelMain = ((raw >> 5) & 0x1) > 0;
+		mps = ((raw >> 4) & 0x1) > 0;
+		magnetometerMain = ((raw >> 3) & 0x1) > 0;
+		magnetometerRedundant = ((raw >> 2) & 0x1) > 0;
+		magneticTorquerMain = ((raw >> 1) & 0x1) > 0;
+		magneticTorquerRedundant = (raw & 0x1) > 0;
 
 		raw = dis.readUnsignedByte();
-		DeOrbitMechanism1 = ((raw >> 7) & 0x1) > 0;
-		OBDHRedundant = ((raw >> 6) & 0x1) > 0;
-		HPAMain = ((raw >> 5) & 0x1) > 0;
-		HPARedundant = ((raw >> 4) & 0x1) > 0;
-		MPSValve1 = ((raw >> 3) & 0x1) > 0;
-		MPSValve12 = ((raw >> 2) & 0x1) > 0;
-		DeOrbitMechanism2 = ((raw >> 1) & 0x1) > 0;
-
-		pmERROR1 = new PmmError1(dis);
+		tritel = ((raw >> 7) & 0x1) > 0;
+		langmuirProbe = ((raw >> 6) & 0x1) > 0;
+		pcam = ((raw >> 5) & 0x1) > 0;
+		amsatUk = ((raw >> 4) & 0x1) > 0;
+		stx = ((raw >> 3) & 0x1) > 0;
+		gpsReceiver = ((raw >> 2) & 0x1) > 0;
+		scam = (raw & 0x1) > 0;
 
 		raw = dis.readUnsignedByte();
-		OBDHMainCurrentOutOfRange = ((raw >> 7) & 0x1) > 0;
-		TMTCRXMainCurrentOutOfRange = ((raw >> 3) & 0x1) > 0;
-		TMTCRXRedundantCurrentOutOfRange = ((raw >> 2) & 0x1) > 0;
-		SunSensorMainCurrentOutOfRange = ((raw >> 1) & 0x1) > 0;
-		SunSensorRedundantCurrentOutOfRange = (raw & 0x1) > 0;
+		deOrbitMechanism1 = ((raw >> 7) & 0x1) > 0;
+		obdhRedundant = ((raw >> 6) & 0x1) > 0;
+		hpaMain = ((raw >> 5) & 0x1) > 0;
+		hpaRedundant = ((raw >> 4) & 0x1) > 0;
+		mpsValve1 = ((raw >> 3) & 0x1) > 0;
+		mpsValve12 = ((raw >> 2) & 0x1) > 0;
+		deOrbitMechanism2 = ((raw >> 1) & 0x1) > 0;
+
+		pmError1 = new PmmError1(dis);
 
 		raw = dis.readUnsignedByte();
-		EarthSensorCurrentOutOfRange = ((raw >> 7) & 0x1) > 0;
-		MomentumWheelRedundantCurrentOutOfRange = ((raw >> 6) & 0x1) > 0;
-		MomentumWheelMainCurrentOutOfRange = ((raw >> 5) & 0x1) > 0;
-		MicropropulsionCurrentOutOfRange = ((raw >> 4) & 0x1) > 0;
-		MagnetometerMainCurrentOutOfRange = ((raw >> 3) & 0x1) > 0;
-		MagnetometerRedundantCurrentOutOfRange = ((raw >> 2) & 0x1) > 0;
-		MagnetoTorquerMainCurrentOutOfRange = ((raw >> 1) & 0x1) > 0;
-		MagnetoTorquerRedundantCurrentOutOfRange = (raw & 0x1) > 0;
+		obdhMainCurrentOutOfRange = ((raw >> 7) & 0x1) > 0;
+		tmtcRxMainCurrentOutOfRange = ((raw >> 3) & 0x1) > 0;
+		tmtcRxRedundantCurrentOutOfRange = ((raw >> 2) & 0x1) > 0;
+		sunSensorMainCurrentOutOfRange = ((raw >> 1) & 0x1) > 0;
+		sunSensorRedundantCurrentOutOfRange = (raw & 0x1) > 0;
 
 		raw = dis.readUnsignedByte();
-		TRITELCurrentOutOfRange = ((raw >> 7) & 0x1) > 0;
-		LMPCurrentOutOfRange = ((raw >> 6) & 0x1) > 0;
-		uCAMCurrentOutOfRange = ((raw >> 5) & 0x1) > 0;
-		AMSATCurrentOutOfRange = ((raw >> 4) & 0x1) > 0;
-		STXCurrentOutOfRange = ((raw >> 3) & 0x1) > 0;
-		GPSCurrentOutOfRange = ((raw >> 2) & 0x1) > 0;
-
-		SCAMCurrentOutOfRange = (raw & 0x1) > 0;
+		earthSensorCurrentOutOfRange = ((raw >> 7) & 0x1) > 0;
+		momentumWheelRedundantCurrentOutOfRange = ((raw >> 6) & 0x1) > 0;
+		momentumWheelMainCurrentOutOfRange = ((raw >> 5) & 0x1) > 0;
+		micropropulsionCurrentOutOfRange = ((raw >> 4) & 0x1) > 0;
+		magnetometerMainCurrentOutOfRange = ((raw >> 3) & 0x1) > 0;
+		magnetometerRedundantCurrentOutOfRange = ((raw >> 2) & 0x1) > 0;
+		magnetoTorquerMainCurrentOutOfRange = ((raw >> 1) & 0x1) > 0;
+		magnetoTorquerRedundantCurrentOutOfRange = (raw & 0x1) > 0;
 
 		raw = dis.readUnsignedByte();
-		DeOrbitMechanism = ((raw >> 7) & 0x1) > 0;
-		OBDHRedundantCurrentOutOfRange = ((raw >> 6) & 0x1) > 0;
-		TXMainCurrentOutOfRange = ((raw >> 5) & 0x1) > 0;
-		TXRedundantCurrentOutOfRange = ((raw >> 4) & 0x1) > 0;
-		MicropropulsionStartValveCurrentOutOfRange = ((raw >> 3) & 0x1) > 0;
-		MicropropulsionStartValveRedundantCurrentOutOfRange = ((raw >> 2) & 0x1) > 0;
-		DOMActuator1CurrentOutOfRange = ((raw >> 1) & 0x1) > 0;
-		DOMActuator2CurrentOutOfRange = (raw & 0x1) > 0;
+		tritelCurrentOutOfRange = ((raw >> 7) & 0x1) > 0;
+		lmpCurrentOutOfRange = ((raw >> 6) & 0x1) > 0;
+		ucamCurrentOutOfRange = ((raw >> 5) & 0x1) > 0;
+		amsatCurrentOutOfRange = ((raw >> 4) & 0x1) > 0;
+		stxCurrentOutOfRange = ((raw >> 3) & 0x1) > 0;
+		gpsCurrentOutOfRange = ((raw >> 2) & 0x1) > 0;
+
+		scamCurrentOutOfRange = (raw & 0x1) > 0;
+
+		raw = dis.readUnsignedByte();
+		deOrbitMechanism = ((raw >> 7) & 0x1) > 0;
+		obdhRedundantCurrentOutOfRange = ((raw >> 6) & 0x1) > 0;
+		txMainCurrentOutOfRange = ((raw >> 5) & 0x1) > 0;
+		txRedundantCurrentOutOfRange = ((raw >> 4) & 0x1) > 0;
+		micropropulsionStartValveCurrentOutOfRange = ((raw >> 3) & 0x1) > 0;
+		micropropulsionStartValveRedundantCurrentOutOfRange = ((raw >> 2) & 0x1) > 0;
+		domActuator1CurrentOutOfRange = ((raw >> 1) & 0x1) > 0;
+		domActuator2CurrentOutOfRange = (raw & 0x1) > 0;
 	}
 
-	public int getPM_VOLTAGE_SP1_STRING_1_2() {
-		return PM_VOLTAGE_SP1_STRING_1_2;
+	public int getPmVoltageSp1String12() {
+		return pmVoltageSp1String12;
 	}
 
-	public void setPM_VOLTAGE_SP1_STRING_1_2(int pM_VOLTAGE_SP1_STRING_1_2) {
-		PM_VOLTAGE_SP1_STRING_1_2 = pM_VOLTAGE_SP1_STRING_1_2;
+	public void setPmVoltageSp1String12(int pmVoltageSp1String12) {
+		this.pmVoltageSp1String12 = pmVoltageSp1String12;
 	}
 
-	public int getPM_VOLTAGE_SP1_STRING_3_4() {
-		return PM_VOLTAGE_SP1_STRING_3_4;
+	public int getPmVoltageSp1String34() {
+		return pmVoltageSp1String34;
 	}
 
-	public void setPM_VOLTAGE_SP1_STRING_3_4(int pM_VOLTAGE_SP1_STRING_3_4) {
-		PM_VOLTAGE_SP1_STRING_3_4 = pM_VOLTAGE_SP1_STRING_3_4;
+	public void setPmVoltageSp1String34(int pmVoltageSp1String34) {
+		this.pmVoltageSp1String34 = pmVoltageSp1String34;
 	}
 
-	public int getPM_VOLTAGE_SP2_STRING_1_2() {
-		return PM_VOLTAGE_SP2_STRING_1_2;
+	public int getPmVoltageSp2String12() {
+		return pmVoltageSp2String12;
 	}
 
-	public void setPM_VOLTAGE_SP2_STRING_1_2(int pM_VOLTAGE_SP2_STRING_1_2) {
-		PM_VOLTAGE_SP2_STRING_1_2 = pM_VOLTAGE_SP2_STRING_1_2;
+	public void setPmVoltageSp2String12(int pmVoltageSp2String12) {
+		this.pmVoltageSp2String12 = pmVoltageSp2String12;
 	}
 
-	public int getPM_VOLTAGE_SP2_STRING_3_4() {
-		return PM_VOLTAGE_SP2_STRING_3_4;
+	public int getPmVoltageSp2String34() {
+		return pmVoltageSp2String34;
 	}
 
-	public void setPM_VOLTAGE_SP2_STRING_3_4(int pM_VOLTAGE_SP2_STRING_3_4) {
-		PM_VOLTAGE_SP2_STRING_3_4 = pM_VOLTAGE_SP2_STRING_3_4;
+	public void setPmVoltageSp2String34(int pmVoltageSp2String34) {
+		this.pmVoltageSp2String34 = pmVoltageSp2String34;
 	}
 
-	public int getPM_VOLTAGE_SP3_STRING_1_2() {
-		return PM_VOLTAGE_SP3_STRING_1_2;
+	public int getPmVoltageSp3String12() {
+		return pmVoltageSp3String12;
 	}
 
-	public void setPM_VOLTAGE_SP3_STRING_1_2(int pM_VOLTAGE_SP3_STRING_1_2) {
-		PM_VOLTAGE_SP3_STRING_1_2 = pM_VOLTAGE_SP3_STRING_1_2;
+	public void setPmVoltageSp3String12(int pmVoltageSp3String12) {
+		this.pmVoltageSp3String12 = pmVoltageSp3String12;
 	}
 
-	public int getPM_VOLTAGE_SP3_STRING_3_4() {
-		return PM_VOLTAGE_SP3_STRING_3_4;
+	public int getPmVoltageSp3String34() {
+		return pmVoltageSp3String34;
 	}
 
-	public void setPM_VOLTAGE_SP3_STRING_3_4(int pM_VOLTAGE_SP3_STRING_3_4) {
-		PM_VOLTAGE_SP3_STRING_3_4 = pM_VOLTAGE_SP3_STRING_3_4;
+	public void setPmVoltageSp3String34(int pmVoltageSp3String34) {
+		this.pmVoltageSp3String34 = pmVoltageSp3String34;
 	}
 
-	public int getPM_Shunt_section_1() {
-		return PM_Shunt_section_1;
+	public int getPmShuntSection1() {
+		return pmShuntSection1;
 	}
 
-	public void setPM_Shunt_section_1(int pM_Shunt_section_1) {
-		PM_Shunt_section_1 = pM_Shunt_section_1;
+	public void setPmShuntSection1(int pmShuntSection1) {
+		this.pmShuntSection1 = pmShuntSection1;
 	}
 
-	public int getPM_Shunt_section_2() {
-		return PM_Shunt_section_2;
+	public int getPmShuntSection2() {
+		return pmShuntSection2;
 	}
 
-	public void setPM_Shunt_section_2(int pM_Shunt_section_2) {
-		PM_Shunt_section_2 = pM_Shunt_section_2;
+	public void setPmShuntSection2(int pmShuntSection2) {
+		this.pmShuntSection2 = pmShuntSection2;
 	}
 
-	public int getPM_Shunt_section_3() {
-		return PM_Shunt_section_3;
+	public int getPmShuntSection3() {
+		return pmShuntSection3;
 	}
 
-	public void setPM_Shunt_section_3(int pM_Shunt_section_3) {
-		PM_Shunt_section_3 = pM_Shunt_section_3;
+	public void setPmShuntSection3(int pmShuntSection3) {
+		this.pmShuntSection3 = pmShuntSection3;
 	}
 
-	public int getPM_Shunt_section_4() {
-		return PM_Shunt_section_4;
+	public int getPmShuntSection4() {
+		return pmShuntSection4;
 	}
 
-	public void setPM_Shunt_section_4(int pM_Shunt_section_4) {
-		PM_Shunt_section_4 = pM_Shunt_section_4;
+	public void setPmShuntSection4(int pmShuntSection4) {
+		this.pmShuntSection4 = pmShuntSection4;
 	}
 
-	public int getPM_Shunt_section_5() {
-		return PM_Shunt_section_5;
+	public int getPmShuntSection5() {
+		return pmShuntSection5;
 	}
 
-	public void setPM_Shunt_section_5(int pM_Shunt_section_5) {
-		PM_Shunt_section_5 = pM_Shunt_section_5;
+	public void setPmShuntSection5(int pmShuntSection5) {
+		this.pmShuntSection5 = pmShuntSection5;
 	}
 
-	public int getPM_Shunt_section_6() {
-		return PM_Shunt_section_6;
+	public int getPmShuntSection6() {
+		return pmShuntSection6;
 	}
 
-	public void setPM_Shunt_section_6(int pM_Shunt_section_6) {
-		PM_Shunt_section_6 = pM_Shunt_section_6;
+	public void setPmShuntSection6(int pmShuntSection6) {
+		this.pmShuntSection6 = pmShuntSection6;
 	}
 
-	public float getPM_Temp_Sp1_Sens_1() {
-		return PM_Temp_Sp1_Sens_1;
+	public float getPmTempSp1Sens1() {
+		return pmTempSp1Sens1;
 	}
 
-	public void setPM_Temp_Sp1_Sens_1(float pM_Temp_Sp1_Sens_1) {
-		PM_Temp_Sp1_Sens_1 = pM_Temp_Sp1_Sens_1;
+	public void setPmTempSp1Sens1(float pmTempSp1Sens1) {
+		this.pmTempSp1Sens1 = pmTempSp1Sens1;
 	}
 
-	public float getPM_Temp_Sp2_Sens_1() {
-		return PM_Temp_Sp2_Sens_1;
+	public float getPmTempSp2Sens1() {
+		return pmTempSp2Sens1;
 	}
 
-	public void setPM_Temp_Sp2_Sens_1(float pM_Temp_Sp2_Sens_1) {
-		PM_Temp_Sp2_Sens_1 = pM_Temp_Sp2_Sens_1;
+	public void setPmTempSp2Sens1(float pmTempSp2Sens1) {
+		this.pmTempSp2Sens1 = pmTempSp2Sens1;
 	}
 
-	public float getPM_Temp_Sp3_Sens_1() {
-		return PM_Temp_Sp3_Sens_1;
+	public float getPmTempSp3Sens1() {
+		return pmTempSp3Sens1;
 	}
 
-	public void setPM_Temp_Sp3_Sens_1(float pM_Temp_Sp3_Sens_1) {
-		PM_Temp_Sp3_Sens_1 = pM_Temp_Sp3_Sens_1;
+	public void setPmTempSp3Sens1(float pmTempSp3Sens1) {
+		this.pmTempSp3Sens1 = pmTempSp3Sens1;
 	}
 
-	public short getPM_Current_Bp1() {
-		return PM_Current_Bp1;
+	public short getPmCurrentBp1() {
+		return pmCurrentBp1;
 	}
 
-	public void setPM_Current_Bp1(short pM_Current_Bp1) {
-		PM_Current_Bp1 = pM_Current_Bp1;
+	public void setPmCurrentBp1(short pmCurrentBp1) {
+		this.pmCurrentBp1 = pmCurrentBp1;
 	}
 
-	public short getPM_Current_Bp2() {
-		return PM_Current_Bp2;
+	public short getPmCurrentBp2() {
+		return pmCurrentBp2;
 	}
 
-	public void setPM_Current_Bp2(short pM_Current_Bp2) {
-		PM_Current_Bp2 = pM_Current_Bp2;
+	public void setPmCurrentBp2(short pmCurrentBp2) {
+		this.pmCurrentBp2 = pmCurrentBp2;
 	}
 
-	public short getPM_Current_Bp3() {
-		return PM_Current_Bp3;
+	public short getPmCurrentBp3() {
+		return pmCurrentBp3;
 	}
 
-	public void setPM_Current_Bp3(short pM_Current_Bp3) {
-		PM_Current_Bp3 = pM_Current_Bp3;
+	public void setPmCurrentBp3(short pmCurrentBp3) {
+		this.pmCurrentBp3 = pmCurrentBp3;
 	}
 
-	public short getPM_Current_Bp4() {
-		return PM_Current_Bp4;
+	public short getPmCurrentBp4() {
+		return pmCurrentBp4;
 	}
 
-	public void setPM_Current_Bp4(short pM_Current_Bp4) {
-		PM_Current_Bp4 = pM_Current_Bp4;
+	public void setPmCurrentBp4(short pmCurrentBp4) {
+		this.pmCurrentBp4 = pmCurrentBp4;
 	}
 
-	public short getPM_Current_Bp5() {
-		return PM_Current_Bp5;
+	public short getPmCurrentBp5() {
+		return pmCurrentBp5;
 	}
 
-	public void setPM_Current_Bp5(short pM_Current_Bp5) {
-		PM_Current_Bp5 = pM_Current_Bp5;
+	public void setPmCurrentBp5(short pmCurrentBp5) {
+		this.pmCurrentBp5 = pmCurrentBp5;
 	}
 
-	public short getPM_Current_Bp6() {
-		return PM_Current_Bp6;
+	public short getPmCurrentBp6() {
+		return pmCurrentBp6;
 	}
 
-	public void setPM_Current_Bp6(short pM_Current_Bp6) {
-		PM_Current_Bp6 = pM_Current_Bp6;
+	public void setPmCurrentBp6(short pmCurrentBp6) {
+		this.pmCurrentBp6 = pmCurrentBp6;
 	}
 
-	public float getPM_Temp_Bp1_Sens_1() {
-		return PM_Temp_Bp1_Sens_1;
+	public float getPmTempBp1Sens1() {
+		return pmTempBp1Sens1;
 	}
 
-	public void setPM_Temp_Bp1_Sens_1(float pM_Temp_Bp1_Sens_1) {
-		PM_Temp_Bp1_Sens_1 = pM_Temp_Bp1_Sens_1;
+	public void setPmTempBp1Sens1(float pmTempBp1Sens1) {
+		this.pmTempBp1Sens1 = pmTempBp1Sens1;
 	}
 
-	public float getPM_Temp_Bp2_Sens_1() {
-		return PM_Temp_Bp2_Sens_1;
+	public float getPmTempBp2Sens1() {
+		return pmTempBp2Sens1;
 	}
 
-	public void setPM_Temp_Bp2_Sens_1(float pM_Temp_Bp2_Sens_1) {
-		PM_Temp_Bp2_Sens_1 = pM_Temp_Bp2_Sens_1;
+	public void setPmTempBp2Sens1(float pmTempBp2Sens1) {
+		this.pmTempBp2Sens1 = pmTempBp2Sens1;
 	}
 
-	public float getPM_Temp_Bp3_Sens_1() {
-		return PM_Temp_Bp3_Sens_1;
+	public float getPmTempBp3Sens1() {
+		return pmTempBp3Sens1;
 	}
 
-	public void setPM_Temp_Bp3_Sens_1(float pM_Temp_Bp3_Sens_1) {
-		PM_Temp_Bp3_Sens_1 = pM_Temp_Bp3_Sens_1;
+	public void setPmTempBp3Sens1(float pmTempBp3Sens1) {
+		this.pmTempBp3Sens1 = pmTempBp3Sens1;
 	}
 
-	public float getPM_Temp_Bp4_Sens_1() {
-		return PM_Temp_Bp4_Sens_1;
+	public float getPmTempBp4Sens1() {
+		return pmTempBp4Sens1;
 	}
 
-	public void setPM_Temp_Bp4_Sens_1(float pM_Temp_Bp4_Sens_1) {
-		PM_Temp_Bp4_Sens_1 = pM_Temp_Bp4_Sens_1;
+	public void setPmTempBp4Sens1(float pmTempBp4Sens1) {
+		this.pmTempBp4Sens1 = pmTempBp4Sens1;
 	}
 
-	public float getPM_Temp_Bp5_Sens_1() {
-		return PM_Temp_Bp5_Sens_1;
+	public float getPmTempBp5Sens1() {
+		return pmTempBp5Sens1;
 	}
 
-	public void setPM_Temp_Bp5_Sens_1(float pM_Temp_Bp5_Sens_1) {
-		PM_Temp_Bp5_Sens_1 = pM_Temp_Bp5_Sens_1;
+	public void setPmTempBp5Sens1(float pmTempBp5Sens1) {
+		this.pmTempBp5Sens1 = pmTempBp5Sens1;
 	}
 
-	public float getPM_Temp_Bp6_Sens_1() {
-		return PM_Temp_Bp6_Sens_1;
+	public float getPmTempBp6Sens1() {
+		return pmTempBp6Sens1;
 	}
 
-	public void setPM_Temp_Bp6_Sens_1(float pM_Temp_Bp6_Sens_1) {
-		PM_Temp_Bp6_Sens_1 = pM_Temp_Bp6_Sens_1;
+	public void setPmTempBp6Sens1(float pmTempBp6Sens1) {
+		this.pmTempBp6Sens1 = pmTempBp6Sens1;
 	}
 
-	public int getPM_Voltage_Mb() {
-		return PM_Voltage_Mb;
+	public int getPmVoltageMb() {
+		return pmVoltageMb;
 	}
 
-	public void setPM_Voltage_Mb(int pM_Voltage_Mb) {
-		PM_Voltage_Mb = pM_Voltage_Mb;
+	public void setPmVoltageMb(int pmVoltageMb) {
+		this.pmVoltageMb = pmVoltageMb;
 	}
 
-	public int getPM_SAFE_OPERATING_MODE() {
-		return PM_SAFE_OPERATING_MODE;
+	public int getPmSafeOperatingMode() {
+		return pmSafeOperatingMode;
 	}
 
-	public void setPM_SAFE_OPERATING_MODE(int pM_SAFE_OPERATING_MODE) {
-		PM_SAFE_OPERATING_MODE = pM_SAFE_OPERATING_MODE;
+	public void setPmSafeOperatingMode(int pmSafeOperatingMode) {
+		this.pmSafeOperatingMode = pmSafeOperatingMode;
 	}
 
-	public int getPM_PDU_CONTROL() {
-		return PM_PDU_CONTROL;
+	public int getPmPduControl() {
+		return pmPduControl;
 	}
 
-	public void setPM_PDU_CONTROL(int pM_PDU_CONTROL) {
-		PM_PDU_CONTROL = pM_PDU_CONTROL;
+	public void setPmPduControl(int pmPduControl) {
+		this.pmPduControl = pmPduControl;
 	}
 
-	public float getPM_TEMP1() {
-		return PM_TEMP1;
+	public float getPmTemp1() {
+		return pmTemp1;
 	}
 
-	public void setPM_TEMP1(float pM_TEMP1) {
-		PM_TEMP1 = pM_TEMP1;
+	public void setPmTemp1(float pmTemp1) {
+		this.pmTemp1 = pmTemp1;
 	}
 
-	public float getPM_TEMP2() {
-		return PM_TEMP2;
+	public float getPmTemp2() {
+		return pmTemp2;
 	}
 
-	public void setPM_TEMP2(float pM_TEMP2) {
-		PM_TEMP2 = pM_TEMP2;
+	public void setPmTemp2(float pmTemp2) {
+		this.pmTemp2 = pmTemp2;
 	}
 
-	public int getPM_OBDH_MAIN_CURRENT() {
-		return PM_OBDH_MAIN_CURRENT;
+	public int getPmObdhMainCurrent() {
+		return pmObdhMainCurrent;
 	}
 
-	public void setPM_OBDH_MAIN_CURRENT(int pM_OBDH_MAIN_CURRENT) {
-		PM_OBDH_MAIN_CURRENT = pM_OBDH_MAIN_CURRENT;
+	public void setPmObdhMainCurrent(int pmObdhMainCurrent) {
+		this.pmObdhMainCurrent = pmObdhMainCurrent;
 	}
 
-	public int getPM_RX_MAIN_CURRENT() {
-		return PM_RX_MAIN_CURRENT;
+	public int getPmRxMainCurrent() {
+		return pmRxMainCurrent;
 	}
 
-	public void setPM_RX_MAIN_CURRENT(int pM_RX_MAIN_CURRENT) {
-		PM_RX_MAIN_CURRENT = pM_RX_MAIN_CURRENT;
+	public void setPmRxMainCurrent(int pmRxMainCurrent) {
+		this.pmRxMainCurrent = pmRxMainCurrent;
 	}
 
-	public int getPM_TX_MAIN_CURRENT() {
-		return PM_TX_MAIN_CURRENT;
+	public int getPmTxMainCurrent() {
+		return pmTxMainCurrent;
 	}
 
-	public void setPM_TX_MAIN_CURRENT(int pM_TX_MAIN_CURRENT) {
-		PM_TX_MAIN_CURRENT = pM_TX_MAIN_CURRENT;
+	public void setPmTxMainCurrent(int pmTxMainCurrent) {
+		this.pmTxMainCurrent = pmTxMainCurrent;
 	}
 
-	public int getPM_SS_MAIN_CURRENT() {
-		return PM_SS_MAIN_CURRENT;
+	public int getPmSsMainCurrent() {
+		return pmSsMainCurrent;
 	}
 
-	public void setPM_SS_MAIN_CURRENT(int pM_SS_MAIN_CURRENT) {
-		PM_SS_MAIN_CURRENT = pM_SS_MAIN_CURRENT;
+	public void setPmSsMainCurrent(int pmSsMainCurrent) {
+		this.pmSsMainCurrent = pmSsMainCurrent;
 	}
 
-	public int getPM_MM_MAIN_CURRENT() {
-		return PM_MM_MAIN_CURRENT;
+	public int getPmMmMainCurrent() {
+		return pmMmMainCurrent;
 	}
 
-	public void setPM_MM_MAIN_CURRENT(int pM_MM_MAIN_CURRENT) {
-		PM_MM_MAIN_CURRENT = pM_MM_MAIN_CURRENT;
+	public void setPmMmMainCurrent(int pmMmMainCurrent) {
+		this.pmMmMainCurrent = pmMmMainCurrent;
 	}
 
-	public int getPM_MW_MAIN_CURRENT() {
-		return PM_MW_MAIN_CURRENT;
+	public int getPmMwMainCurrent() {
+		return pmMwMainCurrent;
 	}
 
-	public void setPM_MW_MAIN_CURRENT(int pM_MW_MAIN_CURRENT) {
-		PM_MW_MAIN_CURRENT = pM_MW_MAIN_CURRENT;
+	public void setPmMwMainCurrent(int pmMwMainCurrent) {
+		this.pmMwMainCurrent = pmMwMainCurrent;
 	}
 
-	public int getPM_MT_MAIN_CURRENT() {
-		return PM_MT_MAIN_CURRENT;
+	public int getPmMtMainCurrent() {
+		return pmMtMainCurrent;
 	}
 
-	public void setPM_MT_MAIN_CURRENT(int pM_MT_MAIN_CURRENT) {
-		PM_MT_MAIN_CURRENT = pM_MT_MAIN_CURRENT;
+	public void setPmMtMainCurrent(int pmMtMainCurrent) {
+		this.pmMtMainCurrent = pmMtMainCurrent;
 	}
 
-	public int getPM_MPS_CURRENT() {
-		return PM_MPS_CURRENT;
+	public int getPmMpsCurrent() {
+		return pmMpsCurrent;
 	}
 
-	public void setPM_MPS_CURRENT(int pM_MPS_CURRENT) {
-		PM_MPS_CURRENT = pM_MPS_CURRENT;
+	public void setPmMpsCurrent(int pmMpsCurrent) {
+		this.pmMpsCurrent = pmMpsCurrent;
 	}
 
-	public int getPM_TRITEL_CURRENT() {
-		return PM_TRITEL_CURRENT;
+	public int getPmTritelCurrent() {
+		return pmTritelCurrent;
 	}
 
-	public void setPM_TRITEL_CURRENT(int pM_TRITEL_CURRENT) {
-		PM_TRITEL_CURRENT = pM_TRITEL_CURRENT;
+	public void setPmTritelCurrent(int pmTritelCurrent) {
+		this.pmTritelCurrent = pmTritelCurrent;
 	}
 
-	public int getPM_HSTX_CURRENT() {
-		return PM_HSTX_CURRENT;
+	public int getPmHstxCurrent() {
+		return pmHstxCurrent;
 	}
 
-	public void setPM_HSTX_CURRENT(int pM_HSTX_CURRENT) {
-		PM_HSTX_CURRENT = pM_HSTX_CURRENT;
+	public void setPmHstxCurrent(int pmHstxCurrent) {
+		this.pmHstxCurrent = pmHstxCurrent;
 	}
 
-	public int getPM_GPS_CURRENT() {
-		return PM_GPS_CURRENT;
+	public int getPmGpsCurrent() {
+		return pmGpsCurrent;
 	}
 
-	public void setPM_GPS_CURRENT(int pM_GPS_CURRENT) {
-		PM_GPS_CURRENT = pM_GPS_CURRENT;
+	public void setPmGpsCurrent(int pmGpsCurrent) {
+		this.pmGpsCurrent = pmGpsCurrent;
 	}
 
-	public int getPM_MPS_VALVE_M_CURRENT() {
-		return PM_MPS_VALVE_M_CURRENT;
+	public int getPmMpsValveMCurrent() {
+		return pmMpsValveMCurrent;
 	}
 
-	public void setPM_MPS_VALVE_M_CURRENT(int pM_MPS_VALVE_M_CURRENT) {
-		PM_MPS_VALVE_M_CURRENT = pM_MPS_VALVE_M_CURRENT;
+	public void setPmMpsValveMCurrent(int pmMpsValveMCurrent) {
+		this.pmMpsValveMCurrent = pmMpsValveMCurrent;
 	}
 
-	public int getPM_DOM_1_CURRENT() {
-		return PM_DOM_1_CURRENT;
+	public int getPmDom1Current() {
+		return pmDom1Current;
 	}
 
-	public void setPM_DOM_1_CURRENT(int pM_DOM_1_CURRENT) {
-		PM_DOM_1_CURRENT = pM_DOM_1_CURRENT;
+	public void setPmDom1Current(int pmDom1Current) {
+		this.pmDom1Current = pmDom1Current;
 	}
 
-	public int getPM_OBDH_RED_CURRENT() {
-		return PM_OBDH_RED_CURRENT;
+	public int getPmObdhRedCurrent() {
+		return pmObdhRedCurrent;
 	}
 
-	public void setPM_OBDH_RED_CURRENT(int pM_OBDH_RED_CURRENT) {
-		PM_OBDH_RED_CURRENT = pM_OBDH_RED_CURRENT;
+	public void setPmObdhRedCurrent(int pmObdhRedCurrent) {
+		this.pmObdhRedCurrent = pmObdhRedCurrent;
 	}
 
-	public int getPM_RX_RED_CURRENT() {
-		return PM_RX_RED_CURRENT;
+	public int getPmRxRedCurrent() {
+		return pmRxRedCurrent;
 	}
 
-	public void setPM_RX_RED_CURRENT(int pM_RX_RED_CURRENT) {
-		PM_RX_RED_CURRENT = pM_RX_RED_CURRENT;
+	public void setPmRxRedCurrent(int pmRxRedCurrent) {
+		this.pmRxRedCurrent = pmRxRedCurrent;
 	}
 
-	public int getPM_TX_RED_CURRENT() {
-		return PM_TX_RED_CURRENT;
+	public int getPmTxRedCurrent() {
+		return pmTxRedCurrent;
 	}
 
-	public void setPM_TX_RED_CURRENT(int pM_TX_RED_CURRENT) {
-		PM_TX_RED_CURRENT = pM_TX_RED_CURRENT;
+	public void setPmTxRedCurrent(int pmTxRedCurrent) {
+		this.pmTxRedCurrent = pmTxRedCurrent;
 	}
 
-	public int getPM_SS_RED_CURRENT() {
-		return PM_SS_RED_CURRENT;
+	public int getPmSsRedCurrent() {
+		return pmSsRedCurrent;
 	}
 
-	public void setPM_SS_RED_CURRENT(int pM_SS_RED_CURRENT) {
-		PM_SS_RED_CURRENT = pM_SS_RED_CURRENT;
+	public void setPmSsRedCurrent(int pmSsRedCurrent) {
+		this.pmSsRedCurrent = pmSsRedCurrent;
 	}
 
-	public int getPM_MM_RED_CURRENT() {
-		return PM_MM_RED_CURRENT;
+	public int getPmMmRedCurrent() {
+		return pmMmRedCurrent;
 	}
 
-	public void setPM_MM_RED_CURRENT(int pM_MM_RED_CURRENT) {
-		PM_MM_RED_CURRENT = pM_MM_RED_CURRENT;
+	public void setPmMmRedCurrent(int pmMmRedCurrent) {
+		this.pmMmRedCurrent = pmMmRedCurrent;
 	}
 
-	public int getPM_MW_RED_CURRENT() {
-		return PM_MW_RED_CURRENT;
+	public int getPmMwRedCurrent() {
+		return pmMwRedCurrent;
 	}
 
-	public void setPM_MW_RED_CURRENT(int pM_MW_RED_CURRENT) {
-		PM_MW_RED_CURRENT = pM_MW_RED_CURRENT;
+	public void setPmMwRedCurrent(int pmMwRedCurrent) {
+		this.pmMwRedCurrent = pmMwRedCurrent;
 	}
 
-	public int getPM_MT_RED_CURRENT() {
-		return PM_MT_RED_CURRENT;
+	public int getPmMtRedCurrent() {
+		return pmMtRedCurrent;
 	}
 
-	public void setPM_MT_RED_CURRENT(int pM_MT_RED_CURRENT) {
-		PM_MT_RED_CURRENT = pM_MT_RED_CURRENT;
+	public void setPmMtRedCurrent(int pmMtRedCurrent) {
+		this.pmMtRedCurrent = pmMtRedCurrent;
 	}
 
-	public int getPM_ES_CURRENT() {
-		return PM_ES_CURRENT;
+	public int getPmEsCurrent() {
+		return pmEsCurrent;
 	}
 
-	public void setPM_ES_CURRENT(int pM_ES_CURRENT) {
-		PM_ES_CURRENT = pM_ES_CURRENT;
+	public void setPmEsCurrent(int pmEsCurrent) {
+		this.pmEsCurrent = pmEsCurrent;
 	}
 
-	public int getPM_uCAM() {
-		return PM_uCAM;
+	public int getPmUCam() {
+		return pmUCam;
 	}
 
-	public void setPM_uCAM(int pM_uCAM) {
-		PM_uCAM = pM_uCAM;
+	public void setPmUCam(int pmUCam) {
+		this.pmUCam = pmUCam;
 	}
 
-	public int getPM_AMSAT_CURRENT() {
-		return PM_AMSAT_CURRENT;
+	public int getPmAmsatCurrent() {
+		return pmAmsatCurrent;
 	}
 
-	public void setPM_AMSAT_CURRENT(int pM_AMSAT_CURRENT) {
-		PM_AMSAT_CURRENT = pM_AMSAT_CURRENT;
+	public void setPmAmsatCurrent(int pmAmsatCurrent) {
+		this.pmAmsatCurrent = pmAmsatCurrent;
 	}
 
-	public int getPM_LMP_CURRENT() {
-		return PM_LMP_CURRENT;
+	public int getPmLmpCurrent() {
+		return pmLmpCurrent;
 	}
 
-	public void setPM_LMP_CURRENT(int pM_LMP_CURRENT) {
-		PM_LMP_CURRENT = pM_LMP_CURRENT;
+	public void setPmLmpCurrent(int pmLmpCurrent) {
+		this.pmLmpCurrent = pmLmpCurrent;
 	}
 
-	public boolean isOBDHMain() {
-		return OBDHMain;
+	public boolean isObdhMain() {
+		return obdhMain;
 	}
 
-	public void setOBDHMain(boolean oBDHMain) {
-		OBDHMain = oBDHMain;
+	public void setObdhMain(boolean obdhMain) {
+		this.obdhMain = obdhMain;
 	}
 
-	public boolean isTMTCMain() {
-		return TMTCMain;
+	public boolean isTmtcMain() {
+		return tmtcMain;
 	}
 
-	public void setTMTCMain(boolean tMTCMain) {
-		TMTCMain = tMTCMain;
+	public void setTmtcMain(boolean tmtcMain) {
+		this.tmtcMain = tmtcMain;
 	}
 
-	public boolean isTMTCRedundant() {
-		return TMTCRedundant;
+	public boolean isTmtcRedundant() {
+		return tmtcRedundant;
 	}
 
-	public void setTMTCRedundant(boolean tMTCRedundant) {
-		TMTCRedundant = tMTCRedundant;
+	public void setTmtcRedundant(boolean tmtcRedundant) {
+		this.tmtcRedundant = tmtcRedundant;
 	}
 
 	public boolean isSunSensorMain() {
-		return SunSensorMain;
+		return sunSensorMain;
 	}
 
 	public void setSunSensorMain(boolean sunSensorMain) {
-		SunSensorMain = sunSensorMain;
+		this.sunSensorMain = sunSensorMain;
 	}
 
 	public boolean isSunSensorRedundant() {
-		return SunSensorRedundant;
+		return sunSensorRedundant;
 	}
 
 	public void setSunSensorRedundant(boolean sunSensorRedundant) {
-		SunSensorRedundant = sunSensorRedundant;
+		this.sunSensorRedundant = sunSensorRedundant;
 	}
 
 	public boolean isEarthSensor() {
-		return EarthSensor;
+		return earthSensor;
 	}
 
 	public void setEarthSensor(boolean earthSensor) {
-		EarthSensor = earthSensor;
+		this.earthSensor = earthSensor;
 	}
 
 	public boolean isMomentumWheelRedundant() {
-		return MomentumWheelRedundant;
+		return momentumWheelRedundant;
 	}
 
 	public void setMomentumWheelRedundant(boolean momentumWheelRedundant) {
-		MomentumWheelRedundant = momentumWheelRedundant;
+		this.momentumWheelRedundant = momentumWheelRedundant;
 	}
 
 	public boolean isMomentumWheelMain() {
-		return MomentumWheelMain;
+		return momentumWheelMain;
 	}
 
 	public void setMomentumWheelMain(boolean momentumWheelMain) {
-		MomentumWheelMain = momentumWheelMain;
+		this.momentumWheelMain = momentumWheelMain;
 	}
 
-	public boolean isMPS() {
-		return MPS;
+	public boolean isMps() {
+		return mps;
 	}
 
-	public void setMPS(boolean mPS) {
-		MPS = mPS;
+	public void setMps(boolean mps) {
+		this.mps = mps;
 	}
 
 	public boolean isMagnetometerMain() {
-		return MagnetometerMain;
+		return magnetometerMain;
 	}
 
 	public void setMagnetometerMain(boolean magnetometerMain) {
-		MagnetometerMain = magnetometerMain;
+		this.magnetometerMain = magnetometerMain;
 	}
 
 	public boolean isMagnetometerRedundant() {
-		return MagnetometerRedundant;
+		return magnetometerRedundant;
 	}
 
 	public void setMagnetometerRedundant(boolean magnetometerRedundant) {
-		MagnetometerRedundant = magnetometerRedundant;
+		this.magnetometerRedundant = magnetometerRedundant;
 	}
 
 	public boolean isMagneticTorquerMain() {
-		return MagneticTorquerMain;
+		return magneticTorquerMain;
 	}
 
 	public void setMagneticTorquerMain(boolean magneticTorquerMain) {
-		MagneticTorquerMain = magneticTorquerMain;
+		this.magneticTorquerMain = magneticTorquerMain;
 	}
 
 	public boolean isMagneticTorquerRedundant() {
-		return MagneticTorquerRedundant;
+		return magneticTorquerRedundant;
 	}
 
 	public void setMagneticTorquerRedundant(boolean magneticTorquerRedundant) {
-		MagneticTorquerRedundant = magneticTorquerRedundant;
+		this.magneticTorquerRedundant = magneticTorquerRedundant;
 	}
 
-	public boolean isTRITEL() {
-		return TRITEL;
+	public boolean isTritel() {
+		return tritel;
 	}
 
-	public void setTRITEL(boolean tRITEL) {
-		TRITEL = tRITEL;
+	public void setTritel(boolean tritel) {
+		this.tritel = tritel;
 	}
 
 	public boolean isLangmuirProbe() {
-		return LangmuirProbe;
+		return langmuirProbe;
 	}
 
 	public void setLangmuirProbe(boolean langmuirProbe) {
-		LangmuirProbe = langmuirProbe;
+		this.langmuirProbe = langmuirProbe;
 	}
 
-	public boolean isPCAM() {
-		return PCAM;
+	public boolean isPcam() {
+		return pcam;
 	}
 
-	public void setPCAM(boolean pCAM) {
-		PCAM = pCAM;
+	public void setPcam(boolean pcam) {
+		this.pcam = pcam;
 	}
 
-	public boolean isAMSATUK() {
-		return AMSATUK;
+	public boolean isAmsatUk() {
+		return amsatUk;
 	}
 
-	public void setAMSATUK(boolean aMSATUK) {
-		AMSATUK = aMSATUK;
+	public void setAmsatUk(boolean amsatUk) {
+		this.amsatUk = amsatUk;
 	}
 
-	public boolean isSTX() {
-		return STX;
+	public boolean isStx() {
+		return stx;
 	}
 
-	public void setSTX(boolean sTX) {
-		STX = sTX;
+	public void setStx(boolean stx) {
+		this.stx = stx;
 	}
 
-	public boolean isGPSReceiver() {
-		return GPSReceiver;
+	public boolean isGpsReceiver() {
+		return gpsReceiver;
 	}
 
-	public void setGPSReceiver(boolean gPSReceiver) {
-		GPSReceiver = gPSReceiver;
+	public void setGpsReceiver(boolean gpsReceiver) {
+		this.gpsReceiver = gpsReceiver;
 	}
 
-	public boolean isSCAM() {
-		return SCAM;
+	public boolean isScam() {
+		return scam;
 	}
 
-	public void setSCAM(boolean sCAM) {
-		SCAM = sCAM;
+	public void setScam(boolean scam) {
+		this.scam = scam;
 	}
 
 	public boolean isDeOrbitMechanism1() {
-		return DeOrbitMechanism1;
+		return deOrbitMechanism1;
 	}
 
 	public void setDeOrbitMechanism1(boolean deOrbitMechanism1) {
-		DeOrbitMechanism1 = deOrbitMechanism1;
+		this.deOrbitMechanism1 = deOrbitMechanism1;
 	}
 
-	public boolean isOBDHRedundant() {
-		return OBDHRedundant;
+	public boolean isObdhRedundant() {
+		return obdhRedundant;
 	}
 
-	public void setOBDHRedundant(boolean oBDHRedundant) {
-		OBDHRedundant = oBDHRedundant;
+	public void setObdhRedundant(boolean obdhRedundant) {
+		this.obdhRedundant = obdhRedundant;
 	}
 
-	public boolean isHPAMain() {
-		return HPAMain;
+	public boolean isHpaMain() {
+		return hpaMain;
 	}
 
-	public void setHPAMain(boolean hPAMain) {
-		HPAMain = hPAMain;
+	public void setHpaMain(boolean hpaMain) {
+		this.hpaMain = hpaMain;
 	}
 
-	public boolean isHPARedundant() {
-		return HPARedundant;
+	public boolean isHpaRedundant() {
+		return hpaRedundant;
 	}
 
-	public void setHPARedundant(boolean hPARedundant) {
-		HPARedundant = hPARedundant;
+	public void setHpaRedundant(boolean hpaRedundant) {
+		this.hpaRedundant = hpaRedundant;
 	}
 
-	public boolean isMPSValve1() {
-		return MPSValve1;
+	public boolean isMpsValve1() {
+		return mpsValve1;
 	}
 
-	public void setMPSValve1(boolean mPSValve1) {
-		MPSValve1 = mPSValve1;
+	public void setMpsValve1(boolean mpsValve1) {
+		this.mpsValve1 = mpsValve1;
 	}
 
-	public boolean isMPSValve12() {
-		return MPSValve12;
+	public boolean isMpsValve12() {
+		return mpsValve12;
 	}
 
-	public void setMPSValve12(boolean mPSValve12) {
-		MPSValve12 = mPSValve12;
+	public void setMpsValve12(boolean mpsValve12) {
+		this.mpsValve12 = mpsValve12;
 	}
 
 	public boolean isDeOrbitMechanism2() {
-		return DeOrbitMechanism2;
+		return deOrbitMechanism2;
 	}
 
 	public void setDeOrbitMechanism2(boolean deOrbitMechanism2) {
-		DeOrbitMechanism2 = deOrbitMechanism2;
+		this.deOrbitMechanism2 = deOrbitMechanism2;
 	}
 
-	public PmmError1 getPmERROR1() {
-		return pmERROR1;
+	public PmmError1 getPmError1() {
+		return pmError1;
 	}
 
-	public void setPmERROR1(PmmError1 pmERROR1) {
-		this.pmERROR1 = pmERROR1;
+	public void setPmError1(PmmError1 pmError1) {
+		this.pmError1 = pmError1;
 	}
 
-	public boolean isOBDHMainCurrentOutOfRange() {
-		return OBDHMainCurrentOutOfRange;
+	public boolean isObdhMainCurrentOutOfRange() {
+		return obdhMainCurrentOutOfRange;
 	}
 
-	public void setOBDHMainCurrentOutOfRange(boolean oBDHMainCurrentOutOfRange) {
-		OBDHMainCurrentOutOfRange = oBDHMainCurrentOutOfRange;
+	public void setObdhMainCurrentOutOfRange(boolean obdhMainCurrentOutOfRange) {
+		this.obdhMainCurrentOutOfRange = obdhMainCurrentOutOfRange;
 	}
 
-	public boolean isTMTCRXMainCurrentOutOfRange() {
-		return TMTCRXMainCurrentOutOfRange;
+	public boolean isTmtcRxMainCurrentOutOfRange() {
+		return tmtcRxMainCurrentOutOfRange;
 	}
 
-	public void setTMTCRXMainCurrentOutOfRange(boolean tMTCRXMainCurrentOutOfRange) {
-		TMTCRXMainCurrentOutOfRange = tMTCRXMainCurrentOutOfRange;
+	public void setTmtcRxMainCurrentOutOfRange(boolean tmtcRxMainCurrentOutOfRange) {
+		this.tmtcRxMainCurrentOutOfRange = tmtcRxMainCurrentOutOfRange;
 	}
 
-	public boolean isTMTCRXRedundantCurrentOutOfRange() {
-		return TMTCRXRedundantCurrentOutOfRange;
+	public boolean isTmtcRxRedundantCurrentOutOfRange() {
+		return tmtcRxRedundantCurrentOutOfRange;
 	}
 
-	public void setTMTCRXRedundantCurrentOutOfRange(boolean tMTCRXRedundantCurrentOutOfRange) {
-		TMTCRXRedundantCurrentOutOfRange = tMTCRXRedundantCurrentOutOfRange;
+	public void setTmtcRxRedundantCurrentOutOfRange(boolean tmtcRxRedundantCurrentOutOfRange) {
+		this.tmtcRxRedundantCurrentOutOfRange = tmtcRxRedundantCurrentOutOfRange;
 	}
 
 	public boolean isSunSensorMainCurrentOutOfRange() {
-		return SunSensorMainCurrentOutOfRange;
+		return sunSensorMainCurrentOutOfRange;
 	}
 
 	public void setSunSensorMainCurrentOutOfRange(boolean sunSensorMainCurrentOutOfRange) {
-		SunSensorMainCurrentOutOfRange = sunSensorMainCurrentOutOfRange;
+		this.sunSensorMainCurrentOutOfRange = sunSensorMainCurrentOutOfRange;
 	}
 
 	public boolean isSunSensorRedundantCurrentOutOfRange() {
-		return SunSensorRedundantCurrentOutOfRange;
+		return sunSensorRedundantCurrentOutOfRange;
 	}
 
 	public void setSunSensorRedundantCurrentOutOfRange(boolean sunSensorRedundantCurrentOutOfRange) {
-		SunSensorRedundantCurrentOutOfRange = sunSensorRedundantCurrentOutOfRange;
+		this.sunSensorRedundantCurrentOutOfRange = sunSensorRedundantCurrentOutOfRange;
 	}
 
 	public boolean isEarthSensorCurrentOutOfRange() {
-		return EarthSensorCurrentOutOfRange;
+		return earthSensorCurrentOutOfRange;
 	}
 
 	public void setEarthSensorCurrentOutOfRange(boolean earthSensorCurrentOutOfRange) {
-		EarthSensorCurrentOutOfRange = earthSensorCurrentOutOfRange;
+		this.earthSensorCurrentOutOfRange = earthSensorCurrentOutOfRange;
 	}
 
 	public boolean isMomentumWheelRedundantCurrentOutOfRange() {
-		return MomentumWheelRedundantCurrentOutOfRange;
+		return momentumWheelRedundantCurrentOutOfRange;
 	}
 
 	public void setMomentumWheelRedundantCurrentOutOfRange(boolean momentumWheelRedundantCurrentOutOfRange) {
-		MomentumWheelRedundantCurrentOutOfRange = momentumWheelRedundantCurrentOutOfRange;
+		this.momentumWheelRedundantCurrentOutOfRange = momentumWheelRedundantCurrentOutOfRange;
 	}
 
 	public boolean isMomentumWheelMainCurrentOutOfRange() {
-		return MomentumWheelMainCurrentOutOfRange;
+		return momentumWheelMainCurrentOutOfRange;
 	}
 
 	public void setMomentumWheelMainCurrentOutOfRange(boolean momentumWheelMainCurrentOutOfRange) {
-		MomentumWheelMainCurrentOutOfRange = momentumWheelMainCurrentOutOfRange;
+		this.momentumWheelMainCurrentOutOfRange = momentumWheelMainCurrentOutOfRange;
 	}
 
 	public boolean isMicropropulsionCurrentOutOfRange() {
-		return MicropropulsionCurrentOutOfRange;
+		return micropropulsionCurrentOutOfRange;
 	}
 
 	public void setMicropropulsionCurrentOutOfRange(boolean micropropulsionCurrentOutOfRange) {
-		MicropropulsionCurrentOutOfRange = micropropulsionCurrentOutOfRange;
+		this.micropropulsionCurrentOutOfRange = micropropulsionCurrentOutOfRange;
 	}
 
 	public boolean isMagnetometerMainCurrentOutOfRange() {
-		return MagnetometerMainCurrentOutOfRange;
+		return magnetometerMainCurrentOutOfRange;
 	}
 
 	public void setMagnetometerMainCurrentOutOfRange(boolean magnetometerMainCurrentOutOfRange) {
-		MagnetometerMainCurrentOutOfRange = magnetometerMainCurrentOutOfRange;
+		this.magnetometerMainCurrentOutOfRange = magnetometerMainCurrentOutOfRange;
 	}
 
 	public boolean isMagnetometerRedundantCurrentOutOfRange() {
-		return MagnetometerRedundantCurrentOutOfRange;
+		return magnetometerRedundantCurrentOutOfRange;
 	}
 
 	public void setMagnetometerRedundantCurrentOutOfRange(boolean magnetometerRedundantCurrentOutOfRange) {
-		MagnetometerRedundantCurrentOutOfRange = magnetometerRedundantCurrentOutOfRange;
+		this.magnetometerRedundantCurrentOutOfRange = magnetometerRedundantCurrentOutOfRange;
 	}
 
 	public boolean isMagnetoTorquerMainCurrentOutOfRange() {
-		return MagnetoTorquerMainCurrentOutOfRange;
+		return magnetoTorquerMainCurrentOutOfRange;
 	}
 
 	public void setMagnetoTorquerMainCurrentOutOfRange(boolean magnetoTorquerMainCurrentOutOfRange) {
-		MagnetoTorquerMainCurrentOutOfRange = magnetoTorquerMainCurrentOutOfRange;
+		this.magnetoTorquerMainCurrentOutOfRange = magnetoTorquerMainCurrentOutOfRange;
 	}
 
 	public boolean isMagnetoTorquerRedundantCurrentOutOfRange() {
-		return MagnetoTorquerRedundantCurrentOutOfRange;
+		return magnetoTorquerRedundantCurrentOutOfRange;
 	}
 
 	public void setMagnetoTorquerRedundantCurrentOutOfRange(boolean magnetoTorquerRedundantCurrentOutOfRange) {
-		MagnetoTorquerRedundantCurrentOutOfRange = magnetoTorquerRedundantCurrentOutOfRange;
+		this.magnetoTorquerRedundantCurrentOutOfRange = magnetoTorquerRedundantCurrentOutOfRange;
 	}
 
-	public boolean isTRITELCurrentOutOfRange() {
-		return TRITELCurrentOutOfRange;
+	public boolean isTritelCurrentOutOfRange() {
+		return tritelCurrentOutOfRange;
 	}
 
-	public void setTRITELCurrentOutOfRange(boolean tRITELCurrentOutOfRange) {
-		TRITELCurrentOutOfRange = tRITELCurrentOutOfRange;
+	public void setTritelCurrentOutOfRange(boolean tritelCurrentOutOfRange) {
+		this.tritelCurrentOutOfRange = tritelCurrentOutOfRange;
 	}
 
-	public boolean isLMPCurrentOutOfRange() {
-		return LMPCurrentOutOfRange;
+	public boolean isLmpCurrentOutOfRange() {
+		return lmpCurrentOutOfRange;
 	}
 
-	public void setLMPCurrentOutOfRange(boolean lMPCurrentOutOfRange) {
-		LMPCurrentOutOfRange = lMPCurrentOutOfRange;
+	public void setLmpCurrentOutOfRange(boolean lmpCurrentOutOfRange) {
+		this.lmpCurrentOutOfRange = lmpCurrentOutOfRange;
 	}
 
-	public boolean isuCAMCurrentOutOfRange() {
-		return uCAMCurrentOutOfRange;
+	public boolean isUcamCurrentOutOfRange() {
+		return ucamCurrentOutOfRange;
 	}
 
-	public void setuCAMCurrentOutOfRange(boolean uCAMCurrentOutOfRange) {
-		this.uCAMCurrentOutOfRange = uCAMCurrentOutOfRange;
+	public void setUcamCurrentOutOfRange(boolean ucamCurrentOutOfRange) {
+		this.ucamCurrentOutOfRange = ucamCurrentOutOfRange;
 	}
 
-	public boolean isAMSATCurrentOutOfRange() {
-		return AMSATCurrentOutOfRange;
+	public boolean isAmsatCurrentOutOfRange() {
+		return amsatCurrentOutOfRange;
 	}
 
-	public void setAMSATCurrentOutOfRange(boolean aMSATCurrentOutOfRange) {
-		AMSATCurrentOutOfRange = aMSATCurrentOutOfRange;
+	public void setAmsatCurrentOutOfRange(boolean amsatCurrentOutOfRange) {
+		this.amsatCurrentOutOfRange = amsatCurrentOutOfRange;
 	}
 
-	public boolean isSTXCurrentOutOfRange() {
-		return STXCurrentOutOfRange;
+	public boolean isStxCurrentOutOfRange() {
+		return stxCurrentOutOfRange;
 	}
 
-	public void setSTXCurrentOutOfRange(boolean sTXCurrentOutOfRange) {
-		STXCurrentOutOfRange = sTXCurrentOutOfRange;
+	public void setStxCurrentOutOfRange(boolean stxCurrentOutOfRange) {
+		this.stxCurrentOutOfRange = stxCurrentOutOfRange;
 	}
 
-	public boolean isGPSCurrentOutOfRange() {
-		return GPSCurrentOutOfRange;
+	public boolean isGpsCurrentOutOfRange() {
+		return gpsCurrentOutOfRange;
 	}
 
-	public void setGPSCurrentOutOfRange(boolean gPSCurrentOutOfRange) {
-		GPSCurrentOutOfRange = gPSCurrentOutOfRange;
+	public void setGpsCurrentOutOfRange(boolean gpsCurrentOutOfRange) {
+		this.gpsCurrentOutOfRange = gpsCurrentOutOfRange;
 	}
 
-	public boolean isSCAMCurrentOutOfRange() {
-		return SCAMCurrentOutOfRange;
+	public boolean isScamCurrentOutOfRange() {
+		return scamCurrentOutOfRange;
 	}
 
-	public void setSCAMCurrentOutOfRange(boolean sCAMCurrentOutOfRange) {
-		SCAMCurrentOutOfRange = sCAMCurrentOutOfRange;
+	public void setScamCurrentOutOfRange(boolean scamCurrentOutOfRange) {
+		this.scamCurrentOutOfRange = scamCurrentOutOfRange;
 	}
 
 	public boolean isDeOrbitMechanism() {
-		return DeOrbitMechanism;
+		return deOrbitMechanism;
 	}
 
 	public void setDeOrbitMechanism(boolean deOrbitMechanism) {
-		DeOrbitMechanism = deOrbitMechanism;
+		this.deOrbitMechanism = deOrbitMechanism;
 	}
 
-	public boolean isOBDHRedundantCurrentOutOfRange() {
-		return OBDHRedundantCurrentOutOfRange;
+	public boolean isObdhRedundantCurrentOutOfRange() {
+		return obdhRedundantCurrentOutOfRange;
 	}
 
-	public void setOBDHRedundantCurrentOutOfRange(boolean oBDHRedundantCurrentOutOfRange) {
-		OBDHRedundantCurrentOutOfRange = oBDHRedundantCurrentOutOfRange;
+	public void setObdhRedundantCurrentOutOfRange(boolean obdhRedundantCurrentOutOfRange) {
+		this.obdhRedundantCurrentOutOfRange = obdhRedundantCurrentOutOfRange;
 	}
 
-	public boolean isTXMainCurrentOutOfRange() {
-		return TXMainCurrentOutOfRange;
+	public boolean isTxMainCurrentOutOfRange() {
+		return txMainCurrentOutOfRange;
 	}
 
-	public void setTXMainCurrentOutOfRange(boolean tXMainCurrentOutOfRange) {
-		TXMainCurrentOutOfRange = tXMainCurrentOutOfRange;
+	public void setTxMainCurrentOutOfRange(boolean txMainCurrentOutOfRange) {
+		this.txMainCurrentOutOfRange = txMainCurrentOutOfRange;
 	}
 
-	public boolean isTXRedundantCurrentOutOfRange() {
-		return TXRedundantCurrentOutOfRange;
+	public boolean isTxRedundantCurrentOutOfRange() {
+		return txRedundantCurrentOutOfRange;
 	}
 
-	public void setTXRedundantCurrentOutOfRange(boolean tXRedundantCurrentOutOfRange) {
-		TXRedundantCurrentOutOfRange = tXRedundantCurrentOutOfRange;
+	public void setTxRedundantCurrentOutOfRange(boolean txRedundantCurrentOutOfRange) {
+		this.txRedundantCurrentOutOfRange = txRedundantCurrentOutOfRange;
 	}
 
 	public boolean isMicropropulsionStartValveCurrentOutOfRange() {
-		return MicropropulsionStartValveCurrentOutOfRange;
+		return micropropulsionStartValveCurrentOutOfRange;
 	}
 
 	public void setMicropropulsionStartValveCurrentOutOfRange(boolean micropropulsionStartValveCurrentOutOfRange) {
-		MicropropulsionStartValveCurrentOutOfRange = micropropulsionStartValveCurrentOutOfRange;
+		this.micropropulsionStartValveCurrentOutOfRange = micropropulsionStartValveCurrentOutOfRange;
 	}
 
 	public boolean isMicropropulsionStartValveRedundantCurrentOutOfRange() {
-		return MicropropulsionStartValveRedundantCurrentOutOfRange;
+		return micropropulsionStartValveRedundantCurrentOutOfRange;
 	}
 
 	public void setMicropropulsionStartValveRedundantCurrentOutOfRange(boolean micropropulsionStartValveRedundantCurrentOutOfRange) {
-		MicropropulsionStartValveRedundantCurrentOutOfRange = micropropulsionStartValveRedundantCurrentOutOfRange;
+		this.micropropulsionStartValveRedundantCurrentOutOfRange = micropropulsionStartValveRedundantCurrentOutOfRange;
 	}
 
-	public boolean isDOMActuator1CurrentOutOfRange() {
-		return DOMActuator1CurrentOutOfRange;
+	public boolean isDomActuator1CurrentOutOfRange() {
+		return domActuator1CurrentOutOfRange;
 	}
 
-	public void setDOMActuator1CurrentOutOfRange(boolean dOMActuator1CurrentOutOfRange) {
-		DOMActuator1CurrentOutOfRange = dOMActuator1CurrentOutOfRange;
+	public void setDomActuator1CurrentOutOfRange(boolean domActuator1CurrentOutOfRange) {
+		this.domActuator1CurrentOutOfRange = domActuator1CurrentOutOfRange;
 	}
 
-	public boolean isDOMActuator2CurrentOutOfRange() {
-		return DOMActuator2CurrentOutOfRange;
+	public boolean isDomActuator2CurrentOutOfRange() {
+		return domActuator2CurrentOutOfRange;
 	}
 
-	public void setDOMActuator2CurrentOutOfRange(boolean dOMActuator2CurrentOutOfRange) {
-		DOMActuator2CurrentOutOfRange = dOMActuator2CurrentOutOfRange;
+	public void setDomActuator2CurrentOutOfRange(boolean domActuator2CurrentOutOfRange) {
+		this.domActuator2CurrentOutOfRange = domActuator2CurrentOutOfRange;
 	}
 
 }
