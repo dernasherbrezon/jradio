@@ -7,7 +7,7 @@ import ru.r2cloud.jradio.util.StreamUtils;
 
 public class Apid6U12 {
 
-	private long crc[]; // CRC32 slot #0 block #XX
+	private long[] crc; // CRC32 slot #0 block #XX
 
 	public Apid6U12(DataInputStream dis) throws IOException {
 		crc = new long[31];

@@ -27,7 +27,7 @@ public class Beesat4 extends TUBiX20<Beesat4Beacon> {
 			return null;
 		} catch (UncorrectableException e) {
 			if (LOG.isDebugEnabled()) {
-				LOG.debug("unable to decode: " + e.getMessage());
+				LOG.debug("unable to decode: {}", e.getMessage());
 			}
 			return null;
 		}
