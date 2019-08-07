@@ -7,9 +7,9 @@ import ru.r2cloud.jradio.util.LittleEndianDataInputStream;
 
 public class Type3 {
 
-	private ObdMode OBD_MODE;
-	private ObdMode OBD_OLD_MODE;
-	private int OBD_ACTIVE_TASK;
+	private ObdMode obdMode;
+	private ObdMode obdOldMode;
+	private int obdActiveTask;
 	private EquipmentStatus equipmentStatus;
 	private EquipmentStatus equipmentHealth;
 	private CpuError cpuError;
@@ -21,22 +21,22 @@ public class Type3 {
 	private CanTimeoutError canTimeoutError;
 	private HkStatus hkStatus;
 
-	private long OBD_POWER_TIME;
-	private long OBD_MODE_TRANSITION;
-	private int OBD_WD_RESET_COUNT;
-	private float OBD_TEMP1_PDU1;
-	private float OBD_TEMP2_BAT1;
-	private float OBD_TEMP3_PMB;
-	private float OBD_TEMP4_HPA2;
-	private float OBD_TEMP8_HPA1;
-	private float OBD_TEMP10_TNK;
-	private float OBD_TEMP11_BAT2;
-	private float OBD_TEMP12_MWM;
-	private float OBD_TEMP13_MWR;
-	private float OBD_TEMP14_MMM;
-	private float OBD_TEMP15_MMR;
-	private int OBD_RS422M_ERR_COUNT;
-	private int OBD_RS422R_ERR_COUNT;
+	private long obdPowerTime;
+	private long obdModeTransition;
+	private int obdWdResetCount;
+	private float obdTemp1Pdu1;
+	private float obdTemp2Bat1;
+	private float obdTemp3Pmb;
+	private float obdTemp4Hpa2;
+	private float obdTemp8Hpa1;
+	private float obdTemp10Tnk;
+	private float obdTemp11Bat2;
+	private float obdTemp12Mwm;
+	private float obdTemp13Mwr;
+	private float obdTemp14Mmm;
+	private float obdTemp15Mmr;
+	private int obdRs422mErrCount;
+	private int obdRs422rErrCount;
 
 	private HkError hkError;
 	private Rs422Status rs422Status;
@@ -51,9 +51,9 @@ public class Type3 {
 
 	public Type3(DataInputStream source) throws IOException {
 		LittleEndianDataInputStream dis = new LittleEndianDataInputStream(source);
-		OBD_MODE = ObdMode.valueOfCode(dis.readUnsignedByte());
-		OBD_OLD_MODE = ObdMode.valueOfCode(dis.readUnsignedByte());
-		OBD_ACTIVE_TASK = dis.readUnsignedByte();
+		obdMode = ObdMode.valueOfCode(dis.readUnsignedByte());
+		obdOldMode = ObdMode.valueOfCode(dis.readUnsignedByte());
+		obdActiveTask = dis.readUnsignedByte();
 		equipmentStatus = new EquipmentStatus(dis);
 		equipmentHealth = new EquipmentStatus(dis);
 		cpuError = new CpuError(dis);
@@ -65,22 +65,22 @@ public class Type3 {
 		canTimeoutError = new CanTimeoutError(dis);
 		hkStatus = new HkStatus(dis);
 
-		OBD_POWER_TIME = dis.readLong();
-		OBD_MODE_TRANSITION = dis.readLong();
-		OBD_WD_RESET_COUNT = dis.readUnsignedByte();
-		OBD_TEMP1_PDU1 = dis.readShort() * 0.1f;
-		OBD_TEMP2_BAT1 = dis.readShort() * 0.1f;
-		OBD_TEMP3_PMB = dis.readShort() * 0.1f;
-		OBD_TEMP4_HPA2 = dis.readShort() * 0.1f;
-		OBD_TEMP8_HPA1 = dis.readShort() * 0.1f;
-		OBD_TEMP10_TNK = dis.readShort() * 0.1f;
-		OBD_TEMP11_BAT2 = dis.readShort() * 0.1f;
-		OBD_TEMP12_MWM = dis.readShort() * 0.1f;
-		OBD_TEMP13_MWR = dis.readShort() * 0.1f;
-		OBD_TEMP14_MMM = dis.readShort() * 0.1f;
-		OBD_TEMP15_MMR = dis.readShort() * 0.1f;
-		OBD_RS422M_ERR_COUNT = dis.readUnsignedShort();
-		OBD_RS422R_ERR_COUNT = dis.readUnsignedShort();
+		obdPowerTime = dis.readLong();
+		obdModeTransition = dis.readLong();
+		obdWdResetCount = dis.readUnsignedByte();
+		obdTemp1Pdu1 = dis.readShort() * 0.1f;
+		obdTemp2Bat1 = dis.readShort() * 0.1f;
+		obdTemp3Pmb = dis.readShort() * 0.1f;
+		obdTemp4Hpa2 = dis.readShort() * 0.1f;
+		obdTemp8Hpa1 = dis.readShort() * 0.1f;
+		obdTemp10Tnk = dis.readShort() * 0.1f;
+		obdTemp11Bat2 = dis.readShort() * 0.1f;
+		obdTemp12Mwm = dis.readShort() * 0.1f;
+		obdTemp13Mwr = dis.readShort() * 0.1f;
+		obdTemp14Mmm = dis.readShort() * 0.1f;
+		obdTemp15Mmr = dis.readShort() * 0.1f;
+		obdRs422mErrCount = dis.readUnsignedShort();
+		obdRs422rErrCount = dis.readUnsignedShort();
 
 		hkError = new HkError(dis);
 		rs422Status = new Rs422Status(dis);
@@ -94,28 +94,28 @@ public class Type3 {
 		obdTempError2 = new ObdTempError(dis);
 	}
 
-	public ObdMode getOBD_MODE() {
-		return OBD_MODE;
+	public ObdMode getObdMode() {
+		return obdMode;
 	}
 
-	public void setOBD_MODE(ObdMode oBD_MODE) {
-		OBD_MODE = oBD_MODE;
+	public void setObdMode(ObdMode obdMode) {
+		this.obdMode = obdMode;
 	}
 
-	public ObdMode getOBD_OLD_MODE() {
-		return OBD_OLD_MODE;
+	public ObdMode getObdOldMode() {
+		return obdOldMode;
 	}
 
-	public void setOBD_OLD_MODE(ObdMode oBD_OLD_MODE) {
-		OBD_OLD_MODE = oBD_OLD_MODE;
+	public void setObdOldMode(ObdMode obdOldMode) {
+		this.obdOldMode = obdOldMode;
 	}
 
-	public int getOBD_ACTIVE_TASK() {
-		return OBD_ACTIVE_TASK;
+	public int getObdActiveTask() {
+		return obdActiveTask;
 	}
 
-	public void setOBD_ACTIVE_TASK(int oBD_ACTIVE_TASK) {
-		OBD_ACTIVE_TASK = oBD_ACTIVE_TASK;
+	public void setObdActiveTask(int obdActiveTask) {
+		this.obdActiveTask = obdActiveTask;
 	}
 
 	public EquipmentStatus getEquipmentStatus() {
@@ -198,132 +198,132 @@ public class Type3 {
 		this.hkStatus = hkStatus;
 	}
 
-	public long getOBD_POWER_TIME() {
-		return OBD_POWER_TIME;
+	public long getObdPowerTime() {
+		return obdPowerTime;
 	}
 
-	public void setOBD_POWER_TIME(long oBD_POWER_TIME) {
-		OBD_POWER_TIME = oBD_POWER_TIME;
+	public void setObdPowerTime(long obdPowerTime) {
+		this.obdPowerTime = obdPowerTime;
 	}
 
-	public long getOBD_MODE_TRANSITION() {
-		return OBD_MODE_TRANSITION;
+	public long getObdModeTransition() {
+		return obdModeTransition;
 	}
 
-	public void setOBD_MODE_TRANSITION(long oBD_MODE_TRANSITION) {
-		OBD_MODE_TRANSITION = oBD_MODE_TRANSITION;
+	public void setObdModeTransition(long obdModeTransition) {
+		this.obdModeTransition = obdModeTransition;
 	}
 
-	public int getOBD_WD_RESET_COUNT() {
-		return OBD_WD_RESET_COUNT;
+	public int getObdWdResetCount() {
+		return obdWdResetCount;
 	}
 
-	public void setOBD_WD_RESET_COUNT(int oBD_WD_RESET_COUNT) {
-		OBD_WD_RESET_COUNT = oBD_WD_RESET_COUNT;
+	public void setObdWdResetCount(int obdWdResetCount) {
+		this.obdWdResetCount = obdWdResetCount;
 	}
 
-	public float getOBD_TEMP1_PDU1() {
-		return OBD_TEMP1_PDU1;
+	public float getObdTemp1Pdu1() {
+		return obdTemp1Pdu1;
 	}
 
-	public void setOBD_TEMP1_PDU1(float oBD_TEMP1_PDU1) {
-		OBD_TEMP1_PDU1 = oBD_TEMP1_PDU1;
+	public void setObdTemp1Pdu1(float obdTemp1Pdu1) {
+		this.obdTemp1Pdu1 = obdTemp1Pdu1;
 	}
 
-	public float getOBD_TEMP2_BAT1() {
-		return OBD_TEMP2_BAT1;
+	public float getObdTemp2Bat1() {
+		return obdTemp2Bat1;
 	}
 
-	public void setOBD_TEMP2_BAT1(float oBD_TEMP2_BAT1) {
-		OBD_TEMP2_BAT1 = oBD_TEMP2_BAT1;
+	public void setObdTemp2Bat1(float obdTemp2Bat1) {
+		this.obdTemp2Bat1 = obdTemp2Bat1;
 	}
 
-	public float getOBD_TEMP3_PMB() {
-		return OBD_TEMP3_PMB;
+	public float getObdTemp3Pmb() {
+		return obdTemp3Pmb;
 	}
 
-	public void setOBD_TEMP3_PMB(float oBD_TEMP3_PMB) {
-		OBD_TEMP3_PMB = oBD_TEMP3_PMB;
+	public void setObdTemp3Pmb(float obdTemp3Pmb) {
+		this.obdTemp3Pmb = obdTemp3Pmb;
 	}
 
-	public float getOBD_TEMP4_HPA2() {
-		return OBD_TEMP4_HPA2;
+	public float getObdTemp4Hpa2() {
+		return obdTemp4Hpa2;
 	}
 
-	public void setOBD_TEMP4_HPA2(float oBD_TEMP4_HPA2) {
-		OBD_TEMP4_HPA2 = oBD_TEMP4_HPA2;
+	public void setObdTemp4Hpa2(float obdTemp4Hpa2) {
+		this.obdTemp4Hpa2 = obdTemp4Hpa2;
 	}
 
-	public float getOBD_TEMP8_HPA1() {
-		return OBD_TEMP8_HPA1;
+	public float getObdTemp8Hpa1() {
+		return obdTemp8Hpa1;
 	}
 
-	public void setOBD_TEMP8_HPA1(float oBD_TEMP8_HPA1) {
-		OBD_TEMP8_HPA1 = oBD_TEMP8_HPA1;
+	public void setObdTemp8Hpa1(float obdTemp8Hpa1) {
+		this.obdTemp8Hpa1 = obdTemp8Hpa1;
 	}
 
-	public float getOBD_TEMP10_TNK() {
-		return OBD_TEMP10_TNK;
+	public float getObdTemp10Tnk() {
+		return obdTemp10Tnk;
 	}
 
-	public void setOBD_TEMP10_TNK(float oBD_TEMP10_TNK) {
-		OBD_TEMP10_TNK = oBD_TEMP10_TNK;
+	public void setObdTemp10Tnk(float obdTemp10Tnk) {
+		this.obdTemp10Tnk = obdTemp10Tnk;
 	}
 
-	public float getOBD_TEMP11_BAT2() {
-		return OBD_TEMP11_BAT2;
+	public float getObdTemp11Bat2() {
+		return obdTemp11Bat2;
 	}
 
-	public void setOBD_TEMP11_BAT2(float oBD_TEMP11_BAT2) {
-		OBD_TEMP11_BAT2 = oBD_TEMP11_BAT2;
+	public void setObdTemp11Bat2(float obdTemp11Bat2) {
+		this.obdTemp11Bat2 = obdTemp11Bat2;
 	}
 
-	public float getOBD_TEMP12_MWM() {
-		return OBD_TEMP12_MWM;
+	public float getObdTemp12Mwm() {
+		return obdTemp12Mwm;
 	}
 
-	public void setOBD_TEMP12_MWM(float oBD_TEMP12_MWM) {
-		OBD_TEMP12_MWM = oBD_TEMP12_MWM;
+	public void setObdTemp12Mwm(float obdTemp12Mwm) {
+		this.obdTemp12Mwm = obdTemp12Mwm;
 	}
 
-	public float getOBD_TEMP13_MWR() {
-		return OBD_TEMP13_MWR;
+	public float getObdTemp13Mwr() {
+		return obdTemp13Mwr;
 	}
 
-	public void setOBD_TEMP13_MWR(float oBD_TEMP13_MWR) {
-		OBD_TEMP13_MWR = oBD_TEMP13_MWR;
+	public void setObdTemp13Mwr(float obdTemp13Mwr) {
+		this.obdTemp13Mwr = obdTemp13Mwr;
 	}
 
-	public float getOBD_TEMP14_MMM() {
-		return OBD_TEMP14_MMM;
+	public float getObdTemp14Mmm() {
+		return obdTemp14Mmm;
 	}
 
-	public void setOBD_TEMP14_MMM(float oBD_TEMP14_MMM) {
-		OBD_TEMP14_MMM = oBD_TEMP14_MMM;
+	public void setObdTemp14Mmm(float obdTemp14Mmm) {
+		this.obdTemp14Mmm = obdTemp14Mmm;
 	}
 
-	public float getOBD_TEMP15_MMR() {
-		return OBD_TEMP15_MMR;
+	public float getObdTemp15Mmr() {
+		return obdTemp15Mmr;
 	}
 
-	public void setOBD_TEMP15_MMR(float oBD_TEMP15_MMR) {
-		OBD_TEMP15_MMR = oBD_TEMP15_MMR;
+	public void setObdTemp15Mmr(float obdTemp15Mmr) {
+		this.obdTemp15Mmr = obdTemp15Mmr;
 	}
 
-	public int getOBD_RS422M_ERR_COUNT() {
-		return OBD_RS422M_ERR_COUNT;
+	public int getObdRs422mErrCount() {
+		return obdRs422mErrCount;
 	}
 
-	public void setOBD_RS422M_ERR_COUNT(int oBD_RS422M_ERR_COUNT) {
-		OBD_RS422M_ERR_COUNT = oBD_RS422M_ERR_COUNT;
+	public void setObdRs422mErrCount(int obdRs422mErrCount) {
+		this.obdRs422mErrCount = obdRs422mErrCount;
 	}
 
-	public int getOBD_RS422R_ERR_COUNT() {
-		return OBD_RS422R_ERR_COUNT;
+	public int getObdRs422rErrCount() {
+		return obdRs422rErrCount;
 	}
 
-	public void setOBD_RS422R_ERR_COUNT(int oBD_RS422R_ERR_COUNT) {
-		OBD_RS422R_ERR_COUNT = oBD_RS422R_ERR_COUNT;
+	public void setObdRs422rErrCount(int obdRs422rErrCount) {
+		this.obdRs422rErrCount = obdRs422rErrCount;
 	}
 
 	public HkError getHkError() {
