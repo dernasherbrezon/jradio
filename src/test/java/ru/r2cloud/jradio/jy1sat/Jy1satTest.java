@@ -35,7 +35,7 @@ public class Jy1satTest {
 		float samplesPerSymbol = agc.getContext().getSampleRate() / 1200.0f;
 		FLLBandEdge fll = new FLLBandEdge(agc, samplesPerSymbol, 0.35f, 100, 0.01f);
 		float[] rrcTaps = Firdes.rootRaisedCosine(nfilts, nfilts, 1.0f / samplesPerSymbol, 0.35f, (int) (11 * samplesPerSymbol * nfilts));
-		PolyphaseClockSyncComplex clock = new PolyphaseClockSyncComplex(fll, samplesPerSymbol, 0.1f, rrcTaps, nfilts, nfilts / 2, 0.05f);
+		PolyphaseClockSyncComplex clock = new PolyphaseClockSyncComplex(fll, samplesPerSymbol, 0.1f, rrcTaps, nfilts, nfilts / 2, 0.05f, 1);
 		DelayOne delay = new DelayOne(clock);
 		ComplexToReal complexToReal = new ComplexToReal(delay);
 		MultiplyConst mc = new MultiplyConst(complexToReal, 1.0f);

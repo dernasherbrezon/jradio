@@ -35,7 +35,7 @@ public class PwSat2Test {
 		FloatToComplex f2c = new FloatToComplex(source);
 		FrequencyXlatingFIRFilter freq = new FrequencyXlatingFIRFilter(f2c, taps, 5, 1500);
 		RmsAgc agc = new RmsAgc(freq, 1e-2f, 0.5f);
-		PolyphaseClockSyncComplex clockSync = new PolyphaseClockSyncComplex(agc, samplesPerSymbol, 0.05f, rrcTaps, nfilts, nfilts / 2, 0.05f);
+		PolyphaseClockSyncComplex clockSync = new PolyphaseClockSyncComplex(agc, samplesPerSymbol, 0.05f, rrcTaps, nfilts, nfilts / 2, 0.05f, 1);
 		CostasLoop costas = new CostasLoop(clockSync, 0.5f, 2, false);
 		ComplexToReal c2r = new ComplexToReal(costas);
 		BinarySlicer bs = new BinarySlicer(c2r);

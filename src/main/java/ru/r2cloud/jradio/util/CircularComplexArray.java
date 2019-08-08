@@ -33,6 +33,10 @@ public class CircularComplexArray {
 		return currentPos;
 	}
 
+	public void setCurrentPos(int currentPos) {
+		this.currentPos = currentPos;
+	}
+
 	public int getSize() {
 		return historyImg.length;
 	}
