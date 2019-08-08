@@ -84,6 +84,10 @@ Randomization
   * xoroshiro128+
   * mt19937 (class MTRandom)
   * RayleighRandom
+  
+Demodulators
+
+  * BpskDemodulator for BPSK and DBPSK
 
 ## Supported satellites
 
