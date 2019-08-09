@@ -7,503 +7,503 @@ import ru.r2cloud.jradio.util.LittleEndianDataInputStream;
 
 public class Type5 {
 
-	private int OBD_PLCAN_M_TXERR_COUNT; // CAN/CANopen platform interface main Tx error counter
-	private int OBD_PLCAN_M_RXERR_COUNT; // CAN/CANopen platform interface main Rx error counter
-	private int OBD_PLCAN_R_TXERR_COUNT; // CAN/CANopen platform interface redundant Tx error counter
-	private int OBD_PLCAN_R_RXERR_COUNT; // CAN/CANopen platform interface redundant Rx error counter
-	private int OBD_PYCAN_M_TXERR_COUNT; // CAN/CANopen payload interface main Tx error counter
-	private int OBD_PYCAN_M_RXERR_COUNT; // CAN/CANopen payload interface main Rx error counter
-	private int OBD_PYCAN_R_TXERR_COUNT; // CAN/CANopen payload interface redundant Tx error counter
-	private int OBD_PYCAN_R_RXERR_COUNT; // CAN/CANopen payload interface redundant Rx error counter
-	private long OBD_EDAC_ERROR_COUNT; // Number of EDAC errors since OBDH reset
-	private int OBD_RS422M_ERR_COUNT; // TMTC USART interface main error counter
-	private int OBD_RS422R_ERR_COUNT; // TMTC USART interface redundant error counter
-	private int OBD_ERROR_COUNT; // OBDH internal error counter
-	private HkError OBD_HK_ERROR; // HK data request error
-	private TcError1 OBD_TC_ERROR_1; // Internal telecommand routing TC error
-	private TcError2 OBD_TC_ERROR_2; // Internal telecommand routing TC error
-	private Rs422Status OBD_RS422_STATUS; // TMTC USART status defined bit per bit
-	private Rs422Error OBD_RS422_ERROR; // TMTC USART interface errors, defined bit per bit
-	private Rs485Status OBD_RS485_STATUS; // MWM USART interface status
-	private Rs485Error OBD_RS485_ERROR; // MWM USART interface errors, defined bit per bit
-	private ObdError OBD_ERROR; // OBDH internal error
+	private int obdPlcanMTxErrCount; // CAN/CANopen platform interface main Tx error counter
+	private int obdPlcanMRxErrCount; // CAN/CANopen platform interface main Rx error counter
+	private int obdPlcanRTxErrCount; // CAN/CANopen platform interface redundant Tx error counter
+	private int obdPlcanRRxErrCount; // CAN/CANopen platform interface redundant Rx error counter
+	private int obdPycanMTxErrCount; // CAN/CANopen payload interface main Tx error counter
+	private int obdPycanMRxErrCount; // CAN/CANopen payload interface main Rx error counter
+	private int obdPycanRTxErrCount; // CAN/CANopen payload interface redundant Tx error counter
+	private int obdPycanRRxErrCount; // CAN/CANopen payload interface redundant Rx error counter
+	private long obdEdacErrorCount; // Number of EDAC errors since OBDH reset
+	private int obdRs422mErrCount; // TMTC USART interface main error counter
+	private int obdRs422rErrCount; // TMTC USART interface redundant error counter
+	private int obdErrorCount; // OBDH internal error counter
+	private HkError obdHkError; // HK data request error
+	private TcError1 obdTcError1; // Internal telecommand routing TC error
+	private TcError2 obdTcError2; // Internal telecommand routing TC error
+	private Rs422Status obdRs422Status; // TMTC USART status defined bit per bit
+	private Rs422Error obdRs422Error; // TMTC USART interface errors, defined bit per bit
+	private Rs485Status obdRs485Status; // MWM USART interface status
+	private Rs485Error obdRs485Error; // MWM USART interface errors, defined bit per bit
+	private ObdError obdError; // OBDH internal error
 
-	private ObdTempError OBD_TEMP_ERROR; //	OBDH temperatures error
-	private AcsError ACS_ERR; //	AOCS Error table
-	private float ACS_FDIR_MPS_time_err; // If a maneuver is aborted the variable returns the time
-	private int PM_Voltage_Mb; // Voltage of the Main Bus
-	private int PM_SAFE_OPERATING_MODE; // Operating mode of the power system
-	private EquipmentStatus PM_EQ_PL_STATUS; //	ON-OFF equipment status (1-ON, 0-OFF)
-	private EquipmentStatus PM_UNDERVOLTAGE_STATUS; //	Undervoltage status (1-undervoltage, 0-normal)
-	private int TTM_TX_STATUS; // TMTC Main Transmitter STATUS condition
-	private int TTM_TX_STATUS_1; // TMTC Main charge pump current of the TX section
-	private int TTM_RX_STATUS; // TMTC Main Receiver STATUS condition (Ref. Table 37)
-	private int TTM_RX_STATUS_1; // TMTC Main charge pump current of the RX section
-	private byte TTM_RX_RSSI; // TMTC Main RSSI register of the RX section
-	private TtError TTM_ERROR; // TTM error condition defined bit-per-bit (Ref. Table 38)
-	private float TTM_TEMP_1; // Temperature of the DC/DC section monitored on board
-	private float TTM_TEMP_2; // Temperature of the RF front-end monitored on board
-	private float TTM_RX_AFC; // TMTC Main frequency deviation from IF of the RX section
-	private PlatformFdir PLATFORM_FDIR; // TTM FDIR platform status
-	private int TTR_TX_STATUS; // TMTC Redundant Transmitter STATUS condition
-	private int TTR_TX_STATUS_1; // TMTC Redundant charge pump current of the TX section
-	private int TTR_RX_STATUS; // TMTC Redundant Receiver STATUS condition
-	private int TTR_RX_STATUS_1; // TMTC Redundant charge pump current of the RX section
-	private byte TTR_RX_RSSI; // TMTC Redundant RSSI register of the RX section
-	private TtError TTR_ERROR; // TTR error condition defined bit-per-bit
-	private float TTR_TEMP_1; // Temperature of the DC/DC section monitored on board
-	private float TTR_TEMP_2; // Temperature of the RF front-end monitored on board
-	private float TTR_RX_AFC; // TMTC Redundant frequency deviation from IF of the RX section
-	private PlatformFdir PLATFORM_FDIR1;
-	private PlatformFdir PLATFORM_FDIR2;
-	private PlatformFdir PLATFORM_FDIR3; 
-	
+	private ObdTempError obdTempError; // OBDH temperatures error
+	private AcsError acsErr; // AOCS Error table
+	private float acsFdirMpsTimeErr; // If a maneuver is aborted the variable returns the time
+	private int pmVoltageMb; // Voltage of the Main Bus
+	private int pmSafeOperatingMode; // Operating mode of the power system
+	private EquipmentStatus pmEqPlStatus; // ON-OFF equipment status (1-ON, 0-OFF)
+	private EquipmentStatus pmUndervoltageStatus; // Undervoltage status (1-undervoltage, 0-normal)
+	private int ttmTxStatus; // TMTC Main Transmitter STATUS condition
+	private int ttmTxStatus1; // TMTC Main charge pump current of the TX section
+	private int ttmRxStatus; // TMTC Main Receiver STATUS condition (Ref. Table 37)
+	private int ttmRxStatus1; // TMTC Main charge pump current of the RX section
+	private byte ttmRxRssi; // TMTC Main RSSI register of the RX section
+	private TtError ttmError; // TTM error condition defined bit-per-bit (Ref. Table 38)
+	private float ttmTemp1; // Temperature of the DC/DC section monitored on board
+	private float ttmTemp2; // Temperature of the RF front-end monitored on board
+	private float ttmRxAfc; // TMTC Main frequency deviation from IF of the RX section
+	private PlatformFdir platformFdir; // TTM FDIR platform status
+	private int ttrTxStatus; // TMTC Redundant Transmitter STATUS condition
+	private int ttrTxStatus1; // TMTC Redundant charge pump current of the TX section
+	private int ttrRxStatus; // TMTC Redundant Receiver STATUS condition
+	private int ttrRxStatus1; // TMTC Redundant charge pump current of the RX section
+	private byte ttrRxRssi; // TMTC Redundant RSSI register of the RX section
+	private TtError ttrError; // TTR error condition defined bit-per-bit
+	private float ttrTemp1; // Temperature of the DC/DC section monitored on board
+	private float ttrTemp2; // Temperature of the RF front-end monitored on board
+	private float ttrRxAfc; // TMTC Redundant frequency deviation from IF of the RX section
+	private PlatformFdir platformFdir1;
+	private PlatformFdir platformFdir2;
+	private PlatformFdir platformFdir3;
+
 	public Type5(DataInputStream source) throws IOException {
 		LittleEndianDataInputStream dis = new LittleEndianDataInputStream(source);
-		OBD_PLCAN_M_TXERR_COUNT = dis.readUnsignedShort();
-		OBD_PLCAN_M_RXERR_COUNT = dis.readUnsignedShort();
-		OBD_PLCAN_R_TXERR_COUNT = dis.readUnsignedShort();
-		OBD_PLCAN_R_RXERR_COUNT = dis.readUnsignedShort();
-		OBD_PYCAN_M_TXERR_COUNT = dis.readUnsignedShort();
-		OBD_PYCAN_M_RXERR_COUNT = dis.readUnsignedShort();
-		OBD_PYCAN_R_TXERR_COUNT = dis.readUnsignedShort();
-		OBD_PYCAN_R_RXERR_COUNT = dis.readUnsignedShort();
-		OBD_EDAC_ERROR_COUNT = dis.readUnsignedInt();
-		OBD_RS422M_ERR_COUNT = dis.readUnsignedShort();
-		OBD_RS422R_ERR_COUNT = dis.readUnsignedShort();
-		OBD_ERROR_COUNT = dis.readUnsignedShort();
-		OBD_HK_ERROR = new HkError(dis);
-		OBD_TC_ERROR_1 = new TcError1(dis);
-		OBD_TC_ERROR_2 = new TcError2(dis);
-		OBD_RS422_STATUS = new Rs422Status(dis);
-		OBD_RS422_ERROR = new Rs422Error(dis);
-		OBD_RS485_STATUS = new Rs485Status(dis);
-		OBD_RS485_ERROR = new Rs485Error(dis);
-		OBD_ERROR = new ObdError(dis);
-		OBD_TEMP_ERROR = new ObdTempError(dis);
-		ACS_ERR = new AcsError(dis);
-		ACS_FDIR_MPS_time_err = dis.readFloat();
-		PM_Voltage_Mb = dis.readUnsignedShort();
-		PM_SAFE_OPERATING_MODE = dis.readUnsignedByte();
-		PM_EQ_PL_STATUS = new EquipmentStatus(dis);
-		PM_UNDERVOLTAGE_STATUS = new EquipmentStatus(dis);
-		
-		TTM_TX_STATUS = dis.readUnsignedByte();
-		TTM_TX_STATUS_1 = dis.readUnsignedByte();
-		TTM_RX_STATUS = dis.readUnsignedByte();
-		TTM_RX_STATUS_1 = dis.readUnsignedByte();
-		TTM_RX_RSSI = dis.readByte();
-		TTM_ERROR = new TtError(dis);
-		TTM_TEMP_1 = dis.readShort() * 0.1f;
-		TTM_TEMP_2 = dis.readShort() * 0.1f;
-		TTM_RX_AFC = dis.readByte() * 16.0f;
-		PLATFORM_FDIR = new PlatformFdir(dis);
-		
-		TTR_TX_STATUS = dis.readUnsignedByte();
-		TTR_TX_STATUS_1 = dis.readUnsignedByte();
-		TTR_RX_STATUS = dis.readUnsignedByte();
-		TTR_RX_STATUS_1 = dis.readUnsignedByte();
-		TTR_RX_RSSI = dis.readByte();
-		TTR_ERROR = new TtError(dis);
-		TTR_TEMP_1 = dis.readShort() * 0.1f;
-		TTR_TEMP_2 = dis.readShort() * 0.1f;
-		TTR_RX_AFC = dis.readByte() * 16.0f;
-		
-		PLATFORM_FDIR1 = new PlatformFdir(dis);
-		PLATFORM_FDIR2 = new PlatformFdir(dis);
-		PLATFORM_FDIR3 = new PlatformFdir(dis);
+		obdPlcanMTxErrCount = dis.readUnsignedShort();
+		obdPlcanMRxErrCount = dis.readUnsignedShort();
+		obdPlcanRTxErrCount = dis.readUnsignedShort();
+		obdPlcanRRxErrCount = dis.readUnsignedShort();
+		obdPycanMTxErrCount = dis.readUnsignedShort();
+		obdPycanMRxErrCount = dis.readUnsignedShort();
+		obdPycanRTxErrCount = dis.readUnsignedShort();
+		obdPycanRRxErrCount = dis.readUnsignedShort();
+		obdEdacErrorCount = dis.readUnsignedInt();
+		obdRs422mErrCount = dis.readUnsignedShort();
+		obdRs422rErrCount = dis.readUnsignedShort();
+		obdErrorCount = dis.readUnsignedShort();
+		obdHkError = new HkError(dis);
+		obdTcError1 = new TcError1(dis);
+		obdTcError2 = new TcError2(dis);
+		obdRs422Status = new Rs422Status(dis);
+		obdRs422Error = new Rs422Error(dis);
+		obdRs485Status = new Rs485Status(dis);
+		obdRs485Error = new Rs485Error(dis);
+		obdError = new ObdError(dis);
+		obdTempError = new ObdTempError(dis);
+		acsErr = new AcsError(dis);
+		acsFdirMpsTimeErr = dis.readFloat();
+		pmVoltageMb = dis.readUnsignedShort();
+		pmSafeOperatingMode = dis.readUnsignedByte();
+		pmEqPlStatus = new EquipmentStatus(dis);
+		pmUndervoltageStatus = new EquipmentStatus(dis);
+
+		ttmTxStatus = dis.readUnsignedByte();
+		ttmTxStatus1 = dis.readUnsignedByte();
+		ttmRxStatus = dis.readUnsignedByte();
+		ttmRxStatus1 = dis.readUnsignedByte();
+		ttmRxRssi = dis.readByte();
+		ttmError = new TtError(dis);
+		ttmTemp1 = dis.readShort() * 0.1f;
+		ttmTemp2 = dis.readShort() * 0.1f;
+		ttmRxAfc = dis.readByte() * 16.0f;
+		platformFdir = new PlatformFdir(dis);
+
+		ttrTxStatus = dis.readUnsignedByte();
+		ttrTxStatus1 = dis.readUnsignedByte();
+		ttrRxStatus = dis.readUnsignedByte();
+		ttrRxStatus1 = dis.readUnsignedByte();
+		ttrRxRssi = dis.readByte();
+		ttrError = new TtError(dis);
+		ttrTemp1 = dis.readShort() * 0.1f;
+		ttrTemp2 = dis.readShort() * 0.1f;
+		ttrRxAfc = dis.readByte() * 16.0f;
+
+		platformFdir1 = new PlatformFdir(dis);
+		platformFdir2 = new PlatformFdir(dis);
+		platformFdir3 = new PlatformFdir(dis);
 	}
 
-	public int getOBD_PLCAN_M_TXERR_COUNT() {
-		return OBD_PLCAN_M_TXERR_COUNT;
+	public int getObdPlcanMTxErrCount() {
+		return obdPlcanMTxErrCount;
 	}
 
-	public void setOBD_PLCAN_M_TXERR_COUNT(int oBD_PLCAN_M_TXERR_COUNT) {
-		OBD_PLCAN_M_TXERR_COUNT = oBD_PLCAN_M_TXERR_COUNT;
+	public void setObdPlcanMTxErrCount(int obdPlcanMTxErrCount) {
+		this.obdPlcanMTxErrCount = obdPlcanMTxErrCount;
 	}
 
-	public int getOBD_PLCAN_M_RXERR_COUNT() {
-		return OBD_PLCAN_M_RXERR_COUNT;
+	public int getObdPlcanMRxErrCount() {
+		return obdPlcanMRxErrCount;
 	}
 
-	public void setOBD_PLCAN_M_RXERR_COUNT(int oBD_PLCAN_M_RXERR_COUNT) {
-		OBD_PLCAN_M_RXERR_COUNT = oBD_PLCAN_M_RXERR_COUNT;
+	public void setObdPlcanMRxErrCount(int obdPlcanMRxErrCount) {
+		this.obdPlcanMRxErrCount = obdPlcanMRxErrCount;
 	}
 
-	public int getOBD_PLCAN_R_TXERR_COUNT() {
-		return OBD_PLCAN_R_TXERR_COUNT;
+	public int getObdPlcanRTxErrCount() {
+		return obdPlcanRTxErrCount;
 	}
 
-	public void setOBD_PLCAN_R_TXERR_COUNT(int oBD_PLCAN_R_TXERR_COUNT) {
-		OBD_PLCAN_R_TXERR_COUNT = oBD_PLCAN_R_TXERR_COUNT;
+	public void setObdPlcanRTxErrCount(int obdPlcanRTxErrCount) {
+		this.obdPlcanRTxErrCount = obdPlcanRTxErrCount;
 	}
 
-	public int getOBD_PLCAN_R_RXERR_COUNT() {
-		return OBD_PLCAN_R_RXERR_COUNT;
+	public int getObdPlcanRRxErrCount() {
+		return obdPlcanRRxErrCount;
 	}
 
-	public void setOBD_PLCAN_R_RXERR_COUNT(int oBD_PLCAN_R_RXERR_COUNT) {
-		OBD_PLCAN_R_RXERR_COUNT = oBD_PLCAN_R_RXERR_COUNT;
+	public void setObdPlcanRRxErrCount(int obdPlcanRRxErrCount) {
+		this.obdPlcanRRxErrCount = obdPlcanRRxErrCount;
 	}
 
-	public int getOBD_PYCAN_M_TXERR_COUNT() {
-		return OBD_PYCAN_M_TXERR_COUNT;
+	public int getObdPycanMTxErrCount() {
+		return obdPycanMTxErrCount;
 	}
 
-	public void setOBD_PYCAN_M_TXERR_COUNT(int oBD_PYCAN_M_TXERR_COUNT) {
-		OBD_PYCAN_M_TXERR_COUNT = oBD_PYCAN_M_TXERR_COUNT;
+	public void setObdPycanMTxErrCount(int obdPycanMTxErrCount) {
+		this.obdPycanMTxErrCount = obdPycanMTxErrCount;
 	}
 
-	public int getOBD_PYCAN_M_RXERR_COUNT() {
-		return OBD_PYCAN_M_RXERR_COUNT;
+	public int getObdPycanMRxErrCount() {
+		return obdPycanMRxErrCount;
 	}
 
-	public void setOBD_PYCAN_M_RXERR_COUNT(int oBD_PYCAN_M_RXERR_COUNT) {
-		OBD_PYCAN_M_RXERR_COUNT = oBD_PYCAN_M_RXERR_COUNT;
+	public void setObdPycanMRxErrCount(int obdPycanMRxErrCount) {
+		this.obdPycanMRxErrCount = obdPycanMRxErrCount;
 	}
 
-	public int getOBD_PYCAN_R_TXERR_COUNT() {
-		return OBD_PYCAN_R_TXERR_COUNT;
+	public int getObdPycanRTxErrCount() {
+		return obdPycanRTxErrCount;
 	}
 
-	public void setOBD_PYCAN_R_TXERR_COUNT(int oBD_PYCAN_R_TXERR_COUNT) {
-		OBD_PYCAN_R_TXERR_COUNT = oBD_PYCAN_R_TXERR_COUNT;
+	public void setObdPycanRTxErrCount(int obdPycanRTxErrCount) {
+		this.obdPycanRTxErrCount = obdPycanRTxErrCount;
 	}
 
-	public int getOBD_PYCAN_R_RXERR_COUNT() {
-		return OBD_PYCAN_R_RXERR_COUNT;
+	public int getObdPycanRRxErrCount() {
+		return obdPycanRRxErrCount;
 	}
 
-	public void setOBD_PYCAN_R_RXERR_COUNT(int oBD_PYCAN_R_RXERR_COUNT) {
-		OBD_PYCAN_R_RXERR_COUNT = oBD_PYCAN_R_RXERR_COUNT;
+	public void setObdPycanRRxErrCount(int obdPycanRRxErrCount) {
+		this.obdPycanRRxErrCount = obdPycanRRxErrCount;
 	}
 
-	public long getOBD_EDAC_ERROR_COUNT() {
-		return OBD_EDAC_ERROR_COUNT;
+	public long getObdEdacErrorCount() {
+		return obdEdacErrorCount;
 	}
 
-	public void setOBD_EDAC_ERROR_COUNT(long oBD_EDAC_ERROR_COUNT) {
-		OBD_EDAC_ERROR_COUNT = oBD_EDAC_ERROR_COUNT;
+	public void setObdEdacErrorCount(long obdEdacErrorCount) {
+		this.obdEdacErrorCount = obdEdacErrorCount;
 	}
 
-	public int getOBD_RS422M_ERR_COUNT() {
-		return OBD_RS422M_ERR_COUNT;
+	public int getObdRs422mErrCount() {
+		return obdRs422mErrCount;
 	}
 
-	public void setOBD_RS422M_ERR_COUNT(int oBD_RS422M_ERR_COUNT) {
-		OBD_RS422M_ERR_COUNT = oBD_RS422M_ERR_COUNT;
+	public void setObdRs422mErrCount(int obdRs422mErrCount) {
+		this.obdRs422mErrCount = obdRs422mErrCount;
 	}
 
-	public int getOBD_RS422R_ERR_COUNT() {
-		return OBD_RS422R_ERR_COUNT;
+	public int getObdRs422rErrCount() {
+		return obdRs422rErrCount;
 	}
 
-	public void setOBD_RS422R_ERR_COUNT(int oBD_RS422R_ERR_COUNT) {
-		OBD_RS422R_ERR_COUNT = oBD_RS422R_ERR_COUNT;
+	public void setObdRs422rErrCount(int obdRs422rErrCount) {
+		this.obdRs422rErrCount = obdRs422rErrCount;
 	}
 
-	public int getOBD_ERROR_COUNT() {
-		return OBD_ERROR_COUNT;
+	public int getObdErrorCount() {
+		return obdErrorCount;
 	}
 
-	public void setOBD_ERROR_COUNT(int oBD_ERROR_COUNT) {
-		OBD_ERROR_COUNT = oBD_ERROR_COUNT;
+	public void setObdErrorCount(int obdErrorCount) {
+		this.obdErrorCount = obdErrorCount;
 	}
 
-	public HkError getOBD_HK_ERROR() {
-		return OBD_HK_ERROR;
+	public HkError getObdHkError() {
+		return obdHkError;
 	}
 
-	public void setOBD_HK_ERROR(HkError oBD_HK_ERROR) {
-		OBD_HK_ERROR = oBD_HK_ERROR;
+	public void setObdHkError(HkError obdHkError) {
+		this.obdHkError = obdHkError;
 	}
 
-	public TcError1 getOBD_TC_ERROR_1() {
-		return OBD_TC_ERROR_1;
+	public TcError1 getObdTcError1() {
+		return obdTcError1;
 	}
 
-	public void setOBD_TC_ERROR_1(TcError1 oBD_TC_ERROR_1) {
-		OBD_TC_ERROR_1 = oBD_TC_ERROR_1;
+	public void setObdTcError1(TcError1 obdTcError1) {
+		this.obdTcError1 = obdTcError1;
 	}
 
-	public TcError2 getOBD_TC_ERROR_2() {
-		return OBD_TC_ERROR_2;
+	public TcError2 getObdTcError2() {
+		return obdTcError2;
 	}
 
-	public void setOBD_TC_ERROR_2(TcError2 oBD_TC_ERROR_2) {
-		OBD_TC_ERROR_2 = oBD_TC_ERROR_2;
+	public void setObdTcError2(TcError2 obdTcError2) {
+		this.obdTcError2 = obdTcError2;
 	}
 
-	public Rs422Status getOBD_RS422_STATUS() {
-		return OBD_RS422_STATUS;
+	public Rs422Status getObdRs422Status() {
+		return obdRs422Status;
 	}
 
-	public void setOBD_RS422_STATUS(Rs422Status oBD_RS422_STATUS) {
-		OBD_RS422_STATUS = oBD_RS422_STATUS;
+	public void setObdRs422Status(Rs422Status obdRs422Status) {
+		this.obdRs422Status = obdRs422Status;
 	}
 
-	public Rs422Error getOBD_RS422_ERROR() {
-		return OBD_RS422_ERROR;
+	public Rs422Error getObdRs422Error() {
+		return obdRs422Error;
 	}
 
-	public void setOBD_RS422_ERROR(Rs422Error oBD_RS422_ERROR) {
-		OBD_RS422_ERROR = oBD_RS422_ERROR;
+	public void setObdRs422Error(Rs422Error obdRs422Error) {
+		this.obdRs422Error = obdRs422Error;
 	}
 
-	public Rs485Status getOBD_RS485_STATUS() {
-		return OBD_RS485_STATUS;
+	public Rs485Status getObdRs485Status() {
+		return obdRs485Status;
 	}
 
-	public void setOBD_RS485_STATUS(Rs485Status oBD_RS485_STATUS) {
-		OBD_RS485_STATUS = oBD_RS485_STATUS;
+	public void setObdRs485Status(Rs485Status obdRs485Status) {
+		this.obdRs485Status = obdRs485Status;
 	}
 
-	public Rs485Error getOBD_RS485_ERROR() {
-		return OBD_RS485_ERROR;
+	public Rs485Error getObdRs485Error() {
+		return obdRs485Error;
 	}
 
-	public void setOBD_RS485_ERROR(Rs485Error oBD_RS485_ERROR) {
-		OBD_RS485_ERROR = oBD_RS485_ERROR;
+	public void setObdRs485Error(Rs485Error obdRs485Error) {
+		this.obdRs485Error = obdRs485Error;
 	}
 
-	public ObdError getOBD_ERROR() {
-		return OBD_ERROR;
+	public ObdError getObdError() {
+		return obdError;
 	}
 
-	public void setOBD_ERROR(ObdError oBD_ERROR) {
-		OBD_ERROR = oBD_ERROR;
+	public void setObdError(ObdError obdError) {
+		this.obdError = obdError;
 	}
 
-	public ObdTempError getOBD_TEMP_ERROR() {
-		return OBD_TEMP_ERROR;
+	public ObdTempError getObdTempError() {
+		return obdTempError;
 	}
 
-	public void setOBD_TEMP_ERROR(ObdTempError oBD_TEMP_ERROR) {
-		OBD_TEMP_ERROR = oBD_TEMP_ERROR;
+	public void setObdTempError(ObdTempError obdTempError) {
+		this.obdTempError = obdTempError;
 	}
 
-	public AcsError getACS_ERR() {
-		return ACS_ERR;
+	public AcsError getAcsErr() {
+		return acsErr;
 	}
 
-	public void setACS_ERR(AcsError aCS_ERR) {
-		ACS_ERR = aCS_ERR;
+	public void setAcsErr(AcsError acsErr) {
+		this.acsErr = acsErr;
 	}
 
-	public float getACS_FDIR_MPS_time_err() {
-		return ACS_FDIR_MPS_time_err;
+	public float getAcsFdirMpsTimeErr() {
+		return acsFdirMpsTimeErr;
 	}
 
-	public void setACS_FDIR_MPS_time_err(float aCS_FDIR_MPS_time_err) {
-		ACS_FDIR_MPS_time_err = aCS_FDIR_MPS_time_err;
+	public void setAcsFdirMpsTimeErr(float acsFdirMpsTimeErr) {
+		this.acsFdirMpsTimeErr = acsFdirMpsTimeErr;
 	}
 
-	public int getPM_Voltage_Mb() {
-		return PM_Voltage_Mb;
+	public int getPmVoltageMb() {
+		return pmVoltageMb;
 	}
 
-	public void setPM_Voltage_Mb(int pM_Voltage_Mb) {
-		PM_Voltage_Mb = pM_Voltage_Mb;
+	public void setPmVoltageMb(int pmVoltageMb) {
+		this.pmVoltageMb = pmVoltageMb;
 	}
 
-	public int getPM_SAFE_OPERATING_MODE() {
-		return PM_SAFE_OPERATING_MODE;
+	public int getPmSafeOperatingMode() {
+		return pmSafeOperatingMode;
 	}
 
-	public void setPM_SAFE_OPERATING_MODE(int pM_SAFE_OPERATING_MODE) {
-		PM_SAFE_OPERATING_MODE = pM_SAFE_OPERATING_MODE;
+	public void setPmSafeOperatingMode(int pmSafeOperatingMode) {
+		this.pmSafeOperatingMode = pmSafeOperatingMode;
 	}
 
-	public EquipmentStatus getPM_EQ_PL_STATUS() {
-		return PM_EQ_PL_STATUS;
+	public EquipmentStatus getPmEqPlStatus() {
+		return pmEqPlStatus;
 	}
 
-	public void setPM_EQ_PL_STATUS(EquipmentStatus pM_EQ_PL_STATUS) {
-		PM_EQ_PL_STATUS = pM_EQ_PL_STATUS;
+	public void setPmEqPlStatus(EquipmentStatus pmEqPlStatus) {
+		this.pmEqPlStatus = pmEqPlStatus;
 	}
 
-	public EquipmentStatus getPM_UNDERVOLTAGE_STATUS() {
-		return PM_UNDERVOLTAGE_STATUS;
+	public EquipmentStatus getPmUndervoltageStatus() {
+		return pmUndervoltageStatus;
 	}
 
-	public void setPM_UNDERVOLTAGE_STATUS(EquipmentStatus pM_UNDERVOLTAGE_STATUS) {
-		PM_UNDERVOLTAGE_STATUS = pM_UNDERVOLTAGE_STATUS;
+	public void setPmUndervoltageStatus(EquipmentStatus pmUndervoltageStatus) {
+		this.pmUndervoltageStatus = pmUndervoltageStatus;
 	}
 
-	public int getTTM_TX_STATUS() {
-		return TTM_TX_STATUS;
+	public int getTtmTxStatus() {
+		return ttmTxStatus;
 	}
 
-	public void setTTM_TX_STATUS(int tTM_TX_STATUS) {
-		TTM_TX_STATUS = tTM_TX_STATUS;
+	public void setTtmTxStatus(int ttmTxStatus) {
+		this.ttmTxStatus = ttmTxStatus;
 	}
 
-	public int getTTM_TX_STATUS_1() {
-		return TTM_TX_STATUS_1;
+	public int getTtmTxStatus1() {
+		return ttmTxStatus1;
 	}
 
-	public void setTTM_TX_STATUS_1(int tTM_TX_STATUS_1) {
-		TTM_TX_STATUS_1 = tTM_TX_STATUS_1;
+	public void setTtmTxStatus1(int ttmTxStatus1) {
+		this.ttmTxStatus1 = ttmTxStatus1;
 	}
 
-	public int getTTM_RX_STATUS() {
-		return TTM_RX_STATUS;
+	public int getTtmRxStatus() {
+		return ttmRxStatus;
 	}
 
-	public void setTTM_RX_STATUS(int tTM_RX_STATUS) {
-		TTM_RX_STATUS = tTM_RX_STATUS;
+	public void setTtmRxStatus(int ttmRxStatus) {
+		this.ttmRxStatus = ttmRxStatus;
 	}
 
-	public int getTTM_RX_STATUS_1() {
-		return TTM_RX_STATUS_1;
+	public int getTtmRxStatus1() {
+		return ttmRxStatus1;
 	}
 
-	public void setTTM_RX_STATUS_1(int tTM_RX_STATUS_1) {
-		TTM_RX_STATUS_1 = tTM_RX_STATUS_1;
+	public void setTtmRxStatus1(int ttmRxStatus1) {
+		this.ttmRxStatus1 = ttmRxStatus1;
 	}
 
-	public byte getTTM_RX_RSSI() {
-		return TTM_RX_RSSI;
+	public byte getTtmRxRssi() {
+		return ttmRxRssi;
 	}
 
-	public void setTTM_RX_RSSI(byte tTM_RX_RSSI) {
-		TTM_RX_RSSI = tTM_RX_RSSI;
+	public void setTtmRxRssi(byte ttmRxRssi) {
+		this.ttmRxRssi = ttmRxRssi;
 	}
 
-	public TtError getTTM_ERROR() {
-		return TTM_ERROR;
+	public TtError getTtmError() {
+		return ttmError;
 	}
 
-	public void setTTM_ERROR(TtError tTM_ERROR) {
-		TTM_ERROR = tTM_ERROR;
+	public void setTtmError(TtError ttmError) {
+		this.ttmError = ttmError;
 	}
 
-	public float getTTM_TEMP_1() {
-		return TTM_TEMP_1;
+	public float getTtmTemp1() {
+		return ttmTemp1;
 	}
 
-	public void setTTM_TEMP_1(float tTM_TEMP_1) {
-		TTM_TEMP_1 = tTM_TEMP_1;
+	public void setTtmTemp1(float ttmTemp1) {
+		this.ttmTemp1 = ttmTemp1;
 	}
 
-	public float getTTM_TEMP_2() {
-		return TTM_TEMP_2;
+	public float getTtmTemp2() {
+		return ttmTemp2;
 	}
 
-	public void setTTM_TEMP_2(float tTM_TEMP_2) {
-		TTM_TEMP_2 = tTM_TEMP_2;
+	public void setTtmTemp2(float ttmTemp2) {
+		this.ttmTemp2 = ttmTemp2;
 	}
 
-	public float getTTM_RX_AFC() {
-		return TTM_RX_AFC;
+	public float getTtmRxAfc() {
+		return ttmRxAfc;
 	}
 
-	public void setTTM_RX_AFC(float tTM_RX_AFC) {
-		TTM_RX_AFC = tTM_RX_AFC;
+	public void setTtmRxAfc(float ttmRxAfc) {
+		this.ttmRxAfc = ttmRxAfc;
 	}
 
-	public PlatformFdir getPLATFORM_FDIR() {
-		return PLATFORM_FDIR;
+	public PlatformFdir getPlatformFdir() {
+		return platformFdir;
 	}
 
-	public void setPLATFORM_FDIR(PlatformFdir pLATFORM_FDIR) {
-		PLATFORM_FDIR = pLATFORM_FDIR;
+	public void setPlatformFdir(PlatformFdir platformFdir) {
+		this.platformFdir = platformFdir;
 	}
 
-	public int getTTR_TX_STATUS() {
-		return TTR_TX_STATUS;
+	public int getTtrTxStatus() {
+		return ttrTxStatus;
 	}
 
-	public void setTTR_TX_STATUS(int tTR_TX_STATUS) {
-		TTR_TX_STATUS = tTR_TX_STATUS;
+	public void setTtrTxStatus(int ttrTxStatus) {
+		this.ttrTxStatus = ttrTxStatus;
 	}
 
-	public int getTTR_TX_STATUS_1() {
-		return TTR_TX_STATUS_1;
+	public int getTtrTxStatus1() {
+		return ttrTxStatus1;
 	}
 
-	public void setTTR_TX_STATUS_1(int tTR_TX_STATUS_1) {
-		TTR_TX_STATUS_1 = tTR_TX_STATUS_1;
+	public void setTtrTxStatus1(int ttrTxStatus1) {
+		this.ttrTxStatus1 = ttrTxStatus1;
 	}
 
-	public int getTTR_RX_STATUS() {
-		return TTR_RX_STATUS;
+	public int getTtrRxStatus() {
+		return ttrRxStatus;
 	}
 
-	public void setTTR_RX_STATUS(int tTR_RX_STATUS) {
-		TTR_RX_STATUS = tTR_RX_STATUS;
+	public void setTtrRxStatus(int ttrRxStatus) {
+		this.ttrRxStatus = ttrRxStatus;
 	}
 
-	public int getTTR_RX_STATUS_1() {
-		return TTR_RX_STATUS_1;
+	public int getTtrRxStatus1() {
+		return ttrRxStatus1;
 	}
 
-	public void setTTR_RX_STATUS_1(int tTR_RX_STATUS_1) {
-		TTR_RX_STATUS_1 = tTR_RX_STATUS_1;
+	public void setTtrRxStatus1(int ttrRxStatus1) {
+		this.ttrRxStatus1 = ttrRxStatus1;
 	}
 
-	public byte getTTR_RX_RSSI() {
-		return TTR_RX_RSSI;
+	public byte getTtrRxRssi() {
+		return ttrRxRssi;
 	}
 
-	public void setTTR_RX_RSSI(byte tTR_RX_RSSI) {
-		TTR_RX_RSSI = tTR_RX_RSSI;
+	public void setTtrRxRssi(byte ttrRxRssi) {
+		this.ttrRxRssi = ttrRxRssi;
 	}
 
-	public TtError getTTR_ERROR() {
-		return TTR_ERROR;
+	public TtError getTtrError() {
+		return ttrError;
 	}
 
-	public void setTTR_ERROR(TtError tTR_ERROR) {
-		TTR_ERROR = tTR_ERROR;
+	public void setTtrError(TtError ttrError) {
+		this.ttrError = ttrError;
 	}
 
-	public float getTTR_TEMP_1() {
-		return TTR_TEMP_1;
+	public float getTtrTemp1() {
+		return ttrTemp1;
 	}
 
-	public void setTTR_TEMP_1(float tTR_TEMP_1) {
-		TTR_TEMP_1 = tTR_TEMP_1;
+	public void setTtrTemp1(float ttrTemp1) {
+		this.ttrTemp1 = ttrTemp1;
 	}
 
-	public float getTTR_TEMP_2() {
-		return TTR_TEMP_2;
+	public float getTtrTemp2() {
+		return ttrTemp2;
 	}
 
-	public void setTTR_TEMP_2(float tTR_TEMP_2) {
-		TTR_TEMP_2 = tTR_TEMP_2;
+	public void setTtrTemp2(float ttrTemp2) {
+		this.ttrTemp2 = ttrTemp2;
 	}
 
-	public float getTTR_RX_AFC() {
-		return TTR_RX_AFC;
+	public float getTtrRxAfc() {
+		return ttrRxAfc;
 	}
 
-	public void setTTR_RX_AFC(float tTR_RX_AFC) {
-		TTR_RX_AFC = tTR_RX_AFC;
+	public void setTtrRxAfc(float ttrRxAfc) {
+		this.ttrRxAfc = ttrRxAfc;
 	}
 
-	public PlatformFdir getPLATFORM_FDIR1() {
-		return PLATFORM_FDIR1;
+	public PlatformFdir getPlatformFdir1() {
+		return platformFdir1;
 	}
 
-	public void setPLATFORM_FDIR1(PlatformFdir pLATFORM_FDIR1) {
-		PLATFORM_FDIR1 = pLATFORM_FDIR1;
+	public void setPlatformFdir1(PlatformFdir platformFdir1) {
+		this.platformFdir1 = platformFdir1;
 	}
 
-	public PlatformFdir getPLATFORM_FDIR2() {
-		return PLATFORM_FDIR2;
+	public PlatformFdir getPlatformFdir2() {
+		return platformFdir2;
 	}
 
-	public void setPLATFORM_FDIR2(PlatformFdir pLATFORM_FDIR2) {
-		PLATFORM_FDIR2 = pLATFORM_FDIR2;
+	public void setPlatformFdir2(PlatformFdir platformFdir2) {
+		this.platformFdir2 = platformFdir2;
 	}
 
-	public PlatformFdir getPLATFORM_FDIR3() {
-		return PLATFORM_FDIR3;
+	public PlatformFdir getPlatformFdir3() {
+		return platformFdir3;
 	}
 
-	public void setPLATFORM_FDIR3(PlatformFdir pLATFORM_FDIR3) {
-		PLATFORM_FDIR3 = pLATFORM_FDIR3;
+	public void setPlatformFdir3(PlatformFdir platformFdir3) {
+		this.platformFdir3 = platformFdir3;
 	}
 
 }
