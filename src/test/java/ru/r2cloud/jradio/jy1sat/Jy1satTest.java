@@ -6,9 +6,9 @@ import org.junit.After;
 import org.junit.Test;
 
 import ru.r2cloud.jradio.AssertJson;
-import ru.r2cloud.jradio.BpskDemodulator;
 import ru.r2cloud.jradio.ao40.Ao40CorrelateAccessCodeTag;
 import ru.r2cloud.jradio.blocks.FloatToComplex;
+import ru.r2cloud.jradio.demod.BpskDemodulator;
 import ru.r2cloud.jradio.source.WavFileSource;
 
 public class Jy1satTest {

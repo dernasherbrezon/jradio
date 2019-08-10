@@ -6,12 +6,12 @@ import org.junit.After;
 import org.junit.Test;
 
 import ru.r2cloud.jradio.AssertJson;
-import ru.r2cloud.jradio.BpskDemodulator;
 import ru.r2cloud.jradio.blocks.Descrambler;
 import ru.r2cloud.jradio.blocks.FloatToComplex;
 import ru.r2cloud.jradio.blocks.HdlcReceiver;
 import ru.r2cloud.jradio.blocks.NrziDecode;
 import ru.r2cloud.jradio.blocks.SoftToHard;
+import ru.r2cloud.jradio.demod.BpskDemodulator;
 import ru.r2cloud.jradio.kunspf.KunsPfTest;
 import ru.r2cloud.jradio.source.WavFileSource;
 

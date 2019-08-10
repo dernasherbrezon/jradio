@@ -1,7 +1,10 @@
-package ru.r2cloud.jradio;
+package ru.r2cloud.jradio.demod;
 
 import java.io.IOException;
 
+import ru.r2cloud.jradio.ByteInput;
+import ru.r2cloud.jradio.Context;
+import ru.r2cloud.jradio.FloatInput;
 import ru.r2cloud.jradio.blocks.ComplexToReal;
 import ru.r2cloud.jradio.blocks.Constellation;
 import ru.r2cloud.jradio.blocks.CostasLoop;
