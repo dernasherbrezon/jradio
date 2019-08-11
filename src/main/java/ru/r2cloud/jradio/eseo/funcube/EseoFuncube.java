@@ -27,7 +27,7 @@ public class EseoFuncube extends Ao40BeaconSource<EseoFuncubeBeacon> {
 			return null;
 		} catch (UncorrectableException e) {
 			if (LOG.isDebugEnabled()) {
-				LOG.debug("unable to decode: " + e.getMessage());
+				LOG.debug("unable to decode: {}", e.getMessage());
 			}
 			return null;
 		}
