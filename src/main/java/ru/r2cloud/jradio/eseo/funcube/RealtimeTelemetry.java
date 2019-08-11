@@ -75,10 +75,10 @@ public class RealtimeTelemetry {
 		safeModeState = dis.readBoolean();
 		inSafeMode = dis.readBoolean();
 		switch (dataMode) {
-		case Mode1k2:
+		case MODE_1K2:
 			nonPayloadObc = new NonPayloadModeOBC(dis);
 			break;
-		case PayloadMode4k8:
+		case PAYLOAD_MODE_4K8:
 			payloadObc = new PayloadModeOBC(dis);
 			break;
 		default:

@@ -5,7 +5,7 @@ import java.util.Map;
 
 public enum DataMode {
 
-	Mode1k2(0x00), PayloadMode4k8(0x01);
+	MODE_1K2(0x00), PAYLOAD_MODE_4K8(0x01);
 
 	private final int code;
 	private static final Map<Integer, DataMode> typeByCode = new HashMap<>();
