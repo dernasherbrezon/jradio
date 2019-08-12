@@ -27,7 +27,7 @@ public class Ao73 extends Ao40BeaconSource<Ao73Beacon> {
 			return null;
 		} catch (UncorrectableException e) {
 			if (LOG.isDebugEnabled()) {
-				LOG.debug("unable to decode: " + e.getMessage());
+				LOG.debug("unable to decode: {}", e.getMessage());
 			}
 			return null;
 		}
