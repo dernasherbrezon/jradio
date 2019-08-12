@@ -251,14 +251,14 @@
       "powerBoardSensor2TemperatureOutOfRange": false
     },
     "tmtcMainTransmitterSTATUS": {
-      "LOCKPin": true,
-      "DCLKPin": false,
-      "LOCKPin2": true,
-      "CarrierSense": true,
-      "ContinuousPLLLockIndicator": false,
-      "InstantaneousPLLLockIndicator": false,
-      "PLLFailedLockAtPowerUp": true,
-      "CalibrationComplete": true
+      "lockPin": true,
+      "dclkPin": false,
+      "lockPin2": true,
+      "carrierSense": true,
+      "continuousPLLLockIndicator": false,
+      "instantaneousPLLLockIndicator": false,
+      "pllFailedLockAtPowerUp": true,
+      "calibrationComplete": true
     },
     "ttmErrorCondition": {
       "pllFailedToLockInTheTransmitter": false,
@@ -300,14 +300,14 @@
       "obdhReprogramming": false
     },
     "tmtcRedundantTransmitterSTATUS": {
-      "LOCKPin": true,
-      "DCLKPin": false,
-      "LOCKPin2": true,
-      "CarrierSense": true,
-      "ContinuousPLLLockIndicator": false,
-      "InstantaneousPLLLockIndicator": false,
-      "PLLFailedLockAtPowerUp": true,
-      "CalibrationComplete": false
+      "lockPin": true,
+      "dclkPin": false,
+      "lockPin2": true,
+      "carrierSense": true,
+      "continuousPLLLockIndicator": false,
+      "instantaneousPLLLockIndicator": false,
+      "pllFailedLockAtPowerUp": true,
+      "calibrationComplete": false
     },
     "ttrErrorCondition": {
       "pllFailedToLockInTheTransmitter": false,
@@ -491,14 +491,14 @@
       "mtm5VOvercurrent": false
     },
     "tmtcRedundantTransmitterSTATUS2": {
-      "LOCKPin": false,
-      "DCLKPin": false,
-      "LOCKPin2": false,
-      "CarrierSense": false,
-      "ContinuousPLLLockIndicator": false,
-      "InstantaneousPLLLockIndicator": false,
-      "PLLFailedLockAtPowerUp": false,
-      "CalibrationComplete": false
+      "lockPin": false,
+      "dclkPin": false,
+      "lockPin2": false,
+      "carrierSense": false,
+      "continuousPLLLockIndicator": false,
+      "instantaneousPLLLockIndicator": false,
+      "pllFailedLockAtPowerUp": false,
+      "calibrationComplete": false
     },
     "ttrErrorCondition2": {
       "pllFailedToLockInTheTransmitter": false,

@@ -6,89 +6,89 @@ import ru.r2cloud.jradio.util.LittleEndianDataInputStream;
 
 public class TtTxStatus {
 
-	private boolean LOCKPin;
-	private boolean DCLKPin;
-	private boolean LOCKPin2;
-	private boolean CarrierSense;
-	private boolean ContinuousPLLLockIndicator;
-	private boolean InstantaneousPLLLockIndicator;
-	private boolean PLLFailedLockAtPowerUp;
-	private boolean CalibrationComplete;
+	private boolean lockPin;
+	private boolean dclkPin;
+	private boolean lockPin2;
+	private boolean carrierSense;
+	private boolean continuousPLLLockIndicator;
+	private boolean instantaneousPLLLockIndicator;
+	private boolean pllFailedLockAtPowerUp;
+	private boolean calibrationComplete;
 
 	public TtTxStatus(LittleEndianDataInputStream dis) throws IOException {
 		int raw = dis.readUnsignedByte();
-		LOCKPin = ((raw >> 7) & 0x1) > 0;
-		DCLKPin = ((raw >> 6) & 0x1) > 0;
-		LOCKPin2 = ((raw >> 5) & 0x1) > 0;
-		CarrierSense = ((raw >> 4) & 0x1) > 0;
-		ContinuousPLLLockIndicator = ((raw >> 3) & 0x1) > 0;
-		InstantaneousPLLLockIndicator = ((raw >> 2) & 0x1) > 0;
-		PLLFailedLockAtPowerUp = ((raw >> 1) & 0x1) > 0;
-		CalibrationComplete = (raw & 0x1) > 0;
+		lockPin = ((raw >> 7) & 0x1) > 0;
+		dclkPin = ((raw >> 6) & 0x1) > 0;
+		lockPin2 = ((raw >> 5) & 0x1) > 0;
+		carrierSense = ((raw >> 4) & 0x1) > 0;
+		continuousPLLLockIndicator = ((raw >> 3) & 0x1) > 0;
+		instantaneousPLLLockIndicator = ((raw >> 2) & 0x1) > 0;
+		pllFailedLockAtPowerUp = ((raw >> 1) & 0x1) > 0;
+		calibrationComplete = (raw & 0x1) > 0;
 	}
 
-	public boolean isLOCKPin() {
-		return LOCKPin;
+	public boolean isLockPin() {
+		return lockPin;
 	}
 
-	public void setLOCKPin(boolean lOCKPin) {
-		LOCKPin = lOCKPin;
+	public void setLockPin(boolean lockPin) {
+		this.lockPin = lockPin;
 	}
 
-	public boolean isDCLKPin() {
-		return DCLKPin;
+	public boolean isDclkPin() {
+		return dclkPin;
 	}
 
-	public void setDCLKPin(boolean dCLKPin) {
-		DCLKPin = dCLKPin;
+	public void setDclkPin(boolean dclkPin) {
+		this.dclkPin = dclkPin;
 	}
 
-	public boolean isLOCKPin2() {
-		return LOCKPin2;
+	public boolean isLockPin2() {
+		return lockPin2;
 	}
 
-	public void setLOCKPin2(boolean lOCKPin2) {
-		LOCKPin2 = lOCKPin2;
+	public void setLockPin2(boolean lockPin2) {
+		this.lockPin2 = lockPin2;
 	}
 
 	public boolean isCarrierSense() {
-		return CarrierSense;
+		return carrierSense;
 	}
 
 	public void setCarrierSense(boolean carrierSense) {
-		CarrierSense = carrierSense;
+		this.carrierSense = carrierSense;
 	}
 
 	public boolean isContinuousPLLLockIndicator() {
-		return ContinuousPLLLockIndicator;
+		return continuousPLLLockIndicator;
 	}
 
 	public void setContinuousPLLLockIndicator(boolean continuousPLLLockIndicator) {
-		ContinuousPLLLockIndicator = continuousPLLLockIndicator;
+		this.continuousPLLLockIndicator = continuousPLLLockIndicator;
 	}
 
 	public boolean isInstantaneousPLLLockIndicator() {
-		return InstantaneousPLLLockIndicator;
+		return instantaneousPLLLockIndicator;
 	}
 
 	public void setInstantaneousPLLLockIndicator(boolean instantaneousPLLLockIndicator) {
-		InstantaneousPLLLockIndicator = instantaneousPLLLockIndicator;
+		this.instantaneousPLLLockIndicator = instantaneousPLLLockIndicator;
 	}
 
-	public boolean isPLLFailedLockAtPowerUp() {
-		return PLLFailedLockAtPowerUp;
+	public boolean isPllFailedLockAtPowerUp() {
+		return pllFailedLockAtPowerUp;
 	}
 
-	public void setPLLFailedLockAtPowerUp(boolean pLLFailedLockAtPowerUp) {
-		PLLFailedLockAtPowerUp = pLLFailedLockAtPowerUp;
+	public void setPllFailedLockAtPowerUp(boolean pllFailedLockAtPowerUp) {
+		this.pllFailedLockAtPowerUp = pllFailedLockAtPowerUp;
 	}
 
 	public boolean isCalibrationComplete() {
-		return CalibrationComplete;
+		return calibrationComplete;
 	}
 
 	public void setCalibrationComplete(boolean calibrationComplete) {
-		CalibrationComplete = calibrationComplete;
+		this.calibrationComplete = calibrationComplete;
 	}
 
 }
