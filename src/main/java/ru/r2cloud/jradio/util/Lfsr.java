@@ -29,7 +29,22 @@ public class Lfsr {
 		int output = (int) (popCount(shiftRegister & mask) % 2) ^ ((input & 0xFF) & 1);
 		int newbit = (input & 0xFF) & 1;
 		shiftRegister = ((shiftRegister >> 1) | (newbit << length));
-		return (byte)output;
+		return (byte) output;
+	}
+
+	public byte nextBitScramble(byte input) {
+		int output = shiftRegister & 1;
+		int newbit = (int) (popCount(shiftRegister & mask) % 2) ^ ((input & 0xFF) & 1);
+		shiftRegister = ((shiftRegister >> 1) | (newbit << length));
+		return (byte) output;
+	}
+
+	public static void main(String[] args) throws Exception {
+		Lfsr l = new Lfsr(0x21, 0x1ff, 16);
+		Lfsr l2 = new Lfsr(0x21, 0x1ff, 16);
+		for (int i = 1; i < 33; i++) {
+			System.out.println(l.nextBitDescramble(l2.nextBitScramble((byte) (i % 2))));
+		}
 	}
 
 	public void reset() {
