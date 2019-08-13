@@ -6,55 +6,55 @@ import ru.r2cloud.jradio.util.BitInputStream;
 
 public class NonPayloadModeOBC {
 
-	private int PmmVoltageSp1;
-	private int PmmVoltageSp2;
-	private int PmmVoltageSp3;
+	private int pmmVoltageSp1;
+	private int pmmVoltageSp2;
+	private int pmmVoltageSp3;
 	private OBDMode obdMode;
 	private OBDEquipmentStatus equipmentStatus;
-	private int OBDWdResetCount;
-	private float ACSOmegaP;
-	private float ACSOmegaQ;
-	private float ACSOmegaR;
-	private int STXTemp4;
-	private int PMMVoltageMb;
+	private int obdWdResetCount;
+	private float acsOmegaP;
+	private float acsOmegaQ;
+	private float acsOmegaR;
+	private int stxTemp4;
+	private int pmmVoltageMb;
 
 	public NonPayloadModeOBC(BitInputStream dis) throws IOException {
-		PmmVoltageSp1 = dis.readUnsignedInt(16);
-		PmmVoltageSp2 = dis.readUnsignedInt(16);
-		PmmVoltageSp3 = dis.readUnsignedInt(16);
+		pmmVoltageSp1 = dis.readUnsignedInt(16);
+		pmmVoltageSp2 = dis.readUnsignedInt(16);
+		pmmVoltageSp3 = dis.readUnsignedInt(16);
 		obdMode = OBDMode.valueOfCode(dis.readUnsignedByte());
 		equipmentStatus = new OBDEquipmentStatus(dis);
-		OBDWdResetCount = dis.readUnsignedByte();
-		ACSOmegaP = Float.intBitsToFloat((int) dis.readUnsignedLong(32));
-		ACSOmegaQ = Float.intBitsToFloat((int) dis.readUnsignedLong(32));
-		ACSOmegaR = Float.intBitsToFloat((int) dis.readUnsignedLong(32));
-		STXTemp4 = dis.readUnsignedByte();
-		PMMVoltageMb = dis.readUnsignedByte();
+		obdWdResetCount = dis.readUnsignedByte();
+		acsOmegaP = Float.intBitsToFloat((int) dis.readUnsignedLong(32));
+		acsOmegaQ = Float.intBitsToFloat((int) dis.readUnsignedLong(32));
+		acsOmegaR = Float.intBitsToFloat((int) dis.readUnsignedLong(32));
+		stxTemp4 = dis.readUnsignedByte();
+		pmmVoltageMb = dis.readUnsignedByte();
 		dis.skipBits(1);
 	}
 
 	public int getPmmVoltageSp1() {
-		return PmmVoltageSp1;
+		return pmmVoltageSp1;
 	}
 
 	public void setPmmVoltageSp1(int pmmVoltageSp1) {
-		PmmVoltageSp1 = pmmVoltageSp1;
+		this.pmmVoltageSp1 = pmmVoltageSp1;
 	}
 
 	public int getPmmVoltageSp2() {
-		return PmmVoltageSp2;
+		return pmmVoltageSp2;
 	}
 
 	public void setPmmVoltageSp2(int pmmVoltageSp2) {
-		PmmVoltageSp2 = pmmVoltageSp2;
+		this.pmmVoltageSp2 = pmmVoltageSp2;
 	}
 
 	public int getPmmVoltageSp3() {
-		return PmmVoltageSp3;
+		return pmmVoltageSp3;
 	}
 
 	public void setPmmVoltageSp3(int pmmVoltageSp3) {
-		PmmVoltageSp3 = pmmVoltageSp3;
+		this.pmmVoltageSp3 = pmmVoltageSp3;
 	}
 
 	public OBDMode getObdMode() {
@@ -73,52 +73,52 @@ public class NonPayloadModeOBC {
 		this.equipmentStatus = equipmentStatus;
 	}
 
-	public int getOBDWdResetCount() {
-		return OBDWdResetCount;
+	public int getObdWdResetCount() {
+		return obdWdResetCount;
 	}
 
-	public void setOBDWdResetCount(int oBDWdResetCount) {
-		OBDWdResetCount = oBDWdResetCount;
+	public void setObdWdResetCount(int obdWdResetCount) {
+		this.obdWdResetCount = obdWdResetCount;
 	}
 
-	public float getACSOmegaP() {
-		return ACSOmegaP;
+	public float getAcsOmegaP() {
+		return acsOmegaP;
 	}
 
-	public void setACSOmegaP(float aCSOmegaP) {
-		ACSOmegaP = aCSOmegaP;
+	public void setAcsOmegaP(float acsOmegaP) {
+		this.acsOmegaP = acsOmegaP;
 	}
 
-	public float getACSOmegaQ() {
-		return ACSOmegaQ;
+	public float getAcsOmegaQ() {
+		return acsOmegaQ;
 	}
 
-	public void setACSOmegaQ(float aCSOmegaQ) {
-		ACSOmegaQ = aCSOmegaQ;
+	public void setAcsOmegaQ(float acsOmegaQ) {
+		this.acsOmegaQ = acsOmegaQ;
 	}
 
-	public float getACSOmegaR() {
-		return ACSOmegaR;
+	public float getAcsOmegaR() {
+		return acsOmegaR;
 	}
 
-	public void setACSOmegaR(float aCSOmegaR) {
-		ACSOmegaR = aCSOmegaR;
+	public void setAcsOmegaR(float acsOmegaR) {
+		this.acsOmegaR = acsOmegaR;
 	}
 
-	public int getSTXTemp4() {
-		return STXTemp4;
+	public int getStxTemp4() {
+		return stxTemp4;
 	}
 
-	public void setSTXTemp4(int sTXTemp4) {
-		STXTemp4 = sTXTemp4;
+	public void setStxTemp4(int stxTemp4) {
+		this.stxTemp4 = stxTemp4;
 	}
 
-	public int getPMMVoltageMb() {
-		return PMMVoltageMb;
+	public int getPmmVoltageMb() {
+		return pmmVoltageMb;
 	}
 
-	public void setPMMVoltageMb(int pMMVoltageMb) {
-		PMMVoltageMb = pMMVoltageMb;
+	public void setPmmVoltageMb(int pmmVoltageMb) {
+		this.pmmVoltageMb = pmmVoltageMb;
 	}
 
 }
