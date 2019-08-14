@@ -30,7 +30,7 @@ public class EseoTest {
 		ClockRecoveryMM clockRecovery = new ClockRecoveryMM(lpf, lpf.getContext().getSampleRate() / 9600, (float) (0.25 * gainMu * gainMu), 0.5f, gainMu, 0.005f);
 		BinarySlicer bs = new BinarySlicer(clockRecovery);
 		CorrelateAccessCodeTag correlateTag = new CorrelateAccessCodeTag(bs, 1, EseoBeacon.FLAG, false);
-		TaggedStreamToPdu pdu = new TaggedStreamToPdu(new UnpackedToPacked(new FixedLengthTagger(correlateTag, 257 * 8), 1, Endianness.GR_MSB_FIRST, Byte.class));
+		TaggedStreamToPdu pdu = new TaggedStreamToPdu(new UnpackedToPacked(new FixedLengthTagger(correlateTag, 257 * 8), 1, Endianness.GR_MSB_FIRST));
 		input = new Eseo(pdu);
 		assertTrue(input.hasNext());
 		AssertJson.assertObjectsEqual("Eseo.json", input.next());

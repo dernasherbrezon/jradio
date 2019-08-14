@@ -31,7 +31,7 @@ public class At03Test {
 		ClockRecoveryMM clockRecovery = new ClockRecoveryMM(lpf, lpf.getContext().getSampleRate() / 9600, (float) (0.25 * gainMu * gainMu), 0.5f, gainMu, 0.005f);
 		BinarySlicer bs = new BinarySlicer(clockRecovery);
 		CorrelateAccessCodeTag correlateTag = new CorrelateAccessCodeTag(bs, 1, "0010110111010100", false);
-		TaggedStreamToPdu pdu = new TaggedStreamToPdu(new UnpackedToPacked(new FixedLengthTagger(correlateTag, 64 * 8), 1, Endianness.GR_MSB_FIRST, Byte.class));
+		TaggedStreamToPdu pdu = new TaggedStreamToPdu(new UnpackedToPacked(new FixedLengthTagger(correlateTag, 64 * 8), 1, Endianness.GR_MSB_FIRST));
 		input = new At03(pdu);
 		assertTrue(input.hasNext());
 		AssertJson.assertObjectsEqual("At03Beacon.json", input.next());

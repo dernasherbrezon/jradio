@@ -32,7 +32,7 @@ public class Dstar1Test {
 		ClockRecoveryMM clockRecovery = new ClockRecoveryMM(lpf, lpf.getContext().getSampleRate() / 4800, (float) (0.25 * gainMu * gainMu), 0.5f, gainMu, 0.005f);
 		BinarySlicer bs = new BinarySlicer(clockRecovery);
 		CorrelateAccessCodeTag correlateTag = new CorrelateAccessCodeTag(bs, 6, "11001100110011000101011101100101", false);
-		TaggedStreamToPdu pdu = new TaggedStreamToPdu(new UnpackedToPacked(new FixedLengthTagger(correlateTag, CMX909bBeacon.MAX_SIZE * 8), 1, Endianness.GR_MSB_FIRST, Byte.class));
+		TaggedStreamToPdu pdu = new TaggedStreamToPdu(new UnpackedToPacked(new FixedLengthTagger(correlateTag, CMX909bBeacon.MAX_SIZE * 8), 1, Endianness.GR_MSB_FIRST));
 		input = new Dstar1(pdu);
 		assertTrue(input.hasNext());
 		AssertJson.assertObjectsEqual("Dstar1Beacon.json", input.next());

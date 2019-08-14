@@ -22,7 +22,7 @@ public class UnpackedToPackedTest {
 
 	@Test
 	public void testSuccess() throws Exception {
-		try (ByteInput source = new UnpackedToPacked(new FixedLengthTagger(new CorrelateAccessCodeTag(new BinarySlicer(new ClockRecoveryMM(new WavFileSource(WavFileSourceTest.class.getClassLoader().getResourceAsStream("aausat-4.wav")), 20.0f, (float) (0.25 * 0.175 * 0.175), 0.005f, 0.175f, 0.005f)), 8, "010011110101101000110100010000110101010101000010"), 2008), 1, Endianness.GR_MSB_FIRST, Byte.class)) {
+		try (ByteInput source = new UnpackedToPacked(new FixedLengthTagger(new CorrelateAccessCodeTag(new BinarySlicer(new ClockRecoveryMM(new WavFileSource(WavFileSourceTest.class.getClassLoader().getResourceAsStream("aausat-4.wav")), 20.0f, (float) (0.25 * 0.175 * 0.175), 0.005f, 0.175f, 0.005f)), 8, "010011110101101000110100010000110101010101000010"), 2008), 1, Endianness.GR_MSB_FIRST)) {
 			TestUtil.assertByteInput("UnpackedToPacked.bin", source);
 			Tag tag = getFirst(source.getContext());
 			assertEquals(251, tag.get(FixedLengthTagger.LENGTH));
@@ -32,7 +32,7 @@ public class UnpackedToPackedTest {
 	@Test
 	public void testTotalNumberOfSamples() throws Exception {
 		ArrayByteInput data = new ArrayByteInput(1, 0, 0, 0, 1, 1, 0, 1, 1);
-		UnpackedToPacked u2p = new UnpackedToPacked(data, 1, Endianness.GR_MSB_FIRST, Byte.class);
+		UnpackedToPacked u2p = new UnpackedToPacked(data, 1, Endianness.GR_MSB_FIRST);
 		assertEquals((byte) 0b10001101, u2p.readByte());
 		assertEquals((byte) 0b10000000, u2p.readByte());
 		try {

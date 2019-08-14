@@ -33,7 +33,7 @@ public class Ca03Test {
 		BinarySlicer bs = new BinarySlicer(clockRecovery);
 		Descrambler des = new Descrambler(bs, 0x21, 0x00, 16);
 		CorrelateAccessCodeTag correlateTag = new CorrelateAccessCodeTag(des, 6, "10010011000010110101000111011110", false);
-		TaggedStreamToPdu pdu = new TaggedStreamToPdu(new UnpackedToPacked(new FixedLengthTagger(correlateTag, 180 * 8), 1, Endianness.GR_MSB_FIRST, Byte.class));
+		TaggedStreamToPdu pdu = new TaggedStreamToPdu(new UnpackedToPacked(new FixedLengthTagger(correlateTag, 180 * 8), 1, Endianness.GR_MSB_FIRST));
 		input = new Ca03(pdu);
 		assertTrue(input.hasNext());
 		AssertJson.assertObjectsEqual("Ca03Beacon.json", input.next());
@@ -49,7 +49,7 @@ public class Ca03Test {
 		BinarySlicer bs = new BinarySlicer(clockRecovery);
 		Descrambler des = new Descrambler(bs, 0x21, 0x00, 16);
 		CorrelateAccessCodeTag correlateTag = new CorrelateAccessCodeTag(des, 6, "10010011000010110101000111011110", false);
-		TaggedStreamToPdu pdu = new TaggedStreamToPdu(new UnpackedToPacked(new FixedLengthTagger(correlateTag, 180 * 8), 1, Endianness.GR_MSB_FIRST, Byte.class));
+		TaggedStreamToPdu pdu = new TaggedStreamToPdu(new UnpackedToPacked(new FixedLengthTagger(correlateTag, 180 * 8), 1, Endianness.GR_MSB_FIRST));
 		input = new Ca03(pdu);
 		assertTrue(input.hasNext());
 		AssertJson.assertObjectsEqual("Ca03Beacon-4800.json", input.next());

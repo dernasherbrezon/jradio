@@ -33,7 +33,7 @@ public class TechnosatTest {
 		ClockRecoveryMM clockRecovery = new ClockRecoveryMM(lpf, lpf.getContext().getSampleRate() / 4800, (float) (0.25 * gainMu * gainMu), 0.5f, gainMu, 0.005f);
 		BinarySlicer bs = new BinarySlicer(clockRecovery);
 		CorrelateAccessCodeTag correlateTag = new CorrelateAccessCodeTag(bs, 4, "111011110000111011110000", false);
-		TaggedStreamToPdu pdu = new TaggedStreamToPdu(new UnpackedToPacked(new FixedLengthTagger(correlateTag, CMX909bBeacon.MAX_SIZE * 8), 1, Endianness.GR_MSB_FIRST, Byte.class));
+		TaggedStreamToPdu pdu = new TaggedStreamToPdu(new UnpackedToPacked(new FixedLengthTagger(correlateTag, CMX909bBeacon.MAX_SIZE * 8), 1, Endianness.GR_MSB_FIRST));
 		input = new Technosat(pdu);
 		assertTrue(input.hasNext());
 		AssertJson.assertObjectsEqual("TechnosatBeacon.json", input.next());

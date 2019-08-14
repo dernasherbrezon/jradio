@@ -35,7 +35,7 @@ public class NusatTest {
 		ClockRecoveryMM clockRecovery = new ClockRecoveryMM(mc, mc.getContext().getSampleRate() / 40000, (float) (0.25 * gainMu * gainMu), 0.1f, 0.300f, 0.005f);
 		BinarySlicer bs = new BinarySlicer(clockRecovery);
 		CorrelateAccessCodeTag correlateTag = new CorrelateAccessCodeTag(bs, 4, "00000001111001011010101011001100", false);
-		TaggedStreamToPdu pdu = new TaggedStreamToPdu(new UnpackedToPacked(new FixedLengthTagger(correlateTag, 64 * 8), 1, Endianness.GR_MSB_FIRST, Byte.class));
+		TaggedStreamToPdu pdu = new TaggedStreamToPdu(new UnpackedToPacked(new FixedLengthTagger(correlateTag, 64 * 8), 1, Endianness.GR_MSB_FIRST));
 		input = new Nusat(pdu);
 		assertTrue(input.hasNext());
 	}

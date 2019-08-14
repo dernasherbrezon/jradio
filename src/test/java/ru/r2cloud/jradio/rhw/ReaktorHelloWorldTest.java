@@ -32,7 +32,7 @@ public class ReaktorHelloWorldTest {
 		ClockRecoveryMM clockRecovery = new ClockRecoveryMM(lpf, lpf.getContext().getSampleRate() / 9600, (float) (0.25 * gainMu * gainMu), 0.5f, gainMu, 0.005f);
 		BinarySlicer bs = new BinarySlicer(clockRecovery);
 		CorrelateAccessCodeTag correlateTag = new CorrelateAccessCodeTag(bs, 4, "00110101001011100011010100101110", false);
-		TaggedStreamToPdu pdu = new TaggedStreamToPdu(new UnpackedToPacked(new FixedLengthTagger(correlateTag, 120 * 8), 1, Endianness.GR_MSB_FIRST, Byte.class));
+		TaggedStreamToPdu pdu = new TaggedStreamToPdu(new UnpackedToPacked(new FixedLengthTagger(correlateTag, 120 * 8), 1, Endianness.GR_MSB_FIRST));
 		Cc11xxReceiver cc11 = new Cc11xxReceiver(pdu, true, true);
 		input = new ReaktorHelloWorld(cc11);
 		assertTrue(input.hasNext());

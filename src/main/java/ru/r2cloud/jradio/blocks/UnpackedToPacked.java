@@ -17,14 +17,11 @@ public class UnpackedToPacked implements ByteInput {
 	private final Context context;
 	private EOFException eofStreamReached = null;
 
-	public UnpackedToPacked(ByteInput input, int bitsPerChunk, Endianness endianness, Class<?> outputType) {
+	public UnpackedToPacked(ByteInput input, int bitsPerChunk, Endianness endianness) {
 		this.input = input;
 		this.bitsPerChunk = bitsPerChunk;
 		if (endianness != Endianness.GR_MSB_FIRST && endianness != Endianness.GR_LSB_FIRST) {
 			throw new IllegalArgumentException("unsupported endianness: " + endianness);
-		}
-		if (!outputType.equals(Byte.class)) {
-			throw new IllegalArgumentException("invalid type: " + outputType);
 		}
 		this.endianness = endianness;
 		this.context = new Context(input.getContext());

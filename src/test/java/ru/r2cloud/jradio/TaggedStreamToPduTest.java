@@ -25,7 +25,7 @@ public class TaggedStreamToPduTest {
 
 	@Test
 	public void testSuccess() throws Exception {
-		input = new TaggedStreamToPdu(new UnpackedToPacked(new FixedLengthTagger(new CorrelateAccessCodeTag(new BinarySlicer(new ClockRecoveryMM(new WavFileSource(WavFileSourceTest.class.getClassLoader().getResourceAsStream("aausat-4.wav")), 20.0f, (float) (0.25 * 0.175 * 0.175), 0.005f, 0.175f, 0.005f)), 8, "010011110101101000110100010000110101010101000010"), 2008), 1, Endianness.GR_MSB_FIRST, Byte.class));
+		input = new TaggedStreamToPdu(new UnpackedToPacked(new FixedLengthTagger(new CorrelateAccessCodeTag(new BinarySlicer(new ClockRecoveryMM(new WavFileSource(WavFileSourceTest.class.getClassLoader().getResourceAsStream("aausat-4.wav")), 20.0f, (float) (0.25 * 0.175 * 0.175), 0.005f, 0.175f, 0.005f)), 8, "010011110101101000110100010000110101010101000010"), 2008), 1, Endianness.GR_MSB_FIRST));
 		byte[] actual = input.readBytes();
 		byte[] expected;
 		try (InputStream is = BinarySlicerTest.class.getClassLoader().getResourceAsStream("UnpackedToPacked.bin")) {
