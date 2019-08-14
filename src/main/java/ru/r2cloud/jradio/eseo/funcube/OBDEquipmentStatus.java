@@ -6,168 +6,168 @@ import ru.r2cloud.jradio.util.BitInputStream;
 
 public class OBDEquipmentStatus {
 
-	private boolean TMTCMain;
-	private boolean TMTCRedundant;
-	private boolean PowerManagementUnitMain;
-	private boolean PowerManagementUnitRedundant;
-	private boolean SunSensorMain;
-	private boolean SunSensorRedundant;
-	private boolean EarthSensor;
-	private boolean MagnetometerMain;
-	private boolean MagnetometerRedundant;
-	private boolean MagneticTorquerMain;
-	private boolean MagneticTorquerRedundant;
-	private boolean MomentumWheelMain;
-	private boolean MomentumWheelRedundant;
-	private boolean TRITEL;
-	private boolean LangmuirProbe;
+	private boolean tmtcMain;
+	private boolean tmtcRedundant;
+	private boolean powerManagementUnitMain;
+	private boolean powerManagementUnitRedundant;
+	private boolean sunSensorMain;
+	private boolean sunSensorRedundant;
+	private boolean earthSensor;
+	private boolean magnetometerMain;
+	private boolean magnetometerRedundant;
+	private boolean magneticTorquerMain;
+	private boolean magneticTorquerRedundant;
+	private boolean momentumWheelMain;
+	private boolean momentumWheelRedundant;
+	private boolean tritel;
+	private boolean langmuirProbe;
 	private boolean uCAM;
-	private boolean Deorbitmechanism;
-	private boolean AMSATUK;
-	private boolean SBand;
-	private boolean GPSReceiver;
+	private boolean deorbitmechanism;
+	private boolean amsatuk;
+	private boolean sBand;
+	private boolean gpsReceiver;
 
 	public OBDEquipmentStatus(BitInputStream dis) throws IOException {
-		TMTCMain = dis.readBoolean();
-		TMTCRedundant = dis.readBoolean();
-		PowerManagementUnitMain = dis.readBoolean();
-		PowerManagementUnitRedundant = dis.readBoolean();
-		SunSensorMain = dis.readBoolean();
-		SunSensorRedundant = dis.readBoolean();
-		EarthSensor = dis.readBoolean();
-		MagnetometerMain = dis.readBoolean();
-		MagnetometerRedundant = dis.readBoolean();
-		MagneticTorquerMain = dis.readBoolean();
-		MagneticTorquerRedundant = dis.readBoolean();
-		MomentumWheelMain = dis.readBoolean();
-		MomentumWheelRedundant = dis.readBoolean();
-		TRITEL = dis.readBoolean();
-		LangmuirProbe = dis.readBoolean();
+		tmtcMain = dis.readBoolean();
+		tmtcRedundant = dis.readBoolean();
+		powerManagementUnitMain = dis.readBoolean();
+		powerManagementUnitRedundant = dis.readBoolean();
+		sunSensorMain = dis.readBoolean();
+		sunSensorRedundant = dis.readBoolean();
+		earthSensor = dis.readBoolean();
+		magnetometerMain = dis.readBoolean();
+		magnetometerRedundant = dis.readBoolean();
+		magneticTorquerMain = dis.readBoolean();
+		magneticTorquerRedundant = dis.readBoolean();
+		momentumWheelMain = dis.readBoolean();
+		momentumWheelRedundant = dis.readBoolean();
+		tritel = dis.readBoolean();
+		langmuirProbe = dis.readBoolean();
 		uCAM = dis.readBoolean();
-		Deorbitmechanism = dis.readBoolean();
-		AMSATUK = dis.readBoolean();
-		SBand = dis.readBoolean();
-		GPSReceiver = dis.readBoolean();
+		deorbitmechanism = dis.readBoolean();
+		amsatuk = dis.readBoolean();
+		sBand = dis.readBoolean();
+		gpsReceiver = dis.readBoolean();
 	}
 
-	public boolean isTMTCMain() {
-		return TMTCMain;
+	public boolean isTmtcMain() {
+		return tmtcMain;
 	}
 
-	public void setTMTCMain(boolean tMTCMain) {
-		TMTCMain = tMTCMain;
+	public void setTmtcMain(boolean tmtcMain) {
+		this.tmtcMain = tmtcMain;
 	}
 
-	public boolean isTMTCRedundant() {
-		return TMTCRedundant;
+	public boolean isTmtcRedundant() {
+		return tmtcRedundant;
 	}
 
-	public void setTMTCRedundant(boolean tMTCRedundant) {
-		TMTCRedundant = tMTCRedundant;
+	public void setTmtcRedundant(boolean tmtcRedundant) {
+		this.tmtcRedundant = tmtcRedundant;
 	}
 
 	public boolean isPowerManagementUnitMain() {
-		return PowerManagementUnitMain;
+		return powerManagementUnitMain;
 	}
 
 	public void setPowerManagementUnitMain(boolean powerManagementUnitMain) {
-		PowerManagementUnitMain = powerManagementUnitMain;
+		this.powerManagementUnitMain = powerManagementUnitMain;
 	}
 
 	public boolean isPowerManagementUnitRedundant() {
-		return PowerManagementUnitRedundant;
+		return powerManagementUnitRedundant;
 	}
 
 	public void setPowerManagementUnitRedundant(boolean powerManagementUnitRedundant) {
-		PowerManagementUnitRedundant = powerManagementUnitRedundant;
+		this.powerManagementUnitRedundant = powerManagementUnitRedundant;
 	}
 
 	public boolean isSunSensorMain() {
-		return SunSensorMain;
+		return sunSensorMain;
 	}
 
 	public void setSunSensorMain(boolean sunSensorMain) {
-		SunSensorMain = sunSensorMain;
+		this.sunSensorMain = sunSensorMain;
 	}
 
 	public boolean isSunSensorRedundant() {
-		return SunSensorRedundant;
+		return sunSensorRedundant;
 	}
 
 	public void setSunSensorRedundant(boolean sunSensorRedundant) {
-		SunSensorRedundant = sunSensorRedundant;
+		this.sunSensorRedundant = sunSensorRedundant;
 	}
 
 	public boolean isEarthSensor() {
-		return EarthSensor;
+		return earthSensor;
 	}
 
 	public void setEarthSensor(boolean earthSensor) {
-		EarthSensor = earthSensor;
+		this.earthSensor = earthSensor;
 	}
 
 	public boolean isMagnetometerMain() {
-		return MagnetometerMain;
+		return magnetometerMain;
 	}
 
 	public void setMagnetometerMain(boolean magnetometerMain) {
-		MagnetometerMain = magnetometerMain;
+		this.magnetometerMain = magnetometerMain;
 	}
 
 	public boolean isMagnetometerRedundant() {
-		return MagnetometerRedundant;
+		return magnetometerRedundant;
 	}
 
 	public void setMagnetometerRedundant(boolean magnetometerRedundant) {
-		MagnetometerRedundant = magnetometerRedundant;
+		this.magnetometerRedundant = magnetometerRedundant;
 	}
 
 	public boolean isMagneticTorquerMain() {
-		return MagneticTorquerMain;
+		return magneticTorquerMain;
 	}
 
 	public void setMagneticTorquerMain(boolean magneticTorquerMain) {
-		MagneticTorquerMain = magneticTorquerMain;
+		this.magneticTorquerMain = magneticTorquerMain;
 	}
 
 	public boolean isMagneticTorquerRedundant() {
-		return MagneticTorquerRedundant;
+		return magneticTorquerRedundant;
 	}
 
 	public void setMagneticTorquerRedundant(boolean magneticTorquerRedundant) {
-		MagneticTorquerRedundant = magneticTorquerRedundant;
+		this.magneticTorquerRedundant = magneticTorquerRedundant;
 	}
 
 	public boolean isMomentumWheelMain() {
-		return MomentumWheelMain;
+		return momentumWheelMain;
 	}
 
 	public void setMomentumWheelMain(boolean momentumWheelMain) {
-		MomentumWheelMain = momentumWheelMain;
+		this.momentumWheelMain = momentumWheelMain;
 	}
 
 	public boolean isMomentumWheelRedundant() {
-		return MomentumWheelRedundant;
+		return momentumWheelRedundant;
 	}
 
 	public void setMomentumWheelRedundant(boolean momentumWheelRedundant) {
-		MomentumWheelRedundant = momentumWheelRedundant;
+		this.momentumWheelRedundant = momentumWheelRedundant;
 	}
 
-	public boolean isTRITEL() {
-		return TRITEL;
+	public boolean isTritel() {
+		return tritel;
 	}
 
-	public void setTRITEL(boolean tRITEL) {
-		TRITEL = tRITEL;
+	public void setTritel(boolean tritel) {
+		this.tritel = tritel;
 	}
 
 	public boolean isLangmuirProbe() {
-		return LangmuirProbe;
+		return langmuirProbe;
 	}
 
 	public void setLangmuirProbe(boolean langmuirProbe) {
-		LangmuirProbe = langmuirProbe;
+		this.langmuirProbe = langmuirProbe;
 	}
 
 	public boolean isuCAM() {
@@ -179,35 +179,35 @@ public class OBDEquipmentStatus {
 	}
 
 	public boolean isDeorbitmechanism() {
-		return Deorbitmechanism;
+		return deorbitmechanism;
 	}
 
 	public void setDeorbitmechanism(boolean deorbitmechanism) {
-		Deorbitmechanism = deorbitmechanism;
+		this.deorbitmechanism = deorbitmechanism;
 	}
 
-	public boolean isAMSATUK() {
-		return AMSATUK;
+	public boolean isAmsatuk() {
+		return amsatuk;
 	}
 
-	public void setAMSATUK(boolean aMSATUK) {
-		AMSATUK = aMSATUK;
+	public void setAmsatuk(boolean amsatuk) {
+		this.amsatuk = amsatuk;
 	}
 
-	public boolean isSBand() {
-		return SBand;
+	public boolean issBand() {
+		return sBand;
 	}
 
-	public void setSBand(boolean sBand) {
-		SBand = sBand;
+	public void setsBand(boolean sBand) {
+		this.sBand = sBand;
 	}
 
-	public boolean isGPSReceiver() {
-		return GPSReceiver;
+	public boolean isGpsReceiver() {
+		return gpsReceiver;
 	}
 
-	public void setGPSReceiver(boolean gPSReceiver) {
-		GPSReceiver = gPSReceiver;
+	public void setGpsReceiver(boolean gpsReceiver) {
+		this.gpsReceiver = gpsReceiver;
 	}
 
 }
