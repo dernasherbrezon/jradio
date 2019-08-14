@@ -19,6 +19,9 @@ public class FIRFilterBlockComplex implements FloatInput {
 		if (input.getContext().getChannels() != 2) {
 			throw new IllegalArgumentException("unsupported number of channels: " + input.getContext().getChannels());
 		}
+		if (complexTaps.length % 2 != 0) {
+			throw new IllegalArgumentException("complex taps are required. got: " + complexTaps.length);
+		}
 		this.complexArray = new CircularComplexArray(complexTaps.length / 2);
 		this.input = input;
 		this.filter = new FIRFilterComplex(complexTaps);
