@@ -5,7 +5,7 @@ import java.util.Map;
 
 public enum OBDMode {
 
-	OBDHPowerUp(0x00), AOCSInitialization(0x01), AOCSDamping(0x02), AOCSNormalSUN(0x04), AOCSNormalECLIPSE(0x08), SafeModeS1(0x10), SafeModeS2(0x20), SafeModeS3(0x40);
+	OBDH_POWER_UP(0x00), AOCS_INITIALIZATION(0x01), AOCS_DAMPING(0x02), AOCS_NORMAL_SUN(0x04), AOCS_NORMAL_ECLIPSE(0x08), SAFE_MODE_S1(0x10), SAFE_MODE_S2(0x20), SAFE_MODE_S3(0x40);
 
 	private final int code;
 	private static final Map<Integer, OBDMode> typeByCode = new HashMap<>();
