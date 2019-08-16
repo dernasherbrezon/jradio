@@ -6,7 +6,6 @@ import org.junit.After;
 import org.junit.Test;
 
 import ru.r2cloud.jradio.AssertJson;
-import ru.r2cloud.jradio.ao40.Ao40CorrelateAccessCodeTag;
 import ru.r2cloud.jradio.blocks.FloatToComplex;
 import ru.r2cloud.jradio.demod.BpskDemodulator;
 import ru.r2cloud.jradio.source.WavFileSource;
@@ -20,8 +19,7 @@ public class Jy1satTest {
 		WavFileSource source = new WavFileSource(Jy1satTest.class.getClassLoader().getResourceAsStream("jy1sat.wav"));
 		FloatToComplex fc = new FloatToComplex(source);
 		BpskDemodulator bpsk = new BpskDemodulator(fc, 1200, 5, 1300, true);
-		Ao40CorrelateAccessCodeTag tag = new Ao40CorrelateAccessCodeTag(bpsk, 8);
-		input = new Jy1sat(tag);
+		input = new Jy1sat(bpsk);
 		assertTrue(input.hasNext());
 		AssertJson.assertObjectsEqual("Jy1satBeacon.json", input.next());
 	}

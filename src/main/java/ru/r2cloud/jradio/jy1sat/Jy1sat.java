@@ -2,14 +2,15 @@ package ru.r2cloud.jradio.jy1sat;
 
 import java.io.IOException;
 
-import ru.r2cloud.jradio.MessageInput;
 import ru.r2cloud.jradio.ao40.Ao40BeaconSource;
+import ru.r2cloud.jradio.ao40.Ao40CorrelateAccessCodeTag;
+import ru.r2cloud.jradio.demod.BpskDemodulator;
 import ru.r2cloud.jradio.fec.ccsds.UncorrectableException;
 
 public class Jy1sat extends Ao40BeaconSource<Jy1satBeacon> {
 
-	public Jy1sat(MessageInput input) {
-		super(input);
+	public Jy1sat(BpskDemodulator bpsk) {
+		super(new Ao40CorrelateAccessCodeTag(bpsk, 8));
 	}
 
 	@Override
