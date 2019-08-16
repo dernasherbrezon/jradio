@@ -32,7 +32,7 @@ public class AAUSAT4 extends BeaconSource<AAUSAT4Beacon> {
 	}
 
 	@Override
-	protected AAUSAT4Beacon parseBeacon(byte[] raw) {
+	protected AAUSAT4Beacon parseBeacon(byte[] raw) throws UncorrectableException, IOException {
 		int fsm = hardDecode(raw);
 		if (fsm == SHORT_PACKET_FSM) {
 			// short frame
@@ -43,20 +43,11 @@ public class AAUSAT4 extends BeaconSource<AAUSAT4Beacon> {
 			// long frame
 			byte[] viterbi = viterbiSoft.decode(Arrays.copyOfRange(raw, 8, raw.length));
 			Randomize.shuffle(viterbi);
-			try {
-				byte[] data = ReedSolomon.decode(viterbi);
-				AAUSAT4Beacon current = new AAUSAT4Beacon();
-				current.readExternal(data);
-				return current;
-			} catch (UncorrectableException e) {
-				if (LOG.isDebugEnabled()) {
-					LOG.debug("unable to decode reed solomon: {}", e.getMessage());
-				}
-				return null;
-			} catch (IOException e) {
-				LOG.error("unable to parse beacon", e);
-				return null;
-			}
+
+			byte[] data = ReedSolomon.decode(viterbi);
+			AAUSAT4Beacon current = new AAUSAT4Beacon();
+			current.readExternal(data);
+			return current;
 		}
 		return null;
 	}

@@ -23,34 +23,24 @@ public class At03 extends BeaconSource<At03Beacon> {
 	}
 
 	@Override
-	protected At03Beacon parseBeacon(byte[] raw) {
-		try {
-			byte[] data = rs.decode(raw);
-			if (data.length != 48) {
-				if (LOG.isDebugEnabled()) {
-					LOG.debug("unexpected packet length: {}", data.length);
-				}
-				return null;
-			}
-			int crc = Crc16Arc.calculate(data);
-			if (crc != 0) {
-				if (LOG.isDebugEnabled()) {
-					LOG.debug("checksum mismtach: {}", crc);
-				}
-				return null;
-			}
-			At03Beacon beacon = new At03Beacon();
-			beacon.readExternal(Arrays.copyOfRange(data, 0, 46));
-			return beacon;
-		} catch (UncorrectableException e) {
+	protected At03Beacon parseBeacon(byte[] raw) throws UncorrectableException, IOException {
+		byte[] data = rs.decode(raw);
+		if (data.length != 48) {
 			if (LOG.isDebugEnabled()) {
-				LOG.debug("unable to decode reed solomon: {}", e.getMessage());
+				LOG.debug("unexpected packet length: {}", data.length);
 			}
-			return null;
-		} catch (IOException e) {
-			LOG.error("unable to parse beacon", e);
 			return null;
 		}
+		int crc = Crc16Arc.calculate(data);
+		if (crc != 0) {
+			if (LOG.isDebugEnabled()) {
+				LOG.debug("checksum mismtach: {}", crc);
+			}
+			return null;
+		}
+		At03Beacon beacon = new At03Beacon();
+		beacon.readExternal(Arrays.copyOfRange(data, 0, 46));
+		return beacon;
 	}
 
 }

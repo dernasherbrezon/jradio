@@ -23,35 +23,25 @@ public class Nusat extends BeaconSource<NusatBeacon> {
 	}
 
 	@Override
-	protected NusatBeacon parseBeacon(byte[] raw) {
-		try {
-			byte[] data = rs.decode(raw);
-			int length = data[0] & 0xFF;
-			//length field is not used anywhere. just log it
+	protected NusatBeacon parseBeacon(byte[] raw) throws UncorrectableException, IOException {
+		byte[] data = rs.decode(raw);
+		int length = data[0] & 0xFF;
+		// length field is not used anywhere. just log it
+		if (LOG.isDebugEnabled()) {
+			LOG.debug("the length is: {}", length);
+		}
+		int crc8 = data[1] & 0xFF;
+		byte[] packet = Arrays.copyOfRange(data, 2, data.length);
+		Randomize.shuffle(packet);
+		if (Crc8.calculate(packet) != crc8) {
 			if (LOG.isDebugEnabled()) {
-				LOG.debug("the length is: {}", length);
+				LOG.debug("crc mismatch");
 			}
-			int crc8 = data[1] & 0xFF;
-			byte[] packet = Arrays.copyOfRange(data, 2, data.length);
-			Randomize.shuffle(packet);
-			if (Crc8.calculate(packet) != crc8) {
-				if (LOG.isDebugEnabled()) {
-					LOG.debug("crc mismatch");
-				}
-				return null;
-			}
-			NusatBeacon beacon = new NusatBeacon();
-			beacon.readExternal(packet);
-			return beacon;
-		} catch (UncorrectableException e) {
-			if (LOG.isDebugEnabled()) {
-				LOG.debug("unable to decode reed solomon: " + e.getMessage());
-			}
-			return null;
-		} catch (IOException e) {
-			LOG.error("unable to parse beacon", e);
 			return null;
 		}
+		NusatBeacon beacon = new NusatBeacon();
+		beacon.readExternal(packet);
+		return beacon;
 	}
 
 }

@@ -24,7 +24,7 @@ public class Eseo extends BeaconSource<EseoBeacon> {
 	}
 
 	@Override
-	protected EseoBeacon parseBeacon(byte[] raw) {
+	protected EseoBeacon parseBeacon(byte[] raw) throws UncorrectableException, IOException {
 		CorrelateAccessCode code = new CorrelateAccessCode(1, EseoBeacon.FLAG);
 		// start from last index in case of reed-solomon code block is having EseoBeacon flag
 		int endFlag = raw.length - 1;

@@ -28,19 +28,12 @@ public class Snet extends BeaconSource<SnetBeacon> {
 	}
 
 	@Override
-	protected SnetBeacon parseBeacon(byte[] raw) {
+	protected SnetBeacon parseBeacon(byte[] raw) throws UncorrectableException, IOException {
 		// 1. de-interleave header
 		byte[] headerBits = Deinterleave.deinterleaveBitsUnpacked(raw, 0, CHUNK_LENGTH_BITS, NUMBER_OF_HEADER_CHUNKS);
 		// 2. correct errors BCH(15,5,7)
 		for (int i = 0; i < NUMBER_OF_HEADER_CHUNKS; i++) {
-			try {
-				Bch15.decode(headerBits, i * CHUNK_LENGTH_BITS, 7);
-			} catch (UncorrectableException e) {
-				if (LOG.isDebugEnabled()) {
-					LOG.debug("unable to decode Bch15: {}", e.getMessage());
-				}
-				return null;
-			}
+			Bch15.decode(headerBits, i * CHUNK_LENGTH_BITS, 7);
 		}
 		// 3. extract data. last 5 bits of each chunk, LSB
 		// round 70 bits to 9 bytes. last 2 bits are expected to be 0
@@ -58,14 +51,7 @@ public class Snet extends BeaconSource<SnetBeacon> {
 		byte[] header = UnpackedToPacked.pack(headerDataBits);
 
 		LTUFrameHeader ltuHeader;
-		try {
-			ltuHeader = new LTUFrameHeader(header);
-		} catch (IOException e) {
-			if (LOG.isDebugEnabled()) {
-				LOG.debug("unable to read", e);
-			}
-			return null;
-		}
+		ltuHeader = new LTUFrameHeader(header);
 
 		// 5. prepare data bits for crc5 calculation. replace last 7 with hardcoded 1011011
 		headerDataBits[headerDataBits.length - 7] = 1;
@@ -100,15 +86,7 @@ public class Snet extends BeaconSource<SnetBeacon> {
 		}
 
 		// 7. extract PDU
-		byte[] pdu;
-		try {
-			pdu = extractPdu(ltuHeader, raw);
-		} catch (UncorrectableException e1) {
-			if (LOG.isDebugEnabled()) {
-				LOG.debug("unable to decode Bch15: {}", e1.getMessage());
-			}
-			return null;
-		}
+		byte[] pdu = extractPdu(ltuHeader, raw);
 
 		// 8. calculate CRC13
 		actualCrc = Crc13Snet.calculateCrc13(pdu);
@@ -122,17 +100,7 @@ public class Snet extends BeaconSource<SnetBeacon> {
 		// 9. Parse data
 		SnetBeacon result = new SnetBeacon();
 		result.setHeader(ltuHeader);
-		try {
-			result.readExternal(UnpackedToPacked.pack(pdu));
-		} catch (IOException e) {
-			LOG.error("unable to parse beacon", e);
-			return null;
-		} catch (UncorrectableException e) {
-			if (LOG.isDebugEnabled()) {
-				LOG.debug("unable to decode: " + e.getMessage());
-			}
-			return null;
-		}
+		result.readExternal(UnpackedToPacked.pack(pdu));
 		return result;
 	}
 

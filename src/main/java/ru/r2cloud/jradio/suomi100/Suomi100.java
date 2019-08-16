@@ -21,7 +21,7 @@ public class Suomi100 extends BeaconSource<Suomi100Beacon> {
 	}
 
 	@Override
-	protected Suomi100Beacon parseBeacon(byte[] raw) {
+	protected Suomi100Beacon parseBeacon(byte[] raw) throws UncorrectableException, IOException {
 		if (raw.length < (Header.LENGTH + 2 * CRC32_LENGTH)) {
 			return null;
 		}
@@ -44,17 +44,7 @@ public class Suomi100 extends BeaconSource<Suomi100Beacon> {
 			return null;
 		}
 		Suomi100Beacon result = new Suomi100Beacon();
-		try {
-			result.readExternal(raw);
-		} catch (IOException e) {
-			LOG.error("unable to parse beacon", e);
-			return null;
-		} catch (UncorrectableException e) {
-			if (LOG.isDebugEnabled()) {
-				LOG.debug("unable to decode: " + e.getMessage());
-			}
-			return null;
-		}
+		result.readExternal(raw);
 		return result;
 	}
 

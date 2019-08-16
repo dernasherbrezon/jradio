@@ -1,5 +1,7 @@
 package ru.r2cloud.jradio.lrpt;
 
+import java.io.IOException;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -43,38 +45,32 @@ public class LRPT extends BeaconSource<VCDU> {
 	}
 
 	@Override
-	protected VCDU parseBeacon(byte[] rawBytes) {
+	protected VCDU parseBeacon(byte[] rawBytes) throws UncorrectableException, IOException {
 		Tag currentTag = input.getContext().getCurrent();
 		phaseAmbiguityResolver.rotateSoft(rawBytes, (Long) currentTag.get(CorrelateAccessCodeTag.ACCESS_CODE));
 		byte[] viterbi = viterbiSoft.decode(rawBytes);
 		Randomize.shuffle(viterbi);
-		try {
-			byte[] current = ReedSolomon.decode(viterbi, 4);
-			VCDU currentVcdu = new VCDU();
-			currentVcdu.readExternal(previous, current);
-			// reed solomon might pass for array [0,0,0,0,0,0...0]
-			// ensure version is not 0 (according to spec it should be 01)
-			if (currentVcdu.getVersion() != 1 || (currentVcdu.getPartial() == null && currentVcdu.getPackets().isEmpty())) {
-				return null;
-			}
-			// another check to filter out broken packets
-			if (currentVcdu.getId() == null || currentVcdu.getId().getSpacecraftId() != spacecraftId) {
-				return null;
-			}
-			if (previous == null) {
-				LOG.info("detected meteor-m image. frame: " + currentVcdu.getCounter());
-			}
-			if (count != null) {
-				count.inc();
-			}
-			previous = currentVcdu;
-			return currentVcdu;
-		} catch (UncorrectableException e) {
-			if (LOG.isDebugEnabled()) {
-				LOG.debug("unable to decode reed solomon: " + e.getMessage());
-			}
+
+		byte[] current = ReedSolomon.decode(viterbi, 4);
+		VCDU currentVcdu = new VCDU();
+		currentVcdu.readExternal(previous, current);
+		// reed solomon might pass for array [0,0,0,0,0,0...0]
+		// ensure version is not 0 (according to spec it should be 01)
+		if (currentVcdu.getVersion() != 1 || (currentVcdu.getPartial() == null && currentVcdu.getPackets().isEmpty())) {
 			return null;
 		}
+		// another check to filter out broken packets
+		if (currentVcdu.getId() == null || currentVcdu.getId().getSpacecraftId() != spacecraftId) {
+			return null;
+		}
+		if (previous == null) {
+			LOG.info("detected meteor-m image. frame: " + currentVcdu.getCounter());
+		}
+		if (count != null) {
+			count.inc();
+		}
+		previous = currentVcdu;
+		return currentVcdu;
 	}
 
 }
