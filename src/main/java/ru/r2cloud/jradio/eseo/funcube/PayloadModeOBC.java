@@ -6,109 +6,109 @@ import ru.r2cloud.jradio.util.BitInputStream;
 
 public class PayloadModeOBC {
 
-	private float ACSOrbitX;
-	private float ACSOrbitY;
-	private float ACSOrbitZ;
-	private int PMMAmsatCurrent;
-	private int MWMVoltage;
-	private int MWMCurrent;
-	private int MWMOMEGAMESURED;
-	private short MPSHPT01;
-	private short PMMTempSP1Sens1;
-	private short PMMTempBp1Sens1;
+	private float acsOrbitX;
+	private float acsOrbitY;
+	private float acsOrbitZ;
+	private int pmmAmsatCurrent;
+	private int mwmVoltage;
+	private int mwmCurrent;
+	private int mwmOmegaMesured;
+	private short mpshpt01;
+	private short pmmTempSP1Sens1;
+	private short pmmTempBp1Sens1;
 
 	public PayloadModeOBC(BitInputStream dis) throws IOException {
-		ACSOrbitX = Float.intBitsToFloat((int) dis.readUnsignedLong(32));
-		ACSOrbitY = Float.intBitsToFloat((int) dis.readUnsignedLong(32));
-		ACSOrbitZ = Float.intBitsToFloat((int) dis.readUnsignedLong(32));
-		PMMAmsatCurrent = dis.readUnsignedInt(16);
-		MWMVoltage = dis.readUnsignedByte();
-		MWMCurrent = dis.readUnsignedShort();
-		MWMOMEGAMESURED = dis.readUnsignedShort();
-		MPSHPT01 = dis.readShort();
-		PMMTempSP1Sens1 = (short) dis.readUnsignedInt(12);
-		PMMTempBp1Sens1 = (short) dis.readUnsignedInt(12);
+		acsOrbitX = Float.intBitsToFloat((int) dis.readUnsignedLong(32));
+		acsOrbitY = Float.intBitsToFloat((int) dis.readUnsignedLong(32));
+		acsOrbitZ = Float.intBitsToFloat((int) dis.readUnsignedLong(32));
+		pmmAmsatCurrent = dis.readUnsignedInt(16);
+		mwmVoltage = dis.readUnsignedByte();
+		mwmCurrent = dis.readUnsignedShort();
+		mwmOmegaMesured = dis.readUnsignedShort();
+		mpshpt01 = dis.readShort();
+		pmmTempSP1Sens1 = (short) dis.readUnsignedInt(12);
+		pmmTempBp1Sens1 = (short) dis.readUnsignedInt(12);
 		dis.skipBits(5);
 	}
 
-	public float getACSOrbitX() {
-		return ACSOrbitX;
+	public float getAcsOrbitX() {
+		return acsOrbitX;
 	}
 
-	public void setACSOrbitX(float aCSOrbitX) {
-		ACSOrbitX = aCSOrbitX;
+	public void setAcsOrbitX(float acsOrbitX) {
+		this.acsOrbitX = acsOrbitX;
 	}
 
-	public float getACSOrbitY() {
-		return ACSOrbitY;
+	public float getAcsOrbitY() {
+		return acsOrbitY;
 	}
 
-	public void setACSOrbitY(float aCSOrbitY) {
-		ACSOrbitY = aCSOrbitY;
+	public void setAcsOrbitY(float acsOrbitY) {
+		this.acsOrbitY = acsOrbitY;
 	}
 
-	public float getACSOrbitZ() {
-		return ACSOrbitZ;
+	public float getAcsOrbitZ() {
+		return acsOrbitZ;
 	}
 
-	public void setACSOrbitZ(float aCSOrbitZ) {
-		ACSOrbitZ = aCSOrbitZ;
+	public void setAcsOrbitZ(float acsOrbitZ) {
+		this.acsOrbitZ = acsOrbitZ;
 	}
 
-	public int getPMMAmsatCurrent() {
-		return PMMAmsatCurrent;
+	public int getPmmAmsatCurrent() {
+		return pmmAmsatCurrent;
 	}
 
-	public void setPMMAmsatCurrent(int pMMAmsatCurrent) {
-		PMMAmsatCurrent = pMMAmsatCurrent;
+	public void setPmmAmsatCurrent(int pmmAmsatCurrent) {
+		this.pmmAmsatCurrent = pmmAmsatCurrent;
 	}
 
-	public int getMWMVoltage() {
-		return MWMVoltage;
+	public int getMwmVoltage() {
+		return mwmVoltage;
 	}
 
-	public void setMWMVoltage(int mWMVoltage) {
-		MWMVoltage = mWMVoltage;
+	public void setMwmVoltage(int mwmVoltage) {
+		this.mwmVoltage = mwmVoltage;
 	}
 
-	public int getMWMCurrent() {
-		return MWMCurrent;
+	public int getMwmCurrent() {
+		return mwmCurrent;
 	}
 
-	public void setMWMCurrent(int mWMCurrent) {
-		MWMCurrent = mWMCurrent;
+	public void setMwmCurrent(int mwmCurrent) {
+		this.mwmCurrent = mwmCurrent;
 	}
 
-	public int getMWMOMEGAMESURED() {
-		return MWMOMEGAMESURED;
+	public int getMwmOmegaMesured() {
+		return mwmOmegaMesured;
 	}
 
-	public void setMWMOMEGAMESURED(int mWMOMEGAMESURED) {
-		MWMOMEGAMESURED = mWMOMEGAMESURED;
+	public void setMwmOmegaMesured(int mwmOmegaMesured) {
+		this.mwmOmegaMesured = mwmOmegaMesured;
 	}
 
-	public short getMPSHPT01() {
-		return MPSHPT01;
+	public short getMpshpt01() {
+		return mpshpt01;
 	}
 
-	public void setMPSHPT01(short mPSHPT01) {
-		MPSHPT01 = mPSHPT01;
+	public void setMpshpt01(short mpshpt01) {
+		this.mpshpt01 = mpshpt01;
 	}
 
-	public short getPMMTempSP1Sens1() {
-		return PMMTempSP1Sens1;
+	public short getPmmTempSP1Sens1() {
+		return pmmTempSP1Sens1;
 	}
 
-	public void setPMMTempSP1Sens1(short pMMTempSP1Sens1) {
-		PMMTempSP1Sens1 = pMMTempSP1Sens1;
+	public void setPmmTempSP1Sens1(short pmmTempSP1Sens1) {
+		this.pmmTempSP1Sens1 = pmmTempSP1Sens1;
 	}
 
-	public short getPMMTempBp1Sens1() {
-		return PMMTempBp1Sens1;
+	public short getPmmTempBp1Sens1() {
+		return pmmTempBp1Sens1;
 	}
 
-	public void setPMMTempBp1Sens1(short pMMTempBp1Sens1) {
-		PMMTempBp1Sens1 = pMMTempBp1Sens1;
+	public void setPmmTempBp1Sens1(short pmmTempBp1Sens1) {
+		this.pmmTempBp1Sens1 = pmmTempBp1Sens1;
 	}
 
 }
