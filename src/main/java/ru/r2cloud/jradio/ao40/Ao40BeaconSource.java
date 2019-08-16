@@ -1,5 +1,7 @@
 package ru.r2cloud.jradio.ao40;
 
+import java.io.IOException;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -57,6 +59,9 @@ public abstract class Ao40BeaconSource<T> extends BeaconSource<T> {
 				}
 			}
 			return parseAo40Beacon(packet);
+		} catch (IOException e) {
+			LOG.error("unable to parse beacon", e);
+			return null;
 		} catch (UncorrectableException e) {
 			if (LOG.isDebugEnabled()) {
 				LOG.debug("unable to decode reed solomon: {}", e.getMessage());
@@ -65,6 +70,6 @@ public abstract class Ao40BeaconSource<T> extends BeaconSource<T> {
 		}
 	}
 
-	protected abstract T parseAo40Beacon(byte[] raw);
+	protected abstract T parseAo40Beacon(byte[] raw) throws UncorrectableException, IOException;
 
 }
