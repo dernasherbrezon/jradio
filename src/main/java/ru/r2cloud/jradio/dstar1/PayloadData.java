@@ -50,6 +50,10 @@ public class PayloadData {
 	private int scheduledCommands;
 	private Mode mode;
 	private int crc16;
+	
+	public PayloadData() {
+		//do nothing
+	}
 
 	public PayloadData(byte[] data) throws IOException {
 		DataInputStream dis = new DataInputStream(new ByteArrayInputStream(data));

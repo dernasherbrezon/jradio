@@ -1,7 +1,10 @@
 package ru.r2cloud.jradio.beesat4;
 
+import static pl.pojo.tester.api.assertion.Assertions.assertPojoMethodsFor;
+
 import org.junit.Test;
 
+import pl.pojo.tester.api.assertion.Method;
 import ru.r2cloud.jradio.AssertJson;
 import ru.r2cloud.jradio.fec.ViterbiTest;
 
@@ -15,4 +18,12 @@ public class Beesat4BeaconTest {
 		beacon.readFrameData(data);
 		AssertJson.assertObjectsEqual("Beesat4Beacon.json", beacon);
 	}
+	
+	@Test
+	public void testPojo() {
+		assertPojoMethodsFor(Apid0.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
+		assertPojoMethodsFor(Apid1.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
+		assertPojoMethodsFor(Apid2.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
+	}
+			
 }

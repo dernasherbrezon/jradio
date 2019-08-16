@@ -138,6 +138,10 @@ public class Apid2 {
 	private int epsTcsReserve; // reserve bytes for eps_tcs apid
 	private int obcsw8; // obc software revision
 
+	public Apid2() {
+		//do nothing
+	}
+	
 	public Apid2(DataInputStream dis) throws IOException {
 		BitInputStream bis = new BitInputStream(dis);
 

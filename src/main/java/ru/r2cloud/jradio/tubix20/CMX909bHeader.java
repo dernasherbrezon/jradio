@@ -13,8 +13,12 @@ public class CMX909bHeader {
 
 	private static final Logger LOG = LoggerFactory.getLogger(CMX909bHeader.class);
 
-	private final Control1 control1;
-	private final Control2 control2;
+	private Control1 control1;
+	private Control2 control2;
+	
+	public CMX909bHeader() {
+		//do nothing
+	}
 
 	public CMX909bHeader(DataInputStream dis) throws UncorrectableException, IOException {
 		int control1Byte = dis.readUnsignedByte();
@@ -43,8 +47,15 @@ public class CMX909bHeader {
 		return control1;
 	}
 
+	public void setControl1(Control1 control1) {
+		this.control1 = control1;
+	}
+	
 	public Control2 getControl2() {
 		return control2;
 	}
-
+	
+	public void setControl2(Control2 control2) {
+		this.control2 = control2;
+	}
 }

@@ -119,6 +119,10 @@ public class Apid0 {
 	private float acsqdes03;                  //   Desired quaternion SC
 	private int acsgyr;                       //   Gyro used by ACS
 
+	public Apid0() {
+		//do nothing
+	}
+	
 	public Apid0(DataInputStream dis) throws IOException {
 		BitInputStream bis = new BitInputStream(dis);
 		vsabus = bis.readUnsignedInt(12) * 0.0016197791f;

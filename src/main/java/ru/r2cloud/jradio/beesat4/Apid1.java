@@ -191,6 +191,10 @@ public class Apid1 {
 	private float acsamz; // acc mean vector z
 	private float acsamx; // acc mean vector x
 
+	public Apid1() {
+		//do nothing
+	}
+	
 	public Apid1(DataInputStream dis) throws IOException {
 		BitInputStream bis = new BitInputStream(dis);
 		obcaid = bis.readBoolean();
