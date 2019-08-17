@@ -5,7 +5,7 @@ import java.util.Map;
 
 public enum PayloadTransferStatus {
 
-	GetDataFromPayload(0x00), DownlinkDataToGround(0x01);
+	GET_DATA_FROM_PAYLOAD(0x00), DOWNLINK_DATA_TO_GROUND(0x01);
 	
 	private final int code;
 	private static final Map<Integer, PayloadTransferStatus> typeByCode = new HashMap<>();
