@@ -29,6 +29,10 @@ public class TcError2 {
 	private boolean adeErrorCounterReached10;
 	private boolean scamErrorCounterReached10;
 
+	public TcError2() {
+		// do nothing
+	}
+
 	public TcError2(LittleEndianDataInputStream dis) throws IOException {
 		int raw = dis.readUnsignedByte();
 		pmmErrorCounterReached10 = ((raw >> 5) & 0x1) > 0;

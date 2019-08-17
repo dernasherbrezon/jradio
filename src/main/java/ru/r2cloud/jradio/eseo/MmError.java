@@ -15,6 +15,10 @@ public class MmError {
 	private boolean mmm5VOvercurrent;
 	private boolean mmmDCDCOutOfTemperatureRange;
 
+	public MmError() {
+		// do nothing
+	}
+
 	public MmError(LittleEndianDataInputStream dis) throws IOException {
 		int raw = dis.readUnsignedByte();
 		internalError = ((raw >> 7) & 0x1) > 0;

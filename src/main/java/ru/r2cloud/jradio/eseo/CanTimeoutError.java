@@ -27,6 +27,10 @@ public class CanTimeoutError {
 	private boolean gps;
 	private boolean scam;
 
+	public CanTimeoutError() {
+		// do nothing
+	}
+
 	public CanTimeoutError(LittleEndianDataInputStream dis) throws IOException {
 		int raw = dis.readUnsignedByte();
 		pmm = ((raw >> 5) & 0x1) > 0;

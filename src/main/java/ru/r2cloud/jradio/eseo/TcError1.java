@@ -28,6 +28,10 @@ public class TcError1 {
 	private boolean gpsTcRequestNotAnswered;
 	private boolean scamTcRequestNotAnswered;
 
+	public TcError1() {
+		// do nothing
+	}
+
 	public TcError1(LittleEndianDataInputStream dis) throws IOException {
 		int raw = dis.readUnsignedByte();
 		pmmTcRequestNotAnswered = ((raw >> 5) & 0x1) > 0;

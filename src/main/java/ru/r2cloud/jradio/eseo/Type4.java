@@ -51,6 +51,10 @@ public class Type4 {
 	private float mtTemp1; // TMP36 sensor inside Digital PCB
 	private float mtTemp2; // TMP36 sensor inside Digital PCB
 
+	public Type4() {
+		// do nothing
+	}
+
 	public Type4(DataInputStream source) throws IOException {
 		LittleEndianDataInputStream dis = new LittleEndianDataInputStream(source);
 		acsState = AcsState.valueOfCode(dis.readUnsignedByte());

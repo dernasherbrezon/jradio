@@ -20,6 +20,10 @@ public class MtError {
 	private boolean mtm12VOvercurrent;
 	private boolean mtm5VOvercurrent;
 
+	public MtError() {
+		// do nothing
+	}
+
 	public MtError(LittleEndianDataInputStream dis) throws IOException {
 		int raw = dis.readUnsignedByte();
 		mtmInternalError = ((raw >> 7) & 0x1) > 0;

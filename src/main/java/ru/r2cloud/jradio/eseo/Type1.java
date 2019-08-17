@@ -133,6 +133,10 @@ public class Type1 {
 	private TtTxStatus tmtcRedundantTransmitterSTATUS2;
 	private TtError ttrErrorCondition2;
 
+	public Type1() {
+		// do nothing
+	}
+
 	public Type1(DataInputStream source) throws IOException {
 		LittleEndianDataInputStream dis = new LittleEndianDataInputStream(source);
 		obdMode = ObdMode.valueOfCode(dis.readUnsignedByte());
@@ -650,11 +654,11 @@ public class Type1 {
 		this.ssmStatus = ssmStatus;
 	}
 
-	public boolean isuCPCBOutOfTemp() {
+	public boolean isUCPCBOutOfTemp() {
 		return uCPCBOutOfTemp;
 	}
 
-	public void setuCPCBOutOfTemp(boolean uCPCBOutOfTemp) {
+	public void setUCPCBOutOfTemp(boolean uCPCBOutOfTemp) {
 		this.uCPCBOutOfTemp = uCPCBOutOfTemp;
 	}
 
@@ -738,27 +742,27 @@ public class Type1 {
 		this.adc2ChannelXUsable = adc2ChannelXUsable;
 	}
 
-	public boolean istAUInternalError() {
+	public boolean isTAUInternalError() {
 		return tAUInternalError;
 	}
 
-	public void settAUInternalError(boolean tAUInternalError) {
+	public void setTAUInternalError(boolean tAUInternalError) {
 		this.tAUInternalError = tAUInternalError;
 	}
 
-	public boolean istAUTimeoutError() {
+	public boolean isTAUTimeoutError() {
 		return tAUTimeoutError;
 	}
 
-	public void settAUTimeoutError(boolean tAUTimeoutError) {
+	public void setTAUTimeoutError(boolean tAUTimeoutError) {
 		this.tAUTimeoutError = tAUTimeoutError;
 	}
 
-	public boolean istAUEdgeDetectionError() {
+	public boolean isTAUEdgeDetectionError() {
 		return tAUEdgeDetectionError;
 	}
 
-	public void settAUEdgeDetectionError(boolean tAUEdgeDetectionError) {
+	public void setTAUEdgeDetectionError(boolean tAUEdgeDetectionError) {
 		this.tAUEdgeDetectionError = tAUEdgeDetectionError;
 	}
 
@@ -794,19 +798,19 @@ public class Type1 {
 		this.tauOutOfTemperatureRange = tauOutOfTemperatureRange;
 	}
 
-	public boolean isuCPCBOutOfTemperatureRange() {
+	public boolean isUCPCBOutOfTemperatureRange() {
 		return uCPCBOutOfTemperatureRange;
 	}
 
-	public void setuCPCBOutOfTemperatureRange(boolean uCPCBOutOfTemperatureRange) {
+	public void setUCPCBOutOfTemperatureRange(boolean uCPCBOutOfTemperatureRange) {
 		this.uCPCBOutOfTemperatureRange = uCPCBOutOfTemperatureRange;
 	}
 
-	public boolean isuCESEPowerPCBOutOfTemp() {
+	public boolean isUCESEPowerPCBOutOfTemp() {
 		return uCESEPowerPCBOutOfTemp;
 	}
 
-	public void setuCESEPowerPCBOutOfTemp(boolean uCESEPowerPCBOutOfTemp) {
+	public void setUCESEPowerPCBOutOfTemp(boolean uCESEPowerPCBOutOfTemp) {
 		this.uCESEPowerPCBOutOfTemp = uCESEPowerPCBOutOfTemp;
 	}
 

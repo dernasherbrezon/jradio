@@ -13,6 +13,10 @@ public class Rs485Status {
 	private boolean usartMWMPreviousTransmissionCompleted;
 	private boolean usartMWMIdleLineDetected;
 
+	public Rs485Status() {
+		// do nothing
+	}
+
 	public Rs485Status(LittleEndianDataInputStream dis) throws IOException {
 		int raw = dis.readUnsignedByte();
 		usartMWMInitializedCorrectly = ((raw >> 7) & 0x1) > 0;

@@ -33,6 +33,10 @@ public class CanStatus {
 	private boolean payloadRedundantTransceiverLoopbackActive;
 	private boolean payloadRedundantMarkedAsActiveBus;
 
+	public CanStatus() {
+		// do nothing
+	}
+
 	public CanStatus(LittleEndianDataInputStream dis) throws IOException {
 		int raw = dis.readUnsignedByte();
 		platformMainControllerCorrectlyInitialized = ((raw >> 7) & 0x1) > 0;

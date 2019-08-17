@@ -49,6 +49,10 @@ public class Type3 {
 	private ObdError obdError2;
 	private ObdTempError obdTempError2;
 
+	public Type3() {
+		// do nothing
+	}
+
 	public Type3(DataInputStream source) throws IOException {
 		LittleEndianDataInputStream dis = new LittleEndianDataInputStream(source);
 		obdMode = ObdMode.valueOfCode(dis.readUnsignedByte());

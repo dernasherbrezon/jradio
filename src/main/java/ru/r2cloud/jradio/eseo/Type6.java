@@ -81,6 +81,10 @@ public class Type6 {
 	private float adeOprqQ2; // Second element of the quaternion estimated from the filtered K matrix
 	private float adeOprqQ3; // Third element of the quaternion estimated from the filtered K matrix
 
+	public Type6() {
+		// do nothing
+	}
+
 	public Type6(DataInputStream source) throws IOException {
 		LittleEndianDataInputStream dis = new LittleEndianDataInputStream(source);
 		triTmpX = dis.readUnsignedByte() * 0.5f - 40.0f;

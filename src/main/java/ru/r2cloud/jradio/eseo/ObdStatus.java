@@ -36,6 +36,10 @@ public class ObdStatus {
 	private boolean initPDUADC;
 	private boolean initCANOPEN;
 
+	public ObdStatus() {
+		// do nothing
+	}
+
 	public ObdStatus(LittleEndianDataInputStream dis) throws IOException {
 		int raw = dis.readUnsignedByte();
 		initASM = ((raw >> 7) & 0x1) > 0;

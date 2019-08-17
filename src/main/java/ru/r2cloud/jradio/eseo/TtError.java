@@ -22,6 +22,10 @@ public class TtError {
 	private boolean currentOfTheHPAExceededLimit;
 	private boolean currentOfTheLNARTXExceededLimit;
 
+	public TtError() {
+		// do nothing
+	}
+
 	public TtError(LittleEndianDataInputStream dis) throws IOException {
 		int raw = dis.readUnsignedByte();
 		pllFailedToLockInTheTransmitter = ((raw >> 7) & 0x1) > 0;

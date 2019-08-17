@@ -136,6 +136,10 @@ public class Type2 {
 	private boolean domActuator1CurrentOutOfRange;
 	private boolean domActuator2CurrentOutOfRange;
 
+	public Type2() {
+		// do nothing
+	}
+
 	public Type2(DataInputStream source) throws IOException {
 		LittleEndianDataInputStream dis = new LittleEndianDataInputStream(source);
 		pmVoltageSp1String12 = dis.readUnsignedShort();

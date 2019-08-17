@@ -30,6 +30,10 @@ public class EquipmentStatus {
 	private boolean sCAM;
 	private boolean deOrbitMechanism;
 
+	public EquipmentStatus() {
+		// do nothing
+	}
+
 	public EquipmentStatus(LittleEndianDataInputStream dis) throws IOException {
 		int raw = dis.readUnsignedByte();
 		powerManagementUnitMain = ((raw >> 5) & 0x1) > 0;
@@ -79,19 +83,19 @@ public class EquipmentStatus {
 		this.powerManagementUnitRedundant = powerManagementUnitRedundant;
 	}
 
-	public boolean istMTCMain() {
+	public boolean isTMTCMain() {
 		return tMTCMain;
 	}
 
-	public void settMTCMain(boolean tMTCMain) {
+	public void setTMTCMain(boolean tMTCMain) {
 		this.tMTCMain = tMTCMain;
 	}
 
-	public boolean istMTCRedundant() {
+	public boolean isTMTCRedundant() {
 		return tMTCRedundant;
 	}
 
-	public void settMTCRedundant(boolean tMTCRedundant) {
+	public void setTMTCRedundant(boolean tMTCRedundant) {
 		this.tMTCRedundant = tMTCRedundant;
 	}
 
@@ -175,11 +179,11 @@ public class EquipmentStatus {
 		this.magneticTorquerRedundant = magneticTorquerRedundant;
 	}
 
-	public boolean istRITEL() {
+	public boolean isTRITEL() {
 		return tRITEL;
 	}
 
-	public void settRITEL(boolean tRITEL) {
+	public void setTRITEL(boolean tRITEL) {
 		this.tRITEL = tRITEL;
 	}
 
@@ -191,11 +195,11 @@ public class EquipmentStatus {
 		this.langmuirProbe = langmuirProbe;
 	}
 
-	public boolean ispCAM() {
+	public boolean isPCAM() {
 		return pCAM;
 	}
 
-	public void setpCAM(boolean pCAM) {
+	public void setPCAM(boolean pCAM) {
 		this.pCAM = pCAM;
 	}
 
@@ -207,11 +211,11 @@ public class EquipmentStatus {
 		this.amsatUk = amsatUk;
 	}
 
-	public boolean issBand() {
+	public boolean isSBand() {
 		return sBand;
 	}
 
-	public void setsBand(boolean sBand) {
+	public void setSBand(boolean sBand) {
 		this.sBand = sBand;
 	}
 
@@ -223,19 +227,19 @@ public class EquipmentStatus {
 		this.gpsReceiver = gpsReceiver;
 	}
 
-	public boolean isaDE() {
+	public boolean isADE() {
 		return aDE;
 	}
 
-	public void setaDE(boolean aDE) {
+	public void setADE(boolean aDE) {
 		this.aDE = aDE;
 	}
 
-	public boolean issCAM() {
+	public boolean isSCAM() {
 		return sCAM;
 	}
 
-	public void setsCAM(boolean sCAM) {
+	public void setSCAM(boolean sCAM) {
 		this.sCAM = sCAM;
 	}
 

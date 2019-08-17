@@ -26,6 +26,10 @@ public class CpuError {
 	private boolean usageFaultUNALIGNED;// unaligned access usage fault
 	private boolean usageFaultDIVBYZERO;// division by zero fault
 
+	public CpuError() {
+		// do nothing
+	}
+
 	public CpuError(LittleEndianDataInputStream dis) throws IOException {
 		int raw = dis.readUnsignedByte();
 		hardFaultVECTTBL = ((raw >> 7) & 0x1) > 0;

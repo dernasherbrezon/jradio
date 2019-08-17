@@ -15,6 +15,10 @@ public class TtTxStatus {
 	private boolean pllFailedLockAtPowerUp;
 	private boolean calibrationComplete;
 
+	public TtTxStatus() {
+		// do nothing
+	}
+
 	public TtTxStatus(LittleEndianDataInputStream dis) throws IOException {
 		int raw = dis.readUnsignedByte();
 		lockPin = ((raw >> 7) & 0x1) > 0;

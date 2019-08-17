@@ -29,6 +29,10 @@ public class PyCanError {
 	private boolean errorPassive;
 	private boolean errorWarning;
 
+	public PyCanError() {
+		// do nothing
+	}
+
 	public PyCanError(LittleEndianDataInputStream dis) throws IOException {
 		int raw = dis.readUnsignedByte();
 		failedToRegisterDevice = ((raw >> 7) & 0x1) > 0;

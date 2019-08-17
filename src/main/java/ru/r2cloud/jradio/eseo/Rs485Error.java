@@ -20,6 +20,10 @@ public class Rs485Error {
 	private boolean usartMWMErrorParity;
 	private boolean usartMWMErrorTimeout;
 
+	public Rs485Error() {
+		// do nothing
+	}
+
 	public Rs485Error(LittleEndianDataInputStream dis) throws IOException {
 		int raw = dis.readUnsignedByte();
 		usartMWMErrorConfigurationBRR = ((raw >> 7) & 0x1) > 0;

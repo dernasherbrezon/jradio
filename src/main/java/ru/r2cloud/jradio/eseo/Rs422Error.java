@@ -33,6 +33,10 @@ public class Rs422Error {
 	private boolean usarttmtcRedundantErrorParity;
 	private boolean usarttmtcRedundantErrorTimeout;
 
+	public Rs422Error() {
+		// do nothing
+	}
+
 	public Rs422Error(LittleEndianDataInputStream dis) throws IOException {
 		int raw = dis.readUnsignedByte();
 		usarttmtcMainErrorConfigurationBRR = ((raw >> 7) & 0x1) > 0;

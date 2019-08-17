@@ -30,6 +30,10 @@ public class HkError {
 
 	private boolean scam;
 
+	public HkError() {
+		// do nothing
+	}
+
 	public HkError(LittleEndianDataInputStream dis) throws IOException {
 		int raw = dis.readUnsignedByte();
 

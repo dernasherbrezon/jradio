@@ -38,6 +38,10 @@ public class HkStatus {
 	private boolean payload;
 	private boolean disabled;
 
+	public HkStatus() {
+		// do nothing
+	}
+
 	public HkStatus(LittleEndianDataInputStream dis) throws IOException {
 		int raw = dis.readUnsignedByte();
 

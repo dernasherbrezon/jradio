@@ -19,6 +19,10 @@ public class Rs422Status {
 	private boolean usartTMTCRedundantPreviousTransmissionCompleted;
 	private boolean usartTMTCRedundantIdleLineDetected;
 
+	public Rs422Status() {
+		// do nothing
+	}
+
 	public Rs422Status(LittleEndianDataInputStream dis) throws IOException {
 		int raw = dis.readUnsignedByte();
 		usartTMTCMainInitializedCorrectly = ((raw >> 7) & 0x1) > 0;

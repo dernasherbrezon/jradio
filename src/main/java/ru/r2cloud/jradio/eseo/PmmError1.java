@@ -35,6 +35,10 @@ public class PmmError1 {
 	private boolean powerBoardSensor1TemperatureOutOfRange;
 	private boolean powerBoardSensor2TemperatureOutOfRange;
 
+	public PmmError1() {
+		// do nothing
+	}
+
 	public PmmError1(LittleEndianDataInputStream dis) throws IOException {
 		int raw = dis.readUnsignedByte();
 		solarPanel1Sensor1TemperatureOutOfRange = ((raw >> 7) & 0x1) > 0;

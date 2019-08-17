@@ -58,6 +58,10 @@ public class Type5 {
 	private PlatformFdir platformFdir2;
 	private PlatformFdir platformFdir3;
 
+	public Type5() {
+		// do nothing
+	}
+
 	public Type5(DataInputStream source) throws IOException {
 		LittleEndianDataInputStream dis = new LittleEndianDataInputStream(source);
 		obdPlcanMTxErrCount = dis.readUnsignedShort();

@@ -38,6 +38,10 @@ public class AcsError {
 	private boolean aocsSwError3; // AOCS FDIR task overrun
 	private boolean aocsSwError4;
 
+	public AcsError() {
+		//do nothing
+	}
+	
 	public AcsError(LittleEndianDataInputStream dis) throws IOException {
 		int raw = dis.readUnsignedByte();
 		safeMode = ((raw >> 7) & 0x1) > 0;

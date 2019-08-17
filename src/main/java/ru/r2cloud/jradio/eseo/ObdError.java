@@ -39,6 +39,10 @@ public class ObdError {
 	private boolean wdResetLimit;
 	private boolean aswImageFailed;
 
+	public ObdError() {
+		// do nothing
+	}
+
 	public ObdError(LittleEndianDataInputStream dis) throws IOException {
 		int raw = dis.readUnsignedByte();
 		cpuTestFailed = ((raw >> 7) & 0x1) > 0;

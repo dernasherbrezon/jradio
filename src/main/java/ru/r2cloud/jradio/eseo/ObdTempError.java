@@ -18,6 +18,10 @@ public class ObdTempError {
 	private boolean temp14MMM;
 	private boolean temp15MMR;
 
+	public ObdTempError() {
+		// do nothing
+	}
+
 	public ObdTempError(LittleEndianDataInputStream dis) throws IOException {
 		int raw = dis.readUnsignedByte();
 		temp1PDU1 = ((raw >> 7) & 0x1) > 0;

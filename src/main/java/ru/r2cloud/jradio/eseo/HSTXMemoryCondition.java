@@ -21,6 +21,10 @@ public class HSTXMemoryCondition {
 	private boolean m6afull;
 	private boolean m6full;
 
+	public HSTXMemoryCondition() {
+		// do nothing
+	}
+
 	public HSTXMemoryCondition(LittleEndianDataInputStream dis) throws IOException {
 		mbfail = dis.readUnsignedByte();
 		dis.skipBytes(1);

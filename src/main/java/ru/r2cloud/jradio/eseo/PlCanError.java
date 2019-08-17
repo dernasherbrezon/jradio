@@ -31,6 +31,10 @@ public class PlCanError {
 	private boolean errorPassive;
 	private boolean errorWarning;
 
+	public PlCanError() {
+		// do nothing
+	}
+
 	public PlCanError(LittleEndianDataInputStream dis) throws IOException {
 
 		int raw = dis.readUnsignedByte();

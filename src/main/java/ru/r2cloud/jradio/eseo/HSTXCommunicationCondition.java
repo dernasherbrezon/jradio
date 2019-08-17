@@ -15,6 +15,10 @@ public class HSTXCommunicationCondition {
 	private int lec0; // CAN Controller Last Error Code.
 	private boolean comerr; // One or more errors in STX_COM_ERROR occurred.
 
+	public HSTXCommunicationCondition() {
+		// do nothing
+	}
+
 	public HSTXCommunicationCondition(LittleEndianDataInputStream dis) throws IOException {
 		canTEC = dis.readUnsignedByte();
 		canREC = dis.readUnsignedByte();

@@ -27,6 +27,10 @@ public class PlatformFdir {
 	private boolean obdhReprogrammingFailed;
 	private boolean obdhReprogramming;
 
+	public PlatformFdir() {
+		// do nothing
+	}
+
 	public PlatformFdir(LittleEndianDataInputStream dis) throws IOException {
 		int raw = dis.readUnsignedByte();
 		pmm = ((raw >> 7) & 0x1) > 0;

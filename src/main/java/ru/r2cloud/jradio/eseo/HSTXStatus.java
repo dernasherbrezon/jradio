@@ -38,6 +38,10 @@ public class HSTXStatus {
 	private boolean txlpf1e; // Error in the 2nd stage of the TX LPF offset calibration of the RF Transceiver chip (LIME modem).
 	private boolean txlpf0e; // Error in the 1st stage of the TX LPF offset calibration of the RF Transceiver chip (LIME modem).
 
+	public HSTXStatus() {
+		// do nothing
+	}
+
 	public HSTXStatus(LittleEndianDataInputStream dis) throws IOException {
 		int raw = dis.readUnsignedByte();
 		svc2e = ((raw >> 7) & 0x1) > 0;
