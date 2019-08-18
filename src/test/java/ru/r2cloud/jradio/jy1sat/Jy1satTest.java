@@ -18,7 +18,7 @@ public class Jy1satTest {
 	public void testDecodeTelemetry() throws Exception {
 		WavFileSource source = new WavFileSource(Jy1satTest.class.getClassLoader().getResourceAsStream("jy1sat.wav"));
 		FloatToComplex fc = new FloatToComplex(source);
-		BpskDemodulator bpsk = new BpskDemodulator(fc, 1200, 5, 1300, true);
+		BpskDemodulator bpsk = new BpskDemodulator(fc, 1200, 5, 1300, 2000.0f, true);
 		input = new Jy1sat(bpsk);
 		assertTrue(input.hasNext());
 		AssertJson.assertObjectsEqual("Jy1satBeacon.json", input.next());

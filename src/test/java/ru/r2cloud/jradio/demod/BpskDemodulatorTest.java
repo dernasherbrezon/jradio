@@ -42,7 +42,7 @@ public class BpskDemodulatorTest {
 		Constellation bpsk = new Constellation(new float[] { -1, 0, 1, 0 }, new int[0], 2, 1);
 		ConstellationModulator constel = new ConstellationModulator(pack, bpsk, sps, false, true, 0.35f);
 		ChannelModel channel = new ChannelModel(constel, EbN0_to_noise_voltage(ebno, sps), 0, 1.0f, null, 42);
-		BpskDemodulator bpskDemod = new BpskDemodulator(channel, 1200, 1, 0, false);
+		BpskDemodulator bpskDemod = new BpskDemodulator(channel, 1200, 1, 0, 2000.0f, false);
 		SoftToHard s2h = new SoftToHard(bpskDemod);
 		DifferentialDecoder diffDecoder = new DifferentialDecoder(s2h, 2);
 		Descrambler descrambler = new Descrambler(diffDecoder, 0x21, 0x00, 16);

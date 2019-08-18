@@ -18,7 +18,7 @@ public class Ao73Test {
 	public void testDecodeTelemetry() throws Exception {
 		WavFileSource source = new WavFileSource(Ao73Test.class.getClassLoader().getResourceAsStream("ao73.wav"));
 		FloatToComplex fc = new FloatToComplex(source);
-		BpskDemodulator bpsk = new BpskDemodulator(fc, 1200, 5, 1500, true);
+		BpskDemodulator bpsk = new BpskDemodulator(fc, 1200, 5, 1500, 2000.0f, true);
 		input = new Ao73(bpsk);
 		assertTrue(input.hasNext());
 		AssertJson.assertObjectsEqual("Ao73Beacon.json", input.next());

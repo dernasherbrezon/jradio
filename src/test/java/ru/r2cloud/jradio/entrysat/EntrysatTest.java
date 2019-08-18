@@ -1,4 +1,4 @@
-package ru.r2cloud.jradio.nayif1;
+package ru.r2cloud.jradio.entrysat;
 
 import static org.junit.Assert.assertTrue;
 
@@ -10,18 +10,18 @@ import ru.r2cloud.jradio.blocks.FloatToComplex;
 import ru.r2cloud.jradio.demod.BpskDemodulator;
 import ru.r2cloud.jradio.source.WavFileSource;
 
-public class Nayif1Test {
+public class EntrysatTest {
 
-	private Nayif1 input;
+	private Entrysat input;
 
 	@Test
-	public void testDecodeTelemetry() throws Exception {
-		WavFileSource source = new WavFileSource(Nayif1Test.class.getClassLoader().getResourceAsStream("nayif1.wav"));
+	public void testSuccess() throws Exception {
+		WavFileSource source = new WavFileSource(EntrysatTest.class.getClassLoader().getResourceAsStream("entrysat.wav"));
 		FloatToComplex fc = new FloatToComplex(source);
-		BpskDemodulator bpsk = new BpskDemodulator(fc, 1200, 5, 1000, 2000.0f, true);
-		input = new Nayif1(bpsk);
+		BpskDemodulator bpsk = new BpskDemodulator(fc, 9600, 1, 12000, 7500.0f, false);
+		input = new Entrysat(bpsk);
 		assertTrue(input.hasNext());
-		AssertJson.assertObjectsEqual("Nayif1Beacon.json", input.next());
+		AssertJson.assertObjectsEqual("EntrysatBeacon.json", input.next());
 	}
 
 	@After
