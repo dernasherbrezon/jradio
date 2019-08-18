@@ -5,7 +5,7 @@ import java.util.Map;
 
 public enum RFMode {
 	
-	Receiveonly(0x00), LowPowerBPSK(0x01), HighPowerBPSK(0x02), LowPowerTransponder(0x03), HighPowerTransponder(0x04), Autonomous(0x05);
+	RECEIVE_ONLY(0x00), LOW_POWER_BPSK(0x01), HIGH_POWER_BPSK(0x02), LOW_POWER_TRANSPONDER(0x03), HIGH_POWER_TRANSPONDER(0x04), AUTONOMOUS(0x05);
 
 	private final int code;
 	private static final Map<Integer, RFMode> typeByCode = new HashMap<>();
