@@ -1,0 +1,56 @@
+{
+  "header": {
+    "destinationAddress": {
+      "callsign": "BUAAGS",
+      "ssid": 0
+    },
+    "sourceAddress": {
+      "callsign": "BUAABJ",
+      "ssid": 0
+    },
+    "frameType": "U",
+    "sendSequenceNumber": 0,
+    "receiveSequenceNumber": 0,
+    "uControlType": "UI",
+    "pid": 240
+  },
+  "message": "BUAA BEACON STARTS",
+  "rawData": [
+    -124,
+    -86,
+    -126,
+    -126,
+    -114,
+    -90,
+    -32,
+    -124,
+    -86,
+    -126,
+    -126,
+    -124,
+    -108,
+    97,
+    3,
+    -16,
+    66,
+    85,
+    65,
+    65,
+    32,
+    66,
+    69,
+    65,
+    67,
+    79,
+    78,
+    32,
+    83,
+    84,
+    65,
+    82,
+    84,
+    83
+  ],
+  "beginSample": 6598,
+  "beginMillis": 0
+}
