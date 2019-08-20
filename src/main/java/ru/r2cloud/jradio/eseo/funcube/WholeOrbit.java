@@ -8,80 +8,80 @@ public class WholeOrbit {
 
 	private float processorTemperature;
 	private float enclosureTemperature;
-	private float DCDCConverterTemperature;
-	private float DCDCConverterOutputCurrent;
-	private float DCDCConverterOutputVoltage;
-	private float Transponder69VVoltage;
+	private float dcdcConverterTemperature;
+	private float dcdcConverterOutputCurrent;
+	private float dcdcConverterOutputVoltage;
+	private float transponder69VVoltage;
 	private float voltage9V;
 	private float voltage33V;
-	private float Transponder69VCurrent;
+	private float transponder69VCurrent;
 	private float current33V;
 	private float current9V;
 
 	private float transponderReceiverRSSI;
 	private float commandReceiverDoppler;
 	private float commandReceiverRSSI;
-	private float CMDReceiverOscillatorTemperature;
+	private float cmdReceiverOscillatorTemperature;
 
-	private float BPSKpowerAmplifierTemperature;
+	private float bpskPowerAmplifierTemperature;
 	private float transmitterForwardPower;
 	private float transmitterReflectedPower;
-	private float BPSKpowerAmplifierCurrent;
-	private float FMPowerAmplifierTemperature;
+	private float bpskPowerAmplifierCurrent;
+	private float fmPowerAmplifierTemperature;
 
 	private int commandWatchdogTimeRemaining;
 	private int noOfUplinkPacketsReceived;
-	private int RAMMemoryErrorCount;
-	private int ESEOMasterCANopenTransactions;
-	private int AMSMasterPayloadNumber;
-	private int AMSMasterCANopenTransactions;
+	private int ramMemoryErrorCount;
+	private int eseoMasterCANopenTransactions;
+	private int amsMasterPayloadNumber;
+	private int amsMasterCANopenTransactions;
 
-	private byte PmmVoltageSp1;
-	private byte PmmVoltageSp2;
-	private byte PmmVoltageSp3;
-	private byte PMMCurrentBp1;
-	private int PMMVoltageMb;
+	private byte pmmVoltageSp1;
+	private byte pmmVoltageSp2;
+	private byte pmmVoltageSp3;
+	private byte pmmCurrentBp1;
+	private int pmmVoltageMb;
 
 	private int absoluteAngularRotation;
 
 	public WholeOrbit(BitInputStream dis) throws IOException {
 		processorTemperature = -0.7725984f * dis.readUnsignedByte() + 94.95152f;
 		enclosureTemperature = -0.7385868f * dis.readUnsignedByte() + 97.74249f;
-		DCDCConverterTemperature = -0.7796212f * dis.readUnsignedByte() + 98.19402f;
-		DCDCConverterOutputCurrent = 5.131579f * dis.readUnsignedByte();
-		DCDCConverterOutputVoltage = 0.100f * dis.readUnsignedByte();
-		Transponder69VVoltage = 0.0885753425f * dis.readUnsignedByte();
+		dcdcConverterTemperature = -0.7796212f * dis.readUnsignedByte() + 98.19402f;
+		dcdcConverterOutputCurrent = 5.131579f * dis.readUnsignedByte();
+		dcdcConverterOutputVoltage = 0.100f * dis.readUnsignedByte();
+		transponder69VVoltage = 0.0885753425f * dis.readUnsignedByte();
 		voltage9V = 0.088171498f * dis.readUnsignedByte();
 		voltage33V = 0.031141509f * dis.readUnsignedByte();
-		Transponder69VCurrent = (dis.readUnsignedByte() - 2) * 2.5941175f;
+		transponder69VCurrent = (dis.readUnsignedByte() - 2) * 2.5941175f;
 		current33V = 3.75f * dis.readUnsignedByte();
 		current9V = 2.52778f * dis.readUnsignedByte();
 
 		transponderReceiverRSSI = LookupTableConverter.getTransponderRSSI(dis.readUnsignedByte());
 		commandReceiverDoppler = LookupTableConverter.getCommandDoppler(dis.readUnsignedByte());
 		commandReceiverRSSI = LookupTableConverter.getCommandRSSI(dis.readUnsignedByte());
-		CMDReceiverOscillatorTemperature = -0.8592393f * dis.readUnsignedByte() + 94.30121f;
+		cmdReceiverOscillatorTemperature = -0.8592393f * dis.readUnsignedByte() + 94.30121f;
 
-		BPSKpowerAmplifierTemperature = -0.8104347f * dis.readUnsignedByte() + 91.93637f;
+		bpskPowerAmplifierTemperature = -0.8104347f * dis.readUnsignedByte() + 91.93637f;
 		int raw = dis.readUnsignedByte();
 		transmitterForwardPower = 0.0136f * raw * raw + 0.4995f * raw + 1E-12f;
 		raw = dis.readUnsignedByte();
 		transmitterReflectedPower = 0.0136f * raw * raw + 0.4995f * raw + 1E-12f;
-		BPSKpowerAmplifierCurrent = 2.18f * dis.readUnsignedByte();
-		FMPowerAmplifierTemperature = -0.789929f * dis.readUnsignedByte() + 97.5934f;
+		bpskPowerAmplifierCurrent = 2.18f * dis.readUnsignedByte();
+		fmPowerAmplifierTemperature = -0.789929f * dis.readUnsignedByte() + 97.5934f;
 
 		commandWatchdogTimeRemaining = dis.readUnsignedByte();
 		noOfUplinkPacketsReceived = dis.readUnsignedInt(4);
-		RAMMemoryErrorCount = dis.readUnsignedByte();
-		ESEOMasterCANopenTransactions = dis.readUnsignedInt(13);
-		AMSMasterPayloadNumber = dis.readUnsignedInt(4);
-		AMSMasterCANopenTransactions = dis.readUnsignedInt(13);
+		ramMemoryErrorCount = dis.readUnsignedByte();
+		eseoMasterCANopenTransactions = dis.readUnsignedInt(13);
+		amsMasterPayloadNumber = dis.readUnsignedInt(4);
+		amsMasterCANopenTransactions = dis.readUnsignedInt(13);
 
-		PmmVoltageSp1 = dis.readByte();
-		PmmVoltageSp2 = dis.readByte();
-		PmmVoltageSp3 = dis.readByte();
-		PMMCurrentBp1 = dis.readByte();
-		PMMVoltageMb = dis.readUnsignedShort();
+		pmmVoltageSp1 = dis.readByte();
+		pmmVoltageSp2 = dis.readByte();
+		pmmVoltageSp3 = dis.readByte();
+		pmmCurrentBp1 = dis.readByte();
+		pmmVoltageMb = dis.readUnsignedShort();
 
 		absoluteAngularRotation = dis.readInt();
 	}
@@ -102,36 +102,36 @@ public class WholeOrbit {
 		this.enclosureTemperature = enclosureTemperature;
 	}
 
-	public float getDCDCConverterTemperature() {
-		return DCDCConverterTemperature;
+	public float getDcdcConverterTemperature() {
+		return dcdcConverterTemperature;
 	}
 
-	public void setDCDCConverterTemperature(float dCDCConverterTemperature) {
-		DCDCConverterTemperature = dCDCConverterTemperature;
+	public void setDcdcConverterTemperature(float dcdcConverterTemperature) {
+		this.dcdcConverterTemperature = dcdcConverterTemperature;
 	}
 
-	public float getDCDCConverterOutputCurrent() {
-		return DCDCConverterOutputCurrent;
+	public float getDcdcConverterOutputCurrent() {
+		return dcdcConverterOutputCurrent;
 	}
 
-	public void setDCDCConverterOutputCurrent(float dCDCConverterOutputCurrent) {
-		DCDCConverterOutputCurrent = dCDCConverterOutputCurrent;
+	public void setDcdcConverterOutputCurrent(float dcdcConverterOutputCurrent) {
+		this.dcdcConverterOutputCurrent = dcdcConverterOutputCurrent;
 	}
 
-	public float getDCDCConverterOutputVoltage() {
-		return DCDCConverterOutputVoltage;
+	public float getDcdcConverterOutputVoltage() {
+		return dcdcConverterOutputVoltage;
 	}
 
-	public void setDCDCConverterOutputVoltage(float dCDCConverterOutputVoltage) {
-		DCDCConverterOutputVoltage = dCDCConverterOutputVoltage;
+	public void setDcdcConverterOutputVoltage(float dcdcConverterOutputVoltage) {
+		this.dcdcConverterOutputVoltage = dcdcConverterOutputVoltage;
 	}
 
 	public float getTransponder69VVoltage() {
-		return Transponder69VVoltage;
+		return transponder69VVoltage;
 	}
 
 	public void setTransponder69VVoltage(float transponder69vVoltage) {
-		Transponder69VVoltage = transponder69vVoltage;
+		transponder69VVoltage = transponder69vVoltage;
 	}
 
 	public float getVoltage9V() {
@@ -151,11 +151,11 @@ public class WholeOrbit {
 	}
 
 	public float getTransponder69VCurrent() {
-		return Transponder69VCurrent;
+		return transponder69VCurrent;
 	}
 
 	public void setTransponder69VCurrent(float transponder69vCurrent) {
-		Transponder69VCurrent = transponder69vCurrent;
+		transponder69VCurrent = transponder69vCurrent;
 	}
 
 	public float getCurrent33V() {
@@ -198,20 +198,20 @@ public class WholeOrbit {
 		this.commandReceiverRSSI = commandReceiverRSSI;
 	}
 
-	public float getCMDReceiverOscillatorTemperature() {
-		return CMDReceiverOscillatorTemperature;
+	public float getCmdReceiverOscillatorTemperature() {
+		return cmdReceiverOscillatorTemperature;
 	}
 
-	public void setCMDReceiverOscillatorTemperature(float cMDReceiverOscillatorTemperature) {
-		CMDReceiverOscillatorTemperature = cMDReceiverOscillatorTemperature;
+	public void setCmdReceiverOscillatorTemperature(float cmdReceiverOscillatorTemperature) {
+		this.cmdReceiverOscillatorTemperature = cmdReceiverOscillatorTemperature;
 	}
 
-	public float getBPSKpowerAmplifierTemperature() {
-		return BPSKpowerAmplifierTemperature;
+	public float getBpskPowerAmplifierTemperature() {
+		return bpskPowerAmplifierTemperature;
 	}
 
-	public void setBPSKpowerAmplifierTemperature(float bPSKpowerAmplifierTemperature) {
-		BPSKpowerAmplifierTemperature = bPSKpowerAmplifierTemperature;
+	public void setBpskPowerAmplifierTemperature(float bpskPowerAmplifierTemperature) {
+		this.bpskPowerAmplifierTemperature = bpskPowerAmplifierTemperature;
 	}
 
 	public float getTransmitterForwardPower() {
@@ -230,20 +230,20 @@ public class WholeOrbit {
 		this.transmitterReflectedPower = transmitterReflectedPower;
 	}
 
-	public float getBPSKpowerAmplifierCurrent() {
-		return BPSKpowerAmplifierCurrent;
+	public float getBpskPowerAmplifierCurrent() {
+		return bpskPowerAmplifierCurrent;
 	}
 
-	public void setBPSKpowerAmplifierCurrent(float bPSKpowerAmplifierCurrent) {
-		BPSKpowerAmplifierCurrent = bPSKpowerAmplifierCurrent;
+	public void setBpskPowerAmplifierCurrent(float bpskPowerAmplifierCurrent) {
+		this.bpskPowerAmplifierCurrent = bpskPowerAmplifierCurrent;
 	}
 
-	public float getFMPowerAmplifierTemperature() {
-		return FMPowerAmplifierTemperature;
+	public float getFmPowerAmplifierTemperature() {
+		return fmPowerAmplifierTemperature;
 	}
 
-	public void setFMPowerAmplifierTemperature(float fMPowerAmplifierTemperature) {
-		FMPowerAmplifierTemperature = fMPowerAmplifierTemperature;
+	public void setFmPowerAmplifierTemperature(float fmPowerAmplifierTemperature) {
+		this.fmPowerAmplifierTemperature = fmPowerAmplifierTemperature;
 	}
 
 	public int getCommandWatchdogTimeRemaining() {
@@ -262,76 +262,76 @@ public class WholeOrbit {
 		this.noOfUplinkPacketsReceived = noOfUplinkPacketsReceived;
 	}
 
-	public int getRAMMemoryErrorCount() {
-		return RAMMemoryErrorCount;
+	public int getRamMemoryErrorCount() {
+		return ramMemoryErrorCount;
 	}
 
-	public void setRAMMemoryErrorCount(int rAMMemoryErrorCount) {
-		RAMMemoryErrorCount = rAMMemoryErrorCount;
+	public void setRamMemoryErrorCount(int ramMemoryErrorCount) {
+		this.ramMemoryErrorCount = ramMemoryErrorCount;
 	}
 
-	public int getESEOMasterCANopenTransactions() {
-		return ESEOMasterCANopenTransactions;
+	public int getEseoMasterCANopenTransactions() {
+		return eseoMasterCANopenTransactions;
 	}
 
-	public void setESEOMasterCANopenTransactions(int eSEOMasterCANopenTransactions) {
-		ESEOMasterCANopenTransactions = eSEOMasterCANopenTransactions;
+	public void setEseoMasterCANopenTransactions(int eseoMasterCANopenTransactions) {
+		this.eseoMasterCANopenTransactions = eseoMasterCANopenTransactions;
 	}
 
-	public int getAMSMasterPayloadNumber() {
-		return AMSMasterPayloadNumber;
+	public int getAmsMasterPayloadNumber() {
+		return amsMasterPayloadNumber;
 	}
 
-	public void setAMSMasterPayloadNumber(int aMSMasterPayloadNumber) {
-		AMSMasterPayloadNumber = aMSMasterPayloadNumber;
+	public void setAmsMasterPayloadNumber(int amsMasterPayloadNumber) {
+		this.amsMasterPayloadNumber = amsMasterPayloadNumber;
 	}
 
-	public int getAMSMasterCANopenTransactions() {
-		return AMSMasterCANopenTransactions;
+	public int getAmsMasterCANopenTransactions() {
+		return amsMasterCANopenTransactions;
 	}
 
-	public void setAMSMasterCANopenTransactions(int aMSMasterCANopenTransactions) {
-		AMSMasterCANopenTransactions = aMSMasterCANopenTransactions;
+	public void setAmsMasterCANopenTransactions(int amsMasterCANopenTransactions) {
+		this.amsMasterCANopenTransactions = amsMasterCANopenTransactions;
 	}
 
 	public byte getPmmVoltageSp1() {
-		return PmmVoltageSp1;
+		return pmmVoltageSp1;
 	}
 
 	public void setPmmVoltageSp1(byte pmmVoltageSp1) {
-		PmmVoltageSp1 = pmmVoltageSp1;
+		this.pmmVoltageSp1 = pmmVoltageSp1;
 	}
 
 	public byte getPmmVoltageSp2() {
-		return PmmVoltageSp2;
+		return pmmVoltageSp2;
 	}
 
 	public void setPmmVoltageSp2(byte pmmVoltageSp2) {
-		PmmVoltageSp2 = pmmVoltageSp2;
+		this.pmmVoltageSp2 = pmmVoltageSp2;
 	}
 
 	public byte getPmmVoltageSp3() {
-		return PmmVoltageSp3;
+		return pmmVoltageSp3;
 	}
 
 	public void setPmmVoltageSp3(byte pmmVoltageSp3) {
-		PmmVoltageSp3 = pmmVoltageSp3;
+		this.pmmVoltageSp3 = pmmVoltageSp3;
 	}
 
-	public byte getPMMCurrentBp1() {
-		return PMMCurrentBp1;
+	public byte getPmmCurrentBp1() {
+		return pmmCurrentBp1;
 	}
 
-	public void setPMMCurrentBp1(byte pMMCurrentBp1) {
-		PMMCurrentBp1 = pMMCurrentBp1;
+	public void setPmmCurrentBp1(byte pmmCurrentBp1) {
+		this.pmmCurrentBp1 = pmmCurrentBp1;
 	}
 
-	public int getPMMVoltageMb() {
-		return PMMVoltageMb;
+	public int getPmmVoltageMb() {
+		return pmmVoltageMb;
 	}
 
-	public void setPMMVoltageMb(int pMMVoltageMb) {
-		PMMVoltageMb = pMMVoltageMb;
+	public void setPmmVoltageMb(int pmmVoltageMb) {
+		this.pmmVoltageMb = pmmVoltageMb;
 	}
 
 	public int getAbsoluteAngularRotation() {
