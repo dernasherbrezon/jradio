@@ -1,0 +1,75 @@
+{
+  "header": {
+    "priority": "CSP_PRIO_CRITICAL",
+    "source": 0,
+    "destination": 24,
+    "sourcePort": 3,
+    "destinationPort": 23,
+    "ffrag": false,
+    "fhmac": false,
+    "fxtea": false,
+    "frdp": true,
+    "fcrc32": true
+  },
+  "protocolVersion": 1,
+  "beaconType": 26,
+  "version": 1,
+  "satelliteId": 1,
+  "adcsBeacon6": {
+    "meta": {
+      "checksum": 30446,
+      "timestamp": 1561005901,
+      "source": 4
+    },
+    "fsMounted": true,
+    "bootCount": 446,
+    "bootCause": 4,
+    "clock": 1561005899,
+    "tempMcu": 5085,
+    "tempRam": 5090,
+    "iGssb1": 3,
+    "iGssb2": 0,
+    "iFlash": 0,
+    "iPwm": 166,
+    "enMeta": {
+      "checksum": 14252,
+      "timestamp": 1561005901,
+      "source": 4
+    },
+    "swloadCnt1": 2,
+    "gssb1PwrEn": true,
+    "gssb2PwrEn": true,
+    "flashPwrEn": true,
+    "pwmPwrEn": true,
+    "tempMeta": {
+      "checksum": 11806,
+      "timestamp": 1561005901,
+      "source": 4
+    },
+    "extmagTemp": -9.1875,
+    "sunsTemp": [
+      1798,
+      1798,
+      0,
+      1798,
+      1798,
+      1798
+    ],
+    "gyroTemp": -2.2141178,
+    "extGyroTemp": 0.0,
+    "wheelTemp": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "wheelCur": [
+      0,
+      0,
+      0,
+      0
+    ]
+  },
+  "beginSample": 0,
+  "beginMillis": 0
+}

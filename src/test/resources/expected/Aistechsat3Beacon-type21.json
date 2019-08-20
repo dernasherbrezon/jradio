@@ -1,0 +1,79 @@
+{
+  "header": {
+    "priority": "CSP_PRIO_CRITICAL",
+    "source": 0,
+    "destination": 24,
+    "sourcePort": 3,
+    "destinationPort": 23,
+    "ffrag": false,
+    "fhmac": false,
+    "fxtea": false,
+    "frdp": true,
+    "fcrc32": true
+  },
+  "protocolVersion": 1,
+  "beaconType": 21,
+  "version": 1,
+  "satelliteId": 1,
+  "adcsFineSunSensorBeacon": {
+    "magMeta": {
+      "checksum": 11806,
+      "timestamp": 1559758201,
+      "source": 4
+    },
+    "extmag": [
+      223.9307,
+      -284.26746,
+      135.98761
+    ],
+    "gyro": [
+      -3.4319127,
+      1.3217725,
+      0.022355646
+    ],
+    "torquerDuty": [
+      -87.0,
+      -0.0013359522,
+      16.287977
+    ],
+    "wheelSpeed": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "wheelCur": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "wheelTemp": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "fssTemp": [
+      3.09375,
+      13.25,
+      8.125,
+      30.15625,
+      7.21875,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "statusMeta": {
+      "checksum": 43666,
+      "timestamp": 1559758201,
+      "source": 4
+    },
+    "spinMode": 3,
+    "statusUkf": 0,
+    "statusSgp4": 0,
+    "statusigrf": 0
+  },
+  "beginSample": 0,
+  "beginMillis": 0
+}

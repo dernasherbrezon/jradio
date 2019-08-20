@@ -7,6 +7,7 @@ import ru.r2cloud.jradio.util.StreamUtils;
 
 public class PlatformBeacon {
 
+	private DataFieldMeta meta;
 	private boolean fsMounted;
 	private boolean ram_image;
 	private short tempMcu;
@@ -39,6 +40,7 @@ public class PlatformBeacon {
 	private short tempPa;
 	private int[] vboost;
 	private int vbatt;
+	private DataFieldMeta curMeta;
 	private int[] curOut;
 	private int[] curIn;
 	private int curSun;
@@ -62,6 +64,7 @@ public class PlatformBeacon {
 	}
 
 	public PlatformBeacon(DataInputStream dis) throws IOException {
+		meta = new DataFieldMeta(dis);
 		fsMounted = dis.readBoolean();
 		ram_image = dis.readBoolean();
 		tempMcu = dis.readShort();
@@ -94,6 +97,7 @@ public class PlatformBeacon {
 		tempPa = dis.readShort();
 		vboost = StreamUtils.readUnsignedShortArray(dis, 3);
 		vbatt = dis.readUnsignedShort();
+		curMeta = new DataFieldMeta(dis);
 		curOut = StreamUtils.readUnsignedShortArray(dis, 6);
 		curIn = StreamUtils.readUnsignedShortArray(dis, 3);
 		curSun = dis.readUnsignedShort();
@@ -504,5 +508,21 @@ public class PlatformBeacon {
 	public void setBootCause3(int bootCause3) {
 		this.bootCause3 = bootCause3;
 	}
-	
+
+	public DataFieldMeta getMeta() {
+		return meta;
+	}
+
+	public void setMeta(DataFieldMeta meta) {
+		this.meta = meta;
+	}
+
+	public DataFieldMeta getCurMeta() {
+		return curMeta;
+	}
+
+	public void setCurMeta(DataFieldMeta curMeta) {
+		this.curMeta = curMeta;
+	}
+
 }

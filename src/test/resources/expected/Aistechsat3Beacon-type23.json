@@ -1,0 +1,92 @@
+{
+  "header": {
+    "priority": "CSP_PRIO_CRITICAL",
+    "source": 0,
+    "destination": 24,
+    "sourcePort": 3,
+    "destinationPort": 23,
+    "ffrag": false,
+    "fhmac": false,
+    "fxtea": false,
+    "frdp": true,
+    "fcrc32": true
+  },
+  "protocolVersion": 1,
+  "beaconType": 23,
+  "version": 1,
+  "satelliteId": 1,
+  "adcsBeacon3": {
+    "ctrlMeta": {
+      "checksum": 39813,
+      "timestamp": 1559758201,
+      "source": 4
+    },
+    "ctrlRefq": [
+      0.86746484,
+      0.258309,
+      -0.381483,
+      0.18775487
+    ],
+    "ctrlErrq": [
+      -0.12101903,
+      -0.6628568,
+      0.66000926,
+      0.3322094
+    ],
+    "ctrlErrRate": [
+      -0.058563594,
+      0.025946349,
+      0.0017000547
+    ],
+    "ctrlM": [
+      100.0,
+      0.0013359522,
+      -16.287977
+    ],
+    "ctrlMwSpeed": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "ctrlMwTorque": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "ukfMeta": {
+      "checksum": 5391,
+      "timestamp": 1559758201,
+      "source": 4
+    },
+    "ukfQ": [
+      -0.18307586,
+      0.5650101,
+      0.54655695,
+      -0.5903579
+    ],
+    "ukfW": [
+      -0.058563553,
+      0.024836842,
+      0.0016998339
+    ],
+    "ephemMeta": {
+      "checksum": 15130,
+      "timestamp": 1559758201,
+      "source": 4
+    },
+    "ephemReci": [
+      3879773.5,
+      3591108.8,
+      4385234.5
+    ],
+    "ephemVeci": [
+      4397.404,
+      2334.2932,
+      -5770.2734
+    ]
+  },
+  "beginSample": 0,
+  "beginMillis": 0
+}

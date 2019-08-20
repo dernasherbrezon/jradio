@@ -5,6 +5,7 @@ import java.io.IOException;
 
 public class UHFAntennaTelemetryBeacon {
 
+	private DataFieldMeta aMeta;
 	private UHFAntenna isisA;
 	private UHFAntenna isisB;
 
@@ -13,6 +14,7 @@ public class UHFAntennaTelemetryBeacon {
 	}
 
 	public UHFAntennaTelemetryBeacon(DataInputStream dis) throws IOException {
+		aMeta = new DataFieldMeta(dis);
 		isisA = new UHFAntenna(dis);
 		isisB = new UHFAntenna(dis);
 	}
@@ -33,4 +35,11 @@ public class UHFAntennaTelemetryBeacon {
 		this.isisB = isisB;
 	}
 
+	public DataFieldMeta getaMeta() {
+		return aMeta;
+	}
+	
+	public void setaMeta(DataFieldMeta aMeta) {
+		this.aMeta = aMeta;
+	}
 }

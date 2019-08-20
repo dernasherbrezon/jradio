@@ -1,0 +1,125 @@
+{
+  "header": {
+    "priority": "CSP_PRIO_CRITICAL",
+    "source": 0,
+    "destination": 24,
+    "sourcePort": 3,
+    "destinationPort": 23,
+    "ffrag": false,
+    "fhmac": false,
+    "fxtea": false,
+    "frdp": true,
+    "fcrc32": true
+  },
+  "protocolVersion": 1,
+  "beaconType": 10,
+  "version": 1,
+  "satelliteId": 1,
+  "platformBeacon": {
+    "meta": {
+      "checksum": 30446,
+      "timestamp": 1559758170,
+      "source": 1
+    },
+    "fsMounted": true,
+    "ram_image": true,
+    "tempMcu": 115,
+    "tempRam": 119,
+    "iGssb1": 0,
+    "iGssb2": 0,
+    "iFlash": 0,
+    "iPwm": 0,
+    "resetCause": 6,
+    "bootCause": 4,
+    "bootCount": 400,
+    "clock": 1559758170,
+    "uptime": 4567095,
+    "lastRssi": -3577,
+    "lastRfErr": 23800,
+    "bgndRssi": 1370,
+    "txDuty": 0,
+    "totTxCount": 100635640,
+    "totRxCount": 3204420612,
+    "totTxBytes": 1927944,
+    "totRxBytes": 102032,
+    "bootCount2": 4026,
+    "bootCause2": 3574595792,
+    "txBytes": 591659482,
+    "rxBytes": 1,
+    "activeConf": 14,
+    "txCount": 3708454144,
+    "rxCount": 391414786,
+    "tempBrd": 28,
+    "tempPa": 13382,
+    "vboost": [
+      0,
+      31627,
+      110
+    ],
+    "vbatt": 117,
+    "curMeta": {
+      "checksum": 51054,
+      "timestamp": 1559758170,
+      "source": 1
+    },
+    "curOut": [
+      3598,
+      3597,
+      4192,
+      8197,
+      63,
+      0
+    ],
+    "curIn": [
+      0,
+      72,
+      185
+    ],
+    "curSun": 168,
+    "curSys": 247,
+    "temp": [
+      47,
+      530,
+      354,
+      202,
+      13,
+      13
+    ],
+    "outVal": [
+      0,
+      9,
+      0,
+      8,
+      0,
+      6,
+      0,
+      6
+    ],
+    "battMode": 1,
+    "pptMode": 0,
+    "wdtI2cS": 65793,
+    "wdtGndS": 770,
+    "bootCount3": 290,
+    "cntWdtI2c": 150744,
+    "cntWdtGnd": 275,
+    "cntWdtCsp": [
+      9,
+      3
+    ],
+    "wdtCspC": [
+      5,
+      2
+    ],
+    "latchups": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "bootCause3": 0
+  },
+  "beginSample": 0,
+  "beginMillis": 0
+}

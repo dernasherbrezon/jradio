@@ -7,6 +7,7 @@ import ru.r2cloud.jradio.util.StreamUtils;
 
 public class ADCSBeacon6 {
 
+	private DataFieldMeta meta;
 	private boolean fsMounted;
 	private int bootCount;
 	private long bootCause;
@@ -17,11 +18,13 @@ public class ADCSBeacon6 {
 	private int iGssb2;
 	private int iFlash;
 	private int iPwm;
+	private DataFieldMeta enMeta;
 	private int swloadCnt1;
 	private boolean gssb1PwrEn;
 	private boolean gssb2PwrEn;
 	private boolean flashPwrEn;
 	private boolean pwmPwrEn;
+	private DataFieldMeta tempMeta;
 	private float extmagTemp;
 	private short[] sunsTemp;
 	private float gyroTemp;
@@ -34,6 +37,7 @@ public class ADCSBeacon6 {
 	}
 
 	public ADCSBeacon6(DataInputStream dis) throws IOException {
+		meta = new DataFieldMeta(dis);
 		fsMounted = dis.readBoolean();
 		bootCount = dis.readUnsignedShort();
 		bootCause = StreamUtils.readUnsignedInt(dis);
@@ -44,11 +48,13 @@ public class ADCSBeacon6 {
 		iGssb2 = dis.readUnsignedShort();
 		iFlash = dis.readUnsignedShort();
 		iPwm = dis.readUnsignedShort();
+		enMeta = new DataFieldMeta(dis);
 		swloadCnt1 = dis.readUnsignedShort();
 		gssb1PwrEn = dis.readBoolean();
 		gssb2PwrEn = dis.readBoolean();
 		flashPwrEn = dis.readBoolean();
 		pwmPwrEn = dis.readBoolean();
+		tempMeta = new DataFieldMeta(dis);
 		extmagTemp = Float.intBitsToFloat(dis.readInt());
 		sunsTemp = StreamUtils.readShortArray(dis, 6);
 		gyroTemp = Float.intBitsToFloat(dis.readInt());
@@ -223,6 +229,30 @@ public class ADCSBeacon6 {
 
 	public void setWheelCur(int[] wheelCur) {
 		this.wheelCur = wheelCur;
+	}
+
+	public DataFieldMeta getMeta() {
+		return meta;
+	}
+
+	public void setMeta(DataFieldMeta meta) {
+		this.meta = meta;
+	}
+
+	public DataFieldMeta getEnMeta() {
+		return enMeta;
+	}
+
+	public void setEnMeta(DataFieldMeta enMeta) {
+		this.enMeta = enMeta;
+	}
+
+	public DataFieldMeta getTempMeta() {
+		return tempMeta;
+	}
+
+	public void setTempMeta(DataFieldMeta tempMeta) {
+		this.tempMeta = tempMeta;
 	}
 
 }

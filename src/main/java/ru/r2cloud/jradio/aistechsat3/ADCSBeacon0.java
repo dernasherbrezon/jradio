@@ -7,6 +7,7 @@ import ru.r2cloud.jradio.util.StreamUtils;
 
 public class ADCSBeacon0 {
 
+	private DataFieldMeta magMeta;
 	private float extmagTemp;
 	private float[] mag;
 	private float[] extMag;
@@ -19,6 +20,7 @@ public class ADCSBeacon0 {
 	private float extGyroTemp;
 	private int extGyroValid;
 	private float[] torquerDuty;
+	private DataFieldMeta statusMeta;
 	private byte statusMag;
 	private byte statusExtMag;
 	private byte statusCss;
@@ -42,11 +44,15 @@ public class ADCSBeacon0 {
 	}
 
 	public ADCSBeacon0(DataInputStream dis) throws IOException {
+		magMeta = new DataFieldMeta(dis);
 		extmagTemp = Float.intBitsToFloat(dis.readInt());
 		mag = StreamUtils.readFloatArray(dis, 3);
 		extMag = StreamUtils.readFloatArray(dis, 3);
 		suns = StreamUtils.readFloatArray(dis, 6);
 		sunsTemp = StreamUtils.readShortArray(dis, 6);
+		// looks like missing in spec. without these 2 bytes status meta is corrupted
+		// gyro is corrupted as well, i haven't figured out how to fix it
+		dis.skip(2);
 		gyro = StreamUtils.readFloatArray(dis, 3);
 		gyroTrend = StreamUtils.readFloatArray(dis, 3);
 		gyroTemp = Float.intBitsToFloat(dis.readInt());
@@ -54,6 +60,7 @@ public class ADCSBeacon0 {
 		extGyroTemp = Float.intBitsToFloat(dis.readInt());
 		extGyroValid = dis.readUnsignedByte();
 		torquerDuty = StreamUtils.readFloatArray(dis, 3);
+		statusMeta = new DataFieldMeta(dis);
 		statusMag = dis.readByte();
 		statusExtMag = dis.readByte();
 		statusCss = dis.readByte();
@@ -303,6 +310,22 @@ public class ADCSBeacon0 {
 
 	public void setEphemDmode(byte ephemDmode) {
 		this.ephemDmode = ephemDmode;
+	}
+
+	public DataFieldMeta getMagMeta() {
+		return magMeta;
+	}
+
+	public void setMagMeta(DataFieldMeta magMeta) {
+		this.magMeta = magMeta;
+	}
+
+	public DataFieldMeta getStatusMeta() {
+		return statusMeta;
+	}
+
+	public void setStatusMeta(DataFieldMeta statusMeta) {
+		this.statusMeta = statusMeta;
 	}
 
 }

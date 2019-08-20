@@ -7,6 +7,7 @@ import ru.r2cloud.jradio.util.StreamUtils;
 
 public class ADCSFineSunSensorBeacon {
 
+	private DataFieldMeta magMeta;
 	private float[] extmag;
 	private float[] gyro;
 	private float[] torquerDuty;
@@ -14,6 +15,7 @@ public class ADCSFineSunSensorBeacon {
 	private int[] wheelCur;
 	private short[] wheelTemp;
 	private float[] fssTemp;
+	private DataFieldMeta statusMeta;
 	private byte spinMode;
 	private byte statusUkf;
 	private byte statusSgp4;
@@ -24,6 +26,7 @@ public class ADCSFineSunSensorBeacon {
 	}
 
 	public ADCSFineSunSensorBeacon(DataInputStream dis) throws IOException {
+		magMeta = new DataFieldMeta(dis);
 		extmag = StreamUtils.readFloatArray(dis, 3);
 		gyro = StreamUtils.readFloatArray(dis, 3);
 		torquerDuty = StreamUtils.readFloatArray(dis, 3);
@@ -31,6 +34,7 @@ public class ADCSFineSunSensorBeacon {
 		wheelCur = StreamUtils.readUnsignedShortArray(dis, 4);
 		wheelTemp = StreamUtils.readShortArray(dis, 4);
 		fssTemp = StreamUtils.readFloatArray(dis, 8);
+		statusMeta = new DataFieldMeta(dis);
 		spinMode = dis.readByte();
 		statusUkf = dis.readByte();
 		statusSgp4 = dis.readByte();
@@ -123,6 +127,22 @@ public class ADCSFineSunSensorBeacon {
 
 	public void setStatusigrf(byte statusigrf) {
 		this.statusigrf = statusigrf;
+	}
+
+	public DataFieldMeta getMagMeta() {
+		return magMeta;
+	}
+
+	public void setMagMeta(DataFieldMeta magMeta) {
+		this.magMeta = magMeta;
+	}
+
+	public DataFieldMeta getStatusMeta() {
+		return statusMeta;
+	}
+
+	public void setStatusMeta(DataFieldMeta statusMeta) {
+		this.statusMeta = statusMeta;
 	}
 
 }

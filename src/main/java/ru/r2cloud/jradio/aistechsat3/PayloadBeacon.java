@@ -7,6 +7,7 @@ import ru.r2cloud.jradio.util.StreamUtils;
 
 public class PayloadBeacon {
 
+	private DataFieldMeta curMeta;
 	private int cur1v2;
 	private int cur2v5;
 	private int cur3v3Fpga;
@@ -72,6 +73,7 @@ public class PayloadBeacon {
 	}
 
 	public PayloadBeacon(DataInputStream dis) throws IOException {
+		curMeta = new DataFieldMeta(dis);
 		cur1v2 = dis.readUnsignedShort();
 		cur2v5 = dis.readUnsignedShort();
 		cur3v3Fpga = dis.readUnsignedShort();
@@ -605,4 +607,11 @@ public class PayloadBeacon {
 		this.bootCount2 = bootCount2;
 	}
 
+	public DataFieldMeta getCurMeta() {
+		return curMeta;
+	}
+	
+	public void setCurMeta(DataFieldMeta curMeta) {
+		this.curMeta = curMeta;
+	}
 }

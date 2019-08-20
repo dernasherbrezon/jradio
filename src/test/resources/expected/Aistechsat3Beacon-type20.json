@@ -1,0 +1,106 @@
+{
+  "header": {
+    "priority": "CSP_PRIO_CRITICAL",
+    "source": 0,
+    "destination": 24,
+    "sourcePort": 3,
+    "destinationPort": 23,
+    "ffrag": false,
+    "fhmac": false,
+    "fxtea": false,
+    "frdp": true,
+    "fcrc32": true
+  },
+  "protocolVersion": 1,
+  "beaconType": 20,
+  "version": 1,
+  "satelliteId": 1,
+  "adcsBeacon0": {
+    "magMeta": {
+      "checksum": 11806,
+      "timestamp": 1554146690,
+      "source": 4
+    },
+    "extmagTemp": -9.3125,
+    "mag": [
+      173.71753,
+      -70.41576,
+      413.87128
+    ],
+    "extMag": [
+      124.427345,
+      -64.87044,
+      354.74783
+    ],
+    "suns": [
+      0.0,
+      182.0,
+      0.0,
+      336.0,
+      0.0,
+      0.0
+    ],
+    "sunsTemp": [
+      1798,
+      1798,
+      0,
+      1798,
+      1798,
+      1798
+    ],
+    "gyro": [
+      -2.3837305E-17,
+      2.4737215E-33,
+      -8.779247E-24
+    ],
+    "gyroTrend": [
+      -5.8692317E-37,
+      -1.1555367E-14,
+      -9251.964
+    ],
+    "gyroTemp": -1.54033711E17,
+    "extGyro": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "extGyroTemp": 0.0,
+    "extGyroValid": 0,
+    "torquerDuty": [
+      -0.0,
+      -0.0,
+      -0.0
+    ],
+    "statusMeta": {
+      "checksum": 43666,
+      "timestamp": 1554146690,
+      "source": 4
+    },
+    "statusMag": 0,
+    "statusExtMag": 0,
+    "statusCss": 0,
+    "statusGyro": 0,
+    "statusBdot": 0,
+    "statusRun": 2,
+    "loopTime": 58,
+    "maxLoopTime": 58,
+    "bdotRate": [
+      0.06932945,
+      0.07296393
+    ],
+    "bdotDmag": [
+      -0.019901054,
+      -0.013583119,
+      0.019220015
+    ],
+    "bdotDetumb": 1,
+    "acsMode": 2,
+    "acsDmode": 2,
+    "adsMode": 1,
+    "adsDmode": 1,
+    "ephemMode": 0,
+    "ephemDmode": 0
+  },
+  "beginSample": 0,
+  "beginMillis": 0
+}
