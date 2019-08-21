@@ -52,7 +52,9 @@ public class ADCSBeacon0 {
 		sunsTemp = StreamUtils.readShortArray(dis, 6);
 		// looks like missing in spec. without these 2 bytes status meta is corrupted
 		// gyro is corrupted as well, i haven't figured out how to fix it
-		dis.skip(2);
+		if (dis.skip(2) != 2) {
+			// ignore
+		}
 		gyro = StreamUtils.readFloatArray(dis, 3);
 		gyroTrend = StreamUtils.readFloatArray(dis, 3);
 		gyroTemp = Float.intBitsToFloat(dis.readInt());
