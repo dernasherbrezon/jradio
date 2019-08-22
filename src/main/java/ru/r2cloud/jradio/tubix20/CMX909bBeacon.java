@@ -100,7 +100,7 @@ public abstract class CMX909bBeacon extends Beacon {
 		byte[] fecDeinterleaved = Deinterleave.deinterleaveBits(fecData, 4, data.length);
 		for (int i = 0; i < deinterleaved.length; i++) {
 			try {
-				deinterleaved[i] = (byte) Hamming.decode12_8((deinterleaved[i] << 4) | (fecDeinterleaved[i] & 0xFF));
+				deinterleaved[i] = (byte) Hamming.decode12b8((deinterleaved[i] << 4) | (fecDeinterleaved[i] & 0xFF));
 			} catch (UncorrectableException e) {
 				if (LOG.isDebugEnabled()) {
 					LOG.debug("unable to correct data block");

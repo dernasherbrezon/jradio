@@ -25,7 +25,7 @@ public class CMX909bHeader {
 		int control2Byte = dis.readUnsignedByte();
 		int fec = dis.readUnsignedByte();
 
-		control1Byte = Hamming.decode12_8((control1Byte << 4) | (fec >> 4));
+		control1Byte = Hamming.decode12b8((control1Byte << 4) | (fec >> 4));
 		control1 = new Control1();
 		MessageType type = MessageType.valueOfCode(control1Byte >> 5);
 		if (type != null) {
@@ -35,7 +35,7 @@ public class CMX909bHeader {
 		}
 		control1.setNumberOfBlocks((control1Byte & 0x1F) + 1);
 		control1.setNumberOfErrors((control1Byte & 0x1F));
-		control2Byte = Hamming.decode12_8((control2Byte << 4) | (fec & 0xF));
+		control2Byte = Hamming.decode12b8((control2Byte << 4) | (fec & 0xF));
 		control2 = new Control2();
 		control2.setBaud9600((control2Byte & 0x1) > 0);
 		control2.setAck((control2Byte & 0x2) > 0);

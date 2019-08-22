@@ -6,9 +6,9 @@ import java.util.Map;
 import ru.r2cloud.jradio.fec.ccsds.UncorrectableException;
 
 public class Hamming {
-	
+
 	private static final Map<Integer, Integer> SYNDROME_12 = new HashMap<>();
-	
+
 	static {
 		SYNDROME_12.put(0b1110, 0b1000_0000_0000);
 		SYNDROME_12.put(0b1101, 0b0100_0000_0000);
@@ -24,17 +24,13 @@ public class Hamming {
 		SYNDROME_12.put(0b0001, 0b0000_0000_0001);
 	}
 
-	private static final int[] FEC_MATRIX_12b = new int[] { 
-			0b1110_1100_1000, 
-			0b1101_0011_0100, 
-			0b1011_1010_0010, 
-			0b0111_0101_0001 };
+	private static final int[] FEC_MATRIX_12b = new int[] { 0b1110_1100_1000, 0b1101_0011_0100, 0b1011_1010_0010, 0b0111_0101_0001 };
 
-	public static int decode12_8(int coded) throws UncorrectableException {
+	public static int decode12b8(int coded) throws UncorrectableException {
 		int fec = 0;
 		for (int i = 0; i < FEC_MATRIX_12b.length; i++) {
 			fec = fec << 1;
-			if (!even_parity_12b(FEC_MATRIX_12b[i] & coded)) {
+			if (!evenParity12b(FEC_MATRIX_12b[i] & coded)) {
 				fec = fec | 0x1;
 			}
 		}
@@ -48,7 +44,7 @@ public class Hamming {
 		return (coded ^ error) >> 4;
 	}
 
-	private static boolean even_parity_12b(int val) {
+	private static boolean evenParity12b(int val) {
 		int count = 0;
 		for (int i = 0; i < 12; i++) {
 			if (((val >> i) & 0x1) == 1) {
@@ -58,4 +54,7 @@ public class Hamming {
 		return count % 2 == 0;
 	}
 
+	private Hamming() {
+		// do nothing
+	}
 }
