@@ -8,8 +8,8 @@ public class Viterbi {
 	private byte[] metrics1 = new byte[64];
 	private byte[] metrics2 = new byte[64];
 
-	private byte[] old_metrics;
-	private byte[] new_metrics;
+	private byte[] oldMetrics;
+	private byte[] newMetrics;
 	
 	private byte[][] branchtab = new byte[2][32];
 
@@ -27,21 +27,26 @@ public class Viterbi {
 		for (int i = 0; i < metrics1.length; i++) {
 			metrics1[i] = 63;
 		}
-		old_metrics = metrics1;
-		new_metrics = metrics2;
-		old_metrics[0 & 63] = 0;
+		oldMetrics = metrics1;
+		newMetrics = metrics2;
+		oldMetrics[0 & 63] = 0;
 		int state;
 
 		for (state = 0; state < 32; state++) {
 			branchtab[0][state] = (byte) lookup[(2 * state) & poly1];
-			branchtab[1][state] = (byte) ((invertPoly2Byte ^ lookup[(2 * state) & poly2]));
+			branchtab[1][state] = (byte) (invertPoly2Byte ^ lookup[(2 * state) & poly2]);
 		}
 	}
 	
 	//each byte coded 8 bits
 	private byte[] decodeInternal(byte[] data) {
-		byte m0, m1, decision, metric, sym0, sym1;
-		LinkedList<int[]> decisions = new LinkedList<int[]>();
+		byte m0;
+		byte m1;
+		byte decision;
+		byte metric;
+		byte sym0;
+		byte sym1;
+		LinkedList<int[]> decisions = new LinkedList<>();
 		for (int i = 0; i < data.length; i++) {
 			for (int j = 7; j >= 0;) {
 				int[] d = new int[8];
@@ -51,22 +56,22 @@ public class Viterbi {
 				j--;
 				for (int b = 0; b < 32; b++) {
 					metric = (byte) ((branchtab[0][b] ^ sym0) + (branchtab[1][b] ^ sym1));
-					m0 = (byte) (old_metrics[b] + metric);
-					m1 = (byte) (old_metrics[b + 32] + (2 - metric));
+					m0 = (byte) (oldMetrics[b] + metric);
+					m1 = (byte) (oldMetrics[b + 32] + (2 - metric));
 					decision = m0 > m1 ? (byte) 1 : 0;
-					new_metrics[(b << 1)] = m0 > m1 ? m1 : m0;
+					newMetrics[(b << 1)] = m0 > m1 ? m1 : m0;
 					d[b >> 2] |= decision << (((b << 1)) & 7);
 
 					m0 -= (metric + metric - 2);
 					m1 += (metric + metric - 2);
 					decision = m0 > m1 ? (byte) 1 : 0;
-					new_metrics[(b << 1) + 1] = m0 > m1 ? m1 : m0;
+					newMetrics[(b << 1) + 1] = m0 > m1 ? m1 : m0;
 					d[b >> 2] |= decision << (((b << 1) + 1) & 7);
 				}
 
-				byte[] tmp = old_metrics;
-				old_metrics = new_metrics;
-				new_metrics = tmp;
+				byte[] tmp = oldMetrics;
+				oldMetrics = newMetrics;
+				newMetrics = tmp;
 				
 				decisions.add(d);
 			}
