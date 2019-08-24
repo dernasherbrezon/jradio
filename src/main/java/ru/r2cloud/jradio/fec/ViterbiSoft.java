@@ -29,7 +29,7 @@ public class ViterbiSoft {
 
 		for (state = 0; state < 32; state++) {
 			branchtab[0][state] = lookup[(2 * state) & poly1] > 0 ? 255 : 0;
-			branchtab[1][state] = ((invertPoly2Byte ^ lookup[(2 * state) & poly2])) > 0 ? 255 : 0;
+			branchtab[1][state] = (invertPoly2Byte ^ lookup[(2 * state) & poly2]) > 0 ? 255 : 0;
 		}
 	}
 
@@ -42,11 +42,16 @@ public class ViterbiSoft {
 		for (int i = 0; i < metrics1.length; i++) {
 			metrics1[i] = 63;
 		}
-		long[] old_metrics = metrics1;
-		long[] new_metrics = metrics2;
-		old_metrics[0 & 63] = 0;
+		long[] oldMetrics = metrics1;
+		long[] newMetrics = metrics2;
+		oldMetrics[0 & 63] = 0;
 		
-		long m0, m1, decision, metric, sym0, sym1;
+		long m0;
+		long m1;
+		long decision;
+		long metric;
+		long sym0;
+		long sym1;
 		// use flat array for perf reasons
 		// flat array will store decisions 0 and 1 one by one
 		for (int i = 0; i < data.length; i += 2) {
@@ -56,22 +61,22 @@ public class ViterbiSoft {
 			decisions[i + 1] = 0;
 			for (int b = 0; b < 32; b++) {
 				metric = (branchtab[0][b] ^ sym0) + (branchtab[1][b] ^ sym1);
-				m0 = old_metrics[b] + metric;
-				m1 = old_metrics[b + 32] + (510 - metric);
+				m0 = oldMetrics[b] + metric;
+				m1 = oldMetrics[b + 32] + (510 - metric);
 				decision = m0 > m1 ? 1 : 0;
-				new_metrics[2 * b] = m0 > m1 ? m1 : m0;
+				newMetrics[2 * b] = m0 > m1 ? m1 : m0;
 				decisions[i + (b >> 4)] |= decision << ((2 * b) & 31);
 
 				m0 -= (metric + metric - 510);
 				m1 += (metric + metric - 510);
 				decision = m0 > m1 ? 1 : 0;
-				new_metrics[2 * b + 1] = m0 > m1 ? m1 : m0;
+				newMetrics[2 * b + 1] = m0 > m1 ? m1 : m0;
 				decisions[i + (b >> 4)] |= decision << ((2 * b + 1) & 31);
 			}
 
-			long[] tmp = old_metrics;
-			old_metrics = new_metrics;
-			new_metrics = tmp;
+			long[] tmp = oldMetrics;
+			oldMetrics = newMetrics;
+			newMetrics = tmp;
 		}
 
 		long endstate = 0;
