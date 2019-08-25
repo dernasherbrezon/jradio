@@ -22,7 +22,7 @@
       "source": 1
     },
     "fsMounted": true,
-    "ram_image": true,
+    "ramImage": true,
     "tempMcu": 115,
     "tempRam": 119,
     "iGssb1": 0,

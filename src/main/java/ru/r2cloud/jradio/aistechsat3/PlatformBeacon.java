@@ -9,7 +9,7 @@ public class PlatformBeacon {
 
 	private DataFieldMeta meta;
 	private boolean fsMounted;
-	private boolean ram_image;
+	private boolean ramImage;
 	private short tempMcu;
 	private short tempRam;
 	private int iGssb1;
@@ -66,7 +66,7 @@ public class PlatformBeacon {
 	public PlatformBeacon(DataInputStream dis) throws IOException {
 		meta = new DataFieldMeta(dis);
 		fsMounted = dis.readBoolean();
-		ram_image = dis.readBoolean();
+		ramImage = dis.readBoolean();
 		tempMcu = dis.readShort();
 		tempRam = dis.readShort();
 		iGssb1 = dis.readUnsignedShort();
@@ -125,12 +125,12 @@ public class PlatformBeacon {
 		this.fsMounted = fsMounted;
 	}
 
-	public boolean isRam_image() {
-		return ram_image;
+	public boolean isRamImage() {
+		return ramImage;
 	}
 
-	public void setRam_image(boolean ram_image) {
-		this.ram_image = ram_image;
+	public void setRamImage(boolean ramImage) {
+		this.ramImage = ramImage;
 	}
 
 	public short getTempMcu() {
