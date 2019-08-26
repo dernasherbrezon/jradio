@@ -26,7 +26,7 @@ public class BpskDemodulator implements ByteInput {
 	// produces soft stream of bytes
 	public BpskDemodulator(FloatInput input, int symbolRate, int decimation, double centerFrequency, float bandwidth, boolean differential) {
 		FloatInput next = input;
-		if (centerFrequency != 0.0) {
+		if (centerFrequency != 0.0 || decimation != 1) {
 			float[] taps = Firdes.lowPass(1.0, next.getContext().getSampleRate(), symbolRate * LOW_PASS_THRESHOLD, 1000, Window.WIN_HAMMING, 6.76);
 			next = new FrequencyXlatingFIRFilter(next, taps, decimation, centerFrequency);
 		}
