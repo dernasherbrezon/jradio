@@ -33,8 +33,8 @@ public class BpskDemodulator implements ByteInput {
 		LowPassFilterComplex lpf = new LowPassFilterComplex(fll, 1.0, bandwidth, 500, Window.WIN_HAMMING, 6.76);
 		int nfilts = 16;
 		float[] rrcTaps = Firdes.rootRaisedCosine(nfilts, nfilts, 1.0f / samplesPerSymbol, 0.35f, (int) (11 * samplesPerSymbol * nfilts));
-		PolyphaseClockSyncComplex clock = new PolyphaseClockSyncComplex(lpf, samplesPerSymbol, 0.1f, rrcTaps, nfilts, nfilts / 2, 0.05f, 1);
-		FloatInput next = new CostasLoop(clock, 0.5f, 2, false);
+		PolyphaseClockSyncComplex clock = new PolyphaseClockSyncComplex(lpf, samplesPerSymbol, 0.1f, rrcTaps, nfilts, nfilts / 2, 1.5f, 1);
+		FloatInput next = new CostasLoop(clock, 0.1f, 2, false);
 		if (differential) {
 			next = new DelayOne(next);
 		}
