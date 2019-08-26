@@ -17,9 +17,7 @@ public class MapBlock implements ByteInput {
 			this.map[i] = i;
 		}
 		int minSize = Math.min(map.length, this.map.length);
-		for (int i = 0; i < minSize; i++) {
-			this.map[i] = map[i];
-		}
+		System.arraycopy(map, 0, this.map, 0, minSize);
 	}
 
 	@Override
