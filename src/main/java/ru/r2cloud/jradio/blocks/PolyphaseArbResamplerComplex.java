@@ -52,9 +52,7 @@ public class PolyphaseArbResamplerComplex implements FloatInput {
 
 	private FIRFilter[] createFilters(float[] taps) {
 		float[] tmpTaps = new float[intRate * tapsPerFilter];
-		for (int i = 0; i < taps.length; i++) {
-			tmpTaps[i] = taps[i];
-		}
+		System.arraycopy(taps, 0, tmpTaps, 0, taps.length);
 		for (int i = taps.length; i < tmpTaps.length; i++) {
 			tmpTaps[i] = 0.0f;
 		}
