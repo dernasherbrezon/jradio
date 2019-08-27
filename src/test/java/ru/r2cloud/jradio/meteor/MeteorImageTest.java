@@ -19,13 +19,8 @@ import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import ru.r2cloud.jradio.PhaseAmbiguityResolver;
 import ru.r2cloud.jradio.blocks.Constellation;
-import ru.r2cloud.jradio.blocks.CorrelateAccessCodeTag;
-import ru.r2cloud.jradio.blocks.FixedLengthTagger;
-import ru.r2cloud.jradio.blocks.TaggedStreamToPdu;
 import ru.r2cloud.jradio.demod.QpskDemodulator;
-import ru.r2cloud.jradio.lrpt.LRPT;
 import ru.r2cloud.jradio.lrpt.VCDU;
 import ru.r2cloud.jradio.source.WavFileSource;
 
@@ -76,18 +71,14 @@ public class MeteorImageTest {
 		WavFileSource source = new WavFileSource(new BufferedInputStream(new FileInputStream(filename)));
 		Constellation constel = new Constellation(new float[] { -1.0f, -1.0f, -1.0f, 1.0f, 1.0f, 1.0f, 1.0f, -1.0f }, new int[] { 0, 1, 3, 2 }, 4, 1);
 		QpskDemodulator qpskDemod = new QpskDemodulator(source, symbolRate, constel);
-		PhaseAmbiguityResolver phaseAmbiguityResolver = new PhaseAmbiguityResolver(0x035d49c24ff2686bL);
-
-		CorrelateAccessCodeTag correlate = new CorrelateAccessCodeTag(qpskDemod, 17, phaseAmbiguityResolver.getSynchronizationMarkers(), true);
-		TaggedStreamToPdu tag = new TaggedStreamToPdu(new FixedLengthTagger(correlate, VCDU.VITERBI_TAIL_SIZE));
-		LRPT lrpt = new LRPT(tag, phaseAmbiguityResolver, MeteorImage.METEOR_SPACECRAFT_ID);
-		MeteorImage image = new MeteorImage(lrpt);
+		MeteorMN2 meteor = new MeteorMN2(qpskDemod);
+		MeteorImage image = new MeteorImage(meteor);
 		LOG.info("decoded");
 		BufferedImage actual = image.toBufferedImage();
 		if (actual != null) {
 			ImageIO.write(actual, "png", new File("./target/output_fixed.png"));
 		}
-		lrpt.close();
+		meteor.close();
 		LOG.info("done");
 	}
 

@@ -1,25 +1,22 @@
 package ru.r2cloud.jradio.lrpt;
 
-import java.io.IOException;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.codahale.metrics.Counter;
 import com.codahale.metrics.MetricRegistry;
 
-import ru.r2cloud.jradio.BeaconSource;
+import ru.r2cloud.jradio.MessageInput;
 import ru.r2cloud.jradio.PhaseAmbiguityResolver;
 import ru.r2cloud.jradio.Tag;
 import ru.r2cloud.jradio.blocks.CorrelateAccessCodeTag;
-import ru.r2cloud.jradio.blocks.TaggedStreamToPdu;
 import ru.r2cloud.jradio.fec.ViterbiSoft;
 import ru.r2cloud.jradio.fec.ccsds.Randomize;
 import ru.r2cloud.jradio.fec.ccsds.ReedSolomon;
 import ru.r2cloud.jradio.fec.ccsds.UncorrectableException;
 import ru.r2cloud.jradio.util.Metrics;
 
-public class LRPT extends BeaconSource<VCDU> {
+public class LRPT {
 
 	private static final Logger LOG = LoggerFactory.getLogger(LRPT.class);
 	private final MetricRegistry registry = Metrics.getRegistry();
@@ -32,8 +29,7 @@ public class LRPT extends BeaconSource<VCDU> {
 	// previous is used for restoring partial packets
 	private VCDU previous = null;
 
-	public LRPT(TaggedStreamToPdu input, PhaseAmbiguityResolver phaseAmbiguityResolver, int spacecraftId) {
-		super(input);
+	public LRPT(PhaseAmbiguityResolver phaseAmbiguityResolver, int spacecraftId) {
 		if (registry != null) {
 			count = registry.counter(LRPT.class.getName());
 		} else {
@@ -44,8 +40,7 @@ public class LRPT extends BeaconSource<VCDU> {
 		this.spacecraftId = spacecraftId;
 	}
 
-	@Override
-	protected VCDU parseBeacon(byte[] rawBytes) throws UncorrectableException, IOException {
+	public VCDU parseBeacon(MessageInput input, byte[] rawBytes) throws UncorrectableException {
 		Tag currentTag = input.getContext().getCurrent();
 		phaseAmbiguityResolver.rotateSoft(rawBytes, (Long) currentTag.get(CorrelateAccessCodeTag.ACCESS_CODE));
 		byte[] viterbi = viterbiSoft.decode(rawBytes);

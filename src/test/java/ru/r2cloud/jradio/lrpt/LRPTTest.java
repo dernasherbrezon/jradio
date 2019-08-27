@@ -1,6 +1,6 @@
 package ru.r2cloud.jradio.lrpt;
 
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertNotNull;
 
 import java.io.IOException;
 
@@ -17,7 +17,7 @@ import ru.r2cloud.jradio.source.InputStreamSource;
 
 public class LRPTTest {
 
-	private LRPT lrpt;
+	private TaggedStreamToPdu tag;
 
 	@Test
 	public void success() throws Exception {
@@ -25,15 +25,16 @@ public class LRPTTest {
 		InputStreamSource float2char = new InputStreamSource(LRPTTest.class.getClassLoader().getResourceAsStream("8bitsoft.s"));
 		CorrelateAccessCodeTag correlate = new CorrelateAccessCodeTag(float2char, 9, phaseAmbiguityResolver.getSynchronizationMarkers(), true);
 		TaggedStreamToPdu tag = new TaggedStreamToPdu(new FixedLengthTagger(correlate, 8160 * 2 + 8 * 2));
-		lrpt = new LRPT(tag, phaseAmbiguityResolver, MeteorImage.METEOR_SPACECRAFT_ID);
-		assertTrue(lrpt.hasNext());
-		AssertJson.assertObjectsEqual("VCDU.json", lrpt.next());
+		LRPT lrpt = new LRPT(phaseAmbiguityResolver, MeteorImage.METEOR_SPACECRAFT_ID);
+		VCDU result = lrpt.parseBeacon(tag, tag.readBytes());
+		assertNotNull(result);
+		AssertJson.assertObjectsEqual("VCDU.json", result);
 	}
 
 	@After
 	public void stop() throws IOException {
-		if (lrpt != null) {
-			lrpt.close();
+		if (tag != null) {
+			tag.close();
 		}
 	}
 
