@@ -203,9 +203,7 @@ public class PolyphaseClockSyncComplex implements FloatInput {
 		// Make a vector of the taps plus fill it out with 0's to fill
 		// each polyphase filter with exactly d_taps_per_filter
 		float[] tmpTaps = new float[numberOfFilters * tapsPerFilter];
-		for (int i = 0; i < taps.length; i++) {
-			tmpTaps[i] = taps[i];
-		}
+		System.arraycopy(taps, 0, tmpTaps, 0, taps.length);
 		for (int i = taps.length; i < tmpTaps.length; i++) {
 			tmpTaps[i] = 0.0f;
 		}
