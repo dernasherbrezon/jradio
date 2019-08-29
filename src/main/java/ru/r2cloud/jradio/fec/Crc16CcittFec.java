@@ -20,4 +20,7 @@ public class Crc16CcittFec {
 		return false;
 	}
 
+	private Crc16CcittFec() {
+		// do nothing
+	}
 }

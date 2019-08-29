@@ -43,5 +43,9 @@ public class LookupTableConverter {
         }
         return result;
 	}
+	
+	private LookupTableConverter() {
+		// do nothing
+	}
 
 }
