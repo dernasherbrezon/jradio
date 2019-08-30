@@ -9,14 +9,14 @@ public class Golay {
 
 	private static final Logger LOG = LoggerFactory.getLogger(Golay.class);
 	private static final int N = 12;
-	private final int[] H = new int[] { 0x8008ed, 0x4001db, 0x2003b5, 0x100769, 0x80ed1, 0x40da3, 0x20b47, 0x1068f, 0x8d1d, 0x4a3b, 0x2477, 0x1ffe };
+	private final int[] h = new int[] { 0x8008ed, 0x4001db, 0x2003b5, 0x100769, 0x80ed1, 0x40da3, 0x20b47, 0x1068f, 0x8d1d, 0x4a3b, 0x2477, 0x1ffe };
 
 	public int encode(int data) {
 		int r = (data) & 0xfff;
 		int s = 0;
 		for (int i = 0; i < N; i++) {
 			s <<= 1;
-			s |= parity(H[i] & r);
+			s |= parity(h[i] & r);
 		}
 		return ((0xFFF & s) << N) | r;
 	}
@@ -27,7 +27,7 @@ public class Golay {
 		int result = data ^ errorVector;
 
 		if (LOG.isDebugEnabled()) {
-			LOG.debug("corrected byte errors: " + volk_32u_popcnt(errorVector));
+			LOG.debug("corrected byte errors: {}", volk32uPopcnt(errorVector));
 		}
 		return result & 0xFFF;
 	}
@@ -44,11 +44,11 @@ public class Golay {
 		s = 0;
 		for (i = 0; i < N; i++) {
 			s <<= 1;
-			s |= parity(H[i] & r);
+			s |= parity(h[i] & r);
 		}
 
 		// Step 2. if w(s) <= 3, then e = (s, 0) and go to step 8
-		popcount = volk_32u_popcnt(s);
+		popcount = volk32uPopcnt(s);
 		if (popcount <= 3) {
 			errorVector = s;
 			errorVector <<= N;
@@ -57,9 +57,9 @@ public class Golay {
 
 		// Step 3. if w(s + B[i]) <= 2, then e = (s + B[i], e_{i+1}) and go to step 8
 		for (i = 0; i < N; i++) {
-			popcount = volk_32u_popcnt(s ^ (H[i] & 0xfff));
+			popcount = volk32uPopcnt(s ^ (h[i] & 0xfff));
 			if (popcount <= 2) {
-				errorVector = s ^ (H[i] & 0xfff);
+				errorVector = s ^ (h[i] & 0xfff);
 				errorVector <<= N;
 				errorVector |= 1 << (N - i - 1);
 				return errorVector;
@@ -70,11 +70,11 @@ public class Golay {
 		q = 0;
 		for (i = 0; i < N; i++) {
 			q <<= 1;
-			q |= parity((H[i] & 0xfff) & s);
+			q |= parity((h[i] & 0xfff) & s);
 		}
 
 		// Step 5. If w(q) <= 3, then e = (0, q) and go to step 8
-		popcount = volk_32u_popcnt(q);
+		popcount = volk32uPopcnt(q);
 		if (popcount <= 3) {
 			errorVector = q;
 			return errorVector;
@@ -82,10 +82,10 @@ public class Golay {
 
 		// Step 6. If w(q + B[i]) <= 2, then e = (e_{i+1}, q + B[i]) and got to step 8
 		for (i = 0; i < N; i++) {
-			popcount = volk_32u_popcnt(q ^ (H[i] & 0xfff));
+			popcount = volk32uPopcnt(q ^ (h[i] & 0xfff));
 			if (popcount <= 2) {
 				errorVector = 1 << (2 * N - i - 1);
-				errorVector |= q ^ (H[i] & 0xfff);
+				errorVector |= q ^ (h[i] & 0xfff);
 				return errorVector;
 			}
 		}
@@ -94,7 +94,7 @@ public class Golay {
 		throw new UncorrectableException("uncorrectable");
 	}
 
-	private static int volk_32u_popcnt(int value) {
+	private static int volk32uPopcnt(int value) {
 		// This is faster than a lookup table
 		int retVal = value;
 
