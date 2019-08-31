@@ -150,8 +150,16 @@ public class ReedSolomon {
 		int deg_lambda;
 		int el;
 		int deg_omega;
-		int i, j, r, k;
-		int q, tmp, num1, num2, den, discr_r;
+		int i;
+		int j;
+		int r;
+		int k;
+		int q;
+		int tmp;
+		int num1;
+		int num2;
+		int den;
+		int discrR;
 		int[] lambda = new int[nroots + 1];
 		int[] s = new int[nroots];
 		int[] b = new int[nroots + 1];
@@ -160,7 +168,7 @@ public class ReedSolomon {
 		int[] root = new int[nroots];
 		int[] reg = new int[nroots + 1];
 		int[] loc = new int[nroots];
-		int syn_error;
+		int synError;
 		int count;
 
 		/* form the syndromes; i.e., evaluate data(x) at roots of g(x) */
@@ -179,13 +187,13 @@ public class ReedSolomon {
 		}
 
 		/* Convert syndromes to index form, checking for nonzero condition */
-		syn_error = 0;
+		synError = 0;
 		for (i = 0; i < nroots; i++) {
-			syn_error |= s[i];
+			synError |= s[i];
 			s[i] = indexOf[s[i]];
 		}
 
-		if (syn_error == 0) {
+		if (synError == 0) {
 			/*
 			 * if syndrome is zero, data[] is a codeword and there are no errors to correct. So return data[] unmodified
 			 */
@@ -205,14 +213,14 @@ public class ReedSolomon {
 			el = no_eras;
 			while (++r <= nroots) { /* r is the step number */
 				/* Compute discrepancy at the r-th step in poly-form */
-				discr_r = 0;
+				discrR = 0;
 				for (i = 0; i < r; i++) {
 					if ((lambda[i] != 0) && (s[r - i - 1] != a0)) {
-						discr_r ^= alphaTo[modnn(indexOf[lambda[i]] + s[r - i - 1])];
+						discrR ^= alphaTo[modnn(indexOf[lambda[i]] + s[r - i - 1])];
 					}
 				}
-				discr_r = indexOf[discr_r]; /* Index form */
-				if (discr_r == a0) {
+				discrR = indexOf[discrR]; /* Index form */
+				if (discrR == a0) {
 					/* 2 lines below: B(x) <-- x*B(x) */
 					System.arraycopy(b, 0, b, 1, nroots);
 					b[0] = a0;
@@ -221,7 +229,7 @@ public class ReedSolomon {
 					t[0] = lambda[0];
 					for (i = 0; i < nroots; i++) {
 						if (b[i] != a0)
-							t[i + 1] = lambda[i + 1] ^ alphaTo[modnn(discr_r + b[i])];
+							t[i + 1] = lambda[i + 1] ^ alphaTo[modnn(discrR + b[i])];
 						else
 							t[i + 1] = lambda[i + 1];
 					}
@@ -231,7 +239,7 @@ public class ReedSolomon {
 						 * 2 lines below: B(x) <-- inv(discr_r) * lambda(x)
 						 */
 						for (i = 0; i <= nroots; i++)
-							b[i] = (lambda[i] == 0) ? a0 : modnn(indexOf[lambda[i]] - discr_r + nn);
+							b[i] = (lambda[i] == 0) ? a0 : modnn(indexOf[lambda[i]] - discrR + nn);
 					} else {
 						/* 2 lines below: B(x) <-- x*B(x) */
 						System.arraycopy(b, 0, b, 1, nroots);
@@ -319,7 +327,7 @@ public class ReedSolomon {
 		}
 
 		if (LOG.isDebugEnabled()) {
-			LOG.debug("corrected byte errors: " + count);
+			LOG.debug("corrected byte errors: {}", count);
 		}
 		byte[] result = new byte[data.length - nroots];
 		System.arraycopy(data, 0, result, 0, result.length);
@@ -332,22 +340,23 @@ public class ReedSolomon {
 	}
 
 	public byte[] encodeData(byte[] data) {
-		int i, j;
+		int i;
+		int j;
 		int feedback;
-		int PAD = nn - data.length - nroots;
-		int A0 = nn;
+		int pad = nn - data.length - nroots;
+		int a0Local = nn;
 
 		byte[] parity = new byte[32];
-		for (i = 0; i < nn - nroots - PAD; i++) {
+		for (i = 0; i < nn - nroots - pad; i++) {
 			feedback = (indexOf[(data[i] & 0xff) ^ (parity[0] & 0xff)] & 0xff);
-			if (feedback != A0) { /* feedback term is non-zero */
+			if (feedback != a0Local) { /* feedback term is non-zero */
 				for (j = 1; j < nroots; j++)
 					parity[j] ^= alphaTo[modnn(feedback + genpoly[nroots - j])];
 			}
 
 			/* Shift */
 			System.arraycopy(parity, 1, parity, 0, parity.length - 1);
-			parity[nroots - 1] = (feedback != A0) ? (byte) alphaTo[modnn(feedback + genpoly[0])] : 0;
+			parity[nroots - 1] = (feedback != a0Local) ? (byte) alphaTo[modnn(feedback + genpoly[0])] : 0;
 		}
 		byte[] result = new byte[data.length + parity.length];
 		System.arraycopy(data, 0, result, 0, data.length);
