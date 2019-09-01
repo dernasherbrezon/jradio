@@ -6,4 +6,7 @@ public class Viterbi {
 		return ru.r2cloud.jradio.fec.Viterbi.decode(data, (byte) 0x4f, (byte) 0x6d, true);
 	}
 
+	private Viterbi() {
+		// do nothing
+	}
 }
