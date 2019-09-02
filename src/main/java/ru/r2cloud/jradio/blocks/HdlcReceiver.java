@@ -8,7 +8,7 @@ import org.slf4j.LoggerFactory;
 
 import ru.r2cloud.jradio.ByteInput;
 import ru.r2cloud.jradio.Context;
-import ru.r2cloud.jradio.FloatValueSource;
+import ru.r2cloud.jradio.LongValueSource;
 import ru.r2cloud.jradio.MessageInput;
 import ru.r2cloud.jradio.Tag;
 import ru.r2cloud.jradio.crc.Crc16Ccitt;
@@ -71,7 +71,7 @@ public class HdlcReceiver implements MessageInput {
 						}
 						Tag tag = new Tag();
 						tag.setId(UUID.randomUUID().toString());
-						FloatValueSource currentSample = getContext().getCurrentSample();
+						LongValueSource currentSample = getContext().getCurrentSample();
 						if (currentSample != null) {
 							tag.put(CorrelateAccessCodeTag.SOURCE_SAMPLE, currentSample.getValue());
 						}

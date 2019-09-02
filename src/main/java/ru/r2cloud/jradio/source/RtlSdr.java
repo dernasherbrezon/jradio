@@ -21,7 +21,7 @@ public class RtlSdr implements FloatInput {
 	private byte[] buffer;
 	private int currentBufIndex = 0;
 	private int maxBytes;
-	private float framePos = 0;
+	private long framePos = 0;
 
 	public RtlSdr(File source, float sampleRate) throws FileNotFoundException {
 		// 2 channels each sample is 8bits

@@ -55,7 +55,7 @@ public abstract class BeaconSource<T> implements Iterator<T>, Closeable {
 			
 			if (beacon instanceof Beacon) {
 				Beacon realBeacon = (Beacon) beacon;
-				Float beginSample = (Float) input.getContext().getCurrent().get(CorrelateAccessCodeTag.SOURCE_SAMPLE);
+				Long beginSample = (Long) input.getContext().getCurrent().get(CorrelateAccessCodeTag.SOURCE_SAMPLE);
 				if (beginSample != null) {
 					realBeacon.setBeginSample(beginSample.longValue());
 				}

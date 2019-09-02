@@ -11,7 +11,6 @@ import com.codahale.metrics.MetricRegistry;
 import ru.r2cloud.jradio.ByteInput;
 import ru.r2cloud.jradio.Context;
 import ru.r2cloud.jradio.FloatInput;
-import ru.r2cloud.jradio.FloatValueSource;
 import ru.r2cloud.jradio.util.Metrics;
 
 public class InputStreamSource implements FloatInput, ByteInput {
@@ -20,7 +19,7 @@ public class InputStreamSource implements FloatInput, ByteInput {
 	private final InputStream is;
 	private final Counter bytes;
 	private final Context context;
-	private float framePos = 0;
+	private long framePos = 0;
 
 	private long currentFloat;
 
@@ -40,13 +39,7 @@ public class InputStreamSource implements FloatInput, ByteInput {
 			bytes = null;
 		}
 		this.context = context;
-		this.context.setCurrentSample(new FloatValueSource() {
-
-			@Override
-			public float getValue() {
-				return framePos;
-			}
-		});
+		this.context.setCurrentSample(() -> framePos);
 	}
 
 	@Override

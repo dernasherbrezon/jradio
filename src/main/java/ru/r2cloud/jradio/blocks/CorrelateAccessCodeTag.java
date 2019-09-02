@@ -7,7 +7,7 @@ import java.util.UUID;
 
 import ru.r2cloud.jradio.ByteInput;
 import ru.r2cloud.jradio.Context;
-import ru.r2cloud.jradio.FloatValueSource;
+import ru.r2cloud.jradio.LongValueSource;
 import ru.r2cloud.jradio.Tag;
 
 public class CorrelateAccessCodeTag implements ByteInput {
@@ -79,7 +79,7 @@ public class CorrelateAccessCodeTag implements ByteInput {
 			tag = new Tag();
 			tag.setId(UUID.randomUUID().toString());
 			tag.put(ACCESS_CODE, minAccessCode);
-			FloatValueSource currentSample = getContext().getCurrentSample();
+			LongValueSource currentSample = getContext().getCurrentSample();
 			if (currentSample != null) {
 				tag.put(SOURCE_SAMPLE, currentSample.getValue());
 			}

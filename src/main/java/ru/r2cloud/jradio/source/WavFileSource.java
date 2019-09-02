@@ -10,7 +10,6 @@ import javax.sound.sampled.UnsupportedAudioFileException;
 
 import ru.r2cloud.jradio.Context;
 import ru.r2cloud.jradio.FloatInput;
-import ru.r2cloud.jradio.FloatValueSource;
 
 public class WavFileSource implements FloatInput {
 
@@ -18,7 +17,7 @@ public class WavFileSource implements FloatInput {
 	private final byte[] buf;
 	private int currentBufIndex = 0;
 	private final Context context;
-	private float framePos = 0;
+	private long framePos = 0;
 
 	public WavFileSource(InputStream is) throws UnsupportedAudioFileException, IOException {
 		ais = AudioSystem.getAudioInputStream(is);
@@ -31,13 +30,7 @@ public class WavFileSource implements FloatInput {
 		context.setSampleRate(ais.getFormat().getSampleRate());
 		context.setChannels(ais.getFormat().getChannels());
 		context.setSampleSizeInBits(ais.getFormat().getSampleSizeInBits());
-		context.setCurrentSample(new FloatValueSource() {
-
-			@Override
-			public float getValue() {
-				return framePos;
-			}
-		});
+		context.setCurrentSample(() -> framePos);
 	}
 
 	@Override

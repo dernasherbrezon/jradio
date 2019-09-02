@@ -15,7 +15,7 @@ public class Context {
 	private float sampleRate;
 	private int channels = 1;
 	private int sampleSizeInBits;
-	private FloatValueSource currentSample;
+	private LongValueSource currentSample;
 
 	public Context() {
 		// do nothing
@@ -88,11 +88,11 @@ public class Context {
 		this.channels = channels;
 	}
 
-	public FloatValueSource getCurrentSample() {
+	public LongValueSource getCurrentSample() {
 		return currentSample;
 	}
 
-	public void setCurrentSample(FloatValueSource currentSample) {
+	public void setCurrentSample(LongValueSource currentSample) {
 		this.currentSample = currentSample;
 	}
 
