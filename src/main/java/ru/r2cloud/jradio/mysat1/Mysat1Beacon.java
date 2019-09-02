@@ -58,7 +58,7 @@ public class Mysat1Beacon extends Beacon {
 		epsLastBootCause = dis.readUnsignedByte();
 		epsBatteryMode = dis.readUnsignedByte();
 		timestamp = StreamUtils.readUnsignedInt(dis);
-		obcTemp = dis.readUnsignedByte() - 128;
+		obcTemp = dis.readUnsignedByte() - 128.0f;
 		obcDaughterBoardTemp = dis.readUnsignedByte() - 128.0f;
 		epsBatteryTemp = dis.readUnsignedByte() - 128.0f;
 		epsBoardTemp = dis.readUnsignedByte() - 128.0f;
