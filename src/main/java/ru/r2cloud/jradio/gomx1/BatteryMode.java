@@ -5,7 +5,7 @@ import java.util.Map;
 
 public enum BatteryMode {
 
-	Normal(0), Undervoltage(1), Overvoltage(2);
+	NORMAL(0), UNDERVOLTAGE(1), OVERVOLTAGE(2);
 	
 	private final int code;
 	private static final Map<Integer, BatteryMode> typeByCode = new HashMap<>();
