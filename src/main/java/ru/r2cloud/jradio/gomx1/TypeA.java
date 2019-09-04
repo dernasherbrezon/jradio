@@ -10,18 +10,18 @@ public class TypeA {
 	private int obcBootcount; // Total boot count
 	private float temp1; // Board temp1 * 4 in [C]
 	private float temp2; // Board temp2 * 4 in [C]
-	private float[] panel_temp; // Panel temperatures * 4 in [C]
+	private float[] panelTemp; // Panel temperatures * 4 in [C]
 
-	private int byte_corr_tot; // Total bytes corrected by reed-solomon
+	private int byteCorrTot; // Total bytes corrected by reed-solomon
 	private int rx; // Total packets detected
-	private int rx_err; // Total packets with error
+	private int rxErr; // Total packets with error
 	private int tx; // Total packets transmitted
-	private short last_temp_a; // Last temperature A in [C]
-	private short last_temp_b; // Last temperature B in [C]
-	private short last_rssi; // Last detected RSSI [dBm]
-	private short last_rferr; // Last detected RF-error [Hz]
-	private int last_batt_volt; // Last sampled battery voltage [mV/10]
-	private int last_txcurrent; // Last TX current [mA]
+	private short lastTempA; // Last temperature A in [C]
+	private short lastTempB; // Last temperature B in [C]
+	private short lastRssi; // Last detected RSSI [dBm]
+	private short lastRferr; // Last detected RF-error [Hz]
+	private int lastBattVolt; // Last sampled battery voltage [mV/10]
+	private int lastTxcurrent; // Last TX current [mA]
 	private int comBootcount; // Total bootcount
 
 	private int[] vboost; // Voltage of boost converters [mV] [PV1, PV2, PV3]
@@ -32,31 +32,31 @@ public class TypeA {
 	private int cursys; // Current out of battery
 	private short[] temp; // Temperature sensors [0 = TEMP1, TEMP2, TEMP3, TEMP4, BATT0, BATT1]
 	private int output; // Status of outputs
-	private int counter_boot; // Number of EPS reboots
-	private int counter_wdt_i2c; // Number of WDT I2C reboots
-	private int counter_wdt_gnd; // Number of WDT GND reboots
+	private int counterBoot; // Number of EPS reboots
+	private int counterWdtI2c; // Number of WDT I2C reboots
+	private int counterWdtGnd; // Number of WDT GND reboots
 	private int bootcause; // Cause of last EPS reset
 	private int[] latchup; // Number of latch-ups
 	private BatteryMode battmode; // Mode for battery [0 = normal, 1 = undervoltage, 2 = overvoltage]
 
-	private int average_fps_5min;
-	private int average_fps_1min;
-	private int average_fps_10sec;
-	private int plane_count;
-	private long frame_count;
-	private long last_icao;
-	private long last_timestamp;
-	private float last_lat;
-	private float last_lon;
-	private long last_altitude;
-	private long crc_corrected;
+	private int averageFps5min;
+	private int averageFps1min;
+	private int averageFps10sec;
+	private int planeCount;
+	private long frameCount;
+	private long lastIcao;
+	private long lastTimestamp;
+	private float lastLat;
+	private float lastLon;
+	private long lastAltitude;
+	private long crcCorrected;
 	private int gatossBootcount;
 	private int gatossBootcause;
 
 	private byte nanohubTemp; // Temperature of nanohub in [C]
 	private int bootcount; // Total bootcount
 	private int reset; // Reset cause:
-	private int sense_status; // Status on feedback switches and arm switch [ARM1 ARM0 K1S3 K1S2 K1S1 K1S0 K0S1 K0S0]
+	private int senseStatus; // Status on feedback switches and arm switch [ARM1 ARM0 K1S3 K1S2 K1S1 K1S0 K0S1 K0S0]
 	private int[] burns; // Number of burn tries [K1B1 K1B0]
 
 	private float[] tumblerate;
@@ -66,27 +66,27 @@ public class TypeA {
 	private float[] torquerduty;
 	private int ads; // State [xxxxyyyy] x = state, y = dstate
 	private int acs; // State [xxxxyyyy] x = state, y = dstate
-	private int[] sunsensor_packed;
+	private int[] sunsensorPacked;
 
 	public TypeA(DataInputStream dis) throws IOException {
 		obcBootcount = dis.readUnsignedShort();
 		temp1 = dis.readShort() / 4.0f;
 		temp2 = dis.readShort() / 4.0f;
-		panel_temp = new float[6];
-		for (int i = 0; i < panel_temp.length; i++) {
-			panel_temp[i] = dis.readShort() / 4.0f;
+		panelTemp = new float[6];
+		for (int i = 0; i < panelTemp.length; i++) {
+			panelTemp[i] = dis.readShort() / 4.0f;
 		}
 
-		byte_corr_tot = dis.readUnsignedShort();
+		byteCorrTot = dis.readUnsignedShort();
 		rx = dis.readUnsignedShort();
-		rx_err = dis.readUnsignedShort();
+		rxErr = dis.readUnsignedShort();
 		tx = dis.readUnsignedShort();
-		last_temp_a = dis.readShort();
-		last_temp_b = dis.readShort();
-		last_rssi = dis.readShort();
-		last_rferr = dis.readShort();
-		last_batt_volt = dis.readUnsignedShort();
-		last_txcurrent = dis.readUnsignedShort();
+		lastTempA = dis.readShort();
+		lastTempB = dis.readShort();
+		lastRssi = dis.readShort();
+		lastRferr = dis.readShort();
+		lastBattVolt = dis.readUnsignedShort();
+		lastTxcurrent = dis.readUnsignedShort();
 		comBootcount = dis.readUnsignedShort();
 
 		vboost = new int[3];
@@ -109,9 +109,9 @@ public class TypeA {
 			temp[i] = dis.readShort();
 		}
 		output = dis.readUnsignedByte();
-		counter_boot = dis.readUnsignedShort();
-		counter_wdt_i2c = dis.readUnsignedShort();
-		counter_wdt_gnd = dis.readUnsignedShort();
+		counterBoot = dis.readUnsignedShort();
+		counterWdtI2c = dis.readUnsignedShort();
+		counterWdtGnd = dis.readUnsignedShort();
 		bootcause = dis.readUnsignedByte();
 		latchup = new int[6];
 		for (int i = 0; i < latchup.length; i++) {
@@ -119,26 +119,26 @@ public class TypeA {
 		}
 		battmode = BatteryMode.valueOfCode(dis.readUnsignedByte());
 
-		average_fps_5min = dis.readUnsignedShort();
-		average_fps_1min = dis.readUnsignedShort();
-		average_fps_10sec = dis.readUnsignedShort();
-		plane_count = dis.readUnsignedShort();
-		frame_count = StreamUtils.readUnsignedInt(dis);
-		last_icao = StreamUtils.readUnsignedInt(dis);
-		last_timestamp = StreamUtils.readUnsignedInt(dis);
+		averageFps5min = dis.readUnsignedShort();
+		averageFps1min = dis.readUnsignedShort();
+		averageFps10sec = dis.readUnsignedShort();
+		planeCount = dis.readUnsignedShort();
+		frameCount = StreamUtils.readUnsignedInt(dis);
+		lastIcao = StreamUtils.readUnsignedInt(dis);
+		lastTimestamp = StreamUtils.readUnsignedInt(dis);
 
-		last_lat = dis.readFloat();
-		last_lon = dis.readFloat();
+		lastLat = dis.readFloat();
+		lastLon = dis.readFloat();
 
-		last_altitude = StreamUtils.readUnsignedInt(dis);
-		crc_corrected = StreamUtils.readUnsignedInt(dis);
+		lastAltitude = StreamUtils.readUnsignedInt(dis);
+		crcCorrected = StreamUtils.readUnsignedInt(dis);
 		gatossBootcount = dis.readUnsignedShort();
 		gatossBootcause = dis.readUnsignedShort();
 
 		nanohubTemp = dis.readByte();
 		bootcount = dis.readUnsignedShort();
 		reset = dis.readUnsignedByte();
-		sense_status = dis.readUnsignedByte();
+		senseStatus = dis.readUnsignedByte();
 		burns = new int[2];
 		for (int i = 0; i < burns.length; i++) {
 			burns[i] = dis.readUnsignedShort();
@@ -163,9 +163,9 @@ public class TypeA {
 		}
 		ads = dis.readUnsignedByte();
 		acs = dis.readUnsignedByte();
-		sunsensor_packed = new int[8];
-		for (int i = 0; i < sunsensor_packed.length; i++) {
-			sunsensor_packed[i] = dis.readUnsignedByte();
+		sunsensorPacked = new int[8];
+		for (int i = 0; i < sunsensorPacked.length; i++) {
+			sunsensorPacked[i] = dis.readUnsignedByte();
 		}
 	}
 
@@ -193,20 +193,20 @@ public class TypeA {
 		this.temp2 = temp2;
 	}
 
-	public float[] getPanel_temp() {
-		return panel_temp;
+	public float[] getPanelTemp() {
+		return panelTemp;
 	}
 
-	public void setPanel_temp(float[] panel_temp) {
-		this.panel_temp = panel_temp;
+	public void setPanelTemp(float[] panelTemp) {
+		this.panelTemp = panelTemp;
 	}
 
-	public int getByte_corr_tot() {
-		return byte_corr_tot;
+	public int getByteCorrTot() {
+		return byteCorrTot;
 	}
 
-	public void setByte_corr_tot(int byte_corr_tot) {
-		this.byte_corr_tot = byte_corr_tot;
+	public void setByteCorrTot(int byteCorrTot) {
+		this.byteCorrTot = byteCorrTot;
 	}
 
 	public int getRx() {
@@ -217,12 +217,12 @@ public class TypeA {
 		this.rx = rx;
 	}
 
-	public int getRx_err() {
-		return rx_err;
+	public int getRxErr() {
+		return rxErr;
 	}
 
-	public void setRx_err(int rx_err) {
-		this.rx_err = rx_err;
+	public void setRxErr(int rxErr) {
+		this.rxErr = rxErr;
 	}
 
 	public int getTx() {
@@ -233,52 +233,52 @@ public class TypeA {
 		this.tx = tx;
 	}
 
-	public short getLast_temp_a() {
-		return last_temp_a;
+	public short getLastTempA() {
+		return lastTempA;
 	}
 
-	public void setLast_temp_a(short last_temp_a) {
-		this.last_temp_a = last_temp_a;
+	public void setLastTempA(short lastTempA) {
+		this.lastTempA = lastTempA;
 	}
 
-	public short getLast_temp_b() {
-		return last_temp_b;
+	public short getLastTempB() {
+		return lastTempB;
 	}
 
-	public void setLast_temp_b(short last_temp_b) {
-		this.last_temp_b = last_temp_b;
+	public void setLastTempB(short lastTempB) {
+		this.lastTempB = lastTempB;
 	}
 
-	public short getLast_rssi() {
-		return last_rssi;
+	public short getLastRssi() {
+		return lastRssi;
 	}
 
-	public void setLast_rssi(short last_rssi) {
-		this.last_rssi = last_rssi;
+	public void setLastRssi(short lastRssi) {
+		this.lastRssi = lastRssi;
 	}
 
-	public short getLast_rferr() {
-		return last_rferr;
+	public short getLastRferr() {
+		return lastRferr;
 	}
 
-	public void setLast_rferr(short last_rferr) {
-		this.last_rferr = last_rferr;
+	public void setLastRferr(short lastRferr) {
+		this.lastRferr = lastRferr;
 	}
 
-	public int getLast_batt_volt() {
-		return last_batt_volt;
+	public int getLastBattVolt() {
+		return lastBattVolt;
 	}
 
-	public void setLast_batt_volt(int last_batt_volt) {
-		this.last_batt_volt = last_batt_volt;
+	public void setLastBattVolt(int lastBattVolt) {
+		this.lastBattVolt = lastBattVolt;
 	}
 
-	public int getLast_txcurrent() {
-		return last_txcurrent;
+	public int getLastTxcurrent() {
+		return lastTxcurrent;
 	}
 
-	public void setLast_txcurrent(int last_txcurrent) {
-		this.last_txcurrent = last_txcurrent;
+	public void setLastTxcurrent(int lastTxcurrent) {
+		this.lastTxcurrent = lastTxcurrent;
 	}
 
 	public int getComBootcount() {
@@ -353,28 +353,28 @@ public class TypeA {
 		this.output = output;
 	}
 
-	public int getCounter_boot() {
-		return counter_boot;
+	public int getCounterBoot() {
+		return counterBoot;
 	}
 
-	public void setCounter_boot(int counter_boot) {
-		this.counter_boot = counter_boot;
+	public void setCounterBoot(int counterBoot) {
+		this.counterBoot = counterBoot;
 	}
 
-	public int getCounter_wdt_i2c() {
-		return counter_wdt_i2c;
+	public int getCounterWdtI2c() {
+		return counterWdtI2c;
 	}
 
-	public void setCounter_wdt_i2c(int counter_wdt_i2c) {
-		this.counter_wdt_i2c = counter_wdt_i2c;
+	public void setCounterWdtI2c(int counterWdtI2c) {
+		this.counterWdtI2c = counterWdtI2c;
 	}
 
-	public int getCounter_wdt_gnd() {
-		return counter_wdt_gnd;
+	public int getCounterWdtGnd() {
+		return counterWdtGnd;
 	}
 
-	public void setCounter_wdt_gnd(int counter_wdt_gnd) {
-		this.counter_wdt_gnd = counter_wdt_gnd;
+	public void setCounterWdtGnd(int counterWdtGnd) {
+		this.counterWdtGnd = counterWdtGnd;
 	}
 
 	public int getBootcause() {
@@ -401,92 +401,92 @@ public class TypeA {
 		this.battmode = battmode;
 	}
 
-	public int getAverage_fps_5min() {
-		return average_fps_5min;
+	public int getAverageFps5min() {
+		return averageFps5min;
 	}
 
-	public void setAverage_fps_5min(int average_fps_5min) {
-		this.average_fps_5min = average_fps_5min;
+	public void setAverageFps5min(int averageFps5min) {
+		this.averageFps5min = averageFps5min;
 	}
 
-	public int getAverage_fps_1min() {
-		return average_fps_1min;
+	public int getAverageFps1min() {
+		return averageFps1min;
 	}
 
-	public void setAverage_fps_1min(int average_fps_1min) {
-		this.average_fps_1min = average_fps_1min;
+	public void setAverageFps1min(int averageFps1min) {
+		this.averageFps1min = averageFps1min;
 	}
 
-	public int getAverage_fps_10sec() {
-		return average_fps_10sec;
+	public int getAverageFps10sec() {
+		return averageFps10sec;
 	}
 
-	public void setAverage_fps_10sec(int average_fps_10sec) {
-		this.average_fps_10sec = average_fps_10sec;
+	public void setAverageFps10sec(int averageFps10sec) {
+		this.averageFps10sec = averageFps10sec;
 	}
 
-	public int getPlane_count() {
-		return plane_count;
+	public int getPlaneCount() {
+		return planeCount;
 	}
 
-	public void setPlane_count(int plane_count) {
-		this.plane_count = plane_count;
+	public void setPlaneCount(int planeCount) {
+		this.planeCount = planeCount;
 	}
 
-	public long getFrame_count() {
-		return frame_count;
+	public long getFrameCount() {
+		return frameCount;
 	}
 
-	public void setFrame_count(long frame_count) {
-		this.frame_count = frame_count;
+	public void setFrameCount(long frameCount) {
+		this.frameCount = frameCount;
 	}
 
-	public long getLast_icao() {
-		return last_icao;
+	public long getLastIcao() {
+		return lastIcao;
 	}
 
-	public void setLast_icao(long last_icao) {
-		this.last_icao = last_icao;
+	public void setLastIcao(long lastIcao) {
+		this.lastIcao = lastIcao;
 	}
 
-	public long getLast_timestamp() {
-		return last_timestamp;
+	public long getLastTimestamp() {
+		return lastTimestamp;
 	}
 
-	public void setLast_timestamp(long last_timestamp) {
-		this.last_timestamp = last_timestamp;
+	public void setLastTimestamp(long lastTimestamp) {
+		this.lastTimestamp = lastTimestamp;
 	}
 
-	public float getLast_lat() {
-		return last_lat;
+	public float getLastLat() {
+		return lastLat;
 	}
 
-	public void setLast_lat(float last_lat) {
-		this.last_lat = last_lat;
+	public void setLastLat(float lastLat) {
+		this.lastLat = lastLat;
 	}
 
-	public float getLast_lon() {
-		return last_lon;
+	public float getLastLon() {
+		return lastLon;
 	}
 
-	public void setLast_lon(float last_lon) {
-		this.last_lon = last_lon;
+	public void setLastLon(float lastLon) {
+		this.lastLon = lastLon;
 	}
 
-	public long getLast_altitude() {
-		return last_altitude;
+	public long getLastAltitude() {
+		return lastAltitude;
 	}
 
-	public void setLast_altitude(long last_altitude) {
-		this.last_altitude = last_altitude;
+	public void setLastAltitude(long lastAltitude) {
+		this.lastAltitude = lastAltitude;
 	}
 
-	public long getCrc_corrected() {
-		return crc_corrected;
+	public long getCrcCorrected() {
+		return crcCorrected;
 	}
 
-	public void setCrc_corrected(long crc_corrected) {
-		this.crc_corrected = crc_corrected;
+	public void setCrcCorrected(long crcCorrected) {
+		this.crcCorrected = crcCorrected;
 	}
 
 	public int getGatossBootcount() {
@@ -529,12 +529,12 @@ public class TypeA {
 		this.reset = reset;
 	}
 
-	public int getSense_status() {
-		return sense_status;
+	public int getSenseStatus() {
+		return senseStatus;
 	}
 
-	public void setSense_status(int sense_status) {
-		this.sense_status = sense_status;
+	public void setSenseStatus(int senseStatus) {
+		this.senseStatus = senseStatus;
 	}
 
 	public int[] getBurns() {
@@ -601,12 +601,12 @@ public class TypeA {
 		this.acs = acs;
 	}
 
-	public int[] getSunsensor_packed() {
-		return sunsensor_packed;
+	public int[] getSunsensorPacked() {
+		return sunsensorPacked;
 	}
 
-	public void setSunsensor_packed(int[] sunsensor_packed) {
-		this.sunsensor_packed = sunsensor_packed;
+	public void setSunsensorPacked(int[] sunsensorPacked) {
+		this.sunsensorPacked = sunsensorPacked;
 	}
 
 }
