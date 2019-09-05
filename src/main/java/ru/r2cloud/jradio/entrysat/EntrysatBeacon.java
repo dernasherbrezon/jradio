@@ -66,7 +66,7 @@ public class EntrysatBeacon extends Beacon {
 		service = bis.readUnsignedByte();
 		serviceSubtype = bis.readUnsignedByte();
 
-		long time = ((long) bis.readUnsignedByte() * 256 * 256 * 256 + (long) bis.readUnsignedByte() * 256 * 256 + (long) bis.readUnsignedByte() * 256 + bis.readUnsignedByte());
+		long timeSeconds = ((long) bis.readUnsignedByte() * 256 * 256 * 256 + (long) bis.readUnsignedByte() * 256 * 256 + (long) bis.readUnsignedByte() * 256 + bis.readUnsignedByte());
 		long millis = (long) ((bis.readUnsignedByte() / 256.0) * 1000);
 		Calendar cal = Calendar.getInstance(TimeZone.getTimeZone("GMT"));
 		cal.set(Calendar.YEAR, 2000);
@@ -76,7 +76,7 @@ public class EntrysatBeacon extends Beacon {
 		cal.set(Calendar.MINUTE, 0);
 		cal.set(Calendar.SECOND, 0);
 		cal.set(Calendar.MILLISECOND, 0);
-		time2 = new Date(cal.getTimeInMillis() + time * 1000 + millis);
+		time2 = new Date(cal.getTimeInMillis() + timeSeconds * 1000 + millis);
 
 		sid = bis.readUnsignedByte();
 		modeSafe = bis.readUnsignedByte();
