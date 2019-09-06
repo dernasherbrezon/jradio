@@ -29,6 +29,7 @@ All blocks meant to be binary compatible with gnuradio versions. This will ensur
   * DelayOne. jradio doesn't support split and merge of streams. This block incapsulates delay 1 for imag complex stream
   * Descrambler
   * DifferentialEncoder/DifferentialDecoder
+  * DifferentialSoftDecoder. Support qpsk only
   * Divide
   * FastNoiseSource
   * FIRFilterBlock
