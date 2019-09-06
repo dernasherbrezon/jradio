@@ -22,6 +22,7 @@ All blocks meant to be binary compatible with gnuradio versions. This will ensur
   * ComplexToReal
   * ConstellationModulator
   * ConstellationSoftDecoder
+  * [ConvolutionalDeinterleaver](https://en.wikipedia.org/wiki/Burst_error-correcting_code#Convolutional_interleaver)
   * CorrelateAccessCodeTag
   * CostasLoop
   * DelayOne. jradio doesn't support split and merge of streams. This block incapsulates delay 1 for imag complex stream
