@@ -1,12 +1,14 @@
 package ru.r2cloud.jradio;
 
 import static org.junit.Assert.assertArrayEquals;
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 import java.util.Set;
 
 import org.junit.Test;
 
+import ru.r2cloud.jradio.blocks.AccessCode;
 import ru.r2cloud.jradio.fec.ViterbiTest;
 
 public class PhaseAmbiguityResolverTest {
@@ -25,6 +27,15 @@ public class PhaseAmbiguityResolverTest {
 		assertTrue(result.contains("1111110010100010101101100011110110110000000011011001011110010100"));
 	}
 
+	@Test
+	public void test8Bit() {
+		PhaseAmbiguityResolver resolver = new PhaseAmbiguityResolver(0b00_10_01_11, 8);
+		Set<String> result = resolver.getSynchronizationMarkers();
+		assertTrue(result.contains("11100100"));
+		AccessCode ac = new AccessCode("11100100");
+		assertEquals(0, ac.correlate(228L));
+	}
+	
 	@Test
 	public void testSoftRotation() {
 		PhaseAmbiguityResolver resolver = new PhaseAmbiguityResolver(Long.parseLong("0000001101011101010010011100001001001111111100100110100001101011", 2));

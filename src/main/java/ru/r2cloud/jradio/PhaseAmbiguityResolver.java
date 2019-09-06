@@ -25,6 +25,7 @@ public class PhaseAmbiguityResolver {
 	private static final int[] phase7 = new int[256];
 
 	private final long[] synchronizationMarkers = new long[8];
+	private final int sizeInBits;
 
 	static {
 		for (int i = 0; i < 256; i++) {
@@ -72,6 +73,11 @@ public class PhaseAmbiguityResolver {
 	}
 
 	public PhaseAmbiguityResolver(long synchronizationMarker) {
+		this(synchronizationMarker, 64);
+	}
+	
+	public PhaseAmbiguityResolver(long synchronizationMarker, int sizeInBits) {
+		this.sizeInBits = sizeInBits;
 		for (int i = 0; i < synchronizationMarkers.length; i++) {
 			synchronizationMarkers[i] = rotate(synchronizationMarker, i);
 		}
@@ -80,10 +86,15 @@ public class PhaseAmbiguityResolver {
 	public Set<String> getSynchronizationMarkers() {
 		Set<String> accessCodes = new HashSet<>(synchronizationMarkers.length);
 		for (long cur : synchronizationMarkers) {
-			String toAdd = leftPad(Long.toBinaryString(cur));
+			String binaryStr = leftPad(Long.toBinaryString(cur));
+			String toAdd = binaryStr.substring(binaryStr.length() - sizeInBits);
 			accessCodes.add(toAdd);
 		}
 		return accessCodes;
+	}
+	
+	public int getSizeInBits() {
+		return sizeInBits;
 	}
 
 	private static String leftPad(String orig) {
