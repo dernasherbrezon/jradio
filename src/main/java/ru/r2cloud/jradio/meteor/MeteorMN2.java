@@ -27,7 +27,7 @@ public class MeteorMN2 extends BeaconSource<VCDU> {
 	private VCDU previous = null;
 
 	public MeteorMN2(ByteInput qpsk) {
-		super(new LRPT(qpsk));
+		super(new LRPT(qpsk, false, false));
 		if (registry != null) {
 			count = registry.counter(LRPT.class.getName());
 		} else {

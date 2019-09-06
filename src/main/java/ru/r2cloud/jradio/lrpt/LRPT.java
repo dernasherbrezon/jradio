@@ -10,7 +10,9 @@ import ru.r2cloud.jradio.Context;
 import ru.r2cloud.jradio.MessageInput;
 import ru.r2cloud.jradio.PhaseAmbiguityResolver;
 import ru.r2cloud.jradio.Tag;
+import ru.r2cloud.jradio.blocks.ConvolutionalDeinterleaver;
 import ru.r2cloud.jradio.blocks.CorrelateAccessCodeTag;
+import ru.r2cloud.jradio.blocks.CorrelateSynchronizationMarker;
 import ru.r2cloud.jradio.blocks.FixedLengthTagger;
 import ru.r2cloud.jradio.blocks.TaggedStreamToPdu;
 import ru.r2cloud.jradio.fec.ViterbiSoft;
@@ -25,10 +27,19 @@ public class LRPT implements MessageInput {
 	private final PhaseAmbiguityResolver phaseAmbiguityResolver;
 	private final MessageInput messageInput;
 
-	public LRPT(ByteInput input) {
+	public LRPT(ByteInput input, boolean interleave, boolean differential) {
 		this.phaseAmbiguityResolver = new PhaseAmbiguityResolver(0x035d49c24ff2686bL);
 		this.viterbiSoft = new ViterbiSoft((byte) 0x4f, (byte) 0x6d, false, VCDU.VITERBI_TAIL_SIZE);
-		CorrelateAccessCodeTag correlate = new CorrelateAccessCodeTag(input, 17, phaseAmbiguityResolver.getSynchronizationMarkers(), true);
+		ByteInput next = input;
+		if (interleave) {
+			PhaseAmbiguityResolver marker = new PhaseAmbiguityResolver(0b00_10_01_11, 8);
+			next = new CorrelateSynchronizationMarker(next, 8, 72, 4, 128, 0, marker.getSynchronizationMarkers());
+			next = new ConvolutionalDeinterleaver(next, 2048, 36);
+		}
+//		if (differential) {
+//			next = new DifferentialSoftDecoder(next);
+//		}
+		CorrelateAccessCodeTag correlate = new CorrelateAccessCodeTag(next, 17, phaseAmbiguityResolver.getSynchronizationMarkers(), true);
 		FixedLengthTagger tagger = new FixedLengthTagger(correlate, VCDU.VITERBI_TAIL_SIZE);
 		messageInput = new TaggedStreamToPdu(tagger);
 	}
