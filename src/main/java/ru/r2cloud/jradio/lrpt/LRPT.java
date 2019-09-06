@@ -13,6 +13,7 @@ import ru.r2cloud.jradio.Tag;
 import ru.r2cloud.jradio.blocks.ConvolutionalDeinterleaver;
 import ru.r2cloud.jradio.blocks.CorrelateAccessCodeTag;
 import ru.r2cloud.jradio.blocks.CorrelateSynchronizationMarker;
+import ru.r2cloud.jradio.blocks.DifferentialSoftDecoder;
 import ru.r2cloud.jradio.blocks.FixedLengthTagger;
 import ru.r2cloud.jradio.blocks.TaggedStreamToPdu;
 import ru.r2cloud.jradio.fec.ViterbiSoft;
@@ -36,9 +37,9 @@ public class LRPT implements MessageInput {
 			next = new CorrelateSynchronizationMarker(next, 8, 72, 4, 128, 0, marker.getSynchronizationMarkers());
 			next = new ConvolutionalDeinterleaver(next, 2048, 36);
 		}
-//		if (differential) {
-//			next = new DifferentialSoftDecoder(next);
-//		}
+		if (differential) {
+			next = new DifferentialSoftDecoder(next);
+		}
 		CorrelateAccessCodeTag correlate = new CorrelateAccessCodeTag(next, 17, phaseAmbiguityResolver.getSynchronizationMarkers(), true);
 		FixedLengthTagger tagger = new FixedLengthTagger(correlate, VCDU.VITERBI_TAIL_SIZE);
 		messageInput = new TaggedStreamToPdu(tagger);

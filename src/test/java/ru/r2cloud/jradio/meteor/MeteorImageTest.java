@@ -71,7 +71,7 @@ public class MeteorImageTest {
 		WavFileSource source = new WavFileSource(new BufferedInputStream(new FileInputStream(filename)));
 		Constellation constel = new Constellation(new float[] { -1.0f, -1.0f, -1.0f, 1.0f, 1.0f, 1.0f, 1.0f, -1.0f }, new int[] { 0, 1, 3, 2 }, 4, 1);
 		QpskDemodulator qpskDemod = new QpskDemodulator(source, symbolRate, constel);
-		MeteorMN2 meteor = new MeteorMN2(qpskDemod);
+		MeteorM meteor = new MeteorMN2(qpskDemod);
 		MeteorImage image = new MeteorImage(meteor);
 		LOG.info("decoded");
 		BufferedImage actual = image.toBufferedImage();
