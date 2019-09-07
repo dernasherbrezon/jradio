@@ -39,14 +39,6 @@ public class Lfsr {
 		return (byte) output;
 	}
 
-	public static void main(String[] args) throws Exception {
-		Lfsr l = new Lfsr(0x21, 0x1ff, 16);
-		Lfsr l2 = new Lfsr(0x21, 0x1ff, 16);
-		for (int i = 1; i < 33; i++) {
-			System.out.println(l.nextBitDescramble(l2.nextBitScramble((byte) (i % 2))));
-		}
-	}
-
 	public void reset() {
 		shiftRegister = seed;
 	}
