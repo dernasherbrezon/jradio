@@ -141,15 +141,15 @@ public class ReedSolomon {
 
 	public byte[] decodeData(byte[] data) throws UncorrectableException {
 		int pad = nn - nroots - (data.length - nroots);
-		int no_eras = 0;
+		int noEras = 0;
 
 		if (pad < 0 || pad > 222) {
 			throw new IllegalArgumentException("invalid pad: " + pad);
 		}
 
-		int deg_lambda;
+		int degLambda;
 		int el;
-		int deg_omega;
+		int degOmega;
 		int i;
 		int j;
 		int r;
@@ -209,8 +209,8 @@ public class ReedSolomon {
 			/*
 			 * Begin Berlekamp-Massey algorithm to determine error+erasure locator polynomial
 			 */
-			r = no_eras;
-			el = no_eras;
+			r = noEras;
+			el = noEras;
 			while (++r <= nroots) { /* r is the step number */
 				/* Compute discrepancy at the r-th step in poly-form */
 				discrR = 0;
@@ -233,8 +233,8 @@ public class ReedSolomon {
 						else
 							t[i + 1] = lambda[i + 1];
 					}
-					if (2 * el <= r + no_eras - 1) {
-						el = r + no_eras - el;
+					if (2 * el <= r + noEras - 1) {
+						el = r + noEras - el;
 						/*
 						 * 2 lines below: B(x) <-- inv(discr_r) * lambda(x)
 						 */
@@ -250,11 +250,11 @@ public class ReedSolomon {
 			}
 
 			/* Convert lambda to index form and compute deg(lambda(x)) */
-			deg_lambda = 0;
+			degLambda = 0;
 			for (i = 0; i < nroots + 1; i++) {
 				lambda[i] = indexOf[lambda[i]];
 				if (lambda[i] != a0)
-					deg_lambda = i;
+					degLambda = i;
 			}
 			/*
 			 * Find roots of the error+erasure locator polynomial by Chien search
@@ -263,7 +263,7 @@ public class ReedSolomon {
 			count = 0; /* Number of roots of lambda(x) */
 			for (i = 1, k = iprim - 1; i <= nn; i++, k = modnn(k + iprim)) {
 				q = 1; /* lambda[0] is always 0 */
-				for (j = deg_lambda; j > 0; j--) {
+				for (j = degLambda; j > 0; j--) {
 					if (reg[j] != a0) {
 						reg[j] = modnn(reg[j] + j);
 						q ^= alphaTo[reg[j]];
@@ -277,10 +277,10 @@ public class ReedSolomon {
 				/*
 				 * If we've already found max possible roots, abort the search to save time
 				 */
-				if (++count == deg_lambda)
+				if (++count == degLambda)
 					break;
 			}
-			if (deg_lambda != count) {
+			if (degLambda != count) {
 				/*
 				 * deg(lambda) unequal to number of roots => uncorrectable error detected
 				 */
@@ -289,8 +289,8 @@ public class ReedSolomon {
 				/*
 				 * Compute err+eras evaluator poly omega(x) = s(x)*lambda(x) (modulo x**NROOTS). in index form. Also find deg(omega).
 				 */
-				deg_omega = deg_lambda - 1;
-				for (i = 0; i <= deg_omega; i++) {
+				degOmega = degLambda - 1;
+				for (i = 0; i <= degOmega; i++) {
 					tmp = 0;
 					for (j = i; j >= 0; j--) {
 						if ((s[i - j] != a0) && (lambda[j] != a0))
@@ -304,7 +304,7 @@ public class ReedSolomon {
 				 */
 				for (j = count - 1; j >= 0; j--) {
 					num1 = 0;
-					for (i = deg_omega; i >= 0; i--) {
+					for (i = degOmega; i >= 0; i--) {
 						if (omega[i] != a0)
 							num1 ^= alphaTo[modnn(omega[i] + i * root[j])];
 					}
@@ -314,7 +314,7 @@ public class ReedSolomon {
 					/*
 					 * lambda[i+1] for i even is the formal derivative lambda_pr of lambda[i]
 					 */
-					for (i = Math.min(deg_lambda, nroots - 1) & ~1; i >= 0; i -= 2) {
+					for (i = Math.min(degLambda, nroots - 1) & ~1; i >= 0; i -= 2) {
 						if (lambda[i + 1] != a0)
 							den ^= alphaTo[modnn(lambda[i + 1] + i * root[j])];
 					}
