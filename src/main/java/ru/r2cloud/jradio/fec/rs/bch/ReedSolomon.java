@@ -234,8 +234,8 @@ public class ReedSolomon {
 
 	private void modifiedBerlekampMassey(int[] lambda, int[] omega, int[] synBytes) {
 		int n;
-		int L;
-		int L2;
+		int l;
+		int l2;
 		int k;
 		int d;
 		int i;
@@ -253,11 +253,11 @@ public class ReedSolomon {
 
 		copyPoly(psi, gamma);
 		k = -1;
-		L = 0;
+		l = 0;
 
 		for (n = 0; n < npar; n++) {
 
-			d = computeDiscrepancy(psi, synBytes, L, n);
+			d = computeDiscrepancy(psi, synBytes, l, n);
 
 			if (d != 0) {
 
@@ -266,14 +266,14 @@ public class ReedSolomon {
 					psi2[i] = psi[i] ^ gmult(d, localD[i]);
 				}
 
-				if (L < (n - k)) {
-					L2 = n - k;
-					k = n - L;
+				if (l < (n - k)) {
+					l2 = n - k;
+					k = n - l;
 					/* D = scale_poly(ginv(d), psi); */
 					for (i = 0; i < maxdeg; i++) {
 						localD[i] = gmult(psi[i], ginv(d));
 					}
-					L = L2;
+					l = l2;
 				}
 
 				/* psi = psi2 */
