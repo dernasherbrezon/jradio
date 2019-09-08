@@ -35,11 +35,11 @@ public class UHFAntennaTelemetryBeacon {
 		this.isisB = isisB;
 	}
 
-	public DataFieldMeta getaMeta() {
+	public DataFieldMeta getAMeta() {
 		return aMeta;
 	}
 	
-	public void setaMeta(DataFieldMeta aMeta) {
+	public void setAMeta(DataFieldMeta aMeta) {
 		this.aMeta = aMeta;
 	}
 }

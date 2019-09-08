@@ -1,7 +1,10 @@
 package ru.r2cloud.jradio.aistechsat3;
 
+import static pl.pojo.tester.api.assertion.Assertions.assertPojoMethodsFor;
+
 import org.junit.Test;
 
+import pl.pojo.tester.api.assertion.Method;
 import ru.r2cloud.jradio.AssertJson;
 import ru.r2cloud.jradio.fec.ViterbiTest;
 
@@ -14,7 +17,7 @@ public class Aistechsat3BeaconTest {
 		beacon.readBeacon(data);
 		AssertJson.assertObjectsEqual("Aistechsat3Beacon-type10.json", beacon);
 	}
-	
+
 	@Test
 	public void testType20() throws Exception {
 		byte[] data = ViterbiTest.hexStringToByteArray("0180D78301140100012E1E5CA265820004C1150000432DB7B0C28CD4DE43CEEF8642F8DACDC281BDAA43B15FB900000000433600000000000043A8000000000000000000000706070600000706070607063F54A3DBDC3F094D823D9929D0BA8347B838A85029B9C6108FDBDC08CF360000000000000000000000000000000000800000008000000080000000AA925CA265820004000000000002003A003A3D8DFC993D956E1DBCA30789BC5E8BBB3C9D734B01020201010000B40851B8C0");
@@ -30,9 +33,9 @@ public class Aistechsat3BeaconTest {
 		beacon.readBeacon(data);
 		AssertJson.assertObjectsEqual("Aistechsat3Beacon-type21.json", beacon);
 	}
-	
+
 	// type 22 is being tested by demod test
-	
+
 	@Test
 	public void testType23() throws Exception {
 		byte[] data = ViterbiTest.hexStringToByteArray("0180D78301170100019B855CF8057900043F5E122D3E844114BEC351BD3E4042D0BDF7D8D3BF29B0FC3F28F65E3EAA175ABD6FE0613CD48D703ADED45F42C800003AAF1B1EC1824DC70000000000000000000000000000000000000000000000000000000000000000150F5CF805790004BE3B783D3F10A4803F0BEB28BF1721B2BD6FE0563CCB76A23ADECCF63B1A5CF8057900044A6CCD764A5B2F134A85D3A545896B3B4511E4B1C5B45230");
@@ -49,4 +52,15 @@ public class Aistechsat3BeaconTest {
 		AssertJson.assertObjectsEqual("Aistechsat3Beacon-type26.json", beacon);
 	}
 
+	@Test
+	public void testPojo() {
+		assertPojoMethodsFor(Aistechsat3Beacon.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
+		assertPojoMethodsFor(ADCSBeacon0.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
+		assertPojoMethodsFor(ADCSBeacon2.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
+		assertPojoMethodsFor(PlatformBeacon.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
+		assertPojoMethodsFor(UHFAntennaTelemetryBeacon.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
+		assertPojoMethodsFor(ADCSFineSunSensorBeacon.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
+		assertPojoMethodsFor(ADCSBeacon6.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
+		assertPojoMethodsFor(PayloadBeacon.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
+	}
 }

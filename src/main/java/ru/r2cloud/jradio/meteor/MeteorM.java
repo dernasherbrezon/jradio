@@ -16,7 +16,7 @@ import ru.r2cloud.jradio.util.Metrics;
 
 public abstract class MeteorM extends BeaconSource<VCDU> {
 
-	private static final Logger LOG = LoggerFactory.getLogger(LRPT.class);
+	private static final Logger LOG = LoggerFactory.getLogger(MeteorM.class);
 	private final MetricRegistry registry = Metrics.getRegistry();
 	private final Counter count;
 
@@ -49,7 +49,7 @@ public abstract class MeteorM extends BeaconSource<VCDU> {
 			return null;
 		}
 		if (previous == null) {
-			LOG.info("detected meteor-m image. frame: " + currentVcdu.getCounter());
+			LOG.info("detected meteor-m image. frame: {}", currentVcdu.getCounter());
 		}
 		if (count != null) {
 			count.inc();

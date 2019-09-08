@@ -29,14 +29,6 @@ public class CircularByteArray {
 		return array[resultIndex];
 	}
 
-	public byte[] getArray() {
-		return array;
-	}
-
-	public int getCurrentPos() {
-		return currentPos;
-	}
-
 	public int getSize() {
 		return array.length;
 	}

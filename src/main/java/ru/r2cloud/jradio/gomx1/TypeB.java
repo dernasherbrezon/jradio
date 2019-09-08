@@ -17,6 +17,10 @@ public class TypeB {
 	private float[] sc_reci; // Ephem satellite pos
 	private float[] sun_eci; // Ephem sun pos
 	private float[] mag_eci; // Ephem mag
+	
+	public TypeB() {
+		// do nothing
+	}
 
 	public TypeB(DataInputStream dis) throws IOException {
 		sun = new int[5];

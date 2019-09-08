@@ -67,6 +67,10 @@ public class TypeA {
 	private int ads; // State [xxxxyyyy] x = state, y = dstate
 	private int acs; // State [xxxxyyyy] x = state, y = dstate
 	private int[] sunsensorPacked;
+	
+	public TypeA() {
+		// do nothing
+	}
 
 	public TypeA(DataInputStream dis) throws IOException {
 		obcBootcount = dis.readUnsignedShort();

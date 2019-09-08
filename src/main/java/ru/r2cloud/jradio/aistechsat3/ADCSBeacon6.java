@@ -111,35 +111,35 @@ public class ADCSBeacon6 {
 		this.tempRam = tempRam;
 	}
 
-	public int getiGssb1() {
+	public int getIGssb1() {
 		return iGssb1;
 	}
 
-	public void setiGssb1(int iGssb1) {
+	public void setIGssb1(int iGssb1) {
 		this.iGssb1 = iGssb1;
 	}
 
-	public int getiGssb2() {
+	public int getIGssb2() {
 		return iGssb2;
 	}
 
-	public void setiGssb2(int iGssb2) {
+	public void setIGssb2(int iGssb2) {
 		this.iGssb2 = iGssb2;
 	}
 
-	public int getiFlash() {
+	public int getIFlash() {
 		return iFlash;
 	}
 
-	public void setiFlash(int iFlash) {
+	public void setIFlash(int iFlash) {
 		this.iFlash = iFlash;
 	}
 
-	public int getiPwm() {
+	public int getIPwm() {
 		return iPwm;
 	}
 
-	public void setiPwm(int iPwm) {
+	public void setIPwm(int iPwm) {
 		this.iPwm = iPwm;
 	}
 
