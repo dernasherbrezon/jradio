@@ -14,6 +14,10 @@ public class Header {
 	private UFrameControlType uControlType;
 	private int pid;
 
+	public Header() {
+		// do nothing
+	}
+
 	public Header(DataInputStream dis) throws IOException {
 		destinationAddress = new AddressSubfield(dis);
 		sourceAddress = new AddressSubfield(dis);
