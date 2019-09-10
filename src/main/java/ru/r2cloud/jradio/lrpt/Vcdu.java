@@ -129,7 +129,7 @@ public class Vcdu {
 		// 000 (CCSDS packet Version number 1)
 		packet.setVersion((byte) ((data[index] & 0xFF) >> 5));
 		// This bit shall be always set to 1 to indicate the presence of a secondary header.
-		packet.setSecondaryHeader(((data[index] & 0xFF) & (1 << 3)) > 0 ? true : false);
+		packet.setSecondaryHeader(((data[index] & 0xFF) & (1 << 3)) > 0);
 		// This field defines the data route between two users application endpoints
 		packet.setApid(((data[index] & 0b0000_0111) << 8) | (data[index + 1]) & 0xFF);
 		// This flag is set to 11 indicating that the packet contains unsegmented User data.
