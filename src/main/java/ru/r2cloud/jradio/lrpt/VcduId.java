@@ -1,6 +1,6 @@
 package ru.r2cloud.jradio.lrpt;
 
-public class VCDUId {
+public class VcduId {
 
 	private int spacecraftId;
 	private int virtualChannelId;

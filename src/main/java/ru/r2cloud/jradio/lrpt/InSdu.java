@@ -1,6 +1,6 @@
 package ru.r2cloud.jradio.lrpt;
 
-public class IN_SDU {
+public class InSdu {
 
 	private boolean encryption;
 	private byte keyNumber;

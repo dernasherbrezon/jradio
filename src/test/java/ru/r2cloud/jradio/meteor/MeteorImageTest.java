@@ -21,7 +21,7 @@ import org.slf4j.LoggerFactory;
 
 import ru.r2cloud.jradio.blocks.Constellation;
 import ru.r2cloud.jradio.demod.QpskDemodulator;
-import ru.r2cloud.jradio.lrpt.VCDU;
+import ru.r2cloud.jradio.lrpt.Vcdu;
 import ru.r2cloud.jradio.source.WavFileSource;
 
 public class MeteorImageTest {
@@ -31,9 +31,9 @@ public class MeteorImageTest {
 	@Test
 	public void success() throws Exception {
 		byte[] vcduData = toBytes("vcdu.bin");
-		VCDU vcdu = new VCDU();
+		Vcdu vcdu = new Vcdu();
 		vcdu.readExternal(null, vcduData);
-		List<VCDU> data = new ArrayList<>();
+		List<Vcdu> data = new ArrayList<>();
 		data.add(vcdu);
 		MeteorImage image = new MeteorImage(data.iterator());
 		BufferedImage actual = image.toBufferedImage();
@@ -49,7 +49,7 @@ public class MeteorImageTest {
 
 	@Test
 	public void testNoImage() throws Exception {
-		MeteorImage image = new MeteorImage(new ArrayList<VCDU>().iterator());
+		MeteorImage image = new MeteorImage(new ArrayList<Vcdu>().iterator());
 		assertNull(image.toBufferedImage());
 	}
 

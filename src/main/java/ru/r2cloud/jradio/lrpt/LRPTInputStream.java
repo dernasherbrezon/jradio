@@ -8,12 +8,12 @@ import java.util.NoSuchElementException;
 
 import ru.r2cloud.jradio.util.IOUtils;
 
-public class LRPTInputStream implements Iterator<VCDU>, Closeable {
+public class LRPTInputStream implements Iterator<Vcdu>, Closeable {
 
 	private final InputStream input;
-	private VCDU currentVcdu = null;
+	private Vcdu currentVcdu = null;
 	// previous is used for restoring partial packets
-	private VCDU previous = null;
+	private Vcdu previous = null;
 
 	public LRPTInputStream(InputStream is) {
 		this.input = is;
@@ -26,10 +26,10 @@ public class LRPTInputStream implements Iterator<VCDU>, Closeable {
 
 	@Override
 	public boolean hasNext() {
-		byte[] current = new byte[VCDU.SIZE];
+		byte[] current = new byte[Vcdu.SIZE];
 		try {
 			IOUtils.readFully(input, current);
-			currentVcdu = new VCDU();
+			currentVcdu = new Vcdu();
 			currentVcdu.readExternal(previous, current);
 			previous = currentVcdu;
 			return true;
@@ -40,7 +40,7 @@ public class LRPTInputStream implements Iterator<VCDU>, Closeable {
 	}
 
 	@Override
-	public VCDU next() {
+	public Vcdu next() {
 		if (currentVcdu == null) {
 			throw new NoSuchElementException();
 		}

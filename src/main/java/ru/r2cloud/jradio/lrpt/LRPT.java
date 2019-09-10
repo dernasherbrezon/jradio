@@ -30,7 +30,7 @@ public class LRPT implements MessageInput {
 
 	public LRPT(ByteInput input, boolean interleave, boolean differential) {
 		this.phaseAmbiguityResolver = new PhaseAmbiguityResolver(0x035d49c24ff2686bL);
-		this.viterbiSoft = new ViterbiSoft((byte) 0x4f, (byte) 0x6d, false, VCDU.VITERBI_TAIL_SIZE);
+		this.viterbiSoft = new ViterbiSoft((byte) 0x4f, (byte) 0x6d, false, Vcdu.VITERBI_TAIL_SIZE);
 		ByteInput next = input;
 		if (interleave) {
 			PhaseAmbiguityResolver marker = new PhaseAmbiguityResolver(0b00_10_01_11, 8);
@@ -41,7 +41,7 @@ public class LRPT implements MessageInput {
 			next = new DifferentialSoftDecoder(next);
 		}
 		CorrelateAccessCodeTag correlate = new CorrelateAccessCodeTag(next, 17, phaseAmbiguityResolver.getSynchronizationMarkers(), true);
-		FixedLengthTagger tagger = new FixedLengthTagger(correlate, VCDU.VITERBI_TAIL_SIZE);
+		FixedLengthTagger tagger = new FixedLengthTagger(correlate, Vcdu.VITERBI_TAIL_SIZE);
 		messageInput = new TaggedStreamToPdu(tagger);
 	}
 

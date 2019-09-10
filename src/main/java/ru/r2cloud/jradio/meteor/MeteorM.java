@@ -11,10 +11,10 @@ import com.codahale.metrics.MetricRegistry;
 import ru.r2cloud.jradio.BeaconSource;
 import ru.r2cloud.jradio.fec.ccsds.UncorrectableException;
 import ru.r2cloud.jradio.lrpt.LRPT;
-import ru.r2cloud.jradio.lrpt.VCDU;
+import ru.r2cloud.jradio.lrpt.Vcdu;
 import ru.r2cloud.jradio.util.Metrics;
 
-public abstract class MeteorM extends BeaconSource<VCDU> {
+public abstract class MeteorM extends BeaconSource<Vcdu> {
 
 	private static final Logger LOG = LoggerFactory.getLogger(MeteorM.class);
 	private final MetricRegistry registry = Metrics.getRegistry();
@@ -23,7 +23,7 @@ public abstract class MeteorM extends BeaconSource<VCDU> {
 	private final int spacecraftId;
 
 	// previous is used for restoring partial packets
-	private VCDU previous = null;
+	private Vcdu previous = null;
 
 	public MeteorM(LRPT lrpt) {
 		super(lrpt);
@@ -36,8 +36,8 @@ public abstract class MeteorM extends BeaconSource<VCDU> {
 	}
 
 	@Override
-	protected VCDU parseBeacon(byte[] current) throws UncorrectableException, IOException {
-		VCDU currentVcdu = new VCDU();
+	protected Vcdu parseBeacon(byte[] current) throws UncorrectableException, IOException {
+		Vcdu currentVcdu = new Vcdu();
 		currentVcdu.readExternal(previous, current);
 		// reed solomon might pass for array [0,0,0,0,0,0...0]
 		// ensure version is not 0 (according to spec it should be 01)

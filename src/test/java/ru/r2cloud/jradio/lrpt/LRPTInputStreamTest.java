@@ -21,8 +21,8 @@ public class LRPTInputStreamTest {
 	
 	@Test
 	public void readThrottledInputStream() throws Exception {
-		List<VCDU> data = new ArrayList<>();
-		try (LRPTInputStream is = new LRPTInputStream(new ThrottledInputStream(VCDU.SIZE / 2, LRPTInputStreamTest.class.getClassLoader().getResourceAsStream("vcdu.bin")))) {
+		List<Vcdu> data = new ArrayList<>();
+		try (LRPTInputStream is = new LRPTInputStream(new ThrottledInputStream(Vcdu.SIZE / 2, LRPTInputStreamTest.class.getClassLoader().getResourceAsStream("vcdu.bin")))) {
 			assertTrue(is.hasNext());
 			data.add(is.next());
 		}
@@ -31,7 +31,7 @@ public class LRPTInputStreamTest {
 
 	@Test
 	public void readFromStream() throws Exception {
-		List<VCDU> data = new ArrayList<>();
+		List<Vcdu> data = new ArrayList<>();
 		try (LRPTInputStream is = new LRPTInputStream(LRPTInputStreamTest.class.getClassLoader().getResourceAsStream("vcdu.bin"))) {
 			assertTrue(is.hasNext());
 			data.add(is.next());
@@ -39,7 +39,7 @@ public class LRPTInputStreamTest {
 		assertImage(data);
 	}
 
-	private static void assertImage(List<VCDU> data) throws IOException {
+	private static void assertImage(List<Vcdu> data) throws IOException {
 		MeteorImage image = new MeteorImage(data.iterator());
 		BufferedImage actual = image.toBufferedImage();
 		try (InputStream is1 = MeteorImageTest.class.getClassLoader().getResourceAsStream("expected8bitsoft.png")) {

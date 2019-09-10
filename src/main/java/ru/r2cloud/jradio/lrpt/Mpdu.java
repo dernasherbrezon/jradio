@@ -1,6 +1,6 @@
 package ru.r2cloud.jradio.lrpt;
 
-public class M_PDU {
+public class Mpdu {
 
 	private byte spareBits;
 	private int headerFirstPointer;

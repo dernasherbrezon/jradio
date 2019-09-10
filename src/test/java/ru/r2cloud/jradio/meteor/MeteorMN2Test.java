@@ -19,7 +19,7 @@ public class MeteorMN2Test {
 		InputStreamSource float2char = new InputStreamSource(MeteorMN2Test.class.getClassLoader().getResourceAsStream("8bitsoft.s"));
 		meteor = new MeteorMN2(float2char);
 		assertTrue(meteor.hasNext());
-		AssertJson.assertObjectsEqual("VCDU.json", meteor.next());
+		AssertJson.assertObjectsEqual("Vcdu.json", meteor.next());
 	}
 
 	@After

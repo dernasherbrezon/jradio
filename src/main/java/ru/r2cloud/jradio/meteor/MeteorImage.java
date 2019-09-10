@@ -10,7 +10,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import ru.r2cloud.jradio.lrpt.Packet;
-import ru.r2cloud.jradio.lrpt.VCDU;
+import ru.r2cloud.jradio.lrpt.Vcdu;
 
 public class MeteorImage {
 
@@ -24,9 +24,9 @@ public class MeteorImage {
 
 	private final Map<Integer, ImageChannel> channelByApid = new HashMap<>();
 
-	public MeteorImage(Iterator<VCDU> input) {
+	public MeteorImage(Iterator<Vcdu> input) {
 		while (input.hasNext()) {
-			VCDU next = input.next();
+			Vcdu next = input.next();
 			for (Packet cur : next.getPackets()) {
 				if (cur.getApid() == ADMIN_PACKET_APID) {
 					continue;

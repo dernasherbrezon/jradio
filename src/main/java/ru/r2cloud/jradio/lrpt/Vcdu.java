@@ -3,34 +3,34 @@ package ru.r2cloud.jradio.lrpt;
 import java.util.ArrayList;
 import java.util.List;
 
-public class VCDU {
+public class Vcdu {
 
 	public static final int SIZE = 892;
 	public static final int VITERBI_SIZE = (SIZE / 4 + 32) * 4;
 	public static final int VITERBI_TAIL_SIZE = (VITERBI_SIZE + 1) * 16;
 
 	private int version;
-	private VCDUId id;
+	private VcduId id;
 	private int counter;
 	private byte signalling;
-	private IN_SDU insertZone;
-	private M_PDU mPdu;
+	private InSdu insertZone;
+	private Mpdu mPdu;
 	private List<Packet> packets = new ArrayList<>();
 	private Packet partial;
 	private byte[] data;
 
-	public void readExternal(VCDU previous, byte[] data) {
+	public void readExternal(Vcdu previous, byte[] data) {
 		this.data = data;
 		version = (data[0] & 0xFF) >> 6;
-		id = new VCDUId();
+		id = new VcduId();
 		id.setSpacecraftId(data[0] & 0b0011_1111 + (byte) (data[1] >> 6));
 		id.setVirtualChannelId(data[1] & 0b0011_1111);
 		counter = (data[2] & 0xFF) << 16 | (data[3] & 0xFF) << 8 | (data[4] & 0xFF);
 		signalling = data[5];
-		insertZone = new IN_SDU();
+		insertZone = new InSdu();
 		insertZone.setEncryption(data[6] == (byte) 0xFF);
 		insertZone.setKeyNumber(data[7]);
-		mPdu = new M_PDU();
+		mPdu = new Mpdu();
 		mPdu.setSpareBits((byte) (data[8] >> 3));
 		mPdu.setHeaderFirstPointer(((data[8] & 0b0000_0111) << 8) | (data[9] & 0xFF));
 		Packet previousPartial = null;
@@ -154,7 +154,7 @@ public class VCDU {
 		return version;
 	}
 
-	public VCDUId getId() {
+	public VcduId getId() {
 		return id;
 	}
 
@@ -166,11 +166,11 @@ public class VCDU {
 		return signalling;
 	}
 
-	public IN_SDU getInsertZone() {
+	public InSdu getInsertZone() {
 		return insertZone;
 	}
 
-	public M_PDU getmPdu() {
+	public Mpdu getmPdu() {
 		return mPdu;
 	}
 
