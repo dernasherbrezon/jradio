@@ -37,4 +37,8 @@ public class ImageChannelUtil {
 		return rowsToAdd;
 	}
 
+	private ImageChannelUtil() {
+		// do nothing
+	}
+
 }
