@@ -101,7 +101,7 @@ public class MeteorImage {
 	}
 
 	private static int getRGB(int r, int g, int b) {
-		return ((r & 0xFF) << 16) | ((g & 0xFF) << 8) | ((b & 0xFF));
+		return ((r & 0xFF) << 16) | ((g & 0xFF) << 8) | (b & 0xFF);
 	}
 
 	private ImageChannel getOrCreateChannel(int apid) {

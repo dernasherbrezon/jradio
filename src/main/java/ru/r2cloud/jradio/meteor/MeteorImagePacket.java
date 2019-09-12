@@ -38,10 +38,10 @@ public class MeteorImagePacket implements Iterator<int[]> {
 	// spatial table, stores less AcCode objects than 65536
 	private static AcCode[] acCodes = new AcCode[162];
 	// mapping between all possible 2bytes and the codeword. Saves 12 bitwise shift and compare operations
-	private static int[] ac_lookup = new int[65536];
+	private static int[] acLookup = new int[65536];
 	// lookup table for max 2 bytes. category lookup table has max 9 bits (i.e. 8 bit + 1 bit)
 	// it saves us 12 bitwise shift and compare operations (worst case scenario)
-	private static int[] dc_lookup = new int[65536];
+	private static int[] dcLookup = new int[65536];
 	// map category (array index) to the number of bits in codeword. used to skip detected codeword and extract diff value
 	private static int[] codeLengthLookup = new int[] { 2, 3, 3, 3, 3, 3, 4, 5, 6, 7, 8, 9 };
 
@@ -51,8 +51,8 @@ public class MeteorImagePacket implements Iterator<int[]> {
 		setupAcCodes();
 
 		for (int i = 0; i < 65536; i++) {
-			ac_lookup[i] = map2BytesToAcCodeword(i);
-			dc_lookup[i] = map2BytesToDcCategory(i);
+			acLookup[i] = map2BytesToAcCodeword(i);
+			dcLookup[i] = map2BytesToDcCategory(i);
 		}
 	}
 
@@ -85,7 +85,7 @@ public class MeteorImagePacket implements Iterator<int[]> {
 
 		double[] zigzagDct = new double[dct.length];
 
-		int dcCategory = dc_lookup[getNext(16)];
+		int dcCategory = dcLookup[getNext(16)];
 		if (dcCategory == -1) {
 			LOG.info("invalid dc category");
 			return false;
@@ -105,7 +105,7 @@ public class MeteorImagePacket implements Iterator<int[]> {
 
 		// decode AC
 		for (int i = 1; i < 64; i++) {
-			int index = ac_lookup[getNext(16)];
+			int index = acLookup[getNext(16)];
 			if (index == -1) {
 				LOG.info("invalid ac codeword");
 				return false;

@@ -17,4 +17,7 @@ public class Randomize {
 		}
 	}
 
+	private Randomize() {
+		// do nothing
+	}
 }
