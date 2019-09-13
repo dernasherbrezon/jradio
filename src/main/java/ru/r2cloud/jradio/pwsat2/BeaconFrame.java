@@ -29,65 +29,65 @@ public class BeaconFrame {
 	private int payload;
 	private int camera;
 	private int expSuns;
-	private int ANTPrimary;
-	private int ANTBackup;
+	private int antPrimary;
+	private int antBackup;
 
 	private int primaryFlashScrubbingPointer;
 	private int secondaryFlashScrubbingPointer;
-	private long RAMScrubbingPointer;
+	private long ramScrubbingPointer;
 	private int uptimeSeconds;
 	private long freeSpace;
 
-	private boolean Antenna1DeploymentSwitchChA;
-	private boolean Antenna2DeploymentSwitchChA;
-	private boolean Antenna3DeploymentSwitchChA;
-	private boolean Antenna4DeploymentSwitchChA;
-	private boolean Antenna1DeploymentSwitchChB;
-	private boolean Antenna2DeploymentSwitchChB;
-	private boolean Antenna3DeploymentSwitchChB;
-	private boolean Antenna4DeploymentSwitchChB;
+	private boolean antenna1DeploymentSwitchChA;
+	private boolean antenna2DeploymentSwitchChA;
+	private boolean antenna3DeploymentSwitchChA;
+	private boolean antenna4DeploymentSwitchChA;
+	private boolean antenna1DeploymentSwitchChB;
+	private boolean antenna2DeploymentSwitchChB;
+	private boolean antenna3DeploymentSwitchChB;
+	private boolean antenna4DeploymentSwitchChB;
 
-	private boolean Antenna1TimeLimitReachedChA;
-	private boolean Antenna2TimeLimitReachedChA;
-	private boolean Antenna3TimeLimitReachedChA;
-	private boolean Antenna4TimeLimitReachedChA;
-	private boolean Antenna1TimeLimitReachedChB;
-	private boolean Antenna2TimeLimitReachedChB;
-	private boolean Antenna3TimeLimitReachedChB;
-	private boolean Antenna4TimeLimitReachedChB;
+	private boolean antenna1TimeLimitReachedChA;
+	private boolean antenna2TimeLimitReachedChA;
+	private boolean antenna3TimeLimitReachedChA;
+	private boolean antenna4TimeLimitReachedChA;
+	private boolean antenna1TimeLimitReachedChB;
+	private boolean antenna2TimeLimitReachedChB;
+	private boolean antenna3TimeLimitReachedChB;
+	private boolean antenna4TimeLimitReachedChB;
 
-	private boolean Antenna1BurnActiveChA;
-	private boolean Antenna2BurnActiveChA;
-	private boolean Antenna3BurnActiveChA;
-	private boolean Antenna4BurnActiveChA;
-	private boolean Antenna1BurnActiveChB;
-	private boolean Antenna2BurnActiveChB;
-	private boolean Antenna3BurnActiveChB;
-	private boolean Antenna4BurnActiveChB;
+	private boolean antenna1BurnActiveChA;
+	private boolean antenna2BurnActiveChA;
+	private boolean antenna3BurnActiveChA;
+	private boolean antenna4BurnActiveChA;
+	private boolean antenna1BurnActiveChB;
+	private boolean antenna2BurnActiveChB;
+	private boolean antenna3BurnActiveChB;
+	private boolean antenna4BurnActiveChB;
 
-	private boolean SystemIndependentBurnChA;
-	private boolean SystemIndependentBurnChB;
-	private boolean IgnoringSwitchesChA;
-	private boolean IgnoringSwitchesChB;
-	private boolean ArmedChA;
-	private boolean ArmedChB;
-	private int Antenna1ActivationCountChA;
-	private int Antenna2ActivationCountChA;
-	private int Antenna3ActivationCountChA;
-	private int Antenna4ActivationCountChA;
-	private int Antenna1ActivationCountChB;
-	private int Antenna2ActivationCountChB;
-	private int Antenna3ActivationCountChB;
-	private int Antenna4ActivationCountChB;
+	private boolean systemIndependentBurnChA;
+	private boolean systemIndependentBurnChB;
+	private boolean ignoringSwitchesChA;
+	private boolean ignoringSwitchesChB;
+	private boolean armedChA;
+	private boolean armedChB;
+	private int antenna1ActivationCountChA;
+	private int antenna2ActivationCountChA;
+	private int antenna3ActivationCountChA;
+	private int antenna4ActivationCountChA;
+	private int antenna1ActivationCountChB;
+	private int antenna2ActivationCountChB;
+	private int antenna3ActivationCountChB;
+	private int antenna4ActivationCountChB;
 
-	private int Antenna1ActivationTimeChA;
-	private int Antenna2ActivationTimeChA;
-	private int Antenna3ActivationTimeChA;
-	private int Antenna4ActivationTimeChA;
-	private int Antenna1ActivationTimeChB;
-	private int Antenna2ActivationTimeChB;
-	private int Antenna3ActivationTimeChB;
-	private int Antenna4ActivationTimeChB;
+	private int antenna1ActivationTimeChA;
+	private int antenna2ActivationTimeChA;
+	private int antenna3ActivationTimeChA;
+	private int antenna4ActivationTimeChA;
+	private int antenna1ActivationTimeChB;
+	private int antenna2ActivationTimeChB;
+	private int antenna3ActivationTimeChB;
+	private int antenna4ActivationTimeChB;
 
 	private ExperimentType experimentType;
 	private StartResult startResult;
@@ -120,98 +120,98 @@ public class BeaconFrame {
 
 	private boolean sailDeployed;
 
-	private float MCUTemperature;
+	private float mcuTemperature;
 
-	private float MPPT_XSOL_VOLT;
-	private float MPPT_XSOL_CURR;
-	private float MPPT_XSOL_OUT_VOLT;
-	private float MPPT_XTemperature;
-	private int MPPT_XState;
-	private float MPPT_YPSOL_VOLT;
-	private float MPPT_YPSOL_CURR;
-	private float MPPT_YPSOL_OUT_VOLT;
-	private float MPPT_YPTemperature;
-	private int MPPT_YPState;
-	private float MPPT_YMSOL_VOLT;
-	private float MPPT_YMSOL_CURR;
-	private float MPPT_YMSOL_OUT_VOLT;
-	private float MPPT_YMTemperature;
-	private float MPPT_YMState;
-	private float DISTRVOLT_3V3;
-	private float DISTRCURR_3V3;
-	private float DISTRVOLT_5V;
-	private float DISTRCURR_5V;
-	private float DISTRVOLT_VBAT;
-	private float DISTRCURR_VBAT;
-	private int DISTRLCL_STATE;
-	private int DISTRLCL_FLAGS;
-	private float BATCVOLT_A;
-	private float BATCCHRG_CURR;
-	private float BATCDCHRG_CURR;
-	private float BATCTemperature;
-	private int BATCState;
-	private float BPTemperatureA;
-	private float BPTemperatureB;
-	private int SafetyCounterA;
-	private int PowerCycleCountA;
-	private long UptimeA;
-	private float TemperatureA;
-	private float SUPP_TEMPA;
-	private float ControllerB3V3dA;
-	private float DCDC3V3Temperature;
-	private float DCDC5VTemperature;
+	private float mpptXSolVolt;
+	private float mpptXSolCurr;
+	private float mpptXSolOutVolt;
+	private float mpptXTemperature;
+	private int mpptXState;
+	private float mpptYSolVolt;
+	private float mpptYPSolCurr;
+	private float mpptYPSolOutVolt;
+	private float mpptYPTemperature;
+	private int mpptYPState;
+	private float mpptYMSolVolt;
+	private float mpptYMSolCurr;
+	private float mpptYMSolOutVolt;
+	private float mpptYMTemperature;
+	private float mpptYMState;
+	private float distrVolt3V3;
+	private float distrCurr3V3;
+	private float distrVolt5V;
+	private float distrCurr5V;
+	private float distrVoltVbat;
+	private float distrCurrVbat;
+	private int distrLCLState;
+	private int distrLCLFlags;
+	private float batcVoltA;
+	private float batcChrgCurr;
+	private float batcDchrgCurr;
+	private float batcTemperature;
+	private int batcState;
+	private float bpTemperatureA;
+	private float bpTemperatureB;
+	private int safetyCounterA;
+	private int powerCycleCountA;
+	private long uptimeA;
+	private float temperatureA;
+	private float suppTempA;
+	private float controllerB3V3dA;
+	private float dcdc3V3Temperature;
+	private float dcdc5VTemperature;
 
-	private float BPTemperature;
-	private float BATCVOLT_B;
-	private int SafetyCounterB;
-	private int PowerCycleCountB;
-	private long UptimeB;
-	private float TemperatureB;
-	private float SUPP_TEMPB;
-	private float ControllerA3V3dB;
+	private float bpTemperature;
+	private float batcVoltB;
+	private int safetyCounterB;
+	private int powerCycleCountB;
+	private long uptimeB;
+	private float temperatureB;
+	private float suppTempB;
+	private float controllerA3V3dB;
 
-	private float MagnetometerMeasurement1;
-	private float MagnetometerMeasurement2;
-	private float MagnetometerMeasurement3;
+	private float magnetometerMeasurement1;
+	private float magnetometerMeasurement2;
+	private float magnetometerMeasurement3;
 
 	private boolean coilsActiveDuringMeasurement;
 
-	private float IMTQDipole1;
-	private float IMTQDipole2;
-	private float IMTQDipole3;
+	private float imtqDipole1;
+	private float imtqDipole2;
+	private float imtqDipole3;
 
-	private float IMTQBDot1;
-	private float IMTQBDot2;
-	private float IMTQBDot3;
+	private float imtqBDot1;
+	private float imtqBDot2;
+	private float imtqBDot3;
 
-	private float IMTQDigitalVoltage;
-	private float IMTQAnalogVoltage;
-	private float IMTQDigitalCurrent;
-	private float IMTQAnalogCurrent;
-	private short IMTQMCUTemperature;
+	private float imtqDigitalVoltage;
+	private float imtqAnalogVoltage;
+	private float imtqDigitalCurrent;
+	private float imtqAnalogCurrent;
+	private short imtqMCUTemperature;
 
-	private float IMTQCoilCurrent1;
-	private float IMTQCoilCurrent2;
-	private float IMTQCoilCurrent3;
+	private float imtqCoilCurrent1;
+	private float imtqCoilCurrent2;
+	private float imtqCoilCurrent3;
 
-	private short IMTQCoilTemperature1;
-	private short IMTQCoilTemperature2;
-	private short IMTQCoilTemperature3;
+	private short imtqCoilTemperature1;
+	private short imtqCoilTemperature2;
+	private short imtqCoilTemperature3;
 
-	private int IMTQStatus;
-	private int IMTQMode;
-	private boolean IMTQErrorDuringPreviousIteration;
-	private boolean IMTQConfigurationChanged;
-	private long IMTQUptime;
+	private int imtqStatus;
+	private int imtqMode;
+	private boolean imtqErrorDuringPreviousIteration;
+	private boolean imtqConfigurationChanged;
+	private long imtqUptime;
 
-	private int IMTQError1;
-	private int IMTQError2;
-	private int IMTQError3;
-	private int IMTQError4;
-	private int IMTQError5;
-	private int IMTQError6;
-	private int IMTQError7;
-	private int IMTQError8;
+	private int imtqError1;
+	private int imtqError2;
+	private int imtqError3;
+	private int imtqError4;
+	private int imtqError5;
+	private int imtqError6;
+	private int imtqError7;
+	private int imtqError8;
 
 	public BeaconFrame(LittleEndianDataInputStream dataInput) throws IOException {
 		LittleEndianBitInputStream dis = new LittleEndianBitInputStream(dataInput);
@@ -243,69 +243,69 @@ public class BeaconFrame {
 		payload = dis.readUnsignedByte();
 		camera = dis.readUnsignedByte();
 		expSuns = dis.readUnsignedByte();
-		ANTPrimary = dis.readUnsignedByte();
-		ANTBackup = dis.readUnsignedByte();
+		antPrimary = dis.readUnsignedByte();
+		antBackup = dis.readUnsignedByte();
 
 		primaryFlashScrubbingPointer = dis.readUnsignedInt(3);
 		secondaryFlashScrubbingPointer = dis.readUnsignedInt(3);
-		RAMScrubbingPointer = dis.readUnsignedInt();
+		ramScrubbingPointer = dis.readUnsignedInt();
 		uptimeSeconds = dis.readUnsignedInt(22);
 		freeSpace = dis.readUnsignedLong(32);
 
 		int raw = dis.readUnsignedByte();
-		Antenna1DeploymentSwitchChA = (raw & 0x1) > 0;
-		Antenna2DeploymentSwitchChA = ((raw >> 1) & 0x1) > 0;
-		Antenna3DeploymentSwitchChA = ((raw >> 2) & 0x1) > 0;
-		Antenna4DeploymentSwitchChA = ((raw >> 3) & 0x1) > 0;
-		Antenna1DeploymentSwitchChB = ((raw >> 4) & 0x1) > 0;
-		Antenna2DeploymentSwitchChB = ((raw >> 5) & 0x1) > 0;
-		Antenna3DeploymentSwitchChB = ((raw >> 6) & 0x1) > 0;
-		Antenna4DeploymentSwitchChB = ((raw >> 7) & 0x1) > 0;
+		antenna1DeploymentSwitchChA = (raw & 0x1) > 0;
+		antenna2DeploymentSwitchChA = ((raw >> 1) & 0x1) > 0;
+		antenna3DeploymentSwitchChA = ((raw >> 2) & 0x1) > 0;
+		antenna4DeploymentSwitchChA = ((raw >> 3) & 0x1) > 0;
+		antenna1DeploymentSwitchChB = ((raw >> 4) & 0x1) > 0;
+		antenna2DeploymentSwitchChB = ((raw >> 5) & 0x1) > 0;
+		antenna3DeploymentSwitchChB = ((raw >> 6) & 0x1) > 0;
+		antenna4DeploymentSwitchChB = ((raw >> 7) & 0x1) > 0;
 
 		raw = dis.readUnsignedByte();
-		Antenna1TimeLimitReachedChA = (raw & 0x1) > 0;
-		Antenna2TimeLimitReachedChA = ((raw >> 1) & 0x1) > 0;
-		Antenna3TimeLimitReachedChA = ((raw >> 2) & 0x1) > 0;
-		Antenna4TimeLimitReachedChA = ((raw >> 3) & 0x1) > 0;
-		Antenna1TimeLimitReachedChB = ((raw >> 4) & 0x1) > 0;
-		Antenna2TimeLimitReachedChB = ((raw >> 5) & 0x1) > 0;
-		Antenna3TimeLimitReachedChB = ((raw >> 6) & 0x1) > 0;
-		Antenna4TimeLimitReachedChB = ((raw >> 7) & 0x1) > 0;
+		antenna1TimeLimitReachedChA = (raw & 0x1) > 0;
+		antenna2TimeLimitReachedChA = ((raw >> 1) & 0x1) > 0;
+		antenna3TimeLimitReachedChA = ((raw >> 2) & 0x1) > 0;
+		antenna4TimeLimitReachedChA = ((raw >> 3) & 0x1) > 0;
+		antenna1TimeLimitReachedChB = ((raw >> 4) & 0x1) > 0;
+		antenna2TimeLimitReachedChB = ((raw >> 5) & 0x1) > 0;
+		antenna3TimeLimitReachedChB = ((raw >> 6) & 0x1) > 0;
+		antenna4TimeLimitReachedChB = ((raw >> 7) & 0x1) > 0;
 
 		raw = dis.readUnsignedByte();
-		Antenna1BurnActiveChA = (raw & 0x1) > 0;
-		Antenna2BurnActiveChA = ((raw >> 1) & 0x1) > 0;
-		Antenna3BurnActiveChA = ((raw >> 2) & 0x1) > 0;
-		Antenna4BurnActiveChA = ((raw >> 3) & 0x1) > 0;
-		Antenna1BurnActiveChB = ((raw >> 4) & 0x1) > 0;
-		Antenna2BurnActiveChB = ((raw >> 5) & 0x1) > 0;
-		Antenna3BurnActiveChB = ((raw >> 6) & 0x1) > 0;
-		Antenna4BurnActiveChB = ((raw >> 7) & 0x1) > 0;
+		antenna1BurnActiveChA = (raw & 0x1) > 0;
+		antenna2BurnActiveChA = ((raw >> 1) & 0x1) > 0;
+		antenna3BurnActiveChA = ((raw >> 2) & 0x1) > 0;
+		antenna4BurnActiveChA = ((raw >> 3) & 0x1) > 0;
+		antenna1BurnActiveChB = ((raw >> 4) & 0x1) > 0;
+		antenna2BurnActiveChB = ((raw >> 5) & 0x1) > 0;
+		antenna3BurnActiveChB = ((raw >> 6) & 0x1) > 0;
+		antenna4BurnActiveChB = ((raw >> 7) & 0x1) > 0;
 
-		SystemIndependentBurnChA = dis.readBoolean();
-		SystemIndependentBurnChB = dis.readBoolean();
-		IgnoringSwitchesChA = dis.readBoolean();
-		IgnoringSwitchesChB = dis.readBoolean();
-		ArmedChA = dis.readBoolean();
-		ArmedChB = dis.readBoolean();
+		systemIndependentBurnChA = dis.readBoolean();
+		systemIndependentBurnChB = dis.readBoolean();
+		ignoringSwitchesChA = dis.readBoolean();
+		ignoringSwitchesChB = dis.readBoolean();
+		armedChA = dis.readBoolean();
+		armedChB = dis.readBoolean();
 
-		Antenna1ActivationCountChA = dis.readUnsignedInt(3);
-		Antenna2ActivationCountChA = dis.readUnsignedInt(3);
-		Antenna3ActivationCountChA = dis.readUnsignedInt(3);
-		Antenna4ActivationCountChA = dis.readUnsignedInt(3);
-		Antenna1ActivationCountChB = dis.readUnsignedInt(3);
-		Antenna2ActivationCountChB = dis.readUnsignedInt(3);
-		Antenna3ActivationCountChB = dis.readUnsignedInt(3);
-		Antenna4ActivationCountChB = dis.readUnsignedInt(3);
+		antenna1ActivationCountChA = dis.readUnsignedInt(3);
+		antenna2ActivationCountChA = dis.readUnsignedInt(3);
+		antenna3ActivationCountChA = dis.readUnsignedInt(3);
+		antenna4ActivationCountChA = dis.readUnsignedInt(3);
+		antenna1ActivationCountChB = dis.readUnsignedInt(3);
+		antenna2ActivationCountChB = dis.readUnsignedInt(3);
+		antenna3ActivationCountChB = dis.readUnsignedInt(3);
+		antenna4ActivationCountChB = dis.readUnsignedInt(3);
 
-		Antenna1ActivationTimeChA = dis.readUnsignedByte();
-		Antenna2ActivationTimeChA = dis.readUnsignedByte();
-		Antenna3ActivationTimeChA = dis.readUnsignedByte();
-		Antenna4ActivationTimeChA = dis.readUnsignedByte();
-		Antenna1ActivationTimeChB = dis.readUnsignedByte();
-		Antenna2ActivationTimeChB = dis.readUnsignedByte();
-		Antenna3ActivationTimeChB = dis.readUnsignedByte();
-		Antenna4ActivationTimeChB = dis.readUnsignedByte();
+		antenna1ActivationTimeChA = dis.readUnsignedByte();
+		antenna2ActivationTimeChA = dis.readUnsignedByte();
+		antenna3ActivationTimeChA = dis.readUnsignedByte();
+		antenna4ActivationTimeChA = dis.readUnsignedByte();
+		antenna1ActivationTimeChB = dis.readUnsignedByte();
+		antenna2ActivationTimeChB = dis.readUnsignedByte();
+		antenna3ActivationTimeChB = dis.readUnsignedByte();
+		antenna4ActivationTimeChB = dis.readUnsignedByte();
 
 		experimentType = ExperimentType.valueOfCode(dis.readUnsignedInt(4));
 		startResult = StartResult.valueOfCode(dis.readUnsignedByte());
@@ -354,98 +354,98 @@ public class BeaconFrame {
 
 		sailDeployed = dis.readBoolean();
 
-		MCUTemperature = 25.0f - (2297.0f - dis.readUnsignedInt(12)) / -6.3f;
+		mcuTemperature = 25.0f - (2297.0f - dis.readUnsignedInt(12)) / -6.3f;
 
-		MPPT_XSOL_VOLT = readMPPTVoltage(dis);
-		MPPT_XSOL_CURR = readMPPTCurrent(dis);
-		MPPT_XSOL_OUT_VOLT = readMPPTVoltage(dis);
-		MPPT_XTemperature = readMPPTTemperature(dis);
-		MPPT_XState = dis.readUnsignedInt(3);
-		MPPT_YPSOL_VOLT = readMPPTVoltage(dis);
-		MPPT_YPSOL_CURR = readMPPTCurrent(dis);
-		MPPT_YPSOL_OUT_VOLT = readMPPTVoltage(dis);
-		MPPT_YPTemperature = readMPPTTemperature(dis);
-		MPPT_YPState = dis.readUnsignedInt(3);
-		MPPT_YMSOL_VOLT = readMPPTVoltage(dis);
-		MPPT_YMSOL_CURR = readMPPTCurrent(dis);
-		MPPT_YMSOL_OUT_VOLT = readMPPTVoltage(dis);
-		MPPT_YMTemperature = readMPPTTemperature(dis);
-		MPPT_YMState = dis.readUnsignedInt(3);
-		DISTRVOLT_3V3 = readDistributionVoltage(dis);
-		DISTRCURR_3V3 = readDistributionCurrent(dis);
-		DISTRVOLT_5V = readDistributionVoltage(dis);
-		DISTRCURR_5V = readDistributionCurrent(dis);
-		DISTRVOLT_VBAT = readDistributionVoltage(dis);
-		DISTRCURR_VBAT = readDistributionCurrent(dis);
-		DISTRLCL_STATE = dis.readUnsignedInt(7);
-		DISTRLCL_FLAGS = dis.readUnsignedInt(6);
-		BATCVOLT_A = readBATCVoltage(dis);
-		BATCCHRG_CURR = readDistributionCurrent(dis);
-		BATCDCHRG_CURR = readDistributionCurrent(dis);
-		BATCTemperature = readLMT87Temperature(dis);
-		BATCState = dis.readUnsignedInt(3);
-		BPTemperatureA = readTMP121Temperature(dis);
-		BPTemperatureB = readTMP121Temperature(dis);
-		SafetyCounterA = dis.readUnsignedByte();
-		PowerCycleCountA = dis.readUnsignedShort();
-		UptimeA = dis.readUnsignedInt();
-		TemperatureA = readLMT87Temperature(dis);
-		SUPP_TEMPA = readLMT87Temperature(dis);
-		ControllerB3V3dA = readLocal3V3dVoltage(dis);
-		DCDC3V3Temperature = readLMT87Temperature(dis);
-		DCDC5VTemperature = readLMT87Temperature(dis);
+		mpptXSolVolt = readMPPTVoltage(dis);
+		mpptXSolCurr = readMPPTCurrent(dis);
+		mpptXSolOutVolt = readMPPTVoltage(dis);
+		mpptXTemperature = readMPPTTemperature(dis);
+		mpptXState = dis.readUnsignedInt(3);
+		mpptYSolVolt = readMPPTVoltage(dis);
+		mpptYPSolCurr = readMPPTCurrent(dis);
+		mpptYPSolOutVolt = readMPPTVoltage(dis);
+		mpptYPTemperature = readMPPTTemperature(dis);
+		mpptYPState = dis.readUnsignedInt(3);
+		mpptYMSolVolt = readMPPTVoltage(dis);
+		mpptYMSolCurr = readMPPTCurrent(dis);
+		mpptYMSolOutVolt = readMPPTVoltage(dis);
+		mpptYMTemperature = readMPPTTemperature(dis);
+		mpptYMState = dis.readUnsignedInt(3);
+		distrVolt3V3 = readDistributionVoltage(dis);
+		distrCurr3V3 = readDistributionCurrent(dis);
+		distrVolt5V = readDistributionVoltage(dis);
+		distrCurr5V = readDistributionCurrent(dis);
+		distrVoltVbat = readDistributionVoltage(dis);
+		distrCurrVbat = readDistributionCurrent(dis);
+		distrLCLState = dis.readUnsignedInt(7);
+		distrLCLFlags = dis.readUnsignedInt(6);
+		batcVoltA = readBATCVoltage(dis);
+		batcChrgCurr = readDistributionCurrent(dis);
+		batcDchrgCurr = readDistributionCurrent(dis);
+		batcTemperature = readLMT87Temperature(dis);
+		batcState = dis.readUnsignedInt(3);
+		bpTemperatureA = readTMP121Temperature(dis);
+		bpTemperatureB = readTMP121Temperature(dis);
+		safetyCounterA = dis.readUnsignedByte();
+		powerCycleCountA = dis.readUnsignedShort();
+		uptimeA = dis.readUnsignedInt();
+		temperatureA = readLMT87Temperature(dis);
+		suppTempA = readLMT87Temperature(dis);
+		controllerB3V3dA = readLocal3V3dVoltage(dis);
+		dcdc3V3Temperature = readLMT87Temperature(dis);
+		dcdc5VTemperature = readLMT87Temperature(dis);
 
-		BPTemperature = readPT1000Temperature(dis);
-		BATCVOLT_B = readBATCVoltage(dis);
-		SafetyCounterB = dis.readUnsignedByte();
-		PowerCycleCountB = dis.readUnsignedShort();
-		UptimeB = dis.readUnsignedInt();
-		TemperatureB = readLMT87Temperature(dis);
-		SUPP_TEMPB = readLMT87Temperature(dis);
-		ControllerA3V3dB = readLocal3V3dVoltage(dis);
+		bpTemperature = readPT1000Temperature(dis);
+		batcVoltB = readBATCVoltage(dis);
+		safetyCounterB = dis.readUnsignedByte();
+		powerCycleCountB = dis.readUnsignedShort();
+		uptimeB = dis.readUnsignedInt();
+		temperatureB = readLMT87Temperature(dis);
+		suppTempB = readLMT87Temperature(dis);
+		controllerA3V3dB = readLocal3V3dVoltage(dis);
 
-		MagnetometerMeasurement1 = dis.readLongTwosComplement(32) * 1e-3f;
-		MagnetometerMeasurement2 = dis.readLongTwosComplement(32) * 1e-3f;
-		MagnetometerMeasurement3 = dis.readLongTwosComplement(32) * 1e-3f;
+		magnetometerMeasurement1 = dis.readLongTwosComplement(32) * 1e-3f;
+		magnetometerMeasurement2 = dis.readLongTwosComplement(32) * 1e-3f;
+		magnetometerMeasurement3 = dis.readLongTwosComplement(32) * 1e-3f;
 
 		coilsActiveDuringMeasurement = dis.readBoolean();
 
-		IMTQDipole1 = dis.readIntTwosComplement(16) * 1e-1f;
-		IMTQDipole2 = dis.readIntTwosComplement(16) * 1e-1f;
-		IMTQDipole3 = dis.readIntTwosComplement(16) * 1e-1f;
+		imtqDipole1 = dis.readIntTwosComplement(16) * 1e-1f;
+		imtqDipole2 = dis.readIntTwosComplement(16) * 1e-1f;
+		imtqDipole3 = dis.readIntTwosComplement(16) * 1e-1f;
 
-		IMTQBDot1 = dis.readLongTwosComplement(32) * 1e-3f;
-		IMTQBDot2 = dis.readLongTwosComplement(32) * 1e-3f;
-		IMTQBDot3 = dis.readLongTwosComplement(32) * 1e-3f;
+		imtqBDot1 = dis.readLongTwosComplement(32) * 1e-3f;
+		imtqBDot2 = dis.readLongTwosComplement(32) * 1e-3f;
+		imtqBDot3 = dis.readLongTwosComplement(32) * 1e-3f;
 
-		IMTQDigitalVoltage = dis.readUnsignedShort() / 1000.0f;
-		IMTQAnalogVoltage = dis.readUnsignedShort() / 1000.0f;
-		IMTQDigitalCurrent = dis.readUnsignedShort() * 1e-1f;
-		IMTQAnalogCurrent = dis.readUnsignedShort() * 1e-1f;
-		IMTQMCUTemperature = (short) dis.readIntTwosComplement(16);
+		imtqDigitalVoltage = dis.readUnsignedShort() / 1000.0f;
+		imtqAnalogVoltage = dis.readUnsignedShort() / 1000.0f;
+		imtqDigitalCurrent = dis.readUnsignedShort() * 1e-1f;
+		imtqAnalogCurrent = dis.readUnsignedShort() * 1e-1f;
+		imtqMCUTemperature = (short) dis.readIntTwosComplement(16);
 
-		IMTQCoilCurrent1 = dis.readUnsignedShort() * 1e-1f;
-		IMTQCoilCurrent2 = dis.readUnsignedShort() * 1e-1f;
-		IMTQCoilCurrent3 = dis.readUnsignedShort() * 1e-1f;
+		imtqCoilCurrent1 = dis.readUnsignedShort() * 1e-1f;
+		imtqCoilCurrent2 = dis.readUnsignedShort() * 1e-1f;
+		imtqCoilCurrent3 = dis.readUnsignedShort() * 1e-1f;
 
-		IMTQCoilTemperature1 = (short) dis.readIntTwosComplement(16);
-		IMTQCoilTemperature2 = (short) dis.readIntTwosComplement(16);
-		IMTQCoilTemperature3 = (short) dis.readIntTwosComplement(16);
+		imtqCoilTemperature1 = (short) dis.readIntTwosComplement(16);
+		imtqCoilTemperature2 = (short) dis.readIntTwosComplement(16);
+		imtqCoilTemperature3 = (short) dis.readIntTwosComplement(16);
 
-		IMTQStatus = dis.readUnsignedByte();
-		IMTQMode = dis.readUnsignedInt(2);
-		IMTQErrorDuringPreviousIteration = dis.readUnsignedByte() > 0;
-		IMTQConfigurationChanged = dis.readBoolean();
-		IMTQUptime = dis.readUnsignedInt();
+		imtqStatus = dis.readUnsignedByte();
+		imtqMode = dis.readUnsignedInt(2);
+		imtqErrorDuringPreviousIteration = dis.readUnsignedByte() > 0;
+		imtqConfigurationChanged = dis.readBoolean();
+		imtqUptime = dis.readUnsignedInt();
 
-		IMTQError1 = dis.readUnsignedByte();
-		IMTQError2 = dis.readUnsignedByte();
-		IMTQError3 = dis.readUnsignedByte();
-		IMTQError4 = dis.readUnsignedByte();
-		IMTQError5 = dis.readUnsignedByte();
-		IMTQError6 = dis.readUnsignedByte();
-		IMTQError7 = dis.readUnsignedByte();
-		IMTQError8 = dis.readUnsignedByte();
+		imtqError1 = dis.readUnsignedByte();
+		imtqError2 = dis.readUnsignedByte();
+		imtqError3 = dis.readUnsignedByte();
+		imtqError4 = dis.readUnsignedByte();
+		imtqError5 = dis.readUnsignedByte();
+		imtqError6 = dis.readUnsignedByte();
+		imtqError7 = dis.readUnsignedByte();
+		imtqError8 = dis.readUnsignedByte();
 	}
 
 	private static float readRfPower(LittleEndianBitInputStream dis) throws IOException {
@@ -694,20 +694,20 @@ public class BeaconFrame {
 		this.expSuns = expSuns;
 	}
 
-	public int getANTPrimary() {
-		return ANTPrimary;
+	public int getAntPrimary() {
+		return antPrimary;
 	}
 
-	public void setANTPrimary(int aNTPrimary) {
-		ANTPrimary = aNTPrimary;
+	public void setAntPrimary(int antPrimary) {
+		this.antPrimary = antPrimary;
 	}
 
-	public int getANTBackup() {
-		return ANTBackup;
+	public int getAntBackup() {
+		return antBackup;
 	}
 
-	public void setANTBackup(int aNTBackup) {
-		ANTBackup = aNTBackup;
+	public void setAntBackup(int antBackup) {
+		this.antBackup = antBackup;
 	}
 
 	public int getPrimaryFlashScrubbingPointer() {
@@ -726,12 +726,12 @@ public class BeaconFrame {
 		this.secondaryFlashScrubbingPointer = secondaryFlashScrubbingPointer;
 	}
 
-	public long getRAMScrubbingPointer() {
-		return RAMScrubbingPointer;
+	public long getRamScrubbingPointer() {
+		return ramScrubbingPointer;
 	}
 
-	public void setRAMScrubbingPointer(long rAMScrubbingPointer) {
-		RAMScrubbingPointer = rAMScrubbingPointer;
+	public void setRamScrubbingPointer(long ramScrubbingPointer) {
+		this.ramScrubbingPointer = ramScrubbingPointer;
 	}
 
 	public int getUptimeSeconds() {
@@ -751,371 +751,371 @@ public class BeaconFrame {
 	}
 
 	public boolean isAntenna1DeploymentSwitchChA() {
-		return Antenna1DeploymentSwitchChA;
+		return antenna1DeploymentSwitchChA;
 	}
 
 	public void setAntenna1DeploymentSwitchChA(boolean antenna1DeploymentSwitchChA) {
-		Antenna1DeploymentSwitchChA = antenna1DeploymentSwitchChA;
+		this.antenna1DeploymentSwitchChA = antenna1DeploymentSwitchChA;
 	}
 
 	public boolean isAntenna2DeploymentSwitchChA() {
-		return Antenna2DeploymentSwitchChA;
+		return antenna2DeploymentSwitchChA;
 	}
 
 	public void setAntenna2DeploymentSwitchChA(boolean antenna2DeploymentSwitchChA) {
-		Antenna2DeploymentSwitchChA = antenna2DeploymentSwitchChA;
+		this.antenna2DeploymentSwitchChA = antenna2DeploymentSwitchChA;
 	}
 
 	public boolean isAntenna3DeploymentSwitchChA() {
-		return Antenna3DeploymentSwitchChA;
+		return antenna3DeploymentSwitchChA;
 	}
 
 	public void setAntenna3DeploymentSwitchChA(boolean antenna3DeploymentSwitchChA) {
-		Antenna3DeploymentSwitchChA = antenna3DeploymentSwitchChA;
+		this.antenna3DeploymentSwitchChA = antenna3DeploymentSwitchChA;
 	}
 
 	public boolean isAntenna4DeploymentSwitchChA() {
-		return Antenna4DeploymentSwitchChA;
+		return antenna4DeploymentSwitchChA;
 	}
 
 	public void setAntenna4DeploymentSwitchChA(boolean antenna4DeploymentSwitchChA) {
-		Antenna4DeploymentSwitchChA = antenna4DeploymentSwitchChA;
+		this.antenna4DeploymentSwitchChA = antenna4DeploymentSwitchChA;
 	}
 
 	public boolean isAntenna1DeploymentSwitchChB() {
-		return Antenna1DeploymentSwitchChB;
+		return antenna1DeploymentSwitchChB;
 	}
 
 	public void setAntenna1DeploymentSwitchChB(boolean antenna1DeploymentSwitchChB) {
-		Antenna1DeploymentSwitchChB = antenna1DeploymentSwitchChB;
+		this.antenna1DeploymentSwitchChB = antenna1DeploymentSwitchChB;
 	}
 
 	public boolean isAntenna2DeploymentSwitchChB() {
-		return Antenna2DeploymentSwitchChB;
+		return antenna2DeploymentSwitchChB;
 	}
 
 	public void setAntenna2DeploymentSwitchChB(boolean antenna2DeploymentSwitchChB) {
-		Antenna2DeploymentSwitchChB = antenna2DeploymentSwitchChB;
+		this.antenna2DeploymentSwitchChB = antenna2DeploymentSwitchChB;
 	}
 
 	public boolean isAntenna3DeploymentSwitchChB() {
-		return Antenna3DeploymentSwitchChB;
+		return antenna3DeploymentSwitchChB;
 	}
 
 	public void setAntenna3DeploymentSwitchChB(boolean antenna3DeploymentSwitchChB) {
-		Antenna3DeploymentSwitchChB = antenna3DeploymentSwitchChB;
+		this.antenna3DeploymentSwitchChB = antenna3DeploymentSwitchChB;
 	}
 
 	public boolean isAntenna4DeploymentSwitchChB() {
-		return Antenna4DeploymentSwitchChB;
+		return antenna4DeploymentSwitchChB;
 	}
 
 	public void setAntenna4DeploymentSwitchChB(boolean antenna4DeploymentSwitchChB) {
-		Antenna4DeploymentSwitchChB = antenna4DeploymentSwitchChB;
+		this.antenna4DeploymentSwitchChB = antenna4DeploymentSwitchChB;
 	}
 
 	public boolean isAntenna1TimeLimitReachedChA() {
-		return Antenna1TimeLimitReachedChA;
+		return antenna1TimeLimitReachedChA;
 	}
 
 	public void setAntenna1TimeLimitReachedChA(boolean antenna1TimeLimitReachedChA) {
-		Antenna1TimeLimitReachedChA = antenna1TimeLimitReachedChA;
+		this.antenna1TimeLimitReachedChA = antenna1TimeLimitReachedChA;
 	}
 
 	public boolean isAntenna2TimeLimitReachedChA() {
-		return Antenna2TimeLimitReachedChA;
+		return antenna2TimeLimitReachedChA;
 	}
 
 	public void setAntenna2TimeLimitReachedChA(boolean antenna2TimeLimitReachedChA) {
-		Antenna2TimeLimitReachedChA = antenna2TimeLimitReachedChA;
+		this.antenna2TimeLimitReachedChA = antenna2TimeLimitReachedChA;
 	}
 
 	public boolean isAntenna3TimeLimitReachedChA() {
-		return Antenna3TimeLimitReachedChA;
+		return antenna3TimeLimitReachedChA;
 	}
 
 	public void setAntenna3TimeLimitReachedChA(boolean antenna3TimeLimitReachedChA) {
-		Antenna3TimeLimitReachedChA = antenna3TimeLimitReachedChA;
+		this.antenna3TimeLimitReachedChA = antenna3TimeLimitReachedChA;
 	}
 
 	public boolean isAntenna4TimeLimitReachedChA() {
-		return Antenna4TimeLimitReachedChA;
+		return antenna4TimeLimitReachedChA;
 	}
 
 	public void setAntenna4TimeLimitReachedChA(boolean antenna4TimeLimitReachedChA) {
-		Antenna4TimeLimitReachedChA = antenna4TimeLimitReachedChA;
+		this.antenna4TimeLimitReachedChA = antenna4TimeLimitReachedChA;
 	}
 
 	public boolean isAntenna1TimeLimitReachedChB() {
-		return Antenna1TimeLimitReachedChB;
+		return antenna1TimeLimitReachedChB;
 	}
 
 	public void setAntenna1TimeLimitReachedChB(boolean antenna1TimeLimitReachedChB) {
-		Antenna1TimeLimitReachedChB = antenna1TimeLimitReachedChB;
+		this.antenna1TimeLimitReachedChB = antenna1TimeLimitReachedChB;
 	}
 
 	public boolean isAntenna2TimeLimitReachedChB() {
-		return Antenna2TimeLimitReachedChB;
+		return antenna2TimeLimitReachedChB;
 	}
 
 	public void setAntenna2TimeLimitReachedChB(boolean antenna2TimeLimitReachedChB) {
-		Antenna2TimeLimitReachedChB = antenna2TimeLimitReachedChB;
+		this.antenna2TimeLimitReachedChB = antenna2TimeLimitReachedChB;
 	}
 
 	public boolean isAntenna3TimeLimitReachedChB() {
-		return Antenna3TimeLimitReachedChB;
+		return antenna3TimeLimitReachedChB;
 	}
 
 	public void setAntenna3TimeLimitReachedChB(boolean antenna3TimeLimitReachedChB) {
-		Antenna3TimeLimitReachedChB = antenna3TimeLimitReachedChB;
+		this.antenna3TimeLimitReachedChB = antenna3TimeLimitReachedChB;
 	}
 
 	public boolean isAntenna4TimeLimitReachedChB() {
-		return Antenna4TimeLimitReachedChB;
+		return antenna4TimeLimitReachedChB;
 	}
 
 	public void setAntenna4TimeLimitReachedChB(boolean antenna4TimeLimitReachedChB) {
-		Antenna4TimeLimitReachedChB = antenna4TimeLimitReachedChB;
+		this.antenna4TimeLimitReachedChB = antenna4TimeLimitReachedChB;
 	}
 
 	public boolean isAntenna1BurnActiveChA() {
-		return Antenna1BurnActiveChA;
+		return antenna1BurnActiveChA;
 	}
 
 	public void setAntenna1BurnActiveChA(boolean antenna1BurnActiveChA) {
-		Antenna1BurnActiveChA = antenna1BurnActiveChA;
+		this.antenna1BurnActiveChA = antenna1BurnActiveChA;
 	}
 
 	public boolean isAntenna2BurnActiveChA() {
-		return Antenna2BurnActiveChA;
+		return antenna2BurnActiveChA;
 	}
 
 	public void setAntenna2BurnActiveChA(boolean antenna2BurnActiveChA) {
-		Antenna2BurnActiveChA = antenna2BurnActiveChA;
+		this.antenna2BurnActiveChA = antenna2BurnActiveChA;
 	}
 
 	public boolean isAntenna3BurnActiveChA() {
-		return Antenna3BurnActiveChA;
+		return antenna3BurnActiveChA;
 	}
 
 	public void setAntenna3BurnActiveChA(boolean antenna3BurnActiveChA) {
-		Antenna3BurnActiveChA = antenna3BurnActiveChA;
+		this.antenna3BurnActiveChA = antenna3BurnActiveChA;
 	}
 
 	public boolean isAntenna4BurnActiveChA() {
-		return Antenna4BurnActiveChA;
+		return antenna4BurnActiveChA;
 	}
 
 	public void setAntenna4BurnActiveChA(boolean antenna4BurnActiveChA) {
-		Antenna4BurnActiveChA = antenna4BurnActiveChA;
+		this.antenna4BurnActiveChA = antenna4BurnActiveChA;
 	}
 
 	public boolean isAntenna1BurnActiveChB() {
-		return Antenna1BurnActiveChB;
+		return antenna1BurnActiveChB;
 	}
 
 	public void setAntenna1BurnActiveChB(boolean antenna1BurnActiveChB) {
-		Antenna1BurnActiveChB = antenna1BurnActiveChB;
+		this.antenna1BurnActiveChB = antenna1BurnActiveChB;
 	}
 
 	public boolean isAntenna2BurnActiveChB() {
-		return Antenna2BurnActiveChB;
+		return antenna2BurnActiveChB;
 	}
 
 	public void setAntenna2BurnActiveChB(boolean antenna2BurnActiveChB) {
-		Antenna2BurnActiveChB = antenna2BurnActiveChB;
+		this.antenna2BurnActiveChB = antenna2BurnActiveChB;
 	}
 
 	public boolean isAntenna3BurnActiveChB() {
-		return Antenna3BurnActiveChB;
+		return antenna3BurnActiveChB;
 	}
 
 	public void setAntenna3BurnActiveChB(boolean antenna3BurnActiveChB) {
-		Antenna3BurnActiveChB = antenna3BurnActiveChB;
+		this.antenna3BurnActiveChB = antenna3BurnActiveChB;
 	}
 
 	public boolean isAntenna4BurnActiveChB() {
-		return Antenna4BurnActiveChB;
+		return antenna4BurnActiveChB;
 	}
 
 	public void setAntenna4BurnActiveChB(boolean antenna4BurnActiveChB) {
-		Antenna4BurnActiveChB = antenna4BurnActiveChB;
+		this.antenna4BurnActiveChB = antenna4BurnActiveChB;
 	}
 
 	public boolean isSystemIndependentBurnChA() {
-		return SystemIndependentBurnChA;
+		return systemIndependentBurnChA;
 	}
 
 	public void setSystemIndependentBurnChA(boolean systemIndependentBurnChA) {
-		SystemIndependentBurnChA = systemIndependentBurnChA;
+		this.systemIndependentBurnChA = systemIndependentBurnChA;
 	}
 
 	public boolean isSystemIndependentBurnChB() {
-		return SystemIndependentBurnChB;
+		return systemIndependentBurnChB;
 	}
 
 	public void setSystemIndependentBurnChB(boolean systemIndependentBurnChB) {
-		SystemIndependentBurnChB = systemIndependentBurnChB;
+		this.systemIndependentBurnChB = systemIndependentBurnChB;
 	}
 
 	public boolean isIgnoringSwitchesChA() {
-		return IgnoringSwitchesChA;
+		return ignoringSwitchesChA;
 	}
 
 	public void setIgnoringSwitchesChA(boolean ignoringSwitchesChA) {
-		IgnoringSwitchesChA = ignoringSwitchesChA;
+		this.ignoringSwitchesChA = ignoringSwitchesChA;
 	}
 
 	public boolean isIgnoringSwitchesChB() {
-		return IgnoringSwitchesChB;
+		return ignoringSwitchesChB;
 	}
 
 	public void setIgnoringSwitchesChB(boolean ignoringSwitchesChB) {
-		IgnoringSwitchesChB = ignoringSwitchesChB;
+		this.ignoringSwitchesChB = ignoringSwitchesChB;
 	}
 
 	public boolean isArmedChA() {
-		return ArmedChA;
+		return armedChA;
 	}
 
 	public void setArmedChA(boolean armedChA) {
-		ArmedChA = armedChA;
+		this.armedChA = armedChA;
 	}
 
 	public boolean isArmedChB() {
-		return ArmedChB;
+		return armedChB;
 	}
 
 	public void setArmedChB(boolean armedChB) {
-		ArmedChB = armedChB;
+		this.armedChB = armedChB;
 	}
 
 	public int getAntenna1ActivationCountChA() {
-		return Antenna1ActivationCountChA;
+		return antenna1ActivationCountChA;
 	}
 
 	public void setAntenna1ActivationCountChA(int antenna1ActivationCountChA) {
-		Antenna1ActivationCountChA = antenna1ActivationCountChA;
+		this.antenna1ActivationCountChA = antenna1ActivationCountChA;
 	}
 
 	public int getAntenna2ActivationCountChA() {
-		return Antenna2ActivationCountChA;
+		return antenna2ActivationCountChA;
 	}
 
 	public void setAntenna2ActivationCountChA(int antenna2ActivationCountChA) {
-		Antenna2ActivationCountChA = antenna2ActivationCountChA;
+		this.antenna2ActivationCountChA = antenna2ActivationCountChA;
 	}
 
 	public int getAntenna3ActivationCountChA() {
-		return Antenna3ActivationCountChA;
+		return antenna3ActivationCountChA;
 	}
 
 	public void setAntenna3ActivationCountChA(int antenna3ActivationCountChA) {
-		Antenna3ActivationCountChA = antenna3ActivationCountChA;
+		this.antenna3ActivationCountChA = antenna3ActivationCountChA;
 	}
 
 	public int getAntenna4ActivationCountChA() {
-		return Antenna4ActivationCountChA;
+		return antenna4ActivationCountChA;
 	}
 
 	public void setAntenna4ActivationCountChA(int antenna4ActivationCountChA) {
-		Antenna4ActivationCountChA = antenna4ActivationCountChA;
+		this.antenna4ActivationCountChA = antenna4ActivationCountChA;
 	}
 
 	public int getAntenna1ActivationCountChB() {
-		return Antenna1ActivationCountChB;
+		return antenna1ActivationCountChB;
 	}
 
 	public void setAntenna1ActivationCountChB(int antenna1ActivationCountChB) {
-		Antenna1ActivationCountChB = antenna1ActivationCountChB;
+		this.antenna1ActivationCountChB = antenna1ActivationCountChB;
 	}
 
 	public int getAntenna2ActivationCountChB() {
-		return Antenna2ActivationCountChB;
+		return antenna2ActivationCountChB;
 	}
 
 	public void setAntenna2ActivationCountChB(int antenna2ActivationCountChB) {
-		Antenna2ActivationCountChB = antenna2ActivationCountChB;
+		this.antenna2ActivationCountChB = antenna2ActivationCountChB;
 	}
 
 	public int getAntenna3ActivationCountChB() {
-		return Antenna3ActivationCountChB;
+		return antenna3ActivationCountChB;
 	}
 
 	public void setAntenna3ActivationCountChB(int antenna3ActivationCountChB) {
-		Antenna3ActivationCountChB = antenna3ActivationCountChB;
+		this.antenna3ActivationCountChB = antenna3ActivationCountChB;
 	}
 
 	public int getAntenna4ActivationCountChB() {
-		return Antenna4ActivationCountChB;
+		return antenna4ActivationCountChB;
 	}
 
 	public void setAntenna4ActivationCountChB(int antenna4ActivationCountChB) {
-		Antenna4ActivationCountChB = antenna4ActivationCountChB;
+		this.antenna4ActivationCountChB = antenna4ActivationCountChB;
 	}
 
 	public int getAntenna1ActivationTimeChA() {
-		return Antenna1ActivationTimeChA;
+		return antenna1ActivationTimeChA;
 	}
 
 	public void setAntenna1ActivationTimeChA(int antenna1ActivationTimeChA) {
-		Antenna1ActivationTimeChA = antenna1ActivationTimeChA;
+		this.antenna1ActivationTimeChA = antenna1ActivationTimeChA;
 	}
 
 	public int getAntenna2ActivationTimeChA() {
-		return Antenna2ActivationTimeChA;
+		return antenna2ActivationTimeChA;
 	}
 
 	public void setAntenna2ActivationTimeChA(int antenna2ActivationTimeChA) {
-		Antenna2ActivationTimeChA = antenna2ActivationTimeChA;
+		this.antenna2ActivationTimeChA = antenna2ActivationTimeChA;
 	}
 
 	public int getAntenna3ActivationTimeChA() {
-		return Antenna3ActivationTimeChA;
+		return antenna3ActivationTimeChA;
 	}
 
 	public void setAntenna3ActivationTimeChA(int antenna3ActivationTimeChA) {
-		Antenna3ActivationTimeChA = antenna3ActivationTimeChA;
+		this.antenna3ActivationTimeChA = antenna3ActivationTimeChA;
 	}
 
 	public int getAntenna4ActivationTimeChA() {
-		return Antenna4ActivationTimeChA;
+		return antenna4ActivationTimeChA;
 	}
 
 	public void setAntenna4ActivationTimeChA(int antenna4ActivationTimeChA) {
-		Antenna4ActivationTimeChA = antenna4ActivationTimeChA;
+		this.antenna4ActivationTimeChA = antenna4ActivationTimeChA;
 	}
 
 	public int getAntenna1ActivationTimeChB() {
-		return Antenna1ActivationTimeChB;
+		return antenna1ActivationTimeChB;
 	}
 
 	public void setAntenna1ActivationTimeChB(int antenna1ActivationTimeChB) {
-		Antenna1ActivationTimeChB = antenna1ActivationTimeChB;
+		this.antenna1ActivationTimeChB = antenna1ActivationTimeChB;
 	}
 
 	public int getAntenna2ActivationTimeChB() {
-		return Antenna2ActivationTimeChB;
+		return antenna2ActivationTimeChB;
 	}
 
 	public void setAntenna2ActivationTimeChB(int antenna2ActivationTimeChB) {
-		Antenna2ActivationTimeChB = antenna2ActivationTimeChB;
+		this.antenna2ActivationTimeChB = antenna2ActivationTimeChB;
 	}
 
 	public int getAntenna3ActivationTimeChB() {
-		return Antenna3ActivationTimeChB;
+		return antenna3ActivationTimeChB;
 	}
 
 	public void setAntenna3ActivationTimeChB(int antenna3ActivationTimeChB) {
-		Antenna3ActivationTimeChB = antenna3ActivationTimeChB;
+		this.antenna3ActivationTimeChB = antenna3ActivationTimeChB;
 	}
 
 	public int getAntenna4ActivationTimeChB() {
-		return Antenna4ActivationTimeChB;
+		return antenna4ActivationTimeChB;
 	}
 
 	public void setAntenna4ActivationTimeChB(int antenna4ActivationTimeChB) {
-		Antenna4ActivationTimeChB = antenna4ActivationTimeChB;
+		this.antenna4ActivationTimeChB = antenna4ActivationTimeChB;
 	}
 
 	public ExperimentType getExperimentType() {
@@ -1334,404 +1334,404 @@ public class BeaconFrame {
 		this.sailDeployed = sailDeployed;
 	}
 
-	public float getMCUTemperature() {
-		return MCUTemperature;
+	public float getMcuTemperature() {
+		return mcuTemperature;
 	}
 
-	public void setMCUTemperature(float mCUTemperature) {
-		MCUTemperature = mCUTemperature;
+	public void setMcuTemperature(float mcuTemperature) {
+		this.mcuTemperature = mcuTemperature;
 	}
 
-	public float getMPPT_XSOL_VOLT() {
-		return MPPT_XSOL_VOLT;
+	public float getMpptXSolVolt() {
+		return mpptXSolVolt;
 	}
 
-	public void setMPPT_XSOL_VOLT(float mPPT_XSOL_VOLT) {
-		MPPT_XSOL_VOLT = mPPT_XSOL_VOLT;
+	public void setMpptXSolVolt(float mpptXSolVolt) {
+		this.mpptXSolVolt = mpptXSolVolt;
 	}
 
-	public float getMPPT_XSOL_CURR() {
-		return MPPT_XSOL_CURR;
+	public float getMpptXSolCurr() {
+		return mpptXSolCurr;
 	}
 
-	public void setMPPT_XSOL_CURR(float mPPT_XSOL_CURR) {
-		MPPT_XSOL_CURR = mPPT_XSOL_CURR;
+	public void setMpptXSolCurr(float mpptXSolCurr) {
+		this.mpptXSolCurr = mpptXSolCurr;
 	}
 
-	public float getMPPT_XSOL_OUT_VOLT() {
-		return MPPT_XSOL_OUT_VOLT;
+	public float getMpptXSolOutVolt() {
+		return mpptXSolOutVolt;
 	}
 
-	public void setMPPT_XSOL_OUT_VOLT(float mPPT_XSOL_OUT_VOLT) {
-		MPPT_XSOL_OUT_VOLT = mPPT_XSOL_OUT_VOLT;
+	public void setMpptXSolOutVolt(float mpptXSolOutVolt) {
+		this.mpptXSolOutVolt = mpptXSolOutVolt;
 	}
 
-	public float getMPPT_XTemperature() {
-		return MPPT_XTemperature;
+	public float getMpptXTemperature() {
+		return mpptXTemperature;
 	}
 
-	public void setMPPT_XTemperature(float mPPT_XTemperature) {
-		MPPT_XTemperature = mPPT_XTemperature;
+	public void setMpptXTemperature(float mpptXTemperature) {
+		this.mpptXTemperature = mpptXTemperature;
 	}
 
-	public int getMPPT_XState() {
-		return MPPT_XState;
+	public int getMpptXState() {
+		return mpptXState;
 	}
 
-	public void setMPPT_XState(int mPPT_XState) {
-		MPPT_XState = mPPT_XState;
+	public void setMpptXState(int mpptXState) {
+		this.mpptXState = mpptXState;
 	}
 
-	public float getMPPT_YPSOL_VOLT() {
-		return MPPT_YPSOL_VOLT;
+	public float getMpptYSolVolt() {
+		return mpptYSolVolt;
 	}
 
-	public void setMPPT_YPSOL_VOLT(float mPPT_YPSOL_VOLT) {
-		MPPT_YPSOL_VOLT = mPPT_YPSOL_VOLT;
+	public void setMpptYSolVolt(float mpptYSolVolt) {
+		this.mpptYSolVolt = mpptYSolVolt;
 	}
 
-	public float getMPPT_YPSOL_CURR() {
-		return MPPT_YPSOL_CURR;
+	public float getMpptYPSolCurr() {
+		return mpptYPSolCurr;
 	}
 
-	public void setMPPT_YPSOL_CURR(float mPPT_YPSOL_CURR) {
-		MPPT_YPSOL_CURR = mPPT_YPSOL_CURR;
+	public void setMpptYPSolCurr(float mpptYPSolCurr) {
+		this.mpptYPSolCurr = mpptYPSolCurr;
 	}
 
-	public float getMPPT_YPSOL_OUT_VOLT() {
-		return MPPT_YPSOL_OUT_VOLT;
+	public float getMpptYPSolOutVolt() {
+		return mpptYPSolOutVolt;
 	}
 
-	public void setMPPT_YPSOL_OUT_VOLT(float mPPT_YPSOL_OUT_VOLT) {
-		MPPT_YPSOL_OUT_VOLT = mPPT_YPSOL_OUT_VOLT;
+	public void setMpptYPSolOutVolt(float mpptYPSolOutVolt) {
+		this.mpptYPSolOutVolt = mpptYPSolOutVolt;
 	}
 
-	public float getMPPT_YPTemperature() {
-		return MPPT_YPTemperature;
+	public float getMpptYPTemperature() {
+		return mpptYPTemperature;
 	}
 
-	public void setMPPT_YPTemperature(float mPPT_YPTemperature) {
-		MPPT_YPTemperature = mPPT_YPTemperature;
+	public void setMpptYPTemperature(float mpptYPTemperature) {
+		this.mpptYPTemperature = mpptYPTemperature;
 	}
 
-	public int getMPPT_YPState() {
-		return MPPT_YPState;
+	public int getMpptYPState() {
+		return mpptYPState;
 	}
 
-	public void setMPPT_YPState(int mPPT_YPState) {
-		MPPT_YPState = mPPT_YPState;
+	public void setMpptYPState(int mpptYPState) {
+		this.mpptYPState = mpptYPState;
 	}
 
-	public float getMPPT_YMSOL_VOLT() {
-		return MPPT_YMSOL_VOLT;
+	public float getMpptYMSolVolt() {
+		return mpptYMSolVolt;
 	}
 
-	public void setMPPT_YMSOL_VOLT(float mPPT_YMSOL_VOLT) {
-		MPPT_YMSOL_VOLT = mPPT_YMSOL_VOLT;
+	public void setMpptYMSolVolt(float mpptYMSolVolt) {
+		this.mpptYMSolVolt = mpptYMSolVolt;
 	}
 
-	public float getMPPT_YMSOL_CURR() {
-		return MPPT_YMSOL_CURR;
+	public float getMpptYMSolCurr() {
+		return mpptYMSolCurr;
 	}
 
-	public void setMPPT_YMSOL_CURR(float mPPT_YMSOL_CURR) {
-		MPPT_YMSOL_CURR = mPPT_YMSOL_CURR;
+	public void setMpptYMSolCurr(float mpptYMSolCurr) {
+		this.mpptYMSolCurr = mpptYMSolCurr;
 	}
 
-	public float getMPPT_YMSOL_OUT_VOLT() {
-		return MPPT_YMSOL_OUT_VOLT;
+	public float getMpptYMSolOutVolt() {
+		return mpptYMSolOutVolt;
 	}
 
-	public void setMPPT_YMSOL_OUT_VOLT(float mPPT_YMSOL_OUT_VOLT) {
-		MPPT_YMSOL_OUT_VOLT = mPPT_YMSOL_OUT_VOLT;
+	public void setMpptYMSolOutVolt(float mpptYMSolOutVolt) {
+		this.mpptYMSolOutVolt = mpptYMSolOutVolt;
 	}
 
-	public float getMPPT_YMTemperature() {
-		return MPPT_YMTemperature;
+	public float getMpptYMTemperature() {
+		return mpptYMTemperature;
 	}
 
-	public void setMPPT_YMTemperature(float mPPT_YMTemperature) {
-		MPPT_YMTemperature = mPPT_YMTemperature;
+	public void setMpptYMTemperature(float mpptYMTemperature) {
+		this.mpptYMTemperature = mpptYMTemperature;
 	}
 
-	public float getMPPT_YMState() {
-		return MPPT_YMState;
+	public float getMpptYMState() {
+		return mpptYMState;
 	}
 
-	public void setMPPT_YMState(float mPPT_YMState) {
-		MPPT_YMState = mPPT_YMState;
+	public void setMpptYMState(float mpptYMState) {
+		this.mpptYMState = mpptYMState;
 	}
 
-	public float getDISTRVOLT_3V3() {
-		return DISTRVOLT_3V3;
+	public float getDistrVolt3V3() {
+		return distrVolt3V3;
 	}
 
-	public void setDISTRVOLT_3V3(float dISTRVOLT_3V3) {
-		DISTRVOLT_3V3 = dISTRVOLT_3V3;
+	public void setDistrVolt3V3(float distrVolt3V3) {
+		this.distrVolt3V3 = distrVolt3V3;
 	}
 
-	public float getDISTRCURR_3V3() {
-		return DISTRCURR_3V3;
+	public float getDistrCurr3V3() {
+		return distrCurr3V3;
 	}
 
-	public void setDISTRCURR_3V3(float dISTRCURR_3V3) {
-		DISTRCURR_3V3 = dISTRCURR_3V3;
+	public void setDistrCurr3V3(float distrCurr3V3) {
+		this.distrCurr3V3 = distrCurr3V3;
 	}
 
-	public float getDISTRVOLT_5V() {
-		return DISTRVOLT_5V;
+	public float getDistrVolt5V() {
+		return distrVolt5V;
 	}
 
-	public void setDISTRVOLT_5V(float dISTRVOLT_5V) {
-		DISTRVOLT_5V = dISTRVOLT_5V;
+	public void setDistrVolt5V(float distrVolt5V) {
+		this.distrVolt5V = distrVolt5V;
 	}
 
-	public float getDISTRCURR_5V() {
-		return DISTRCURR_5V;
+	public float getDistrCurr5V() {
+		return distrCurr5V;
 	}
 
-	public void setDISTRCURR_5V(float dISTRCURR_5V) {
-		DISTRCURR_5V = dISTRCURR_5V;
+	public void setDistrCurr5V(float distrCurr5V) {
+		this.distrCurr5V = distrCurr5V;
 	}
 
-	public float getDISTRVOLT_VBAT() {
-		return DISTRVOLT_VBAT;
+	public float getDistrVoltVbat() {
+		return distrVoltVbat;
 	}
 
-	public void setDISTRVOLT_VBAT(float dISTRVOLT_VBAT) {
-		DISTRVOLT_VBAT = dISTRVOLT_VBAT;
+	public void setDistrVoltVbat(float distrVoltVbat) {
+		this.distrVoltVbat = distrVoltVbat;
 	}
 
-	public float getDISTRCURR_VBAT() {
-		return DISTRCURR_VBAT;
+	public float getDistrCurrVbat() {
+		return distrCurrVbat;
 	}
 
-	public void setDISTRCURR_VBAT(float dISTRCURR_VBAT) {
-		DISTRCURR_VBAT = dISTRCURR_VBAT;
+	public void setDistrCurrVbat(float distrCurrVbat) {
+		this.distrCurrVbat = distrCurrVbat;
 	}
 
-	public int getDISTRLCL_STATE() {
-		return DISTRLCL_STATE;
+	public int getDistrLCLState() {
+		return distrLCLState;
 	}
 
-	public void setDISTRLCL_STATE(int dISTRLCL_STATE) {
-		DISTRLCL_STATE = dISTRLCL_STATE;
+	public void setDistrLCLState(int distrLCLState) {
+		this.distrLCLState = distrLCLState;
 	}
 
-	public int getDISTRLCL_FLAGS() {
-		return DISTRLCL_FLAGS;
+	public int getDistrLCLFlags() {
+		return distrLCLFlags;
 	}
 
-	public void setDISTRLCL_FLAGS(int dISTRLCL_FLAGS) {
-		DISTRLCL_FLAGS = dISTRLCL_FLAGS;
+	public void setDistrLCLFlags(int distrLCLFlags) {
+		this.distrLCLFlags = distrLCLFlags;
 	}
 
-	public float getBATCVOLT_A() {
-		return BATCVOLT_A;
+	public float getBatcVoltA() {
+		return batcVoltA;
 	}
 
-	public void setBATCVOLT_A(float bATCVOLT_A) {
-		BATCVOLT_A = bATCVOLT_A;
+	public void setBatcVoltA(float batcVoltA) {
+		this.batcVoltA = batcVoltA;
 	}
 
-	public float getBATCCHRG_CURR() {
-		return BATCCHRG_CURR;
+	public float getBatcChrgCurr() {
+		return batcChrgCurr;
 	}
 
-	public void setBATCCHRG_CURR(float bATCCHRG_CURR) {
-		BATCCHRG_CURR = bATCCHRG_CURR;
+	public void setBatcChrgCurr(float batcChrgCurr) {
+		this.batcChrgCurr = batcChrgCurr;
 	}
 
-	public float getBATCDCHRG_CURR() {
-		return BATCDCHRG_CURR;
+	public float getBatcDchrgCurr() {
+		return batcDchrgCurr;
 	}
 
-	public void setBATCDCHRG_CURR(float bATCDCHRG_CURR) {
-		BATCDCHRG_CURR = bATCDCHRG_CURR;
+	public void setBatcDchrgCurr(float batcDchrgCurr) {
+		this.batcDchrgCurr = batcDchrgCurr;
 	}
 
-	public float getBATCTemperature() {
-		return BATCTemperature;
+	public float getBatcTemperature() {
+		return batcTemperature;
 	}
 
-	public void setBATCTemperature(float bATCTemperature) {
-		BATCTemperature = bATCTemperature;
+	public void setBatcTemperature(float batcTemperature) {
+		this.batcTemperature = batcTemperature;
 	}
 
-	public int getBATCState() {
-		return BATCState;
+	public int getBatcState() {
+		return batcState;
 	}
 
-	public void setBATCState(int bATCState) {
-		BATCState = bATCState;
+	public void setBatcState(int batcState) {
+		this.batcState = batcState;
 	}
 
-	public float getBPTemperatureA() {
-		return BPTemperatureA;
+	public float getBpTemperatureA() {
+		return bpTemperatureA;
 	}
 
-	public void setBPTemperatureA(float bPTemperatureA) {
-		BPTemperatureA = bPTemperatureA;
+	public void setBpTemperatureA(float bpTemperatureA) {
+		this.bpTemperatureA = bpTemperatureA;
 	}
 
-	public float getBPTemperatureB() {
-		return BPTemperatureB;
+	public float getBpTemperatureB() {
+		return bpTemperatureB;
 	}
 
-	public void setBPTemperatureB(float bPTemperatureB) {
-		BPTemperatureB = bPTemperatureB;
+	public void setBpTemperatureB(float bpTemperatureB) {
+		this.bpTemperatureB = bpTemperatureB;
 	}
 
 	public int getSafetyCounterA() {
-		return SafetyCounterA;
+		return safetyCounterA;
 	}
 
 	public void setSafetyCounterA(int safetyCounterA) {
-		SafetyCounterA = safetyCounterA;
+		this.safetyCounterA = safetyCounterA;
 	}
 
 	public int getPowerCycleCountA() {
-		return PowerCycleCountA;
+		return powerCycleCountA;
 	}
 
 	public void setPowerCycleCountA(int powerCycleCountA) {
-		PowerCycleCountA = powerCycleCountA;
+		this.powerCycleCountA = powerCycleCountA;
 	}
 
 	public long getUptimeA() {
-		return UptimeA;
+		return uptimeA;
 	}
 
 	public void setUptimeA(long uptimeA) {
-		UptimeA = uptimeA;
+		this.uptimeA = uptimeA;
 	}
 
 	public float getTemperatureA() {
-		return TemperatureA;
+		return temperatureA;
 	}
 
 	public void setTemperatureA(float temperatureA) {
-		TemperatureA = temperatureA;
+		this.temperatureA = temperatureA;
 	}
 
-	public float getSUPP_TEMPA() {
-		return SUPP_TEMPA;
+	public float getSuppTempA() {
+		return suppTempA;
 	}
 
-	public void setSUPP_TEMPA(float sUPP_TEMPA) {
-		SUPP_TEMPA = sUPP_TEMPA;
+	public void setSuppTempA(float suppTempA) {
+		this.suppTempA = suppTempA;
 	}
 
 	public float getControllerB3V3dA() {
-		return ControllerB3V3dA;
+		return controllerB3V3dA;
 	}
 
 	public void setControllerB3V3dA(float controllerB3V3dA) {
-		ControllerB3V3dA = controllerB3V3dA;
+		this.controllerB3V3dA = controllerB3V3dA;
 	}
 
-	public float getDCDC3V3Temperature() {
-		return DCDC3V3Temperature;
+	public float getDcdc3V3Temperature() {
+		return dcdc3V3Temperature;
 	}
 
-	public void setDCDC3V3Temperature(float dCDC3V3Temperature) {
-		DCDC3V3Temperature = dCDC3V3Temperature;
+	public void setDcdc3V3Temperature(float dcdc3v3Temperature) {
+		dcdc3V3Temperature = dcdc3v3Temperature;
 	}
 
-	public float getDCDC5VTemperature() {
-		return DCDC5VTemperature;
+	public float getDcdc5VTemperature() {
+		return dcdc5VTemperature;
 	}
 
-	public void setDCDC5VTemperature(float dCDC5VTemperature) {
-		DCDC5VTemperature = dCDC5VTemperature;
+	public void setDcdc5VTemperature(float dcdc5vTemperature) {
+		dcdc5VTemperature = dcdc5vTemperature;
 	}
 
-	public float getBPTemperature() {
-		return BPTemperature;
+	public float getBpTemperature() {
+		return bpTemperature;
 	}
 
-	public void setBPTemperature(float bPTemperature) {
-		BPTemperature = bPTemperature;
+	public void setBpTemperature(float bpTemperature) {
+		this.bpTemperature = bpTemperature;
 	}
 
-	public float getBATCVOLT_B() {
-		return BATCVOLT_B;
+	public float getBatcVoltB() {
+		return batcVoltB;
 	}
 
-	public void setBATCVOLT_B(float bATCVOLT_B) {
-		BATCVOLT_B = bATCVOLT_B;
+	public void setBatcVoltB(float batcVoltB) {
+		this.batcVoltB = batcVoltB;
 	}
 
 	public int getSafetyCounterB() {
-		return SafetyCounterB;
+		return safetyCounterB;
 	}
 
 	public void setSafetyCounterB(int safetyCounterB) {
-		SafetyCounterB = safetyCounterB;
+		this.safetyCounterB = safetyCounterB;
 	}
 
 	public int getPowerCycleCountB() {
-		return PowerCycleCountB;
+		return powerCycleCountB;
 	}
 
 	public void setPowerCycleCountB(int powerCycleCountB) {
-		PowerCycleCountB = powerCycleCountB;
+		this.powerCycleCountB = powerCycleCountB;
 	}
 
 	public long getUptimeB() {
-		return UptimeB;
+		return uptimeB;
 	}
 
 	public void setUptimeB(long uptimeB) {
-		UptimeB = uptimeB;
+		this.uptimeB = uptimeB;
 	}
 
 	public float getTemperatureB() {
-		return TemperatureB;
+		return temperatureB;
 	}
 
 	public void setTemperatureB(float temperatureB) {
-		TemperatureB = temperatureB;
+		this.temperatureB = temperatureB;
 	}
 
-	public float getSUPP_TEMPB() {
-		return SUPP_TEMPB;
+	public float getSuppTempB() {
+		return suppTempB;
 	}
 
-	public void setSUPP_TEMPB(float sUPP_TEMPB) {
-		SUPP_TEMPB = sUPP_TEMPB;
+	public void setSuppTempB(float suppTempB) {
+		this.suppTempB = suppTempB;
 	}
 
 	public float getControllerA3V3dB() {
-		return ControllerA3V3dB;
+		return controllerA3V3dB;
 	}
 
 	public void setControllerA3V3dB(float controllerA3V3dB) {
-		ControllerA3V3dB = controllerA3V3dB;
+		this.controllerA3V3dB = controllerA3V3dB;
 	}
 
 	public float getMagnetometerMeasurement1() {
-		return MagnetometerMeasurement1;
+		return magnetometerMeasurement1;
 	}
 
 	public void setMagnetometerMeasurement1(float magnetometerMeasurement1) {
-		MagnetometerMeasurement1 = magnetometerMeasurement1;
+		this.magnetometerMeasurement1 = magnetometerMeasurement1;
 	}
 
 	public float getMagnetometerMeasurement2() {
-		return MagnetometerMeasurement2;
+		return magnetometerMeasurement2;
 	}
 
 	public void setMagnetometerMeasurement2(float magnetometerMeasurement2) {
-		MagnetometerMeasurement2 = magnetometerMeasurement2;
+		this.magnetometerMeasurement2 = magnetometerMeasurement2;
 	}
 
 	public float getMagnetometerMeasurement3() {
-		return MagnetometerMeasurement3;
+		return magnetometerMeasurement3;
 	}
 
 	public void setMagnetometerMeasurement3(float magnetometerMeasurement3) {
-		MagnetometerMeasurement3 = magnetometerMeasurement3;
+		this.magnetometerMeasurement3 = magnetometerMeasurement3;
 	}
 
 	public boolean isCoilsActiveDuringMeasurement() {
@@ -1742,244 +1742,244 @@ public class BeaconFrame {
 		this.coilsActiveDuringMeasurement = coilsActiveDuringMeasurement;
 	}
 
-	public float getIMTQDipole1() {
-		return IMTQDipole1;
+	public float getImtqDipole1() {
+		return imtqDipole1;
 	}
 
-	public void setIMTQDipole1(float iMTQDipole1) {
-		IMTQDipole1 = iMTQDipole1;
+	public void setImtqDipole1(float imtqDipole1) {
+		this.imtqDipole1 = imtqDipole1;
 	}
 
-	public float getIMTQDipole2() {
-		return IMTQDipole2;
+	public float getImtqDipole2() {
+		return imtqDipole2;
 	}
 
-	public void setIMTQDipole2(float iMTQDipole2) {
-		IMTQDipole2 = iMTQDipole2;
+	public void setImtqDipole2(float imtqDipole2) {
+		this.imtqDipole2 = imtqDipole2;
 	}
 
-	public float getIMTQDipole3() {
-		return IMTQDipole3;
+	public float getImtqDipole3() {
+		return imtqDipole3;
 	}
 
-	public void setIMTQDipole3(float iMTQDipole3) {
-		IMTQDipole3 = iMTQDipole3;
+	public void setImtqDipole3(float imtqDipole3) {
+		this.imtqDipole3 = imtqDipole3;
 	}
 
-	public float getIMTQBDot1() {
-		return IMTQBDot1;
+	public float getImtqBDot1() {
+		return imtqBDot1;
 	}
 
-	public void setIMTQBDot1(float iMTQBDot1) {
-		IMTQBDot1 = iMTQBDot1;
+	public void setImtqBDot1(float imtqBDot1) {
+		this.imtqBDot1 = imtqBDot1;
 	}
 
-	public float getIMTQBDot2() {
-		return IMTQBDot2;
+	public float getImtqBDot2() {
+		return imtqBDot2;
 	}
 
-	public void setIMTQBDot2(float iMTQBDot2) {
-		IMTQBDot2 = iMTQBDot2;
+	public void setImtqBDot2(float imtqBDot2) {
+		this.imtqBDot2 = imtqBDot2;
 	}
 
-	public float getIMTQBDot3() {
-		return IMTQBDot3;
+	public float getImtqBDot3() {
+		return imtqBDot3;
 	}
 
-	public void setIMTQBDot3(float iMTQBDot3) {
-		IMTQBDot3 = iMTQBDot3;
+	public void setImtqBDot3(float imtqBDot3) {
+		this.imtqBDot3 = imtqBDot3;
 	}
 
-	public float getIMTQDigitalVoltage() {
-		return IMTQDigitalVoltage;
+	public float getImtqDigitalVoltage() {
+		return imtqDigitalVoltage;
 	}
 
-	public void setIMTQDigitalVoltage(float iMTQDigitalVoltage) {
-		IMTQDigitalVoltage = iMTQDigitalVoltage;
+	public void setImtqDigitalVoltage(float imtqDigitalVoltage) {
+		this.imtqDigitalVoltage = imtqDigitalVoltage;
 	}
 
-	public float getIMTQAnalogVoltage() {
-		return IMTQAnalogVoltage;
+	public float getImtqAnalogVoltage() {
+		return imtqAnalogVoltage;
 	}
 
-	public void setIMTQAnalogVoltage(float iMTQAnalogVoltage) {
-		IMTQAnalogVoltage = iMTQAnalogVoltage;
+	public void setImtqAnalogVoltage(float imtqAnalogVoltage) {
+		this.imtqAnalogVoltage = imtqAnalogVoltage;
 	}
 
-	public float getIMTQDigitalCurrent() {
-		return IMTQDigitalCurrent;
+	public float getImtqDigitalCurrent() {
+		return imtqDigitalCurrent;
 	}
 
-	public void setIMTQDigitalCurrent(float iMTQDigitalCurrent) {
-		IMTQDigitalCurrent = iMTQDigitalCurrent;
+	public void setImtqDigitalCurrent(float imtqDigitalCurrent) {
+		this.imtqDigitalCurrent = imtqDigitalCurrent;
 	}
 
-	public float getIMTQAnalogCurrent() {
-		return IMTQAnalogCurrent;
+	public float getImtqAnalogCurrent() {
+		return imtqAnalogCurrent;
 	}
 
-	public void setIMTQAnalogCurrent(float iMTQAnalogCurrent) {
-		IMTQAnalogCurrent = iMTQAnalogCurrent;
+	public void setImtqAnalogCurrent(float imtqAnalogCurrent) {
+		this.imtqAnalogCurrent = imtqAnalogCurrent;
 	}
 
-	public short getIMTQMCUTemperature() {
-		return IMTQMCUTemperature;
+	public short getImtqMCUTemperature() {
+		return imtqMCUTemperature;
 	}
 
-	public void setIMTQMCUTemperature(short iMTQMCUTemperature) {
-		IMTQMCUTemperature = iMTQMCUTemperature;
+	public void setImtqMCUTemperature(short imtqMCUTemperature) {
+		this.imtqMCUTemperature = imtqMCUTemperature;
 	}
 
-	public float getIMTQCoilCurrent1() {
-		return IMTQCoilCurrent1;
+	public float getImtqCoilCurrent1() {
+		return imtqCoilCurrent1;
 	}
 
-	public void setIMTQCoilCurrent1(float iMTQCoilCurrent1) {
-		IMTQCoilCurrent1 = iMTQCoilCurrent1;
+	public void setImtqCoilCurrent1(float imtqCoilCurrent1) {
+		this.imtqCoilCurrent1 = imtqCoilCurrent1;
 	}
 
-	public float getIMTQCoilCurrent2() {
-		return IMTQCoilCurrent2;
+	public float getImtqCoilCurrent2() {
+		return imtqCoilCurrent2;
 	}
 
-	public void setIMTQCoilCurrent2(float iMTQCoilCurrent2) {
-		IMTQCoilCurrent2 = iMTQCoilCurrent2;
+	public void setImtqCoilCurrent2(float imtqCoilCurrent2) {
+		this.imtqCoilCurrent2 = imtqCoilCurrent2;
 	}
 
-	public float getIMTQCoilCurrent3() {
-		return IMTQCoilCurrent3;
+	public float getImtqCoilCurrent3() {
+		return imtqCoilCurrent3;
 	}
 
-	public void setIMTQCoilCurrent3(float iMTQCoilCurrent3) {
-		IMTQCoilCurrent3 = iMTQCoilCurrent3;
+	public void setImtqCoilCurrent3(float imtqCoilCurrent3) {
+		this.imtqCoilCurrent3 = imtqCoilCurrent3;
 	}
 
-	public short getIMTQCoilTemperature1() {
-		return IMTQCoilTemperature1;
+	public short getImtqCoilTemperature1() {
+		return imtqCoilTemperature1;
 	}
 
-	public void setIMTQCoilTemperature1(short iMTQCoilTemperature1) {
-		IMTQCoilTemperature1 = iMTQCoilTemperature1;
+	public void setImtqCoilTemperature1(short imtqCoilTemperature1) {
+		this.imtqCoilTemperature1 = imtqCoilTemperature1;
 	}
 
-	public short getIMTQCoilTemperature2() {
-		return IMTQCoilTemperature2;
+	public short getImtqCoilTemperature2() {
+		return imtqCoilTemperature2;
 	}
 
-	public void setIMTQCoilTemperature2(short iMTQCoilTemperature2) {
-		IMTQCoilTemperature2 = iMTQCoilTemperature2;
+	public void setImtqCoilTemperature2(short imtqCoilTemperature2) {
+		this.imtqCoilTemperature2 = imtqCoilTemperature2;
 	}
 
-	public short getIMTQCoilTemperature3() {
-		return IMTQCoilTemperature3;
+	public short getImtqCoilTemperature3() {
+		return imtqCoilTemperature3;
 	}
 
-	public void setIMTQCoilTemperature3(short iMTQCoilTemperature3) {
-		IMTQCoilTemperature3 = iMTQCoilTemperature3;
+	public void setImtqCoilTemperature3(short imtqCoilTemperature3) {
+		this.imtqCoilTemperature3 = imtqCoilTemperature3;
 	}
 
-	public int getIMTQStatus() {
-		return IMTQStatus;
+	public int getImtqStatus() {
+		return imtqStatus;
 	}
 
-	public void setIMTQStatus(int iMTQStatus) {
-		IMTQStatus = iMTQStatus;
+	public void setImtqStatus(int imtqStatus) {
+		this.imtqStatus = imtqStatus;
 	}
 
-	public int getIMTQMode() {
-		return IMTQMode;
+	public int getImtqMode() {
+		return imtqMode;
 	}
 
-	public void setIMTQMode(int iMTQMode) {
-		IMTQMode = iMTQMode;
+	public void setImtqMode(int imtqMode) {
+		this.imtqMode = imtqMode;
 	}
 
-	public boolean isIMTQErrorDuringPreviousIteration() {
-		return IMTQErrorDuringPreviousIteration;
+	public boolean isImtqErrorDuringPreviousIteration() {
+		return imtqErrorDuringPreviousIteration;
 	}
 
-	public void setIMTQErrorDuringPreviousIteration(boolean iMTQErrorDuringPreviousIteration) {
-		IMTQErrorDuringPreviousIteration = iMTQErrorDuringPreviousIteration;
+	public void setImtqErrorDuringPreviousIteration(boolean imtqErrorDuringPreviousIteration) {
+		this.imtqErrorDuringPreviousIteration = imtqErrorDuringPreviousIteration;
 	}
 
-	public boolean isIMTQConfigurationChanged() {
-		return IMTQConfigurationChanged;
+	public boolean isImtqConfigurationChanged() {
+		return imtqConfigurationChanged;
 	}
 
-	public void setIMTQConfigurationChanged(boolean iMTQConfigurationChanged) {
-		IMTQConfigurationChanged = iMTQConfigurationChanged;
+	public void setImtqConfigurationChanged(boolean imtqConfigurationChanged) {
+		this.imtqConfigurationChanged = imtqConfigurationChanged;
 	}
 
-	public long getIMTQUptime() {
-		return IMTQUptime;
+	public long getImtqUptime() {
+		return imtqUptime;
 	}
 
-	public void setIMTQUptime(long iMTQUptime) {
-		IMTQUptime = iMTQUptime;
+	public void setImtqUptime(long imtqUptime) {
+		this.imtqUptime = imtqUptime;
 	}
 
-	public int getIMTQError1() {
-		return IMTQError1;
+	public int getImtqError1() {
+		return imtqError1;
 	}
 
-	public void setIMTQError1(int iMTQError1) {
-		IMTQError1 = iMTQError1;
+	public void setImtqError1(int imtqError1) {
+		this.imtqError1 = imtqError1;
 	}
 
-	public int getIMTQError2() {
-		return IMTQError2;
+	public int getImtqError2() {
+		return imtqError2;
 	}
 
-	public void setIMTQError2(int iMTQError2) {
-		IMTQError2 = iMTQError2;
+	public void setImtqError2(int imtqError2) {
+		this.imtqError2 = imtqError2;
 	}
 
-	public int getIMTQError3() {
-		return IMTQError3;
+	public int getImtqError3() {
+		return imtqError3;
 	}
 
-	public void setIMTQError3(int iMTQError3) {
-		IMTQError3 = iMTQError3;
+	public void setImtqError3(int imtqError3) {
+		this.imtqError3 = imtqError3;
 	}
 
-	public int getIMTQError4() {
-		return IMTQError4;
+	public int getImtqError4() {
+		return imtqError4;
 	}
 
-	public void setIMTQError4(int iMTQError4) {
-		IMTQError4 = iMTQError4;
+	public void setImtqError4(int imtqError4) {
+		this.imtqError4 = imtqError4;
 	}
 
-	public int getIMTQError5() {
-		return IMTQError5;
+	public int getImtqError5() {
+		return imtqError5;
 	}
 
-	public void setIMTQError5(int iMTQError5) {
-		IMTQError5 = iMTQError5;
+	public void setImtqError5(int imtqError5) {
+		this.imtqError5 = imtqError5;
 	}
 
-	public int getIMTQError6() {
-		return IMTQError6;
+	public int getImtqError6() {
+		return imtqError6;
 	}
 
-	public void setIMTQError6(int iMTQError6) {
-		IMTQError6 = iMTQError6;
+	public void setImtqError6(int imtqError6) {
+		this.imtqError6 = imtqError6;
 	}
 
-	public int getIMTQError7() {
-		return IMTQError7;
+	public int getImtqError7() {
+		return imtqError7;
 	}
 
-	public void setIMTQError7(int iMTQError7) {
-		IMTQError7 = iMTQError7;
+	public void setImtqError7(int imtqError7) {
+		this.imtqError7 = imtqError7;
 	}
 
-	public int getIMTQError8() {
-		return IMTQError8;
+	public int getImtqError8() {
+		return imtqError8;
 	}
 
-	public void setIMTQError8(int iMTQError8) {
-		IMTQError8 = iMTQError8;
+	public void setImtqError8(int imtqError8) {
+		this.imtqError8 = imtqError8;
 	}
 
 }
