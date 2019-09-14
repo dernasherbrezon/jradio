@@ -22,7 +22,7 @@
       1,
       2
     ],
-    "bootReason": "UnregulatedBrownOut",
+    "bootReason": "UNREGULATED_BROWN_OUT",
     "programCRC": 14274,
     "missionTimeMillis": 21568667180,
     "externalTimeSeconds": 946789088,

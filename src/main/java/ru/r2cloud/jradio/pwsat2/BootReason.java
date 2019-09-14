@@ -2,56 +2,56 @@ package ru.r2cloud.jradio.pwsat2;
 
 public enum BootReason {
 
-	PowerOnReset, UnregulatedBrownOut, RegulatedBrownOut, ExternalReset, WatchdogReset, LockupReset, SystemRequestReset, WokenUpFromEM4, WokenUpFromEM4ByPin, BrownOutOnAnalogPower0, BrownOutOnAnalogPower1, BrownOutByBackupBODonVDD_DREG, BrownOutByBackupBODonBU_VIN, BrownOutByBackupBODOnUnregulatedPower, BrownOutByBackupBODOnRegulatedPower, WokenFromBackupMode;
+	POWER_ON_RESET, UNREGULATED_BROWN_OUT, REGULATED_BROWN_OUT, EXTERNAL_RESET, WATCHDOG_RESET, LOCKUP_RESET, SYSTEM_REQUEST_RESET, WOKEN_UP_FROM_EM4, WOKEN_UP_FROM_EM4_BY_PIN, BROWN_OUT_ON_ANALOG_POWER0, BROWN_OUT_ON_ANALOG_POWER1, BROWN_OUT_BY_BACKUP_BODON_VDD_DREG, BROWN_OUT_BY_BACKUP_BODONBU_VIN, BROWN_OUT_BY_BACKUP_BODON_UNREGULATED_POWER, BROWN_OUT_BY_BACKUP_BODON_REGULATED_POWER, WOKEN_FROM_BACKUP_MODE;
 
 	public static BootReason valueOfCode(int raw) {
 		if ((raw & 0b1) == 0b1) {
-			return PowerOnReset;
+			return POWER_ON_RESET;
 		}
 		if ((raw & 0b0000000010000011) == 0b0000000000000010) {
-			return UnregulatedBrownOut;
+			return UNREGULATED_BROWN_OUT;
 		}
 		if ((raw & 0b0000000000011111) == 0b0000000000000100) {
-			return RegulatedBrownOut;
+			return REGULATED_BROWN_OUT;
 		}
 		if ((raw & 0b0000000000001011) == 0b0000000000001000) {
-			return ExternalReset;
+			return EXTERNAL_RESET;
 		}
 		if ((raw & 0b0000000000010011) == 0b0000000000010000) {
-			return WatchdogReset;
+			return WATCHDOG_RESET;
 		}
 		if ((raw & 0b0000011111111111) == 0b0000000000100000) {
-			return LockupReset;
+			return LOCKUP_RESET;
 		}
 		if ((raw & 0b0000011111011111) == 0b0000000001000000) {
-			return SystemRequestReset;
+			return SYSTEM_REQUEST_RESET;
 		}
 		if ((raw & 0b0000011110011001) == 0b0000000010000000) {
-			return WokenUpFromEM4;
+			return WOKEN_UP_FROM_EM4;
 		}
 		if ((raw & 0b0000011110011001) == 0b0000000110000000) {
-			return WokenUpFromEM4ByPin;
+			return WOKEN_UP_FROM_EM4_BY_PIN;
 		}
 		if ((raw & 0b0000011000011111) == 0b0000001000000000) {
-			return BrownOutOnAnalogPower0;
+			return BROWN_OUT_ON_ANALOG_POWER0;
 		}
 		if ((raw & 0b0000011000011111) == 0b0000010000000000) {
-			return BrownOutOnAnalogPower1;
+			return BROWN_OUT_ON_ANALOG_POWER1;
 		}
 		if ((raw & 0b0000100000001001) == 0b0000100000000000) {
-			return BrownOutByBackupBODonVDD_DREG;
+			return BROWN_OUT_BY_BACKUP_BODON_VDD_DREG;
 		}
 		if ((raw & 0b0001000000001001) == 0b0001000000000000) {
-			return BrownOutByBackupBODonBU_VIN;
+			return BROWN_OUT_BY_BACKUP_BODONBU_VIN;
 		}
 		if ((raw & 0b0010000000001001) == 0b0010000000000000) {
-			return BrownOutByBackupBODOnUnregulatedPower;
+			return BROWN_OUT_BY_BACKUP_BODON_UNREGULATED_POWER;
 		}
 		if ((raw & 0b0100000000001001) == 0b0100000000000000) {
-			return BrownOutByBackupBODOnRegulatedPower;
+			return BROWN_OUT_BY_BACKUP_BODON_REGULATED_POWER;
 		}
 		if ((raw & 0b1000000000000001) == 0b1000000000000000) {
-			return WokenFromBackupMode;
+			return WOKEN_FROM_BACKUP_MODE;
 		}
 		return null;
 	}
