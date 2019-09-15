@@ -1,0 +1,48 @@
+{
+  "header": {
+    "destinationAddress": {
+      "callsign": "PWSAT2",
+      "ssid": 0
+    },
+    "sourceAddress": {
+      "callsign": "PWSAT2",
+      "ssid": 0
+    },
+    "frameType": "U",
+    "sendSequenceNumber": 0,
+    "receiveSequenceNumber": 0,
+    "uControlType": "UI",
+    "pid": 240
+  },
+  "apid": "POWER_CYCLE",
+  "seq": 0,
+  "genericFrame": {
+    "correlationId": 3,
+    "errorCode": 0
+  },
+  "rawData": [
+    -96,
+    -82,
+    -90,
+    -126,
+    -88,
+    100,
+    -32,
+    -96,
+    -82,
+    -90,
+    -126,
+    -88,
+    100,
+    97,
+    3,
+    -16,
+    19,
+    0,
+    0,
+    3,
+    0
+  ],
+  "beginSample": 0,
+  "beginMillis": 0
+}

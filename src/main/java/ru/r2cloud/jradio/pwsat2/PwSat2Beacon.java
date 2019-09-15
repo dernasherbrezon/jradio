@@ -43,6 +43,10 @@ public class PwSat2Beacon extends Beacon {
 		} else {
 			int temp = marker | (littleEndian.readUnsignedByte() << 8) | (littleEndian.readUnsignedByte() << 16);
 			apid = DownlinkApid.valueOfCode(temp & 0b00111111);
+			if (apid == null) {
+				LOG.info("unknown apid: {}", (temp & 0b00111111));
+				return;
+			}
 			seq = temp >> 6;
 			switch (apid) {
 			case PONG:
