@@ -45,51 +45,51 @@ public class PwSat2Beacon extends Beacon {
 			apid = DownlinkApid.valueOfCode(temp & 0b00111111);
 			seq = temp >> 6;
 			switch (apid) {
-			case Pong:
-			case Operation:
-			case ProgramUpload:
-			case PeriodicMessage:
-			case PersistentState:
-			case CompileInfo:
-			case EraseFlash:
-			case Forbidden:
-			case Photo:
-			case SunS:
-			case Experiment:
-			case ErrorCounterConfiguration:
-			case PurgePhoto:
-			case Powercycle:
-			case Sail:
-			case StopSailDeployment:
-			case TimeCorrection:
-			case TimeSet:
-			case Comm:
-			case SetBitrate:
-			case DisableOverheatSubmode:
+			case PONG:
+			case OPERATION:
+			case PROGRAM_UPLOAD:
+			case PERIODIC_MESSAGE:
+			case PERSISTENT_STATE:
+			case COMPILE_INFO:
+			case ERASE_FLASH:
+			case FORBIDDEN:
+			case PHOTO:
+			case SUNS:
+			case EXPERIMENT:
+			case ERROR_COUNTER_CONFIGURATION:
+			case PURGE_PHOTO:
+			case POWER_CYCLE:
+			case SAIL:
+			case STOP_SAIL_DEPLOYMENT:
+			case TIME_CORRECTION:
+			case TIME_SET:
+			case COMM:
+			case SET_BITRATE:
+			case DISABLE_OVERHEAT_SUBMODE:
 			case I2C:
-			case PeriodicSet:
-			case SailExperiment:
-			case CopyBootTable:
-			case SetInternalDetumblingMode:
-			case SetAdcsMode:
-			case MemoryContent:
-			case BeaconError:
-			case StopAntennaDeployment:
+			case PERIODIC_SET:
+			case SAIL_EXPERIMENT:
+			case COPY_BOOT_TABLE:
+			case SET_INTERNAL_DETUMBLING_MODE:
+			case SET_ADCS_MODE:
+			case MEMORY_CONTENT:
+			case BEACON_ERROR:
+			case STOP_ANTENNA_DEPLOYMENT:
 				genericFrame = new GenericFrame(littleEndian);
 				break;
-			case ErrorCounters:
+			case ERROR_COUNTERS:
 				errorCounters = new ErrorCountersFrame(littleEndian);
 				break;
-			case BootSlotsInfo:
+			case BOOT_SLOTS_INFO:
 				bootSlots = new BootSlotsInfoFrame(littleEndian);
 				break;
-			case FileRemove:
+			case FILE_REMOVE:
 				fileRemove = new FileRemoveFrame(littleEndian);
 				break;
-			case FileSend:
+			case FILE_SEND:
 				fileSend = new FileSendFrame(littleEndian);
 				break;
-			case FileList:
+			case FILE_LIST:
 				fileList = new FileListFrame(littleEndian);
 				break;
 			default:
