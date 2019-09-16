@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public enum ExperimentType {
-	Detumbling(1), EraseFlash(2), SunS(3), LEOP(4), RadFET(5), SADS(6), Sail(7), Fibo(8), Payload(9), Camera(10);
+	DETUMBLING(1), ERASE_FLASH(2), SUNS(3), LEOP(4), RADFET(5), SADS(6), SAIL(7), FIBO(8), PAYLOAD(9), CAMERA(10);
 	
 	private final int code;
 	private static final Map<Integer, ExperimentType> typeByCode = new HashMap<>();
