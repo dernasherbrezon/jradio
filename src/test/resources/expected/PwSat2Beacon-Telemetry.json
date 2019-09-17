@@ -92,7 +92,7 @@
     "antenna3ActivationTimeChB": 0,
     "antenna4ActivationTimeChB": 0,
     "startResult": "Success",
-    "iterationResult": "NoResult",
+    "iterationResult": "NO_RESULT",
     "gyroX": -0.973913,
     "gyroY": -2.8521738,
     "gyroZ": 0.62608695,

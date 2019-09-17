@@ -5,7 +5,7 @@ import java.util.Map;
 
 public enum IterationResult {
 
-	NoResult(0), Finished(1), LoopImmediately(2), WaitForNextCycle(3), Failure(4);
+	NO_RESULT(0), FINISHED(1), LOOP_IMMEDIATELY(2), WAIT_FOR_NEXT_CYCLE(3), FAILURE(4);
 
 	private final int code;
 	private static final Map<Integer, IterationResult> typeByCode = new HashMap<>();

@@ -20,7 +20,7 @@ public class FileListFrame extends GenericFrame {
 		files = new ArrayList<>();
 		try {
 			while (true) {
-				char cur = '\0';
+				char cur;
 				StringBuilder builder = new StringBuilder();
 				while ((cur = (char) dis.readUnsignedByte()) != '\0') {
 					builder.append(cur);

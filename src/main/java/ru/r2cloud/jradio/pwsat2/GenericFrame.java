@@ -12,10 +12,6 @@ public class GenericFrame {
 	public GenericFrame(LittleEndianDataInputStream dis) throws IOException {
 		correlationId = dis.readUnsignedByte();
 		errorCode = dis.readUnsignedByte();
-		if (errorCode != 0) {
-			// FIXME error response
-			return;
-		}
 		readExternal(dis);
 	}
 
