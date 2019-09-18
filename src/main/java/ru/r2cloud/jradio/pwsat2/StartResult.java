@@ -5,7 +5,7 @@ import java.util.Map;
 
 public enum StartResult {
 
-	Success(0), Failure(1);
+	SUCCESS(0), FAILURE(1);
 	
 	private final int code;
 	private static final Map<Integer, StartResult> typeByCode = new HashMap<>();
