@@ -21,31 +21,31 @@ class TimeSource {
 	}
 
 	Long next() throws IOException {
-		long delta_min_delay;
+		long deltaMinDelay;
 		if (firstIndex || type.equals(BeaconType.BEACON_TYPE_STATE)) {
-			delta_min_delay = 0;
+			deltaMinDelay = 0;
 		} else {
-			delta_min_delay = BEACON_SENSOR_DELTA_T;
+			deltaMinDelay = BEACON_SENSOR_DELTA_T;
 		}
 		int timeDelta = dis.readUnsignedByte();
 		long time;
 		if (timeDelta != 0) {
-			long delta_time = timeDelta - 1 + delta_min_delay;
+			long deltaTime = timeDelta - 1 + deltaMinDelay;
 			if (firstIndex || type.equals(BeaconType.BEACON_TYPE_STATE)) {
-				time = spacecraftTime - delta_time;
+				time = spacecraftTime - deltaTime;
 			} else {
-				time = previousTime - delta_time;
+				time = previousTime - deltaTime;
 			}
 		} else {
-			long delta_time = dis.readUnsignedByte() << 16 | dis.readUnsignedShort();
-			if (delta_time == 0) {
+			long deltaTime = dis.readUnsignedByte() << 16 | dis.readUnsignedShort();
+			if (deltaTime == 0) {
 				return null;
 			}
-			delta_time += delta_min_delay - 1;
+			deltaTime += deltaMinDelay - 1;
 			if (firstIndex || type.equals(BeaconType.BEACON_TYPE_STATE)) {
-				time = spacecraftTime - delta_time;
+				time = spacecraftTime - deltaTime;
 			} else {
-				time = previousTime - delta_time;
+				time = previousTime - deltaTime;
 			}
 		}
 		previousTime = time;
