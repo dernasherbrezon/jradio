@@ -39,7 +39,7 @@ public class SpectogramPalette {
 		int red = (int) (colorFrom.getRed() + percent * (colorTo.getRed() - colorFrom.getRed()));
 		int green = (int) (colorFrom.getGreen() + percent * (colorTo.getGreen() - colorFrom.getGreen()));
 		int blue = (int) (colorFrom.getBlue() + percent * (colorTo.getBlue() - colorFrom.getBlue()));
-		return (0xFF << 24) | ((red & 0xFF) << 16) | ((green & 0xFF) << 8) | ((blue & 0xFF));
+		return (0xFF << 24) | ((red & 0xFF) << 16) | ((green & 0xFF) << 8) | (blue & 0xFF);
 	}
 
 }

@@ -5,7 +5,6 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.net.Socket;
-import java.net.UnknownHostException;
 import java.nio.charset.StandardCharsets;
 
 import org.slf4j.Logger;
@@ -26,7 +25,7 @@ public class RtlTcp implements FloatInput {
 	private int tunerType;
 	private int tunerGainCount;
 
-	public RtlTcp(String host, int port, RtlSdrSettings initialSettings) throws UnknownHostException, IOException {
+	public RtlTcp(String host, int port, RtlSdrSettings initialSettings) throws IOException {
 		socket = new Socket(host, port);
 		is = new DataInputStream(socket.getInputStream());
 		readDongleInfo();
@@ -55,9 +54,9 @@ public class RtlTcp implements FloatInput {
 			throw new IOException("invalid magic: " + magicStr);
 		}
 		tunerType = is.readInt();
-		LOG.info("tuner type: " + tunerType);
+		LOG.info("tuner type: {}", tunerType);
 		tunerGainCount = is.readInt();
-		LOG.info("tuner gain count: " + tunerGainCount);
+		LOG.info("tuner gain count: {}", tunerGainCount);
 	}
 
 	public void setSettings(RtlSdrSettings settings) throws IOException {

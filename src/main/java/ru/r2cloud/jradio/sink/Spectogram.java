@@ -32,7 +32,7 @@ public class Spectogram {
 		// 1 pixel = 1 fft bucket = x hz
 		int width = (int) (source.getContext().getSampleRate() / numHertzPerPixel);
 		// height == numRowsPerSecond pixels per second
-		int height = (int) ((source.getContext().getTotalSamples() / source.getContext().getSampleRate())) * numRowsPerSecond;
+		int height = (int) (source.getContext().getTotalSamples() / source.getContext().getSampleRate()) * numRowsPerSecond;
 		if (height == 0) {
 			throw new IllegalArgumentException("not enough data in source: " + source.getContext().getTotalSamples());
 		}
