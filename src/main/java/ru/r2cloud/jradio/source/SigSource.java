@@ -17,23 +17,12 @@ public class SigSource implements FloatInput {
 	private boolean real = true;
 
 	public SigSource(Waveform waveform, long sampleRate, final float frequency, double amplitude) {
-		this(waveform, sampleRate, new FloatValueSource() {
-			@Override
-			public float getValue() {
-				return frequency;
-			}
-		}, amplitude);
+		this(waveform, sampleRate, () -> frequency, amplitude);
 	}
 
 	public SigSource(Waveform waveform, final long sampleRate, final FloatValueSource frequency, double amplitude) {
 		this.waveform = waveform;
-		nco = new NumericallyControlledOscillator(new FloatValueSource() {
-
-			@Override
-			public float getValue() {
-				return frequency.getValue() / sampleRate;
-			}
-		}, amplitude);
+		nco = new NumericallyControlledOscillator(() -> frequency.getValue() / sampleRate, amplitude);
 		context = new Context();
 		context.setSampleRate(sampleRate);
 		context.setSampleSizeInBits(32);
