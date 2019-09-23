@@ -5,241 +5,241 @@ import java.io.IOException;
 
 public class HistoryBufferInfo {
 
-	private HistoryBufferType TMMTFHIST;       // indicates the history buffer used to fill up transfer frames with history telemetry
-	private HistoryBufferType TMMHSHIST;       // indicates the history buffer used to fill up the high speed downlink
-	private HighSpeedState TMMHSSTAT;          // indicates the current state of highspeed telemetry transmissions
+	private HistoryBufferType tmmTFHIST; // indicates the history buffer used to fill up transfer frames with history telemetry
+	private HistoryBufferType tmmHSHIST; // indicates the history buffer used to fill up the high speed downlink
+	private HighSpeedState tmmHSSTAT; // indicates the current state of highspeed telemetry transmissions
 
-	private int TMMBUSUSD;            //  Used flash pages for bus history tm
-	private int TMMPLDUSD;            //  Used flash pages for payload history tm
-	private int TMMDIAUSD;            //  Used flash pages for diagnosis history tm
-	private int TMMBUSCNT;            //  Current count of bus history sourcepackets in memory
-	private int TMMPLDCNT;            //  Current count of payload history sourcepackets in memory
-	private int TMMDIACNT;            //  Current count of bus history sourcepackets in memory
-	private int TMMBUSCRE;            //  CRC error count for bus history sourcepackets
-	private int TMMPLDCRE;            //  CRC error count for payload history sourcepackets
-	private int TMMDIACRE;            //  CRC error count for diagnosis history sourcepackets
-	private int TMMBUSFLP;            //  Fill level of the bus history buffer
-	private int TMMPLDFLP;            //  Fill level of the payload history buffer
-	private int TMMDIAFLP;            //  Fill level of the diagnosis history buffer
-	private int TMMBUSLSP;            //  Current Count of bus history sourcepackets lost due to full fifo
-	private int TMMPLDLSP;            //  Current Count of payload history sourcepackets lost due to full fifo
-	private int TMMDIALSP;            //  Current Count of diagnosis history sourcepackets lost due to full fifo
-	private int TMMSTDLSP;            //  Current Count of standard TM sourcepackets lost due to full fifo
-	private int TMMRTTLSP;            //  Current Count of real time TM sourcepackets lost due to full fifo
-	private int TMMBUSVOL;            //  total bus history data stored in kByte
-	private int TMMPLDVOL;            //  total payload history data stored in kByte
-	private int TMMDIAVOL;            //  total diagnosis history data stored in kByte
+	private int tmmBUSUSD; // Used flash pages for bus history tm
+	private int tmmPLDUSD; // Used flash pages for payload history tm
+	private int tmmDIAUSD; // Used flash pages for diagnosis history tm
+	private int tmmBUSCNT; // Current count of bus history sourcepackets in memory
+	private int tmmPLDCNT; // Current count of payload history sourcepackets in memory
+	private int tmmDIACNT; // Current count of bus history sourcepackets in memory
+	private int tmmBUSCRE; // CRC error count for bus history sourcepackets
+	private int tmmPLDCRE; // CRC error count for payload history sourcepackets
+	private int tmmDIACRE; // CRC error count for diagnosis history sourcepackets
+	private int tmmBUSFLP; // Fill level of the bus history buffer
+	private int tmmPLDFLP; // Fill level of the payload history buffer
+	private int tmmDIAFLP; // Fill level of the diagnosis history buffer
+	private int tmmBUSLSP; // Current Count of bus history sourcepackets lost due to full fifo
+	private int tmmPLDLSP; // Current Count of payload history sourcepackets lost due to full fifo
+	private int tmmDIALSP; // Current Count of diagnosis history sourcepackets lost due to full fifo
+	private int tmmSTDLSP; // Current Count of standard TM sourcepackets lost due to full fifo
+	private int tmmRTTLSP; // Current Count of real time TM sourcepackets lost due to full fifo
+	private int tmmBUSVOL; // total bus history data stored in kByte
+	private int tmmPLDVOL; // total payload history data stored in kByte
+	private int tmmDIAVOL; // total diagnosis history data stored in kByte
 
 	public HistoryBufferInfo(DataInputStream dis) throws IOException {
 		int raw = dis.readUnsignedByte();
-		TMMTFHIST = HistoryBufferType.valueOfCode(raw >> 6);
-		TMMHSHIST = HistoryBufferType.valueOfCode((raw >> 4) & 0b11);
-		TMMHSSTAT = HighSpeedState.valueOfCode((raw >> 2) & 0b11);
+		tmmTFHIST = HistoryBufferType.valueOfCode(raw >> 6);
+		tmmHSHIST = HistoryBufferType.valueOfCode((raw >> 4) & 0b11);
+		tmmHSSTAT = HighSpeedState.valueOfCode((raw >> 2) & 0b11);
 
-		TMMBUSUSD = dis.readUnsignedShort();
-		TMMPLDUSD = dis.readUnsignedShort();
-		TMMDIAUSD = dis.readUnsignedShort();
-		TMMBUSCNT = dis.readUnsignedShort();
-		TMMPLDCNT = dis.readUnsignedShort();
-		TMMDIACNT = dis.readUnsignedShort();
-		TMMBUSCRE = dis.readUnsignedShort();
-		TMMPLDCRE = dis.readUnsignedShort();
-		TMMDIACRE = dis.readUnsignedShort();
-		TMMBUSFLP = dis.readUnsignedByte();
-		TMMPLDFLP = dis.readUnsignedByte();
-		TMMDIAFLP = dis.readUnsignedByte();
-		TMMBUSLSP = dis.readUnsignedShort();
-		TMMPLDLSP = dis.readUnsignedShort();
-		TMMDIALSP = dis.readUnsignedShort();
-		TMMSTDLSP = dis.readUnsignedShort();
-		TMMRTTLSP = dis.readUnsignedShort();
-		TMMBUSVOL = dis.readUnsignedShort();
-		TMMPLDVOL = dis.readUnsignedShort();
-		TMMDIAVOL = dis.readUnsignedShort();
+		tmmBUSUSD = dis.readUnsignedShort();
+		tmmPLDUSD = dis.readUnsignedShort();
+		tmmDIAUSD = dis.readUnsignedShort();
+		tmmBUSCNT = dis.readUnsignedShort();
+		tmmPLDCNT = dis.readUnsignedShort();
+		tmmDIACNT = dis.readUnsignedShort();
+		tmmBUSCRE = dis.readUnsignedShort();
+		tmmPLDCRE = dis.readUnsignedShort();
+		tmmDIACRE = dis.readUnsignedShort();
+		tmmBUSFLP = dis.readUnsignedByte();
+		tmmPLDFLP = dis.readUnsignedByte();
+		tmmDIAFLP = dis.readUnsignedByte();
+		tmmBUSLSP = dis.readUnsignedShort();
+		tmmPLDLSP = dis.readUnsignedShort();
+		tmmDIALSP = dis.readUnsignedShort();
+		tmmSTDLSP = dis.readUnsignedShort();
+		tmmRTTLSP = dis.readUnsignedShort();
+		tmmBUSVOL = dis.readUnsignedShort();
+		tmmPLDVOL = dis.readUnsignedShort();
+		tmmDIAVOL = dis.readUnsignedShort();
 	}
 
-	public HistoryBufferType getTMMTFHIST() {
-		return TMMTFHIST;
+	public HistoryBufferType getTmmTFHIST() {
+		return tmmTFHIST;
 	}
 
-	public void setTMMTFHIST(HistoryBufferType tMMTFHIST) {
-		TMMTFHIST = tMMTFHIST;
+	public void setTmmTFHIST(HistoryBufferType tmmTFHIST) {
+		this.tmmTFHIST = tmmTFHIST;
 	}
 
-	public HistoryBufferType getTMMHSHIST() {
-		return TMMHSHIST;
+	public HistoryBufferType getTmmHSHIST() {
+		return tmmHSHIST;
 	}
 
-	public void setTMMHSHIST(HistoryBufferType tMMHSHIST) {
-		TMMHSHIST = tMMHSHIST;
+	public void setTmmHSHIST(HistoryBufferType tmmHSHIST) {
+		this.tmmHSHIST = tmmHSHIST;
 	}
 
-	public HighSpeedState getTMMHSSTAT() {
-		return TMMHSSTAT;
+	public HighSpeedState getTmmHSSTAT() {
+		return tmmHSSTAT;
 	}
 
-	public void setTMMHSSTAT(HighSpeedState tMMHSSTAT) {
-		TMMHSSTAT = tMMHSSTAT;
+	public void setTmmHSSTAT(HighSpeedState tmmHSSTAT) {
+		this.tmmHSSTAT = tmmHSSTAT;
 	}
 
-	public int getTMMBUSUSD() {
-		return TMMBUSUSD;
+	public int getTmmBUSUSD() {
+		return tmmBUSUSD;
 	}
 
-	public void setTMMBUSUSD(int tMMBUSUSD) {
-		TMMBUSUSD = tMMBUSUSD;
+	public void setTmmBUSUSD(int tmmBUSUSD) {
+		this.tmmBUSUSD = tmmBUSUSD;
 	}
 
-	public int getTMMPLDUSD() {
-		return TMMPLDUSD;
+	public int getTmmPLDUSD() {
+		return tmmPLDUSD;
 	}
 
-	public void setTMMPLDUSD(int tMMPLDUSD) {
-		TMMPLDUSD = tMMPLDUSD;
+	public void setTmmPLDUSD(int tmmPLDUSD) {
+		this.tmmPLDUSD = tmmPLDUSD;
 	}
 
-	public int getTMMDIAUSD() {
-		return TMMDIAUSD;
+	public int getTmmDIAUSD() {
+		return tmmDIAUSD;
 	}
 
-	public void setTMMDIAUSD(int tMMDIAUSD) {
-		TMMDIAUSD = tMMDIAUSD;
+	public void setTmmDIAUSD(int tmmDIAUSD) {
+		this.tmmDIAUSD = tmmDIAUSD;
 	}
 
-	public int getTMMBUSCNT() {
-		return TMMBUSCNT;
+	public int getTmmBUSCNT() {
+		return tmmBUSCNT;
 	}
 
-	public void setTMMBUSCNT(int tMMBUSCNT) {
-		TMMBUSCNT = tMMBUSCNT;
+	public void setTmmBUSCNT(int tmmBUSCNT) {
+		this.tmmBUSCNT = tmmBUSCNT;
 	}
 
-	public int getTMMPLDCNT() {
-		return TMMPLDCNT;
+	public int getTmmPLDCNT() {
+		return tmmPLDCNT;
 	}
 
-	public void setTMMPLDCNT(int tMMPLDCNT) {
-		TMMPLDCNT = tMMPLDCNT;
+	public void setTmmPLDCNT(int tmmPLDCNT) {
+		this.tmmPLDCNT = tmmPLDCNT;
 	}
 
-	public int getTMMDIACNT() {
-		return TMMDIACNT;
+	public int getTmmDIACNT() {
+		return tmmDIACNT;
 	}
 
-	public void setTMMDIACNT(int tMMDIACNT) {
-		TMMDIACNT = tMMDIACNT;
+	public void setTmmDIACNT(int tmmDIACNT) {
+		this.tmmDIACNT = tmmDIACNT;
 	}
 
-	public int getTMMBUSCRE() {
-		return TMMBUSCRE;
+	public int getTmmBUSCRE() {
+		return tmmBUSCRE;
 	}
 
-	public void setTMMBUSCRE(int tMMBUSCRE) {
-		TMMBUSCRE = tMMBUSCRE;
+	public void setTmmBUSCRE(int tmmBUSCRE) {
+		this.tmmBUSCRE = tmmBUSCRE;
 	}
 
-	public int getTMMPLDCRE() {
-		return TMMPLDCRE;
+	public int getTmmPLDCRE() {
+		return tmmPLDCRE;
 	}
 
-	public void setTMMPLDCRE(int tMMPLDCRE) {
-		TMMPLDCRE = tMMPLDCRE;
+	public void setTmmPLDCRE(int tmmPLDCRE) {
+		this.tmmPLDCRE = tmmPLDCRE;
 	}
 
-	public int getTMMDIACRE() {
-		return TMMDIACRE;
+	public int getTmmDIACRE() {
+		return tmmDIACRE;
 	}
 
-	public void setTMMDIACRE(int tMMDIACRE) {
-		TMMDIACRE = tMMDIACRE;
+	public void setTmmDIACRE(int tmmDIACRE) {
+		this.tmmDIACRE = tmmDIACRE;
 	}
 
-	public int getTMMBUSFLP() {
-		return TMMBUSFLP;
+	public int getTmmBUSFLP() {
+		return tmmBUSFLP;
 	}
 
-	public void setTMMBUSFLP(int tMMBUSFLP) {
-		TMMBUSFLP = tMMBUSFLP;
+	public void setTmmBUSFLP(int tmmBUSFLP) {
+		this.tmmBUSFLP = tmmBUSFLP;
 	}
 
-	public int getTMMPLDFLP() {
-		return TMMPLDFLP;
+	public int getTmmPLDFLP() {
+		return tmmPLDFLP;
 	}
 
-	public void setTMMPLDFLP(int tMMPLDFLP) {
-		TMMPLDFLP = tMMPLDFLP;
+	public void setTmmPLDFLP(int tmmPLDFLP) {
+		this.tmmPLDFLP = tmmPLDFLP;
 	}
 
-	public int getTMMDIAFLP() {
-		return TMMDIAFLP;
+	public int getTmmDIAFLP() {
+		return tmmDIAFLP;
 	}
 
-	public void setTMMDIAFLP(int tMMDIAFLP) {
-		TMMDIAFLP = tMMDIAFLP;
+	public void setTmmDIAFLP(int tmmDIAFLP) {
+		this.tmmDIAFLP = tmmDIAFLP;
 	}
 
-	public int getTMMBUSLSP() {
-		return TMMBUSLSP;
+	public int getTmmBUSLSP() {
+		return tmmBUSLSP;
 	}
 
-	public void setTMMBUSLSP(int tMMBUSLSP) {
-		TMMBUSLSP = tMMBUSLSP;
+	public void setTmmBUSLSP(int tmmBUSLSP) {
+		this.tmmBUSLSP = tmmBUSLSP;
 	}
 
-	public int getTMMPLDLSP() {
-		return TMMPLDLSP;
+	public int getTmmPLDLSP() {
+		return tmmPLDLSP;
 	}
 
-	public void setTMMPLDLSP(int tMMPLDLSP) {
-		TMMPLDLSP = tMMPLDLSP;
+	public void setTmmPLDLSP(int tmmPLDLSP) {
+		this.tmmPLDLSP = tmmPLDLSP;
 	}
 
-	public int getTMMDIALSP() {
-		return TMMDIALSP;
+	public int getTmmDIALSP() {
+		return tmmDIALSP;
 	}
 
-	public void setTMMDIALSP(int tMMDIALSP) {
-		TMMDIALSP = tMMDIALSP;
+	public void setTmmDIALSP(int tmmDIALSP) {
+		this.tmmDIALSP = tmmDIALSP;
 	}
 
-	public int getTMMSTDLSP() {
-		return TMMSTDLSP;
+	public int getTmmSTDLSP() {
+		return tmmSTDLSP;
 	}
 
-	public void setTMMSTDLSP(int tMMSTDLSP) {
-		TMMSTDLSP = tMMSTDLSP;
+	public void setTmmSTDLSP(int tmmSTDLSP) {
+		this.tmmSTDLSP = tmmSTDLSP;
 	}
 
-	public int getTMMRTTLSP() {
-		return TMMRTTLSP;
+	public int getTmmRTTLSP() {
+		return tmmRTTLSP;
 	}
 
-	public void setTMMRTTLSP(int tMMRTTLSP) {
-		TMMRTTLSP = tMMRTTLSP;
+	public void setTmmRTTLSP(int tmmRTTLSP) {
+		this.tmmRTTLSP = tmmRTTLSP;
 	}
 
-	public int getTMMBUSVOL() {
-		return TMMBUSVOL;
+	public int getTmmBUSVOL() {
+		return tmmBUSVOL;
 	}
 
-	public void setTMMBUSVOL(int tMMBUSVOL) {
-		TMMBUSVOL = tMMBUSVOL;
+	public void setTmmBUSVOL(int tmmBUSVOL) {
+		this.tmmBUSVOL = tmmBUSVOL;
 	}
 
-	public int getTMMPLDVOL() {
-		return TMMPLDVOL;
+	public int getTmmPLDVOL() {
+		return tmmPLDVOL;
 	}
 
-	public void setTMMPLDVOL(int tMMPLDVOL) {
-		TMMPLDVOL = tMMPLDVOL;
+	public void setTmmPLDVOL(int tmmPLDVOL) {
+		this.tmmPLDVOL = tmmPLDVOL;
 	}
 
-	public int getTMMDIAVOL() {
-		return TMMDIAVOL;
+	public int getTmmDIAVOL() {
+		return tmmDIAVOL;
 	}
 
-	public void setTMMDIAVOL(int tMMDIAVOL) {
-		TMMDIAVOL = tMMDIAVOL;
+	public void setTmmDIAVOL(int tmmDIAVOL) {
+		this.tmmDIAVOL = tmmDIAVOL;
 	}
 
 }
