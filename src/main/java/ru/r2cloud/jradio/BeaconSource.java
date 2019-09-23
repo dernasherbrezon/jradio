@@ -15,8 +15,12 @@ public abstract class BeaconSource<T> implements Iterator<T>, Closeable {
 
 	private static final Logger LOG = LoggerFactory.getLogger(BeaconSource.class);
 
-	protected final MessageInput input;
+	protected MessageInput input;
 	private T current = null;
+
+	public BeaconSource() {
+		// sometimes checks should be made before instantiating input
+	}
 
 	public BeaconSource(MessageInput input) {
 		this.input = input;
@@ -52,7 +56,7 @@ public abstract class BeaconSource<T> implements Iterator<T>, Closeable {
 			if (beacon == null) {
 				continue;
 			}
-			
+
 			if (beacon instanceof Beacon) {
 				Beacon realBeacon = (Beacon) beacon;
 				Long beginSample = (Long) input.getContext().getCurrent().get(CorrelateAccessCodeTag.SOURCE_SAMPLE);

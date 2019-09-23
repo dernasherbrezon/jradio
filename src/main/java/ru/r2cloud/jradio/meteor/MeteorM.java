@@ -24,6 +24,15 @@ public abstract class MeteorM extends BeaconSource<Vcdu> {
 
 	// previous is used for restoring partial packets
 	private Vcdu previous = null;
+	
+	public MeteorM() {
+		if (registry != null) {
+			count = registry.counter(LRPT.class.getName());
+		} else {
+			count = null;
+		}
+		this.spacecraftId = MeteorImage.METEOR_SPACECRAFT_ID;
+	}
 
 	public MeteorM(LRPT lrpt) {
 		super(lrpt);

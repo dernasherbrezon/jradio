@@ -31,7 +31,7 @@ public class DifferentialSoftDecoder implements ByteInput {
 			byte b = input.readByte();
 
 			byte outA = mean(a, prevA);
-			outB = mean(b, prevB);
+			outB = mean((byte)-b, prevB);
 			
 			prevA = a;
 			prevB = b;

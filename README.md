@@ -42,6 +42,7 @@ All blocks meant to be binary compatible with gnuradio versions. This will ensur
   * FractionalResampler
   * [FrequencyXlatingFIRFilter](http://blog.sdr.hu/grblocks/xlating-fir.html)
   * GUI Histogram Sink (Spectogram) 
+  * HardToSoft. Convert hard decision stream to soft stream.
   * HdlcReceiver. Out-of-tree block. Extracts HDLC frame from the unpacked stream of bytes
   * LowPassFilter and LowPassFilterComplex
   * LMSDDEqualizer
