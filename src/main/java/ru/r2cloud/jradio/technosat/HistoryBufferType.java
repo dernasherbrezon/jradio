@@ -5,7 +5,7 @@ import java.util.Map;
 
 public enum HistoryBufferType {
 
-	BUS(0), PLD(1), DIAG(2), none(3);
+	BUS(0), PLD(1), DIAG(2), NONE(3);
 	
 	private final int code;
 	private static final Map<Integer, HistoryBufferType> typeByCode = new HashMap<>();
