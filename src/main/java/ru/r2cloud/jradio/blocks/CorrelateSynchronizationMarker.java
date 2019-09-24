@@ -85,7 +85,7 @@ public class CorrelateSynchronizationMarker implements ByteInput {
 			} catch (EOFException e) {
 				// shortcut. no need to calculate correlation if not enough data for marker
 				untilEof = totalRead - markerLength;
-				if (untilEof < 0) {
+				if (untilEof <= 0) {
 					throw e;
 				}
 				// align beginning of buffer to marker
