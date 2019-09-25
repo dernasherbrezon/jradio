@@ -5,99 +5,99 @@ import java.io.IOException;
 
 public class I2CStatus {
 
-	private float I2C0CUR;         // Current drawn on I2C-Bus 0
-	private float I2C1CUR;         // Current drawn on I2C-Bus 1
-	private float I2C2CUR;         // Current drawn on I2C-Bus 2
-	private boolean I2C0ENA;       // Enable-Status of the I2C-Bus 0
-	private boolean I2C1ENA;       // Enable-Status of the I2C-Bus 1
-	private boolean I2C2ENA;       // Enable-Status of the I2C-Bus 2
-	private boolean I2C0LCK;       // Lock-Status of the I2C-Bus 0
-	private boolean I2C1LCK;       // Lock-Status of the I2C-Bus 1
-	private boolean I2C2LCK;       // Lock-Status of the I2C-Bus 2
+	private float i2c0Cur; // Current drawn on I2C-Bus 0
+	private float i2c1Cur; // Current drawn on I2C-Bus 1
+	private float i2c2Cur; // Current drawn on I2C-Bus 2
+	private boolean i2c0Ena; // Enable-Status of the I2C-Bus 0
+	private boolean i2c1Ena; // Enable-Status of the I2C-Bus 1
+	private boolean i2c2Ena; // Enable-Status of the I2C-Bus 2
+	private boolean i2c0Lck; // Lock-Status of the I2C-Bus 0
+	private boolean i2c1Lck; // Lock-Status of the I2C-Bus 1
+	private boolean i2c2Lck; // Lock-Status of the I2C-Bus 2
 
 	public I2CStatus(DataInputStream dis) throws IOException {
-		I2C0CUR = dis.readShort() * 0.0305185095f;
-		I2C1CUR = dis.readShort() * 0.0305185095f;
-		I2C2CUR = dis.readShort() * 0.0305185095f;
+		i2c0Cur = dis.readShort() * 0.0305185095f;
+		i2c1Cur = dis.readShort() * 0.0305185095f;
+		i2c2Cur = dis.readShort() * 0.0305185095f;
 		int raw = dis.readUnsignedByte();
-		I2C0ENA = ((raw >> 7) & 0x1) > 0;
-		I2C1ENA = ((raw >> 6) & 0x1) > 0;
-		I2C2ENA = ((raw >> 5) & 0x1) > 0;
-		I2C0LCK = ((raw >> 4) & 0x1) > 0;
-		I2C1LCK = ((raw >> 3) & 0x1) > 0;
-		I2C2LCK = ((raw >> 2) & 0x1) > 0;
+		i2c0Ena = ((raw >> 7) & 0x1) > 0;
+		i2c1Ena = ((raw >> 6) & 0x1) > 0;
+		i2c2Ena = ((raw >> 5) & 0x1) > 0;
+		i2c0Lck = ((raw >> 4) & 0x1) > 0;
+		i2c1Lck = ((raw >> 3) & 0x1) > 0;
+		i2c2Lck = ((raw >> 2) & 0x1) > 0;
 	}
 
-	public float getI2C0CUR() {
-		return I2C0CUR;
+	public float getI2c0Cur() {
+		return i2c0Cur;
 	}
 
-	public void setI2C0CUR(float i2c0cur) {
-		I2C0CUR = i2c0cur;
+	public void setI2c0Cur(float i2c0Cur) {
+		this.i2c0Cur = i2c0Cur;
 	}
 
-	public float getI2C1CUR() {
-		return I2C1CUR;
+	public float getI2c1Cur() {
+		return i2c1Cur;
 	}
 
-	public void setI2C1CUR(float i2c1cur) {
-		I2C1CUR = i2c1cur;
+	public void setI2c1Cur(float i2c1Cur) {
+		this.i2c1Cur = i2c1Cur;
 	}
 
-	public float getI2C2CUR() {
-		return I2C2CUR;
+	public float getI2c2Cur() {
+		return i2c2Cur;
 	}
 
-	public void setI2C2CUR(float i2c2cur) {
-		I2C2CUR = i2c2cur;
+	public void setI2c2Cur(float i2c2Cur) {
+		this.i2c2Cur = i2c2Cur;
 	}
 
-	public boolean isI2C0ENA() {
-		return I2C0ENA;
+	public boolean isI2c0Ena() {
+		return i2c0Ena;
 	}
 
-	public void setI2C0ENA(boolean i2c0ena) {
-		I2C0ENA = i2c0ena;
+	public void setI2c0Ena(boolean i2c0Ena) {
+		this.i2c0Ena = i2c0Ena;
 	}
 
-	public boolean isI2C1ENA() {
-		return I2C1ENA;
+	public boolean isI2c1Ena() {
+		return i2c1Ena;
 	}
 
-	public void setI2C1ENA(boolean i2c1ena) {
-		I2C1ENA = i2c1ena;
+	public void setI2c1Ena(boolean i2c1Ena) {
+		this.i2c1Ena = i2c1Ena;
 	}
 
-	public boolean isI2C2ENA() {
-		return I2C2ENA;
+	public boolean isI2c2Ena() {
+		return i2c2Ena;
 	}
 
-	public void setI2C2ENA(boolean i2c2ena) {
-		I2C2ENA = i2c2ena;
+	public void setI2c2Ena(boolean i2c2Ena) {
+		this.i2c2Ena = i2c2Ena;
 	}
 
-	public boolean isI2C0LCK() {
-		return I2C0LCK;
+	public boolean isI2c0Lck() {
+		return i2c0Lck;
 	}
 
-	public void setI2C0LCK(boolean i2c0lck) {
-		I2C0LCK = i2c0lck;
+	public void setI2c0Lck(boolean i2c0Lck) {
+		this.i2c0Lck = i2c0Lck;
 	}
 
-	public boolean isI2C1LCK() {
-		return I2C1LCK;
+	public boolean isI2c1Lck() {
+		return i2c1Lck;
 	}
 
-	public void setI2C1LCK(boolean i2c1lck) {
-		I2C1LCK = i2c1lck;
+	public void setI2c1Lck(boolean i2c1Lck) {
+		this.i2c1Lck = i2c1Lck;
 	}
 
-	public boolean isI2C2LCK() {
-		return I2C2LCK;
+	public boolean isI2c2Lck() {
+		return i2c2Lck;
 	}
 
-	public void setI2C2LCK(boolean i2c2lck) {
-		I2C2LCK = i2c2lck;
+	public void setI2c2Lck(boolean i2c2Lck) {
+		this.i2c2Lck = i2c2Lck;
 	}
 
 }
