@@ -10,8 +10,8 @@ public class DifferentialSoftDecoder implements ByteInput {
 	private final ByteInput input;
 	private final float[] sqrtTable;
 
-	private byte prevA = 0;
-	private byte prevB = 0;
+	private int prevA = 0;
+	private int prevB = 0;
 	
 	private byte outB;
 	private boolean calcFirst = true;
@@ -27,11 +27,11 @@ public class DifferentialSoftDecoder implements ByteInput {
 	@Override
 	public byte readByte() throws IOException {
 		if (calcFirst) {
-			byte a = input.readByte();
-			byte b = input.readByte();
+			int a = input.readByte();
+			int b = input.readByte();
 
 			byte outA = mean(a, prevA);
-			outB = mean((byte)-b, prevB);
+			outB = mean(-b, prevB);
 			
 			prevA = a;
 			prevB = b;
@@ -44,7 +44,7 @@ public class DifferentialSoftDecoder implements ByteInput {
 		return outB;
 	}
 
-	private byte mean(byte cur, byte prev) {
+	private byte mean(int cur, int prev) {
 		int multiply = cur * prev;
 		if (multiply > 0) {
 			return (byte) sqrtTable[multiply];
