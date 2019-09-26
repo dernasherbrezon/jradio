@@ -7,118 +7,118 @@ import ru.r2cloud.jradio.util.StreamUtils;
 
 public class NodeInfos {
 
-	private int CNTIMM;          // counts all immediate telecommands for this node
-	private int CNTTTC;          // counts all timed telecommands for this node
-	private int CNTINT;          // counts all internal commands for this node
-	private int CNTEXE;          // counts all commands executed by applications on this node
-	private int CNTREJ;          // counts all commands rejected (bad TCC or Parameter) by applications on this node
-	private int LSTCID;          // ID of the last immediate/timetagged/internal command that was received by applications on this node (executed and rejected)
-	private float MCUCUR;        // supply current of the node's microcontroller
-	private long RSTSTS;         // the reset status register contents
-	private int BOTCNT;          // counts all soft- and hardware triggered reboots and power-ups
-	private long TIMLOC;         // current uptime since last reboot
-	private byte TMPINT;         // internal temperature of node-MCU
+	private int cntIMM; // counts all immediate telecommands for this node
+	private int cntTTC; // counts all timed telecommands for this node
+	private int cntINT; // counts all internal commands for this node
+	private int cntEXE; // counts all commands executed by applications on this node
+	private int cntREJ; // counts all commands rejected (bad TCC or Parameter) by applications on this node
+	private int lstCID; // ID of the last immediate/timetagged/internal command that was received by applications on this node (executed and rejected)
+	private float mcuCUR; // supply current of the node's microcontroller
+	private long rstSTS; // the reset status register contents
+	private int botCNT; // counts all soft- and hardware triggered reboots and power-ups
+	private long timLOC; // current uptime since last reboot
+	private byte tmpINT; // internal temperature of node-MCU
 
 	public NodeInfos(DataInputStream dis) throws IOException {
-		CNTIMM = dis.readUnsignedByte();
-		CNTTTC = dis.readUnsignedByte();
-		CNTINT = dis.readUnsignedByte();
-		CNTEXE = dis.readUnsignedByte();
-		CNTREJ = dis.readUnsignedByte();
-		LSTCID = dis.readUnsignedByte();
-		MCUCUR = dis.readUnsignedShort() * 0.1f;
-		RSTSTS = StreamUtils.readUnsignedInt(dis);
-		BOTCNT = dis.readUnsignedShort();
-		TIMLOC = StreamUtils.readUnsignedInt(dis);
-		TMPINT = dis.readByte();
+		cntIMM = dis.readUnsignedByte();
+		cntTTC = dis.readUnsignedByte();
+		cntINT = dis.readUnsignedByte();
+		cntEXE = dis.readUnsignedByte();
+		cntREJ = dis.readUnsignedByte();
+		lstCID = dis.readUnsignedByte();
+		mcuCUR = dis.readUnsignedShort() * 0.1f;
+		rstSTS = StreamUtils.readUnsignedInt(dis);
+		botCNT = dis.readUnsignedShort();
+		timLOC = StreamUtils.readUnsignedInt(dis);
+		tmpINT = dis.readByte();
 	}
 
-	public int getCNTIMM() {
-		return CNTIMM;
+	public int getCntIMM() {
+		return cntIMM;
 	}
 
-	public void setCNTIMM(int cNTIMM) {
-		CNTIMM = cNTIMM;
+	public void setCntIMM(int cntIMM) {
+		this.cntIMM = cntIMM;
 	}
 
-	public int getCNTTTC() {
-		return CNTTTC;
+	public int getCntTTC() {
+		return cntTTC;
 	}
 
-	public void setCNTTTC(int cNTTTC) {
-		CNTTTC = cNTTTC;
+	public void setCntTTC(int cntTTC) {
+		this.cntTTC = cntTTC;
 	}
 
-	public int getCNTINT() {
-		return CNTINT;
+	public int getCntINT() {
+		return cntINT;
 	}
 
-	public void setCNTINT(int cNTINT) {
-		CNTINT = cNTINT;
+	public void setCntINT(int cntINT) {
+		this.cntINT = cntINT;
 	}
 
-	public int getCNTEXE() {
-		return CNTEXE;
+	public int getCntEXE() {
+		return cntEXE;
 	}
 
-	public void setCNTEXE(int cNTEXE) {
-		CNTEXE = cNTEXE;
+	public void setCntEXE(int cntEXE) {
+		this.cntEXE = cntEXE;
 	}
 
-	public int getCNTREJ() {
-		return CNTREJ;
+	public int getCntREJ() {
+		return cntREJ;
 	}
 
-	public void setCNTREJ(int cNTREJ) {
-		CNTREJ = cNTREJ;
+	public void setCntREJ(int cntREJ) {
+		this.cntREJ = cntREJ;
 	}
 
-	public int getLSTCID() {
-		return LSTCID;
+	public int getLstCID() {
+		return lstCID;
 	}
 
-	public void setLSTCID(int lSTCID) {
-		LSTCID = lSTCID;
+	public void setLstCID(int lstCID) {
+		this.lstCID = lstCID;
 	}
 
-	public float getMCUCUR() {
-		return MCUCUR;
+	public float getMcuCUR() {
+		return mcuCUR;
 	}
 
-	public void setMCUCUR(float mCUCUR) {
-		MCUCUR = mCUCUR;
+	public void setMcuCUR(float mcuCUR) {
+		this.mcuCUR = mcuCUR;
 	}
 
-	public long getRSTSTS() {
-		return RSTSTS;
+	public long getRstSTS() {
+		return rstSTS;
 	}
 
-	public void setRSTSTS(long rSTSTS) {
-		RSTSTS = rSTSTS;
+	public void setRstSTS(long rstSTS) {
+		this.rstSTS = rstSTS;
 	}
 
-	public int getBOTCNT() {
-		return BOTCNT;
+	public int getBotCNT() {
+		return botCNT;
 	}
 
-	public void setBOTCNT(int bOTCNT) {
-		BOTCNT = bOTCNT;
+	public void setBotCNT(int botCNT) {
+		this.botCNT = botCNT;
 	}
 
-	public long getTIMLOC() {
-		return TIMLOC;
+	public long getTimLOC() {
+		return timLOC;
 	}
 
-	public void setTIMLOC(long tIMLOC) {
-		TIMLOC = tIMLOC;
+	public void setTimLOC(long timLOC) {
+		this.timLOC = timLOC;
 	}
 
-	public byte getTMPINT() {
-		return TMPINT;
+	public byte getTmpINT() {
+		return tmpINT;
 	}
 
-	public void setTMPINT(byte tMPINT) {
-		TMPINT = tMPINT;
+	public void setTmpINT(byte tmpINT) {
+		this.tmpINT = tmpINT;
 	}
 
 }
