@@ -23,7 +23,7 @@ import ru.r2cloud.jradio.tubix20.CMX909bBeacon;
 public class TechnosatTest {
 
 	private Technosat input;
-	
+
 	@Test
 	public void testDecodeTelemetry() throws Exception {
 		float gainMu = 0.175f;

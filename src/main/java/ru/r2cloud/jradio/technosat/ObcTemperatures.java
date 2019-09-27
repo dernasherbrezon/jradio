@@ -5,99 +5,99 @@ import java.io.IOException;
 
 public class ObcTemperatures {
 
-	private int TMPAS;        // Temp Sensor Set
-	private float TMPA1;      // Deck A Temp 1
-	private float TMPB1;      // Deck B Temp 1
-	private float TMPB2;      // Deck B Temp 2
-	private float TMPB3;      // Deck B Temp 3
-	private float TMPC1;      // Deck C Temp 1
-	private float TMPC2;      // Deck C Temp 2
-	private float TMPC3;      // Deck C Temp 3
-	private float TMPC4;      // Deck C Temp 4
+	private int tmpAS; // Temp Sensor Set
+	private float tmpA1; // Deck A Temp 1
+	private float tmpB1; // Deck B Temp 1
+	private float tmpB2; // Deck B Temp 2
+	private float tmpB3; // Deck B Temp 3
+	private float tmpC1; // Deck C Temp 1
+	private float tmpC2; // Deck C Temp 2
+	private float tmpC3; // Deck C Temp 3
+	private float tmpC4; // Deck C Temp 4
 
 	public ObcTemperatures(DataInputStream dis) throws IOException {
 		int raw = dis.readUnsignedByte();
-		TMPAS = raw >> 6;
-		TMPA1 = dis.readByte() * 0.787401575f;
-		TMPB1 = dis.readByte() * 0.787401575f;
-		TMPB2 = dis.readByte() * 0.787401575f;
-		TMPB3 = dis.readByte() * 0.787401575f;
-		TMPC1 = dis.readByte() * 0.787401575f;
-		TMPC2 = dis.readByte() * 0.787401575f;
-		TMPC3 = dis.readByte() * 0.787401575f;
-		TMPC4 = dis.readByte() * 0.787401575f;
+		tmpAS = raw >> 6;
+		tmpA1 = dis.readByte() * 0.787401575f;
+		tmpB1 = dis.readByte() * 0.787401575f;
+		tmpB2 = dis.readByte() * 0.787401575f;
+		tmpB3 = dis.readByte() * 0.787401575f;
+		tmpC1 = dis.readByte() * 0.787401575f;
+		tmpC2 = dis.readByte() * 0.787401575f;
+		tmpC3 = dis.readByte() * 0.787401575f;
+		tmpC4 = dis.readByte() * 0.787401575f;
 	}
 
-	public int getTMPAS() {
-		return TMPAS;
+	public int getTmpAS() {
+		return tmpAS;
 	}
 
-	public void setTMPAS(int tMPAS) {
-		TMPAS = tMPAS;
+	public void setTmpAS(int tmpAS) {
+		this.tmpAS = tmpAS;
 	}
 
-	public float getTMPA1() {
-		return TMPA1;
+	public float getTmpA1() {
+		return tmpA1;
 	}
 
-	public void setTMPA1(float tMPA1) {
-		TMPA1 = tMPA1;
+	public void setTmpA1(float tmpA1) {
+		this.tmpA1 = tmpA1;
 	}
 
-	public float getTMPB1() {
-		return TMPB1;
+	public float getTmpB1() {
+		return tmpB1;
 	}
 
-	public void setTMPB1(float tMPB1) {
-		TMPB1 = tMPB1;
+	public void setTmpB1(float tmpB1) {
+		this.tmpB1 = tmpB1;
 	}
 
-	public float getTMPB2() {
-		return TMPB2;
+	public float getTmpB2() {
+		return tmpB2;
 	}
 
-	public void setTMPB2(float tMPB2) {
-		TMPB2 = tMPB2;
+	public void setTmpB2(float tmpB2) {
+		this.tmpB2 = tmpB2;
 	}
 
-	public float getTMPB3() {
-		return TMPB3;
+	public float getTmpB3() {
+		return tmpB3;
 	}
 
-	public void setTMPB3(float tMPB3) {
-		TMPB3 = tMPB3;
+	public void setTmpB3(float tmpB3) {
+		this.tmpB3 = tmpB3;
 	}
 
-	public float getTMPC1() {
-		return TMPC1;
+	public float getTmpC1() {
+		return tmpC1;
 	}
 
-	public void setTMPC1(float tMPC1) {
-		TMPC1 = tMPC1;
+	public void setTmpC1(float tmpC1) {
+		this.tmpC1 = tmpC1;
 	}
 
-	public float getTMPC2() {
-		return TMPC2;
+	public float getTmpC2() {
+		return tmpC2;
 	}
 
-	public void setTMPC2(float tMPC2) {
-		TMPC2 = tMPC2;
+	public void setTmpC2(float tmpC2) {
+		this.tmpC2 = tmpC2;
 	}
 
-	public float getTMPC3() {
-		return TMPC3;
+	public float getTmpC3() {
+		return tmpC3;
 	}
 
-	public void setTMPC3(float tMPC3) {
-		TMPC3 = tMPC3;
+	public void setTmpC3(float tmpC3) {
+		this.tmpC3 = tmpC3;
 	}
 
-	public float getTMPC4() {
-		return TMPC4;
+	public float getTmpC4() {
+		return tmpC4;
 	}
 
-	public void setTMPC4(float tMPC4) {
-		TMPC4 = tMPC4;
+	public void setTmpC4(float tmpC4) {
+		this.tmpC4 = tmpC4;
 	}
 
 }
