@@ -25,7 +25,6 @@ public class ViterbiSoftTest {
 	public void testEncodeDecode() {
 		byte[] original = ViterbiTest.hexStringToByteArray("1ACFFC1D");
 		byte[] input = Viterbi.encode(original, (byte) 0x4f, (byte) 0x6d, false);
-		System.out.println(ViterbiTest.bytesToHex(input));
 		byte[] soft = convertToSoft(input);
 		// emulate single bit failure
 		if (soft[0] == Byte.MAX_VALUE) {
