@@ -4,11 +4,8 @@ import static org.junit.Assert.assertArrayEquals;
 
 import org.junit.Test;
 
-import ru.r2cloud.jradio.fec.Viterbi;
-import ru.r2cloud.jradio.fec.ViterbiSoft;
-
 public class ViterbiSoftTest {
-	
+
 	@Test
 	public void testReuseInstance() {
 		ViterbiSoft viterbi = new ViterbiSoft((byte) 0x4f, (byte) 0x6d, false, 4 * 2 * 8 + 2 * 8);
@@ -28,6 +25,7 @@ public class ViterbiSoftTest {
 	public void testEncodeDecode() {
 		byte[] original = ViterbiTest.hexStringToByteArray("1ACFFC1D");
 		byte[] input = Viterbi.encode(original, (byte) 0x4f, (byte) 0x6d, false);
+		System.out.println(ViterbiTest.bytesToHex(input));
 		byte[] soft = convertToSoft(input);
 		// emulate single bit failure
 		if (soft[0] == Byte.MAX_VALUE) {
@@ -50,6 +48,23 @@ public class ViterbiSoftTest {
 					soft[i * 8 + j] = Byte.MIN_VALUE;
 				}
 			}
+		}
+		return soft;
+	}
+
+	public static byte[] convertToHard(byte[] input) {
+		byte[] soft = new byte[input.length / 8];
+		// convert to soft
+		for (int i = 0; i < soft.length; i++) {
+			int cur = 0;
+			for (int j = 0; j < 8; j++) {
+				cur = cur << 1;
+				byte softBit = input[i * 8 + j];
+				if (softBit > 0) {
+					cur = (cur | 0x1);
+				}
+			}
+			soft[i] = (byte) cur;
 		}
 		return soft;
 	}

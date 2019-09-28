@@ -9,6 +9,16 @@ public class ArrayByteInput implements ByteInput {
 	private int[] result;
 	private int index;
 
+	public ArrayByteInput(byte... arr) {
+		this.result = new int[arr.length];
+		for (int i = 0; i < arr.length; i++) {
+			result[i] = arr[i];
+		}
+		context = new Context();
+		context.setChannels(1);
+		context.setTotalSamples((long) result.length);
+	}
+
 	public ArrayByteInput(int... result) {
 		this.result = result;
 		context = new Context();

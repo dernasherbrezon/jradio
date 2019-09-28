@@ -25,12 +25,14 @@ public class LRPT implements MessageInput {
 
 	private static final Logger LOG = LoggerFactory.getLogger(LRPT.class);
 	private final ViterbiSoft viterbiSoft;
+	private final ReedSolomon rs;
 	private final PhaseAmbiguityResolver phaseAmbiguityResolver;
 	private final MessageInput messageInput;
 
 	public LRPT(ByteInput input, boolean interleave, boolean differential) {
 		this.phaseAmbiguityResolver = new PhaseAmbiguityResolver(0x035d49c24ff2686bL);
 		this.viterbiSoft = new ViterbiSoft((byte) 0x4f, (byte) 0x6d, false, Vcdu.VITERBI_TAIL_SIZE);
+		this.rs = new ReedSolomon(8, 0x187, 112, 11, 32);
 		ByteInput next = input;
 		if (interleave) {
 			PhaseAmbiguityResolver marker = new PhaseAmbiguityResolver(0b00_10_01_11, 8);
@@ -64,7 +66,7 @@ public class LRPT implements MessageInput {
 		phaseAmbiguityResolver.rotateSoft(rawBytes, (Long) currentTag.get(CorrelateAccessCodeTag.ACCESS_CODE));
 		byte[] viterbi = viterbiSoft.decode(rawBytes);
 		Randomize.shuffle(viterbi);
-		return ReedSolomon.decode(viterbi, 4);
+		return rs.decodeData(viterbi, 4);
 	}
 
 	@Override
