@@ -135,7 +135,7 @@ public class SourcePacket {
 			tmCameraStatus2 = new TmCameraStatus2(dis);
 			break;
 		default:
-			LOG.error("unknown source packet identifier: " + sourcePacketIdentifier);
+			LOG.error("unknown source packet identifier: {}", sourcePacketIdentifier);
 			dis.skipBytes(length);
 			break;
 		}

@@ -5,286 +5,286 @@ import java.io.IOException;
 
 public class StdTmAOCS {
 
-	private byte NODENO;                     //   redundant node number
-	private boolean RST_EN;                  //   the watchdog application is enabled to reset the node
-	private byte BOTSLT;                     //   currently running internal software slot
-	private boolean SYNPPS;                  //   shall the node synchronize with the PPS signal
-	private boolean DISUTC;                  //   shall the node distribute the UTC time at the next PPS signal
-	private boolean DULBSY;                  //   Indicates the state of the UploadManagers Flash Controller
-	private AcsMode ACS_MODE;                //
-	private boolean MFS_RECEIVED;            //   True, if data from the magnetic field sensor system was received in the current control cycle
-	private boolean SSS_RECEIVED;            //   True, if data from the Sun sensor system was received in the current control cycle
-	private boolean GYR_RECEIVED;            //   True, if data from the MEMS gyro system was received in the current control cycle
-	private boolean FOR_RECEIVED;            //   True, if data from the fiber optic rate sensor system was received in the current control cycle
-	private boolean STR_RECEIVED;            //   True, if data from the star tracker system was received in the current control cycle
-	private boolean MTS_RECEIVED;            //   True, if data from the magnetic torquer system was received in the current control cycle      
-	private boolean RW0_RECEIVED;            //   True, if data from the reaction wheel 0 was received in the current control cycle             
-	private boolean RW1_RECEIVED;            //   True, if data from the reaction wheel 1 was received in the current control cycle             
-	private boolean RW2_RECEIVED;            //   True, if data from the reaction wheel 2 was received in the current control cycle             
-	private boolean RW3_RECEIVED;            //   True, if data from the reaction wheel 3 was received in the current control cycle             
-	private float STD_Q_S;                   //   
-	private float STD_Q_X;                   //
-	private float STD_Q_Y;                   //
-	private float STD_Q_Z;                   //
-	private float STD_RATE_X;                //
-	private float STD_RATE_Y;                //
-	private float STD_RATE_Z;                //
-	private int STD_R_X;                     //
-	private int STD_R_Y;                     //
-	private int STD_R_Z;                     //
+	private byte nodeNo;                     //   redundant node number
+	private boolean rstEn;                  //   the watchdog application is enabled to reset the node
+	private byte botSlt;                     //   currently running internal software slot
+	private boolean synPps;                  //   shall the node synchronize with the PPS signal
+	private boolean disUTC;                  //   shall the node distribute the UTC time at the next PPS signal
+	private boolean dulBsy;                  //   Indicates the state of the UploadManagers Flash Controller
+	private AcsMode acsMode;                //
+	private boolean mfsReceived;            //   True, if data from the magnetic field sensor system was received in the current control cycle
+	private boolean sssReceived;            //   True, if data from the Sun sensor system was received in the current control cycle
+	private boolean gyrReceived;            //   True, if data from the MEMS gyro system was received in the current control cycle
+	private boolean forReceived;            //   True, if data from the fiber optic rate sensor system was received in the current control cycle
+	private boolean strReceived;            //   True, if data from the star tracker system was received in the current control cycle
+	private boolean mtsReceived;            //   True, if data from the magnetic torquer system was received in the current control cycle      
+	private boolean rw0Received;            //   True, if data from the reaction wheel 0 was received in the current control cycle             
+	private boolean rw1Received;            //   True, if data from the reaction wheel 1 was received in the current control cycle             
+	private boolean rw2Received;            //   True, if data from the reaction wheel 2 was received in the current control cycle             
+	private boolean rw3Received;            //   True, if data from the reaction wheel 3 was received in the current control cycle             
+	private float stdQS;                   //   
+	private float stdQX;                   //
+	private float stdQY;                   //
+	private float stdQZ;                   //
+	private float stdRateX;                //
+	private float stdRateY;                //
+	private float stdRateZ;                //
+	private int stdRX;                     //
+	private int stdRY;                     //
+	private int stdRZ;                     //
 
 	public StdTmAOCS(DataInputStream dis) throws IOException {
 		int raw = dis.readUnsignedByte();
-		NODENO = (byte) (raw >> 7);
-		RST_EN = ((raw >> 6) & 0x1) > 0;
-		BOTSLT = (byte) ((raw >> 3) & 0x7);
-		SYNPPS = ((raw >> 2) & 0x1) > 0;
-		DISUTC = ((raw >> 1) & 0x1) > 0;
-		DULBSY = (raw & 0x1) > 0;
+		nodeNo = (byte) (raw >> 7);
+		rstEn = ((raw >> 6) & 0x1) > 0;
+		botSlt = (byte) ((raw >> 3) & 0x7);
+		synPps = ((raw >> 2) & 0x1) > 0;
+		disUTC = ((raw >> 1) & 0x1) > 0;
+		dulBsy = (raw & 0x1) > 0;
 
 		raw = dis.readUnsignedByte();
-		ACS_MODE = AcsMode.valueOfCode(raw >> 3);
-		MFS_RECEIVED = ((raw >> 2) & 0x1) > 0;
-		SSS_RECEIVED = ((raw >> 1) & 0x1) > 0;
-		GYR_RECEIVED = (raw & 0x1) > 0;
+		acsMode = AcsMode.valueOfCode(raw >> 3);
+		mfsReceived = ((raw >> 2) & 0x1) > 0;
+		sssReceived = ((raw >> 1) & 0x1) > 0;
+		gyrReceived = (raw & 0x1) > 0;
 
 		raw = dis.readUnsignedByte();
-		FOR_RECEIVED = ((raw >> 7) & 0x1) > 0;
-		STR_RECEIVED = ((raw >> 6) & 0x1) > 0;
+		forReceived = ((raw >> 7) & 0x1) > 0;
+		strReceived = ((raw >> 6) & 0x1) > 0;
 		// skip 1 bit
-		MTS_RECEIVED = ((raw >> 4) & 0x1) > 0;
-		RW0_RECEIVED = ((raw >> 3) & 0x1) > 0;
-		RW1_RECEIVED = ((raw >> 2) & 0x1) > 0;
-		RW2_RECEIVED = ((raw >> 1) & 0x1) > 0;
-		RW3_RECEIVED = (raw & 0x1) > 0;
+		mtsReceived = ((raw >> 4) & 0x1) > 0;
+		rw0Received = ((raw >> 3) & 0x1) > 0;
+		rw1Received = ((raw >> 2) & 0x1) > 0;
+		rw2Received = ((raw >> 1) & 0x1) > 0;
+		rw3Received = (raw & 0x1) > 0;
 
-		STD_Q_S = dis.readShort() * 0.0001f;
-		STD_Q_X = dis.readShort() * 0.0001f;
-		STD_Q_Y = dis.readShort() * 0.0001f;
-		STD_Q_Z = dis.readShort() * 0.0001f;
+		stdQS = dis.readShort() * 0.0001f;
+		stdQX = dis.readShort() * 0.0001f;
+		stdQY = dis.readShort() * 0.0001f;
+		stdQZ = dis.readShort() * 0.0001f;
 
-		STD_RATE_X = dis.readByte() * 0.2f;
-		STD_RATE_Y = dis.readByte() * 0.2f;
-		STD_RATE_Z = dis.readByte() * 0.2f;
-		STD_R_X = dis.readByte() * 100;
-		STD_R_Y = dis.readByte() * 100;
-		STD_R_Z = dis.readByte() * 100;
+		stdRateX = dis.readByte() * 0.2f;
+		stdRateY = dis.readByte() * 0.2f;
+		stdRateZ = dis.readByte() * 0.2f;
+		stdRX = dis.readByte() * 100;
+		stdRY = dis.readByte() * 100;
+		stdRZ = dis.readByte() * 100;
 	}
 
-	public byte getNODENO() {
-		return NODENO;
+	public byte getNodeNo() {
+		return nodeNo;
 	}
 
-	public void setNODENO(byte nODENO) {
-		NODENO = nODENO;
+	public void setNodeNo(byte nodeNo) {
+		this.nodeNo = nodeNo;
 	}
 
-	public boolean isRST_EN() {
-		return RST_EN;
+	public boolean isRstEn() {
+		return rstEn;
 	}
 
-	public void setRST_EN(boolean rST_EN) {
-		RST_EN = rST_EN;
+	public void setRstEn(boolean rstEn) {
+		this.rstEn = rstEn;
 	}
 
-	public byte getBOTSLT() {
-		return BOTSLT;
+	public byte getBotSlt() {
+		return botSlt;
 	}
 
-	public void setBOTSLT(byte bOTSLT) {
-		BOTSLT = bOTSLT;
+	public void setBotSlt(byte botSlt) {
+		this.botSlt = botSlt;
 	}
 
-	public boolean isSYNPPS() {
-		return SYNPPS;
+	public boolean isSynPps() {
+		return synPps;
 	}
 
-	public void setSYNPPS(boolean sYNPPS) {
-		SYNPPS = sYNPPS;
+	public void setSynPps(boolean synPps) {
+		this.synPps = synPps;
 	}
 
-	public boolean isDISUTC() {
-		return DISUTC;
+	public boolean isDisUTC() {
+		return disUTC;
 	}
 
-	public void setDISUTC(boolean dISUTC) {
-		DISUTC = dISUTC;
+	public void setDisUTC(boolean disUTC) {
+		this.disUTC = disUTC;
 	}
 
-	public boolean isDULBSY() {
-		return DULBSY;
+	public boolean isDulBsy() {
+		return dulBsy;
 	}
 
-	public void setDULBSY(boolean dULBSY) {
-		DULBSY = dULBSY;
+	public void setDulBsy(boolean dulBsy) {
+		this.dulBsy = dulBsy;
 	}
 
-	public AcsMode getACS_MODE() {
-		return ACS_MODE;
+	public AcsMode getAcsMode() {
+		return acsMode;
 	}
 
-	public void setACS_MODE(AcsMode aCS_MODE) {
-		ACS_MODE = aCS_MODE;
+	public void setAcsMode(AcsMode acsMode) {
+		this.acsMode = acsMode;
 	}
 
-	public boolean isMFS_RECEIVED() {
-		return MFS_RECEIVED;
+	public boolean isMfsReceived() {
+		return mfsReceived;
 	}
 
-	public void setMFS_RECEIVED(boolean mFS_RECEIVED) {
-		MFS_RECEIVED = mFS_RECEIVED;
+	public void setMfsReceived(boolean mfsReceived) {
+		this.mfsReceived = mfsReceived;
 	}
 
-	public boolean isSSS_RECEIVED() {
-		return SSS_RECEIVED;
+	public boolean isSssReceived() {
+		return sssReceived;
 	}
 
-	public void setSSS_RECEIVED(boolean sSS_RECEIVED) {
-		SSS_RECEIVED = sSS_RECEIVED;
+	public void setSssReceived(boolean sssReceived) {
+		this.sssReceived = sssReceived;
 	}
 
-	public boolean isGYR_RECEIVED() {
-		return GYR_RECEIVED;
+	public boolean isGyrReceived() {
+		return gyrReceived;
 	}
 
-	public void setGYR_RECEIVED(boolean gYR_RECEIVED) {
-		GYR_RECEIVED = gYR_RECEIVED;
+	public void setGyrReceived(boolean gyrReceived) {
+		this.gyrReceived = gyrReceived;
 	}
 
-	public boolean isFOR_RECEIVED() {
-		return FOR_RECEIVED;
+	public boolean isForReceived() {
+		return forReceived;
 	}
 
-	public void setFOR_RECEIVED(boolean fOR_RECEIVED) {
-		FOR_RECEIVED = fOR_RECEIVED;
+	public void setForReceived(boolean forReceived) {
+		this.forReceived = forReceived;
 	}
 
-	public boolean isSTR_RECEIVED() {
-		return STR_RECEIVED;
+	public boolean isStrReceived() {
+		return strReceived;
 	}
 
-	public void setSTR_RECEIVED(boolean sTR_RECEIVED) {
-		STR_RECEIVED = sTR_RECEIVED;
+	public void setStrReceived(boolean strReceived) {
+		this.strReceived = strReceived;
 	}
 
-	public boolean isMTS_RECEIVED() {
-		return MTS_RECEIVED;
+	public boolean isMtsReceived() {
+		return mtsReceived;
 	}
 
-	public void setMTS_RECEIVED(boolean mTS_RECEIVED) {
-		MTS_RECEIVED = mTS_RECEIVED;
+	public void setMtsReceived(boolean mtsReceived) {
+		this.mtsReceived = mtsReceived;
 	}
 
-	public boolean isRW0_RECEIVED() {
-		return RW0_RECEIVED;
+	public boolean isRw0Received() {
+		return rw0Received;
 	}
 
-	public void setRW0_RECEIVED(boolean rW0_RECEIVED) {
-		RW0_RECEIVED = rW0_RECEIVED;
+	public void setRw0Received(boolean rw0Received) {
+		this.rw0Received = rw0Received;
 	}
 
-	public boolean isRW1_RECEIVED() {
-		return RW1_RECEIVED;
+	public boolean isRw1Received() {
+		return rw1Received;
 	}
 
-	public void setRW1_RECEIVED(boolean rW1_RECEIVED) {
-		RW1_RECEIVED = rW1_RECEIVED;
+	public void setRw1Received(boolean rw1Received) {
+		this.rw1Received = rw1Received;
 	}
 
-	public boolean isRW2_RECEIVED() {
-		return RW2_RECEIVED;
+	public boolean isRw2Received() {
+		return rw2Received;
 	}
 
-	public void setRW2_RECEIVED(boolean rW2_RECEIVED) {
-		RW2_RECEIVED = rW2_RECEIVED;
+	public void setRw2Received(boolean rw2Received) {
+		this.rw2Received = rw2Received;
 	}
 
-	public boolean isRW3_RECEIVED() {
-		return RW3_RECEIVED;
+	public boolean isRw3Received() {
+		return rw3Received;
 	}
 
-	public void setRW3_RECEIVED(boolean rW3_RECEIVED) {
-		RW3_RECEIVED = rW3_RECEIVED;
+	public void setRw3Received(boolean rw3Received) {
+		this.rw3Received = rw3Received;
 	}
 
-	public float getSTD_Q_S() {
-		return STD_Q_S;
+	public float getStdQS() {
+		return stdQS;
 	}
 
-	public void setSTD_Q_S(float sTD_Q_S) {
-		STD_Q_S = sTD_Q_S;
+	public void setStdQS(float stdQS) {
+		this.stdQS = stdQS;
 	}
 
-	public float getSTD_Q_X() {
-		return STD_Q_X;
+	public float getStdQX() {
+		return stdQX;
 	}
 
-	public void setSTD_Q_X(float sTD_Q_X) {
-		STD_Q_X = sTD_Q_X;
+	public void setStdQX(float stdQX) {
+		this.stdQX = stdQX;
 	}
 
-	public float getSTD_Q_Y() {
-		return STD_Q_Y;
+	public float getStdQY() {
+		return stdQY;
 	}
 
-	public void setSTD_Q_Y(float sTD_Q_Y) {
-		STD_Q_Y = sTD_Q_Y;
+	public void setStdQY(float stdQY) {
+		this.stdQY = stdQY;
 	}
 
-	public float getSTD_Q_Z() {
-		return STD_Q_Z;
+	public float getStdQZ() {
+		return stdQZ;
 	}
 
-	public void setSTD_Q_Z(float sTD_Q_Z) {
-		STD_Q_Z = sTD_Q_Z;
+	public void setStdQZ(float stdQZ) {
+		this.stdQZ = stdQZ;
 	}
 
-	public float getSTD_RATE_X() {
-		return STD_RATE_X;
+	public float getStdRateX() {
+		return stdRateX;
 	}
 
-	public void setSTD_RATE_X(float sTD_RATE_X) {
-		STD_RATE_X = sTD_RATE_X;
+	public void setStdRateX(float stdRateX) {
+		this.stdRateX = stdRateX;
 	}
 
-	public float getSTD_RATE_Y() {
-		return STD_RATE_Y;
+	public float getStdRateY() {
+		return stdRateY;
 	}
 
-	public void setSTD_RATE_Y(float sTD_RATE_Y) {
-		STD_RATE_Y = sTD_RATE_Y;
+	public void setStdRateY(float stdRateY) {
+		this.stdRateY = stdRateY;
 	}
 
-	public float getSTD_RATE_Z() {
-		return STD_RATE_Z;
+	public float getStdRateZ() {
+		return stdRateZ;
 	}
 
-	public void setSTD_RATE_Z(float sTD_RATE_Z) {
-		STD_RATE_Z = sTD_RATE_Z;
+	public void setStdRateZ(float stdRateZ) {
+		this.stdRateZ = stdRateZ;
 	}
 
-	public int getSTD_R_X() {
-		return STD_R_X;
+	public int getStdRX() {
+		return stdRX;
 	}
 
-	public void setSTD_R_X(int sTD_R_X) {
-		STD_R_X = sTD_R_X;
+	public void setStdRX(int stdRX) {
+		this.stdRX = stdRX;
 	}
 
-	public int getSTD_R_Y() {
-		return STD_R_Y;
+	public int getStdRY() {
+		return stdRY;
 	}
 
-	public void setSTD_R_Y(int sTD_R_Y) {
-		STD_R_Y = sTD_R_Y;
+	public void setStdRY(int stdRY) {
+		this.stdRY = stdRY;
 	}
 
-	public int getSTD_R_Z() {
-		return STD_R_Z;
+	public int getStdRZ() {
+		return stdRZ;
 	}
 
-	public void setSTD_R_Z(int sTD_R_Z) {
-		STD_R_Z = sTD_R_Z;
+	public void setStdRZ(int stdRZ) {
+		this.stdRZ = stdRZ;
 	}
 
 }
