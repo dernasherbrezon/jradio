@@ -5,391 +5,391 @@ import java.io.IOException;
 
 public class StdTmEPS {
 
-	private byte NODENO;       // redundant node number
-	private boolean RST_EN;    // the watchdog application is enabled to reset the node
-	private byte BOTSLT;       // currently running internal software slot
-	private boolean SYNPPS;    // shall the node synchronize with the PPS signal
-	private boolean DISUTC;    // shall the node distribute the UTC time at the next PPS signal
-	private boolean DULBSY;    // Indicates the state of the UploadManagers Flash Controller
+	private byte nodeNo; // redundant node number
+	private boolean rstEn; // the watchdog application is enabled to reset the node
+	private byte botSlt; // currently running internal software slot
+	private boolean synPps; // shall the node synchronize with the PPS signal
+	private boolean disUTC; // shall the node distribute the UTC time at the next PPS signal
+	private boolean dulBsy; // Indicates the state of the UploadManagers Flash Controller
 
-	private boolean ACTIVE_CAN;             //  Active CAN bus
-	private boolean PWRSTS00;               //  AOCS 0
-	private boolean PWRSTS01;               //  AOCS 1
-	private boolean PWRSTS02;               //  FOR 0
-	private boolean PWRSTS03;               //  FOR 1
-	private boolean PWRSTS04;               //  OBC 0
-	private boolean PWRSTS05;               //  OBC 1
-	private boolean PWRSTS06;               //  PDH 0
-	private boolean PWRSTS07;               //  PDH 1
-	private boolean PWRSTS08;               //  SOLID 0
-	private boolean PWRSTS09;               //  SOLID 1
-	private boolean PWRSTS10;               //  FDA 0
-	private boolean PWRSTS11;               //  FDA 1
-	private boolean PWRSTS12;               //  STELLA 0
-	private boolean PWRSTS13;               //  STELLA 1
-	private boolean PWRSTS14;               //  COM 0
-	private boolean PWRSTS15;               //  COM 1
-	private boolean PWRSTS16;               //  RW0 0
-	private boolean PWRSTS18;               //  RW1 0
-	private boolean PWRSTS20;               //  RW2 0
-	private boolean PWRSTS22;               //  RW3 0
-	private boolean SOL_STATUS_0;           //  Solarring 0 status
-	private boolean SOL_STATUS_1;           //  Solarring 1 status
-	private boolean REG_PWR_STAT_0;         //  Reg Pwr 0 status
-	private boolean REG_PWR_STAT_1;         //  Reg Pwr 1 status
-	private short SOL_PWR_INPUT;            //  Pwr Input via Solarpanels    
-	private short PWR_INTO_BAT;             //  Pwr into/from the Batteries  
-	private int BAT_ENRG_AVAIL;             //  Energy left in Batteries     
-	private int PWR_INTO_SYS;               //  Pwr into the system          
-	private float SP_VOLT_A;                //  PCU A sum point voltage      
-	private float SP_VOLT_B;                //  PCU B sum point voltage      
-                                                
+	private boolean activeCan; // Active CAN bus
+	private boolean pwrSTS00; // AOCS 0
+	private boolean pwrSTS01; // AOCS 1
+	private boolean pwrSTS02; // FOR 0
+	private boolean pwrSTS03; // FOR 1
+	private boolean pwrSTS04; // OBC 0
+	private boolean pwrSTS05; // OBC 1
+	private boolean pwrSTS06; // PDH 0
+	private boolean pwrSTS07; // PDH 1
+	private boolean pwrSTS08; // SOLID 0
+	private boolean pwrSTS09; // SOLID 1
+	private boolean pwrSTS10; // FDA 0
+	private boolean pwrSTS11; // FDA 1
+	private boolean pwrSTS12; // STELLA 0
+	private boolean pwrSTS13; // STELLA 1
+	private boolean pwrSTS14; // COM 0
+	private boolean pwrSTS15; // COM 1
+	private boolean pwrSTS16; // RW0 0
+	private boolean pwrSTS18; // RW1 0
+	private boolean pwrSTS20; // RW2 0
+	private boolean pwrSTS22; // RW3 0
+	private boolean solStatus0; // Solarring 0 status
+	private boolean solStatus1; // Solarring 1 status
+	private boolean regPwrStat0; // Reg Pwr 0 status
+	private boolean regPwrStat1; // Reg Pwr 1 status
+	private short solPwrInput; // Pwr Input via Solarpanels
+	private short pwrIntoBat; // Pwr into/from the Batteries
+	private int batEnrgAvail; // Energy left in Batteries
+	private int pwrIntoSys; // Pwr into the system
+	private float spVoltA; // PCU A sum point voltage
+	private float spVoltB; // PCU B sum point voltage
+
 	public StdTmEPS(DataInputStream dis) throws IOException {
 		int raw = dis.readUnsignedByte();
-		NODENO = (byte) (raw >> 7);
-		RST_EN = ((raw >> 6) & 0x1) > 0;
-		BOTSLT = (byte) ((raw >> 3) & 0x7);
-		SYNPPS = ((raw >> 2) & 0x1) > 0;
-		DISUTC = ((raw >> 1) & 0x1) > 0;
-		DULBSY = (raw & 0x1) > 0;
+		nodeNo = (byte) (raw >> 7);
+		rstEn = ((raw >> 6) & 0x1) > 0;
+		botSlt = (byte) ((raw >> 3) & 0x7);
+		synPps = ((raw >> 2) & 0x1) > 0;
+		disUTC = ((raw >> 1) & 0x1) > 0;
+		dulBsy = (raw & 0x1) > 0;
 		dis.skipBytes(1);
 		raw = dis.readUnsignedByte();
 		// skip first 6 bits
-		ACTIVE_CAN = ((raw >> 1) & 0x1) > 0;
-		PWRSTS00 = (raw & 0x1) > 0;
+		activeCan = ((raw >> 1) & 0x1) > 0;
+		pwrSTS00 = (raw & 0x1) > 0;
 
 		raw = dis.readUnsignedByte();
-		PWRSTS01 = ((raw >> 7) & 0x1) > 0;
-		PWRSTS02 = ((raw >> 6) & 0x1) > 0;
-		PWRSTS03 = ((raw >> 5) & 0x1) > 0;
-		PWRSTS04 = ((raw >> 4) & 0x1) > 0;
-		PWRSTS05 = ((raw >> 3) & 0x1) > 0;
-		PWRSTS06 = ((raw >> 2) & 0x1) > 0;
-		PWRSTS07 = ((raw >> 1) & 0x1) > 0;
-		PWRSTS08 = (raw & 0x1) > 0;
+		pwrSTS01 = ((raw >> 7) & 0x1) > 0;
+		pwrSTS02 = ((raw >> 6) & 0x1) > 0;
+		pwrSTS03 = ((raw >> 5) & 0x1) > 0;
+		pwrSTS04 = ((raw >> 4) & 0x1) > 0;
+		pwrSTS05 = ((raw >> 3) & 0x1) > 0;
+		pwrSTS06 = ((raw >> 2) & 0x1) > 0;
+		pwrSTS07 = ((raw >> 1) & 0x1) > 0;
+		pwrSTS08 = (raw & 0x1) > 0;
 
 		raw = dis.readUnsignedByte();
-		PWRSTS09 = ((raw >> 7) & 0x1) > 0;
-		PWRSTS10 = ((raw >> 6) & 0x1) > 0;
-		PWRSTS11 = ((raw >> 5) & 0x1) > 0;
-		PWRSTS12 = ((raw >> 4) & 0x1) > 0;
-		PWRSTS13 = ((raw >> 3) & 0x1) > 0;
-		PWRSTS14 = ((raw >> 2) & 0x1) > 0;
-		PWRSTS15 = ((raw >> 1) & 0x1) > 0;
-		PWRSTS16 = (raw & 0x1) > 0;
+		pwrSTS09 = ((raw >> 7) & 0x1) > 0;
+		pwrSTS10 = ((raw >> 6) & 0x1) > 0;
+		pwrSTS11 = ((raw >> 5) & 0x1) > 0;
+		pwrSTS12 = ((raw >> 4) & 0x1) > 0;
+		pwrSTS13 = ((raw >> 3) & 0x1) > 0;
+		pwrSTS14 = ((raw >> 2) & 0x1) > 0;
+		pwrSTS15 = ((raw >> 1) & 0x1) > 0;
+		pwrSTS16 = (raw & 0x1) > 0;
 
 		raw = dis.readUnsignedByte();
-		PWRSTS18 = ((raw >> 7) & 0x1) > 0;
-		PWRSTS20 = ((raw >> 6) & 0x1) > 0;
-		PWRSTS22 = ((raw >> 5) & 0x1) > 0;
-		SOL_STATUS_0 = ((raw >> 4) & 0x1) > 0;
-		SOL_STATUS_1 = ((raw >> 3) & 0x1) > 0;
-		REG_PWR_STAT_0 = ((raw >> 2) & 0x1) > 0;
-		REG_PWR_STAT_1 = ((raw >> 1) & 0x1) > 0;
+		pwrSTS18 = ((raw >> 7) & 0x1) > 0;
+		pwrSTS20 = ((raw >> 6) & 0x1) > 0;
+		pwrSTS22 = ((raw >> 5) & 0x1) > 0;
+		solStatus0 = ((raw >> 4) & 0x1) > 0;
+		solStatus1 = ((raw >> 3) & 0x1) > 0;
+		regPwrStat0 = ((raw >> 2) & 0x1) > 0;
+		regPwrStat1 = ((raw >> 1) & 0x1) > 0;
 		// skip last bit
 
-		SOL_PWR_INPUT = dis.readShort();
-		PWR_INTO_BAT = dis.readShort();
-		BAT_ENRG_AVAIL = dis.readUnsignedShort();
-		PWR_INTO_SYS = dis.readUnsignedShort();
-		SP_VOLT_A = dis.readUnsignedByte() * 0.098039216f;
-		SP_VOLT_B = dis.readUnsignedByte() * 0.098039216f;
+		solPwrInput = dis.readShort();
+		pwrIntoBat = dis.readShort();
+		batEnrgAvail = dis.readUnsignedShort();
+		pwrIntoSys = dis.readUnsignedShort();
+		spVoltA = dis.readUnsignedByte() * 0.098039216f;
+		spVoltB = dis.readUnsignedByte() * 0.098039216f;
 	}
 
-	public byte getNODENO() {
-		return NODENO;
+	public byte getNodeNo() {
+		return nodeNo;
 	}
 
-	public void setNODENO(byte nODENO) {
-		NODENO = nODENO;
+	public void setNodeNo(byte nodeNo) {
+		this.nodeNo = nodeNo;
 	}
 
-	public boolean isRST_EN() {
-		return RST_EN;
+	public boolean isRstEn() {
+		return rstEn;
 	}
 
-	public void setRST_EN(boolean rST_EN) {
-		RST_EN = rST_EN;
+	public void setRstEn(boolean rstEn) {
+		this.rstEn = rstEn;
 	}
 
-	public byte getBOTSLT() {
-		return BOTSLT;
+	public byte getBotSlt() {
+		return botSlt;
 	}
 
-	public void setBOTSLT(byte bOTSLT) {
-		BOTSLT = bOTSLT;
+	public void setBotSlt(byte botSlt) {
+		this.botSlt = botSlt;
 	}
 
-	public boolean isSYNPPS() {
-		return SYNPPS;
+	public boolean isSynPps() {
+		return synPps;
 	}
 
-	public void setSYNPPS(boolean sYNPPS) {
-		SYNPPS = sYNPPS;
+	public void setSynPps(boolean synPps) {
+		this.synPps = synPps;
 	}
 
-	public boolean isDISUTC() {
-		return DISUTC;
+	public boolean isDisUTC() {
+		return disUTC;
 	}
 
-	public void setDISUTC(boolean dISUTC) {
-		DISUTC = dISUTC;
+	public void setDisUTC(boolean disUTC) {
+		this.disUTC = disUTC;
 	}
 
-	public boolean isDULBSY() {
-		return DULBSY;
+	public boolean isDulBsy() {
+		return dulBsy;
 	}
 
-	public void setDULBSY(boolean dULBSY) {
-		DULBSY = dULBSY;
+	public void setDulBsy(boolean dulBsy) {
+		this.dulBsy = dulBsy;
 	}
 
-	public boolean isACTIVE_CAN() {
-		return ACTIVE_CAN;
+	public boolean isActiveCan() {
+		return activeCan;
 	}
 
-	public void setACTIVE_CAN(boolean aCTIVE_CAN) {
-		ACTIVE_CAN = aCTIVE_CAN;
+	public void setActiveCan(boolean activeCan) {
+		this.activeCan = activeCan;
 	}
 
-	public boolean isPWRSTS00() {
-		return PWRSTS00;
+	public boolean isPwrSTS00() {
+		return pwrSTS00;
 	}
 
-	public void setPWRSTS00(boolean pWRSTS00) {
-		PWRSTS00 = pWRSTS00;
+	public void setPwrSTS00(boolean pwrSTS00) {
+		this.pwrSTS00 = pwrSTS00;
 	}
 
-	public boolean isPWRSTS01() {
-		return PWRSTS01;
+	public boolean isPwrSTS01() {
+		return pwrSTS01;
 	}
 
-	public void setPWRSTS01(boolean pWRSTS01) {
-		PWRSTS01 = pWRSTS01;
+	public void setPwrSTS01(boolean pwrSTS01) {
+		this.pwrSTS01 = pwrSTS01;
 	}
 
-	public boolean isPWRSTS02() {
-		return PWRSTS02;
+	public boolean isPwrSTS02() {
+		return pwrSTS02;
 	}
 
-	public void setPWRSTS02(boolean pWRSTS02) {
-		PWRSTS02 = pWRSTS02;
+	public void setPwrSTS02(boolean pwrSTS02) {
+		this.pwrSTS02 = pwrSTS02;
 	}
 
-	public boolean isPWRSTS03() {
-		return PWRSTS03;
+	public boolean isPwrSTS03() {
+		return pwrSTS03;
 	}
 
-	public void setPWRSTS03(boolean pWRSTS03) {
-		PWRSTS03 = pWRSTS03;
+	public void setPwrSTS03(boolean pwrSTS03) {
+		this.pwrSTS03 = pwrSTS03;
 	}
 
-	public boolean isPWRSTS04() {
-		return PWRSTS04;
+	public boolean isPwrSTS04() {
+		return pwrSTS04;
 	}
 
-	public void setPWRSTS04(boolean pWRSTS04) {
-		PWRSTS04 = pWRSTS04;
+	public void setPwrSTS04(boolean pwrSTS04) {
+		this.pwrSTS04 = pwrSTS04;
 	}
 
-	public boolean isPWRSTS05() {
-		return PWRSTS05;
+	public boolean isPwrSTS05() {
+		return pwrSTS05;
 	}
 
-	public void setPWRSTS05(boolean pWRSTS05) {
-		PWRSTS05 = pWRSTS05;
+	public void setPwrSTS05(boolean pwrSTS05) {
+		this.pwrSTS05 = pwrSTS05;
 	}
 
-	public boolean isPWRSTS06() {
-		return PWRSTS06;
+	public boolean isPwrSTS06() {
+		return pwrSTS06;
 	}
 
-	public void setPWRSTS06(boolean pWRSTS06) {
-		PWRSTS06 = pWRSTS06;
+	public void setPwrSTS06(boolean pwrSTS06) {
+		this.pwrSTS06 = pwrSTS06;
 	}
 
-	public boolean isPWRSTS07() {
-		return PWRSTS07;
+	public boolean isPwrSTS07() {
+		return pwrSTS07;
 	}
 
-	public void setPWRSTS07(boolean pWRSTS07) {
-		PWRSTS07 = pWRSTS07;
+	public void setPwrSTS07(boolean pwrSTS07) {
+		this.pwrSTS07 = pwrSTS07;
 	}
 
-	public boolean isPWRSTS08() {
-		return PWRSTS08;
+	public boolean isPwrSTS08() {
+		return pwrSTS08;
 	}
 
-	public void setPWRSTS08(boolean pWRSTS08) {
-		PWRSTS08 = pWRSTS08;
+	public void setPwrSTS08(boolean pwrSTS08) {
+		this.pwrSTS08 = pwrSTS08;
 	}
 
-	public boolean isPWRSTS09() {
-		return PWRSTS09;
+	public boolean isPwrSTS09() {
+		return pwrSTS09;
 	}
 
-	public void setPWRSTS09(boolean pWRSTS09) {
-		PWRSTS09 = pWRSTS09;
+	public void setPwrSTS09(boolean pwrSTS09) {
+		this.pwrSTS09 = pwrSTS09;
 	}
 
-	public boolean isPWRSTS10() {
-		return PWRSTS10;
+	public boolean isPwrSTS10() {
+		return pwrSTS10;
 	}
 
-	public void setPWRSTS10(boolean pWRSTS10) {
-		PWRSTS10 = pWRSTS10;
+	public void setPwrSTS10(boolean pwrSTS10) {
+		this.pwrSTS10 = pwrSTS10;
 	}
 
-	public boolean isPWRSTS11() {
-		return PWRSTS11;
+	public boolean isPwrSTS11() {
+		return pwrSTS11;
 	}
 
-	public void setPWRSTS11(boolean pWRSTS11) {
-		PWRSTS11 = pWRSTS11;
+	public void setPwrSTS11(boolean pwrSTS11) {
+		this.pwrSTS11 = pwrSTS11;
 	}
 
-	public boolean isPWRSTS12() {
-		return PWRSTS12;
+	public boolean isPwrSTS12() {
+		return pwrSTS12;
 	}
 
-	public void setPWRSTS12(boolean pWRSTS12) {
-		PWRSTS12 = pWRSTS12;
+	public void setPwrSTS12(boolean pwrSTS12) {
+		this.pwrSTS12 = pwrSTS12;
 	}
 
-	public boolean isPWRSTS13() {
-		return PWRSTS13;
+	public boolean isPwrSTS13() {
+		return pwrSTS13;
 	}
 
-	public void setPWRSTS13(boolean pWRSTS13) {
-		PWRSTS13 = pWRSTS13;
+	public void setPwrSTS13(boolean pwrSTS13) {
+		this.pwrSTS13 = pwrSTS13;
 	}
 
-	public boolean isPWRSTS14() {
-		return PWRSTS14;
+	public boolean isPwrSTS14() {
+		return pwrSTS14;
 	}
 
-	public void setPWRSTS14(boolean pWRSTS14) {
-		PWRSTS14 = pWRSTS14;
+	public void setPwrSTS14(boolean pwrSTS14) {
+		this.pwrSTS14 = pwrSTS14;
 	}
 
-	public boolean isPWRSTS15() {
-		return PWRSTS15;
+	public boolean isPwrSTS15() {
+		return pwrSTS15;
 	}
 
-	public void setPWRSTS15(boolean pWRSTS15) {
-		PWRSTS15 = pWRSTS15;
+	public void setPwrSTS15(boolean pwrSTS15) {
+		this.pwrSTS15 = pwrSTS15;
 	}
 
-	public boolean isPWRSTS16() {
-		return PWRSTS16;
+	public boolean isPwrSTS16() {
+		return pwrSTS16;
 	}
 
-	public void setPWRSTS16(boolean pWRSTS16) {
-		PWRSTS16 = pWRSTS16;
+	public void setPwrSTS16(boolean pwrSTS16) {
+		this.pwrSTS16 = pwrSTS16;
 	}
 
-	public boolean isPWRSTS18() {
-		return PWRSTS18;
+	public boolean isPwrSTS18() {
+		return pwrSTS18;
 	}
 
-	public void setPWRSTS18(boolean pWRSTS18) {
-		PWRSTS18 = pWRSTS18;
+	public void setPwrSTS18(boolean pwrSTS18) {
+		this.pwrSTS18 = pwrSTS18;
 	}
 
-	public boolean isPWRSTS20() {
-		return PWRSTS20;
+	public boolean isPwrSTS20() {
+		return pwrSTS20;
 	}
 
-	public void setPWRSTS20(boolean pWRSTS20) {
-		PWRSTS20 = pWRSTS20;
+	public void setPwrSTS20(boolean pwrSTS20) {
+		this.pwrSTS20 = pwrSTS20;
 	}
 
-	public boolean isPWRSTS22() {
-		return PWRSTS22;
+	public boolean isPwrSTS22() {
+		return pwrSTS22;
 	}
 
-	public void setPWRSTS22(boolean pWRSTS22) {
-		PWRSTS22 = pWRSTS22;
+	public void setPwrSTS22(boolean pwrSTS22) {
+		this.pwrSTS22 = pwrSTS22;
 	}
 
-	public boolean isSOL_STATUS_0() {
-		return SOL_STATUS_0;
+	public boolean isSolStatus0() {
+		return solStatus0;
 	}
 
-	public void setSOL_STATUS_0(boolean sOL_STATUS_0) {
-		SOL_STATUS_0 = sOL_STATUS_0;
+	public void setSolStatus0(boolean solStatus0) {
+		this.solStatus0 = solStatus0;
 	}
 
-	public boolean isSOL_STATUS_1() {
-		return SOL_STATUS_1;
+	public boolean isSolStatus1() {
+		return solStatus1;
 	}
 
-	public void setSOL_STATUS_1(boolean sOL_STATUS_1) {
-		SOL_STATUS_1 = sOL_STATUS_1;
+	public void setSolStatus1(boolean solStatus1) {
+		this.solStatus1 = solStatus1;
 	}
 
-	public boolean isREG_PWR_STAT_0() {
-		return REG_PWR_STAT_0;
+	public boolean isRegPwrStat0() {
+		return regPwrStat0;
 	}
 
-	public void setREG_PWR_STAT_0(boolean rEG_PWR_STAT_0) {
-		REG_PWR_STAT_0 = rEG_PWR_STAT_0;
+	public void setRegPwrStat0(boolean regPwrStat0) {
+		this.regPwrStat0 = regPwrStat0;
 	}
 
-	public boolean isREG_PWR_STAT_1() {
-		return REG_PWR_STAT_1;
+	public boolean isRegPwrStat1() {
+		return regPwrStat1;
 	}
 
-	public void setREG_PWR_STAT_1(boolean rEG_PWR_STAT_1) {
-		REG_PWR_STAT_1 = rEG_PWR_STAT_1;
+	public void setRegPwrStat1(boolean regPwrStat1) {
+		this.regPwrStat1 = regPwrStat1;
 	}
 
-	public short getSOL_PWR_INPUT() {
-		return SOL_PWR_INPUT;
+	public short getSolPwrInput() {
+		return solPwrInput;
 	}
 
-	public void setSOL_PWR_INPUT(short sOL_PWR_INPUT) {
-		SOL_PWR_INPUT = sOL_PWR_INPUT;
+	public void setSolPwrInput(short solPwrInput) {
+		this.solPwrInput = solPwrInput;
 	}
 
-	public short getPWR_INTO_BAT() {
-		return PWR_INTO_BAT;
+	public short getPwrIntoBat() {
+		return pwrIntoBat;
 	}
 
-	public void setPWR_INTO_BAT(short pWR_INTO_BAT) {
-		PWR_INTO_BAT = pWR_INTO_BAT;
+	public void setPwrIntoBat(short pwrIntoBat) {
+		this.pwrIntoBat = pwrIntoBat;
 	}
 
-	public int getBAT_ENRG_AVAIL() {
-		return BAT_ENRG_AVAIL;
+	public int getBatEnrgAvail() {
+		return batEnrgAvail;
 	}
 
-	public void setBAT_ENRG_AVAIL(int bAT_ENRG_AVAIL) {
-		BAT_ENRG_AVAIL = bAT_ENRG_AVAIL;
+	public void setBatEnrgAvail(int batEnrgAvail) {
+		this.batEnrgAvail = batEnrgAvail;
 	}
 
-	public int getPWR_INTO_SYS() {
-		return PWR_INTO_SYS;
+	public int getPwrIntoSys() {
+		return pwrIntoSys;
 	}
 
-	public void setPWR_INTO_SYS(int pWR_INTO_SYS) {
-		PWR_INTO_SYS = pWR_INTO_SYS;
+	public void setPwrIntoSys(int pwrIntoSys) {
+		this.pwrIntoSys = pwrIntoSys;
 	}
 
-	public float getSP_VOLT_A() {
-		return SP_VOLT_A;
+	public float getSpVoltA() {
+		return spVoltA;
 	}
 
-	public void setSP_VOLT_A(float sP_VOLT_A) {
-		SP_VOLT_A = sP_VOLT_A;
+	public void setSpVoltA(float spVoltA) {
+		this.spVoltA = spVoltA;
 	}
 
-	public float getSP_VOLT_B() {
-		return SP_VOLT_B;
+	public float getSpVoltB() {
+		return spVoltB;
 	}
 
-	public void setSP_VOLT_B(float sP_VOLT_B) {
-		SP_VOLT_B = sP_VOLT_B;
+	public void setSpVoltB(float spVoltB) {
+		this.spVoltB = spVoltB;
 	}
 
 }
