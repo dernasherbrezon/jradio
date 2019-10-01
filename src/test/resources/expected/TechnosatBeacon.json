@@ -6,16 +6,16 @@
     "packets": [
       {
         "stdTmObc": {
-          "NODENO": 0,
-          "RST_EN": true,
-          "BOTSLT": 0,
-          "SYNPPS": true,
-          "DISUTC": false,
-          "DULBSY": false,
-          "TMMTFHIST": "BUS",
-          "SAT_MODE": "NOMINAL",
-          "TMMHSHIST": "BUS",
-          "TMMHSSTAT": "OFF"
+          "nodeNo": 0,
+          "rstEn": true,
+          "botSlt": 0,
+          "synPps": true,
+          "disUTC": false,
+          "dulBsy": false,
+          "tmmtfHist": "BUS",
+          "satMode": "NOMINAL",
+          "tmmhsHist": "BUS",
+          "tmmhsStat": "OFF"
         },
         "length": 13,
         "virtualChannelIdentifier": 0,
@@ -27,16 +27,16 @@
       },
       {
         "stdTmObc": {
-          "NODENO": 0,
-          "RST_EN": true,
-          "BOTSLT": 0,
-          "SYNPPS": true,
-          "DISUTC": false,
-          "DULBSY": false,
-          "TMMTFHIST": "BUS",
-          "SAT_MODE": "NOMINAL",
-          "TMMHSHIST": "BUS",
-          "TMMHSSTAT": "OFF"
+          "nodeNo": 0,
+          "rstEn": true,
+          "botSlt": 0,
+          "synPps": true,
+          "disUTC": false,
+          "dulBsy": false,
+          "tmmtfHist": "BUS",
+          "satMode": "NOMINAL",
+          "tmmhsHist": "BUS",
+          "tmmhsStat": "OFF"
         },
         "length": 13,
         "virtualChannelIdentifier": 1,
@@ -228,16 +228,16 @@
       },
       {
         "stdTmObc": {
-          "NODENO": 0,
-          "RST_EN": true,
-          "BOTSLT": 0,
-          "SYNPPS": true,
-          "DISUTC": false,
-          "DULBSY": false,
-          "TMMTFHIST": "BUS",
-          "SAT_MODE": "NOMINAL",
-          "TMMHSHIST": "BUS",
-          "TMMHSSTAT": "OFF"
+          "nodeNo": 0,
+          "rstEn": true,
+          "botSlt": 0,
+          "synPps": true,
+          "disUTC": false,
+          "dulBsy": false,
+          "tmmtfHist": "BUS",
+          "satMode": "NOMINAL",
+          "tmmhsHist": "BUS",
+          "tmmhsStat": "OFF"
         },
         "length": 13,
         "virtualChannelIdentifier": 1,
