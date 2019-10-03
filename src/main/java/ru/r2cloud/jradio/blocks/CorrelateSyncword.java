@@ -56,7 +56,7 @@ public class CorrelateSyncword implements MessageInput {
 			actualIndex = actualIndex - window.length;
 		}
 		byte hardBit;
-		if (window[actualIndex] > 0) {
+		if (window[actualIndex] >= 0) {
 			hardBit = 1;
 		} else {
 			hardBit = 0;

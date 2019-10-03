@@ -29,9 +29,9 @@ public class HardToSoft implements ByteInput {
 		int bit = (curByte >> (7 - index)) & 0x1;
 		index++;
 		if (bit == 0) {
-			return Byte.MIN_VALUE + 1;
+			return Byte.MIN_VALUE;
 		} else {
-			return Byte.MAX_VALUE - 1;
+			return Byte.MAX_VALUE;
 		}
 	}
 

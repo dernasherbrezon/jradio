@@ -59,7 +59,7 @@ public class ViterbiSoftTest {
 			for (int j = 0; j < 8; j++) {
 				cur = cur << 1;
 				byte softBit = input[i * 8 + j];
-				if (softBit > 0) {
+				if (softBit >= 0) {
 					cur = (cur | 0x1);
 				}
 			}
