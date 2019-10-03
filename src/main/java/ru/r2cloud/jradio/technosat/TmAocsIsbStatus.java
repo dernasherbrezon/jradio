@@ -5,808 +5,808 @@ import java.io.IOException;
 
 public class TmAocsIsbStatus {
 
-	private float I2C_0_CURRENT;               //   I2C0 current
-	private float I2C_1_CURRENT;               //   I2C1 current
-	private boolean I2C_0_ENABLED;             //   I2C0 enabled
-	private boolean I2C_1_ENABLED;             //   I2C1 enabled
-	private boolean I2C_0_LOCKED;              //   I2C0 locked
-	private boolean I2C_1_LOCKED;              //   I2C1 locked
-	private boolean SSU_00_BOUND;              //   bound
-	private boolean SSU_01_BOUND;              //   bound
-	private boolean SSU_02_BOUND;              //   bound
-	private boolean SSU_03_BOUND;              //   bound
-	private boolean SSU_04_BOUND;              //   bound
-	private boolean SSU_05_BOUND;              //   bound
-	private boolean SSU_10_BOUND;              //   bound
-	private boolean SSU_11_BOUND;              //   bound
-	private boolean SSU_12_BOUND;              //   bound
-	private boolean SSU_13_BOUND;              //   bound
-	private boolean SSU_14_BOUND;              //   bound
-	private boolean SSU_15_BOUND;              //   bound
-	private boolean MFSA_00_BOUND;             //   bound
-	private boolean MFSA_01_BOUND;             //   bound
-	private boolean MFSA_02_BOUND;             //   bound
-	private boolean MFSA_03_BOUND;             //   bound
-	private boolean MFSA_04_BOUND;             //   bound
-	private boolean MFSA_05_BOUND;             //   bound
-	private boolean MFSA_10_BOUND;             //   bound
-	private boolean MFSA_11_BOUND;             //   bound
-	private boolean MFSA_12_BOUND;             //   bound
-	private boolean MFSA_13_BOUND;             //   bound
-	private boolean MFSA_14_BOUND;             //   bound
-	private boolean MFSA_15_BOUND;             //   bound
-	private boolean GYRA_00_BOUND;             //   bound
-	private boolean GYRA_01_BOUND;             //   bound
-	private boolean GYRA_02_BOUND;             //   bound
-	private boolean GYRA_03_BOUND;             //   bound
-	private boolean GYRA_04_BOUND;             //   bound
-	private boolean GYRA_05_BOUND;             //   bound
-	private boolean GYRA_10_BOUND;             //   bound
-	private boolean GYRA_11_BOUND;             //   bound
-	private boolean GYRA_12_BOUND;             //   bound
-	private boolean GYRA_13_BOUND;             //   bound
-	private boolean GYRA_14_BOUND;             //   bound
-	private boolean GYRA_15_BOUND;             //   bound
-	private boolean GYRA_T_00_BOUND;           //   bound
-	private boolean GYRA_T_01_BOUND;           //   bound
-	private boolean GYRA_T_02_BOUND;           //   bound
-	private boolean GYRA_T_03_BOUND;           //   bound
-	private boolean GYRA_T_04_BOUND;           //   bound
-	private boolean GYRA_T_05_BOUND;           //   bound
-	private boolean GYRA_T_10_BOUND;           //   bound
-	private boolean GYRA_T_11_BOUND;           //   bound
-	private boolean GYRA_T_12_BOUND;           //   bound
-	private boolean GYRA_T_13_BOUND;           //   bound
-	private boolean GYRA_T_14_BOUND;           //   bound
-	private boolean GYRA_T_15_BOUND;           //   bound
-	private boolean MFSA_F_00_ACTIV;           //   active
-	private boolean MFSA_F_01_ACTIV;           //   active
-	private boolean MFSA_F_02_ACTIV;           //   active
-	private boolean MFSA_F_03_ACTIV;           //   active
-	private boolean MFSA_F_04_ACTIV;           //   active
-	private boolean MFSA_F_05_ACTIV;           //   active
-	private boolean MFSA_F_10_ACTIV;           //   active
-	private boolean MFSA_F_11_ACTIV;           //   active
-	private boolean MFSA_F_12_ACTIV;           //   active
-	private boolean MFSA_F_13_ACTIV;           //   active
-	private boolean MFSA_F_14_ACTIV;           //   active
-	private boolean MFSA_F_15_ACTIV;           //   active
-	private boolean GYRA_F_00_ACTIV;           //   active
-	private boolean GYRA_F_01_ACTIV;           //   active
-	private boolean GYRA_F_02_ACTIV;           //   active
-	private boolean GYRA_F_03_ACTIV;           //   active
-	private boolean GYRA_F_04_ACTIV;           //   active
-	private boolean GYRA_F_05_ACTIV;           //   active
-	private boolean GYRA_F_10_ACTIV;           //   active
-	private boolean GYRA_F_11_ACTIV;           //   active
-	private boolean GYRA_F_12_ACTIV;           //   active
-	private boolean GYRA_F_13_ACTIV;           //   active
-	private boolean GYRA_F_14_ACTIV;           //   active
-	private boolean GYRA_F_15_ACTIV;           //   active
+	private float i2c0Current; // I2C0 current
+	private float i2c1Current; // I2C1 current
+	private boolean i2c0Enabled; // I2C0 enabled
+	private boolean i2c1Enabled; // I2C1 enabled
+	private boolean i2c0Locked; // I2C0 locked
+	private boolean i2c1Locked; // I2C1 locked
+	private boolean ssu00Bound; // bound
+	private boolean ssu01Bound; // bound
+	private boolean ssu02Bound; // bound
+	private boolean ssu03Bound; // bound
+	private boolean ssu04Bound; // bound
+	private boolean ssu05Bound; // bound
+	private boolean ssu10Bound; // bound
+	private boolean ssu11Bound; // bound
+	private boolean ssu12Bound; // bound
+	private boolean ssu13Bound; // bound
+	private boolean ssu14Bound; // bound
+	private boolean ssu15Bound; // bound
+	private boolean mfsa00Bound; // bound
+	private boolean mfsa01Bound; // bound
+	private boolean mfsa02Bound; // bound
+	private boolean mfsa03Bound; // bound
+	private boolean mfsa04Bound; // bound
+	private boolean mfsa05Bound; // bound
+	private boolean mfsa10Bound; // bound
+	private boolean mfsa11Bound; // bound
+	private boolean mfsa12Bound; // bound
+	private boolean mfsa13Bound; // bound
+	private boolean mfsa14Bound; // bound
+	private boolean mfsa15Bound; // bound
+	private boolean gyra00Bound; // bound
+	private boolean gyra01Bound; // bound
+	private boolean gyra02Bound; // bound
+	private boolean gyra03Bound; // bound
+	private boolean gyra04Bound; // bound
+	private boolean gyra05Bound; // bound
+	private boolean gyra10Bound; // bound
+	private boolean gyra11Bound; // bound
+	private boolean gyra12Bound; // bound
+	private boolean gyra13Bound; // bound
+	private boolean gyra14Bound; // bound
+	private boolean gyra15Bound; // bound
+	private boolean gyraT00Bound; // bound
+	private boolean gyraT01Bound; // bound
+	private boolean gyraT02Bound; // bound
+	private boolean gyraT03Bound; // bound
+	private boolean gyraT04Bound; // bound
+	private boolean gyraT05Bound; // bound
+	private boolean gyraT10Bound; // bound
+	private boolean gyraT11Bound; // bound
+	private boolean gyraT12Bound; // bound
+	private boolean gyraT13Bound; // bound
+	private boolean gyraT14Bound; // bound
+	private boolean gyraT15Bound; // bound
+	private boolean mfsaF00Activ; // active
+	private boolean mfsaF01Activ; // active
+	private boolean mfsaF02Activ; // active
+	private boolean mfsaF03Activ; // active
+	private boolean mfsaF04Activ; // active
+	private boolean mfsaF05Activ; // active
+	private boolean mfsaF10Activ; // active
+	private boolean mfsaF11Activ; // active
+	private boolean mfsaF12Activ; // active
+	private boolean mfsaF13Activ; // active
+	private boolean mfsaF14Activ; // active
+	private boolean mfsaF15Activ; // active
+	private boolean gyraF00Activ; // active
+	private boolean gyraF01Activ; // active
+	private boolean gyraF02Activ; // active
+	private boolean gyraF03Activ; // active
+	private boolean gyraF04Activ; // active
+	private boolean gyraF05Activ; // active
+	private boolean gyraF10Activ; // active
+	private boolean gyraF11Activ; // active
+	private boolean gyraF12Activ; // active
+	private boolean gyraF13Activ; // active
+	private boolean gyraF14Activ; // active
+	private boolean gyraF15Activ; // active
 
 	public TmAocsIsbStatus(DataInputStream dis) throws IOException {
-		I2C_0_CURRENT = dis.readUnsignedShort() * 0.1f;
-		I2C_1_CURRENT = dis.readUnsignedShort() * 0.1f;
+		i2c0Current = dis.readUnsignedShort() * 0.1f;
+		i2c1Current = dis.readUnsignedShort() * 0.1f;
 		int raw = dis.readUnsignedByte();
-		I2C_0_ENABLED = ((raw >> 7) & 0x1) > 0;
-		I2C_1_ENABLED = ((raw >> 6) & 0x1) > 0;
-		I2C_0_LOCKED = ((raw >> 5) & 0x1) > 0;
-		I2C_1_LOCKED = ((raw >> 4) & 0x1) > 0;
-		SSU_00_BOUND = ((raw >> 3) & 0x1) > 0;
-		SSU_01_BOUND = ((raw >> 2) & 0x1) > 0;
-		SSU_02_BOUND = ((raw >> 1) & 0x1) > 0;
-		SSU_03_BOUND = (raw & 0x1) > 0;
+		i2c0Enabled = ((raw >> 7) & 0x1) > 0;
+		i2c1Enabled = ((raw >> 6) & 0x1) > 0;
+		i2c0Locked = ((raw >> 5) & 0x1) > 0;
+		i2c1Locked = ((raw >> 4) & 0x1) > 0;
+		ssu00Bound = ((raw >> 3) & 0x1) > 0;
+		ssu01Bound = ((raw >> 2) & 0x1) > 0;
+		ssu02Bound = ((raw >> 1) & 0x1) > 0;
+		ssu03Bound = (raw & 0x1) > 0;
 
 		raw = dis.readUnsignedByte();
-		SSU_04_BOUND = ((raw >> 7) & 0x1) > 0;
-		SSU_05_BOUND = ((raw >> 6) & 0x1) > 0;
-		SSU_10_BOUND = ((raw >> 5) & 0x1) > 0;
-		SSU_11_BOUND = ((raw >> 4) & 0x1) > 0;
-		SSU_12_BOUND = ((raw >> 3) & 0x1) > 0;
-		SSU_13_BOUND = ((raw >> 2) & 0x1) > 0;
-		SSU_14_BOUND = ((raw >> 1) & 0x1) > 0;
-		SSU_15_BOUND = (raw & 0x1) > 0;
+		ssu04Bound = ((raw >> 7) & 0x1) > 0;
+		ssu05Bound = ((raw >> 6) & 0x1) > 0;
+		ssu10Bound = ((raw >> 5) & 0x1) > 0;
+		ssu11Bound = ((raw >> 4) & 0x1) > 0;
+		ssu12Bound = ((raw >> 3) & 0x1) > 0;
+		ssu13Bound = ((raw >> 2) & 0x1) > 0;
+		ssu14Bound = ((raw >> 1) & 0x1) > 0;
+		ssu15Bound = (raw & 0x1) > 0;
 
 		raw = dis.readUnsignedByte();
-		MFSA_00_BOUND = ((raw >> 7) & 0x1) > 0;
-		MFSA_01_BOUND = ((raw >> 6) & 0x1) > 0;
-		MFSA_02_BOUND = ((raw >> 5) & 0x1) > 0;
-		MFSA_03_BOUND = ((raw >> 4) & 0x1) > 0;
-		MFSA_04_BOUND = ((raw >> 3) & 0x1) > 0;
-		MFSA_05_BOUND = ((raw >> 2) & 0x1) > 0;
-		MFSA_10_BOUND = ((raw >> 1) & 0x1) > 0;
-		MFSA_11_BOUND = (raw & 0x1) > 0;
+		mfsa00Bound = ((raw >> 7) & 0x1) > 0;
+		mfsa01Bound = ((raw >> 6) & 0x1) > 0;
+		mfsa02Bound = ((raw >> 5) & 0x1) > 0;
+		mfsa03Bound = ((raw >> 4) & 0x1) > 0;
+		mfsa04Bound = ((raw >> 3) & 0x1) > 0;
+		mfsa05Bound = ((raw >> 2) & 0x1) > 0;
+		mfsa10Bound = ((raw >> 1) & 0x1) > 0;
+		mfsa11Bound = (raw & 0x1) > 0;
 
 		raw = dis.readUnsignedByte();
-		MFSA_12_BOUND = ((raw >> 7) & 0x1) > 0;
-		MFSA_13_BOUND = ((raw >> 6) & 0x1) > 0;
-		MFSA_14_BOUND = ((raw >> 5) & 0x1) > 0;
-		MFSA_15_BOUND = ((raw >> 4) & 0x1) > 0;
-		GYRA_00_BOUND = ((raw >> 3) & 0x1) > 0;
-		GYRA_01_BOUND = ((raw >> 2) & 0x1) > 0;
-		GYRA_02_BOUND = ((raw >> 1) & 0x1) > 0;
-		GYRA_03_BOUND = (raw & 0x1) > 0;
+		mfsa12Bound = ((raw >> 7) & 0x1) > 0;
+		mfsa13Bound = ((raw >> 6) & 0x1) > 0;
+		mfsa14Bound = ((raw >> 5) & 0x1) > 0;
+		mfsa15Bound = ((raw >> 4) & 0x1) > 0;
+		gyra00Bound = ((raw >> 3) & 0x1) > 0;
+		gyra01Bound = ((raw >> 2) & 0x1) > 0;
+		gyra02Bound = ((raw >> 1) & 0x1) > 0;
+		gyra03Bound = (raw & 0x1) > 0;
 
 		raw = dis.readUnsignedByte();
-		GYRA_04_BOUND = ((raw >> 7) & 0x1) > 0;
-		GYRA_05_BOUND = ((raw >> 6) & 0x1) > 0;
-		GYRA_10_BOUND = ((raw >> 5) & 0x1) > 0;
-		GYRA_11_BOUND = ((raw >> 4) & 0x1) > 0;
-		GYRA_12_BOUND = ((raw >> 3) & 0x1) > 0;
-		GYRA_13_BOUND = ((raw >> 2) & 0x1) > 0;
-		GYRA_14_BOUND = ((raw >> 1) & 0x1) > 0;
-		GYRA_15_BOUND = (raw & 0x1) > 0;
+		gyra04Bound = ((raw >> 7) & 0x1) > 0;
+		gyra05Bound = ((raw >> 6) & 0x1) > 0;
+		gyra10Bound = ((raw >> 5) & 0x1) > 0;
+		gyra11Bound = ((raw >> 4) & 0x1) > 0;
+		gyra12Bound = ((raw >> 3) & 0x1) > 0;
+		gyra13Bound = ((raw >> 2) & 0x1) > 0;
+		gyra14Bound = ((raw >> 1) & 0x1) > 0;
+		gyra15Bound = (raw & 0x1) > 0;
 
 		raw = dis.readUnsignedByte();
-		GYRA_T_00_BOUND = ((raw >> 7) & 0x1) > 0;
-		GYRA_T_01_BOUND = ((raw >> 6) & 0x1) > 0;
-		GYRA_T_02_BOUND = ((raw >> 5) & 0x1) > 0;
-		GYRA_T_03_BOUND = ((raw >> 4) & 0x1) > 0;
-		GYRA_T_04_BOUND = ((raw >> 3) & 0x1) > 0;
-		GYRA_T_05_BOUND = ((raw >> 2) & 0x1) > 0;
-		GYRA_T_10_BOUND = ((raw >> 1) & 0x1) > 0;
-		GYRA_T_11_BOUND = (raw & 0x1) > 0;
+		gyraT00Bound = ((raw >> 7) & 0x1) > 0;
+		gyraT01Bound = ((raw >> 6) & 0x1) > 0;
+		gyraT02Bound = ((raw >> 5) & 0x1) > 0;
+		gyraT03Bound = ((raw >> 4) & 0x1) > 0;
+		gyraT04Bound = ((raw >> 3) & 0x1) > 0;
+		gyraT05Bound = ((raw >> 2) & 0x1) > 0;
+		gyraT10Bound = ((raw >> 1) & 0x1) > 0;
+		gyraT11Bound = (raw & 0x1) > 0;
 
 		raw = dis.readUnsignedByte();
-		GYRA_T_12_BOUND = ((raw >> 7) & 0x1) > 0;
-		GYRA_T_13_BOUND = ((raw >> 6) & 0x1) > 0;
-		GYRA_T_14_BOUND = ((raw >> 5) & 0x1) > 0;
-		GYRA_T_15_BOUND = ((raw >> 4) & 0x1) > 0;
-		MFSA_F_00_ACTIV = ((raw >> 3) & 0x1) > 0;
-		MFSA_F_01_ACTIV = ((raw >> 2) & 0x1) > 0;
-		MFSA_F_02_ACTIV = ((raw >> 1) & 0x1) > 0;
-		MFSA_F_03_ACTIV = (raw & 0x1) > 0;
+		gyraT12Bound = ((raw >> 7) & 0x1) > 0;
+		gyraT13Bound = ((raw >> 6) & 0x1) > 0;
+		gyraT14Bound = ((raw >> 5) & 0x1) > 0;
+		gyraT15Bound = ((raw >> 4) & 0x1) > 0;
+		mfsaF00Activ = ((raw >> 3) & 0x1) > 0;
+		mfsaF01Activ = ((raw >> 2) & 0x1) > 0;
+		mfsaF02Activ = ((raw >> 1) & 0x1) > 0;
+		mfsaF03Activ = (raw & 0x1) > 0;
 
 		raw = dis.readUnsignedByte();
-		MFSA_F_04_ACTIV = ((raw >> 7) & 0x1) > 0;
-		MFSA_F_05_ACTIV = ((raw >> 6) & 0x1) > 0;
-		MFSA_F_10_ACTIV = ((raw >> 5) & 0x1) > 0;
-		MFSA_F_11_ACTIV = ((raw >> 4) & 0x1) > 0;
-		MFSA_F_12_ACTIV = ((raw >> 3) & 0x1) > 0;
-		MFSA_F_13_ACTIV = ((raw >> 2) & 0x1) > 0;
-		MFSA_F_14_ACTIV = ((raw >> 1) & 0x1) > 0;
-		MFSA_F_15_ACTIV = (raw & 0x1) > 0;
+		mfsaF04Activ = ((raw >> 7) & 0x1) > 0;
+		mfsaF05Activ = ((raw >> 6) & 0x1) > 0;
+		mfsaF10Activ = ((raw >> 5) & 0x1) > 0;
+		mfsaF11Activ = ((raw >> 4) & 0x1) > 0;
+		mfsaF12Activ = ((raw >> 3) & 0x1) > 0;
+		mfsaF13Activ = ((raw >> 2) & 0x1) > 0;
+		mfsaF14Activ = ((raw >> 1) & 0x1) > 0;
+		mfsaF15Activ = (raw & 0x1) > 0;
 
 		raw = dis.readUnsignedByte();
-		GYRA_F_00_ACTIV = ((raw >> 7) & 0x1) > 0;
-		GYRA_F_01_ACTIV = ((raw >> 6) & 0x1) > 0;
-		GYRA_F_02_ACTIV = ((raw >> 5) & 0x1) > 0;
-		GYRA_F_03_ACTIV = ((raw >> 4) & 0x1) > 0;
-		GYRA_F_04_ACTIV = ((raw >> 3) & 0x1) > 0;
-		GYRA_F_05_ACTIV = ((raw >> 2) & 0x1) > 0;
-		GYRA_F_10_ACTIV = ((raw >> 1) & 0x1) > 0;
-		GYRA_F_11_ACTIV = (raw & 0x1) > 0;
+		gyraF00Activ = ((raw >> 7) & 0x1) > 0;
+		gyraF01Activ = ((raw >> 6) & 0x1) > 0;
+		gyraF02Activ = ((raw >> 5) & 0x1) > 0;
+		gyraF03Activ = ((raw >> 4) & 0x1) > 0;
+		gyraF04Activ = ((raw >> 3) & 0x1) > 0;
+		gyraF05Activ = ((raw >> 2) & 0x1) > 0;
+		gyraF10Activ = ((raw >> 1) & 0x1) > 0;
+		gyraF11Activ = (raw & 0x1) > 0;
 
 		raw = dis.readUnsignedByte();
-		GYRA_F_12_ACTIV = ((raw >> 7) & 0x1) > 0;
-		GYRA_F_13_ACTIV = ((raw >> 6) & 0x1) > 0;
-		GYRA_F_14_ACTIV = ((raw >> 5) & 0x1) > 0;
-		GYRA_F_15_ACTIV = ((raw >> 4) & 0x1) > 0;
+		gyraF12Activ = ((raw >> 7) & 0x1) > 0;
+		gyraF13Activ = ((raw >> 6) & 0x1) > 0;
+		gyraF14Activ = ((raw >> 5) & 0x1) > 0;
+		gyraF15Activ = ((raw >> 4) & 0x1) > 0;
 
 	}
 
-	public float getI2C_0_CURRENT() {
-		return I2C_0_CURRENT;
+	public float getI2c0Current() {
+		return i2c0Current;
 	}
 
-	public void setI2C_0_CURRENT(float i2c_0_CURRENT) {
-		I2C_0_CURRENT = i2c_0_CURRENT;
+	public void setI2c0Current(float i2c0Current) {
+		this.i2c0Current = i2c0Current;
 	}
 
-	public float getI2C_1_CURRENT() {
-		return I2C_1_CURRENT;
+	public float getI2c1Current() {
+		return i2c1Current;
 	}
 
-	public void setI2C_1_CURRENT(float i2c_1_CURRENT) {
-		I2C_1_CURRENT = i2c_1_CURRENT;
+	public void setI2c1Current(float i2c1Current) {
+		this.i2c1Current = i2c1Current;
 	}
 
-	public boolean isI2C_0_ENABLED() {
-		return I2C_0_ENABLED;
+	public boolean isI2c0Enabled() {
+		return i2c0Enabled;
 	}
 
-	public void setI2C_0_ENABLED(boolean i2c_0_ENABLED) {
-		I2C_0_ENABLED = i2c_0_ENABLED;
+	public void setI2c0Enabled(boolean i2c0Enabled) {
+		this.i2c0Enabled = i2c0Enabled;
 	}
 
-	public boolean isI2C_1_ENABLED() {
-		return I2C_1_ENABLED;
+	public boolean isI2c1Enabled() {
+		return i2c1Enabled;
 	}
 
-	public void setI2C_1_ENABLED(boolean i2c_1_ENABLED) {
-		I2C_1_ENABLED = i2c_1_ENABLED;
+	public void setI2c1Enabled(boolean i2c1Enabled) {
+		this.i2c1Enabled = i2c1Enabled;
 	}
 
-	public boolean isI2C_0_LOCKED() {
-		return I2C_0_LOCKED;
+	public boolean isI2c0Locked() {
+		return i2c0Locked;
 	}
 
-	public void setI2C_0_LOCKED(boolean i2c_0_LOCKED) {
-		I2C_0_LOCKED = i2c_0_LOCKED;
+	public void setI2c0Locked(boolean i2c0Locked) {
+		this.i2c0Locked = i2c0Locked;
 	}
 
-	public boolean isI2C_1_LOCKED() {
-		return I2C_1_LOCKED;
+	public boolean isI2c1Locked() {
+		return i2c1Locked;
 	}
 
-	public void setI2C_1_LOCKED(boolean i2c_1_LOCKED) {
-		I2C_1_LOCKED = i2c_1_LOCKED;
+	public void setI2c1Locked(boolean i2c1Locked) {
+		this.i2c1Locked = i2c1Locked;
 	}
 
-	public boolean isSSU_00_BOUND() {
-		return SSU_00_BOUND;
+	public boolean isSsu00Bound() {
+		return ssu00Bound;
 	}
 
-	public void setSSU_00_BOUND(boolean sSU_00_BOUND) {
-		SSU_00_BOUND = sSU_00_BOUND;
+	public void setSsu00Bound(boolean ssu00Bound) {
+		this.ssu00Bound = ssu00Bound;
 	}
 
-	public boolean isSSU_01_BOUND() {
-		return SSU_01_BOUND;
+	public boolean isSsu01Bound() {
+		return ssu01Bound;
 	}
 
-	public void setSSU_01_BOUND(boolean sSU_01_BOUND) {
-		SSU_01_BOUND = sSU_01_BOUND;
+	public void setSsu01Bound(boolean ssu01Bound) {
+		this.ssu01Bound = ssu01Bound;
 	}
 
-	public boolean isSSU_02_BOUND() {
-		return SSU_02_BOUND;
+	public boolean isSsu02Bound() {
+		return ssu02Bound;
 	}
 
-	public void setSSU_02_BOUND(boolean sSU_02_BOUND) {
-		SSU_02_BOUND = sSU_02_BOUND;
+	public void setSsu02Bound(boolean ssu02Bound) {
+		this.ssu02Bound = ssu02Bound;
 	}
 
-	public boolean isSSU_03_BOUND() {
-		return SSU_03_BOUND;
+	public boolean isSsu03Bound() {
+		return ssu03Bound;
 	}
 
-	public void setSSU_03_BOUND(boolean sSU_03_BOUND) {
-		SSU_03_BOUND = sSU_03_BOUND;
+	public void setSsu03Bound(boolean ssu03Bound) {
+		this.ssu03Bound = ssu03Bound;
 	}
 
-	public boolean isSSU_04_BOUND() {
-		return SSU_04_BOUND;
+	public boolean isSsu04Bound() {
+		return ssu04Bound;
 	}
 
-	public void setSSU_04_BOUND(boolean sSU_04_BOUND) {
-		SSU_04_BOUND = sSU_04_BOUND;
+	public void setSsu04Bound(boolean ssu04Bound) {
+		this.ssu04Bound = ssu04Bound;
 	}
 
-	public boolean isSSU_05_BOUND() {
-		return SSU_05_BOUND;
+	public boolean isSsu05Bound() {
+		return ssu05Bound;
 	}
 
-	public void setSSU_05_BOUND(boolean sSU_05_BOUND) {
-		SSU_05_BOUND = sSU_05_BOUND;
+	public void setSsu05Bound(boolean ssu05Bound) {
+		this.ssu05Bound = ssu05Bound;
 	}
 
-	public boolean isSSU_10_BOUND() {
-		return SSU_10_BOUND;
+	public boolean isSsu10Bound() {
+		return ssu10Bound;
 	}
 
-	public void setSSU_10_BOUND(boolean sSU_10_BOUND) {
-		SSU_10_BOUND = sSU_10_BOUND;
+	public void setSsu10Bound(boolean ssu10Bound) {
+		this.ssu10Bound = ssu10Bound;
 	}
 
-	public boolean isSSU_11_BOUND() {
-		return SSU_11_BOUND;
+	public boolean isSsu11Bound() {
+		return ssu11Bound;
 	}
 
-	public void setSSU_11_BOUND(boolean sSU_11_BOUND) {
-		SSU_11_BOUND = sSU_11_BOUND;
+	public void setSsu11Bound(boolean ssu11Bound) {
+		this.ssu11Bound = ssu11Bound;
 	}
 
-	public boolean isSSU_12_BOUND() {
-		return SSU_12_BOUND;
+	public boolean isSsu12Bound() {
+		return ssu12Bound;
 	}
 
-	public void setSSU_12_BOUND(boolean sSU_12_BOUND) {
-		SSU_12_BOUND = sSU_12_BOUND;
+	public void setSsu12Bound(boolean ssu12Bound) {
+		this.ssu12Bound = ssu12Bound;
 	}
 
-	public boolean isSSU_13_BOUND() {
-		return SSU_13_BOUND;
+	public boolean isSsu13Bound() {
+		return ssu13Bound;
 	}
 
-	public void setSSU_13_BOUND(boolean sSU_13_BOUND) {
-		SSU_13_BOUND = sSU_13_BOUND;
+	public void setSsu13Bound(boolean ssu13Bound) {
+		this.ssu13Bound = ssu13Bound;
 	}
 
-	public boolean isSSU_14_BOUND() {
-		return SSU_14_BOUND;
+	public boolean isSsu14Bound() {
+		return ssu14Bound;
 	}
 
-	public void setSSU_14_BOUND(boolean sSU_14_BOUND) {
-		SSU_14_BOUND = sSU_14_BOUND;
+	public void setSsu14Bound(boolean ssu14Bound) {
+		this.ssu14Bound = ssu14Bound;
 	}
 
-	public boolean isSSU_15_BOUND() {
-		return SSU_15_BOUND;
+	public boolean isSsu15Bound() {
+		return ssu15Bound;
 	}
 
-	public void setSSU_15_BOUND(boolean sSU_15_BOUND) {
-		SSU_15_BOUND = sSU_15_BOUND;
+	public void setSsu15Bound(boolean ssu15Bound) {
+		this.ssu15Bound = ssu15Bound;
 	}
 
-	public boolean isMFSA_00_BOUND() {
-		return MFSA_00_BOUND;
+	public boolean isMfsa00Bound() {
+		return mfsa00Bound;
 	}
 
-	public void setMFSA_00_BOUND(boolean mFSA_00_BOUND) {
-		MFSA_00_BOUND = mFSA_00_BOUND;
+	public void setMfsa00Bound(boolean mfsa00Bound) {
+		this.mfsa00Bound = mfsa00Bound;
 	}
 
-	public boolean isMFSA_01_BOUND() {
-		return MFSA_01_BOUND;
+	public boolean isMfsa01Bound() {
+		return mfsa01Bound;
 	}
 
-	public void setMFSA_01_BOUND(boolean mFSA_01_BOUND) {
-		MFSA_01_BOUND = mFSA_01_BOUND;
+	public void setMfsa01Bound(boolean mfsa01Bound) {
+		this.mfsa01Bound = mfsa01Bound;
 	}
 
-	public boolean isMFSA_02_BOUND() {
-		return MFSA_02_BOUND;
+	public boolean isMfsa02Bound() {
+		return mfsa02Bound;
 	}
 
-	public void setMFSA_02_BOUND(boolean mFSA_02_BOUND) {
-		MFSA_02_BOUND = mFSA_02_BOUND;
+	public void setMfsa02Bound(boolean mfsa02Bound) {
+		this.mfsa02Bound = mfsa02Bound;
 	}
 
-	public boolean isMFSA_03_BOUND() {
-		return MFSA_03_BOUND;
+	public boolean isMfsa03Bound() {
+		return mfsa03Bound;
 	}
 
-	public void setMFSA_03_BOUND(boolean mFSA_03_BOUND) {
-		MFSA_03_BOUND = mFSA_03_BOUND;
+	public void setMfsa03Bound(boolean mfsa03Bound) {
+		this.mfsa03Bound = mfsa03Bound;
 	}
 
-	public boolean isMFSA_04_BOUND() {
-		return MFSA_04_BOUND;
+	public boolean isMfsa04Bound() {
+		return mfsa04Bound;
 	}
 
-	public void setMFSA_04_BOUND(boolean mFSA_04_BOUND) {
-		MFSA_04_BOUND = mFSA_04_BOUND;
+	public void setMfsa04Bound(boolean mfsa04Bound) {
+		this.mfsa04Bound = mfsa04Bound;
 	}
 
-	public boolean isMFSA_05_BOUND() {
-		return MFSA_05_BOUND;
+	public boolean isMfsa05Bound() {
+		return mfsa05Bound;
 	}
 
-	public void setMFSA_05_BOUND(boolean mFSA_05_BOUND) {
-		MFSA_05_BOUND = mFSA_05_BOUND;
+	public void setMfsa05Bound(boolean mfsa05Bound) {
+		this.mfsa05Bound = mfsa05Bound;
 	}
 
-	public boolean isMFSA_10_BOUND() {
-		return MFSA_10_BOUND;
+	public boolean isMfsa10Bound() {
+		return mfsa10Bound;
 	}
 
-	public void setMFSA_10_BOUND(boolean mFSA_10_BOUND) {
-		MFSA_10_BOUND = mFSA_10_BOUND;
+	public void setMfsa10Bound(boolean mfsa10Bound) {
+		this.mfsa10Bound = mfsa10Bound;
 	}
 
-	public boolean isMFSA_11_BOUND() {
-		return MFSA_11_BOUND;
+	public boolean isMfsa11Bound() {
+		return mfsa11Bound;
 	}
 
-	public void setMFSA_11_BOUND(boolean mFSA_11_BOUND) {
-		MFSA_11_BOUND = mFSA_11_BOUND;
+	public void setMfsa11Bound(boolean mfsa11Bound) {
+		this.mfsa11Bound = mfsa11Bound;
 	}
 
-	public boolean isMFSA_12_BOUND() {
-		return MFSA_12_BOUND;
+	public boolean isMfsa12Bound() {
+		return mfsa12Bound;
 	}
 
-	public void setMFSA_12_BOUND(boolean mFSA_12_BOUND) {
-		MFSA_12_BOUND = mFSA_12_BOUND;
+	public void setMfsa12Bound(boolean mfsa12Bound) {
+		this.mfsa12Bound = mfsa12Bound;
 	}
 
-	public boolean isMFSA_13_BOUND() {
-		return MFSA_13_BOUND;
+	public boolean isMfsa13Bound() {
+		return mfsa13Bound;
 	}
 
-	public void setMFSA_13_BOUND(boolean mFSA_13_BOUND) {
-		MFSA_13_BOUND = mFSA_13_BOUND;
+	public void setMfsa13Bound(boolean mfsa13Bound) {
+		this.mfsa13Bound = mfsa13Bound;
 	}
 
-	public boolean isMFSA_14_BOUND() {
-		return MFSA_14_BOUND;
+	public boolean isMfsa14Bound() {
+		return mfsa14Bound;
 	}
 
-	public void setMFSA_14_BOUND(boolean mFSA_14_BOUND) {
-		MFSA_14_BOUND = mFSA_14_BOUND;
+	public void setMfsa14Bound(boolean mfsa14Bound) {
+		this.mfsa14Bound = mfsa14Bound;
 	}
 
-	public boolean isMFSA_15_BOUND() {
-		return MFSA_15_BOUND;
+	public boolean isMfsa15Bound() {
+		return mfsa15Bound;
 	}
 
-	public void setMFSA_15_BOUND(boolean mFSA_15_BOUND) {
-		MFSA_15_BOUND = mFSA_15_BOUND;
+	public void setMfsa15Bound(boolean mfsa15Bound) {
+		this.mfsa15Bound = mfsa15Bound;
 	}
 
-	public boolean isGYRA_00_BOUND() {
-		return GYRA_00_BOUND;
+	public boolean isGyra00Bound() {
+		return gyra00Bound;
 	}
 
-	public void setGYRA_00_BOUND(boolean gYRA_00_BOUND) {
-		GYRA_00_BOUND = gYRA_00_BOUND;
+	public void setGyra00Bound(boolean gyra00Bound) {
+		this.gyra00Bound = gyra00Bound;
 	}
 
-	public boolean isGYRA_01_BOUND() {
-		return GYRA_01_BOUND;
+	public boolean isGyra01Bound() {
+		return gyra01Bound;
 	}
 
-	public void setGYRA_01_BOUND(boolean gYRA_01_BOUND) {
-		GYRA_01_BOUND = gYRA_01_BOUND;
+	public void setGyra01Bound(boolean gyra01Bound) {
+		this.gyra01Bound = gyra01Bound;
 	}
 
-	public boolean isGYRA_02_BOUND() {
-		return GYRA_02_BOUND;
+	public boolean isGyra02Bound() {
+		return gyra02Bound;
 	}
 
-	public void setGYRA_02_BOUND(boolean gYRA_02_BOUND) {
-		GYRA_02_BOUND = gYRA_02_BOUND;
+	public void setGyra02Bound(boolean gyra02Bound) {
+		this.gyra02Bound = gyra02Bound;
 	}
 
-	public boolean isGYRA_03_BOUND() {
-		return GYRA_03_BOUND;
+	public boolean isGyra03Bound() {
+		return gyra03Bound;
 	}
 
-	public void setGYRA_03_BOUND(boolean gYRA_03_BOUND) {
-		GYRA_03_BOUND = gYRA_03_BOUND;
+	public void setGyra03Bound(boolean gyra03Bound) {
+		this.gyra03Bound = gyra03Bound;
 	}
 
-	public boolean isGYRA_04_BOUND() {
-		return GYRA_04_BOUND;
+	public boolean isGyra04Bound() {
+		return gyra04Bound;
 	}
 
-	public void setGYRA_04_BOUND(boolean gYRA_04_BOUND) {
-		GYRA_04_BOUND = gYRA_04_BOUND;
+	public void setGyra04Bound(boolean gyra04Bound) {
+		this.gyra04Bound = gyra04Bound;
 	}
 
-	public boolean isGYRA_05_BOUND() {
-		return GYRA_05_BOUND;
+	public boolean isGyra05Bound() {
+		return gyra05Bound;
 	}
 
-	public void setGYRA_05_BOUND(boolean gYRA_05_BOUND) {
-		GYRA_05_BOUND = gYRA_05_BOUND;
+	public void setGyra05Bound(boolean gyra05Bound) {
+		this.gyra05Bound = gyra05Bound;
 	}
 
-	public boolean isGYRA_10_BOUND() {
-		return GYRA_10_BOUND;
+	public boolean isGyra10Bound() {
+		return gyra10Bound;
 	}
 
-	public void setGYRA_10_BOUND(boolean gYRA_10_BOUND) {
-		GYRA_10_BOUND = gYRA_10_BOUND;
+	public void setGyra10Bound(boolean gyra10Bound) {
+		this.gyra10Bound = gyra10Bound;
 	}
 
-	public boolean isGYRA_11_BOUND() {
-		return GYRA_11_BOUND;
+	public boolean isGyra11Bound() {
+		return gyra11Bound;
 	}
 
-	public void setGYRA_11_BOUND(boolean gYRA_11_BOUND) {
-		GYRA_11_BOUND = gYRA_11_BOUND;
+	public void setGyra11Bound(boolean gyra11Bound) {
+		this.gyra11Bound = gyra11Bound;
 	}
 
-	public boolean isGYRA_12_BOUND() {
-		return GYRA_12_BOUND;
+	public boolean isGyra12Bound() {
+		return gyra12Bound;
 	}
 
-	public void setGYRA_12_BOUND(boolean gYRA_12_BOUND) {
-		GYRA_12_BOUND = gYRA_12_BOUND;
+	public void setGyra12Bound(boolean gyra12Bound) {
+		this.gyra12Bound = gyra12Bound;
 	}
 
-	public boolean isGYRA_13_BOUND() {
-		return GYRA_13_BOUND;
+	public boolean isGyra13Bound() {
+		return gyra13Bound;
 	}
 
-	public void setGYRA_13_BOUND(boolean gYRA_13_BOUND) {
-		GYRA_13_BOUND = gYRA_13_BOUND;
+	public void setGyra13Bound(boolean gyra13Bound) {
+		this.gyra13Bound = gyra13Bound;
 	}
 
-	public boolean isGYRA_14_BOUND() {
-		return GYRA_14_BOUND;
+	public boolean isGyra14Bound() {
+		return gyra14Bound;
 	}
 
-	public void setGYRA_14_BOUND(boolean gYRA_14_BOUND) {
-		GYRA_14_BOUND = gYRA_14_BOUND;
+	public void setGyra14Bound(boolean gyra14Bound) {
+		this.gyra14Bound = gyra14Bound;
 	}
 
-	public boolean isGYRA_15_BOUND() {
-		return GYRA_15_BOUND;
+	public boolean isGyra15Bound() {
+		return gyra15Bound;
 	}
 
-	public void setGYRA_15_BOUND(boolean gYRA_15_BOUND) {
-		GYRA_15_BOUND = gYRA_15_BOUND;
+	public void setGyra15Bound(boolean gyra15Bound) {
+		this.gyra15Bound = gyra15Bound;
 	}
 
-	public boolean isGYRA_T_00_BOUND() {
-		return GYRA_T_00_BOUND;
+	public boolean isGyraT00Bound() {
+		return gyraT00Bound;
 	}
 
-	public void setGYRA_T_00_BOUND(boolean gYRA_T_00_BOUND) {
-		GYRA_T_00_BOUND = gYRA_T_00_BOUND;
+	public void setGyraT00Bound(boolean gyraT00Bound) {
+		this.gyraT00Bound = gyraT00Bound;
 	}
 
-	public boolean isGYRA_T_01_BOUND() {
-		return GYRA_T_01_BOUND;
+	public boolean isGyraT01Bound() {
+		return gyraT01Bound;
 	}
 
-	public void setGYRA_T_01_BOUND(boolean gYRA_T_01_BOUND) {
-		GYRA_T_01_BOUND = gYRA_T_01_BOUND;
+	public void setGyraT01Bound(boolean gyraT01Bound) {
+		this.gyraT01Bound = gyraT01Bound;
 	}
 
-	public boolean isGYRA_T_02_BOUND() {
-		return GYRA_T_02_BOUND;
+	public boolean isGyraT02Bound() {
+		return gyraT02Bound;
 	}
 
-	public void setGYRA_T_02_BOUND(boolean gYRA_T_02_BOUND) {
-		GYRA_T_02_BOUND = gYRA_T_02_BOUND;
+	public void setGyraT02Bound(boolean gyraT02Bound) {
+		this.gyraT02Bound = gyraT02Bound;
 	}
 
-	public boolean isGYRA_T_03_BOUND() {
-		return GYRA_T_03_BOUND;
+	public boolean isGyraT03Bound() {
+		return gyraT03Bound;
 	}
 
-	public void setGYRA_T_03_BOUND(boolean gYRA_T_03_BOUND) {
-		GYRA_T_03_BOUND = gYRA_T_03_BOUND;
+	public void setGyraT03Bound(boolean gyraT03Bound) {
+		this.gyraT03Bound = gyraT03Bound;
 	}
 
-	public boolean isGYRA_T_04_BOUND() {
-		return GYRA_T_04_BOUND;
+	public boolean isGyraT04Bound() {
+		return gyraT04Bound;
 	}
 
-	public void setGYRA_T_04_BOUND(boolean gYRA_T_04_BOUND) {
-		GYRA_T_04_BOUND = gYRA_T_04_BOUND;
+	public void setGyraT04Bound(boolean gyraT04Bound) {
+		this.gyraT04Bound = gyraT04Bound;
 	}
 
-	public boolean isGYRA_T_05_BOUND() {
-		return GYRA_T_05_BOUND;
+	public boolean isGyraT05Bound() {
+		return gyraT05Bound;
 	}
 
-	public void setGYRA_T_05_BOUND(boolean gYRA_T_05_BOUND) {
-		GYRA_T_05_BOUND = gYRA_T_05_BOUND;
+	public void setGyraT05Bound(boolean gyraT05Bound) {
+		this.gyraT05Bound = gyraT05Bound;
 	}
 
-	public boolean isGYRA_T_10_BOUND() {
-		return GYRA_T_10_BOUND;
+	public boolean isGyraT10Bound() {
+		return gyraT10Bound;
 	}
 
-	public void setGYRA_T_10_BOUND(boolean gYRA_T_10_BOUND) {
-		GYRA_T_10_BOUND = gYRA_T_10_BOUND;
+	public void setGyraT10Bound(boolean gyraT10Bound) {
+		this.gyraT10Bound = gyraT10Bound;
 	}
 
-	public boolean isGYRA_T_11_BOUND() {
-		return GYRA_T_11_BOUND;
+	public boolean isGyraT11Bound() {
+		return gyraT11Bound;
 	}
 
-	public void setGYRA_T_11_BOUND(boolean gYRA_T_11_BOUND) {
-		GYRA_T_11_BOUND = gYRA_T_11_BOUND;
+	public void setGyraT11Bound(boolean gyraT11Bound) {
+		this.gyraT11Bound = gyraT11Bound;
 	}
 
-	public boolean isGYRA_T_12_BOUND() {
-		return GYRA_T_12_BOUND;
+	public boolean isGyraT12Bound() {
+		return gyraT12Bound;
 	}
 
-	public void setGYRA_T_12_BOUND(boolean gYRA_T_12_BOUND) {
-		GYRA_T_12_BOUND = gYRA_T_12_BOUND;
+	public void setGyraT12Bound(boolean gyraT12Bound) {
+		this.gyraT12Bound = gyraT12Bound;
 	}
 
-	public boolean isGYRA_T_13_BOUND() {
-		return GYRA_T_13_BOUND;
+	public boolean isGyraT13Bound() {
+		return gyraT13Bound;
 	}
 
-	public void setGYRA_T_13_BOUND(boolean gYRA_T_13_BOUND) {
-		GYRA_T_13_BOUND = gYRA_T_13_BOUND;
+	public void setGyraT13Bound(boolean gyraT13Bound) {
+		this.gyraT13Bound = gyraT13Bound;
 	}
 
-	public boolean isGYRA_T_14_BOUND() {
-		return GYRA_T_14_BOUND;
+	public boolean isGyraT14Bound() {
+		return gyraT14Bound;
 	}
 
-	public void setGYRA_T_14_BOUND(boolean gYRA_T_14_BOUND) {
-		GYRA_T_14_BOUND = gYRA_T_14_BOUND;
+	public void setGyraT14Bound(boolean gyraT14Bound) {
+		this.gyraT14Bound = gyraT14Bound;
 	}
 
-	public boolean isGYRA_T_15_BOUND() {
-		return GYRA_T_15_BOUND;
+	public boolean isGyraT15Bound() {
+		return gyraT15Bound;
 	}
 
-	public void setGYRA_T_15_BOUND(boolean gYRA_T_15_BOUND) {
-		GYRA_T_15_BOUND = gYRA_T_15_BOUND;
+	public void setGyraT15Bound(boolean gyraT15Bound) {
+		this.gyraT15Bound = gyraT15Bound;
 	}
 
-	public boolean isMFSA_F_00_ACTIV() {
-		return MFSA_F_00_ACTIV;
+	public boolean isMfsaF00Activ() {
+		return mfsaF00Activ;
 	}
 
-	public void setMFSA_F_00_ACTIV(boolean mFSA_F_00_ACTIV) {
-		MFSA_F_00_ACTIV = mFSA_F_00_ACTIV;
+	public void setMfsaF00Activ(boolean mfsaF00Activ) {
+		this.mfsaF00Activ = mfsaF00Activ;
 	}
 
-	public boolean isMFSA_F_01_ACTIV() {
-		return MFSA_F_01_ACTIV;
+	public boolean isMfsaF01Activ() {
+		return mfsaF01Activ;
 	}
 
-	public void setMFSA_F_01_ACTIV(boolean mFSA_F_01_ACTIV) {
-		MFSA_F_01_ACTIV = mFSA_F_01_ACTIV;
+	public void setMfsaF01Activ(boolean mfsaF01Activ) {
+		this.mfsaF01Activ = mfsaF01Activ;
 	}
 
-	public boolean isMFSA_F_02_ACTIV() {
-		return MFSA_F_02_ACTIV;
+	public boolean isMfsaF02Activ() {
+		return mfsaF02Activ;
 	}
 
-	public void setMFSA_F_02_ACTIV(boolean mFSA_F_02_ACTIV) {
-		MFSA_F_02_ACTIV = mFSA_F_02_ACTIV;
+	public void setMfsaF02Activ(boolean mfsaF02Activ) {
+		this.mfsaF02Activ = mfsaF02Activ;
 	}
 
-	public boolean isMFSA_F_03_ACTIV() {
-		return MFSA_F_03_ACTIV;
+	public boolean isMfsaF03Activ() {
+		return mfsaF03Activ;
 	}
 
-	public void setMFSA_F_03_ACTIV(boolean mFSA_F_03_ACTIV) {
-		MFSA_F_03_ACTIV = mFSA_F_03_ACTIV;
+	public void setMfsaF03Activ(boolean mfsaF03Activ) {
+		this.mfsaF03Activ = mfsaF03Activ;
 	}
 
-	public boolean isMFSA_F_04_ACTIV() {
-		return MFSA_F_04_ACTIV;
+	public boolean isMfsaF04Activ() {
+		return mfsaF04Activ;
 	}
 
-	public void setMFSA_F_04_ACTIV(boolean mFSA_F_04_ACTIV) {
-		MFSA_F_04_ACTIV = mFSA_F_04_ACTIV;
+	public void setMfsaF04Activ(boolean mfsaF04Activ) {
+		this.mfsaF04Activ = mfsaF04Activ;
 	}
 
-	public boolean isMFSA_F_05_ACTIV() {
-		return MFSA_F_05_ACTIV;
+	public boolean isMfsaF05Activ() {
+		return mfsaF05Activ;
 	}
 
-	public void setMFSA_F_05_ACTIV(boolean mFSA_F_05_ACTIV) {
-		MFSA_F_05_ACTIV = mFSA_F_05_ACTIV;
+	public void setMfsaF05Activ(boolean mfsaF05Activ) {
+		this.mfsaF05Activ = mfsaF05Activ;
 	}
 
-	public boolean isMFSA_F_10_ACTIV() {
-		return MFSA_F_10_ACTIV;
+	public boolean isMfsaF10Activ() {
+		return mfsaF10Activ;
 	}
 
-	public void setMFSA_F_10_ACTIV(boolean mFSA_F_10_ACTIV) {
-		MFSA_F_10_ACTIV = mFSA_F_10_ACTIV;
+	public void setMfsaF10Activ(boolean mfsaF10Activ) {
+		this.mfsaF10Activ = mfsaF10Activ;
 	}
 
-	public boolean isMFSA_F_11_ACTIV() {
-		return MFSA_F_11_ACTIV;
+	public boolean isMfsaF11Activ() {
+		return mfsaF11Activ;
 	}
 
-	public void setMFSA_F_11_ACTIV(boolean mFSA_F_11_ACTIV) {
-		MFSA_F_11_ACTIV = mFSA_F_11_ACTIV;
+	public void setMfsaF11Activ(boolean mfsaF11Activ) {
+		this.mfsaF11Activ = mfsaF11Activ;
 	}
 
-	public boolean isMFSA_F_12_ACTIV() {
-		return MFSA_F_12_ACTIV;
+	public boolean isMfsaF12Activ() {
+		return mfsaF12Activ;
 	}
 
-	public void setMFSA_F_12_ACTIV(boolean mFSA_F_12_ACTIV) {
-		MFSA_F_12_ACTIV = mFSA_F_12_ACTIV;
+	public void setMfsaF12Activ(boolean mfsaF12Activ) {
+		this.mfsaF12Activ = mfsaF12Activ;
 	}
 
-	public boolean isMFSA_F_13_ACTIV() {
-		return MFSA_F_13_ACTIV;
+	public boolean isMfsaF13Activ() {
+		return mfsaF13Activ;
 	}
 
-	public void setMFSA_F_13_ACTIV(boolean mFSA_F_13_ACTIV) {
-		MFSA_F_13_ACTIV = mFSA_F_13_ACTIV;
+	public void setMfsaF13Activ(boolean mfsaF13Activ) {
+		this.mfsaF13Activ = mfsaF13Activ;
 	}
 
-	public boolean isMFSA_F_14_ACTIV() {
-		return MFSA_F_14_ACTIV;
+	public boolean isMfsaF14Activ() {
+		return mfsaF14Activ;
 	}
 
-	public void setMFSA_F_14_ACTIV(boolean mFSA_F_14_ACTIV) {
-		MFSA_F_14_ACTIV = mFSA_F_14_ACTIV;
+	public void setMfsaF14Activ(boolean mfsaF14Activ) {
+		this.mfsaF14Activ = mfsaF14Activ;
 	}
 
-	public boolean isMFSA_F_15_ACTIV() {
-		return MFSA_F_15_ACTIV;
+	public boolean isMfsaF15Activ() {
+		return mfsaF15Activ;
 	}
 
-	public void setMFSA_F_15_ACTIV(boolean mFSA_F_15_ACTIV) {
-		MFSA_F_15_ACTIV = mFSA_F_15_ACTIV;
+	public void setMfsaF15Activ(boolean mfsaF15Activ) {
+		this.mfsaF15Activ = mfsaF15Activ;
 	}
 
-	public boolean isGYRA_F_00_ACTIV() {
-		return GYRA_F_00_ACTIV;
+	public boolean isGyraF00Activ() {
+		return gyraF00Activ;
 	}
 
-	public void setGYRA_F_00_ACTIV(boolean gYRA_F_00_ACTIV) {
-		GYRA_F_00_ACTIV = gYRA_F_00_ACTIV;
+	public void setGyraF00Activ(boolean gyraF00Activ) {
+		this.gyraF00Activ = gyraF00Activ;
 	}
 
-	public boolean isGYRA_F_01_ACTIV() {
-		return GYRA_F_01_ACTIV;
+	public boolean isGyraF01Activ() {
+		return gyraF01Activ;
 	}
 
-	public void setGYRA_F_01_ACTIV(boolean gYRA_F_01_ACTIV) {
-		GYRA_F_01_ACTIV = gYRA_F_01_ACTIV;
+	public void setGyraF01Activ(boolean gyraF01Activ) {
+		this.gyraF01Activ = gyraF01Activ;
 	}
 
-	public boolean isGYRA_F_02_ACTIV() {
-		return GYRA_F_02_ACTIV;
+	public boolean isGyraF02Activ() {
+		return gyraF02Activ;
 	}
 
-	public void setGYRA_F_02_ACTIV(boolean gYRA_F_02_ACTIV) {
-		GYRA_F_02_ACTIV = gYRA_F_02_ACTIV;
+	public void setGyraF02Activ(boolean gyraF02Activ) {
+		this.gyraF02Activ = gyraF02Activ;
 	}
 
-	public boolean isGYRA_F_03_ACTIV() {
-		return GYRA_F_03_ACTIV;
+	public boolean isGyraF03Activ() {
+		return gyraF03Activ;
 	}
 
-	public void setGYRA_F_03_ACTIV(boolean gYRA_F_03_ACTIV) {
-		GYRA_F_03_ACTIV = gYRA_F_03_ACTIV;
+	public void setGyraF03Activ(boolean gyraF03Activ) {
+		this.gyraF03Activ = gyraF03Activ;
 	}
 
-	public boolean isGYRA_F_04_ACTIV() {
-		return GYRA_F_04_ACTIV;
+	public boolean isGyraF04Activ() {
+		return gyraF04Activ;
 	}
 
-	public void setGYRA_F_04_ACTIV(boolean gYRA_F_04_ACTIV) {
-		GYRA_F_04_ACTIV = gYRA_F_04_ACTIV;
+	public void setGyraF04Activ(boolean gyraF04Activ) {
+		this.gyraF04Activ = gyraF04Activ;
 	}
 
-	public boolean isGYRA_F_05_ACTIV() {
-		return GYRA_F_05_ACTIV;
+	public boolean isGyraF05Activ() {
+		return gyraF05Activ;
 	}
 
-	public void setGYRA_F_05_ACTIV(boolean gYRA_F_05_ACTIV) {
-		GYRA_F_05_ACTIV = gYRA_F_05_ACTIV;
+	public void setGyraF05Activ(boolean gyraF05Activ) {
+		this.gyraF05Activ = gyraF05Activ;
 	}
 
-	public boolean isGYRA_F_10_ACTIV() {
-		return GYRA_F_10_ACTIV;
+	public boolean isGyraF10Activ() {
+		return gyraF10Activ;
 	}
 
-	public void setGYRA_F_10_ACTIV(boolean gYRA_F_10_ACTIV) {
-		GYRA_F_10_ACTIV = gYRA_F_10_ACTIV;
+	public void setGyraF10Activ(boolean gyraF10Activ) {
+		this.gyraF10Activ = gyraF10Activ;
 	}
 
-	public boolean isGYRA_F_11_ACTIV() {
-		return GYRA_F_11_ACTIV;
+	public boolean isGyraF11Activ() {
+		return gyraF11Activ;
 	}
 
-	public void setGYRA_F_11_ACTIV(boolean gYRA_F_11_ACTIV) {
-		GYRA_F_11_ACTIV = gYRA_F_11_ACTIV;
+	public void setGyraF11Activ(boolean gyraF11Activ) {
+		this.gyraF11Activ = gyraF11Activ;
 	}
 
-	public boolean isGYRA_F_12_ACTIV() {
-		return GYRA_F_12_ACTIV;
+	public boolean isGyraF12Activ() {
+		return gyraF12Activ;
 	}
 
-	public void setGYRA_F_12_ACTIV(boolean gYRA_F_12_ACTIV) {
-		GYRA_F_12_ACTIV = gYRA_F_12_ACTIV;
+	public void setGyraF12Activ(boolean gyraF12Activ) {
+		this.gyraF12Activ = gyraF12Activ;
 	}
 
-	public boolean isGYRA_F_13_ACTIV() {
-		return GYRA_F_13_ACTIV;
+	public boolean isGyraF13Activ() {
+		return gyraF13Activ;
 	}
 
-	public void setGYRA_F_13_ACTIV(boolean gYRA_F_13_ACTIV) {
-		GYRA_F_13_ACTIV = gYRA_F_13_ACTIV;
+	public void setGyraF13Activ(boolean gyraF13Activ) {
+		this.gyraF13Activ = gyraF13Activ;
 	}
 
-	public boolean isGYRA_F_14_ACTIV() {
-		return GYRA_F_14_ACTIV;
+	public boolean isGyraF14Activ() {
+		return gyraF14Activ;
 	}
 
-	public void setGYRA_F_14_ACTIV(boolean gYRA_F_14_ACTIV) {
-		GYRA_F_14_ACTIV = gYRA_F_14_ACTIV;
+	public void setGyraF14Activ(boolean gyraF14Activ) {
+		this.gyraF14Activ = gyraF14Activ;
 	}
 
-	public boolean isGYRA_F_15_ACTIV() {
-		return GYRA_F_15_ACTIV;
+	public boolean isGyraF15Activ() {
+		return gyraF15Activ;
 	}
 
-	public void setGYRA_F_15_ACTIV(boolean gYRA_F_15_ACTIV) {
-		GYRA_F_15_ACTIV = gYRA_F_15_ACTIV;
+	public void setGyraF15Activ(boolean gyraF15Activ) {
+		this.gyraF15Activ = gyraF15Activ;
 	}
 
 }
