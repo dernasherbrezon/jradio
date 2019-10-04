@@ -5,222 +5,222 @@ import java.io.IOException;
 
 public class TmAocsMts {
 
-	private float MT_0_VOLT;               // MT 0 voltage
-	private float MT_1_VOLT;               // MT 1 voltage
-	private float MT_2_VOLT;               // MT 2 voltage
-	private float MT_0_CURR;               // MT 0 current
-	private float MT_1_CURR;               // MT 1 current
-	private float MT_2_CURR;               // MT 2 current
-	private float MT_0_DIPOLE;             // MT 0 dipole
-	private float MT_1_DIPOLE;             // MT 1 dipole
-	private float MT_2_DIPOLE;             // MT 2 dipole
-	private int MT_0_ERROR_CNT;            // MT 0 error counter
-	private int MT_1_ERROR_CNT;            // MT 1 error counter
-	private int MT_2_ERROR_CNT;            // MT 2 error counter
-	private boolean MT_0_ENABLED;          // MT 0 enabled
-	private boolean MT_1_ENABLED;          // MT 1 enabled
-	private boolean MT_2_ENABLED;          // MT 2 enabled
-	private boolean MT_0_LOCKED;           // MT 0 locked
-	private boolean MT_1_LOCKED;           // MT 1 locked
-	private boolean MT_2_LOCKED;           // MT 2 locked
-	private boolean MT_CURR_0_BOUND;       // Current sensor 0 bound
-	private boolean MT_CURR_1_BOUND;       // Current sensor 1 bound
-	private boolean MT_CURR_2_BOUND;       // Current sensor 2 bound
+	private float mt0Volt; // MT 0 voltage
+	private float mt1Volt; // MT 1 voltage
+	private float mt2Volt; // MT 2 voltage
+	private float mt0Curr; // MT 0 current
+	private float mt1Curr; // MT 1 current
+	private float mt2Curr; // MT 2 current
+	private float mt0Dipole; // MT 0 dipole
+	private float mt1Dipole; // MT 1 dipole
+	private float mt2Dipole; // MT 2 dipole
+	private int mt0ErrorCnt; // MT 0 error counter
+	private int mt1ErrorCnt; // MT 1 error counter
+	private int mt2ErrorCnt; // MT 2 error counter
+	private boolean mt0Enabled; // MT 0 enabled
+	private boolean mt1Enabled; // MT 1 enabled
+	private boolean mt2Enabled; // MT 2 enabled
+	private boolean mt0Locked; // MT 0 locked
+	private boolean mt1Locked; // MT 1 locked
+	private boolean mt2Locked; // MT 2 locked
+	private boolean mtCurr0Bound; // Current sensor 0 bound
+	private boolean mtCurr1Bound; // Current sensor 1 bound
+	private boolean mtCurr2Bound; // Current sensor 2 bound
 
 	public TmAocsMts(DataInputStream dis) throws IOException {
-		MT_0_VOLT = dis.readShort() * 0.02f;
-		MT_1_VOLT = dis.readShort() * 0.02f;
-		MT_2_VOLT = dis.readShort() * 0.02f;
-		MT_0_CURR = dis.readShort() * 0.02f;
-		MT_1_CURR = dis.readShort() * 0.02f;
-		MT_2_CURR = dis.readShort() * 0.02f;
-		MT_0_DIPOLE = dis.readShort() * 0.001f;
-		MT_1_DIPOLE = dis.readShort() * 0.001f;
-		MT_2_DIPOLE = dis.readShort() * 0.001f;
-		MT_0_ERROR_CNT = dis.readUnsignedShort();
-		MT_1_ERROR_CNT = dis.readUnsignedShort();
-		MT_2_ERROR_CNT = dis.readUnsignedShort();
+		mt0Volt = dis.readShort() * 0.02f;
+		mt1Volt = dis.readShort() * 0.02f;
+		mt2Volt = dis.readShort() * 0.02f;
+		mt0Curr = dis.readShort() * 0.02f;
+		mt1Curr = dis.readShort() * 0.02f;
+		mt2Curr = dis.readShort() * 0.02f;
+		mt0Dipole = dis.readShort() * 0.001f;
+		mt1Dipole = dis.readShort() * 0.001f;
+		mt2Dipole = dis.readShort() * 0.001f;
+		mt0ErrorCnt = dis.readUnsignedShort();
+		mt1ErrorCnt = dis.readUnsignedShort();
+		mt2ErrorCnt = dis.readUnsignedShort();
 
 		int raw = dis.readUnsignedByte();
-		MT_0_ENABLED = ((raw >> 7) & 0x1) > 0;
-		MT_1_ENABLED = ((raw >> 6) & 0x1) > 0;
-		MT_2_ENABLED = ((raw >> 5) & 0x1) > 0;
-		MT_0_LOCKED = ((raw >> 4) & 0x1) > 0;
-		MT_1_LOCKED = ((raw >> 3) & 0x1) > 0;
-		MT_2_LOCKED = ((raw >> 2) & 0x1) > 0;
-		MT_CURR_0_BOUND = ((raw >> 1) & 0x1) > 0;
-		MT_CURR_1_BOUND = (raw & 0x1) > 0;
+		mt0Enabled = ((raw >> 7) & 0x1) > 0;
+		mt1Enabled = ((raw >> 6) & 0x1) > 0;
+		mt2Enabled = ((raw >> 5) & 0x1) > 0;
+		mt0Locked = ((raw >> 4) & 0x1) > 0;
+		mt1Locked = ((raw >> 3) & 0x1) > 0;
+		mt2Locked = ((raw >> 2) & 0x1) > 0;
+		mtCurr0Bound = ((raw >> 1) & 0x1) > 0;
+		mtCurr1Bound = (raw & 0x1) > 0;
 
 		raw = dis.readUnsignedByte();
-		MT_CURR_2_BOUND = ((raw >> 7) & 0x1) > 0;
+		mtCurr2Bound = ((raw >> 7) & 0x1) > 0;
 	}
 
-	public float getMT_0_VOLT() {
-		return MT_0_VOLT;
+	public float getMt0Volt() {
+		return mt0Volt;
 	}
 
-	public void setMT_0_VOLT(float mT_0_VOLT) {
-		MT_0_VOLT = mT_0_VOLT;
+	public void setMt0Volt(float mt0Volt) {
+		this.mt0Volt = mt0Volt;
 	}
 
-	public float getMT_1_VOLT() {
-		return MT_1_VOLT;
+	public float getMt1Volt() {
+		return mt1Volt;
 	}
 
-	public void setMT_1_VOLT(float mT_1_VOLT) {
-		MT_1_VOLT = mT_1_VOLT;
+	public void setMt1Volt(float mt1Volt) {
+		this.mt1Volt = mt1Volt;
 	}
 
-	public float getMT_2_VOLT() {
-		return MT_2_VOLT;
+	public float getMt2Volt() {
+		return mt2Volt;
 	}
 
-	public void setMT_2_VOLT(float mT_2_VOLT) {
-		MT_2_VOLT = mT_2_VOLT;
+	public void setMt2Volt(float mt2Volt) {
+		this.mt2Volt = mt2Volt;
 	}
 
-	public float getMT_0_CURR() {
-		return MT_0_CURR;
+	public float getMt0Curr() {
+		return mt0Curr;
 	}
 
-	public void setMT_0_CURR(float mT_0_CURR) {
-		MT_0_CURR = mT_0_CURR;
+	public void setMt0Curr(float mt0Curr) {
+		this.mt0Curr = mt0Curr;
 	}
 
-	public float getMT_1_CURR() {
-		return MT_1_CURR;
+	public float getMt1Curr() {
+		return mt1Curr;
 	}
 
-	public void setMT_1_CURR(float mT_1_CURR) {
-		MT_1_CURR = mT_1_CURR;
+	public void setMt1Curr(float mt1Curr) {
+		this.mt1Curr = mt1Curr;
 	}
 
-	public float getMT_2_CURR() {
-		return MT_2_CURR;
+	public float getMt2Curr() {
+		return mt2Curr;
 	}
 
-	public void setMT_2_CURR(float mT_2_CURR) {
-		MT_2_CURR = mT_2_CURR;
+	public void setMt2Curr(float mt2Curr) {
+		this.mt2Curr = mt2Curr;
 	}
 
-	public float getMT_0_DIPOLE() {
-		return MT_0_DIPOLE;
+	public float getMt0Dipole() {
+		return mt0Dipole;
 	}
 
-	public void setMT_0_DIPOLE(float mT_0_DIPOLE) {
-		MT_0_DIPOLE = mT_0_DIPOLE;
+	public void setMt0Dipole(float mt0Dipole) {
+		this.mt0Dipole = mt0Dipole;
 	}
 
-	public float getMT_1_DIPOLE() {
-		return MT_1_DIPOLE;
+	public float getMt1Dipole() {
+		return mt1Dipole;
 	}
 
-	public void setMT_1_DIPOLE(float mT_1_DIPOLE) {
-		MT_1_DIPOLE = mT_1_DIPOLE;
+	public void setMt1Dipole(float mt1Dipole) {
+		this.mt1Dipole = mt1Dipole;
 	}
 
-	public float getMT_2_DIPOLE() {
-		return MT_2_DIPOLE;
+	public float getMt2Dipole() {
+		return mt2Dipole;
 	}
 
-	public void setMT_2_DIPOLE(float mT_2_DIPOLE) {
-		MT_2_DIPOLE = mT_2_DIPOLE;
+	public void setMt2Dipole(float mt2Dipole) {
+		this.mt2Dipole = mt2Dipole;
 	}
 
-	public int getMT_0_ERROR_CNT() {
-		return MT_0_ERROR_CNT;
+	public int getMt0ErrorCnt() {
+		return mt0ErrorCnt;
 	}
 
-	public void setMT_0_ERROR_CNT(int mT_0_ERROR_CNT) {
-		MT_0_ERROR_CNT = mT_0_ERROR_CNT;
+	public void setMt0ErrorCnt(int mt0ErrorCnt) {
+		this.mt0ErrorCnt = mt0ErrorCnt;
 	}
 
-	public int getMT_1_ERROR_CNT() {
-		return MT_1_ERROR_CNT;
+	public int getMt1ErrorCnt() {
+		return mt1ErrorCnt;
 	}
 
-	public void setMT_1_ERROR_CNT(int mT_1_ERROR_CNT) {
-		MT_1_ERROR_CNT = mT_1_ERROR_CNT;
+	public void setMt1ErrorCnt(int mt1ErrorCnt) {
+		this.mt1ErrorCnt = mt1ErrorCnt;
 	}
 
-	public int getMT_2_ERROR_CNT() {
-		return MT_2_ERROR_CNT;
+	public int getMt2ErrorCnt() {
+		return mt2ErrorCnt;
 	}
 
-	public void setMT_2_ERROR_CNT(int mT_2_ERROR_CNT) {
-		MT_2_ERROR_CNT = mT_2_ERROR_CNT;
+	public void setMt2ErrorCnt(int mt2ErrorCnt) {
+		this.mt2ErrorCnt = mt2ErrorCnt;
 	}
 
-	public boolean isMT_0_ENABLED() {
-		return MT_0_ENABLED;
+	public boolean isMt0Enabled() {
+		return mt0Enabled;
 	}
 
-	public void setMT_0_ENABLED(boolean mT_0_ENABLED) {
-		MT_0_ENABLED = mT_0_ENABLED;
+	public void setMt0Enabled(boolean mt0Enabled) {
+		this.mt0Enabled = mt0Enabled;
 	}
 
-	public boolean isMT_1_ENABLED() {
-		return MT_1_ENABLED;
+	public boolean isMt1Enabled() {
+		return mt1Enabled;
 	}
 
-	public void setMT_1_ENABLED(boolean mT_1_ENABLED) {
-		MT_1_ENABLED = mT_1_ENABLED;
+	public void setMt1Enabled(boolean mt1Enabled) {
+		this.mt1Enabled = mt1Enabled;
 	}
 
-	public boolean isMT_2_ENABLED() {
-		return MT_2_ENABLED;
+	public boolean isMt2Enabled() {
+		return mt2Enabled;
 	}
 
-	public void setMT_2_ENABLED(boolean mT_2_ENABLED) {
-		MT_2_ENABLED = mT_2_ENABLED;
+	public void setMt2Enabled(boolean mt2Enabled) {
+		this.mt2Enabled = mt2Enabled;
 	}
 
-	public boolean isMT_0_LOCKED() {
-		return MT_0_LOCKED;
+	public boolean isMt0Locked() {
+		return mt0Locked;
 	}
 
-	public void setMT_0_LOCKED(boolean mT_0_LOCKED) {
-		MT_0_LOCKED = mT_0_LOCKED;
+	public void setMt0Locked(boolean mt0Locked) {
+		this.mt0Locked = mt0Locked;
 	}
 
-	public boolean isMT_1_LOCKED() {
-		return MT_1_LOCKED;
+	public boolean isMt1Locked() {
+		return mt1Locked;
 	}
 
-	public void setMT_1_LOCKED(boolean mT_1_LOCKED) {
-		MT_1_LOCKED = mT_1_LOCKED;
+	public void setMt1Locked(boolean mt1Locked) {
+		this.mt1Locked = mt1Locked;
 	}
 
-	public boolean isMT_2_LOCKED() {
-		return MT_2_LOCKED;
+	public boolean isMt2Locked() {
+		return mt2Locked;
 	}
 
-	public void setMT_2_LOCKED(boolean mT_2_LOCKED) {
-		MT_2_LOCKED = mT_2_LOCKED;
+	public void setMt2Locked(boolean mt2Locked) {
+		this.mt2Locked = mt2Locked;
 	}
 
-	public boolean isMT_CURR_0_BOUND() {
-		return MT_CURR_0_BOUND;
+	public boolean isMtCurr0Bound() {
+		return mtCurr0Bound;
 	}
 
-	public void setMT_CURR_0_BOUND(boolean mT_CURR_0_BOUND) {
-		MT_CURR_0_BOUND = mT_CURR_0_BOUND;
+	public void setMtCurr0Bound(boolean mtCurr0Bound) {
+		this.mtCurr0Bound = mtCurr0Bound;
 	}
 
-	public boolean isMT_CURR_1_BOUND() {
-		return MT_CURR_1_BOUND;
+	public boolean isMtCurr1Bound() {
+		return mtCurr1Bound;
 	}
 
-	public void setMT_CURR_1_BOUND(boolean mT_CURR_1_BOUND) {
-		MT_CURR_1_BOUND = mT_CURR_1_BOUND;
+	public void setMtCurr1Bound(boolean mtCurr1Bound) {
+		this.mtCurr1Bound = mtCurr1Bound;
 	}
 
-	public boolean isMT_CURR_2_BOUND() {
-		return MT_CURR_2_BOUND;
+	public boolean isMtCurr2Bound() {
+		return mtCurr2Bound;
 	}
 
-	public void setMT_CURR_2_BOUND(boolean mT_CURR_2_BOUND) {
-		MT_CURR_2_BOUND = mT_CURR_2_BOUND;
+	public void setMtCurr2Bound(boolean mtCurr2Bound) {
+		this.mtCurr2Bound = mtCurr2Bound;
 	}
-
+	
 }
