@@ -13,6 +13,7 @@ public class ReedSolomon {
 	private final int fcr;
 	private final int prim;
 	private final int nroots;
+	private final byte[] interleaved;
 
 	private int iprim;
 	private int[] indexOf;
@@ -41,6 +42,7 @@ public class ReedSolomon {
 		this.fcr = fcr;
 		this.prim = prim;
 		this.nroots = nroots;
+		this.interleaved = new byte[nn];
 		generateTables();
 	}
 
@@ -117,7 +119,6 @@ public class ReedSolomon {
 	}
 
 	public byte[] decodeData(byte[] data, int interleaving) throws UncorrectableException {
-		byte[][] interleaved = new byte[interleaving][nn];
 		byte[] result = new byte[data.length - nroots * interleaving];
 		for (int i = 0; i < interleaving; i++) {
 			// deinterleave
@@ -126,11 +127,11 @@ public class ReedSolomon {
 			// 1 5 p2
 			// 2 6 p3
 			// 3 7 p4 &etc
-			for (int j = 0; j < nn; j++) {
-				interleaved[i][j] = data[j * interleaving + i];
+			for (int j = 0; j < interleaved.length; j++) {
+				interleaved[j] = data[j * interleaving + i];
 			}
 			// decode each block
-			byte[] decoded = decodeData(interleaved[i]);
+			byte[] decoded = decodeData(interleaved);
 			// interleave error-corrected results back
 			for (int j = 0; j < decoded.length; j++) {
 				result[j * interleaving + i] = decoded[j];
