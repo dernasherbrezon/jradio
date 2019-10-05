@@ -5,268 +5,268 @@ import java.io.IOException;
 
 public class TmEpsCtrlPcuPower {
 
-	private float SOLVOLTA;             //  The voltage of the solar panel ring A.
-	private float SOLVOLTB;             //  The voltage of the solar panel ring B.
-	private float SP_V_ADC_A;           //  Voltage of the PCU's sum point. Measured on PCU A.
-	private short SP_C_ADC_A;           //  Current drawn from the PCU sum point. Measured on PCU A.
-	private float SP_V_ADC_B;           //  Voltage of the PCU's sum point. Measured on PCU B.
-	private short SP_C_ADC_B;           //  Current drawn from the PCU sum point. Measured on PCU B.
-	private float BATVOLTA_ADC;         //  Battery A voltage measured via an external voltage divider and ADC of the µC.
-	private float BATVOLTB_ADC;         //  Battery B voltage measured via an external voltage divider and ADC of the µC.
-	private float MAIN_12V_A;           //  12V voltage measurement of the main regulated power bus A switch.
-	private float MAIN_12V_B;           //  12V voltage measurement of the main regulated power bus B switch.
-	private float MAIN_5V_A;            //  5V voltage measurement of the main regulated power bus A switch.
-	private float MAIN_5V_B;            //  5V voltage measurement of the main regulated power bus B switch.
-	private float MAIN_3V3_A;           //  3V3 voltage measurement of the main regulated power bus A switch.
-	private float MAIN_3V3_B;           //  3V3 voltage measurement of the main regulated power bus B switch.
-	private int SUM_MAIN_12V_A;         //  12V current measurement of the main regulated power bus A switch.
-	private int SUM_MAIN_12V_B;         //  12V current measurement of the main regulated power bus B switch.
-	private int SUM_MAIN_5V_A;          //  5V current measurement of the main regulated power bus A switch.
-	private int SUM_MAIN_5V_B;          //  5V current measurement of the main regulated power bus B switch.
-	private int SUM_MAIN_3V3_A;         //  3V3 current measurement of the main regulated power bus A switch.
-	private int SUM_MAIN_3V3_B;         //  3V3 current measurement of the main regulated power bus B switch.
-	private float MAIN_Unreg_A;         //  Voltage measurement of the main unregulated power bus A switch.
-	private float MAIN_Unreg_B;         //  Voltage measurement of the main unregulated power bus B switch.
-	private int SUM_MAIN_Unreg_A;       //  Current measurement of the main unregulated power bus A switch.
-	private int SUM_MAIN_Unreg_B;       //  Current measurement of the main unregulated power bus B switch.
-	private float PCU_TEMP_A;        //  Temperature PCU A
-	private float PCU_TEMP_B;        //  Temperature PCU B
+	private float solVoltA; // The voltage of the solar panel ring A.
+	private float solVoltB; // The voltage of the solar panel ring B.
+	private float spVAdcA; // Voltage of the PCU's sum point. Measured on PCU A.
+	private short spCAdcA; // Current drawn from the PCU sum point. Measured on PCU A.
+	private float spVAdcB; // Voltage of the PCU's sum point. Measured on PCU B.
+	private short spCAdcB; // Current drawn from the PCU sum point. Measured on PCU B.
+	private float batVoltAAdc; // Battery A voltage measured via an external voltage divider and ADC of the µC.
+	private float batVoltBAdc; // Battery B voltage measured via an external voltage divider and ADC of the µC.
+	private float main12VA; // 12V voltage measurement of the main regulated power bus A switch.
+	private float main12VB; // 12V voltage measurement of the main regulated power bus B switch.
+	private float main5VA; // 5V voltage measurement of the main regulated power bus A switch.
+	private float main5VB; // 5V voltage measurement of the main regulated power bus B switch.
+	private float main3V3A; // 3V3 voltage measurement of the main regulated power bus A switch.
+	private float main3V3B; // 3V3 voltage measurement of the main regulated power bus B switch.
+	private int sumMain12VA; // 12V current measurement of the main regulated power bus A switch.
+	private int sumMain12VB; // 12V current measurement of the main regulated power bus B switch.
+	private int sumMain5VA; // 5V current measurement of the main regulated power bus A switch.
+	private int sumMain5VB; // 5V current measurement of the main regulated power bus B switch.
+	private int sumMain3V3A; // 3V3 current measurement of the main regulated power bus A switch.
+	private int sumMain3V3B; // 3V3 current measurement of the main regulated power bus B switch.
+	private float mainUnregA; // Voltage measurement of the main unregulated power bus A switch.
+	private float mainUnregB; // Voltage measurement of the main unregulated power bus B switch.
+	private int sumMainUnregA; // Current measurement of the main unregulated power bus A switch.
+	private int sumMainUnregB; // Current measurement of the main unregulated power bus B switch.
+	private float pcuTempA; // Temperature PCU A
+	private float pcuTempB; // Temperature PCU B
 
 	public TmEpsCtrlPcuPower(DataInputStream dis) throws IOException {
-		SOLVOLTA = dis.readUnsignedShort() * 0.001f;
-		SOLVOLTB = dis.readUnsignedShort() * 0.001f;
-		SP_V_ADC_A = dis.readUnsignedShort() * 0.001f;
-		SP_C_ADC_A = dis.readShort();
-		SP_V_ADC_B = dis.readUnsignedShort() * 0.001f;
-		SP_C_ADC_B = dis.readShort();
-		BATVOLTA_ADC = dis.readUnsignedShort() * 0.001f;
-		BATVOLTB_ADC = dis.readUnsignedShort() * 0.001f;
-		MAIN_12V_A = dis.readUnsignedByte() * 0.055f;
-		MAIN_12V_B = dis.readUnsignedByte() * 0.055f;
-		MAIN_5V_A = dis.readUnsignedByte() * 0.022f;
-		MAIN_5V_B = dis.readUnsignedByte() * 0.022f;
-		MAIN_3V3_A = dis.readUnsignedByte() * 0.022f;
-		MAIN_3V3_B = dis.readUnsignedByte() * 0.022f;
-		SUM_MAIN_12V_A = dis.readUnsignedByte() * 5;
-		SUM_MAIN_12V_B = dis.readUnsignedByte() * 5;
-		SUM_MAIN_5V_A = dis.readUnsignedByte() * 25;
-		SUM_MAIN_5V_B = dis.readUnsignedByte() * 25;
-		SUM_MAIN_3V3_A = dis.readUnsignedByte() * 25;
-		SUM_MAIN_3V3_B = dis.readUnsignedByte() * 25;
-		MAIN_Unreg_A = dis.readUnsignedByte() * 0.4f;
-		MAIN_Unreg_B = dis.readUnsignedByte() * 0.4f;
-		SUM_MAIN_Unreg_A = dis.readUnsignedByte() * 50;
-		SUM_MAIN_Unreg_B = dis.readUnsignedByte() * 15;
-		PCU_TEMP_A = dis.readByte() * 0.9862519685f;
-		PCU_TEMP_B = dis.readByte() * 0.9862519685f;
+		solVoltA = dis.readUnsignedShort() * 0.001f;
+		solVoltB = dis.readUnsignedShort() * 0.001f;
+		spVAdcA = dis.readUnsignedShort() * 0.001f;
+		spCAdcA = dis.readShort();
+		spVAdcB = dis.readUnsignedShort() * 0.001f;
+		spCAdcB = dis.readShort();
+		batVoltAAdc = dis.readUnsignedShort() * 0.001f;
+		batVoltBAdc = dis.readUnsignedShort() * 0.001f;
+		main12VA = dis.readUnsignedByte() * 0.055f;
+		main12VB = dis.readUnsignedByte() * 0.055f;
+		main5VA = dis.readUnsignedByte() * 0.022f;
+		main5VB = dis.readUnsignedByte() * 0.022f;
+		main3V3A = dis.readUnsignedByte() * 0.022f;
+		main3V3B = dis.readUnsignedByte() * 0.022f;
+		sumMain12VA = dis.readUnsignedByte() * 5;
+		sumMain12VB = dis.readUnsignedByte() * 5;
+		sumMain5VA = dis.readUnsignedByte() * 25;
+		sumMain5VB = dis.readUnsignedByte() * 25;
+		sumMain3V3A = dis.readUnsignedByte() * 25;
+		sumMain3V3B = dis.readUnsignedByte() * 25;
+		mainUnregA = dis.readUnsignedByte() * 0.4f;
+		mainUnregB = dis.readUnsignedByte() * 0.4f;
+		sumMainUnregA = dis.readUnsignedByte() * 50;
+		sumMainUnregB = dis.readUnsignedByte() * 15;
+		pcuTempA = dis.readByte() * 0.9862519685f;
+		pcuTempB = dis.readByte() * 0.9862519685f;
 	}
 
-	public float getSOLVOLTA() {
-		return SOLVOLTA;
+	public float getSolVoltA() {
+		return solVoltA;
 	}
 
-	public void setSOLVOLTA(float sOLVOLTA) {
-		SOLVOLTA = sOLVOLTA;
+	public void setSolVoltA(float solVoltA) {
+		this.solVoltA = solVoltA;
 	}
 
-	public float getSOLVOLTB() {
-		return SOLVOLTB;
+	public float getSolVoltB() {
+		return solVoltB;
 	}
 
-	public void setSOLVOLTB(float sOLVOLTB) {
-		SOLVOLTB = sOLVOLTB;
+	public void setSolVoltB(float solVoltB) {
+		this.solVoltB = solVoltB;
 	}
 
-	public float getSP_V_ADC_A() {
-		return SP_V_ADC_A;
+	public float getSpVAdcA() {
+		return spVAdcA;
 	}
 
-	public void setSP_V_ADC_A(float sP_V_ADC_A) {
-		SP_V_ADC_A = sP_V_ADC_A;
+	public void setSpVAdcA(float spVAdcA) {
+		this.spVAdcA = spVAdcA;
 	}
 
-	public short getSP_C_ADC_A() {
-		return SP_C_ADC_A;
+	public short getSpCAdcA() {
+		return spCAdcA;
 	}
 
-	public void setSP_C_ADC_A(short sP_C_ADC_A) {
-		SP_C_ADC_A = sP_C_ADC_A;
+	public void setSpCAdcA(short spCAdcA) {
+		this.spCAdcA = spCAdcA;
 	}
 
-	public float getSP_V_ADC_B() {
-		return SP_V_ADC_B;
+	public float getSpVAdcB() {
+		return spVAdcB;
 	}
 
-	public void setSP_V_ADC_B(float sP_V_ADC_B) {
-		SP_V_ADC_B = sP_V_ADC_B;
+	public void setSpVAdcB(float spVAdcB) {
+		this.spVAdcB = spVAdcB;
 	}
 
-	public short getSP_C_ADC_B() {
-		return SP_C_ADC_B;
+	public short getSpCAdcB() {
+		return spCAdcB;
 	}
 
-	public void setSP_C_ADC_B(short sP_C_ADC_B) {
-		SP_C_ADC_B = sP_C_ADC_B;
+	public void setSpCAdcB(short spCAdcB) {
+		this.spCAdcB = spCAdcB;
 	}
 
-	public float getBATVOLTA_ADC() {
-		return BATVOLTA_ADC;
+	public float getBatVoltAAdc() {
+		return batVoltAAdc;
 	}
 
-	public void setBATVOLTA_ADC(float bATVOLTA_ADC) {
-		BATVOLTA_ADC = bATVOLTA_ADC;
+	public void setBatVoltAAdc(float batVoltAAdc) {
+		this.batVoltAAdc = batVoltAAdc;
 	}
 
-	public float getBATVOLTB_ADC() {
-		return BATVOLTB_ADC;
+	public float getBatVoltBAdc() {
+		return batVoltBAdc;
 	}
 
-	public void setBATVOLTB_ADC(float bATVOLTB_ADC) {
-		BATVOLTB_ADC = bATVOLTB_ADC;
+	public void setBatVoltBAdc(float batVoltBAdc) {
+		this.batVoltBAdc = batVoltBAdc;
 	}
 
-	public float getMAIN_12V_A() {
-		return MAIN_12V_A;
+	public float getMain12VA() {
+		return main12VA;
 	}
 
-	public void setMAIN_12V_A(float mAIN_12V_A) {
-		MAIN_12V_A = mAIN_12V_A;
+	public void setMain12VA(float main12va) {
+		main12VA = main12va;
 	}
 
-	public float getMAIN_12V_B() {
-		return MAIN_12V_B;
+	public float getMain12VB() {
+		return main12VB;
 	}
 
-	public void setMAIN_12V_B(float mAIN_12V_B) {
-		MAIN_12V_B = mAIN_12V_B;
+	public void setMain12VB(float main12vb) {
+		main12VB = main12vb;
 	}
 
-	public float getMAIN_5V_A() {
-		return MAIN_5V_A;
+	public float getMain5VA() {
+		return main5VA;
 	}
 
-	public void setMAIN_5V_A(float mAIN_5V_A) {
-		MAIN_5V_A = mAIN_5V_A;
+	public void setMain5VA(float main5va) {
+		main5VA = main5va;
 	}
 
-	public float getMAIN_5V_B() {
-		return MAIN_5V_B;
+	public float getMain5VB() {
+		return main5VB;
 	}
 
-	public void setMAIN_5V_B(float mAIN_5V_B) {
-		MAIN_5V_B = mAIN_5V_B;
+	public void setMain5VB(float main5vb) {
+		main5VB = main5vb;
 	}
 
-	public float getMAIN_3V3_A() {
-		return MAIN_3V3_A;
+	public float getMain3V3A() {
+		return main3V3A;
 	}
 
-	public void setMAIN_3V3_A(float mAIN_3V3_A) {
-		MAIN_3V3_A = mAIN_3V3_A;
+	public void setMain3V3A(float main3v3a) {
+		main3V3A = main3v3a;
 	}
 
-	public float getMAIN_3V3_B() {
-		return MAIN_3V3_B;
+	public float getMain3V3B() {
+		return main3V3B;
 	}
 
-	public void setMAIN_3V3_B(float mAIN_3V3_B) {
-		MAIN_3V3_B = mAIN_3V3_B;
+	public void setMain3V3B(float main3v3b) {
+		main3V3B = main3v3b;
 	}
 
-	public int getSUM_MAIN_12V_A() {
-		return SUM_MAIN_12V_A;
+	public int getSumMain12VA() {
+		return sumMain12VA;
 	}
 
-	public void setSUM_MAIN_12V_A(int sUM_MAIN_12V_A) {
-		SUM_MAIN_12V_A = sUM_MAIN_12V_A;
+	public void setSumMain12VA(int sumMain12VA) {
+		this.sumMain12VA = sumMain12VA;
 	}
 
-	public int getSUM_MAIN_12V_B() {
-		return SUM_MAIN_12V_B;
+	public int getSumMain12VB() {
+		return sumMain12VB;
 	}
 
-	public void setSUM_MAIN_12V_B(int sUM_MAIN_12V_B) {
-		SUM_MAIN_12V_B = sUM_MAIN_12V_B;
+	public void setSumMain12VB(int sumMain12VB) {
+		this.sumMain12VB = sumMain12VB;
 	}
 
-	public int getSUM_MAIN_5V_A() {
-		return SUM_MAIN_5V_A;
+	public int getSumMain5VA() {
+		return sumMain5VA;
 	}
 
-	public void setSUM_MAIN_5V_A(int sUM_MAIN_5V_A) {
-		SUM_MAIN_5V_A = sUM_MAIN_5V_A;
+	public void setSumMain5VA(int sumMain5VA) {
+		this.sumMain5VA = sumMain5VA;
 	}
 
-	public int getSUM_MAIN_5V_B() {
-		return SUM_MAIN_5V_B;
+	public int getSumMain5VB() {
+		return sumMain5VB;
 	}
 
-	public void setSUM_MAIN_5V_B(int sUM_MAIN_5V_B) {
-		SUM_MAIN_5V_B = sUM_MAIN_5V_B;
+	public void setSumMain5VB(int sumMain5VB) {
+		this.sumMain5VB = sumMain5VB;
 	}
 
-	public int getSUM_MAIN_3V3_A() {
-		return SUM_MAIN_3V3_A;
+	public int getSumMain3V3A() {
+		return sumMain3V3A;
 	}
 
-	public void setSUM_MAIN_3V3_A(int sUM_MAIN_3V3_A) {
-		SUM_MAIN_3V3_A = sUM_MAIN_3V3_A;
+	public void setSumMain3V3A(int sumMain3V3A) {
+		this.sumMain3V3A = sumMain3V3A;
 	}
 
-	public int getSUM_MAIN_3V3_B() {
-		return SUM_MAIN_3V3_B;
+	public int getSumMain3V3B() {
+		return sumMain3V3B;
 	}
 
-	public void setSUM_MAIN_3V3_B(int sUM_MAIN_3V3_B) {
-		SUM_MAIN_3V3_B = sUM_MAIN_3V3_B;
+	public void setSumMain3V3B(int sumMain3V3B) {
+		this.sumMain3V3B = sumMain3V3B;
 	}
 
-	public float getMAIN_Unreg_A() {
-		return MAIN_Unreg_A;
+	public float getMainUnregA() {
+		return mainUnregA;
 	}
 
-	public void setMAIN_Unreg_A(float mAIN_Unreg_A) {
-		MAIN_Unreg_A = mAIN_Unreg_A;
+	public void setMainUnregA(float mainUnregA) {
+		this.mainUnregA = mainUnregA;
 	}
 
-	public float getMAIN_Unreg_B() {
-		return MAIN_Unreg_B;
+	public float getMainUnregB() {
+		return mainUnregB;
 	}
 
-	public void setMAIN_Unreg_B(float mAIN_Unreg_B) {
-		MAIN_Unreg_B = mAIN_Unreg_B;
+	public void setMainUnregB(float mainUnregB) {
+		this.mainUnregB = mainUnregB;
 	}
 
-	public int getSUM_MAIN_Unreg_A() {
-		return SUM_MAIN_Unreg_A;
+	public int getSumMainUnregA() {
+		return sumMainUnregA;
 	}
 
-	public void setSUM_MAIN_Unreg_A(int sUM_MAIN_Unreg_A) {
-		SUM_MAIN_Unreg_A = sUM_MAIN_Unreg_A;
+	public void setSumMainUnregA(int sumMainUnregA) {
+		this.sumMainUnregA = sumMainUnregA;
 	}
 
-	public int getSUM_MAIN_Unreg_B() {
-		return SUM_MAIN_Unreg_B;
+	public int getSumMainUnregB() {
+		return sumMainUnregB;
 	}
 
-	public void setSUM_MAIN_Unreg_B(int sUM_MAIN_Unreg_B) {
-		SUM_MAIN_Unreg_B = sUM_MAIN_Unreg_B;
+	public void setSumMainUnregB(int sumMainUnregB) {
+		this.sumMainUnregB = sumMainUnregB;
 	}
 
-	public float getPCU_TEMP_A() {
-		return PCU_TEMP_A;
+	public float getPcuTempA() {
+		return pcuTempA;
 	}
 
-	public void setPCU_TEMP_A(float pCU_TEMP_A) {
-		PCU_TEMP_A = pCU_TEMP_A;
+	public void setPcuTempA(float pcuTempA) {
+		this.pcuTempA = pcuTempA;
 	}
 
-	public float getPCU_TEMP_B() {
-		return PCU_TEMP_B;
+	public float getPcuTempB() {
+		return pcuTempB;
 	}
 
-	public void setPCU_TEMP_B(float pCU_TEMP_B) {
-		PCU_TEMP_B = pCU_TEMP_B;
+	public void setPcuTempB(float pcuTempB) {
+		this.pcuTempB = pcuTempB;
 	}
 
 }
