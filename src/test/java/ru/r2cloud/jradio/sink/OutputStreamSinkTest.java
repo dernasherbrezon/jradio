@@ -1,5 +1,6 @@
 package ru.r2cloud.jradio.sink;
 
+import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 
 import java.io.BufferedInputStream;
@@ -9,6 +10,7 @@ import java.io.InputStream;
 
 import org.junit.Test;
 
+import ru.r2cloud.jradio.ArrayByteInput;
 import ru.r2cloud.jradio.source.WavFileSource;
 
 public class OutputStreamSinkTest {
@@ -30,6 +32,17 @@ public class OutputStreamSinkTest {
 				}
 			}
 		}
+	}
+
+	@Test
+	public void testSaveByte() throws Exception {
+		byte[] expected = new byte[] { 1, 2, 3, 4 };
+		ArrayByteInput input = new ArrayByteInput(expected);
+		ByteArrayOutputStream baos = new ByteArrayOutputStream();
+		try (OutputStreamSink sink = new OutputStreamSink(input)) {
+			sink.process(baos);
+		}
+		assertArrayEquals(expected, baos.toByteArray());
 	}
 
 }
