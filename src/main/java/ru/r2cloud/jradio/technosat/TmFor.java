@@ -5,49 +5,49 @@ import java.io.IOException;
 
 public class TmFor {
 
-	private float FOR_X_RATE;        // angular rate X
-	private float FOR_Y_RATE;        // angular rate Y
-	private float FOR_Z_RATE;        // angular rate Z
-	private boolean FOR_HEALTHY;     // healthy
+	private float forXRate; // angular rate X
+	private float forYRate; // angular rate Y
+	private float forZRate; // angular rate Z
+	private boolean forHealthy; // healthy
 
 	public TmFor(DataInputStream dis) throws IOException {
-		FOR_X_RATE = dis.readInt() * 0.000001f;
-		FOR_Y_RATE = dis.readInt() * 0.000001f;
-		FOR_Z_RATE = dis.readInt() * 0.000001f;
+		forXRate = dis.readInt() * 0.000001f;
+		forYRate = dis.readInt() * 0.000001f;
+		forZRate = dis.readInt() * 0.000001f;
 		int raw = dis.readUnsignedByte();
-		FOR_HEALTHY = ((raw >> 7) & 0x1) > 0;
+		forHealthy = ((raw >> 7) & 0x1) > 0;
 	}
 
-	public float getFOR_X_RATE() {
-		return FOR_X_RATE;
+	public float getForXRate() {
+		return forXRate;
 	}
 
-	public void setFOR_X_RATE(float fOR_X_RATE) {
-		FOR_X_RATE = fOR_X_RATE;
+	public void setForXRate(float forXRate) {
+		this.forXRate = forXRate;
 	}
 
-	public float getFOR_Y_RATE() {
-		return FOR_Y_RATE;
+	public float getForYRate() {
+		return forYRate;
 	}
 
-	public void setFOR_Y_RATE(float fOR_Y_RATE) {
-		FOR_Y_RATE = fOR_Y_RATE;
+	public void setForYRate(float forYRate) {
+		this.forYRate = forYRate;
 	}
 
-	public float getFOR_Z_RATE() {
-		return FOR_Z_RATE;
+	public float getForZRate() {
+		return forZRate;
 	}
 
-	public void setFOR_Z_RATE(float fOR_Z_RATE) {
-		FOR_Z_RATE = fOR_Z_RATE;
+	public void setForZRate(float forZRate) {
+		this.forZRate = forZRate;
 	}
 
-	public boolean isFOR_HEALTHY() {
-		return FOR_HEALTHY;
+	public boolean isForHealthy() {
+		return forHealthy;
 	}
 
-	public void setFOR_HEALTHY(boolean fOR_HEALTHY) {
-		FOR_HEALTHY = fOR_HEALTHY;
+	public void setForHealthy(boolean forHealthy) {
+		this.forHealthy = forHealthy;
 	}
 
 }
