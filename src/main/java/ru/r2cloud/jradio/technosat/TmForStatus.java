@@ -5,192 +5,192 @@ import java.io.IOException;
 
 public class TmForStatus {
 
-	private float FOR_0_CURRE;               //   FOR 0 current
-	private float FOR_1_CURRE;               //   FOR 1 current
-	private float FOR_2_CURRE;               //   FOR 2 current
-	private float FOR_I2C_0_CURRE;           //   I2C0 current
-	private boolean FOR_0_ENABLED;           //   FOR 0 enabled
-	private boolean FOR_1_ENABLED;           //   FOR 1 enabled
-	private boolean FOR_2_ENABLED;           //   FOR 2 enabled
-	private boolean FOR_0_LOCKED;            //   FOR 0 locked
-	private boolean FOR_1_LOCKED;            //   FOR 1 locked
-	private boolean FOR_2_LOCKED;            //   FOR 2 locked
-	private boolean FOR_0_BOUND;             //   FOR 0 bound
-	private boolean FOR_1_BOUND;             //   FOR 1 bound
-	private boolean FOR_2_BOUND;             //   FOR 2 bound
-	private boolean FOR_I2C_0_ENABL;         //   I2C0 enabled
-	private boolean FOR_I2C_0_LOCKE;         //   I2C0 locked
-	private boolean FOR_TMP_0_BOUND;         //   FOR TMP 0 bound
-	private boolean FOR_TMP_1_BOUND;         //   FOR TMP 1 bound
-	private boolean FOR_TMP_2_BOUND;         //   FOR TMP 2 bound
+	private float for0Current; // FOR 0 current
+	private float for1Current; // FOR 1 current
+	private float for2Current; // FOR 2 current
+	private float forI2C0Current; // I2C0 current
+	private boolean for0Enabled; // FOR 0 enabled
+	private boolean for1Enabled; // FOR 1 enabled
+	private boolean for2Enabled; // FOR 2 enabled
+	private boolean for0Locked; // FOR 0 locked
+	private boolean for1Locked; // FOR 1 locked
+	private boolean for2Locked; // FOR 2 locked
+	private boolean for0Bound; // FOR 0 bound
+	private boolean for1Bound; // FOR 1 bound
+	private boolean for2Bound; // FOR 2 bound
+	private boolean forI2C0Enabled; // I2C0 enabled
+	private boolean forI2C0Locked; // I2C0 locked
+	private boolean forTMP0Bound; // FOR TMP 0 bound
+	private boolean forTMP1Bound; // FOR TMP 1 bound
+	private boolean forTMP2Bound; // FOR TMP 2 bound
 
 	public TmForStatus(DataInputStream dis) throws IOException {
-		FOR_0_CURRE = dis.readUnsignedShort() * 0.1f;
-		FOR_1_CURRE = dis.readUnsignedShort() * 0.1f;
-		FOR_2_CURRE = dis.readUnsignedShort() * 0.1f;
-		FOR_I2C_0_CURRE = dis.readUnsignedShort() * 0.1f;
+		for0Current = dis.readUnsignedShort() * 0.1f;
+		for1Current = dis.readUnsignedShort() * 0.1f;
+		for2Current = dis.readUnsignedShort() * 0.1f;
+		forI2C0Current = dis.readUnsignedShort() * 0.1f;
 
 		int raw = dis.readUnsignedByte();
-		FOR_0_ENABLED = ((raw >> 7) & 0x1) > 0;
-		FOR_1_ENABLED = ((raw >> 6) & 0x1) > 0;
-		FOR_2_ENABLED = ((raw >> 5) & 0x1) > 0;
-		FOR_0_LOCKED = ((raw >> 4) & 0x1) > 0;
-		FOR_1_LOCKED = ((raw >> 3) & 0x1) > 0;
-		FOR_2_LOCKED = ((raw >> 2) & 0x1) > 0;
-		FOR_0_BOUND = ((raw >> 1) & 0x1) > 0;
-		FOR_1_BOUND = (raw & 0x1) > 0;
+		for0Enabled = ((raw >> 7) & 0x1) > 0;
+		for1Enabled = ((raw >> 6) & 0x1) > 0;
+		for2Enabled = ((raw >> 5) & 0x1) > 0;
+		for0Locked = ((raw >> 4) & 0x1) > 0;
+		for1Locked = ((raw >> 3) & 0x1) > 0;
+		for2Locked = ((raw >> 2) & 0x1) > 0;
+		for0Bound = ((raw >> 1) & 0x1) > 0;
+		for1Bound = (raw & 0x1) > 0;
 
 		raw = dis.readUnsignedByte();
-		FOR_2_BOUND = ((raw >> 7) & 0x1) > 0;
-		FOR_I2C_0_ENABL = ((raw >> 6) & 0x1) > 0;
-		FOR_I2C_0_LOCKE = ((raw >> 5) & 0x1) > 0;
-		FOR_TMP_0_BOUND = ((raw >> 4) & 0x1) > 0;
-		FOR_TMP_1_BOUND = ((raw >> 3) & 0x1) > 0;
-		FOR_TMP_2_BOUND = ((raw >> 2) & 0x1) > 0;
+		for2Bound = ((raw >> 7) & 0x1) > 0;
+		forI2C0Enabled = ((raw >> 6) & 0x1) > 0;
+		forI2C0Locked = ((raw >> 5) & 0x1) > 0;
+		forTMP0Bound = ((raw >> 4) & 0x1) > 0;
+		forTMP1Bound = ((raw >> 3) & 0x1) > 0;
+		forTMP2Bound = ((raw >> 2) & 0x1) > 0;
 	}
 
-	public float getFOR_0_CURRE() {
-		return FOR_0_CURRE;
+	public float getFor0Current() {
+		return for0Current;
 	}
 
-	public void setFOR_0_CURRE(float fOR_0_CURRE) {
-		FOR_0_CURRE = fOR_0_CURRE;
+	public void setFor0Current(float for0Current) {
+		this.for0Current = for0Current;
 	}
 
-	public float getFOR_1_CURRE() {
-		return FOR_1_CURRE;
+	public float getFor1Current() {
+		return for1Current;
 	}
 
-	public void setFOR_1_CURRE(float fOR_1_CURRE) {
-		FOR_1_CURRE = fOR_1_CURRE;
+	public void setFor1Current(float for1Current) {
+		this.for1Current = for1Current;
 	}
 
-	public float getFOR_2_CURRE() {
-		return FOR_2_CURRE;
+	public float getFor2Current() {
+		return for2Current;
 	}
 
-	public void setFOR_2_CURRE(float fOR_2_CURRE) {
-		FOR_2_CURRE = fOR_2_CURRE;
+	public void setFor2Current(float for2Current) {
+		this.for2Current = for2Current;
 	}
 
-	public float getFOR_I2C_0_CURRE() {
-		return FOR_I2C_0_CURRE;
+	public float getForI2C0Current() {
+		return forI2C0Current;
 	}
 
-	public void setFOR_I2C_0_CURRE(float fOR_I2C_0_CURRE) {
-		FOR_I2C_0_CURRE = fOR_I2C_0_CURRE;
+	public void setForI2C0Current(float forI2C0Current) {
+		this.forI2C0Current = forI2C0Current;
 	}
 
-	public boolean isFOR_0_ENABLED() {
-		return FOR_0_ENABLED;
+	public boolean isFor0Enabled() {
+		return for0Enabled;
 	}
 
-	public void setFOR_0_ENABLED(boolean fOR_0_ENABLED) {
-		FOR_0_ENABLED = fOR_0_ENABLED;
+	public void setFor0Enabled(boolean for0Enabled) {
+		this.for0Enabled = for0Enabled;
 	}
 
-	public boolean isFOR_1_ENABLED() {
-		return FOR_1_ENABLED;
+	public boolean isFor1Enabled() {
+		return for1Enabled;
 	}
 
-	public void setFOR_1_ENABLED(boolean fOR_1_ENABLED) {
-		FOR_1_ENABLED = fOR_1_ENABLED;
+	public void setFor1Enabled(boolean for1Enabled) {
+		this.for1Enabled = for1Enabled;
 	}
 
-	public boolean isFOR_2_ENABLED() {
-		return FOR_2_ENABLED;
+	public boolean isFor2Enabled() {
+		return for2Enabled;
 	}
 
-	public void setFOR_2_ENABLED(boolean fOR_2_ENABLED) {
-		FOR_2_ENABLED = fOR_2_ENABLED;
+	public void setFor2Enabled(boolean for2Enabled) {
+		this.for2Enabled = for2Enabled;
 	}
 
-	public boolean isFOR_0_LOCKED() {
-		return FOR_0_LOCKED;
+	public boolean isFor0Locked() {
+		return for0Locked;
 	}
 
-	public void setFOR_0_LOCKED(boolean fOR_0_LOCKED) {
-		FOR_0_LOCKED = fOR_0_LOCKED;
+	public void setFor0Locked(boolean for0Locked) {
+		this.for0Locked = for0Locked;
 	}
 
-	public boolean isFOR_1_LOCKED() {
-		return FOR_1_LOCKED;
+	public boolean isFor1Locked() {
+		return for1Locked;
 	}
 
-	public void setFOR_1_LOCKED(boolean fOR_1_LOCKED) {
-		FOR_1_LOCKED = fOR_1_LOCKED;
+	public void setFor1Locked(boolean for1Locked) {
+		this.for1Locked = for1Locked;
 	}
 
-	public boolean isFOR_2_LOCKED() {
-		return FOR_2_LOCKED;
+	public boolean isFor2Locked() {
+		return for2Locked;
 	}
 
-	public void setFOR_2_LOCKED(boolean fOR_2_LOCKED) {
-		FOR_2_LOCKED = fOR_2_LOCKED;
+	public void setFor2Locked(boolean for2Locked) {
+		this.for2Locked = for2Locked;
 	}
 
-	public boolean isFOR_0_BOUND() {
-		return FOR_0_BOUND;
+	public boolean isFor0Bound() {
+		return for0Bound;
 	}
 
-	public void setFOR_0_BOUND(boolean fOR_0_BOUND) {
-		FOR_0_BOUND = fOR_0_BOUND;
+	public void setFor0Bound(boolean for0Bound) {
+		this.for0Bound = for0Bound;
 	}
 
-	public boolean isFOR_1_BOUND() {
-		return FOR_1_BOUND;
+	public boolean isFor1Bound() {
+		return for1Bound;
 	}
 
-	public void setFOR_1_BOUND(boolean fOR_1_BOUND) {
-		FOR_1_BOUND = fOR_1_BOUND;
+	public void setFor1Bound(boolean for1Bound) {
+		this.for1Bound = for1Bound;
 	}
 
-	public boolean isFOR_2_BOUND() {
-		return FOR_2_BOUND;
+	public boolean isFor2Bound() {
+		return for2Bound;
 	}
 
-	public void setFOR_2_BOUND(boolean fOR_2_BOUND) {
-		FOR_2_BOUND = fOR_2_BOUND;
+	public void setFor2Bound(boolean for2Bound) {
+		this.for2Bound = for2Bound;
 	}
 
-	public boolean isFOR_I2C_0_ENABL() {
-		return FOR_I2C_0_ENABL;
+	public boolean isForI2C0Enabled() {
+		return forI2C0Enabled;
 	}
 
-	public void setFOR_I2C_0_ENABL(boolean fOR_I2C_0_ENABL) {
-		FOR_I2C_0_ENABL = fOR_I2C_0_ENABL;
+	public void setForI2C0Enabled(boolean forI2C0Enabled) {
+		this.forI2C0Enabled = forI2C0Enabled;
 	}
 
-	public boolean isFOR_I2C_0_LOCKE() {
-		return FOR_I2C_0_LOCKE;
+	public boolean isForI2C0Locked() {
+		return forI2C0Locked;
 	}
 
-	public void setFOR_I2C_0_LOCKE(boolean fOR_I2C_0_LOCKE) {
-		FOR_I2C_0_LOCKE = fOR_I2C_0_LOCKE;
+	public void setForI2C0Locked(boolean forI2C0Locked) {
+		this.forI2C0Locked = forI2C0Locked;
 	}
 
-	public boolean isFOR_TMP_0_BOUND() {
-		return FOR_TMP_0_BOUND;
+	public boolean isForTMP0Bound() {
+		return forTMP0Bound;
 	}
 
-	public void setFOR_TMP_0_BOUND(boolean fOR_TMP_0_BOUND) {
-		FOR_TMP_0_BOUND = fOR_TMP_0_BOUND;
+	public void setForTMP0Bound(boolean forTMP0Bound) {
+		this.forTMP0Bound = forTMP0Bound;
 	}
 
-	public boolean isFOR_TMP_1_BOUND() {
-		return FOR_TMP_1_BOUND;
+	public boolean isForTMP1Bound() {
+		return forTMP1Bound;
 	}
 
-	public void setFOR_TMP_1_BOUND(boolean fOR_TMP_1_BOUND) {
-		FOR_TMP_1_BOUND = fOR_TMP_1_BOUND;
+	public void setForTMP1Bound(boolean forTMP1Bound) {
+		this.forTMP1Bound = forTMP1Bound;
 	}
 
-	public boolean isFOR_TMP_2_BOUND() {
-		return FOR_TMP_2_BOUND;
+	public boolean isForTMP2Bound() {
+		return forTMP2Bound;
 	}
 
-	public void setFOR_TMP_2_BOUND(boolean fOR_TMP_2_BOUND) {
-		FOR_TMP_2_BOUND = fOR_TMP_2_BOUND;
+	public void setForTMP2Bound(boolean forTMP2Bound) {
+		this.forTMP2Bound = forTMP2Bound;
 	}
 
 }
