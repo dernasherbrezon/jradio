@@ -33,7 +33,7 @@ public class OutputStreamSink implements Closeable {
 	}
 
 	private void processByte(OutputStream out) throws IOException {
-		while (true) {
+		while (!Thread.currentThread().isInterrupted()) {
 			try {
 				out.write(byteSource.readByte());
 			} catch (EOFException e) {
@@ -44,7 +44,7 @@ public class OutputStreamSink implements Closeable {
 	}
 
 	private void processFloat(OutputStream out) throws IOException {
-		while (true) {
+		while (!Thread.currentThread().isInterrupted()) {
 			try {
 				int v = Float.floatToIntBits(source.readFloat());
 				out.write((v >>> 0) & 0xFF);
