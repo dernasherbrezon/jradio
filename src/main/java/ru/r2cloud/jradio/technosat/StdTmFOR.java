@@ -5,79 +5,79 @@ import java.io.IOException;
 
 public class StdTmFOR {
 
-	private byte NODENO;           // redundant node number
-	private boolean RST_EN;        // the watchdog application is enabled to reset the node
-	private byte BOTSLT;           // currently running internal software slot
-	private boolean SYNPPS;        // shall the node synchronize with the PPS signal
-	private boolean DISUTC;        // shall the node distribute the UTC time at the next PPS signal
-	private boolean DULBSY;        // Indicates the state of the UploadManagers Flash Controller
-	private ForMode FOR_MODE;      // the selected FOR mode
+	private byte nodeNo; // redundant node number
+	private boolean rstEn; // the watchdog application is enabled to reset the node
+	private byte botSlt; // currently running internal software slot
+	private boolean synPps; // shall the node synchronize with the PPS signal
+	private boolean disUTC; // shall the node distribute the UTC time at the next PPS signal
+	private boolean dulBsy; // Indicates the state of the UploadManagers Flash Controller
+	private ForMode forMode; // the selected FOR mode
 
 	public StdTmFOR(DataInputStream dis) throws IOException {
 		int raw = dis.readUnsignedByte();
-		NODENO = (byte) (raw >> 7);
-		RST_EN = ((raw >> 6) & 0x1) > 0;
-		BOTSLT = (byte) ((raw >> 3) & 0x7);
-		SYNPPS = ((raw >> 2) & 0x1) > 0;
-		DISUTC = ((raw >> 1) & 0x1) > 0;
-		DULBSY = (raw & 0x1) > 0;
-		FOR_MODE = ForMode.valueOfCode(dis.readUnsignedByte());
+		nodeNo = (byte) (raw >> 7);
+		rstEn = ((raw >> 6) & 0x1) > 0;
+		botSlt = (byte) ((raw >> 3) & 0x7);
+		synPps = ((raw >> 2) & 0x1) > 0;
+		disUTC = ((raw >> 1) & 0x1) > 0;
+		dulBsy = (raw & 0x1) > 0;
+		forMode = ForMode.valueOfCode(dis.readUnsignedByte());
 	}
 
-	public byte getNODENO() {
-		return NODENO;
+	public byte getNodeNo() {
+		return nodeNo;
 	}
 
-	public void setNODENO(byte nODENO) {
-		NODENO = nODENO;
+	public void setNodeNo(byte nodeNo) {
+		this.nodeNo = nodeNo;
 	}
 
-	public boolean isRST_EN() {
-		return RST_EN;
+	public boolean isRstEn() {
+		return rstEn;
 	}
 
-	public void setRST_EN(boolean rST_EN) {
-		RST_EN = rST_EN;
+	public void setRstEn(boolean rstEn) {
+		this.rstEn = rstEn;
 	}
 
-	public byte getBOTSLT() {
-		return BOTSLT;
+	public byte getBotSlt() {
+		return botSlt;
 	}
 
-	public void setBOTSLT(byte bOTSLT) {
-		BOTSLT = bOTSLT;
+	public void setBotSlt(byte botSlt) {
+		this.botSlt = botSlt;
 	}
 
-	public boolean isSYNPPS() {
-		return SYNPPS;
+	public boolean isSynPps() {
+		return synPps;
 	}
 
-	public void setSYNPPS(boolean sYNPPS) {
-		SYNPPS = sYNPPS;
+	public void setSynPps(boolean synPps) {
+		this.synPps = synPps;
 	}
 
-	public boolean isDISUTC() {
-		return DISUTC;
+	public boolean isDisUTC() {
+		return disUTC;
 	}
 
-	public void setDISUTC(boolean dISUTC) {
-		DISUTC = dISUTC;
+	public void setDisUTC(boolean disUTC) {
+		this.disUTC = disUTC;
 	}
 
-	public boolean isDULBSY() {
-		return DULBSY;
+	public boolean isDulBsy() {
+		return dulBsy;
 	}
 
-	public void setDULBSY(boolean dULBSY) {
-		DULBSY = dULBSY;
+	public void setDulBsy(boolean dulBsy) {
+		this.dulBsy = dulBsy;
 	}
 
-	public ForMode getFOR_MODE() {
-		return FOR_MODE;
+	public ForMode getForMode() {
+		return forMode;
 	}
 
-	public void setFOR_MODE(ForMode fOR_MODE) {
-		FOR_MODE = fOR_MODE;
+	public void setForMode(ForMode forMode) {
+		this.forMode = forMode;
 	}
 
 }
