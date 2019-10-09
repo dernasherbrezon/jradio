@@ -5,298 +5,298 @@ import java.io.IOException;
 
 public class TmAocsStateEstimationA {
 
-	private float ESTA_Q_S;             //  Attitude (TOD<-SAT) S
-	private float ESTA_Q_X;             //  Attitude (TOD<-SAT) X
-	private float ESTA_Q_Y;             //  Attitude (TOD<-SAT) Y
-	private float ESTA_Q_Z;             //  Attitude (TOD<-SAT) Z
-	private float ESTA_RATE_X;          //  Angular Rate (SAT) X
-	private float ESTA_RATE_Y;          //  Angular Rate (SAT) Y
-	private float ESTA_RATE_Z;          //  Angular Rate (SAT) Z
-	private float ESTA_ACC_X;           //  Angular Acceleration (SAT) X
-	private float ESTA_ACC_Y;           //  Angular Acceleration (SAT) Y
-	private float ESTA_ACC_Z;           //  Angular Acceleration (SAT) Z
-	private int ESTA_B_SAT_X;           //  Geomagnetic Field (SAT) X
-	private int ESTA_B_SAT_Y;           //  Geomagnetic Field (SAT) Y
-	private int ESTA_B_SAT_Z;           //  Geomagnetic Field (SAT) Z
-	private float ESTA_S_SAT_X;         //  Sun Vector (SAT) X
-	private float ESTA_S_SAT_Y;         //  Sun Vector (SAT) Y
-	private float ESTA_S_SAT_Z;         //  Sun Vector (SAT) Z
-	private int ESTA_B_TOD_X;           //  Geomagnetic Field (TOD) X
-	private int ESTA_B_TOD_Y;           //  Geomagnetic Field (TOD) Y
-	private int ESTA_B_TOD_Z;           //  Geomagnetic Field (TOD) Z
-	private float ESTA_S_TOD_X;         //  Sun Vector (TOD) X
-	private float ESTA_S_TOD_Y;         //  Sun Vector (TOD) Y
-	private float ESTA_S_TOD_Z;         //  Sun Vector (TOD) Z
-	private int ESTA_R_X;               //  Position (TOD) X
-	private int ESTA_R_Y;               //  Position (TOD) Y
-	private int ESTA_R_Z;               //  Position (TOD) Z
-	private int ESTA_V_X;               //  Velocity (TOD) X
-	private int ESTA_V_Y;               //  Velocity (TOD) Y
-	private int ESTA_V_Z;               //  Velocity (TOD) Z
-	private boolean ESTA_OCCULTATIO;    //  Occultation
+	private float estaQS; // Attitude (TOD<-SAT) S
+	private float estaQX; // Attitude (TOD<-SAT) X
+	private float estaQY; // Attitude (TOD<-SAT) Y
+	private float estaQZ; // Attitude (TOD<-SAT) Z
+	private float estaRateX; // Angular Rate (SAT) X
+	private float estaRateY; // Angular Rate (SAT) Y
+	private float estaRateZ; // Angular Rate (SAT) Z
+	private float estaAccX; // Angular Acceleration (SAT) X
+	private float estaAccY; // Angular Acceleration (SAT) Y
+	private float estaAccZ; // Angular Acceleration (SAT) Z
+	private int estaBSatX; // Geomagnetic Field (SAT) X
+	private int estaBSatY; // Geomagnetic Field (SAT) Y
+	private int estaBSatZ; // Geomagnetic Field (SAT) Z
+	private float estaSSatX; // Sun Vector (SAT) X
+	private float estaSSatY; // Sun Vector (SAT) Y
+	private float estaSSatZ; // Sun Vector (SAT) Z
+	private int estaBTodX; // Geomagnetic Field (TOD) X
+	private int estaBTodY; // Geomagnetic Field (TOD) Y
+	private int estaBTodZ; // Geomagnetic Field (TOD) Z
+	private float estaSTodX; // Sun Vector (TOD) X
+	private float estaSTodY; // Sun Vector (TOD) Y
+	private float estaSTodZ; // Sun Vector (TOD) Z
+	private int estaRX; // Position (TOD) X
+	private int estaRY; // Position (TOD) Y
+	private int estaRZ; // Position (TOD) Z
+	private int estaVX; // Velocity (TOD) X
+	private int estaVY; // Velocity (TOD) Y
+	private int estaVZ; // Velocity (TOD) Z
+	private boolean estaOccultation; // Occultation
 
 	public TmAocsStateEstimationA(DataInputStream dis) throws IOException {
-		ESTA_Q_S = dis.readInt() * 0.000001f;
-		ESTA_Q_X = dis.readInt() * 0.000001f;
-		ESTA_Q_Y = dis.readInt() * 0.000001f;
-		ESTA_Q_Z = dis.readInt() * 0.000001f;
-		ESTA_RATE_X = dis.readShort() * 0.001f;
-		ESTA_RATE_Y = dis.readShort() * 0.001f;
-		ESTA_RATE_Z = dis.readShort() * 0.001f;
-		ESTA_ACC_X = dis.readShort() * 0.001f;
-		ESTA_ACC_Y = dis.readShort() * 0.001f;
-		ESTA_ACC_Z = dis.readShort() * 0.001f;
-		ESTA_B_SAT_X = dis.readShort() * 50;
-		ESTA_B_SAT_Y = dis.readShort() * 50;
-		ESTA_B_SAT_Z = dis.readShort() * 50;
-		ESTA_S_SAT_X = dis.readShort() * 0.001f;
-		ESTA_S_SAT_Y = dis.readShort() * 0.001f;
-		ESTA_S_SAT_Z = dis.readShort() * 0.001f;
-		ESTA_B_TOD_X = dis.readShort() * 50;
-		ESTA_B_TOD_Y = dis.readShort() * 50;
-		ESTA_B_TOD_Z = dis.readShort() * 50;
-		ESTA_S_TOD_X = dis.readShort() * 0.001f;
-		ESTA_S_TOD_Y = dis.readShort() * 0.001f;
-		ESTA_S_TOD_Z = dis.readShort() * 0.001f;
-		ESTA_R_X = dis.readShort();
-		ESTA_R_Y = dis.readShort();
-		ESTA_R_Z = dis.readShort();
-		ESTA_V_X = dis.readShort();
-		ESTA_V_Y = dis.readShort();
-		ESTA_V_Z = dis.readShort();
-		ESTA_OCCULTATIO = dis.readByte() > 0;
+		estaQS = dis.readInt() * 0.000001f;
+		estaQX = dis.readInt() * 0.000001f;
+		estaQY = dis.readInt() * 0.000001f;
+		estaQZ = dis.readInt() * 0.000001f;
+		estaRateX = dis.readShort() * 0.001f;
+		estaRateY = dis.readShort() * 0.001f;
+		estaRateZ = dis.readShort() * 0.001f;
+		estaAccX = dis.readShort() * 0.001f;
+		estaAccY = dis.readShort() * 0.001f;
+		estaAccZ = dis.readShort() * 0.001f;
+		estaBSatX = dis.readShort() * 50;
+		estaBSatY = dis.readShort() * 50;
+		estaBSatZ = dis.readShort() * 50;
+		estaSSatX = dis.readShort() * 0.001f;
+		estaSSatY = dis.readShort() * 0.001f;
+		estaSSatZ = dis.readShort() * 0.001f;
+		estaBTodX = dis.readShort() * 50;
+		estaBTodY = dis.readShort() * 50;
+		estaBTodZ = dis.readShort() * 50;
+		estaSTodX = dis.readShort() * 0.001f;
+		estaSTodY = dis.readShort() * 0.001f;
+		estaSTodZ = dis.readShort() * 0.001f;
+		estaRX = dis.readShort();
+		estaRY = dis.readShort();
+		estaRZ = dis.readShort();
+		estaVX = dis.readShort();
+		estaVY = dis.readShort();
+		estaVZ = dis.readShort();
+		estaOccultation = dis.readByte() > 0;
 	}
 
-	public float getESTA_Q_S() {
-		return ESTA_Q_S;
+	public float getEstaQS() {
+		return estaQS;
 	}
 
-	public void setESTA_Q_S(float eSTA_Q_S) {
-		ESTA_Q_S = eSTA_Q_S;
+	public void setEstaQS(float estaQS) {
+		this.estaQS = estaQS;
 	}
 
-	public float getESTA_Q_X() {
-		return ESTA_Q_X;
+	public float getEstaQX() {
+		return estaQX;
 	}
 
-	public void setESTA_Q_X(float eSTA_Q_X) {
-		ESTA_Q_X = eSTA_Q_X;
+	public void setEstaQX(float estaQX) {
+		this.estaQX = estaQX;
 	}
 
-	public float getESTA_Q_Y() {
-		return ESTA_Q_Y;
+	public float getEstaQY() {
+		return estaQY;
 	}
 
-	public void setESTA_Q_Y(float eSTA_Q_Y) {
-		ESTA_Q_Y = eSTA_Q_Y;
+	public void setEstaQY(float estaQY) {
+		this.estaQY = estaQY;
 	}
 
-	public float getESTA_Q_Z() {
-		return ESTA_Q_Z;
+	public float getEstaQZ() {
+		return estaQZ;
 	}
 
-	public void setESTA_Q_Z(float eSTA_Q_Z) {
-		ESTA_Q_Z = eSTA_Q_Z;
+	public void setEstaQZ(float estaQZ) {
+		this.estaQZ = estaQZ;
 	}
 
-	public float getESTA_RATE_X() {
-		return ESTA_RATE_X;
+	public float getEstaRateX() {
+		return estaRateX;
 	}
 
-	public void setESTA_RATE_X(float eSTA_RATE_X) {
-		ESTA_RATE_X = eSTA_RATE_X;
+	public void setEstaRateX(float estaRateX) {
+		this.estaRateX = estaRateX;
 	}
 
-	public float getESTA_RATE_Y() {
-		return ESTA_RATE_Y;
+	public float getEstaRateY() {
+		return estaRateY;
 	}
 
-	public void setESTA_RATE_Y(float eSTA_RATE_Y) {
-		ESTA_RATE_Y = eSTA_RATE_Y;
+	public void setEstaRateY(float estaRateY) {
+		this.estaRateY = estaRateY;
 	}
 
-	public float getESTA_RATE_Z() {
-		return ESTA_RATE_Z;
+	public float getEstaRateZ() {
+		return estaRateZ;
 	}
 
-	public void setESTA_RATE_Z(float eSTA_RATE_Z) {
-		ESTA_RATE_Z = eSTA_RATE_Z;
+	public void setEstaRateZ(float estaRateZ) {
+		this.estaRateZ = estaRateZ;
 	}
 
-	public float getESTA_ACC_X() {
-		return ESTA_ACC_X;
+	public float getEstaAccX() {
+		return estaAccX;
 	}
 
-	public void setESTA_ACC_X(float eSTA_ACC_X) {
-		ESTA_ACC_X = eSTA_ACC_X;
+	public void setEstaAccX(float estaAccX) {
+		this.estaAccX = estaAccX;
 	}
 
-	public float getESTA_ACC_Y() {
-		return ESTA_ACC_Y;
+	public float getEstaAccY() {
+		return estaAccY;
 	}
 
-	public void setESTA_ACC_Y(float eSTA_ACC_Y) {
-		ESTA_ACC_Y = eSTA_ACC_Y;
+	public void setEstaAccY(float estaAccY) {
+		this.estaAccY = estaAccY;
 	}
 
-	public float getESTA_ACC_Z() {
-		return ESTA_ACC_Z;
+	public float getEstaAccZ() {
+		return estaAccZ;
 	}
 
-	public void setESTA_ACC_Z(float eSTA_ACC_Z) {
-		ESTA_ACC_Z = eSTA_ACC_Z;
+	public void setEstaAccZ(float estaAccZ) {
+		this.estaAccZ = estaAccZ;
 	}
 
-	public int getESTA_B_SAT_X() {
-		return ESTA_B_SAT_X;
+	public int getEstaBSatX() {
+		return estaBSatX;
 	}
 
-	public void setESTA_B_SAT_X(int eSTA_B_SAT_X) {
-		ESTA_B_SAT_X = eSTA_B_SAT_X;
+	public void setEstaBSatX(int estaBSatX) {
+		this.estaBSatX = estaBSatX;
 	}
 
-	public int getESTA_B_SAT_Y() {
-		return ESTA_B_SAT_Y;
+	public int getEstaBSatY() {
+		return estaBSatY;
 	}
 
-	public void setESTA_B_SAT_Y(int eSTA_B_SAT_Y) {
-		ESTA_B_SAT_Y = eSTA_B_SAT_Y;
+	public void setEstaBSatY(int estaBSatY) {
+		this.estaBSatY = estaBSatY;
 	}
 
-	public int getESTA_B_SAT_Z() {
-		return ESTA_B_SAT_Z;
+	public int getEstaBSatZ() {
+		return estaBSatZ;
 	}
 
-	public void setESTA_B_SAT_Z(int eSTA_B_SAT_Z) {
-		ESTA_B_SAT_Z = eSTA_B_SAT_Z;
+	public void setEstaBSatZ(int estaBSatZ) {
+		this.estaBSatZ = estaBSatZ;
 	}
 
-	public float getESTA_S_SAT_X() {
-		return ESTA_S_SAT_X;
+	public float getEstaSSatX() {
+		return estaSSatX;
 	}
 
-	public void setESTA_S_SAT_X(float eSTA_S_SAT_X) {
-		ESTA_S_SAT_X = eSTA_S_SAT_X;
+	public void setEstaSSatX(float estaSSatX) {
+		this.estaSSatX = estaSSatX;
 	}
 
-	public float getESTA_S_SAT_Y() {
-		return ESTA_S_SAT_Y;
+	public float getEstaSSatY() {
+		return estaSSatY;
 	}
 
-	public void setESTA_S_SAT_Y(float eSTA_S_SAT_Y) {
-		ESTA_S_SAT_Y = eSTA_S_SAT_Y;
+	public void setEstaSSatY(float estaSSatY) {
+		this.estaSSatY = estaSSatY;
 	}
 
-	public float getESTA_S_SAT_Z() {
-		return ESTA_S_SAT_Z;
+	public float getEstaSSatZ() {
+		return estaSSatZ;
 	}
 
-	public void setESTA_S_SAT_Z(float eSTA_S_SAT_Z) {
-		ESTA_S_SAT_Z = eSTA_S_SAT_Z;
+	public void setEstaSSatZ(float estaSSatZ) {
+		this.estaSSatZ = estaSSatZ;
 	}
 
-	public int getESTA_B_TOD_X() {
-		return ESTA_B_TOD_X;
+	public int getEstaBTodX() {
+		return estaBTodX;
 	}
 
-	public void setESTA_B_TOD_X(int eSTA_B_TOD_X) {
-		ESTA_B_TOD_X = eSTA_B_TOD_X;
+	public void setEstaBTodX(int estaBTodX) {
+		this.estaBTodX = estaBTodX;
 	}
 
-	public int getESTA_B_TOD_Y() {
-		return ESTA_B_TOD_Y;
+	public int getEstaBTodY() {
+		return estaBTodY;
 	}
 
-	public void setESTA_B_TOD_Y(int eSTA_B_TOD_Y) {
-		ESTA_B_TOD_Y = eSTA_B_TOD_Y;
+	public void setEstaBTodY(int estaBTodY) {
+		this.estaBTodY = estaBTodY;
 	}
 
-	public int getESTA_B_TOD_Z() {
-		return ESTA_B_TOD_Z;
+	public int getEstaBTodZ() {
+		return estaBTodZ;
 	}
 
-	public void setESTA_B_TOD_Z(int eSTA_B_TOD_Z) {
-		ESTA_B_TOD_Z = eSTA_B_TOD_Z;
+	public void setEstaBTodZ(int estaBTodZ) {
+		this.estaBTodZ = estaBTodZ;
 	}
 
-	public float getESTA_S_TOD_X() {
-		return ESTA_S_TOD_X;
+	public float getEstaSTodX() {
+		return estaSTodX;
 	}
 
-	public void setESTA_S_TOD_X(float eSTA_S_TOD_X) {
-		ESTA_S_TOD_X = eSTA_S_TOD_X;
+	public void setEstaSTodX(float estaSTodX) {
+		this.estaSTodX = estaSTodX;
 	}
 
-	public float getESTA_S_TOD_Y() {
-		return ESTA_S_TOD_Y;
+	public float getEstaSTodY() {
+		return estaSTodY;
 	}
 
-	public void setESTA_S_TOD_Y(float eSTA_S_TOD_Y) {
-		ESTA_S_TOD_Y = eSTA_S_TOD_Y;
+	public void setEstaSTodY(float estaSTodY) {
+		this.estaSTodY = estaSTodY;
 	}
 
-	public float getESTA_S_TOD_Z() {
-		return ESTA_S_TOD_Z;
+	public float getEstaSTodZ() {
+		return estaSTodZ;
 	}
 
-	public void setESTA_S_TOD_Z(float eSTA_S_TOD_Z) {
-		ESTA_S_TOD_Z = eSTA_S_TOD_Z;
+	public void setEstaSTodZ(float estaSTodZ) {
+		this.estaSTodZ = estaSTodZ;
 	}
 
-	public int getESTA_R_X() {
-		return ESTA_R_X;
+	public int getEstaRX() {
+		return estaRX;
 	}
 
-	public void setESTA_R_X(int eSTA_R_X) {
-		ESTA_R_X = eSTA_R_X;
+	public void setEstaRX(int estaRX) {
+		this.estaRX = estaRX;
 	}
 
-	public int getESTA_R_Y() {
-		return ESTA_R_Y;
+	public int getEstaRY() {
+		return estaRY;
 	}
 
-	public void setESTA_R_Y(int eSTA_R_Y) {
-		ESTA_R_Y = eSTA_R_Y;
+	public void setEstaRY(int estaRY) {
+		this.estaRY = estaRY;
 	}
 
-	public int getESTA_R_Z() {
-		return ESTA_R_Z;
+	public int getEstaRZ() {
+		return estaRZ;
 	}
 
-	public void setESTA_R_Z(int eSTA_R_Z) {
-		ESTA_R_Z = eSTA_R_Z;
+	public void setEstaRZ(int estaRZ) {
+		this.estaRZ = estaRZ;
 	}
 
-	public int getESTA_V_X() {
-		return ESTA_V_X;
+	public int getEstaVX() {
+		return estaVX;
 	}
 
-	public void setESTA_V_X(int eSTA_V_X) {
-		ESTA_V_X = eSTA_V_X;
+	public void setEstaVX(int estaVX) {
+		this.estaVX = estaVX;
 	}
 
-	public int getESTA_V_Y() {
-		return ESTA_V_Y;
+	public int getEstaVY() {
+		return estaVY;
 	}
 
-	public void setESTA_V_Y(int eSTA_V_Y) {
-		ESTA_V_Y = eSTA_V_Y;
+	public void setEstaVY(int estaVY) {
+		this.estaVY = estaVY;
 	}
 
-	public int getESTA_V_Z() {
-		return ESTA_V_Z;
+	public int getEstaVZ() {
+		return estaVZ;
 	}
 
-	public void setESTA_V_Z(int eSTA_V_Z) {
-		ESTA_V_Z = eSTA_V_Z;
+	public void setEstaVZ(int estaVZ) {
+		this.estaVZ = estaVZ;
 	}
 
-	public boolean isESTA_OCCULTATIO() {
-		return ESTA_OCCULTATIO;
+	public boolean isEstaOccultation() {
+		return estaOccultation;
 	}
 
-	public void setESTA_OCCULTATIO(boolean eSTA_OCCULTATIO) {
-		ESTA_OCCULTATIO = eSTA_OCCULTATIO;
+	public void setEstaOccultation(boolean estaOccultation) {
+		this.estaOccultation = estaOccultation;
 	}
 
 }
