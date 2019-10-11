@@ -5,13 +5,13 @@ import java.io.IOException;
 import ru.r2cloud.jradio.ByteInput;
 import ru.r2cloud.jradio.Context;
 import ru.r2cloud.jradio.FloatInput;
-import ru.r2cloud.jradio.blocks.AGC;
 import ru.r2cloud.jradio.blocks.ClockRecoveryMMComplex;
 import ru.r2cloud.jradio.blocks.Constellation;
 import ru.r2cloud.jradio.blocks.ConstellationSoftDecoder;
 import ru.r2cloud.jradio.blocks.CostasLoop;
 import ru.r2cloud.jradio.blocks.FloatToChar;
 import ru.r2cloud.jradio.blocks.Rail;
+import ru.r2cloud.jradio.blocks.RmsAgc;
 import ru.r2cloud.jradio.blocks.RootRaisedCosineFilter;
 
 public class QpskDemodulator implements ByteInput {
@@ -20,7 +20,7 @@ public class QpskDemodulator implements ByteInput {
 
 	public QpskDemodulator(FloatInput source, int symbolRate, Constellation constel) {
 		float clockAlpha = 0.01f;
-		AGC agc = new AGC(source, 1000e-4f, 0.5f, 2.0f, 4000.0f);
+		RmsAgc agc = new RmsAgc(source, 1e-2f, 0.5f);
 		RootRaisedCosineFilter rrcf = new RootRaisedCosineFilter(agc, 1.0f, symbolRate, 0.6f, 361);
 		float omega = rrcf.getContext().getSampleRate() / symbolRate;
 		ClockRecoveryMMComplex clockmm = new ClockRecoveryMMComplex(rrcf, omega, clockAlpha * clockAlpha / 4, 0.5f, clockAlpha, 0.005f);
