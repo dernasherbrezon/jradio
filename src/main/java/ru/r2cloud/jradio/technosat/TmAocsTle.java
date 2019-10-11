@@ -7,148 +7,148 @@ import ru.r2cloud.jradio.util.StreamUtils;
 
 public class TmAocsTle {
 
-	private int EPOCH_YEAR;               //  Epoch Year	(Last two digits of year)
-	private float EPOCH_DAY;              //  Epoch	(Day of the year and fractional portion of the day)
-	private float MEAN_MOTION_DT;         //  First Time Derivative of the Mean Motion	
-	private float MEAN_MOTION_DDT;        //  Second Time Derivative of Mean Motion	
-	private float BSTAR;                  //  BSTAR drag term	
-	private int EPHEMERIS_TYPE;           //  The number 0	(originally this should have been "Ephemeris type")
-	private int ELEMENT_NUMBER;           //  Element number	
-	private float INCLINATION;            //  Inclination	
-	private float RAAN;                   //  Right Ascension of the Ascending Node	
-	private double ECCENTRICITY;          //  Eccentricity	
-	private float ARG_PERIGEE;            //  Argument of Perigee	
-	private float MEAN_ANOMALY;           //  Mean Anomaly	
-	private float MEAN_MOTION;            //  Mean Motion	
-	private long REV_NUMBER;              //  Revolution number at epoch	
+	private int epochYear; // Epoch Year (Last two digits of year)
+	private float epochDay; // Epoch (Day of the year and fractional portion of the day)
+	private float meanMotionDt; // First Time Derivative of the Mean Motion
+	private float meanMotionDdt; // Second Time Derivative of Mean Motion
+	private float bStar; // BSTAR drag term
+	private int ephemerisType; // The number 0 (originally this should have been "Ephemeris type")
+	private int elementNumber; // Element number
+	private float inclination; // Inclination
+	private float raan; // Right Ascension of the Ascending Node
+	private double eccentricity; // Eccentricity
+	private float argPerigee; // Argument of Perigee
+	private float meanAnomaly; // Mean Anomaly
+	private float meanMotion; // Mean Motion
+	private long revNumber; // Revolution number at epoch
 
 	public TmAocsTle(DataInputStream dis) throws IOException {
-		EPOCH_YEAR = dis.readUnsignedByte();
-		EPOCH_DAY = dis.readFloat();
-		MEAN_MOTION_DT = dis.readFloat();
-		MEAN_MOTION_DDT = dis.readFloat();
-		BSTAR = dis.readFloat();
-		EPHEMERIS_TYPE = dis.readUnsignedByte();
-		ELEMENT_NUMBER = dis.readUnsignedShort();
-		INCLINATION = dis.readFloat();
-		RAAN = dis.readFloat();
-		ECCENTRICITY = dis.readDouble();
-		ARG_PERIGEE = dis.readFloat();
-		MEAN_ANOMALY = dis.readFloat();
-		MEAN_MOTION = dis.readFloat();
-		REV_NUMBER = StreamUtils.readUnsignedInt(dis);
+		epochYear = dis.readUnsignedByte();
+		epochDay = dis.readFloat();
+		meanMotionDt = dis.readFloat();
+		meanMotionDdt = dis.readFloat();
+		bStar = dis.readFloat();
+		ephemerisType = dis.readUnsignedByte();
+		elementNumber = dis.readUnsignedShort();
+		inclination = dis.readFloat();
+		raan = dis.readFloat();
+		eccentricity = dis.readDouble();
+		argPerigee = dis.readFloat();
+		meanAnomaly = dis.readFloat();
+		meanMotion = dis.readFloat();
+		revNumber = StreamUtils.readUnsignedInt(dis);
 	}
 
-	public int getEPOCH_YEAR() {
-		return EPOCH_YEAR;
+	public int getEpochYear() {
+		return epochYear;
 	}
 
-	public void setEPOCH_YEAR(int ePOCH_YEAR) {
-		EPOCH_YEAR = ePOCH_YEAR;
+	public void setEpochYear(int epochYear) {
+		this.epochYear = epochYear;
 	}
 
-	public float getEPOCH_DAY() {
-		return EPOCH_DAY;
+	public float getEpochDay() {
+		return epochDay;
 	}
 
-	public void setEPOCH_DAY(float ePOCH_DAY) {
-		EPOCH_DAY = ePOCH_DAY;
+	public void setEpochDay(float epochDay) {
+		this.epochDay = epochDay;
 	}
 
-	public float getMEAN_MOTION_DT() {
-		return MEAN_MOTION_DT;
+	public float getMeanMotionDt() {
+		return meanMotionDt;
 	}
 
-	public void setMEAN_MOTION_DT(float mEAN_MOTION_DT) {
-		MEAN_MOTION_DT = mEAN_MOTION_DT;
+	public void setMeanMotionDt(float meanMotionDt) {
+		this.meanMotionDt = meanMotionDt;
 	}
 
-	public float getMEAN_MOTION_DDT() {
-		return MEAN_MOTION_DDT;
+	public float getMeanMotionDdt() {
+		return meanMotionDdt;
 	}
 
-	public void setMEAN_MOTION_DDT(float mEAN_MOTION_DDT) {
-		MEAN_MOTION_DDT = mEAN_MOTION_DDT;
+	public void setMeanMotionDdt(float meanMotionDdt) {
+		this.meanMotionDdt = meanMotionDdt;
 	}
 
-	public float getBSTAR() {
-		return BSTAR;
+	public float getbStar() {
+		return bStar;
 	}
 
-	public void setBSTAR(float bSTAR) {
-		BSTAR = bSTAR;
+	public void setbStar(float bStar) {
+		this.bStar = bStar;
 	}
 
-	public int getEPHEMERIS_TYPE() {
-		return EPHEMERIS_TYPE;
+	public int getEphemerisType() {
+		return ephemerisType;
 	}
 
-	public void setEPHEMERIS_TYPE(int ePHEMERIS_TYPE) {
-		EPHEMERIS_TYPE = ePHEMERIS_TYPE;
+	public void setEphemerisType(int ephemerisType) {
+		this.ephemerisType = ephemerisType;
 	}
 
-	public int getELEMENT_NUMBER() {
-		return ELEMENT_NUMBER;
+	public int getElementNumber() {
+		return elementNumber;
 	}
 
-	public void setELEMENT_NUMBER(int eLEMENT_NUMBER) {
-		ELEMENT_NUMBER = eLEMENT_NUMBER;
+	public void setElementNumber(int elementNumber) {
+		this.elementNumber = elementNumber;
 	}
 
-	public float getINCLINATION() {
-		return INCLINATION;
+	public float getInclination() {
+		return inclination;
 	}
 
-	public void setINCLINATION(float iNCLINATION) {
-		INCLINATION = iNCLINATION;
+	public void setInclination(float inclination) {
+		this.inclination = inclination;
 	}
 
-	public float getRAAN() {
-		return RAAN;
+	public float getRaan() {
+		return raan;
 	}
 
-	public void setRAAN(float rAAN) {
-		RAAN = rAAN;
+	public void setRaan(float raan) {
+		this.raan = raan;
 	}
 
-	public double getECCENTRICITY() {
-		return ECCENTRICITY;
+	public double getEccentricity() {
+		return eccentricity;
 	}
 
-	public void setECCENTRICITY(double eCCENTRICITY) {
-		ECCENTRICITY = eCCENTRICITY;
+	public void setEccentricity(double eccentricity) {
+		this.eccentricity = eccentricity;
 	}
 
-	public float getARG_PERIGEE() {
-		return ARG_PERIGEE;
+	public float getArgPerigee() {
+		return argPerigee;
 	}
 
-	public void setARG_PERIGEE(float aRG_PERIGEE) {
-		ARG_PERIGEE = aRG_PERIGEE;
+	public void setArgPerigee(float argPerigee) {
+		this.argPerigee = argPerigee;
 	}
 
-	public float getMEAN_ANOMALY() {
-		return MEAN_ANOMALY;
+	public float getMeanAnomaly() {
+		return meanAnomaly;
 	}
 
-	public void setMEAN_ANOMALY(float mEAN_ANOMALY) {
-		MEAN_ANOMALY = mEAN_ANOMALY;
+	public void setMeanAnomaly(float meanAnomaly) {
+		this.meanAnomaly = meanAnomaly;
 	}
 
-	public float getMEAN_MOTION() {
-		return MEAN_MOTION;
+	public float getMeanMotion() {
+		return meanMotion;
 	}
 
-	public void setMEAN_MOTION(float mEAN_MOTION) {
-		MEAN_MOTION = mEAN_MOTION;
+	public void setMeanMotion(float meanMotion) {
+		this.meanMotion = meanMotion;
 	}
 
-	public long getREV_NUMBER() {
-		return REV_NUMBER;
+	public long getRevNumber() {
+		return revNumber;
 	}
 
-	public void setREV_NUMBER(long rEV_NUMBER) {
-		REV_NUMBER = rEV_NUMBER;
+	public void setRevNumber(long revNumber) {
+		this.revNumber = revNumber;
 	}
 
 }
