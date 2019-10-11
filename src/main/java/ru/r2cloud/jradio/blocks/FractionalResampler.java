@@ -12,6 +12,7 @@ public class FractionalResampler implements FloatInput {
 	private final float[] currentComplex = new float[2];
 	private final CircularComplexArray array;
 	private final MMSEFIRInterpolator interp;
+	private final Context context;
 	private float mu;
 	private float muInc;
 	private int skip;
@@ -24,6 +25,11 @@ public class FractionalResampler implements FloatInput {
 		interp = new MMSEFIRInterpolator();
 		array = new CircularComplexArray(interp.getNumberOfTaps());
 		this.skip = interp.getNumberOfTaps();
+		this.context = new Context(input.getContext());
+		this.context.setSampleRate(input.getContext().getSampleRate() / resampleRatio);
+		if (this.context.getTotalSamples() != null) {
+			this.context.setTotalSamples((long) (input.getContext().getTotalSamples() / resampleRatio));
+		}
 	}
 
 	@Override
@@ -59,6 +65,6 @@ public class FractionalResampler implements FloatInput {
 
 	@Override
 	public Context getContext() {
-		return input.getContext();
+		return context;
 	}
 }
