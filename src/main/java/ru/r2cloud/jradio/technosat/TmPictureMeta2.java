@@ -7,1890 +7,1890 @@ import ru.r2cloud.jradio.util.StreamUtils;
 
 public class TmPictureMeta2 {
 
-	private int PLEN00; // Picture length of slot 0
-	private int PLEN01; // Picture length of slot 1
-	private int PLEN02; // Picture length of slot 2
-	private int PLEN03; // Picture length of slot 3
-	private int PLEN04; // Picture length of slot 4
-	private int PLEN05; // Picture length of slot 5
-	private int PLEN06; // Picture length of slot 6
-	private int PLEN07; // Picture length of slot 7
-	private int PLEN08; // Picture length of slot 8
-	private int PLEN09; // Picture length of slot 9
-	private int PLEN10; // Picture length of slot 10
-	private int PLEN11; // Picture length of slot 11
-	private int PLEN12; // Picture length of slot 12
-	private int PLEN13; // Picture length of slot 13
-	private int PLEN14; // Picture length of slot 14
-	private int PLEN15; // Picture length of slot 15
-	private int PLEN16; // Picture length of slot 16
-	private int PLEN17; // Picture length of slot 17
-	private int PLEN18; // Picture length of slot 18
-	private int PLEN19; // Picture length of slot 19
-	private int PLEN20; // Picture length of slot 20
-	private int PLEN21; // Picture length of slot 21
-	private int PLEN22; // Picture length of slot 22
-	private int PLEN23; // Picture length of slot 23
-	private int PLEN24; // Picture length of slot 24
-	private int PLEN25; // Picture length of slot 25
-	private int PLEN26; // Picture length of slot 26
-	private int PLEN27; // Picture length of slot 27
-	private int PLEN28; // Picture length of slot 28
-	private int PLEN29; // Picture length of slot 29
-	private long PTIM00; // Picture time of slot 0
-	private long PTIM01; // Picture time of slot 1
-	private long PTIM02; // Picture time of slot 2
-	private long PTIM03; // Picture time of slot 3
-	private long PTIM04; // Picture time of slot 4
-	private long PTIM05; // Picture time of slot 5
-	private long PTIM06; // Picture time of slot 6
-	private long PTIM07; // Picture time of slot 7
-	private long PTIM08; // Picture time of slot 8
-	private long PTIM09; // Picture time of slot 9
-	private long PTIM10; // Picture time of slot 10
-	private long PTIM11; // Picture time of slot 11
-	private long PTIM12; // Picture time of slot 12
-	private long PTIM13; // Picture time of slot 13
-	private long PTIM14; // Picture time of slot 14
-	private long PTIM15; // Picture time of slot 15
-	private long PTIM16; // Picture time of slot 16
-	private long PTIM17; // Picture time of slot 17
-	private long PTIM18; // Picture time of slot 18
-	private long PTIM19; // Picture time of slot 19
-	private long PTIM20; // Picture time of slot 20
-	private long PTIM21; // Picture time of slot 21
-	private long PTIM22; // Picture time of slot 22
-	private long PTIM23; // Picture time of slot 23
-	private long PTIM24; // Picture time of slot 24
-	private long PTIM25; // Picture time of slot 25
-	private long PTIM26; // Picture time of slot 26
-	private long PTIM27; // Picture time of slot 27
-	private long PTIM28; // Picture time of slot 28
-	private long PTIM29; // Picture time of slot 29
-	private byte[] PCRC00; // Picture CRC32 of slot 0
-	private byte[] PCRC01; // Picture CRC32 of slot 1
-	private byte[] PCRC02; // Picture CRC32 of slot 2
-	private byte[] PCRC03; // Picture CRC32 of slot 3
-	private byte[] PCRC04; // Picture CRC32 of slot 4
-	private byte[] PCRC05; // Picture CRC32 of slot 5
-	private byte[] PCRC06; // Picture CRC32 of slot 6
-	private byte[] PCRC07; // Picture CRC32 of slot 7
-	private byte[] PCRC08; // Picture CRC32 of slot 8
-	private byte[] PCRC09; // Picture CRC32 of slot 9
-	private byte[] PCRC10; // Picture CRC32 of slot 10
-	private byte[] PCRC11; // Picture CRC32 of slot 11
-	private byte[] PCRC12; // Picture CRC32 of slot 12
-	private byte[] PCRC13; // Picture CRC32 of slot 13
-	private byte[] PCRC14; // Picture CRC32 of slot 14
-	private byte[] PCRC15; // Picture CRC32 of slot 15
-	private byte[] PCRC16; // Picture CRC32 of slot 16
-	private byte[] PCRC17; // Picture CRC32 of slot 17
-	private byte[] PCRC18; // Picture CRC32 of slot 18
-	private byte[] PCRC19; // Picture CRC32 of slot 19
-	private byte[] PCRC20; // Picture CRC32 of slot 20
-	private byte[] PCRC21; // Picture CRC32 of slot 21
-	private byte[] PCRC22; // Picture CRC32 of slot 22
-	private byte[] PCRC23; // Picture CRC32 of slot 23
-	private byte[] PCRC24; // Picture CRC32 of slot 24
-	private byte[] PCRC25; // Picture CRC32 of slot 25
-	private byte[] PCRC26; // Picture CRC32 of slot 26
-	private byte[] PCRC27; // Picture CRC32 of slot 27
-	private byte[] PCRC28; // Picture CRC32 of slot 28
-	private byte[] PCRC29; // Picture CRC32 of slot 29
-	private int PCHU00; // Picture total chunks of slot 0
-	private int PCHU01; // Picture total chunks of slot 1
-	private int PCHU02; // Picture total chunks of slot 2
-	private int PCHU03; // Picture total chunks of slot 3
-	private int PCHU04; // Picture total chunks of slot 4
-	private int PCHU05; // Picture total chunks of slot 5
-	private int PCHU06; // Picture total chunks of slot 6
-	private int PCHU07; // Picture total chunks of slot 7
-	private int PCHU08; // Picture total chunks of slot 8
-	private int PCHU09; // Picture total chunks of slot 9
-	private int PCHU10; // Picture total chunks of slot 10
-	private int PCHU11; // Picture total chunks of slot 11
-	private int PCHU12; // Picture total chunks of slot 12
-	private int PCHU13; // Picture total chunks of slot 13
-	private int PCHU14; // Picture total chunks of slot 14
-	private int PCHU15; // Picture total chunks of slot 15
-	private int PCHU16; // Picture total chunks of slot 16
-	private int PCHU17; // Picture total chunks of slot 17
-	private int PCHU18; // Picture total chunks of slot 18
-	private int PCHU19; // Picture total chunks of slot 19
-	private int PCHU20; // Picture total chunks of slot 20
-	private int PCHU21; // Picture total chunks of slot 21
-	private int PCHU22; // Picture total chunks of slot 22
-	private int PCHU23; // Picture total chunks of slot 23
-	private int PCHU24; // Picture total chunks of slot 24
-	private int PCHU25; // Picture total chunks of slot 25
-	private int PCHU26; // Picture total chunks of slot 26
-	private int PCHU27; // Picture total chunks of slot 27
-	private int PCHU28; // Picture total chunks of slot 28
-	private int PCHU29; // Picture total chunks of slot 29
-	private int ID_00; // ID of the picture meta 0
-	private int ID_01; // ID of the picture meta 1
-	private int ID_02; // ID of the picture meta 2
-	private int ID_03; // ID of the picture meta 3
-	private int ID_04; // ID of the picture meta 4
-	private int ID_05; // ID of the picture meta 5
-	private int ID_06; // ID of the picture meta 6
-	private int ID_07; // ID of the picture meta 7
-	private int ID_08; // ID of the picture meta 8
-	private int ID_09; // ID of the picture meta 9
-	private int ID_10; // ID of the picture meta 10
-	private int ID_11; // ID of the picture meta 11
-	private int ID_12; // ID of the picture meta 12
-	private int ID_13; // ID of the picture meta 13
-	private int ID_14; // ID of the picture meta 14
-	private int ID_15; // ID of the picture meta 15
-	private int ID_16; // ID of the picture meta 16
-	private int ID_17; // ID of the picture meta 17
-	private int ID_18; // ID of the picture meta 18
-	private int ID_19; // ID of the picture meta 19
-	private int ID_20; // ID of the picture meta 20
-	private int ID_21; // ID of the picture meta 21
-	private int ID_22; // ID of the picture meta 22
-	private int ID_23; // ID of the picture meta 23
-	private int ID_24; // ID of the picture meta 24
-	private int ID_25; // ID of the picture meta 25
-	private int ID_26; // ID of the picture meta 26
-	private int ID_27; // ID of the picture meta 27
-	private int ID_28; // ID of the picture meta 28
-	private int ID_29; // ID of the picture meta 29
-	private byte[] OCC_00; // Occupied mask (1 means occupied, 0 means free, left to right))
-	private byte[] OCC_01; // Occupied mask (1 means occupied, 0 means free, left to right))
-	private byte[] OCC_02; // Occupied mask (1 means occupied, 0 means free, left to right))
-	private byte[] OCC_03; // Occupied mask (1 means occupied, 0 means free, left to right))
-	private byte[] OCC_04; // Occupied mask (1 means occupied, 0 means free, left to right))
-	private byte[] OCC_05; // Occupied mask (1 means occupied, 0 means free, left to right))
-	private byte[] OCC_06; // Occupied mask (1 means occupied, 0 means free, left to right))
-	private byte[] OCC_07; // Occupied mask (1 means occupied, 0 means free, left to right))
-	private byte[] OCC_08; // Occupied mask (1 means occupied, 0 means free, left to right))
-	private byte[] OCC_09; // Occupied mask (1 means occupied, 0 means free, left to right))
-	private byte[] OCC_10; // Occupied mask (1 means occupied, 0 means free, left to right))
-	private byte[] OCC_11; // Occupied mask (1 means occupied, 0 means free, left to right))
-	private byte[] OCC_12; // Occupied mask (1 means occupied, 0 means free, left to right))
-	private byte[] OCC_13; // Occupied mask (1 means occupied, 0 means free, left to right))
-	private byte[] OCC_14; // Occupied mask (1 means occupied, 0 means free, left to right))
-	private byte[] OCC_15; // Occupied mask (1 means occupied, 0 means free, left to right))
-	private byte[] OCC_16; // Occupied mask (1 means occupied, 0 means free, left to right))
-	private byte[] OCC_17; // Occupied mask (1 means occupied, 0 means free, left to right))
-	private byte[] OCC_18; // Occupied mask (1 means occupied, 0 means free, left to right))
-	private byte[] OCC_19; // Occupied mask (1 means occupied, 0 means free, left to right))
-	private byte[] OCC_20; // Occupied mask (1 means occupied, 0 means free, left to right))
-	private byte[] OCC_21; // Occupied mask (1 means occupied, 0 means free, left to right))
-	private byte[] OCC_22; // Occupied mask (1 means occupied, 0 means free, left to right))
-	private byte[] OCC_23; // Occupied mask (1 means occupied, 0 means free, left to right))
-	private byte[] OCC_24; // Occupied mask (1 means occupied, 0 means free, left to right))
-	private byte[] OCC_25; // Occupied mask (1 means occupied, 0 means free, left to right))
-	private byte[] OCC_26; // Occupied mask (1 means occupied, 0 means free, left to right))
-	private byte[] OCC_27; // Occupied mask (1 means occupied, 0 means free, left to right))
-	private byte[] OCC_28; // Occupied mask (1 means occupied, 0 means free, left to right))
-	private byte[] OCC_29; // Occupied mask (1 means occupied, 0 means free, left to right))
-	private byte[] OCC_30; // Occupied mask (1 means occupied, 0 means free, left to right))
-	private byte[] OCC_31; // Occupied mask (1 means occupied, 0 means free, left to right))
+	private int pLen00; // Picture length of slot 0
+	private int pLen01; // Picture length of slot 1
+	private int pLen02; // Picture length of slot 2
+	private int pLen03; // Picture length of slot 3
+	private int pLen04; // Picture length of slot 4
+	private int pLen05; // Picture length of slot 5
+	private int pLen06; // Picture length of slot 6
+	private int pLen07; // Picture length of slot 7
+	private int pLen08; // Picture length of slot 8
+	private int pLen09; // Picture length of slot 9
+	private int pLen10; // Picture length of slot 10
+	private int pLen11; // Picture length of slot 11
+	private int pLen12; // Picture length of slot 12
+	private int pLen13; // Picture length of slot 13
+	private int pLen14; // Picture length of slot 14
+	private int pLen15; // Picture length of slot 15
+	private int pLen16; // Picture length of slot 16
+	private int pLen17; // Picture length of slot 17
+	private int pLen18; // Picture length of slot 18
+	private int pLen19; // Picture length of slot 19
+	private int pLen20; // Picture length of slot 20
+	private int pLen21; // Picture length of slot 21
+	private int pLen22; // Picture length of slot 22
+	private int pLen23; // Picture length of slot 23
+	private int pLen24; // Picture length of slot 24
+	private int pLen25; // Picture length of slot 25
+	private int pLen26; // Picture length of slot 26
+	private int pLen27; // Picture length of slot 27
+	private int pLen28; // Picture length of slot 28
+	private int pLen29; // Picture length of slot 29
+	private long pTim00; // Picture time of slot 0
+	private long pTim01; // Picture time of slot 1
+	private long pTim02; // Picture time of slot 2
+	private long pTim03; // Picture time of slot 3
+	private long pTim04; // Picture time of slot 4
+	private long pTim05; // Picture time of slot 5
+	private long pTim06; // Picture time of slot 6
+	private long pTim07; // Picture time of slot 7
+	private long pTim08; // Picture time of slot 8
+	private long pTim09; // Picture time of slot 9
+	private long pTim10; // Picture time of slot 10
+	private long pTim11; // Picture time of slot 11
+	private long pTim12; // Picture time of slot 12
+	private long pTim13; // Picture time of slot 13
+	private long pTim14; // Picture time of slot 14
+	private long pTim15; // Picture time of slot 15
+	private long pTim16; // Picture time of slot 16
+	private long pTim17; // Picture time of slot 17
+	private long pTim18; // Picture time of slot 18
+	private long pTim19; // Picture time of slot 19
+	private long pTim20; // Picture time of slot 20
+	private long pTim21; // Picture time of slot 21
+	private long pTim22; // Picture time of slot 22
+	private long pTim23; // Picture time of slot 23
+	private long pTim24; // Picture time of slot 24
+	private long pTim25; // Picture time of slot 25
+	private long pTim26; // Picture time of slot 26
+	private long pTim27; // Picture time of slot 27
+	private long pTim28; // Picture time of slot 28
+	private long pTim29; // Picture time of slot 29
+	private byte[] pCrc00; // Picture CRC32 of slot 0
+	private byte[] pCrc01; // Picture CRC32 of slot 1
+	private byte[] pCrc02; // Picture CRC32 of slot 2
+	private byte[] pCrc03; // Picture CRC32 of slot 3
+	private byte[] pCrc04; // Picture CRC32 of slot 4
+	private byte[] pCrc05; // Picture CRC32 of slot 5
+	private byte[] pCrc06; // Picture CRC32 of slot 6
+	private byte[] pCrc07; // Picture CRC32 of slot 7
+	private byte[] pCrc08; // Picture CRC32 of slot 8
+	private byte[] pCrc09; // Picture CRC32 of slot 9
+	private byte[] pCrc10; // Picture CRC32 of slot 10
+	private byte[] pCrc11; // Picture CRC32 of slot 11
+	private byte[] pCrc12; // Picture CRC32 of slot 12
+	private byte[] pCrc13; // Picture CRC32 of slot 13
+	private byte[] pCrc14; // Picture CRC32 of slot 14
+	private byte[] pCrc15; // Picture CRC32 of slot 15
+	private byte[] pCrc16; // Picture CRC32 of slot 16
+	private byte[] pCrc17; // Picture CRC32 of slot 17
+	private byte[] pCrc18; // Picture CRC32 of slot 18
+	private byte[] pCrc19; // Picture CRC32 of slot 19
+	private byte[] pCrc20; // Picture CRC32 of slot 20
+	private byte[] pCrc21; // Picture CRC32 of slot 21
+	private byte[] pCrc22; // Picture CRC32 of slot 22
+	private byte[] pCrc23; // Picture CRC32 of slot 23
+	private byte[] pCrc24; // Picture CRC32 of slot 24
+	private byte[] pCrc25; // Picture CRC32 of slot 25
+	private byte[] pCrc26; // Picture CRC32 of slot 26
+	private byte[] pCrc27; // Picture CRC32 of slot 27
+	private byte[] pCrc28; // Picture CRC32 of slot 28
+	private byte[] pCrc29; // Picture CRC32 of slot 29
+	private int pChu00; // Picture total chunks of slot 0
+	private int pChu01; // Picture total chunks of slot 1
+	private int pChu02; // Picture total chunks of slot 2
+	private int pChu03; // Picture total chunks of slot 3
+	private int pChu04; // Picture total chunks of slot 4
+	private int pChu05; // Picture total chunks of slot 5
+	private int pChu06; // Picture total chunks of slot 6
+	private int pChu07; // Picture total chunks of slot 7
+	private int pChu08; // Picture total chunks of slot 8
+	private int pChu09; // Picture total chunks of slot 9
+	private int pChu10; // Picture total chunks of slot 10
+	private int pChu11; // Picture total chunks of slot 11
+	private int pChu12; // Picture total chunks of slot 12
+	private int pChu13; // Picture total chunks of slot 13
+	private int pChu14; // Picture total chunks of slot 14
+	private int pChu15; // Picture total chunks of slot 15
+	private int pChu16; // Picture total chunks of slot 16
+	private int pChu17; // Picture total chunks of slot 17
+	private int pChu18; // Picture total chunks of slot 18
+	private int pChu19; // Picture total chunks of slot 19
+	private int pChu20; // Picture total chunks of slot 20
+	private int pChu21; // Picture total chunks of slot 21
+	private int pChu22; // Picture total chunks of slot 22
+	private int pChu23; // Picture total chunks of slot 23
+	private int pChu24; // Picture total chunks of slot 24
+	private int pChu25; // Picture total chunks of slot 25
+	private int pChu26; // Picture total chunks of slot 26
+	private int pChu27; // Picture total chunks of slot 27
+	private int pChu28; // Picture total chunks of slot 28
+	private int pChu29; // Picture total chunks of slot 29
+	private int id00; // ID of the picture meta 0
+	private int id01; // ID of the picture meta 1
+	private int id02; // ID of the picture meta 2
+	private int id03; // ID of the picture meta 3
+	private int id04; // ID of the picture meta 4
+	private int id05; // ID of the picture meta 5
+	private int id06; // ID of the picture meta 6
+	private int id07; // ID of the picture meta 7
+	private int id08; // ID of the picture meta 8
+	private int id09; // ID of the picture meta 9
+	private int id10; // ID of the picture meta 10
+	private int id11; // ID of the picture meta 11
+	private int id12; // ID of the picture meta 12
+	private int id13; // ID of the picture meta 13
+	private int id14; // ID of the picture meta 14
+	private int id15; // ID of the picture meta 15
+	private int id16; // ID of the picture meta 16
+	private int id17; // ID of the picture meta 17
+	private int id18; // ID of the picture meta 18
+	private int id19; // ID of the picture meta 19
+	private int id20; // ID of the picture meta 20
+	private int id21; // ID of the picture meta 21
+	private int id22; // ID of the picture meta 22
+	private int id23; // ID of the picture meta 23
+	private int id24; // ID of the picture meta 24
+	private int id25; // ID of the picture meta 25
+	private int id26; // ID of the picture meta 26
+	private int id27; // ID of the picture meta 27
+	private int id28; // ID of the picture meta 28
+	private int id29; // ID of the picture meta 29
+	private byte[] occ00; // Occupied mask (1 means occupied, 0 means free, left to right))
+	private byte[] occ01; // Occupied mask (1 means occupied, 0 means free, left to right))
+	private byte[] occ02; // Occupied mask (1 means occupied, 0 means free, left to right))
+	private byte[] occ03; // Occupied mask (1 means occupied, 0 means free, left to right))
+	private byte[] occ04; // Occupied mask (1 means occupied, 0 means free, left to right))
+	private byte[] occ05; // Occupied mask (1 means occupied, 0 means free, left to right))
+	private byte[] occ06; // Occupied mask (1 means occupied, 0 means free, left to right))
+	private byte[] occ07; // Occupied mask (1 means occupied, 0 means free, left to right))
+	private byte[] occ08; // Occupied mask (1 means occupied, 0 means free, left to right))
+	private byte[] occ09; // Occupied mask (1 means occupied, 0 means free, left to right))
+	private byte[] occ10; // Occupied mask (1 means occupied, 0 means free, left to right))
+	private byte[] occ11; // Occupied mask (1 means occupied, 0 means free, left to right))
+	private byte[] occ12; // Occupied mask (1 means occupied, 0 means free, left to right))
+	private byte[] occ13; // Occupied mask (1 means occupied, 0 means free, left to right))
+	private byte[] occ14; // Occupied mask (1 means occupied, 0 means free, left to right))
+	private byte[] occ15; // Occupied mask (1 means occupied, 0 means free, left to right))
+	private byte[] occ16; // Occupied mask (1 means occupied, 0 means free, left to right))
+	private byte[] occ17; // Occupied mask (1 means occupied, 0 means free, left to right))
+	private byte[] occ18; // Occupied mask (1 means occupied, 0 means free, left to right))
+	private byte[] occ19; // Occupied mask (1 means occupied, 0 means free, left to right))
+	private byte[] occ20; // Occupied mask (1 means occupied, 0 means free, left to right))
+	private byte[] occ21; // Occupied mask (1 means occupied, 0 means free, left to right))
+	private byte[] occ22; // Occupied mask (1 means occupied, 0 means free, left to right))
+	private byte[] occ23; // Occupied mask (1 means occupied, 0 means free, left to right))
+	private byte[] occ24; // Occupied mask (1 means occupied, 0 means free, left to right))
+	private byte[] occ25; // Occupied mask (1 means occupied, 0 means free, left to right))
+	private byte[] occ26; // Occupied mask (1 means occupied, 0 means free, left to right))
+	private byte[] occ27; // Occupied mask (1 means occupied, 0 means free, left to right))
+	private byte[] occ28; // Occupied mask (1 means occupied, 0 means free, left to right))
+	private byte[] occ29; // Occupied mask (1 means occupied, 0 means free, left to right))
+	private byte[] occ30; // Occupied mask (1 means occupied, 0 means free, left to right))
+	private byte[] occ31; // Occupied mask (1 means occupied, 0 means free, left to right))
 
 	public TmPictureMeta2(DataInputStream dis) throws IOException {
-		PLEN00 = dis.readUnsignedShort();
-		PLEN01 = dis.readUnsignedShort();
-		PLEN02 = dis.readUnsignedShort();
-		PLEN03 = dis.readUnsignedShort();
-		PLEN04 = dis.readUnsignedShort();
-		PLEN05 = dis.readUnsignedShort();
-		PLEN06 = dis.readUnsignedShort();
-		PLEN07 = dis.readUnsignedShort();
-		PLEN08 = dis.readUnsignedShort();
-		PLEN09 = dis.readUnsignedShort();
-		PLEN10 = dis.readUnsignedShort();
-		PLEN11 = dis.readUnsignedShort();
-		PLEN12 = dis.readUnsignedShort();
-		PLEN13 = dis.readUnsignedShort();
-		PLEN14 = dis.readUnsignedShort();
-		PLEN15 = dis.readUnsignedShort();
-		PLEN16 = dis.readUnsignedShort();
-		PLEN17 = dis.readUnsignedShort();
-		PLEN18 = dis.readUnsignedShort();
-		PLEN19 = dis.readUnsignedShort();
-		PLEN20 = dis.readUnsignedShort();
-		PLEN21 = dis.readUnsignedShort();
-		PLEN22 = dis.readUnsignedShort();
-		PLEN23 = dis.readUnsignedShort();
-		PLEN24 = dis.readUnsignedShort();
-		PLEN25 = dis.readUnsignedShort();
-		PLEN26 = dis.readUnsignedShort();
-		PLEN27 = dis.readUnsignedShort();
-		PLEN28 = dis.readUnsignedShort();
-		PLEN29 = dis.readUnsignedShort();
-		PTIM00 = StreamUtils.readUnsignedInt(dis);
-		PTIM01 = StreamUtils.readUnsignedInt(dis);
-		PTIM02 = StreamUtils.readUnsignedInt(dis);
-		PTIM03 = StreamUtils.readUnsignedInt(dis);
-		PTIM04 = StreamUtils.readUnsignedInt(dis);
-		PTIM05 = StreamUtils.readUnsignedInt(dis);
-		PTIM06 = StreamUtils.readUnsignedInt(dis);
-		PTIM07 = StreamUtils.readUnsignedInt(dis);
-		PTIM08 = StreamUtils.readUnsignedInt(dis);
-		PTIM09 = StreamUtils.readUnsignedInt(dis);
-		PTIM10 = StreamUtils.readUnsignedInt(dis);
-		PTIM11 = StreamUtils.readUnsignedInt(dis);
-		PTIM12 = StreamUtils.readUnsignedInt(dis);
-		PTIM13 = StreamUtils.readUnsignedInt(dis);
-		PTIM14 = StreamUtils.readUnsignedInt(dis);
-		PTIM15 = StreamUtils.readUnsignedInt(dis);
-		PTIM16 = StreamUtils.readUnsignedInt(dis);
-		PTIM17 = StreamUtils.readUnsignedInt(dis);
-		PTIM18 = StreamUtils.readUnsignedInt(dis);
-		PTIM19 = StreamUtils.readUnsignedInt(dis);
-		PTIM20 = StreamUtils.readUnsignedInt(dis);
-		PTIM21 = StreamUtils.readUnsignedInt(dis);
-		PTIM22 = StreamUtils.readUnsignedInt(dis);
-		PTIM23 = StreamUtils.readUnsignedInt(dis);
-		PTIM24 = StreamUtils.readUnsignedInt(dis);
-		PTIM25 = StreamUtils.readUnsignedInt(dis);
-		PTIM26 = StreamUtils.readUnsignedInt(dis);
-		PTIM27 = StreamUtils.readUnsignedInt(dis);
-		PTIM28 = StreamUtils.readUnsignedInt(dis);
-		PTIM29 = StreamUtils.readUnsignedInt(dis);
-		PCRC00 = new byte[4];
-		dis.readFully(PCRC00);
-		PCRC01 = new byte[4];
-		dis.readFully(PCRC01);
-		PCRC02 = new byte[4];
-		dis.readFully(PCRC02);
-		PCRC03 = new byte[4];
-		dis.readFully(PCRC03);
-		PCRC04 = new byte[4];
-		dis.readFully(PCRC04);
-		PCRC05 = new byte[4];
-		dis.readFully(PCRC05);
-		PCRC06 = new byte[4];
-		dis.readFully(PCRC06);
-		PCRC07 = new byte[4];
-		dis.readFully(PCRC07);
-		PCRC08 = new byte[4];
-		dis.readFully(PCRC08);
-		PCRC09 = new byte[4];
-		dis.readFully(PCRC09);
-		PCRC10 = new byte[4];
-		dis.readFully(PCRC10);
-		PCRC11 = new byte[4];
-		dis.readFully(PCRC11);
-		PCRC12 = new byte[4];
-		dis.readFully(PCRC12);
-		PCRC13 = new byte[4];
-		dis.readFully(PCRC13);
-		PCRC14 = new byte[4];
-		dis.readFully(PCRC14);
-		PCRC15 = new byte[4];
-		dis.readFully(PCRC15);
-		PCRC16 = new byte[4];
-		dis.readFully(PCRC16);
-		PCRC17 = new byte[4];
-		dis.readFully(PCRC17);
-		PCRC18 = new byte[4];
-		dis.readFully(PCRC18);
-		PCRC19 = new byte[4];
-		dis.readFully(PCRC19);
-		PCRC20 = new byte[4];
-		dis.readFully(PCRC20);
-		PCRC21 = new byte[4];
-		dis.readFully(PCRC21);
-		PCRC22 = new byte[4];
-		dis.readFully(PCRC22);
-		PCRC23 = new byte[4];
-		dis.readFully(PCRC23);
-		PCRC24 = new byte[4];
-		dis.readFully(PCRC24);
-		PCRC25 = new byte[4];
-		dis.readFully(PCRC25);
-		PCRC26 = new byte[4];
-		dis.readFully(PCRC26);
-		PCRC27 = new byte[4];
-		dis.readFully(PCRC27);
-		PCRC28 = new byte[4];
-		dis.readFully(PCRC28);
-		PCRC29 = new byte[4];
-		dis.readFully(PCRC29);
-		PCHU00 = dis.readUnsignedShort();
-		PCHU01 = dis.readUnsignedShort();
-		PCHU02 = dis.readUnsignedShort();
-		PCHU03 = dis.readUnsignedShort();
-		PCHU04 = dis.readUnsignedShort();
-		PCHU05 = dis.readUnsignedShort();
-		PCHU06 = dis.readUnsignedShort();
-		PCHU07 = dis.readUnsignedShort();
-		PCHU08 = dis.readUnsignedShort();
-		PCHU09 = dis.readUnsignedShort();
-		PCHU10 = dis.readUnsignedShort();
-		PCHU11 = dis.readUnsignedShort();
-		PCHU12 = dis.readUnsignedShort();
-		PCHU13 = dis.readUnsignedShort();
-		PCHU14 = dis.readUnsignedShort();
-		PCHU15 = dis.readUnsignedShort();
-		PCHU16 = dis.readUnsignedShort();
-		PCHU17 = dis.readUnsignedShort();
-		PCHU18 = dis.readUnsignedShort();
-		PCHU19 = dis.readUnsignedShort();
-		PCHU20 = dis.readUnsignedShort();
-		PCHU21 = dis.readUnsignedShort();
-		PCHU22 = dis.readUnsignedShort();
-		PCHU23 = dis.readUnsignedShort();
-		PCHU24 = dis.readUnsignedShort();
-		PCHU25 = dis.readUnsignedShort();
-		PCHU26 = dis.readUnsignedShort();
-		PCHU27 = dis.readUnsignedShort();
-		PCHU28 = dis.readUnsignedShort();
-		PCHU29 = dis.readUnsignedShort();
-		ID_00 = dis.readUnsignedShort();
-		ID_01 = dis.readUnsignedShort();
-		ID_02 = dis.readUnsignedShort();
-		ID_03 = dis.readUnsignedShort();
-		ID_04 = dis.readUnsignedShort();
-		ID_05 = dis.readUnsignedShort();
-		ID_06 = dis.readUnsignedShort();
-		ID_07 = dis.readUnsignedShort();
-		ID_08 = dis.readUnsignedShort();
-		ID_09 = dis.readUnsignedShort();
-		ID_10 = dis.readUnsignedShort();
-		ID_11 = dis.readUnsignedShort();
-		ID_12 = dis.readUnsignedShort();
-		ID_13 = dis.readUnsignedShort();
-		ID_14 = dis.readUnsignedShort();
-		ID_15 = dis.readUnsignedShort();
-		ID_16 = dis.readUnsignedShort();
-		ID_17 = dis.readUnsignedShort();
-		ID_18 = dis.readUnsignedShort();
-		ID_19 = dis.readUnsignedShort();
-		ID_20 = dis.readUnsignedShort();
-		ID_21 = dis.readUnsignedShort();
-		ID_22 = dis.readUnsignedShort();
-		ID_23 = dis.readUnsignedShort();
-		ID_24 = dis.readUnsignedShort();
-		ID_25 = dis.readUnsignedShort();
-		ID_26 = dis.readUnsignedShort();
-		ID_27 = dis.readUnsignedShort();
-		ID_28 = dis.readUnsignedShort();
-		ID_29 = dis.readUnsignedShort();
-		OCC_00 = new byte[4];
-		dis.readFully(OCC_00);
-		OCC_01 = new byte[4];
-		dis.readFully(OCC_01);
-		OCC_02 = new byte[4];
-		dis.readFully(OCC_02);
-		OCC_03 = new byte[4];
-		dis.readFully(OCC_03);
-		OCC_04 = new byte[4];
-		dis.readFully(OCC_04);
-		OCC_05 = new byte[4];
-		dis.readFully(OCC_05);
-		OCC_06 = new byte[4];
-		dis.readFully(OCC_06);
-		OCC_07 = new byte[4];
-		dis.readFully(OCC_07);
-		OCC_08 = new byte[4];
-		dis.readFully(OCC_08);
-		OCC_09 = new byte[4];
-		dis.readFully(OCC_09);
-		OCC_10 = new byte[4];
-		dis.readFully(OCC_10);
-		OCC_11 = new byte[4];
-		dis.readFully(OCC_11);
-		OCC_12 = new byte[4];
-		dis.readFully(OCC_12);
-		OCC_13 = new byte[4];
-		dis.readFully(OCC_13);
-		OCC_14 = new byte[4];
-		dis.readFully(OCC_14);
-		OCC_15 = new byte[4];
-		dis.readFully(OCC_15);
-		OCC_16 = new byte[4];
-		dis.readFully(OCC_16);
-		OCC_17 = new byte[4];
-		dis.readFully(OCC_17);
-		OCC_18 = new byte[4];
-		dis.readFully(OCC_18);
-		OCC_19 = new byte[4];
-		dis.readFully(OCC_19);
-		OCC_20 = new byte[4];
-		dis.readFully(OCC_20);
-		OCC_21 = new byte[4];
-		dis.readFully(OCC_21);
-		OCC_22 = new byte[4];
-		dis.readFully(OCC_22);
-		OCC_23 = new byte[4];
-		dis.readFully(OCC_23);
-		OCC_24 = new byte[4];
-		dis.readFully(OCC_24);
-		OCC_25 = new byte[4];
-		dis.readFully(OCC_25);
-		OCC_26 = new byte[4];
-		dis.readFully(OCC_26);
-		OCC_27 = new byte[4];
-		dis.readFully(OCC_27);
-		OCC_28 = new byte[4];
-		dis.readFully(OCC_28);
-		OCC_29 = new byte[4];
-		dis.readFully(OCC_29);
-		OCC_30 = new byte[4];
-		dis.readFully(OCC_30);
-		OCC_31 = new byte[4];
-		dis.readFully(OCC_31);
-	}
-
-	public int getPLEN00() {
-		return PLEN00;
-	}
-
-	public void setPLEN00(int pLEN00) {
-		PLEN00 = pLEN00;
-	}
-
-	public int getPLEN01() {
-		return PLEN01;
-	}
-
-	public void setPLEN01(int pLEN01) {
-		PLEN01 = pLEN01;
-	}
-
-	public int getPLEN02() {
-		return PLEN02;
-	}
-
-	public void setPLEN02(int pLEN02) {
-		PLEN02 = pLEN02;
-	}
-
-	public int getPLEN03() {
-		return PLEN03;
-	}
-
-	public void setPLEN03(int pLEN03) {
-		PLEN03 = pLEN03;
-	}
-
-	public int getPLEN04() {
-		return PLEN04;
-	}
-
-	public void setPLEN04(int pLEN04) {
-		PLEN04 = pLEN04;
-	}
-
-	public int getPLEN05() {
-		return PLEN05;
+		pLen00 = dis.readUnsignedShort();
+		pLen01 = dis.readUnsignedShort();
+		pLen02 = dis.readUnsignedShort();
+		pLen03 = dis.readUnsignedShort();
+		pLen04 = dis.readUnsignedShort();
+		pLen05 = dis.readUnsignedShort();
+		pLen06 = dis.readUnsignedShort();
+		pLen07 = dis.readUnsignedShort();
+		pLen08 = dis.readUnsignedShort();
+		pLen09 = dis.readUnsignedShort();
+		pLen10 = dis.readUnsignedShort();
+		pLen11 = dis.readUnsignedShort();
+		pLen12 = dis.readUnsignedShort();
+		pLen13 = dis.readUnsignedShort();
+		pLen14 = dis.readUnsignedShort();
+		pLen15 = dis.readUnsignedShort();
+		pLen16 = dis.readUnsignedShort();
+		pLen17 = dis.readUnsignedShort();
+		pLen18 = dis.readUnsignedShort();
+		pLen19 = dis.readUnsignedShort();
+		pLen20 = dis.readUnsignedShort();
+		pLen21 = dis.readUnsignedShort();
+		pLen22 = dis.readUnsignedShort();
+		pLen23 = dis.readUnsignedShort();
+		pLen24 = dis.readUnsignedShort();
+		pLen25 = dis.readUnsignedShort();
+		pLen26 = dis.readUnsignedShort();
+		pLen27 = dis.readUnsignedShort();
+		pLen28 = dis.readUnsignedShort();
+		pLen29 = dis.readUnsignedShort();
+		pTim00 = StreamUtils.readUnsignedInt(dis);
+		pTim01 = StreamUtils.readUnsignedInt(dis);
+		pTim02 = StreamUtils.readUnsignedInt(dis);
+		pTim03 = StreamUtils.readUnsignedInt(dis);
+		pTim04 = StreamUtils.readUnsignedInt(dis);
+		pTim05 = StreamUtils.readUnsignedInt(dis);
+		pTim06 = StreamUtils.readUnsignedInt(dis);
+		pTim07 = StreamUtils.readUnsignedInt(dis);
+		pTim08 = StreamUtils.readUnsignedInt(dis);
+		pTim09 = StreamUtils.readUnsignedInt(dis);
+		pTim10 = StreamUtils.readUnsignedInt(dis);
+		pTim11 = StreamUtils.readUnsignedInt(dis);
+		pTim12 = StreamUtils.readUnsignedInt(dis);
+		pTim13 = StreamUtils.readUnsignedInt(dis);
+		pTim14 = StreamUtils.readUnsignedInt(dis);
+		pTim15 = StreamUtils.readUnsignedInt(dis);
+		pTim16 = StreamUtils.readUnsignedInt(dis);
+		pTim17 = StreamUtils.readUnsignedInt(dis);
+		pTim18 = StreamUtils.readUnsignedInt(dis);
+		pTim19 = StreamUtils.readUnsignedInt(dis);
+		pTim20 = StreamUtils.readUnsignedInt(dis);
+		pTim21 = StreamUtils.readUnsignedInt(dis);
+		pTim22 = StreamUtils.readUnsignedInt(dis);
+		pTim23 = StreamUtils.readUnsignedInt(dis);
+		pTim24 = StreamUtils.readUnsignedInt(dis);
+		pTim25 = StreamUtils.readUnsignedInt(dis);
+		pTim26 = StreamUtils.readUnsignedInt(dis);
+		pTim27 = StreamUtils.readUnsignedInt(dis);
+		pTim28 = StreamUtils.readUnsignedInt(dis);
+		pTim29 = StreamUtils.readUnsignedInt(dis);
+		pCrc00 = new byte[4];
+		dis.readFully(pCrc00);
+		pCrc01 = new byte[4];
+		dis.readFully(pCrc01);
+		pCrc02 = new byte[4];
+		dis.readFully(pCrc02);
+		pCrc03 = new byte[4];
+		dis.readFully(pCrc03);
+		pCrc04 = new byte[4];
+		dis.readFully(pCrc04);
+		pCrc05 = new byte[4];
+		dis.readFully(pCrc05);
+		pCrc06 = new byte[4];
+		dis.readFully(pCrc06);
+		pCrc07 = new byte[4];
+		dis.readFully(pCrc07);
+		pCrc08 = new byte[4];
+		dis.readFully(pCrc08);
+		pCrc09 = new byte[4];
+		dis.readFully(pCrc09);
+		pCrc10 = new byte[4];
+		dis.readFully(pCrc10);
+		pCrc11 = new byte[4];
+		dis.readFully(pCrc11);
+		pCrc12 = new byte[4];
+		dis.readFully(pCrc12);
+		pCrc13 = new byte[4];
+		dis.readFully(pCrc13);
+		pCrc14 = new byte[4];
+		dis.readFully(pCrc14);
+		pCrc15 = new byte[4];
+		dis.readFully(pCrc15);
+		pCrc16 = new byte[4];
+		dis.readFully(pCrc16);
+		pCrc17 = new byte[4];
+		dis.readFully(pCrc17);
+		pCrc18 = new byte[4];
+		dis.readFully(pCrc18);
+		pCrc19 = new byte[4];
+		dis.readFully(pCrc19);
+		pCrc20 = new byte[4];
+		dis.readFully(pCrc20);
+		pCrc21 = new byte[4];
+		dis.readFully(pCrc21);
+		pCrc22 = new byte[4];
+		dis.readFully(pCrc22);
+		pCrc23 = new byte[4];
+		dis.readFully(pCrc23);
+		pCrc24 = new byte[4];
+		dis.readFully(pCrc24);
+		pCrc25 = new byte[4];
+		dis.readFully(pCrc25);
+		pCrc26 = new byte[4];
+		dis.readFully(pCrc26);
+		pCrc27 = new byte[4];
+		dis.readFully(pCrc27);
+		pCrc28 = new byte[4];
+		dis.readFully(pCrc28);
+		pCrc29 = new byte[4];
+		dis.readFully(pCrc29);
+		pChu00 = dis.readUnsignedShort();
+		pChu01 = dis.readUnsignedShort();
+		pChu02 = dis.readUnsignedShort();
+		pChu03 = dis.readUnsignedShort();
+		pChu04 = dis.readUnsignedShort();
+		pChu05 = dis.readUnsignedShort();
+		pChu06 = dis.readUnsignedShort();
+		pChu07 = dis.readUnsignedShort();
+		pChu08 = dis.readUnsignedShort();
+		pChu09 = dis.readUnsignedShort();
+		pChu10 = dis.readUnsignedShort();
+		pChu11 = dis.readUnsignedShort();
+		pChu12 = dis.readUnsignedShort();
+		pChu13 = dis.readUnsignedShort();
+		pChu14 = dis.readUnsignedShort();
+		pChu15 = dis.readUnsignedShort();
+		pChu16 = dis.readUnsignedShort();
+		pChu17 = dis.readUnsignedShort();
+		pChu18 = dis.readUnsignedShort();
+		pChu19 = dis.readUnsignedShort();
+		pChu20 = dis.readUnsignedShort();
+		pChu21 = dis.readUnsignedShort();
+		pChu22 = dis.readUnsignedShort();
+		pChu23 = dis.readUnsignedShort();
+		pChu24 = dis.readUnsignedShort();
+		pChu25 = dis.readUnsignedShort();
+		pChu26 = dis.readUnsignedShort();
+		pChu27 = dis.readUnsignedShort();
+		pChu28 = dis.readUnsignedShort();
+		pChu29 = dis.readUnsignedShort();
+		id00 = dis.readUnsignedShort();
+		id01 = dis.readUnsignedShort();
+		id02 = dis.readUnsignedShort();
+		id03 = dis.readUnsignedShort();
+		id04 = dis.readUnsignedShort();
+		id05 = dis.readUnsignedShort();
+		id06 = dis.readUnsignedShort();
+		id07 = dis.readUnsignedShort();
+		id08 = dis.readUnsignedShort();
+		id09 = dis.readUnsignedShort();
+		id10 = dis.readUnsignedShort();
+		id11 = dis.readUnsignedShort();
+		id12 = dis.readUnsignedShort();
+		id13 = dis.readUnsignedShort();
+		id14 = dis.readUnsignedShort();
+		id15 = dis.readUnsignedShort();
+		id16 = dis.readUnsignedShort();
+		id17 = dis.readUnsignedShort();
+		id18 = dis.readUnsignedShort();
+		id19 = dis.readUnsignedShort();
+		id20 = dis.readUnsignedShort();
+		id21 = dis.readUnsignedShort();
+		id22 = dis.readUnsignedShort();
+		id23 = dis.readUnsignedShort();
+		id24 = dis.readUnsignedShort();
+		id25 = dis.readUnsignedShort();
+		id26 = dis.readUnsignedShort();
+		id27 = dis.readUnsignedShort();
+		id28 = dis.readUnsignedShort();
+		id29 = dis.readUnsignedShort();
+		occ00 = new byte[4];
+		dis.readFully(occ00);
+		occ01 = new byte[4];
+		dis.readFully(occ01);
+		occ02 = new byte[4];
+		dis.readFully(occ02);
+		occ03 = new byte[4];
+		dis.readFully(occ03);
+		occ04 = new byte[4];
+		dis.readFully(occ04);
+		occ05 = new byte[4];
+		dis.readFully(occ05);
+		occ06 = new byte[4];
+		dis.readFully(occ06);
+		occ07 = new byte[4];
+		dis.readFully(occ07);
+		occ08 = new byte[4];
+		dis.readFully(occ08);
+		occ09 = new byte[4];
+		dis.readFully(occ09);
+		occ10 = new byte[4];
+		dis.readFully(occ10);
+		occ11 = new byte[4];
+		dis.readFully(occ11);
+		occ12 = new byte[4];
+		dis.readFully(occ12);
+		occ13 = new byte[4];
+		dis.readFully(occ13);
+		occ14 = new byte[4];
+		dis.readFully(occ14);
+		occ15 = new byte[4];
+		dis.readFully(occ15);
+		occ16 = new byte[4];
+		dis.readFully(occ16);
+		occ17 = new byte[4];
+		dis.readFully(occ17);
+		occ18 = new byte[4];
+		dis.readFully(occ18);
+		occ19 = new byte[4];
+		dis.readFully(occ19);
+		occ20 = new byte[4];
+		dis.readFully(occ20);
+		occ21 = new byte[4];
+		dis.readFully(occ21);
+		occ22 = new byte[4];
+		dis.readFully(occ22);
+		occ23 = new byte[4];
+		dis.readFully(occ23);
+		occ24 = new byte[4];
+		dis.readFully(occ24);
+		occ25 = new byte[4];
+		dis.readFully(occ25);
+		occ26 = new byte[4];
+		dis.readFully(occ26);
+		occ27 = new byte[4];
+		dis.readFully(occ27);
+		occ28 = new byte[4];
+		dis.readFully(occ28);
+		occ29 = new byte[4];
+		dis.readFully(occ29);
+		occ30 = new byte[4];
+		dis.readFully(occ30);
+		occ31 = new byte[4];
+		dis.readFully(occ31);
+	}
+
+	public int getpLen00() {
+		return pLen00;
+	}
+
+	public void setpLen00(int pLen00) {
+		this.pLen00 = pLen00;
+	}
+
+	public int getpLen01() {
+		return pLen01;
+	}
+
+	public void setpLen01(int pLen01) {
+		this.pLen01 = pLen01;
+	}
+
+	public int getpLen02() {
+		return pLen02;
+	}
+
+	public void setpLen02(int pLen02) {
+		this.pLen02 = pLen02;
+	}
+
+	public int getpLen03() {
+		return pLen03;
+	}
+
+	public void setpLen03(int pLen03) {
+		this.pLen03 = pLen03;
+	}
+
+	public int getpLen04() {
+		return pLen04;
+	}
+
+	public void setpLen04(int pLen04) {
+		this.pLen04 = pLen04;
+	}
+
+	public int getpLen05() {
+		return pLen05;
 	}
 
-	public void setPLEN05(int pLEN05) {
-		PLEN05 = pLEN05;
+	public void setpLen05(int pLen05) {
+		this.pLen05 = pLen05;
 	}
 
-	public int getPLEN06() {
-		return PLEN06;
+	public int getpLen06() {
+		return pLen06;
 	}
 
-	public void setPLEN06(int pLEN06) {
-		PLEN06 = pLEN06;
+	public void setpLen06(int pLen06) {
+		this.pLen06 = pLen06;
 	}
 
-	public int getPLEN07() {
-		return PLEN07;
+	public int getpLen07() {
+		return pLen07;
 	}
 
-	public void setPLEN07(int pLEN07) {
-		PLEN07 = pLEN07;
+	public void setpLen07(int pLen07) {
+		this.pLen07 = pLen07;
 	}
 
-	public int getPLEN08() {
-		return PLEN08;
+	public int getpLen08() {
+		return pLen08;
 	}
 
-	public void setPLEN08(int pLEN08) {
-		PLEN08 = pLEN08;
+	public void setpLen08(int pLen08) {
+		this.pLen08 = pLen08;
 	}
 
-	public int getPLEN09() {
-		return PLEN09;
+	public int getpLen09() {
+		return pLen09;
 	}
 
-	public void setPLEN09(int pLEN09) {
-		PLEN09 = pLEN09;
+	public void setpLen09(int pLen09) {
+		this.pLen09 = pLen09;
 	}
 
-	public int getPLEN10() {
-		return PLEN10;
+	public int getpLen10() {
+		return pLen10;
 	}
 
-	public void setPLEN10(int pLEN10) {
-		PLEN10 = pLEN10;
+	public void setpLen10(int pLen10) {
+		this.pLen10 = pLen10;
 	}
 
-	public int getPLEN11() {
-		return PLEN11;
+	public int getpLen11() {
+		return pLen11;
 	}
 
-	public void setPLEN11(int pLEN11) {
-		PLEN11 = pLEN11;
+	public void setpLen11(int pLen11) {
+		this.pLen11 = pLen11;
 	}
 
-	public int getPLEN12() {
-		return PLEN12;
+	public int getpLen12() {
+		return pLen12;
 	}
 
-	public void setPLEN12(int pLEN12) {
-		PLEN12 = pLEN12;
+	public void setpLen12(int pLen12) {
+		this.pLen12 = pLen12;
 	}
 
-	public int getPLEN13() {
-		return PLEN13;
+	public int getpLen13() {
+		return pLen13;
 	}
 
-	public void setPLEN13(int pLEN13) {
-		PLEN13 = pLEN13;
+	public void setpLen13(int pLen13) {
+		this.pLen13 = pLen13;
 	}
 
-	public int getPLEN14() {
-		return PLEN14;
+	public int getpLen14() {
+		return pLen14;
 	}
 
-	public void setPLEN14(int pLEN14) {
-		PLEN14 = pLEN14;
+	public void setpLen14(int pLen14) {
+		this.pLen14 = pLen14;
 	}
 
-	public int getPLEN15() {
-		return PLEN15;
+	public int getpLen15() {
+		return pLen15;
 	}
 
-	public void setPLEN15(int pLEN15) {
-		PLEN15 = pLEN15;
+	public void setpLen15(int pLen15) {
+		this.pLen15 = pLen15;
 	}
 
-	public int getPLEN16() {
-		return PLEN16;
+	public int getpLen16() {
+		return pLen16;
 	}
 
-	public void setPLEN16(int pLEN16) {
-		PLEN16 = pLEN16;
+	public void setpLen16(int pLen16) {
+		this.pLen16 = pLen16;
 	}
 
-	public int getPLEN17() {
-		return PLEN17;
+	public int getpLen17() {
+		return pLen17;
 	}
 
-	public void setPLEN17(int pLEN17) {
-		PLEN17 = pLEN17;
+	public void setpLen17(int pLen17) {
+		this.pLen17 = pLen17;
 	}
 
-	public int getPLEN18() {
-		return PLEN18;
+	public int getpLen18() {
+		return pLen18;
 	}
 
-	public void setPLEN18(int pLEN18) {
-		PLEN18 = pLEN18;
+	public void setpLen18(int pLen18) {
+		this.pLen18 = pLen18;
 	}
 
-	public int getPLEN19() {
-		return PLEN19;
+	public int getpLen19() {
+		return pLen19;
 	}
 
-	public void setPLEN19(int pLEN19) {
-		PLEN19 = pLEN19;
+	public void setpLen19(int pLen19) {
+		this.pLen19 = pLen19;
 	}
 
-	public int getPLEN20() {
-		return PLEN20;
+	public int getpLen20() {
+		return pLen20;
 	}
 
-	public void setPLEN20(int pLEN20) {
-		PLEN20 = pLEN20;
+	public void setpLen20(int pLen20) {
+		this.pLen20 = pLen20;
 	}
 
-	public int getPLEN21() {
-		return PLEN21;
+	public int getpLen21() {
+		return pLen21;
 	}
 
-	public void setPLEN21(int pLEN21) {
-		PLEN21 = pLEN21;
+	public void setpLen21(int pLen21) {
+		this.pLen21 = pLen21;
 	}
 
-	public int getPLEN22() {
-		return PLEN22;
+	public int getpLen22() {
+		return pLen22;
 	}
 
-	public void setPLEN22(int pLEN22) {
-		PLEN22 = pLEN22;
+	public void setpLen22(int pLen22) {
+		this.pLen22 = pLen22;
 	}
 
-	public int getPLEN23() {
-		return PLEN23;
+	public int getpLen23() {
+		return pLen23;
 	}
 
-	public void setPLEN23(int pLEN23) {
-		PLEN23 = pLEN23;
+	public void setpLen23(int pLen23) {
+		this.pLen23 = pLen23;
 	}
 
-	public int getPLEN24() {
-		return PLEN24;
+	public int getpLen24() {
+		return pLen24;
 	}
 
-	public void setPLEN24(int pLEN24) {
-		PLEN24 = pLEN24;
+	public void setpLen24(int pLen24) {
+		this.pLen24 = pLen24;
 	}
 
-	public int getPLEN25() {
-		return PLEN25;
+	public int getpLen25() {
+		return pLen25;
 	}
 
-	public void setPLEN25(int pLEN25) {
-		PLEN25 = pLEN25;
+	public void setpLen25(int pLen25) {
+		this.pLen25 = pLen25;
 	}
 
-	public int getPLEN26() {
-		return PLEN26;
+	public int getpLen26() {
+		return pLen26;
 	}
 
-	public void setPLEN26(int pLEN26) {
-		PLEN26 = pLEN26;
+	public void setpLen26(int pLen26) {
+		this.pLen26 = pLen26;
 	}
 
-	public int getPLEN27() {
-		return PLEN27;
+	public int getpLen27() {
+		return pLen27;
 	}
 
-	public void setPLEN27(int pLEN27) {
-		PLEN27 = pLEN27;
+	public void setpLen27(int pLen27) {
+		this.pLen27 = pLen27;
 	}
 
-	public int getPLEN28() {
-		return PLEN28;
+	public int getpLen28() {
+		return pLen28;
 	}
 
-	public void setPLEN28(int pLEN28) {
-		PLEN28 = pLEN28;
+	public void setpLen28(int pLen28) {
+		this.pLen28 = pLen28;
 	}
 
-	public int getPLEN29() {
-		return PLEN29;
+	public int getpLen29() {
+		return pLen29;
 	}
 
-	public void setPLEN29(int pLEN29) {
-		PLEN29 = pLEN29;
+	public void setpLen29(int pLen29) {
+		this.pLen29 = pLen29;
 	}
 
-	public long getPTIM00() {
-		return PTIM00;
+	public long getpTim00() {
+		return pTim00;
 	}
 
-	public void setPTIM00(long pTIM00) {
-		PTIM00 = pTIM00;
+	public void setpTim00(long pTim00) {
+		this.pTim00 = pTim00;
 	}
 
-	public long getPTIM01() {
-		return PTIM01;
+	public long getpTim01() {
+		return pTim01;
 	}
 
-	public void setPTIM01(long pTIM01) {
-		PTIM01 = pTIM01;
+	public void setpTim01(long pTim01) {
+		this.pTim01 = pTim01;
 	}
 
-	public long getPTIM02() {
-		return PTIM02;
+	public long getpTim02() {
+		return pTim02;
 	}
 
-	public void setPTIM02(long pTIM02) {
-		PTIM02 = pTIM02;
+	public void setpTim02(long pTim02) {
+		this.pTim02 = pTim02;
 	}
 
-	public long getPTIM03() {
-		return PTIM03;
+	public long getpTim03() {
+		return pTim03;
 	}
 
-	public void setPTIM03(long pTIM03) {
-		PTIM03 = pTIM03;
+	public void setpTim03(long pTim03) {
+		this.pTim03 = pTim03;
 	}
 
-	public long getPTIM04() {
-		return PTIM04;
+	public long getpTim04() {
+		return pTim04;
 	}
 
-	public void setPTIM04(long pTIM04) {
-		PTIM04 = pTIM04;
+	public void setpTim04(long pTim04) {
+		this.pTim04 = pTim04;
 	}
 
-	public long getPTIM05() {
-		return PTIM05;
+	public long getpTim05() {
+		return pTim05;
 	}
 
-	public void setPTIM05(long pTIM05) {
-		PTIM05 = pTIM05;
+	public void setpTim05(long pTim05) {
+		this.pTim05 = pTim05;
 	}
 
-	public long getPTIM06() {
-		return PTIM06;
+	public long getpTim06() {
+		return pTim06;
 	}
 
-	public void setPTIM06(long pTIM06) {
-		PTIM06 = pTIM06;
+	public void setpTim06(long pTim06) {
+		this.pTim06 = pTim06;
 	}
 
-	public long getPTIM07() {
-		return PTIM07;
+	public long getpTim07() {
+		return pTim07;
 	}
 
-	public void setPTIM07(long pTIM07) {
-		PTIM07 = pTIM07;
+	public void setpTim07(long pTim07) {
+		this.pTim07 = pTim07;
 	}
 
-	public long getPTIM08() {
-		return PTIM08;
+	public long getpTim08() {
+		return pTim08;
 	}
 
-	public void setPTIM08(long pTIM08) {
-		PTIM08 = pTIM08;
+	public void setpTim08(long pTim08) {
+		this.pTim08 = pTim08;
 	}
 
-	public long getPTIM09() {
-		return PTIM09;
+	public long getpTim09() {
+		return pTim09;
 	}
 
-	public void setPTIM09(long pTIM09) {
-		PTIM09 = pTIM09;
+	public void setpTim09(long pTim09) {
+		this.pTim09 = pTim09;
 	}
 
-	public long getPTIM10() {
-		return PTIM10;
+	public long getpTim10() {
+		return pTim10;
 	}
 
-	public void setPTIM10(long pTIM10) {
-		PTIM10 = pTIM10;
+	public void setpTim10(long pTim10) {
+		this.pTim10 = pTim10;
 	}
 
-	public long getPTIM11() {
-		return PTIM11;
+	public long getpTim11() {
+		return pTim11;
 	}
 
-	public void setPTIM11(long pTIM11) {
-		PTIM11 = pTIM11;
+	public void setpTim11(long pTim11) {
+		this.pTim11 = pTim11;
 	}
 
-	public long getPTIM12() {
-		return PTIM12;
+	public long getpTim12() {
+		return pTim12;
 	}
 
-	public void setPTIM12(long pTIM12) {
-		PTIM12 = pTIM12;
+	public void setpTim12(long pTim12) {
+		this.pTim12 = pTim12;
 	}
 
-	public long getPTIM13() {
-		return PTIM13;
+	public long getpTim13() {
+		return pTim13;
 	}
 
-	public void setPTIM13(long pTIM13) {
-		PTIM13 = pTIM13;
+	public void setpTim13(long pTim13) {
+		this.pTim13 = pTim13;
 	}
 
-	public long getPTIM14() {
-		return PTIM14;
+	public long getpTim14() {
+		return pTim14;
 	}
 
-	public void setPTIM14(long pTIM14) {
-		PTIM14 = pTIM14;
+	public void setpTim14(long pTim14) {
+		this.pTim14 = pTim14;
 	}
 
-	public long getPTIM15() {
-		return PTIM15;
+	public long getpTim15() {
+		return pTim15;
 	}
 
-	public void setPTIM15(long pTIM15) {
-		PTIM15 = pTIM15;
+	public void setpTim15(long pTim15) {
+		this.pTim15 = pTim15;
 	}
 
-	public long getPTIM16() {
-		return PTIM16;
+	public long getpTim16() {
+		return pTim16;
 	}
 
-	public void setPTIM16(long pTIM16) {
-		PTIM16 = pTIM16;
+	public void setpTim16(long pTim16) {
+		this.pTim16 = pTim16;
 	}
 
-	public long getPTIM17() {
-		return PTIM17;
+	public long getpTim17() {
+		return pTim17;
 	}
 
-	public void setPTIM17(long pTIM17) {
-		PTIM17 = pTIM17;
+	public void setpTim17(long pTim17) {
+		this.pTim17 = pTim17;
 	}
 
-	public long getPTIM18() {
-		return PTIM18;
+	public long getpTim18() {
+		return pTim18;
 	}
 
-	public void setPTIM18(long pTIM18) {
-		PTIM18 = pTIM18;
+	public void setpTim18(long pTim18) {
+		this.pTim18 = pTim18;
 	}
 
-	public long getPTIM19() {
-		return PTIM19;
+	public long getpTim19() {
+		return pTim19;
 	}
 
-	public void setPTIM19(long pTIM19) {
-		PTIM19 = pTIM19;
+	public void setpTim19(long pTim19) {
+		this.pTim19 = pTim19;
 	}
 
-	public long getPTIM20() {
-		return PTIM20;
+	public long getpTim20() {
+		return pTim20;
 	}
 
-	public void setPTIM20(long pTIM20) {
-		PTIM20 = pTIM20;
+	public void setpTim20(long pTim20) {
+		this.pTim20 = pTim20;
 	}
 
-	public long getPTIM21() {
-		return PTIM21;
+	public long getpTim21() {
+		return pTim21;
 	}
 
-	public void setPTIM21(long pTIM21) {
-		PTIM21 = pTIM21;
+	public void setpTim21(long pTim21) {
+		this.pTim21 = pTim21;
 	}
 
-	public long getPTIM22() {
-		return PTIM22;
+	public long getpTim22() {
+		return pTim22;
 	}
 
-	public void setPTIM22(long pTIM22) {
-		PTIM22 = pTIM22;
+	public void setpTim22(long pTim22) {
+		this.pTim22 = pTim22;
 	}
 
-	public long getPTIM23() {
-		return PTIM23;
+	public long getpTim23() {
+		return pTim23;
 	}
 
-	public void setPTIM23(long pTIM23) {
-		PTIM23 = pTIM23;
+	public void setpTim23(long pTim23) {
+		this.pTim23 = pTim23;
 	}
 
-	public long getPTIM24() {
-		return PTIM24;
+	public long getpTim24() {
+		return pTim24;
 	}
 
-	public void setPTIM24(long pTIM24) {
-		PTIM24 = pTIM24;
+	public void setpTim24(long pTim24) {
+		this.pTim24 = pTim24;
 	}
 
-	public long getPTIM25() {
-		return PTIM25;
+	public long getpTim25() {
+		return pTim25;
 	}
 
-	public void setPTIM25(long pTIM25) {
-		PTIM25 = pTIM25;
+	public void setpTim25(long pTim25) {
+		this.pTim25 = pTim25;
 	}
 
-	public long getPTIM26() {
-		return PTIM26;
+	public long getpTim26() {
+		return pTim26;
 	}
 
-	public void setPTIM26(long pTIM26) {
-		PTIM26 = pTIM26;
+	public void setpTim26(long pTim26) {
+		this.pTim26 = pTim26;
 	}
 
-	public long getPTIM27() {
-		return PTIM27;
+	public long getpTim27() {
+		return pTim27;
 	}
 
-	public void setPTIM27(long pTIM27) {
-		PTIM27 = pTIM27;
+	public void setpTim27(long pTim27) {
+		this.pTim27 = pTim27;
 	}
 
-	public long getPTIM28() {
-		return PTIM28;
+	public long getpTim28() {
+		return pTim28;
 	}
 
-	public void setPTIM28(long pTIM28) {
-		PTIM28 = pTIM28;
+	public void setpTim28(long pTim28) {
+		this.pTim28 = pTim28;
 	}
 
-	public long getPTIM29() {
-		return PTIM29;
+	public long getpTim29() {
+		return pTim29;
 	}
 
-	public void setPTIM29(long pTIM29) {
-		PTIM29 = pTIM29;
+	public void setpTim29(long pTim29) {
+		this.pTim29 = pTim29;
 	}
 
-	public byte[] getPCRC00() {
-		return PCRC00;
+	public byte[] getpCrc00() {
+		return pCrc00;
 	}
 
-	public void setPCRC00(byte[] pCRC00) {
-		PCRC00 = pCRC00;
+	public void setpCrc00(byte[] pCrc00) {
+		this.pCrc00 = pCrc00;
 	}
 
-	public byte[] getPCRC01() {
-		return PCRC01;
+	public byte[] getpCrc01() {
+		return pCrc01;
 	}
 
-	public void setPCRC01(byte[] pCRC01) {
-		PCRC01 = pCRC01;
+	public void setpCrc01(byte[] pCrc01) {
+		this.pCrc01 = pCrc01;
 	}
 
-	public byte[] getPCRC02() {
-		return PCRC02;
+	public byte[] getpCrc02() {
+		return pCrc02;
 	}
 
-	public void setPCRC02(byte[] pCRC02) {
-		PCRC02 = pCRC02;
+	public void setpCrc02(byte[] pCrc02) {
+		this.pCrc02 = pCrc02;
 	}
 
-	public byte[] getPCRC03() {
-		return PCRC03;
+	public byte[] getpCrc03() {
+		return pCrc03;
 	}
 
-	public void setPCRC03(byte[] pCRC03) {
-		PCRC03 = pCRC03;
+	public void setpCrc03(byte[] pCrc03) {
+		this.pCrc03 = pCrc03;
 	}
 
-	public byte[] getPCRC04() {
-		return PCRC04;
+	public byte[] getpCrc04() {
+		return pCrc04;
 	}
 
-	public void setPCRC04(byte[] pCRC04) {
-		PCRC04 = pCRC04;
+	public void setpCrc04(byte[] pCrc04) {
+		this.pCrc04 = pCrc04;
 	}
 
-	public byte[] getPCRC05() {
-		return PCRC05;
+	public byte[] getpCrc05() {
+		return pCrc05;
 	}
 
-	public void setPCRC05(byte[] pCRC05) {
-		PCRC05 = pCRC05;
+	public void setpCrc05(byte[] pCrc05) {
+		this.pCrc05 = pCrc05;
 	}
 
-	public byte[] getPCRC06() {
-		return PCRC06;
+	public byte[] getpCrc06() {
+		return pCrc06;
 	}
 
-	public void setPCRC06(byte[] pCRC06) {
-		PCRC06 = pCRC06;
+	public void setpCrc06(byte[] pCrc06) {
+		this.pCrc06 = pCrc06;
 	}
 
-	public byte[] getPCRC07() {
-		return PCRC07;
+	public byte[] getpCrc07() {
+		return pCrc07;
 	}
 
-	public void setPCRC07(byte[] pCRC07) {
-		PCRC07 = pCRC07;
+	public void setpCrc07(byte[] pCrc07) {
+		this.pCrc07 = pCrc07;
 	}
 
-	public byte[] getPCRC08() {
-		return PCRC08;
+	public byte[] getpCrc08() {
+		return pCrc08;
 	}
 
-	public void setPCRC08(byte[] pCRC08) {
-		PCRC08 = pCRC08;
+	public void setpCrc08(byte[] pCrc08) {
+		this.pCrc08 = pCrc08;
 	}
 
-	public byte[] getPCRC09() {
-		return PCRC09;
+	public byte[] getpCrc09() {
+		return pCrc09;
 	}
 
-	public void setPCRC09(byte[] pCRC09) {
-		PCRC09 = pCRC09;
+	public void setpCrc09(byte[] pCrc09) {
+		this.pCrc09 = pCrc09;
 	}
 
-	public byte[] getPCRC10() {
-		return PCRC10;
+	public byte[] getpCrc10() {
+		return pCrc10;
 	}
 
-	public void setPCRC10(byte[] pCRC10) {
-		PCRC10 = pCRC10;
+	public void setpCrc10(byte[] pCrc10) {
+		this.pCrc10 = pCrc10;
 	}
 
-	public byte[] getPCRC11() {
-		return PCRC11;
+	public byte[] getpCrc11() {
+		return pCrc11;
 	}
 
-	public void setPCRC11(byte[] pCRC11) {
-		PCRC11 = pCRC11;
+	public void setpCrc11(byte[] pCrc11) {
+		this.pCrc11 = pCrc11;
 	}
 
-	public byte[] getPCRC12() {
-		return PCRC12;
+	public byte[] getpCrc12() {
+		return pCrc12;
 	}
 
-	public void setPCRC12(byte[] pCRC12) {
-		PCRC12 = pCRC12;
+	public void setpCrc12(byte[] pCrc12) {
+		this.pCrc12 = pCrc12;
 	}
 
-	public byte[] getPCRC13() {
-		return PCRC13;
+	public byte[] getpCrc13() {
+		return pCrc13;
 	}
 
-	public void setPCRC13(byte[] pCRC13) {
-		PCRC13 = pCRC13;
+	public void setpCrc13(byte[] pCrc13) {
+		this.pCrc13 = pCrc13;
 	}
 
-	public byte[] getPCRC14() {
-		return PCRC14;
+	public byte[] getpCrc14() {
+		return pCrc14;
 	}
 
-	public void setPCRC14(byte[] pCRC14) {
-		PCRC14 = pCRC14;
+	public void setpCrc14(byte[] pCrc14) {
+		this.pCrc14 = pCrc14;
 	}
 
-	public byte[] getPCRC15() {
-		return PCRC15;
+	public byte[] getpCrc15() {
+		return pCrc15;
 	}
 
-	public void setPCRC15(byte[] pCRC15) {
-		PCRC15 = pCRC15;
+	public void setpCrc15(byte[] pCrc15) {
+		this.pCrc15 = pCrc15;
 	}
 
-	public byte[] getPCRC16() {
-		return PCRC16;
+	public byte[] getpCrc16() {
+		return pCrc16;
 	}
 
-	public void setPCRC16(byte[] pCRC16) {
-		PCRC16 = pCRC16;
+	public void setpCrc16(byte[] pCrc16) {
+		this.pCrc16 = pCrc16;
 	}
 
-	public byte[] getPCRC17() {
-		return PCRC17;
+	public byte[] getpCrc17() {
+		return pCrc17;
 	}
 
-	public void setPCRC17(byte[] pCRC17) {
-		PCRC17 = pCRC17;
+	public void setpCrc17(byte[] pCrc17) {
+		this.pCrc17 = pCrc17;
 	}
 
-	public byte[] getPCRC18() {
-		return PCRC18;
+	public byte[] getpCrc18() {
+		return pCrc18;
 	}
 
-	public void setPCRC18(byte[] pCRC18) {
-		PCRC18 = pCRC18;
+	public void setpCrc18(byte[] pCrc18) {
+		this.pCrc18 = pCrc18;
 	}
 
-	public byte[] getPCRC19() {
-		return PCRC19;
+	public byte[] getpCrc19() {
+		return pCrc19;
 	}
 
-	public void setPCRC19(byte[] pCRC19) {
-		PCRC19 = pCRC19;
+	public void setpCrc19(byte[] pCrc19) {
+		this.pCrc19 = pCrc19;
 	}
 
-	public byte[] getPCRC20() {
-		return PCRC20;
+	public byte[] getpCrc20() {
+		return pCrc20;
 	}
 
-	public void setPCRC20(byte[] pCRC20) {
-		PCRC20 = pCRC20;
+	public void setpCrc20(byte[] pCrc20) {
+		this.pCrc20 = pCrc20;
 	}
 
-	public byte[] getPCRC21() {
-		return PCRC21;
+	public byte[] getpCrc21() {
+		return pCrc21;
 	}
 
-	public void setPCRC21(byte[] pCRC21) {
-		PCRC21 = pCRC21;
+	public void setpCrc21(byte[] pCrc21) {
+		this.pCrc21 = pCrc21;
 	}
 
-	public byte[] getPCRC22() {
-		return PCRC22;
+	public byte[] getpCrc22() {
+		return pCrc22;
 	}
 
-	public void setPCRC22(byte[] pCRC22) {
-		PCRC22 = pCRC22;
+	public void setpCrc22(byte[] pCrc22) {
+		this.pCrc22 = pCrc22;
 	}
 
-	public byte[] getPCRC23() {
-		return PCRC23;
+	public byte[] getpCrc23() {
+		return pCrc23;
 	}
 
-	public void setPCRC23(byte[] pCRC23) {
-		PCRC23 = pCRC23;
+	public void setpCrc23(byte[] pCrc23) {
+		this.pCrc23 = pCrc23;
 	}
 
-	public byte[] getPCRC24() {
-		return PCRC24;
+	public byte[] getpCrc24() {
+		return pCrc24;
 	}
 
-	public void setPCRC24(byte[] pCRC24) {
-		PCRC24 = pCRC24;
+	public void setpCrc24(byte[] pCrc24) {
+		this.pCrc24 = pCrc24;
 	}
 
-	public byte[] getPCRC25() {
-		return PCRC25;
+	public byte[] getpCrc25() {
+		return pCrc25;
 	}
 
-	public void setPCRC25(byte[] pCRC25) {
-		PCRC25 = pCRC25;
+	public void setpCrc25(byte[] pCrc25) {
+		this.pCrc25 = pCrc25;
 	}
 
-	public byte[] getPCRC26() {
-		return PCRC26;
+	public byte[] getpCrc26() {
+		return pCrc26;
 	}
 
-	public void setPCRC26(byte[] pCRC26) {
-		PCRC26 = pCRC26;
+	public void setpCrc26(byte[] pCrc26) {
+		this.pCrc26 = pCrc26;
 	}
 
-	public byte[] getPCRC27() {
-		return PCRC27;
+	public byte[] getpCrc27() {
+		return pCrc27;
 	}
 
-	public void setPCRC27(byte[] pCRC27) {
-		PCRC27 = pCRC27;
+	public void setpCrc27(byte[] pCrc27) {
+		this.pCrc27 = pCrc27;
 	}
 
-	public byte[] getPCRC28() {
-		return PCRC28;
+	public byte[] getpCrc28() {
+		return pCrc28;
 	}
 
-	public void setPCRC28(byte[] pCRC28) {
-		PCRC28 = pCRC28;
+	public void setpCrc28(byte[] pCrc28) {
+		this.pCrc28 = pCrc28;
 	}
 
-	public byte[] getPCRC29() {
-		return PCRC29;
+	public byte[] getpCrc29() {
+		return pCrc29;
 	}
 
-	public void setPCRC29(byte[] pCRC29) {
-		PCRC29 = pCRC29;
+	public void setpCrc29(byte[] pCrc29) {
+		this.pCrc29 = pCrc29;
 	}
 
-	public int getPCHU00() {
-		return PCHU00;
+	public int getpChu00() {
+		return pChu00;
 	}
 
-	public void setPCHU00(int pCHU00) {
-		PCHU00 = pCHU00;
+	public void setpChu00(int pChu00) {
+		this.pChu00 = pChu00;
 	}
 
-	public int getPCHU01() {
-		return PCHU01;
+	public int getpChu01() {
+		return pChu01;
 	}
 
-	public void setPCHU01(int pCHU01) {
-		PCHU01 = pCHU01;
+	public void setpChu01(int pChu01) {
+		this.pChu01 = pChu01;
 	}
 
-	public int getPCHU02() {
-		return PCHU02;
+	public int getpChu02() {
+		return pChu02;
 	}
 
-	public void setPCHU02(int pCHU02) {
-		PCHU02 = pCHU02;
+	public void setpChu02(int pChu02) {
+		this.pChu02 = pChu02;
 	}
 
-	public int getPCHU03() {
-		return PCHU03;
+	public int getpChu03() {
+		return pChu03;
 	}
 
-	public void setPCHU03(int pCHU03) {
-		PCHU03 = pCHU03;
+	public void setpChu03(int pChu03) {
+		this.pChu03 = pChu03;
 	}
 
-	public int getPCHU04() {
-		return PCHU04;
+	public int getpChu04() {
+		return pChu04;
 	}
 
-	public void setPCHU04(int pCHU04) {
-		PCHU04 = pCHU04;
+	public void setpChu04(int pChu04) {
+		this.pChu04 = pChu04;
 	}
 
-	public int getPCHU05() {
-		return PCHU05;
+	public int getpChu05() {
+		return pChu05;
 	}
 
-	public void setPCHU05(int pCHU05) {
-		PCHU05 = pCHU05;
+	public void setpChu05(int pChu05) {
+		this.pChu05 = pChu05;
 	}
 
-	public int getPCHU06() {
-		return PCHU06;
+	public int getpChu06() {
+		return pChu06;
 	}
 
-	public void setPCHU06(int pCHU06) {
-		PCHU06 = pCHU06;
+	public void setpChu06(int pChu06) {
+		this.pChu06 = pChu06;
 	}
 
-	public int getPCHU07() {
-		return PCHU07;
+	public int getpChu07() {
+		return pChu07;
 	}
 
-	public void setPCHU07(int pCHU07) {
-		PCHU07 = pCHU07;
+	public void setpChu07(int pChu07) {
+		this.pChu07 = pChu07;
 	}
 
-	public int getPCHU08() {
-		return PCHU08;
+	public int getpChu08() {
+		return pChu08;
 	}
 
-	public void setPCHU08(int pCHU08) {
-		PCHU08 = pCHU08;
+	public void setpChu08(int pChu08) {
+		this.pChu08 = pChu08;
 	}
 
-	public int getPCHU09() {
-		return PCHU09;
+	public int getpChu09() {
+		return pChu09;
 	}
 
-	public void setPCHU09(int pCHU09) {
-		PCHU09 = pCHU09;
+	public void setpChu09(int pChu09) {
+		this.pChu09 = pChu09;
 	}
 
-	public int getPCHU10() {
-		return PCHU10;
+	public int getpChu10() {
+		return pChu10;
 	}
 
-	public void setPCHU10(int pCHU10) {
-		PCHU10 = pCHU10;
+	public void setpChu10(int pChu10) {
+		this.pChu10 = pChu10;
 	}
 
-	public int getPCHU11() {
-		return PCHU11;
+	public int getpChu11() {
+		return pChu11;
 	}
 
-	public void setPCHU11(int pCHU11) {
-		PCHU11 = pCHU11;
+	public void setpChu11(int pChu11) {
+		this.pChu11 = pChu11;
 	}
 
-	public int getPCHU12() {
-		return PCHU12;
+	public int getpChu12() {
+		return pChu12;
 	}
 
-	public void setPCHU12(int pCHU12) {
-		PCHU12 = pCHU12;
+	public void setpChu12(int pChu12) {
+		this.pChu12 = pChu12;
 	}
 
-	public int getPCHU13() {
-		return PCHU13;
+	public int getpChu13() {
+		return pChu13;
 	}
 
-	public void setPCHU13(int pCHU13) {
-		PCHU13 = pCHU13;
+	public void setpChu13(int pChu13) {
+		this.pChu13 = pChu13;
 	}
 
-	public int getPCHU14() {
-		return PCHU14;
+	public int getpChu14() {
+		return pChu14;
 	}
 
-	public void setPCHU14(int pCHU14) {
-		PCHU14 = pCHU14;
+	public void setpChu14(int pChu14) {
+		this.pChu14 = pChu14;
 	}
 
-	public int getPCHU15() {
-		return PCHU15;
+	public int getpChu15() {
+		return pChu15;
 	}
 
-	public void setPCHU15(int pCHU15) {
-		PCHU15 = pCHU15;
+	public void setpChu15(int pChu15) {
+		this.pChu15 = pChu15;
 	}
 
-	public int getPCHU16() {
-		return PCHU16;
+	public int getpChu16() {
+		return pChu16;
 	}
 
-	public void setPCHU16(int pCHU16) {
-		PCHU16 = pCHU16;
+	public void setpChu16(int pChu16) {
+		this.pChu16 = pChu16;
 	}
 
-	public int getPCHU17() {
-		return PCHU17;
+	public int getpChu17() {
+		return pChu17;
 	}
 
-	public void setPCHU17(int pCHU17) {
-		PCHU17 = pCHU17;
+	public void setpChu17(int pChu17) {
+		this.pChu17 = pChu17;
 	}
 
-	public int getPCHU18() {
-		return PCHU18;
+	public int getpChu18() {
+		return pChu18;
 	}
 
-	public void setPCHU18(int pCHU18) {
-		PCHU18 = pCHU18;
+	public void setpChu18(int pChu18) {
+		this.pChu18 = pChu18;
 	}
 
-	public int getPCHU19() {
-		return PCHU19;
+	public int getpChu19() {
+		return pChu19;
 	}
 
-	public void setPCHU19(int pCHU19) {
-		PCHU19 = pCHU19;
+	public void setpChu19(int pChu19) {
+		this.pChu19 = pChu19;
 	}
 
-	public int getPCHU20() {
-		return PCHU20;
+	public int getpChu20() {
+		return pChu20;
 	}
 
-	public void setPCHU20(int pCHU20) {
-		PCHU20 = pCHU20;
+	public void setpChu20(int pChu20) {
+		this.pChu20 = pChu20;
 	}
 
-	public int getPCHU21() {
-		return PCHU21;
+	public int getpChu21() {
+		return pChu21;
 	}
 
-	public void setPCHU21(int pCHU21) {
-		PCHU21 = pCHU21;
+	public void setpChu21(int pChu21) {
+		this.pChu21 = pChu21;
 	}
 
-	public int getPCHU22() {
-		return PCHU22;
+	public int getpChu22() {
+		return pChu22;
 	}
 
-	public void setPCHU22(int pCHU22) {
-		PCHU22 = pCHU22;
+	public void setpChu22(int pChu22) {
+		this.pChu22 = pChu22;
 	}
 
-	public int getPCHU23() {
-		return PCHU23;
+	public int getpChu23() {
+		return pChu23;
 	}
 
-	public void setPCHU23(int pCHU23) {
-		PCHU23 = pCHU23;
+	public void setpChu23(int pChu23) {
+		this.pChu23 = pChu23;
 	}
 
-	public int getPCHU24() {
-		return PCHU24;
+	public int getpChu24() {
+		return pChu24;
 	}
 
-	public void setPCHU24(int pCHU24) {
-		PCHU24 = pCHU24;
+	public void setpChu24(int pChu24) {
+		this.pChu24 = pChu24;
 	}
 
-	public int getPCHU25() {
-		return PCHU25;
+	public int getpChu25() {
+		return pChu25;
 	}
 
-	public void setPCHU25(int pCHU25) {
-		PCHU25 = pCHU25;
+	public void setpChu25(int pChu25) {
+		this.pChu25 = pChu25;
 	}
 
-	public int getPCHU26() {
-		return PCHU26;
+	public int getpChu26() {
+		return pChu26;
 	}
 
-	public void setPCHU26(int pCHU26) {
-		PCHU26 = pCHU26;
+	public void setpChu26(int pChu26) {
+		this.pChu26 = pChu26;
 	}
 
-	public int getPCHU27() {
-		return PCHU27;
+	public int getpChu27() {
+		return pChu27;
 	}
 
-	public void setPCHU27(int pCHU27) {
-		PCHU27 = pCHU27;
+	public void setpChu27(int pChu27) {
+		this.pChu27 = pChu27;
 	}
 
-	public int getPCHU28() {
-		return PCHU28;
+	public int getpChu28() {
+		return pChu28;
 	}
 
-	public void setPCHU28(int pCHU28) {
-		PCHU28 = pCHU28;
+	public void setpChu28(int pChu28) {
+		this.pChu28 = pChu28;
 	}
 
-	public int getPCHU29() {
-		return PCHU29;
+	public int getpChu29() {
+		return pChu29;
 	}
 
-	public void setPCHU29(int pCHU29) {
-		PCHU29 = pCHU29;
+	public void setpChu29(int pChu29) {
+		this.pChu29 = pChu29;
 	}
 
-	public int getID_00() {
-		return ID_00;
+	public int getId00() {
+		return id00;
 	}
 
-	public void setID_00(int iD_00) {
-		ID_00 = iD_00;
+	public void setId00(int id00) {
+		this.id00 = id00;
 	}
 
-	public int getID_01() {
-		return ID_01;
+	public int getId01() {
+		return id01;
 	}
 
-	public void setID_01(int iD_01) {
-		ID_01 = iD_01;
+	public void setId01(int id01) {
+		this.id01 = id01;
 	}
 
-	public int getID_02() {
-		return ID_02;
+	public int getId02() {
+		return id02;
 	}
 
-	public void setID_02(int iD_02) {
-		ID_02 = iD_02;
+	public void setId02(int id02) {
+		this.id02 = id02;
 	}
 
-	public int getID_03() {
-		return ID_03;
+	public int getId03() {
+		return id03;
 	}
 
-	public void setID_03(int iD_03) {
-		ID_03 = iD_03;
+	public void setId03(int id03) {
+		this.id03 = id03;
 	}
 
-	public int getID_04() {
-		return ID_04;
+	public int getId04() {
+		return id04;
 	}
 
-	public void setID_04(int iD_04) {
-		ID_04 = iD_04;
+	public void setId04(int id04) {
+		this.id04 = id04;
 	}
 
-	public int getID_05() {
-		return ID_05;
+	public int getId05() {
+		return id05;
 	}
 
-	public void setID_05(int iD_05) {
-		ID_05 = iD_05;
+	public void setId05(int id05) {
+		this.id05 = id05;
 	}
 
-	public int getID_06() {
-		return ID_06;
+	public int getId06() {
+		return id06;
 	}
 
-	public void setID_06(int iD_06) {
-		ID_06 = iD_06;
+	public void setId06(int id06) {
+		this.id06 = id06;
 	}
 
-	public int getID_07() {
-		return ID_07;
+	public int getId07() {
+		return id07;
 	}
 
-	public void setID_07(int iD_07) {
-		ID_07 = iD_07;
+	public void setId07(int id07) {
+		this.id07 = id07;
 	}
 
-	public int getID_08() {
-		return ID_08;
+	public int getId08() {
+		return id08;
 	}
 
-	public void setID_08(int iD_08) {
-		ID_08 = iD_08;
+	public void setId08(int id08) {
+		this.id08 = id08;
 	}
 
-	public int getID_09() {
-		return ID_09;
+	public int getId09() {
+		return id09;
 	}
 
-	public void setID_09(int iD_09) {
-		ID_09 = iD_09;
+	public void setId09(int id09) {
+		this.id09 = id09;
 	}
 
-	public int getID_10() {
-		return ID_10;
+	public int getId10() {
+		return id10;
 	}
 
-	public void setID_10(int iD_10) {
-		ID_10 = iD_10;
+	public void setId10(int id10) {
+		this.id10 = id10;
 	}
 
-	public int getID_11() {
-		return ID_11;
+	public int getId11() {
+		return id11;
 	}
 
-	public void setID_11(int iD_11) {
-		ID_11 = iD_11;
+	public void setId11(int id11) {
+		this.id11 = id11;
 	}
 
-	public int getID_12() {
-		return ID_12;
+	public int getId12() {
+		return id12;
 	}
 
-	public void setID_12(int iD_12) {
-		ID_12 = iD_12;
+	public void setId12(int id12) {
+		this.id12 = id12;
 	}
 
-	public int getID_13() {
-		return ID_13;
+	public int getId13() {
+		return id13;
 	}
 
-	public void setID_13(int iD_13) {
-		ID_13 = iD_13;
+	public void setId13(int id13) {
+		this.id13 = id13;
 	}
 
-	public int getID_14() {
-		return ID_14;
+	public int getId14() {
+		return id14;
 	}
 
-	public void setID_14(int iD_14) {
-		ID_14 = iD_14;
+	public void setId14(int id14) {
+		this.id14 = id14;
 	}
 
-	public int getID_15() {
-		return ID_15;
+	public int getId15() {
+		return id15;
 	}
 
-	public void setID_15(int iD_15) {
-		ID_15 = iD_15;
+	public void setId15(int id15) {
+		this.id15 = id15;
 	}
 
-	public int getID_16() {
-		return ID_16;
+	public int getId16() {
+		return id16;
 	}
 
-	public void setID_16(int iD_16) {
-		ID_16 = iD_16;
+	public void setId16(int id16) {
+		this.id16 = id16;
 	}
 
-	public int getID_17() {
-		return ID_17;
+	public int getId17() {
+		return id17;
 	}
 
-	public void setID_17(int iD_17) {
-		ID_17 = iD_17;
+	public void setId17(int id17) {
+		this.id17 = id17;
 	}
 
-	public int getID_18() {
-		return ID_18;
+	public int getId18() {
+		return id18;
 	}
 
-	public void setID_18(int iD_18) {
-		ID_18 = iD_18;
+	public void setId18(int id18) {
+		this.id18 = id18;
 	}
 
-	public int getID_19() {
-		return ID_19;
+	public int getId19() {
+		return id19;
 	}
 
-	public void setID_19(int iD_19) {
-		ID_19 = iD_19;
+	public void setId19(int id19) {
+		this.id19 = id19;
 	}
 
-	public int getID_20() {
-		return ID_20;
+	public int getId20() {
+		return id20;
 	}
 
-	public void setID_20(int iD_20) {
-		ID_20 = iD_20;
+	public void setId20(int id20) {
+		this.id20 = id20;
 	}
 
-	public int getID_21() {
-		return ID_21;
+	public int getId21() {
+		return id21;
 	}
 
-	public void setID_21(int iD_21) {
-		ID_21 = iD_21;
+	public void setId21(int id21) {
+		this.id21 = id21;
 	}
 
-	public int getID_22() {
-		return ID_22;
+	public int getId22() {
+		return id22;
 	}
 
-	public void setID_22(int iD_22) {
-		ID_22 = iD_22;
+	public void setId22(int id22) {
+		this.id22 = id22;
 	}
 
-	public int getID_23() {
-		return ID_23;
+	public int getId23() {
+		return id23;
 	}
 
-	public void setID_23(int iD_23) {
-		ID_23 = iD_23;
+	public void setId23(int id23) {
+		this.id23 = id23;
 	}
 
-	public int getID_24() {
-		return ID_24;
+	public int getId24() {
+		return id24;
 	}
 
-	public void setID_24(int iD_24) {
-		ID_24 = iD_24;
+	public void setId24(int id24) {
+		this.id24 = id24;
 	}
 
-	public int getID_25() {
-		return ID_25;
+	public int getId25() {
+		return id25;
 	}
 
-	public void setID_25(int iD_25) {
-		ID_25 = iD_25;
+	public void setId25(int id25) {
+		this.id25 = id25;
 	}
 
-	public int getID_26() {
-		return ID_26;
+	public int getId26() {
+		return id26;
 	}
 
-	public void setID_26(int iD_26) {
-		ID_26 = iD_26;
+	public void setId26(int id26) {
+		this.id26 = id26;
 	}
 
-	public int getID_27() {
-		return ID_27;
+	public int getId27() {
+		return id27;
 	}
 
-	public void setID_27(int iD_27) {
-		ID_27 = iD_27;
+	public void setId27(int id27) {
+		this.id27 = id27;
 	}
 
-	public int getID_28() {
-		return ID_28;
+	public int getId28() {
+		return id28;
 	}
 
-	public void setID_28(int iD_28) {
-		ID_28 = iD_28;
+	public void setId28(int id28) {
+		this.id28 = id28;
 	}
 
-	public int getID_29() {
-		return ID_29;
+	public int getId29() {
+		return id29;
 	}
 
-	public void setID_29(int iD_29) {
-		ID_29 = iD_29;
+	public void setId29(int id29) {
+		this.id29 = id29;
 	}
 
-	public byte[] getOCC_00() {
-		return OCC_00;
+	public byte[] getOcc00() {
+		return occ00;
 	}
 
-	public void setOCC_00(byte[] oCC_00) {
-		OCC_00 = oCC_00;
+	public void setOcc00(byte[] occ00) {
+		this.occ00 = occ00;
 	}
 
-	public byte[] getOCC_01() {
-		return OCC_01;
+	public byte[] getOcc01() {
+		return occ01;
 	}
 
-	public void setOCC_01(byte[] oCC_01) {
-		OCC_01 = oCC_01;
+	public void setOcc01(byte[] occ01) {
+		this.occ01 = occ01;
 	}
 
-	public byte[] getOCC_02() {
-		return OCC_02;
+	public byte[] getOcc02() {
+		return occ02;
 	}
 
-	public void setOCC_02(byte[] oCC_02) {
-		OCC_02 = oCC_02;
+	public void setOcc02(byte[] occ02) {
+		this.occ02 = occ02;
 	}
 
-	public byte[] getOCC_03() {
-		return OCC_03;
+	public byte[] getOcc03() {
+		return occ03;
 	}
 
-	public void setOCC_03(byte[] oCC_03) {
-		OCC_03 = oCC_03;
+	public void setOcc03(byte[] occ03) {
+		this.occ03 = occ03;
 	}
 
-	public byte[] getOCC_04() {
-		return OCC_04;
+	public byte[] getOcc04() {
+		return occ04;
 	}
 
-	public void setOCC_04(byte[] oCC_04) {
-		OCC_04 = oCC_04;
+	public void setOcc04(byte[] occ04) {
+		this.occ04 = occ04;
 	}
 
-	public byte[] getOCC_05() {
-		return OCC_05;
+	public byte[] getOcc05() {
+		return occ05;
 	}
 
-	public void setOCC_05(byte[] oCC_05) {
-		OCC_05 = oCC_05;
+	public void setOcc05(byte[] occ05) {
+		this.occ05 = occ05;
 	}
 
-	public byte[] getOCC_06() {
-		return OCC_06;
+	public byte[] getOcc06() {
+		return occ06;
 	}
 
-	public void setOCC_06(byte[] oCC_06) {
-		OCC_06 = oCC_06;
+	public void setOcc06(byte[] occ06) {
+		this.occ06 = occ06;
 	}
 
-	public byte[] getOCC_07() {
-		return OCC_07;
+	public byte[] getOcc07() {
+		return occ07;
 	}
 
-	public void setOCC_07(byte[] oCC_07) {
-		OCC_07 = oCC_07;
+	public void setOcc07(byte[] occ07) {
+		this.occ07 = occ07;
 	}
 
-	public byte[] getOCC_08() {
-		return OCC_08;
+	public byte[] getOcc08() {
+		return occ08;
 	}
 
-	public void setOCC_08(byte[] oCC_08) {
-		OCC_08 = oCC_08;
+	public void setOcc08(byte[] occ08) {
+		this.occ08 = occ08;
 	}
 
-	public byte[] getOCC_09() {
-		return OCC_09;
+	public byte[] getOcc09() {
+		return occ09;
 	}
 
-	public void setOCC_09(byte[] oCC_09) {
-		OCC_09 = oCC_09;
+	public void setOcc09(byte[] occ09) {
+		this.occ09 = occ09;
 	}
 
-	public byte[] getOCC_10() {
-		return OCC_10;
+	public byte[] getOcc10() {
+		return occ10;
 	}
 
-	public void setOCC_10(byte[] oCC_10) {
-		OCC_10 = oCC_10;
+	public void setOcc10(byte[] occ10) {
+		this.occ10 = occ10;
 	}
 
-	public byte[] getOCC_11() {
-		return OCC_11;
+	public byte[] getOcc11() {
+		return occ11;
 	}
 
-	public void setOCC_11(byte[] oCC_11) {
-		OCC_11 = oCC_11;
+	public void setOcc11(byte[] occ11) {
+		this.occ11 = occ11;
 	}
 
-	public byte[] getOCC_12() {
-		return OCC_12;
+	public byte[] getOcc12() {
+		return occ12;
 	}
 
-	public void setOCC_12(byte[] oCC_12) {
-		OCC_12 = oCC_12;
+	public void setOcc12(byte[] occ12) {
+		this.occ12 = occ12;
 	}
 
-	public byte[] getOCC_13() {
-		return OCC_13;
+	public byte[] getOcc13() {
+		return occ13;
 	}
 
-	public void setOCC_13(byte[] oCC_13) {
-		OCC_13 = oCC_13;
+	public void setOcc13(byte[] occ13) {
+		this.occ13 = occ13;
 	}
 
-	public byte[] getOCC_14() {
-		return OCC_14;
+	public byte[] getOcc14() {
+		return occ14;
 	}
 
-	public void setOCC_14(byte[] oCC_14) {
-		OCC_14 = oCC_14;
+	public void setOcc14(byte[] occ14) {
+		this.occ14 = occ14;
 	}
 
-	public byte[] getOCC_15() {
-		return OCC_15;
+	public byte[] getOcc15() {
+		return occ15;
 	}
 
-	public void setOCC_15(byte[] oCC_15) {
-		OCC_15 = oCC_15;
+	public void setOcc15(byte[] occ15) {
+		this.occ15 = occ15;
 	}
 
-	public byte[] getOCC_16() {
-		return OCC_16;
+	public byte[] getOcc16() {
+		return occ16;
 	}
 
-	public void setOCC_16(byte[] oCC_16) {
-		OCC_16 = oCC_16;
+	public void setOcc16(byte[] occ16) {
+		this.occ16 = occ16;
 	}
 
-	public byte[] getOCC_17() {
-		return OCC_17;
+	public byte[] getOcc17() {
+		return occ17;
 	}
 
-	public void setOCC_17(byte[] oCC_17) {
-		OCC_17 = oCC_17;
+	public void setOcc17(byte[] occ17) {
+		this.occ17 = occ17;
 	}
 
-	public byte[] getOCC_18() {
-		return OCC_18;
+	public byte[] getOcc18() {
+		return occ18;
 	}
 
-	public void setOCC_18(byte[] oCC_18) {
-		OCC_18 = oCC_18;
+	public void setOcc18(byte[] occ18) {
+		this.occ18 = occ18;
 	}
 
-	public byte[] getOCC_19() {
-		return OCC_19;
+	public byte[] getOcc19() {
+		return occ19;
 	}
 
-	public void setOCC_19(byte[] oCC_19) {
-		OCC_19 = oCC_19;
+	public void setOcc19(byte[] occ19) {
+		this.occ19 = occ19;
 	}
 
-	public byte[] getOCC_20() {
-		return OCC_20;
+	public byte[] getOcc20() {
+		return occ20;
 	}
 
-	public void setOCC_20(byte[] oCC_20) {
-		OCC_20 = oCC_20;
+	public void setOcc20(byte[] occ20) {
+		this.occ20 = occ20;
 	}
 
-	public byte[] getOCC_21() {
-		return OCC_21;
+	public byte[] getOcc21() {
+		return occ21;
 	}
 
-	public void setOCC_21(byte[] oCC_21) {
-		OCC_21 = oCC_21;
+	public void setOcc21(byte[] occ21) {
+		this.occ21 = occ21;
 	}
 
-	public byte[] getOCC_22() {
-		return OCC_22;
+	public byte[] getOcc22() {
+		return occ22;
 	}
 
-	public void setOCC_22(byte[] oCC_22) {
-		OCC_22 = oCC_22;
+	public void setOcc22(byte[] occ22) {
+		this.occ22 = occ22;
 	}
 
-	public byte[] getOCC_23() {
-		return OCC_23;
+	public byte[] getOcc23() {
+		return occ23;
 	}
 
-	public void setOCC_23(byte[] oCC_23) {
-		OCC_23 = oCC_23;
+	public void setOcc23(byte[] occ23) {
+		this.occ23 = occ23;
 	}
 
-	public byte[] getOCC_24() {
-		return OCC_24;
+	public byte[] getOcc24() {
+		return occ24;
 	}
 
-	public void setOCC_24(byte[] oCC_24) {
-		OCC_24 = oCC_24;
+	public void setOcc24(byte[] occ24) {
+		this.occ24 = occ24;
 	}
 
-	public byte[] getOCC_25() {
-		return OCC_25;
+	public byte[] getOcc25() {
+		return occ25;
 	}
 
-	public void setOCC_25(byte[] oCC_25) {
-		OCC_25 = oCC_25;
+	public void setOcc25(byte[] occ25) {
+		this.occ25 = occ25;
 	}
 
-	public byte[] getOCC_26() {
-		return OCC_26;
+	public byte[] getOcc26() {
+		return occ26;
 	}
 
-	public void setOCC_26(byte[] oCC_26) {
-		OCC_26 = oCC_26;
+	public void setOcc26(byte[] occ26) {
+		this.occ26 = occ26;
 	}
 
-	public byte[] getOCC_27() {
-		return OCC_27;
+	public byte[] getOcc27() {
+		return occ27;
 	}
 
-	public void setOCC_27(byte[] oCC_27) {
-		OCC_27 = oCC_27;
+	public void setOcc27(byte[] occ27) {
+		this.occ27 = occ27;
 	}
 
-	public byte[] getOCC_28() {
-		return OCC_28;
+	public byte[] getOcc28() {
+		return occ28;
 	}
 
-	public void setOCC_28(byte[] oCC_28) {
-		OCC_28 = oCC_28;
+	public void setOcc28(byte[] occ28) {
+		this.occ28 = occ28;
 	}
 
-	public byte[] getOCC_29() {
-		return OCC_29;
+	public byte[] getOcc29() {
+		return occ29;
 	}
 
-	public void setOCC_29(byte[] oCC_29) {
-		OCC_29 = oCC_29;
+	public void setOcc29(byte[] occ29) {
+		this.occ29 = occ29;
 	}
 
-	public byte[] getOCC_30() {
-		return OCC_30;
+	public byte[] getOcc30() {
+		return occ30;
 	}
 
-	public void setOCC_30(byte[] oCC_30) {
-		OCC_30 = oCC_30;
+	public void setOcc30(byte[] occ30) {
+		this.occ30 = occ30;
 	}
 
-	public byte[] getOCC_31() {
-		return OCC_31;
+	public byte[] getOcc31() {
+		return occ31;
 	}
 
-	public void setOCC_31(byte[] oCC_31) {
-		OCC_31 = oCC_31;
+	public void setOcc31(byte[] occ31) {
+		this.occ31 = occ31;
 	}
 
 }
