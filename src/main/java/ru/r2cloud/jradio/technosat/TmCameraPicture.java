@@ -5,60 +5,60 @@ import java.io.IOException;
 
 public class TmCameraPicture {
 
-	private int PID;           // ID
-	private int CHNUM;         // Chunk number
-	private int TOTCH;         // Total chunks
-	private byte[] CRC32;      // CRC32
-	private byte[] PCHK;       // Raw Data
+	private int pic; // ID
+	private int chNum; // Chunk number
+	private int totCh; // Total chunks
+	private byte[] crc32; // CRC32
+	private byte[] pchk; // Raw Data
 
 	public TmCameraPicture(DataInputStream dis) throws IOException {
-		PID = dis.readUnsignedByte();
-		CHNUM = dis.readUnsignedShort();
-		TOTCH = dis.readUnsignedShort();
-		CRC32 = new byte[4];
-		dis.readFully(CRC32);
-		PCHK = new byte[256];
-		dis.readFully(PCHK);
+		pic = dis.readUnsignedByte();
+		chNum = dis.readUnsignedShort();
+		totCh = dis.readUnsignedShort();
+		crc32 = new byte[4];
+		dis.readFully(crc32);
+		pchk = new byte[256];
+		dis.readFully(pchk);
 	}
 
-	public int getPID() {
-		return PID;
+	public int getPic() {
+		return pic;
 	}
 
-	public void setPID(int pID) {
-		PID = pID;
+	public void setPic(int pic) {
+		this.pic = pic;
 	}
 
-	public int getCHNUM() {
-		return CHNUM;
+	public int getChNum() {
+		return chNum;
 	}
 
-	public void setCHNUM(int cHNUM) {
-		CHNUM = cHNUM;
+	public void setChNum(int chNum) {
+		this.chNum = chNum;
 	}
 
-	public int getTOTCH() {
-		return TOTCH;
+	public int getTotCh() {
+		return totCh;
 	}
 
-	public void setTOTCH(int tOTCH) {
-		TOTCH = tOTCH;
+	public void setTotCh(int totCh) {
+		this.totCh = totCh;
 	}
 
-	public byte[] getCRC32() {
-		return CRC32;
+	public byte[] getCrc32() {
+		return crc32;
 	}
 
-	public void setCRC32(byte[] cRC32) {
-		CRC32 = cRC32;
+	public void setCrc32(byte[] crc32) {
+		this.crc32 = crc32;
 	}
 
-	public byte[] getPCHK() {
-		return PCHK;
+	public byte[] getPchk() {
+		return pchk;
 	}
 
-	public void setPCHK(byte[] pCHK) {
-		PCHK = pCHK;
+	public void setPchk(byte[] pchk) {
+		this.pchk = pchk;
 	}
 
 }
