@@ -15,44 +15,45 @@ import ru.r2cloud.jradio.fec.ViterbiTest;
 
 public class CorrelateSyncwordTest {
 
+	private static final String SYNCWORD = "1ACFFC1D";
 	private static final int THRESHOLD = 4;
 
 	@Test
 	public void testSyncwordEqualPacket() throws Exception {
-		assertSync("1ACFFC1D", "9A00AADD");
+		assertSync(SYNCWORD, "9A00AADD");
 	}
 
 	@Test
 	public void testSyncwordMorePacket() throws Exception {
-		assertSync("1ACFFC1D", "00AADD");
+		assertSync(SYNCWORD, "00AADD");
 	}
 
 	@Test
 	public void testSyncwordLessPacket() throws Exception {
-		assertSync("1ACFFC1D", "8FFF9A00AADD");
+		assertSync(SYNCWORD, "8FFF9A00AADD");
 	}
 
 	@Test
 	public void testErrorsAtThreshold() throws Exception {
 		long syncwordInBinary = 0b0001_1010_1100_1101_0111_1101_0001_1111; // 1ACFFC1D with 4 errors
-		assertSync("1ACFFC1D", syncwordInBinary, "8FFF9A00AADD");
+		assertSync(SYNCWORD, syncwordInBinary, "8FFF9A00AADD");
 	}
 
 	@Test(expected = EOFException.class)
 	public void testErrorsMoreThanThreshold() throws Exception {
 		long syncwordInBinary = 0b0001_0010_1100_1101_0111_1101_0001_1111; // 1ACFFC1D with 5 errors
-		assertSync("1ACFFC1D", syncwordInBinary, "8FFF9A00AADD");
+		assertSync(SYNCWORD, syncwordInBinary, "8FFF9A00AADD");
 	}
 
 	@Test(expected = EOFException.class)
 	public void testNoSync() throws Exception {
-		long syncwordInBinary = Long.parseLong("1ACFFC1D", 16);
+		long syncwordInBinary = Long.parseLong(SYNCWORD, 16);
 		assertSync("AAAAAAAA", syncwordInBinary, "8FFF9A00AADD");
 	}
 
 	@Test
 	public void testOneByOne() throws Exception {
-		String syncword = "1ACFFC1D";
+		String syncword = SYNCWORD;
 		String body1 = "8FFF9A00AADD";
 		String body2 = "129736AA8AFF";
 		StringBuilder data = new StringBuilder();
@@ -71,7 +72,7 @@ public class CorrelateSyncwordTest {
 
 	@Test
 	public void testNotEnoughData() throws Exception {
-		String syncword = "1ACFFC1D";
+		String syncword = SYNCWORD;
 		String body = "8FFF9A00AADD";
 		StringBuilder data = new StringBuilder();
 		data.append(generateRandom((int) ((syncword.length() + body.length()) * 1.5))); // ensure buffers are filled up
@@ -114,7 +115,11 @@ public class CorrelateSyncwordTest {
 		byte[] result = new byte[numberOfBytes];
 		Random rnd = new Random();
 		for (int i = 0; i < result.length; i++) {
-			result[i] = (byte) rnd.nextInt();
+			if (rnd.nextBoolean()) {
+				result[i] = 1;
+			} else {
+				result[i] = 0;
+			}
 		}
 		return ViterbiTest.bytesToHex(result);
 	}
