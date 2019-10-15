@@ -5,26 +5,26 @@ import java.io.IOException;
 import ru.r2cloud.jradio.ByteInput;
 import ru.r2cloud.jradio.Context;
 import ru.r2cloud.jradio.FloatInput;
-import ru.r2cloud.jradio.blocks.ClockRecoveryMMComplex;
 import ru.r2cloud.jradio.blocks.Constellation;
 import ru.r2cloud.jradio.blocks.ConstellationSoftDecoder;
 import ru.r2cloud.jradio.blocks.CostasLoop;
+import ru.r2cloud.jradio.blocks.Firdes;
 import ru.r2cloud.jradio.blocks.FloatToChar;
+import ru.r2cloud.jradio.blocks.PolyphaseClockSyncComplex;
 import ru.r2cloud.jradio.blocks.Rail;
 import ru.r2cloud.jradio.blocks.RmsAgc;
-import ru.r2cloud.jradio.blocks.RootRaisedCosineFilter;
 
 public class QpskDemodulator implements ByteInput {
 
 	private final FloatToChar f2char;
 
 	public QpskDemodulator(FloatInput source, int symbolRate, Constellation constel) {
-		float clockAlpha = 0.01f;
 		RmsAgc agc = new RmsAgc(source, 1e-2f, 0.5f);
-		RootRaisedCosineFilter rrcf = new RootRaisedCosineFilter(agc, 1.0f, symbolRate, 0.6f, 361);
-		float omega = rrcf.getContext().getSampleRate() / symbolRate;
-		ClockRecoveryMMComplex clockmm = new ClockRecoveryMMComplex(rrcf, omega, clockAlpha * clockAlpha / 4, 0.5f, clockAlpha, 0.005f);
-		CostasLoop costas = new CostasLoop(clockmm, 0.008f, 4, false);
+		float omega = agc.getContext().getSampleRate() / symbolRate;
+		int nfilts = 16;
+		float[] rrcTaps = Firdes.rootRaisedCosine(nfilts, nfilts, 1.0f / omega, 0.5f, (int) (11 * omega * nfilts));
+		PolyphaseClockSyncComplex clockmm = new PolyphaseClockSyncComplex(agc, omega, 0.1f, rrcTaps, nfilts, nfilts / 2, 1.5f, 1);
+		CostasLoop costas = new CostasLoop(clockmm, 0.006f, 4, false);
 		ConstellationSoftDecoder constelDecoder = new ConstellationSoftDecoder(costas, constel);
 		Rail rail = new Rail(constelDecoder, -1.0f, 1.0f);
 		f2char = new FloatToChar(rail, 127.0f);
