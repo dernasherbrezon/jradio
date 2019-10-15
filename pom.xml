@@ -249,7 +249,7 @@
 		<url>https://github.com/dernasherbrezon/jradio</url>
 		<connection>scm:git:git@github.com/dernasherbrezon/jradio.git</connection>
 		<developerConnection>scm:git:https://github.com/dernasherbrezon/jradio.git</developerConnection>
-		<tag>HEAD</tag>
+		<tag>jradio-1.16</tag>
 	</scm>
 
 	<issueManagement>
