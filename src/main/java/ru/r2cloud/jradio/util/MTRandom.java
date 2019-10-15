@@ -159,7 +159,7 @@ public class MTRandom extends java.util.Random {
 	 * 
 	 * <pre>
 	 * mt.setSeed(12345);
-	 * int foo = mt.nextInt(16) + (mt.nextInt(16) << 16);
+	 * int foo = mt.nextInt(16) + (mt.nextInt(16) &lt;&lt; 16);
 	 * </pre>
 	 * 
 	 * will not give the same result as

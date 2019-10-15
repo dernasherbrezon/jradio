@@ -45,7 +45,7 @@ public class PT1000Sensors {
 	}
 
 	/**
-	 * @param resistance
+	 * @param resistance - measured resistance
 	 * @return null - if out of range
 	 */
 	public static Float getTemperature(float resistance) {
