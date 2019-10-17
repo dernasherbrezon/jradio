@@ -5,118 +5,118 @@ import java.io.IOException;
 
 public class TmEpsCtrlBatteryPowerTemp {
 
-	private short I2C_0_CURRENT;      // Current drawn by all sensors of the solar panels.
-	private float BATVOLTA;           // Battery A voltage measured by its battery monitor.
-	private short BATCURRA;           // Battery A voltage measured by its battery monitor.
-	private int BATCAPCA;             // Battery A voltage measured by its battery monitor.
-	private float BATVOLTA_ADC;       // Battery A voltage measured via an external voltage divider and ADC of the µC.
-	private float BATVOLTB;           // Battery B voltage measured by its battery monitor.
-	private short BATCURRB;           // Battery B voltage measured by its battery monitor.
-	private int BATCAPB;              // Battery B voltage measured by its battery monitor.
-	private float BATVOLTB_ADC;       // Battery B voltage measured via an external voltage divider and ADC of the µC.
-	private byte BATTMPA;             // Battery A voltage measured by its battery monitor.
-	private byte BATTMPB;             // Battery B voltage measured by its battery monitor.
+	private short i2c0Current; // Current drawn by all sensors of the solar panels.
+	private float batVoltA; // Battery A voltage measured by its battery monitor.
+	private short batCurrA; // Battery A voltage measured by its battery monitor.
+	private int batCapca; // Battery A voltage measured by its battery monitor.
+	private float batVoltAAdc; // Battery A voltage measured via an external voltage divider and ADC of the µC.
+	private float batVoltB; // Battery B voltage measured by its battery monitor.
+	private short batCurrB; // Battery B voltage measured by its battery monitor.
+	private int batCapB; // Battery B voltage measured by its battery monitor.
+	private float batVoltBAdc; // Battery B voltage measured via an external voltage divider and ADC of the µC.
+	private byte batTmpA; // Battery A voltage measured by its battery monitor.
+	private byte batTmpB; // Battery B voltage measured by its battery monitor.
 
 	public TmEpsCtrlBatteryPowerTemp(DataInputStream dis) throws IOException {
-		I2C_0_CURRENT = dis.readShort();
-		BATVOLTA = dis.readUnsignedShort() * 0.001f;
-		BATCURRA = dis.readShort();
-		BATCAPCA = dis.readUnsignedShort();
-		BATVOLTA_ADC = dis.readUnsignedShort() * 0.001f;
-		BATVOLTB = dis.readUnsignedShort() * 0.001f;
-		BATCURRB = dis.readShort();
-		BATCAPB = dis.readUnsignedShort();
-		BATVOLTB_ADC = dis.readUnsignedShort() * 0.001f;
-		BATTMPA = dis.readByte();
-		BATTMPB = dis.readByte();
+		i2c0Current = dis.readShort();
+		batVoltA = dis.readUnsignedShort() * 0.001f;
+		batCurrA = dis.readShort();
+		batCapca = dis.readUnsignedShort();
+		batVoltAAdc = dis.readUnsignedShort() * 0.001f;
+		batVoltB = dis.readUnsignedShort() * 0.001f;
+		batCurrB = dis.readShort();
+		batCapB = dis.readUnsignedShort();
+		batVoltBAdc = dis.readUnsignedShort() * 0.001f;
+		batTmpA = dis.readByte();
+		batTmpB = dis.readByte();
 	}
 
-	public short getI2C_0_CURRENT() {
-		return I2C_0_CURRENT;
+	public short getI2c0Current() {
+		return i2c0Current;
 	}
 
-	public void setI2C_0_CURRENT(short i2c_0_CURRENT) {
-		I2C_0_CURRENT = i2c_0_CURRENT;
+	public void setI2c0Current(short i2c0Current) {
+		this.i2c0Current = i2c0Current;
 	}
 
-	public float getBATVOLTA() {
-		return BATVOLTA;
+	public float getBatVoltA() {
+		return batVoltA;
 	}
 
-	public void setBATVOLTA(float bATVOLTA) {
-		BATVOLTA = bATVOLTA;
+	public void setBatVoltA(float batVoltA) {
+		this.batVoltA = batVoltA;
 	}
 
-	public short getBATCURRA() {
-		return BATCURRA;
+	public short getBatCurrA() {
+		return batCurrA;
 	}
 
-	public void setBATCURRA(short bATCURRA) {
-		BATCURRA = bATCURRA;
+	public void setBatCurrA(short batCurrA) {
+		this.batCurrA = batCurrA;
 	}
 
-	public int getBATCAPCA() {
-		return BATCAPCA;
+	public int getBatCapca() {
+		return batCapca;
 	}
 
-	public void setBATCAPCA(int bATCAPCA) {
-		BATCAPCA = bATCAPCA;
+	public void setBatCapca(int batCapca) {
+		this.batCapca = batCapca;
 	}
 
-	public float getBATVOLTA_ADC() {
-		return BATVOLTA_ADC;
+	public float getBatVoltAAdc() {
+		return batVoltAAdc;
 	}
 
-	public void setBATVOLTA_ADC(float bATVOLTA_ADC) {
-		BATVOLTA_ADC = bATVOLTA_ADC;
+	public void setBatVoltAAdc(float batVoltAAdc) {
+		this.batVoltAAdc = batVoltAAdc;
 	}
 
-	public float getBATVOLTB() {
-		return BATVOLTB;
+	public float getBatVoltB() {
+		return batVoltB;
 	}
 
-	public void setBATVOLTB(float bATVOLTB) {
-		BATVOLTB = bATVOLTB;
+	public void setBatVoltB(float batVoltB) {
+		this.batVoltB = batVoltB;
 	}
 
-	public short getBATCURRB() {
-		return BATCURRB;
+	public short getBatCurrB() {
+		return batCurrB;
 	}
 
-	public void setBATCURRB(short bATCURRB) {
-		BATCURRB = bATCURRB;
+	public void setBatCurrB(short batCurrB) {
+		this.batCurrB = batCurrB;
 	}
 
-	public int getBATCAPB() {
-		return BATCAPB;
+	public int getBatCapB() {
+		return batCapB;
 	}
 
-	public void setBATCAPB(int bATCAPB) {
-		BATCAPB = bATCAPB;
+	public void setBatCapB(int batCapB) {
+		this.batCapB = batCapB;
 	}
 
-	public float getBATVOLTB_ADC() {
-		return BATVOLTB_ADC;
+	public float getBatVoltBAdc() {
+		return batVoltBAdc;
 	}
 
-	public void setBATVOLTB_ADC(float bATVOLTB_ADC) {
-		BATVOLTB_ADC = bATVOLTB_ADC;
+	public void setBatVoltBAdc(float batVoltBAdc) {
+		this.batVoltBAdc = batVoltBAdc;
 	}
 
-	public byte getBATTMPA() {
-		return BATTMPA;
+	public byte getBatTmpA() {
+		return batTmpA;
 	}
 
-	public void setBATTMPA(byte bATTMPA) {
-		BATTMPA = bATTMPA;
+	public void setBatTmpA(byte batTmpA) {
+		this.batTmpA = batTmpA;
 	}
 
-	public byte getBATTMPB() {
-		return BATTMPB;
+	public byte getBatTmpB() {
+		return batTmpB;
 	}
 
-	public void setBATTMPB(byte bATTMPB) {
-		BATTMPB = bATTMPB;
+	public void setBatTmpB(byte batTmpB) {
+		this.batTmpB = batTmpB;
 	}
 
 }
