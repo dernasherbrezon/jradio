@@ -5,38 +5,38 @@ import java.io.IOException;
 
 public class TmForTemperatures {
 
-	private float FOR_TEMP0;        //  temp FOR 0
-	private float FOR_TEMP1;        //  temp FOR 1
-	private float FOR_TEMP2;        //  temp FOR 2
+	private float forTemp0; // temp FOR 0
+	private float forTemp1; // temp FOR 1
+	private float forTemp2; // temp FOR 2
 
 	public TmForTemperatures(DataInputStream dis) throws IOException {
-		FOR_TEMP0 = dis.readShort() * 0.1f;
-		FOR_TEMP1 = dis.readShort() * 0.1f;
-		FOR_TEMP2 = dis.readShort() * 0.1f;
+		forTemp0 = dis.readShort() * 0.1f;
+		forTemp1 = dis.readShort() * 0.1f;
+		forTemp2 = dis.readShort() * 0.1f;
 	}
 
-	public float getFOR_TEMP0() {
-		return FOR_TEMP0;
+	public float getForTemp0() {
+		return forTemp0;
 	}
 
-	public void setFOR_TEMP0(float fOR_TEMP0) {
-		FOR_TEMP0 = fOR_TEMP0;
+	public void setForTemp0(float forTemp0) {
+		this.forTemp0 = forTemp0;
 	}
 
-	public float getFOR_TEMP1() {
-		return FOR_TEMP1;
+	public float getForTemp1() {
+		return forTemp1;
 	}
 
-	public void setFOR_TEMP1(float fOR_TEMP1) {
-		FOR_TEMP1 = fOR_TEMP1;
+	public void setForTemp1(float forTemp1) {
+		this.forTemp1 = forTemp1;
 	}
 
-	public float getFOR_TEMP2() {
-		return FOR_TEMP2;
+	public float getForTemp2() {
+		return forTemp2;
 	}
 
-	public void setFOR_TEMP2(float fOR_TEMP2) {
-		FOR_TEMP2 = fOR_TEMP2;
+	public void setForTemp2(float forTemp2) {
+		this.forTemp2 = forTemp2;
 	}
 
 }
