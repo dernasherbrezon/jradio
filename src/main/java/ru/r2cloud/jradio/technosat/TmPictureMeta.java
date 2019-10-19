@@ -7,195 +7,195 @@ import ru.r2cloud.jradio.util.StreamUtils;
 
 public class TmPictureMeta {
 
-	private long PICTURE0_LENGTH;        // Picture length of slot 0
-	private long PICTURE1_LENGTH;        // Picture length of slot 1
-	private long PICTURE2_LENGTH;        // Picture length of slot 2
-	private long PICTURE3_LENGTH;        // Picture length of slot 3
-	private long PICTURE4_LENGTH;        // Picture length of slot 4
-	private long PICTURE5_LENGTH;        // Picture length of slot 5
-	private long PICTURE0_TIME;          // Picture time of slot 0
-	private long PICTURE1_TIME;          // Picture time of slot 1
-	private long PICTURE2_TIME;          // Picture time of slot 2
-	private long PICTURE3_TIME;          // Picture time of slot 3
-	private long PICTURE4_TIME;          // Picture time of slot 4
-	private long PICTURE5_TIME;          // Picture time of slot 5
-	private byte[] PICTURE0_CRC;         // Picture CRC32 of slot 0
-	private byte[] PICTURE1_CRC;         // Picture CRC32 of slot 1
-	private byte[] PICTURE2_CRC;         // Picture CRC32 of slot 2
-	private byte[] PICTURE3_CRC;         // Picture CRC32 of slot 3
-	private byte[] PICTURE4_CRC;         // Picture CRC32 of slot 4
-	private byte[] PICTURE5_CRC;         // Picture CRC32 of slot 5
+	private long picture0Length; // Picture length of slot 0
+	private long picture1Length; // Picture length of slot 1
+	private long picture2Length; // Picture length of slot 2
+	private long picture3Length; // Picture length of slot 3
+	private long picture4Length; // Picture length of slot 4
+	private long picture5Length; // Picture length of slot 5
+	private long picture0Time; // Picture time of slot 0
+	private long picture1Time; // Picture time of slot 1
+	private long picture2Time; // Picture time of slot 2
+	private long picture3Time; // Picture time of slot 3
+	private long picture4Time; // Picture time of slot 4
+	private long picture5Time; // Picture time of slot 5
+	private byte[] picture0Crc; // Picture CRC32 of slot 0
+	private byte[] picture1Crc; // Picture CRC32 of slot 1
+	private byte[] picture2Crc; // Picture CRC32 of slot 2
+	private byte[] picture3Crc; // Picture CRC32 of slot 3
+	private byte[] picture4Crc; // Picture CRC32 of slot 4
+	private byte[] picture5Crc; // Picture CRC32 of slot 5
 
 	public TmPictureMeta(DataInputStream dis) throws IOException {
-		PICTURE0_LENGTH = StreamUtils.readUnsignedInt(dis);
-		PICTURE1_LENGTH = StreamUtils.readUnsignedInt(dis);
-		PICTURE2_LENGTH = StreamUtils.readUnsignedInt(dis);
-		PICTURE3_LENGTH = StreamUtils.readUnsignedInt(dis);
-		PICTURE4_LENGTH = StreamUtils.readUnsignedInt(dis);
-		PICTURE5_LENGTH = StreamUtils.readUnsignedInt(dis);
-		PICTURE0_TIME = dis.readLong();
-		PICTURE1_TIME = dis.readLong();
-		PICTURE2_TIME = dis.readLong();
-		PICTURE3_TIME = dis.readLong();
-		PICTURE4_TIME = dis.readLong();
-		PICTURE5_TIME = dis.readLong();
-		PICTURE0_CRC = new byte[4];
-		dis.readFully(PICTURE0_CRC);
-		PICTURE1_CRC = new byte[4];
-		dis.readFully(PICTURE1_CRC);
-		PICTURE2_CRC = new byte[4];
-		dis.readFully(PICTURE2_CRC);
-		PICTURE3_CRC = new byte[4];
-		dis.readFully(PICTURE3_CRC);
-		PICTURE4_CRC = new byte[4];
-		dis.readFully(PICTURE4_CRC);
-		PICTURE5_CRC = new byte[4];
-		dis.readFully(PICTURE5_CRC);
+		picture0Length = StreamUtils.readUnsignedInt(dis);
+		picture1Length = StreamUtils.readUnsignedInt(dis);
+		picture2Length = StreamUtils.readUnsignedInt(dis);
+		picture3Length = StreamUtils.readUnsignedInt(dis);
+		picture4Length = StreamUtils.readUnsignedInt(dis);
+		picture5Length = StreamUtils.readUnsignedInt(dis);
+		picture0Time = dis.readLong();
+		picture1Time = dis.readLong();
+		picture2Time = dis.readLong();
+		picture3Time = dis.readLong();
+		picture4Time = dis.readLong();
+		picture5Time = dis.readLong();
+		picture0Crc = new byte[4];
+		dis.readFully(picture0Crc);
+		picture1Crc = new byte[4];
+		dis.readFully(picture1Crc);
+		picture2Crc = new byte[4];
+		dis.readFully(picture2Crc);
+		picture3Crc = new byte[4];
+		dis.readFully(picture3Crc);
+		picture4Crc = new byte[4];
+		dis.readFully(picture4Crc);
+		picture5Crc = new byte[4];
+		dis.readFully(picture5Crc);
 
 	}
 
-	public long getPICTURE0_LENGTH() {
-		return PICTURE0_LENGTH;
+	public long getPicture0Length() {
+		return picture0Length;
 	}
 
-	public void setPICTURE0_LENGTH(long pICTURE0_LENGTH) {
-		PICTURE0_LENGTH = pICTURE0_LENGTH;
+	public void setPicture0Length(long picture0Length) {
+		this.picture0Length = picture0Length;
 	}
 
-	public long getPICTURE1_LENGTH() {
-		return PICTURE1_LENGTH;
+	public long getPicture1Length() {
+		return picture1Length;
 	}
 
-	public void setPICTURE1_LENGTH(long pICTURE1_LENGTH) {
-		PICTURE1_LENGTH = pICTURE1_LENGTH;
+	public void setPicture1Length(long picture1Length) {
+		this.picture1Length = picture1Length;
 	}
 
-	public long getPICTURE2_LENGTH() {
-		return PICTURE2_LENGTH;
+	public long getPicture2Length() {
+		return picture2Length;
 	}
 
-	public void setPICTURE2_LENGTH(long pICTURE2_LENGTH) {
-		PICTURE2_LENGTH = pICTURE2_LENGTH;
+	public void setPicture2Length(long picture2Length) {
+		this.picture2Length = picture2Length;
 	}
 
-	public long getPICTURE3_LENGTH() {
-		return PICTURE3_LENGTH;
+	public long getPicture3Length() {
+		return picture3Length;
 	}
 
-	public void setPICTURE3_LENGTH(long pICTURE3_LENGTH) {
-		PICTURE3_LENGTH = pICTURE3_LENGTH;
+	public void setPicture3Length(long picture3Length) {
+		this.picture3Length = picture3Length;
 	}
 
-	public long getPICTURE4_LENGTH() {
-		return PICTURE4_LENGTH;
+	public long getPicture4Length() {
+		return picture4Length;
 	}
 
-	public void setPICTURE4_LENGTH(long pICTURE4_LENGTH) {
-		PICTURE4_LENGTH = pICTURE4_LENGTH;
+	public void setPicture4Length(long picture4Length) {
+		this.picture4Length = picture4Length;
 	}
 
-	public long getPICTURE5_LENGTH() {
-		return PICTURE5_LENGTH;
+	public long getPicture5Length() {
+		return picture5Length;
 	}
 
-	public void setPICTURE5_LENGTH(long pICTURE5_LENGTH) {
-		PICTURE5_LENGTH = pICTURE5_LENGTH;
+	public void setPicture5Length(long picture5Length) {
+		this.picture5Length = picture5Length;
 	}
 
-	public long getPICTURE0_TIME() {
-		return PICTURE0_TIME;
+	public long getPicture0Time() {
+		return picture0Time;
 	}
 
-	public void setPICTURE0_TIME(long pICTURE0_TIME) {
-		PICTURE0_TIME = pICTURE0_TIME;
+	public void setPicture0Time(long picture0Time) {
+		this.picture0Time = picture0Time;
 	}
 
-	public long getPICTURE1_TIME() {
-		return PICTURE1_TIME;
+	public long getPicture1Time() {
+		return picture1Time;
 	}
 
-	public void setPICTURE1_TIME(long pICTURE1_TIME) {
-		PICTURE1_TIME = pICTURE1_TIME;
+	public void setPicture1Time(long picture1Time) {
+		this.picture1Time = picture1Time;
 	}
 
-	public long getPICTURE2_TIME() {
-		return PICTURE2_TIME;
+	public long getPicture2Time() {
+		return picture2Time;
 	}
 
-	public void setPICTURE2_TIME(long pICTURE2_TIME) {
-		PICTURE2_TIME = pICTURE2_TIME;
+	public void setPicture2Time(long picture2Time) {
+		this.picture2Time = picture2Time;
 	}
 
-	public long getPICTURE3_TIME() {
-		return PICTURE3_TIME;
+	public long getPicture3Time() {
+		return picture3Time;
 	}
 
-	public void setPICTURE3_TIME(long pICTURE3_TIME) {
-		PICTURE3_TIME = pICTURE3_TIME;
+	public void setPicture3Time(long picture3Time) {
+		this.picture3Time = picture3Time;
 	}
 
-	public long getPICTURE4_TIME() {
-		return PICTURE4_TIME;
+	public long getPicture4Time() {
+		return picture4Time;
 	}
 
-	public void setPICTURE4_TIME(long pICTURE4_TIME) {
-		PICTURE4_TIME = pICTURE4_TIME;
+	public void setPicture4Time(long picture4Time) {
+		this.picture4Time = picture4Time;
 	}
 
-	public long getPICTURE5_TIME() {
-		return PICTURE5_TIME;
+	public long getPicture5Time() {
+		return picture5Time;
 	}
 
-	public void setPICTURE5_TIME(long pICTURE5_TIME) {
-		PICTURE5_TIME = pICTURE5_TIME;
+	public void setPicture5Time(long picture5Time) {
+		this.picture5Time = picture5Time;
 	}
 
-	public byte[] getPICTURE0_CRC() {
-		return PICTURE0_CRC;
+	public byte[] getPicture0Crc() {
+		return picture0Crc;
 	}
 
-	public void setPICTURE0_CRC(byte[] pICTURE0_CRC) {
-		PICTURE0_CRC = pICTURE0_CRC;
+	public void setPicture0Crc(byte[] picture0Crc) {
+		this.picture0Crc = picture0Crc;
 	}
 
-	public byte[] getPICTURE1_CRC() {
-		return PICTURE1_CRC;
+	public byte[] getPicture1Crc() {
+		return picture1Crc;
 	}
 
-	public void setPICTURE1_CRC(byte[] pICTURE1_CRC) {
-		PICTURE1_CRC = pICTURE1_CRC;
+	public void setPicture1Crc(byte[] picture1Crc) {
+		this.picture1Crc = picture1Crc;
 	}
 
-	public byte[] getPICTURE2_CRC() {
-		return PICTURE2_CRC;
+	public byte[] getPicture2Crc() {
+		return picture2Crc;
 	}
 
-	public void setPICTURE2_CRC(byte[] pICTURE2_CRC) {
-		PICTURE2_CRC = pICTURE2_CRC;
+	public void setPicture2Crc(byte[] picture2Crc) {
+		this.picture2Crc = picture2Crc;
 	}
 
-	public byte[] getPICTURE3_CRC() {
-		return PICTURE3_CRC;
+	public byte[] getPicture3Crc() {
+		return picture3Crc;
 	}
 
-	public void setPICTURE3_CRC(byte[] pICTURE3_CRC) {
-		PICTURE3_CRC = pICTURE3_CRC;
+	public void setPicture3Crc(byte[] picture3Crc) {
+		this.picture3Crc = picture3Crc;
 	}
 
-	public byte[] getPICTURE4_CRC() {
-		return PICTURE4_CRC;
+	public byte[] getPicture4Crc() {
+		return picture4Crc;
 	}
 
-	public void setPICTURE4_CRC(byte[] pICTURE4_CRC) {
-		PICTURE4_CRC = pICTURE4_CRC;
+	public void setPicture4Crc(byte[] picture4Crc) {
+		this.picture4Crc = picture4Crc;
 	}
 
-	public byte[] getPICTURE5_CRC() {
-		return PICTURE5_CRC;
+	public byte[] getPicture5Crc() {
+		return picture5Crc;
 	}
 
-	public void setPICTURE5_CRC(byte[] pICTURE5_CRC) {
-		PICTURE5_CRC = pICTURE5_CRC;
+	public void setPicture5Crc(byte[] picture5Crc) {
+		this.picture5Crc = picture5Crc;
 	}
 
 }
