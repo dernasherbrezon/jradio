@@ -31,7 +31,7 @@ public class CMX909bHeader {
 		if (type != null) {
 			control1.setType(type);
 		} else {
-			LOG.info("unknown message type: " + (control1Byte >> 5));
+			LOG.info("unknown message type: ", (control1Byte >> 5));
 		}
 		control1.setNumberOfBlocks((control1Byte & 0x1F) + 1);
 		control1.setNumberOfErrors((control1Byte & 0x1F));
