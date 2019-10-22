@@ -7,9 +7,9 @@ public class CorrelateAccessCode {
 	private int threshold;
 	private final AccessCode accessCode;
 
-	public CorrelateAccessCode(int threshold, String access_code) {
+	public CorrelateAccessCode(int threshold, String accessCode) {
 		this.threshold = threshold;
-		this.accessCode = new AccessCode(access_code);
+		this.accessCode = new AccessCode(accessCode);
 	}
 
 	public int indexOf(byte[] data) {

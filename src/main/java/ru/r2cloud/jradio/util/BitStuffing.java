@@ -44,4 +44,8 @@ public class BitStuffing {
 		return Arrays.copyOfRange(result, 0, outputSize);
 	}
 
+	private BitStuffing() {
+		// do nothing
+	}
+
 }
