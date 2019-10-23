@@ -13,7 +13,7 @@ public class Deinterleave {
 		int targetBit = 0;
 		for (int j = 0; j < data.length; j++) {
 			for (int i = 0; i < 8; i++) {
-				int sourceBit = (((data[j] >> (7 - i))) & 0x1);
+				int sourceBit = ((data[j] >> (7 - i)) & 0x1);
 				int dIndex = targetBit % numberOfWords;
 				int dBit = targetBit / numberOfWords;
 				deinterleaved[dIndex] |= sourceBit << (wordLength - dBit - 1);
@@ -34,4 +34,7 @@ public class Deinterleave {
 		return result;
 	}
 
+	private Deinterleave() {
+		// do nothing
+	}
 }
