@@ -118,6 +118,7 @@ public class LittleEndianDataInputStream implements DataInput {
 
 	/**
 	 * {@inheritDoc} 
+	 * @deprecated see java.io.DataInputStream.readLine
 	 */
 	@Override
 	@Deprecated
