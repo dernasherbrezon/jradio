@@ -7,14 +7,14 @@ import java.io.IOException;
 
 public class LittleEndianDataInputStream implements DataInput {
 
-	private byte readBuffer[] = new byte[8];
+	private byte[] readBuffer = new byte[8];
 	private final DataInputStream dis;
 
 	public LittleEndianDataInputStream(DataInputStream dis) {
 		this.dis = dis;
 	}
 
-	public int read(byte b[]) throws IOException {
+	public int read(byte[] b) throws IOException {
 		return dis.read(b);
 	}
 
@@ -36,7 +36,7 @@ public class LittleEndianDataInputStream implements DataInput {
 		return readUnsignedInt(dis);
 	}
 	
-	public final static long readUnsignedInt(DataInputStream dis) throws IOException {
+	public static final long readUnsignedInt(DataInputStream dis) throws IOException {
 		int ch1 = dis.read();
 		int ch2 = dis.read();
 		int ch3 = dis.read();
@@ -72,7 +72,7 @@ public class LittleEndianDataInputStream implements DataInput {
 	@Override
 	public final long readLong() throws IOException {
 		dis.readFully(readBuffer, 0, 8);
-		return (((long) readBuffer[7] << 56) + ((long) (readBuffer[6] & 255) << 48) + ((long) (readBuffer[5] & 255) << 40) + ((long) (readBuffer[4] & 255) << 32) + ((long) (readBuffer[3] & 255) << 24) + ((readBuffer[2] & 255) << 16) + ((readBuffer[1] & 255) << 8) + ((readBuffer[0] & 255)));
+		return ((long) readBuffer[7] << 56) + ((long) (readBuffer[6] & 255) << 48) + ((long) (readBuffer[5] & 255) << 40) + ((long) (readBuffer[4] & 255) << 32) + ((long) (readBuffer[3] & 255) << 24) + ((readBuffer[2] & 255) << 16) + ((readBuffer[1] & 255) << 8) + ((readBuffer[0] & 255));
 	}
 
 	@Override
@@ -116,6 +116,9 @@ public class LittleEndianDataInputStream implements DataInput {
 		return Double.longBitsToDouble(readLong());
 	}
 
+	/**
+	 * {@inheritDoc} 
+	 */
 	@Override
 	@Deprecated
 	public String readLine() throws IOException {
