@@ -8,19 +8,19 @@ public class MTRandom extends java.util.Random {
 	private static final long serialVersionUID = -515082678588212038L;
 
 	// Constants used in the original C implementation
-	private final static int UPPER_MASK = 0x80000000;
-	private final static int LOWER_MASK = 0x7fffffff;
-
-	private final static int N = 624;
-	private final static int M = 397;
-	private final static int MAGIC[] = { 0x0, 0x9908b0df };
-	private final static int MAGIC_FACTOR1 = 1812433253;
-	private final static int MAGIC_FACTOR2 = 1664525;
-	private final static int MAGIC_FACTOR3 = 1566083941;
-	private final static int MAGIC_MASK1 = 0x9d2c5680;
-	private final static int MAGIC_MASK2 = 0xefc60000;
-	private final static int MAGIC_SEED = 19650218;
-	private final static long DEFAULT_SEED = 5489L;
+	private static final int UPPER_MASK = 0x80000000;
+	private static final int LOWER_MASK = 0x7fffffff;
+                         
+	private static final int N = 624;
+	private static final int M = 397;
+	private static final int[] MAGIC = { 0x0, 0x9908b0df };
+	private static final int MAGIC_FACTOR1 = 1812433253;
+	private static final int MAGIC_FACTOR2 = 1664525;
+	private static final int MAGIC_FACTOR3 = 1566083941;
+	private static final int MAGIC_MASK1 = 0x9d2c5680;
+	private static final int MAGIC_MASK2 = 0xefc60000;
+	private static final int MAGIC_SEED = 19650218;
+	private static final long DEFAULT_SEED = 5489L;
 
 	// Internal state
 	private transient int[] mt;
@@ -124,10 +124,13 @@ public class MTRandom extends java.util.Random {
 	 */
 	public final synchronized void setSeed(int[] buf) {
 		int length = buf.length;
-		if (length == 0)
+		if (length == 0) {
 			throw new IllegalArgumentException("Seed buffer may not be empty");
+		}
 		// ---- Begin Mersenne Twister Algorithm ----
-		int i = 1, j = 0, k = (N > length ? N : length);
+		int i = 1;
+		int j = 0;
+		int k = (N > length ? N : length);
 		setSeed(MAGIC_SEED);
 		for (; k > 0; k--) {
 			mt[i] = (mt[i] ^ ((mt[i - 1] ^ (mt[i - 1] >>> 30)) * MAGIC_FACTOR2)) + buf[j] + j;
