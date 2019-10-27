@@ -7,7 +7,7 @@ public class Metrics {
 
 	private static MetricRegistry registry;
 
-	public synchronized static MetricRegistry getRegistry() {
+	public static synchronized MetricRegistry getRegistry() {
 		if (System.getProperty("jradio.metrics.enabled") != null) {
 			if (registry == null) {
 				registry = SharedMetricRegistries.getOrCreate("jradio");
