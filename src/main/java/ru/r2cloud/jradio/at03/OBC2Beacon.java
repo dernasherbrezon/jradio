@@ -128,7 +128,7 @@ public class OBC2Beacon {
 		int degrees = (int) ((rawLatitude >> (28 - 8)) & 0x7F);
 		int minute = (int) ((rawLatitude >> (28 - 13)) & 0x7F);
 		int minuteFraction = (int) (rawLatitude & 0x1FFF);
-		latitude = degrees + (minute + MathUtils.thirteenBitResolution * minuteFraction) / 60;
+		latitude = degrees + (minute + MathUtils.THIRTEEN_BIT_RESOLUTION * minuteFraction) / 60;
 		if (sign) {
 			latitude = -latitude;
 		}
@@ -143,7 +143,7 @@ public class OBC2Beacon {
 		degrees = (int) ((rawLongitude >> (29 - 9)) & 0xFF);
 		minute = (int) ((rawLongitude >> (29 - 13)) & 0x7F);
 		minuteFraction = (int) (rawLongitude & 0x1FFF);
-		longitude = degrees + (minute + MathUtils.thirteenBitResolution * minuteFraction) / 60;
+		longitude = degrees + (minute + MathUtils.THIRTEEN_BIT_RESOLUTION * minuteFraction) / 60;
 		if (sign) {
 			longitude = -longitude;
 		}
