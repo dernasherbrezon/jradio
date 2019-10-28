@@ -113,12 +113,10 @@ public class CorrelateSynchronizationMarker implements ByteInput {
 			}
 
 			// if still not in sync, then correlate whole block
-			if (!inSync) {
-				if (correlateBlock()) {
-					inSync = true;
-					currentBlock = 0;
-					break;
-				}
+			if (!inSync && correlateBlock()) {
+				inSync = true;
+				currentBlock = 0;
+				break;
 			}
 		}
 	}
@@ -152,10 +150,8 @@ public class CorrelateSynchronizationMarker implements ByteInput {
 	}
 
 	private boolean correlateMarker() {
-		if (preferable != null) {
-			if (correlateAccessCode(preferable)) {
-				return true;
-			}
+		if (preferable != null && correlateAccessCode(preferable)) {
+			return true;
 		}
 		for (AccessCode cur : accessCodes) {
 			if (cur == preferable) {
