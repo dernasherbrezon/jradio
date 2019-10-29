@@ -90,10 +90,10 @@ public class ClockRecoveryMMComplex implements FloatInput {
 			img = p0T[1];
 
 			// limit mm_val
-			mmVal = MathUtils.branchless_clip(mmVal, 1.0f);
+			mmVal = MathUtils.branchlessClip(mmVal, 1.0f);
 
 			omega = omega + gainOmega * mmVal;
-			omega = omegaMid + MathUtils.branchless_clip(omega - omegaMid, omegaLim);
+			omega = omegaMid + MathUtils.branchlessClip(omega - omegaMid, omegaLim);
 			mu = mu + omega + gainMu * mmVal;
 			this.skip = (int) Math.floor(mu);
 			mu = mu - (float) Math.floor(mu);

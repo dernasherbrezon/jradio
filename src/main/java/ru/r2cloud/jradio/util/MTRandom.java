@@ -179,7 +179,8 @@ public class MTRandom extends java.util.Random {
 	@Override
 	protected final synchronized int next(int bits) {
 		// ---- Begin Mersenne Twister Algorithm ----
-		int y, kk;
+		int y;
+		int kk;
 		if (mti >= N) { // generate N words at one time
 
 			// In the original C implementation, mti is checked here

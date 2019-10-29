@@ -22,7 +22,7 @@ public class Rail implements FloatInput {
 
 	@Override
 	public float readFloat() throws IOException {
-		return mid + MathUtils.branchless_clip(source.readFloat() - mid, clip);
+		return mid + MathUtils.branchlessClip(source.readFloat() - mid, clip);
 	}
 
 	@Override

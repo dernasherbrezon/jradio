@@ -59,7 +59,7 @@ public class ClockRecoveryMM implements FloatInput {
 		lastSample = result;
 
 		omega = omega + gainOmega * mmVal;
-		omega = omegaMid + MathUtils.branchless_clip(omega - omegaMid, omegaLim);
+		omega = omegaMid + MathUtils.branchlessClip(omega - omegaMid, omegaLim);
 		mu = mu + omega + gainMu * mmVal;
 
 		skip = (int) Math.floor(mu);

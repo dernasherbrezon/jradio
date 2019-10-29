@@ -67,7 +67,7 @@ public class CostasLoop implements FloatInput {
 			default:
 				throw new IllegalArgumentException("unsupported order: " + order);
 			}
-			error = MathUtils.branchless_clip(error, 1.0f);
+			error = MathUtils.branchlessClip(error, 1.0f);
 
 			controlLoop.advanceLoop(error);
 

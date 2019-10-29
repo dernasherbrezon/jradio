@@ -147,7 +147,7 @@ public class PolyphaseClockSyncComplex implements FloatInput {
 		}
 
 		// Keep our rate within a good range
-		rateF = MathUtils.branchless_clip(rateF, maxDeviation);
+		rateF = MathUtils.branchlessClip(rateF, maxDeviation);
 
 		toSkip += (int) Math.floor(samplesSymbol);
 		skip = toSkip;
