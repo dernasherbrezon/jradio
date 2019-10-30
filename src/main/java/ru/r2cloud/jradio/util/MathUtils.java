@@ -150,13 +150,11 @@ public class MathUtils {
 	}
 
 	public static float convertfix34(int unsignedByte) {
-		float result = (unsignedByte >> 4) + FOUR_BIT_RESOLUTION * (unsignedByte & 0xf);
-		return result;
+		return (unsignedByte >> 4) + FOUR_BIT_RESOLUTION * (unsignedByte & 0xf);
 	}
 
 	public static float convertUfix35(int unsignedByte) {
-		float result = (unsignedByte >> 5) + FIVE_BIT_RESOLUTION * (unsignedByte & 0x1f);
-		return result;
+		return (unsignedByte >> 5) + FIVE_BIT_RESOLUTION * (unsignedByte & 0x1f);
 	}
 
 	public static int reverseBitsInByte(int x) {
