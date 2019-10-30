@@ -26,7 +26,9 @@ public class RayleighRandom {
 			imag = false;
 			return imagValue;
 		} else { // generate a pair of gaussian distributed numbers
-			float x, y, s;
+			float x;
+			float y;
+			float s;
 			do {
 				x = 2.0f * ran1() - 1.0f;
 				y = 2.0f * ran1() - 1.0f;
