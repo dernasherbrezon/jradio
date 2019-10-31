@@ -11,7 +11,7 @@ import ru.r2cloud.jradio.blocks.ConstellationModulator;
 import ru.r2cloud.jradio.blocks.SoftToHard;
 import ru.r2cloud.jradio.blocks.UnpackedToPacked;
 
-public class QpskDemodulatorTest {
+public class QpskDemodulatorBer {
 	
 	private static final float BITS_PER_SYMBOL = 2.0f;
 
