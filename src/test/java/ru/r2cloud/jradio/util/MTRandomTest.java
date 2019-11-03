@@ -15,4 +15,16 @@ public class MTRandomTest {
 		assertEquals(4083286876L, random.next(32) & 0xFFFFFFFFL);
 	}
 
+	@Test(expected = IllegalArgumentException.class)
+	public void testInvalidSeed() {
+		MTRandom random = new MTRandom(true);
+		random.setSeed(new int[0]);
+	}
+	
+	@Test
+	public void testNonCompatileMode() {
+		MTRandom random = new MTRandom(42);
+		assertEquals(3030895498L, random.next(32) & 0xFFFFFFFFL);
+	}
+
 }
