@@ -8,10 +8,14 @@ public class Ao40Header {
 
 	private int id;
 	private int frameType;
-	
+
+	public Ao40Header() {
+		// do nothing
+	}
+
 	public Ao40Header(BitInputStream dis) throws IOException {
 		id = dis.readUnsignedInt(2);
-		if( id == 0b11 ) {
+		if (id == 0b11) {
 			frameType = dis.readUnsignedInt(6);
 			id = (dis.readUnsignedInt(6)) << 2;
 			frameType = (dis.readUnsignedInt(2) << 6) | frameType;
@@ -23,7 +27,7 @@ public class Ao40Header {
 	public int getId() {
 		return id;
 	}
-	
+
 	public void setId(int id) {
 		this.id = id;
 	}
@@ -35,5 +39,5 @@ public class Ao40Header {
 	public void setFrameType(int frameType) {
 		this.frameType = frameType;
 	}
-	
+
 }
