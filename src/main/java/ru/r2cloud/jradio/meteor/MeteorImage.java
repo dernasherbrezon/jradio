@@ -56,7 +56,7 @@ public class MeteorImage {
 			}
 		}
 
-		//find first channel and align other channels based on it
+		// find first channel and align other channels based on it
 		ImageChannel first = findFirst(channelByApid.values());
 		if (first != null) {
 			for (ImageChannel cur : channelByApid.values()) {
@@ -89,6 +89,10 @@ public class MeteorImage {
 		}
 		if (blue != null) {
 			maxHeight = Math.max(blue.getCurrentY() + 8, maxHeight);
+		}
+		if (maxHeight <= 0) {
+			// incorrect apid provided
+			return null;
 		}
 		BufferedImage result = new BufferedImage(ImageChannel.WIDTH, maxHeight, BufferedImage.TYPE_INT_RGB);
 		for (int row = 0; row < result.getHeight(); row++) {

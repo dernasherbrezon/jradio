@@ -30,12 +30,7 @@ public class MeteorImageTest {
 
 	@Test
 	public void success() throws Exception {
-		byte[] vcduData = toBytes("vcdu.bin");
-		Vcdu vcdu = new Vcdu();
-		vcdu.readExternal(null, vcduData);
-		List<Vcdu> data = new ArrayList<>();
-		data.add(vcdu);
-		MeteorImage image = new MeteorImage(data.iterator());
+		MeteorImage image = new MeteorImage(readVcdu().iterator());
 		BufferedImage actual = image.toBufferedImage();
 		try (InputStream is1 = MeteorImageTest.class.getClassLoader().getResourceAsStream("expected8bitsoft.png")) {
 			BufferedImage expected = ImageIO.read(is1);
@@ -45,6 +40,21 @@ public class MeteorImageTest {
 				}
 			}
 		}
+	}
+
+	@Test
+	public void testUnknownAPID() throws Exception {
+		MeteorImage image = new MeteorImage(readVcdu().iterator());
+		assertNull(image.toBufferedImage(1, 2, 3)); // not random. explicitly unknown apid
+	}
+
+	private static List<Vcdu> readVcdu() throws IOException {
+		byte[] vcduData = toBytes("vcdu.bin");
+		Vcdu vcdu = new Vcdu();
+		vcdu.readExternal(null, vcduData);
+		List<Vcdu> data = new ArrayList<>();
+		data.add(vcdu);
+		return data;
 	}
 
 	@Test
