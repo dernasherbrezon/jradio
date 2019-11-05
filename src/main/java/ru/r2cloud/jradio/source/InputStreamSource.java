@@ -21,7 +21,7 @@ public class InputStreamSource implements FloatInput, ByteInput {
 	private final Context context;
 	private long framePos = 0;
 
-	private long currentFloat;
+	private long currentNumber;
 
 	public InputStreamSource(InputStream is) {
 		this(is, new Context());
@@ -48,8 +48,8 @@ public class InputStreamSource implements FloatInput, ByteInput {
 		if (bytes != null) {
 			bytes.inc(4);
 		}
-		currentFloat++;
-		if (currentFloat % getContext().getChannels() == 0) {
+		currentNumber++;
+		if (currentNumber % getContext().getChannels() == 0) {
 			framePos++;
 		}
 		return result;
@@ -63,6 +63,10 @@ public class InputStreamSource implements FloatInput, ByteInput {
 		}
 		if (bytes != null) {
 			bytes.inc();
+		}
+		currentNumber++;
+		if (currentNumber % getContext().getChannels() == 0) {
+			framePos++;
 		}
 		return (byte) result;
 	}
