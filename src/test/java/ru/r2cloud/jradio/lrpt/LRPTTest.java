@@ -21,6 +21,8 @@ public class LRPTTest {
 
 	@After
 	public void stop() throws IOException {
+
+Thread.interrupted();
 		if (lrpt != null) {
 			lrpt.close();
 		}
