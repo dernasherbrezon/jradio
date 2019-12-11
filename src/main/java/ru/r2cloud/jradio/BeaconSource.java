@@ -28,7 +28,7 @@ public abstract class BeaconSource<T> implements Iterator<T>, Closeable {
 
 	@Override
 	public boolean hasNext() {
-		while (true) {
+		while (!Thread.currentThread().isInterrupted()) {
 			byte[] raw;
 			try {
 				raw = input.readBytes();
@@ -67,6 +67,7 @@ public abstract class BeaconSource<T> implements Iterator<T>, Closeable {
 			current = beacon;
 			return true;
 		}
+		return false;
 	}
 
 	protected abstract T parseBeacon(byte[] raw) throws UncorrectableException, IOException;

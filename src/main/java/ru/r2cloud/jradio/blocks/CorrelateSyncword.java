@@ -1,4 +1,6 @@
 package ru.r2cloud.jradio.blocks;
+
+import java.io.EOFException;
 import java.io.IOException;
 import java.util.Set;
 import java.util.UUID;
@@ -28,7 +30,7 @@ public class CorrelateSyncword implements MessageInput {
 		this.threshold = threshold;
 		accessCodes = new AccessCode[syncwords.size()];
 		int i = 0;
-		//FIXME refactor
+		// FIXME refactor
 		for (String cur : syncwords) {
 			AccessCode accessCode = new AccessCode(cur);
 			accessCodes[i] = accessCode;
@@ -47,7 +49,7 @@ public class CorrelateSyncword implements MessageInput {
 				return packet;
 			}
 		}
-		return null;
+		throw new EOFException();
 	}
 
 	private byte getHardBitAt(int index) {
@@ -85,7 +87,7 @@ public class CorrelateSyncword implements MessageInput {
 			getContext().resetCurrent();
 			return false;
 		}
-		
+
 		int dataStartIndex = windowIndex + softSyncwordLength;
 		if (dataStartIndex < window.length) {
 			System.arraycopy(window, dataStartIndex, packet, 0, window.length - dataStartIndex);

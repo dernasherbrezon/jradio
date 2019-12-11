@@ -1,5 +1,6 @@
 package ru.r2cloud.jradio.gomx1;
 
+import java.io.EOFException;
 import java.io.IOException;
 
 import org.slf4j.Logger;
@@ -32,7 +33,7 @@ public class AX100Decoder implements MessageInput {
 
 	@Override
 	public byte[] readBytes() throws IOException {
-		while (true) {
+		while (!Thread.currentThread().isInterrupted()) {
 			byte[] raw = input.readBytes();
 			try {
 				return decode(raw);
@@ -42,6 +43,7 @@ public class AX100Decoder implements MessageInput {
 				}
 			}
 		}
+		throw new EOFException();
 	}
 
 	public byte[] decode(byte[] raw) throws IOException, UncorrectableException {

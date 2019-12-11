@@ -1,5 +1,6 @@
 package ru.r2cloud.jradio.cc11xx;
 
+import java.io.EOFException;
 import java.io.IOException;
 import java.util.Arrays;
 
@@ -29,7 +30,7 @@ public class Cc11xxReceiver implements MessageInput {
 
 	@Override
 	public byte[] readBytes() throws IOException {
-		while (true) {
+		while (!Thread.currentThread().isInterrupted()) {
 			byte[] raw = source.readBytes();
 			if (hasWhitening) {
 				 scrambler.shuffle(raw);
@@ -58,6 +59,7 @@ public class Cc11xxReceiver implements MessageInput {
 			}
 			return result;
 		}
+		throw new EOFException();
 	}
 
 	@Override

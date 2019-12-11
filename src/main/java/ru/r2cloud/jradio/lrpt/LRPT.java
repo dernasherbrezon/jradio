@@ -1,5 +1,6 @@
 package ru.r2cloud.jradio.lrpt;
 
+import java.io.EOFException;
 import java.io.IOException;
 
 import org.slf4j.Logger;
@@ -46,7 +47,7 @@ public class LRPT implements MessageInput {
 
 	@Override
 	public byte[] readBytes() throws IOException {
-		while (true) {
+		while (!Thread.currentThread().isInterrupted()) {
 			byte[] raw = messageInput.readBytes();
 			try {
 				return decode(raw);
@@ -56,6 +57,7 @@ public class LRPT implements MessageInput {
 				}
 			}
 		}
+		throw new EOFException();
 	}
 
 	private byte[] decode(byte[] rawBytes) throws UncorrectableException {
