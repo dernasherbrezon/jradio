@@ -1,5 +1,8 @@
 package ru.r2cloud.jradio.lrpt;
 
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
+
 import java.io.EOFException;
 import java.io.IOException;
 
@@ -12,17 +15,20 @@ public class LRPTTest {
 
 	private LRPT lrpt;
 
-	@Test(expected = EOFException.class)
+	@Test
 	public void testGracefulShutdown() throws IOException {
 		lrpt = new LRPT(new ArrayByteInput(1, 2, 3), false, false);
 		Thread.currentThread().interrupt();
-		lrpt.readBytes();
+		try {
+			lrpt.readBytes();
+			fail("EOF expected");
+		} catch (EOFException e) {
+			assertTrue(Thread.interrupted());
+		}
 	}
 
 	@After
 	public void stop() throws IOException {
-
-Thread.interrupted();
 		if (lrpt != null) {
 			lrpt.close();
 		}
