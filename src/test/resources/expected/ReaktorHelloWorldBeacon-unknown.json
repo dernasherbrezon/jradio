@@ -1,0 +1,37 @@
+{
+  "type": "CSP",
+  "header": {
+    "priority": "CSP_PRIO_NORM",
+    "source": 5,
+    "destination": 16,
+    "sourcePort": 59,
+    "destinationPort": 13,
+    "ffrag": false,
+    "fhmac": false,
+    "fxtea": false,
+    "frdp": true,
+    "fcrc32": false
+  },
+  "cspLength": 11,
+  "timestamp": 0,
+  "uhfFailures": 0,
+  "deploymentSensed": 0,
+  "deploymentRounds": 0,
+  "unknownCspPayload": [
+    0,
+    63,
+    26,
+    20,
+    -22,
+    93,
+    4,
+    45,
+    -125,
+    -19,
+    56
+  ],
+  "packetNumber": 16319488,
+  "signature": 131072,
+  "beginSample": 0,
+  "beginMillis": 0
+}
