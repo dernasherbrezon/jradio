@@ -20,7 +20,7 @@ public class AggregateBeacons {
 		List<FitterMessageBatch> result = new ArrayList<>();
 		for (Jy1satBeacon cur : beacons) {
 			int index = getFitterMessageIndex(cur);
-			if( index == -1 ) {
+			if (index == -1) {
 				continue;
 			}
 			if (baos == null) {
@@ -64,7 +64,7 @@ public class AggregateBeacons {
 		List<HighResolutionDataBatch> result = new ArrayList<>();
 		for (Jy1satBeacon cur : beacons) {
 			int index = getHiResMessageIndex(cur);
-			if( index == -1 ) {
+			if (index == -1) {
 				continue;
 			}
 			if (baos == null) {
@@ -108,7 +108,7 @@ public class AggregateBeacons {
 		List<WholeOrbitDataBatch> result = new ArrayList<>();
 		for (Jy1satBeacon cur : beacons) {
 			int index = getWODMessageIndex(cur);
-			if( index == -1 ) {
+			if (index == -1) {
 				continue;
 			}
 			if (baos == null) {
@@ -145,24 +145,27 @@ public class AggregateBeacons {
 	}
 
 	private static int getFitterMessageIndex(Jy1satBeacon beacon) {
-		if( beacon.getHeader().getId() < 18 || beacon.getHeader().getId() > 24 ) {
+		if (beacon.getHeader().getId() < 18 || beacon.getHeader().getId() > 24) {
 			return -1;
 		}
 		return beacon.getHeader().getId() - 17;
 	}
-	
+
 	private static int getWODMessageIndex(Jy1satBeacon beacon) {
-		if( beacon.getHeader().getId() < 1 || beacon.getHeader().getId() > 12 ) {
+		if (beacon.getHeader().getId() < 1 || beacon.getHeader().getId() > 12) {
 			return -1;
 		}
 		return beacon.getHeader().getId();
 	}
-	
+
 	private static int getHiResMessageIndex(Jy1satBeacon beacon) {
-		if( beacon.getHeader().getId() < 13 || beacon.getHeader().getId() > 17 ) {
+		if (beacon.getHeader().getId() < 13 || beacon.getHeader().getId() > 17) {
 			return -1;
 		}
 		return beacon.getHeader().getId() - 12;
 	}
 
+	private AggregateBeacons() {
+		// do nothing
+	}
 }
