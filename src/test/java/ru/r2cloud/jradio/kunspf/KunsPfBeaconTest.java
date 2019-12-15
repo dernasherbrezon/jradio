@@ -22,4 +22,12 @@ public class KunsPfBeaconTest {
 		beacon.readExternal(data);
 		AssertJson.assertObjectsEqual("KunsPfBeacon-Image.json", beacon);
 	}
+
+	@Test
+	public void testUnknownPayload() throws Exception {
+		byte[] data = new byte[] { 2, -79, 31, 0, 82, 40, 5, 76, 9, 86 };
+		KunsPfBeacon beacon = new KunsPfBeacon();
+		beacon.readExternal(data);
+		AssertJson.assertObjectsEqual("KunsPfBeacon-unknown.json", beacon);
+	}
 }

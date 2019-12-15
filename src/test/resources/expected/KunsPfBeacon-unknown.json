@@ -1,0 +1,32 @@
+{
+  "header": {
+    "priority": "CSP_PRIO_CRITICAL",
+    "source": 1,
+    "destination": 11,
+    "sourcePort": 4,
+    "destinationPort": 31,
+    "ffrag": false,
+    "fhmac": false,
+    "fxtea": false,
+    "frdp": false,
+    "fcrc32": false
+  },
+  "unknownPayload": [
+    82,
+    40
+  ],
+  "rawData": [
+    2,
+    -79,
+    31,
+    0,
+    82,
+    40,
+    5,
+    76,
+    9,
+    86
+  ],
+  "beginSample": 0,
+  "beginMillis": 0
+}
