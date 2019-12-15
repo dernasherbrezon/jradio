@@ -1,7 +1,10 @@
 package ru.r2cloud.jradio.kunspf;
 
+import static pl.pojo.tester.api.assertion.Assertions.assertPojoMethodsFor;
+
 import org.junit.Test;
 
+import pl.pojo.tester.api.assertion.Method;
 import ru.r2cloud.jradio.AssertJson;
 import ru.r2cloud.jradio.fec.ViterbiTest;
 
@@ -29,5 +32,13 @@ public class KunsPfBeaconTest {
 		KunsPfBeacon beacon = new KunsPfBeacon();
 		beacon.readExternal(data);
 		AssertJson.assertObjectsEqual("KunsPfBeacon-unknown.json", beacon);
+	}
+
+	@Test
+	public void testPojo() {
+		assertPojoMethodsFor(KunsPfBeacon.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
+		assertPojoMethodsFor(NormalBeacon.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
+		assertPojoMethodsFor(WodBeacon.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
+		assertPojoMethodsFor(KunsPfImageChunk.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
 	}
 }

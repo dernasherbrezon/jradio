@@ -68,4 +68,12 @@ public class KunsPfBeacon extends Beacon {
 		this.imageChunk = imageChunk;
 	}
 
+	public byte[] getUnknownPayload() {
+		return unknownPayload;
+	}
+
+	public void setUnknownPayload(byte[] unknownPayload) {
+		this.unknownPayload = unknownPayload;
+	}
+
 }
