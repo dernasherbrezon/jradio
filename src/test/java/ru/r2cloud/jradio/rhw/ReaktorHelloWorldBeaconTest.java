@@ -28,10 +28,10 @@ public class ReaktorHelloWorldBeaconTest {
 		result.readBeacon(data);
 		AssertJson.assertObjectsEqual("ReaktorHelloWorldBeacon-uhf.json", result);
 	}
-	
+
 	@Test
 	public void testUnknownPayload() throws Exception {
-		byte[] data = new byte[] {1, -117, 14, -51, 2, 0, 11, 0, 63, 26, 20, -22, 93, 4, 45, -125, -19, 56, 0, -7, 4, 0, 0, 2, 0, 0};
+		byte[] data = new byte[] { 1, -117, 14, -51, 2, 0, 11, 0, 63, 26, 20, -22, 93, 4, 45, -125, -19, 56, 0, -7, 4, 0, 0, 2, 0, 0 };
 		ReaktorHelloWorldBeacon result = new ReaktorHelloWorldBeacon();
 		result.readBeacon(data);
 		AssertJson.assertObjectsEqual("ReaktorHelloWorldBeacon-unknown.json", result);
@@ -47,6 +47,7 @@ public class ReaktorHelloWorldBeaconTest {
 		assertPojoMethodsFor(PowerStatistics.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
 		assertPojoMethodsFor(UHFStatistics.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
 		assertPojoMethodsFor(PowerLevels.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
+		assertPojoMethodsFor(EpsBeacon.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
 	}
 
 }

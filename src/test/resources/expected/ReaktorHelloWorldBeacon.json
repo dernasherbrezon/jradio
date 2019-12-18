@@ -13,97 +13,99 @@
     "fcrc32": false
   },
   "cspLength": 98,
-  "timestamp": 1543515894,
-  "canStatistics": {
-    "rxFrameCount": 215294,
-    "txFrameCount": 3411141,
-    "errorCount": 143
-  },
-  "epsStatistics": {
-    "bootCount": 93,
-    "periodicBootCount": 10,
-    "bootReasons": [
-      2,
-      6,
-      2,
-      2,
-      2,
-      2,
-      2,
-      2,
-      2,
-      2,
-      2,
-      2
-    ],
-    "lastBootReason": 2,
-    "totalUptimeSeconds": 43492,
-    "uptimeSeconds": 43378,
-    "memoryViolationResetHasOccured": false,
-    "internalTemp": -2
-  },
-  "adcData": {
-    "spxpCurr": 3.399817,
-    "spxnCurr": 4.533089,
-    "spypCurr": 3.399817,
-    "spynCurr": 3.399817,
-    "spXV": 2392.057,
-    "spYV": 5550.8804,
-    "batCurr": 19.585863,
-    "batV": 8345.655,
-    "uhfCurr3v3": 33.569706,
-    "uhfCurr5v": 3.8400488,
-    "payloadCurr": -146.5,
-    "adcsCurr": -234.14,
-    "gpsCurr": -90.278,
-    "obcCurr": -136.87,
-    "sns3v3": 3330.0903,
-    "sns5v": 5007.424,
-    "sns12v1": 0.0,
-    "sns12v2": 0.0,
-    "tempSns1": 7.1172485,
-    "tempSns2": 5.3282776
-  },
-  "mpptStatistics": {
-    "currentMpptValue1": 1549,
-    "currentMpptValue2": 2338
-  },
-  "powerStatistics": {
-    "target": {
-      "payload": false,
-      "gps": false,
-      "obc": false,
-      "adcs": false,
-      "batteryHeater1": false,
-      "batteryHeater2": false,
-      "charging": true,
-      "uhfA": true,
-      "uhfB": false,
-      "toggle3v3": true,
-      "toggle5v": true,
-      "antennaDeployment1": false,
-      "antennaDeployment2": false
+  "epsBeacon": {
+    "timestamp": 1543515894,
+    "canStatistics": {
+      "rxFrameCount": 215294,
+      "txFrameCount": 3411141,
+      "errorCount": 143
     },
-    "actual": {
-      "payload": false,
-      "gps": false,
-      "obc": false,
-      "adcs": false,
-      "batteryHeater1": false,
-      "batteryHeater2": false,
-      "charging": true,
-      "uhfA": true,
-      "uhfB": false,
-      "toggle3v3": true,
-      "toggle5v": true,
-      "antennaDeployment1": false,
-      "antennaDeployment2": false
+    "epsStatistics": {
+      "bootCount": 93,
+      "periodicBootCount": 10,
+      "bootReasons": [
+        2,
+        6,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2
+      ],
+      "lastBootReason": 2,
+      "totalUptimeSeconds": 43492,
+      "uptimeSeconds": 43378,
+      "memoryViolationResetHasOccured": false,
+      "internalTemp": -2
     },
-    "state": false
+    "adcData": {
+      "spxpCurr": 3.399817,
+      "spxnCurr": 4.533089,
+      "spypCurr": 3.399817,
+      "spynCurr": 3.399817,
+      "spXV": 2392.057,
+      "spYV": 5550.8804,
+      "batCurr": 19.585863,
+      "batV": 8345.655,
+      "uhfCurr3v3": 33.569706,
+      "uhfCurr5v": 3.8400488,
+      "payloadCurr": -146.5,
+      "adcsCurr": -234.14,
+      "gpsCurr": -90.278,
+      "obcCurr": -136.87,
+      "sns3v3": 3330.0903,
+      "sns5v": 5007.424,
+      "sns12v1": 0.0,
+      "sns12v2": 0.0,
+      "tempSns1": 7.1172485,
+      "tempSns2": 5.3282776
+    },
+    "mpptStatistics": {
+      "currentMpptValue1": 1549,
+      "currentMpptValue2": 2338
+    },
+    "powerStatistics": {
+      "target": {
+        "payload": false,
+        "gps": false,
+        "obc": false,
+        "adcs": false,
+        "batteryHeater1": false,
+        "batteryHeater2": false,
+        "charging": true,
+        "uhfA": true,
+        "uhfB": false,
+        "toggle3v3": true,
+        "toggle5v": true,
+        "antennaDeployment1": false,
+        "antennaDeployment2": false
+      },
+      "actual": {
+        "payload": false,
+        "gps": false,
+        "obc": false,
+        "adcs": false,
+        "batteryHeater1": false,
+        "batteryHeater2": false,
+        "charging": true,
+        "uhfA": true,
+        "uhfB": false,
+        "toggle3v3": true,
+        "toggle5v": true,
+        "antennaDeployment1": false,
+        "antennaDeployment2": false
+      },
+      "state": false
+    },
+    "uhfFailures": 4,
+    "deploymentSensed": 15,
+    "deploymentRounds": 3
   },
-  "uhfFailures": 4,
-  "deploymentSensed": 15,
-  "deploymentRounds": 3,
   "packetNumber": 1869808857,
   "signature": 1572060671,
   "rawData": [
