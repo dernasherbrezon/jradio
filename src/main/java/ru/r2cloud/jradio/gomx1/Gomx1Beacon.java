@@ -6,23 +6,19 @@ import java.io.IOException;
 
 import ru.r2cloud.jradio.Beacon;
 import ru.r2cloud.jradio.csp.Header;
-import ru.r2cloud.jradio.util.StreamUtils;
 
 public class Gomx1Beacon extends Beacon {
 
 	private Header header;
-	private long beaconTime;
-	private int flags;
 
 	private TypeA typeA;
 	private TypeB typeB;
+	private byte[] unknownPayload;
 
 	@Override
 	public void readBeacon(byte[] data) throws IOException {
 		DataInputStream dis = new DataInputStream(new ByteArrayInputStream(data));
 		header = new Header(dis);
-		beaconTime = StreamUtils.readUnsignedInt(dis);
-		flags = dis.readUnsignedByte();
 		switch (data.length) {
 		case 216:
 			typeA = new TypeA(dis);
@@ -31,8 +27,17 @@ public class Gomx1Beacon extends Beacon {
 			typeB = new TypeB(dis);
 			break;
 		default:
-			throw new IOException("unknown beacon type: " + data.length);
+			unknownPayload = new byte[dis.available()];
+			dis.readFully(unknownPayload);
 		}
+	}
+
+	public byte[] getUnknownPayload() {
+		return unknownPayload;
+	}
+
+	public void setUnknownPayload(byte[] unknownPayload) {
+		this.unknownPayload = unknownPayload;
 	}
 
 	public TypeA getTypeA() {
@@ -49,22 +54,6 @@ public class Gomx1Beacon extends Beacon {
 
 	public void setHeader(Header header) {
 		this.header = header;
-	}
-
-	public long getBeaconTime() {
-		return beaconTime;
-	}
-
-	public void setBeaconTime(long beaconTime) {
-		this.beaconTime = beaconTime;
-	}
-
-	public int getFlags() {
-		return flags;
-	}
-
-	public void setFlags(int flags) {
-		this.flags = flags;
 	}
 
 	public TypeB getTypeB() {

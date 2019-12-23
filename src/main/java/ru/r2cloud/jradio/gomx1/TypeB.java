@@ -3,8 +3,12 @@ package ru.r2cloud.jradio.gomx1;
 import java.io.DataInputStream;
 import java.io.IOException;
 
+import ru.r2cloud.jradio.util.StreamUtils;
+
 public class TypeB {
 
+	private long beaconTime;
+	private int flags;
 	private int[] sun; // sun sensor +x +y -x -y -z
 	private int ineclipse; // 0=in sun, 1=ineclipse
 	private float[] xest; // State vector [_i^cq ^c\omega b_mag b_gyro \tau] in total 16 states
@@ -23,6 +27,8 @@ public class TypeB {
 	}
 
 	public TypeB(DataInputStream dis) throws IOException {
+		beaconTime = StreamUtils.readUnsignedInt(dis);
+		flags = dis.readUnsignedByte();
 		sun = new int[5];
 		for (int i = 0; i < sun.length; i++) {
 			sun[i] = dis.readUnsignedShort();
@@ -38,6 +44,22 @@ public class TypeB {
 		scReci = readFloat(dis, 3);
 		sunEci = readFloat(dis, 3);
 		magEci = readFloat(dis, 3);
+	}
+	
+	public long getBeaconTime() {
+		return beaconTime;
+	}
+	
+	public void setBeaconTime(long beaconTime) {
+		this.beaconTime = beaconTime;
+	}
+	
+	public int getFlags() {
+		return flags;
+	}
+	
+	public void setFlags(int flags) {
+		this.flags = flags;
 	}
 
 	private static float[] readFloat(DataInputStream dis, int size) throws IOException {

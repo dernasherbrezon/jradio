@@ -11,9 +11,9 @@
     "frdp": false,
     "fcrc32": false
   },
-  "beaconTime": 1427835421,
-  "flags": 121,
   "typeA": {
+    "beaconTime": 1427835421,
+    "flags": 121,
     "obcBootcount": 573,
     "temp1": -6.0,
     "temp2": -4.0,

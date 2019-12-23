@@ -7,6 +7,8 @@ import ru.r2cloud.jradio.util.StreamUtils;
 
 public class TypeA {
 
+	private long beaconTime;
+	private int flags;
 	private int obcBootcount; // Total boot count
 	private float temp1; // Board temp1 * 4 in [C]
 	private float temp2; // Board temp2 * 4 in [C]
@@ -73,6 +75,8 @@ public class TypeA {
 	}
 
 	public TypeA(DataInputStream dis) throws IOException {
+		beaconTime = StreamUtils.readUnsignedInt(dis);
+		flags = dis.readUnsignedByte();
 		obcBootcount = dis.readUnsignedShort();
 		temp1 = dis.readShort() / 4.0f;
 		temp2 = dis.readShort() / 4.0f;
@@ -171,6 +175,22 @@ public class TypeA {
 		for (int i = 0; i < sunsensorPacked.length; i++) {
 			sunsensorPacked[i] = dis.readUnsignedByte();
 		}
+	}
+	
+	public long getBeaconTime() {
+		return beaconTime;
+	}
+	
+	public void setBeaconTime(long beaconTime) {
+		this.beaconTime = beaconTime;
+	}
+	
+	public int getFlags() {
+		return flags;
+	}
+	
+	public void setFlags(int flags) {
+		this.flags = flags;
 	}
 
 	public int getObcBootcount() {
