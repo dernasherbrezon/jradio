@@ -26,12 +26,14 @@ public class Eseo extends BeaconSource<EseoBeacon> {
 	@Override
 	protected EseoBeacon parseBeacon(byte[] raw) throws UncorrectableException, IOException {
 		CorrelateAccessCode code = new CorrelateAccessCode(1, EseoBeacon.FLAG);
-		// start from last index in case of reed-solomon code block is having EseoBeacon flag
+		// start from last index in case of reed-solomon code block is having EseoBeacon.FLAG
 		int endFlag = raw.length - 1;
 		while ((endFlag = code.lastIndexOf(raw, endFlag)) != -1) {
-			// 152bit
-			if (endFlag < 19) {
-				LOG.info("not enough data between flags: {}", endFlag);
+			// 264bit
+			if (endFlag < 33) {
+				if (LOG.isDebugEnabled()) {
+					LOG.debug("not enough data between flags: {}", endFlag);
+				}
 				break;
 			}
 
