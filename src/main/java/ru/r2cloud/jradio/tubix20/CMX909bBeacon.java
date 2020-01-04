@@ -63,7 +63,20 @@ public abstract class CMX909bBeacon extends Beacon {
 		ByteArrayOutputStream baos = new ByteArrayOutputStream();
 		int blockLength = 18;
 		for (int i = 0; i < numberOfBlocks; i++) {
-			baos.write(readDatablock(randomizer, dis, blockLength));
+			try {
+				byte[] block = readDatablock(randomizer, dis, blockLength);
+				baos.write(block);
+			} catch (UncorrectableException e) {
+				// if some data recovered, then return it
+				// at least some SourcePacket might be recovered
+				if (baos.size() > 0) {
+					return baos.toByteArray();
+				} else {
+					// if this is the first block and we cannot recover it
+					// then throw Exception. most likely whole packet is invalid
+					throw e;
+				}
+			}
 		}
 		return baos.toByteArray();
 	}

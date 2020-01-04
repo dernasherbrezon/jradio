@@ -1,0 +1,67 @@
+{
+  "frame": {
+    "spacecraftIdentifier": 80,
+    "tfVersionNumber": 1,
+    "tfCounter": 3575,
+    "packets": [
+      {
+        "stdTmObc": {
+          "nodeNo": 0,
+          "rstEn": true,
+          "botSlt": 0,
+          "synPps": true,
+          "disUTC": false,
+          "dulBsy": false,
+          "tmmtfHist": "BUS",
+          "satMode": "NOMINAL",
+          "tmmhsHist": "BUS",
+          "tmmhsStat": "OFF"
+        },
+        "length": 13,
+        "virtualChannelIdentifier": 0,
+        "recordingTimeFraction": 7,
+        "recordingTimeSeconds": 573993161,
+        "nodeOfOrigin": 4,
+        "sourcePacketIdentifier": 11,
+        "crc": 106
+      },
+      {
+        "stdTmObc": {
+          "nodeNo": 0,
+          "rstEn": true,
+          "botSlt": 0,
+          "synPps": true,
+          "disUTC": false,
+          "dulBsy": false,
+          "tmmtfHist": "BUS",
+          "satMode": "NOMINAL",
+          "tmmhsHist": "BUS",
+          "tmmhsStat": "OFF"
+        },
+        "length": 13,
+        "virtualChannelIdentifier": 1,
+        "recordingTimeFraction": 8,
+        "recordingTimeSeconds": 573984786,
+        "nodeOfOrigin": 4,
+        "sourcePacketIdentifier": 11,
+        "crc": 41233
+      }
+    ]
+  },
+  "header": {
+    "control1": {
+      "type": "REG",
+      "numberOfBlocks": 31,
+      "numberOfErrors": 30
+    },
+    "control2": {
+      "baud9600": false,
+      "ack": true,
+      "subaddress": 3,
+      "address": 0
+    }
+  },
+  "callsign": "DP0TBA",
+  "beginSample": 0,
+  "beginMillis": 0
+}
