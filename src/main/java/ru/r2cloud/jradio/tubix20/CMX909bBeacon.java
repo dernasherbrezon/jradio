@@ -52,43 +52,29 @@ public abstract class CMX909bBeacon extends Beacon {
 		case ACK:
 		case ERROR_CORRECTION:
 			shortDataBlock = readShortDataBlock(randomizer, dis);
-			if (shortDataBlock == null) {
-				throw new UncorrectableException("unable to recover short data block");
-			}
 			break;
 		default:
-			byte[] dataFromBlocks = readDataBlocks(header, randomizer, dis);
-			readFrameData(dataFromBlocks);
+			readFrameData(readDataBlocks(header.getControl1().getNumberOfBlocks(), randomizer, dis));
 			break;
 		}
 	}
 
-	public static byte[] readDataBlocks(CMX909bHeader header, MobitexRandomizer randomizer, DataInputStream dis) throws IOException, UncorrectableException {
+	public static byte[] readDataBlocks(int numberOfBlocks, MobitexRandomizer randomizer, DataInputStream dis) throws IOException, UncorrectableException {
 		ByteArrayOutputStream baos = new ByteArrayOutputStream();
-		boolean atLeastOneBlockRecovered = false;
 		int blockLength = 18;
-		for (int i = 0; i < header.getControl1().getNumberOfBlocks(); i++) {
-			byte[] cur = readDatablock(randomizer, dis, blockLength);
-			if (cur == null) {
-				cur = new byte[blockLength];
-			} else {
-				atLeastOneBlockRecovered = true;
-			}
-			baos.write(cur);
+		for (int i = 0; i < numberOfBlocks; i++) {
+			baos.write(readDatablock(randomizer, dis, blockLength));
 		}
-		if (atLeastOneBlockRecovered) {
-			return baos.toByteArray();
-		}
-		throw new UncorrectableException("no blocks recovered");
+		return baos.toByteArray();
 	}
 
 	protected abstract void readFrameData(byte[] data) throws IOException;
 
-	public static byte[] readShortDataBlock(MobitexRandomizer randomizer, DataInputStream dis) throws IOException {
+	public static byte[] readShortDataBlock(MobitexRandomizer randomizer, DataInputStream dis) throws IOException, UncorrectableException {
 		return readDatablock(randomizer, dis, 4);
 	}
 
-	private static byte[] readDatablock(MobitexRandomizer randomizer, DataInputStream dis, int length) throws IOException {
+	private static byte[] readDatablock(MobitexRandomizer randomizer, DataInputStream dis, int length) throws IOException, UncorrectableException {
 		byte[] blockData = new byte[length + 2 + (length + 2) * 4 / 8];
 		dis.readFully(blockData);
 		randomizer.shuffle(blockData);
@@ -99,22 +85,14 @@ public abstract class CMX909bBeacon extends Beacon {
 		byte[] deinterleaved = Deinterleave.deinterleaveBits(data, 8, data.length);
 		byte[] fecDeinterleaved = Deinterleave.deinterleaveBits(fecData, 4, data.length);
 		for (int i = 0; i < deinterleaved.length; i++) {
-			try {
-				deinterleaved[i] = (byte) Hamming.decode12b8((deinterleaved[i] << 4) | (fecDeinterleaved[i] & 0xFF));
-			} catch (UncorrectableException e) {
-				if (LOG.isDebugEnabled()) {
-					LOG.debug("unable to correct data block");
-				}
-				return null;
-			}
+			deinterleaved[i] = (byte) Hamming.decode12b8((deinterleaved[i] << 4) | (fecDeinterleaved[i] & 0xFF));
 		}
 
 		byte[] result = Arrays.copyOfRange(deinterleaved, 0, length);
 		int crc16 = Crc16Ccitt.calculateReverse(result);
 		int expectedCrc = ((deinterleaved[deinterleaved.length - 2] & 0xFF) << 8) | (deinterleaved[deinterleaved.length - 1] & 0xFF);
 		if (crc16 != expectedCrc) {
-			LOG.info("bad data block. crc mismatch");
-			return null;
+			throw new UncorrectableException("bad data block. crc mismatch");
 		}
 		return result;
 	}

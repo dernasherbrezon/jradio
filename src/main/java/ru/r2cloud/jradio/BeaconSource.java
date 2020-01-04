@@ -48,7 +48,7 @@ public abstract class BeaconSource<T> implements Iterator<T>, Closeable {
 				continue;
 			} catch (UncorrectableException e) {
 				if (LOG.isDebugEnabled()) {
-					LOG.debug("unable to decode reed solomon: {}", e.getMessage());
+					LOG.debug("unable to decode beacon: {}", e.getMessage());
 				}
 				continue;
 			}

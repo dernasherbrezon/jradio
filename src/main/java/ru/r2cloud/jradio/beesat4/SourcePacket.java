@@ -3,12 +3,7 @@ package ru.r2cloud.jradio.beesat4;
 import java.io.DataInputStream;
 import java.io.IOException;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 public class SourcePacket {
-
-	private static final Logger LOG = LoggerFactory.getLogger(SourcePacket.class);
 
 	private Apid0 apid0;
 	private Apid1 apid1;
@@ -31,6 +26,7 @@ public class SourcePacket {
 	private Apid58 apid58;
 	private Apid59 apid59;
 	private Apid6U12 apid60U66;
+	private byte[] unknownApid;
 
 	private int pvn; // packet version number
 	private boolean pt; // packet type indicator
@@ -93,11 +89,19 @@ public class SourcePacket {
 		} else if (apid >= 60 && apid <= 66) {
 			apid60U66 = new Apid6U12(dis);
 		} else {
-			LOG.error("unknown apid: {}", apid);
-			dis.skipBytes(126);
+			unknownApid = new byte[126];
+			dis.readFully(unknownApid);
 		}
 	}
 
+	public byte[] getUnknownApid() {
+		return unknownApid;
+	}
+	
+	public void setUnknownApid(byte[] unknownApid) {
+		this.unknownApid = unknownApid;
+	}
+	
 	public Apid0 getApid0() {
 		return apid0;
 	}

@@ -19,7 +19,7 @@ public class CMX909bHeader {
 	public CMX909bHeader() {
 		//do nothing
 	}
-
+	
 	public CMX909bHeader(DataInputStream dis) throws UncorrectableException, IOException {
 		int control1Byte = dis.readUnsignedByte();
 		int control2Byte = dis.readUnsignedByte();

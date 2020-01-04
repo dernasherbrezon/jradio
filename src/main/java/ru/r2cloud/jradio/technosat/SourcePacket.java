@@ -3,14 +3,9 @@ package ru.r2cloud.jradio.technosat;
 import java.io.DataInputStream;
 import java.io.IOException;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import ru.r2cloud.jradio.util.StreamUtils;
 
 public class SourcePacket {
-
-	private static final Logger LOG = LoggerFactory.getLogger(SourcePacket.class);
 
 	private StdTmOBC stdTmObc;
 	private StdTmPDH stdTmPdh;
@@ -46,6 +41,7 @@ public class SourcePacket {
 	private int nodeOfOrigin;
 	private int sourcePacketIdentifier;
 	private int crc;
+	private byte[] unknownPayload;
 
 	public void readExternal(DataInputStream dis) throws IOException {
 		length = dis.readUnsignedShort();
@@ -135,11 +131,19 @@ public class SourcePacket {
 			tmCameraStatus2 = new TmCameraStatus2(dis);
 			break;
 		default:
-			LOG.error("unknown source packet identifier: {}", sourcePacketIdentifier);
-			dis.skipBytes(length);
+			unknownPayload = new byte[length];
+			dis.readFully(unknownPayload);
 			break;
 		}
 		crc = dis.readUnsignedShort();
+	}
+	
+	public byte[] getUnknownPayload() {
+		return unknownPayload;
+	}
+	
+	public void setUnknownPayload(byte[] unknownPayload) {
+		this.unknownPayload = unknownPayload;
 	}
 
 	public StdTmOBC getStdTmObc() {

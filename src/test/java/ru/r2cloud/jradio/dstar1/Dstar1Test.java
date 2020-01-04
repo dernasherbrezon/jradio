@@ -28,7 +28,7 @@ public class Dstar1Test {
 		float gainMu = 0.175f;
 		WavFileSource source = new WavFileSource(Dstar1Test.class.getClassLoader().getResourceAsStream("dstar_one.wav"));
 		MultiplyConst mc = new MultiplyConst(source, -10.0f);
-		LowPassFilter lpf = new LowPassFilter(mc, 1.0, 3000, 100, Window.WIN_HAMMING, 6.76);
+		LowPassFilter lpf = new LowPassFilter(mc, 1.0, 3500, 100, Window.WIN_HAMMING, 6.76);
 		ClockRecoveryMM clockRecovery = new ClockRecoveryMM(lpf, lpf.getContext().getSampleRate() / 4800, (float) (0.25 * gainMu * gainMu), 0.5f, gainMu, 0.005f);
 		BinarySlicer bs = new BinarySlicer(clockRecovery);
 		CorrelateAccessCodeTag correlateTag = new CorrelateAccessCodeTag(bs, 6, "11001100110011000101011101100101", false);

@@ -12,6 +12,8 @@ import ru.r2cloud.jradio.tubix20.MobitexRandomizer;
 
 public class Dstar1Beacon extends Beacon {
 
+	// always 6
+	private static final int NUMBER_OF_BLOCKS = 6;
 	private CMX909bHeader header;
 	private PayloadData payload;
 
@@ -20,7 +22,7 @@ public class Dstar1Beacon extends Beacon {
 		DataInputStream dis = new DataInputStream(new ByteArrayInputStream(data));
 		header = new CMX909bHeader(dis);
 		MobitexRandomizer randomizer = new MobitexRandomizer();
-		byte[] dataFromBlocks = CMX909bBeacon.readDataBlocks(header, randomizer, dis);
+		byte[] dataFromBlocks = CMX909bBeacon.readDataBlocks(NUMBER_OF_BLOCKS, randomizer, dis);
 		if (dataFromBlocks != null) {
 			payload = new PayloadData(dataFromBlocks);
 		}
