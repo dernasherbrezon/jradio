@@ -1,6 +1,6 @@
 {
   "id": 2,
-  "frameType": "WO9",
+  "frameType": "WO10",
   "realtimeTelemetry": {
     "solarPanelVoltageX": 0,
     "solarPanelVoltageY": 0,
@@ -9,7 +9,7 @@
     "batteryVoltage": 8140,
     "totalSystemCurrent": 206,
     "rebootCount": 721,
-    "EPSSoftwareErrors": 0,
+    "ePsSoftwareErrors": 0,
     "boostConverterTempX": 7,
     "boostConverterTempY": 8,
     "boostConverterTempZ": 9,
@@ -521,6 +521,6 @@
     19,
     0
   ],
-  "beginSample": 238155,
+  "beginSample": 238215,
   "beginMillis": 0
 }
