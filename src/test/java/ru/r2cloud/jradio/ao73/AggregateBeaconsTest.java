@@ -1,29 +1,29 @@
 package ru.r2cloud.jradio.ao73;
 
-import static org.junit.Assert.assertEquals;
-
+import java.io.BufferedInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.Test;
 
-import ru.r2cloud.jradio.fec.ViterbiTest;
+import ru.r2cloud.jradio.AssertJson;
+import ru.r2cloud.jradio.BeaconInputStream;
 
 public class AggregateBeaconsTest {
 
 	@Test
-	public void testWholeOrbit() throws IOException {
-		byte[] data = ViterbiTest.hexStringToByteArray("A7EA4AC68F1140111E10F7013E206400D78BF8D794C893A82ADA52A60E580EC80F4E011D205A00DB94A8AA8A9813AC690AA6A810E610920FB80150206400D796A8C18B4825ABA9CACE9D10760FC91055013A205A00D79729088C484FA96A5AF2A410390F7B0F860149206400D79408D08AD82AAD6A5A7EB40E530E9B0EB70109205A00DB99A8F28FE838AFAA8AC29E0EDE0F480E310131205A00CE9BC8FF88681BB26A5ACAA70FC30E740E580134205A00D79B391B97B8C5B02B3AD6B5016B006A029E0003201300");
-		Ao73Beacon beacon = Ao73BeaconComparatorTest.create(1);
-		beacon.setPayload(data);
-		beacon.setFrameType(FrameType.WO10);
-		List<Ao73Beacon> list = new ArrayList<>();
-		list.add(beacon);
-		List<WholeOrbitDataBatch> result = AggregateBeacons.readWholeOrbit(list);
-		assertEquals(1, result.size());
-		WholeOrbitDataBatch batch = result.get(0);
-		assertEquals(1, batch.getSequenceNumber());
+	public void testAggregation() throws IOException {
+		List<Ao73Beacon> beacons = new ArrayList<>();
+		try (BeaconInputStream<Ao73Beacon> bis = new BeaconInputStream<>(new BufferedInputStream(AggregateBeaconsTest.class.getClassLoader().getResourceAsStream("ao73Decoded.bin")), Ao73Beacon.class)) {
+			while (bis.hasNext()) {
+				beacons.add(bis.next());
+			}
+		}
+
+		AssertJson.assertObjectsEqual("Ao73AggregationFitter.json", AggregateBeacons.readFitterMessages(beacons).toArray(new FitterMessage[0]), FitterMessage[].class);
+		AssertJson.assertObjectsEqual("Ao73AggregationHighResolution.json", AggregateBeacons.readHighResolutionData(beacons).toArray(new HighResolutionDataBatch[0]), HighResolutionDataBatch[].class);
+		AssertJson.assertObjectsEqual("Ao73AggregationWholeOrbit.json", AggregateBeacons.readWholeOrbit(beacons).toArray(new WholeOrbitDataBatch[0]), WholeOrbitDataBatch[].class);
 	}
-	
+
 }

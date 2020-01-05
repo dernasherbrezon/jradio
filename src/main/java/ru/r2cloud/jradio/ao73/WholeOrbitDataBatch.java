@@ -19,7 +19,7 @@ public class WholeOrbitDataBatch {
 		}
 		byte[] callsignBytes = new byte[8];
 		dis.readFully(callsignBytes);
-		callsign = new String(callsignBytes, StandardCharsets.ISO_8859_1);
+		callsign = new String(callsignBytes, StandardCharsets.ISO_8859_1).trim();
 	}
 
 	public WholeOrbit[] getData() {

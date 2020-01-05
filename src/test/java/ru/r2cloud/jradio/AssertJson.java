@@ -18,11 +18,11 @@ public class AssertJson {
 
 	private static final Gson GSON = new GsonBuilder().registerTypeAdapter(Date.class, new DateAdapter()).create();
 
-	public static void assertObjectsEqual(String jsonFilename, Object actualObject) {
+	public static void assertObjectsEqual(String jsonFilename, Object actualObject, Class<?> clazz) {
 		assertNotNull(actualObject);
 		Object expected;
 		try (InputStreamReader reader = new InputStreamReader(AssertJson.class.getResourceAsStream("/expected/" + jsonFilename))) {
-			expected = GSON.fromJson(reader, actualObject.getClass());
+			expected = GSON.fromJson(reader, clazz);
 		} catch (IOException e) {
 			throw new RuntimeException(e);
 		}
@@ -33,6 +33,10 @@ public class AssertJson {
 		if (message.length() > 0) {
 			fail(message.toString());
 		}
+	}
+	
+	public static void assertObjectsEqual(String jsonFilename, Object actualObject) {
+		assertObjectsEqual(jsonFilename, actualObject, actualObject.getClass());
 	}
 
 	private static void assertElements(StringBuilder message, String fieldName, Object expected, Object actual) {

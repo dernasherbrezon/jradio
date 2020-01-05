@@ -2,99 +2,63 @@ package ru.r2cloud.jradio.ao73;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 public class AggregateBeacons {
-	
+
 	private static final int MAX_WHOLE_ORBIT_CHUNKS = 12;
 	private static final int MAX_HIGH_RES_CHUNKS = 3;
-	private static final int MAX_FITTER_CHUNKS = 9;
-	
-	public static List<FitterMessageBatch> readFitterMessages(List<Ao73Beacon> beacons) throws IOException {
+
+	public static List<FitterMessage> readFitterMessages(List<Ao73Beacon> beacons) {
 		Collections.sort(beacons, Ao73BeaconComparator.INSTACE);
-		ByteArrayOutputStream baos = null;
-		int lastIndex = 0;
-		Ao73Beacon firstBeacon = null;
-		List<FitterMessageBatch> result = new ArrayList<>();
+		List<FitterMessage> result = new ArrayList<>();
 		for (Ao73Beacon cur : beacons) {
-			if (!cur.getFrameType().isFitterMessage()) {
+			if (cur.getFrameType() == null || !cur.getFrameType().isFitterMessage()) {
 				continue;
 			}
-			if (baos == null) {
-				baos = new ByteArrayOutputStream();
-				firstBeacon = cur;
+			// we may be processing a packet after a reset so the frame may contain 000's
+			if (cur.getPayload()[3] == 0) {
+				continue;
 			}
-			for (int i = lastIndex; i < (cur.getFrameType().getIndex() - 1); i++) {
-				// fill the gap between the last transmittion and the next one
-				baos.write(new byte[200]);
+			// we do not process DEBUG frames
+			if ((cur.getPayload()[3] & 0xFF) == 0xFF) {
+				continue;
 			}
-			baos.write(cur.getPayload());
-			lastIndex = cur.getFrameType().getIndex();
-			if (lastIndex == MAX_FITTER_CHUNKS && firstBeacon != null) {
-				lastIndex = 0;
-				FitterMessageBatch batch = new FitterMessageBatch(firstBeacon.getRealtimeTelemetry().getSequenceNumber(), baos.toByteArray());
-				result.add(batch);
-				baos = null;
-				firstBeacon = null;
-			}
+			result.add(new FitterMessage(cur.getFrameType(), new String(cur.getPayload(), StandardCharsets.ISO_8859_1).trim(), cur.getRealtimeTelemetry().getSequenceNumber()));
 		}
-
-		if (baos != null && firstBeacon != null) {
-			for (int i = lastIndex; i <= MAX_FITTER_CHUNKS; i++) {
-				//TODO gaps will cause non-null values in wholeorbit.
-				//fiture out how to parse sparse byte array
-				// fill the gap between the last transmittion and the next one
-				baos.write(new byte[200]);
-			}
-			FitterMessageBatch batch = new FitterMessageBatch(firstBeacon.getRealtimeTelemetry().getSequenceNumber(), baos.toByteArray());
-			result.add(batch);
-		}
-		
 		return result;
 	}
-	
+
 	public static List<HighResolutionDataBatch> readHighResolutionData(List<Ao73Beacon> beacons) throws IOException {
 		Collections.sort(beacons, Ao73BeaconComparator.INSTACE);
 		ByteArrayOutputStream baos = null;
 		int lastIndex = 0;
-		Ao73Beacon firstBeacon = null;
 		List<HighResolutionDataBatch> result = new ArrayList<>();
 		for (Ao73Beacon cur : beacons) {
 			if (!cur.getFrameType().isHighResolutionData()) {
 				continue;
 			}
-			if (baos == null) {
-				baos = new ByteArrayOutputStream();
-				firstBeacon = cur;
+			// start only from the first message
+			if (cur.getFrameType().getIndex() - lastIndex != 1) {
+				// reset to start
+				lastIndex = 0;
+				continue;
 			}
-			for (int i = lastIndex; i < (cur.getFrameType().getIndex() - 1); i++) {
-				// fill the gap between the last transmittion and the next one
-				baos.write(new byte[200]);
+			if (cur.getFrameType().getIndex() == 1 || baos == null) {
+				baos = new ByteArrayOutputStream();
 			}
 			baos.write(cur.getPayload());
 			lastIndex = cur.getFrameType().getIndex();
-			if (lastIndex == MAX_HIGH_RES_CHUNKS && firstBeacon != null) {
+			if (lastIndex == MAX_HIGH_RES_CHUNKS) {
 				lastIndex = 0;
-				HighResolutionDataBatch batch = new HighResolutionDataBatch(firstBeacon.getRealtimeTelemetry().getSequenceNumber(), baos.toByteArray());
+				HighResolutionDataBatch batch = new HighResolutionDataBatch(cur.getRealtimeTelemetry().getSequenceNumber(), baos.toByteArray());
 				result.add(batch);
-				baos = null;
-				firstBeacon = null;
 			}
 		}
 
-		if (baos != null && firstBeacon != null) {
-			for (int i = lastIndex; i <= MAX_HIGH_RES_CHUNKS; i++) {
-				//TODO gaps will cause non-null values in wholeorbit.
-				//fiture out how to parse sparse byte array
-				// fill the gap between the last transmittion and the next one
-				baos.write(new byte[200]);
-			}
-			HighResolutionDataBatch batch = new HighResolutionDataBatch(firstBeacon.getRealtimeTelemetry().getSequenceNumber(), baos.toByteArray());
-			result.add(batch);
-		}
-		
 		return result;
 	}
 
@@ -102,47 +66,34 @@ public class AggregateBeacons {
 		Collections.sort(beacons, Ao73BeaconComparator.INSTACE);
 		ByteArrayOutputStream baos = null;
 		int lastIndex = 0;
-		Ao73Beacon firstBeacon = null;
 		List<WholeOrbitDataBatch> result = new ArrayList<>();
 		for (Ao73Beacon cur : beacons) {
 			if (!cur.getFrameType().isWholeOrbit()) {
 				continue;
 			}
-			if (baos == null) {
-				baos = new ByteArrayOutputStream();
-				firstBeacon = cur;
+			// start only from the first message
+			if (cur.getFrameType().getIndex() - lastIndex != 1) {
+				// reset to start
+				lastIndex = 0;
+				continue;
 			}
-			for (int i = lastIndex; i < (cur.getFrameType().getIndex() - 1); i++) {
-				// fill the gap between the last transmittion and the next one
-				baos.write(new byte[200]);
+			if (cur.getFrameType().getIndex() == 1 || baos == null) {
+				baos = new ByteArrayOutputStream();
 			}
 			baos.write(cur.getPayload());
 			lastIndex = cur.getFrameType().getIndex();
-			if (lastIndex == MAX_WHOLE_ORBIT_CHUNKS && firstBeacon != null) {
+			if (lastIndex == MAX_WHOLE_ORBIT_CHUNKS) {
 				lastIndex = 0;
-				WholeOrbitDataBatch batch = new WholeOrbitDataBatch(firstBeacon.getRealtimeTelemetry().getSequenceNumber(), baos.toByteArray());
+				WholeOrbitDataBatch batch = new WholeOrbitDataBatch(cur.getRealtimeTelemetry().getSequenceNumber(), baos.toByteArray());
 				result.add(batch);
-				baos = null;
-				firstBeacon = null;
 			}
 		}
 
-		if (baos != null && firstBeacon != null) {
-			for (int i = lastIndex; i <= MAX_WHOLE_ORBIT_CHUNKS; i++) {
-				//TODO gaps will cause non-null values in wholeorbit.
-				//fiture out how to parse sparse byte array
-				// fill the gap between the last transmittion and the next one
-				baos.write(new byte[200]);
-			}
-			WholeOrbitDataBatch batch = new WholeOrbitDataBatch(firstBeacon.getRealtimeTelemetry().getSequenceNumber(), baos.toByteArray());
-			result.add(batch);
-		}
-		
 		return result;
 	}
-	
+
 	private AggregateBeacons() {
-		//do nothing
+		// do nothing
 	}
 
 }

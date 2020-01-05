@@ -1,0 +1,1637 @@
+[
+  {
+    "data": [
+      {
+        "sunSensorXP": 157.4098,
+        "sunSensorYP": -43.33879,
+        "sunSensorYM": 157.58409,
+        "sunSensorZP": 156.78761,
+        "sunSensorZM": 157.7928,
+        "totalPhotoCurrent": 117,
+        "batteryVoltage": 4146
+      },
+      {
+        "sunSensorXP": 157.4098,
+        "sunSensorYP": -43.546387,
+        "sunSensorYM": 157.58409,
+        "sunSensorZP": 156.58,
+        "sunSensorZM": 158.0015,
+        "totalPhotoCurrent": 104,
+        "batteryVoltage": 4141
+      },
+      {
+        "sunSensorXP": 157.4098,
+        "sunSensorYP": -43.33879,
+        "sunSensorYM": 157.58409,
+        "sunSensorZP": 156.3724,
+        "sunSensorZM": 158.0015,
+        "totalPhotoCurrent": 126,
+        "batteryVoltage": 4146
+      },
+      {
+        "sunSensorXP": 157.4098,
+        "sunSensorYP": -43.753998,
+        "sunSensorYM": 157.58409,
+        "sunSensorZP": 156.16481,
+        "sunSensorZM": 158.2102,
+        "totalPhotoCurrent": 111,
+        "batteryVoltage": 4141
+      },
+      {
+        "sunSensorXP": 157.2025,
+        "sunSensorYP": -38.979187,
+        "sunSensorYM": 157.3754,
+        "sunSensorZP": 156.16481,
+        "sunSensorZM": 158.2102,
+        "totalPhotoCurrent": 109,
+        "batteryVoltage": 4141
+      },
+      {
+        "sunSensorXP": 157.4098,
+        "sunSensorYP": 19.356415,
+        "sunSensorYM": 157.58409,
+        "sunSensorZP": 155.9572,
+        "sunSensorZM": 158.2102,
+        "totalPhotoCurrent": 109,
+        "batteryVoltage": 4146
+      },
+      {
+        "sunSensorXP": 157.4098,
+        "sunSensorYP": 64.82081,
+        "sunSensorYM": 157.58409,
+        "sunSensorZP": 155.542,
+        "sunSensorZM": 158.2102,
+        "totalPhotoCurrent": 105,
+        "batteryVoltage": 4141
+      },
+      {
+        "sunSensorXP": 157.4098,
+        "sunSensorYP": 108.624405,
+        "sunSensorYM": 157.58409,
+        "sunSensorZP": 150.352,
+        "sunSensorZM": 158.2102,
+        "totalPhotoCurrent": 108,
+        "batteryVoltage": 4141
+      },
+      {
+        "sunSensorXP": 157.4098,
+        "sunSensorYP": 147.238,
+        "sunSensorYM": 157.3754,
+        "sunSensorZP": 147.238,
+        "sunSensorZM": 158.2102,
+        "totalPhotoCurrent": 111,
+        "batteryVoltage": 4146
+      },
+      {
+        "sunSensorXP": 157.4098,
+        "sunSensorYP": 155.7496,
+        "sunSensorYM": 157.1667,
+        "sunSensorZP": 154.0888,
+        "sunSensorZM": 158.2102,
+        "totalPhotoCurrent": 112,
+        "batteryVoltage": 4141
+      },
+      {
+        "sunSensorXP": 157.4098,
+        "sunSensorYP": 156.16481,
+        "sunSensorYM": 156.1232,
+        "sunSensorZP": 111.7384,
+        "sunSensorZM": 158.0015,
+        "totalPhotoCurrent": 114,
+        "batteryVoltage": 4141
+      },
+      {
+        "sunSensorXP": 157.4098,
+        "sunSensorYP": 156.3724,
+        "sunSensorYM": 124.19209,
+        "sunSensorZP": 80.183205,
+        "sunSensorZM": 158.0015,
+        "totalPhotoCurrent": 113,
+        "batteryVoltage": 4146
+      },
+      {
+        "sunSensorXP": 157.4098,
+        "sunSensorYP": 156.78761,
+        "sunSensorYM": 61.999496,
+        "sunSensorZP": 73.747604,
+        "sunSensorZM": 158.0015,
+        "totalPhotoCurrent": 116,
+        "batteryVoltage": 4146
+      },
+      {
+        "sunSensorXP": 157.4098,
+        "sunSensorYP": 156.99521,
+        "sunSensorYM": -19.810898,
+        "sunSensorZP": 49.25081,
+        "sunSensorZM": 157.7928,
+        "totalPhotoCurrent": 122,
+        "batteryVoltage": 4146
+      },
+      {
+        "sunSensorXP": 157.2025,
+        "sunSensorYP": 157.2028,
+        "sunSensorYM": -44.4375,
+        "sunSensorZP": 37.625206,
+        "sunSensorZM": 157.7928,
+        "totalPhotoCurrent": 123,
+        "batteryVoltage": 4146
+      },
+      {
+        "sunSensorXP": 157.2025,
+        "sunSensorYP": 157.4104,
+        "sunSensorYM": -44.228806,
+        "sunSensorZP": 32.642807,
+        "sunSensorZM": 157.7928,
+        "totalPhotoCurrent": 108,
+        "batteryVoltage": 4141
+      },
+      {
+        "sunSensorXP": 157.2025,
+        "sunSensorYP": 157.4104,
+        "sunSensorYM": -44.020096,
+        "sunSensorZP": 33.26561,
+        "sunSensorZM": 157.7928,
+        "totalPhotoCurrent": 109,
+        "batteryVoltage": 4141
+      },
+      {
+        "sunSensorXP": 157.2025,
+        "sunSensorYP": 157.61801,
+        "sunSensorYM": -44.228806,
+        "sunSensorZP": 36.794807,
+        "sunSensorZM": 157.7928,
+        "totalPhotoCurrent": 117,
+        "batteryVoltage": 4141
+      },
+      {
+        "sunSensorXP": 157.2025,
+        "sunSensorYP": 157.61801,
+        "sunSensorYM": -44.020096,
+        "sunSensorZP": 42.40001,
+        "sunSensorZM": 157.7928,
+        "totalPhotoCurrent": 116,
+        "batteryVoltage": 4146
+      },
+      {
+        "sunSensorXP": 157.2025,
+        "sunSensorYP": 157.61801,
+        "sunSensorYM": -44.228806,
+        "sunSensorZP": 49.873604,
+        "sunSensorZM": 157.7928,
+        "totalPhotoCurrent": 113,
+        "batteryVoltage": 4141
+      },
+      {
+        "sunSensorXP": 157.2025,
+        "sunSensorYP": 157.61801,
+        "sunSensorYM": -44.020096,
+        "sunSensorZP": 61.29161,
+        "sunSensorZM": 158.0015,
+        "totalPhotoCurrent": 110,
+        "batteryVoltage": 4146
+      },
+      {
+        "sunSensorXP": 157.2025,
+        "sunSensorYP": 157.61801,
+        "sunSensorYM": -44.020096,
+        "sunSensorZP": 75.82361,
+        "sunSensorZM": 158.0015,
+        "totalPhotoCurrent": 109,
+        "batteryVoltage": 4141
+      },
+      {
+        "sunSensorXP": 157.2025,
+        "sunSensorYP": 157.61801,
+        "sunSensorYM": -44.228806,
+        "sunSensorZP": 91.80881,
+        "sunSensorZM": 158.0015,
+        "totalPhotoCurrent": 105,
+        "batteryVoltage": 4141
+      },
+      {
+        "sunSensorXP": 157.2025,
+        "sunSensorYP": 157.61801,
+        "sunSensorYM": -44.228806,
+        "sunSensorZP": 106.96361,
+        "sunSensorZM": 158.0015,
+        "totalPhotoCurrent": 105,
+        "batteryVoltage": 4141
+      },
+      {
+        "sunSensorXP": 157.2025,
+        "sunSensorYP": 157.8256,
+        "sunSensorYM": -44.4375,
+        "sunSensorZP": 121.7032,
+        "sunSensorZM": 158.0015,
+        "totalPhotoCurrent": 109,
+        "batteryVoltage": 4141
+      },
+      {
+        "sunSensorXP": 157.2025,
+        "sunSensorYP": 157.8256,
+        "sunSensorYM": -44.228806,
+        "sunSensorZP": 136.6504,
+        "sunSensorZM": 158.0015,
+        "totalPhotoCurrent": 108,
+        "batteryVoltage": 4146
+      },
+      {
+        "sunSensorXP": 157.2025,
+        "sunSensorYP": 157.8256,
+        "sunSensorYM": -44.228806,
+        "sunSensorZP": 151.39,
+        "sunSensorZM": 158.2102,
+        "totalPhotoCurrent": 108,
+        "batteryVoltage": 4141
+      },
+      {
+        "sunSensorXP": 157.2025,
+        "sunSensorYP": 157.8256,
+        "sunSensorYM": -44.020096,
+        "sunSensorZP": 154.50401,
+        "sunSensorZM": 158.2102,
+        "totalPhotoCurrent": 98,
+        "batteryVoltage": 4136
+      },
+      {
+        "sunSensorXP": 156.9952,
+        "sunSensorYP": 157.8256,
+        "sunSensorYM": -44.020096,
+        "sunSensorZP": 154.9192,
+        "sunSensorZM": 158.2102,
+        "totalPhotoCurrent": 116,
+        "batteryVoltage": 4146
+      },
+      {
+        "sunSensorXP": 156.9952,
+        "sunSensorYP": 157.8256,
+        "sunSensorYM": -44.228806,
+        "sunSensorZP": 155.1268,
+        "sunSensorZM": 158.2102,
+        "totalPhotoCurrent": 103,
+        "batteryVoltage": 4141
+      },
+      {
+        "sunSensorXP": 156.7879,
+        "sunSensorYP": 157.8256,
+        "sunSensorYM": -44.020096,
+        "sunSensorZP": 155.33441,
+        "sunSensorZM": 158.2102,
+        "totalPhotoCurrent": 108,
+        "batteryVoltage": 4141
+      },
+      {
+        "sunSensorXP": 156.7879,
+        "sunSensorYP": 157.8256,
+        "sunSensorYM": -44.020096,
+        "sunSensorZP": 155.542,
+        "sunSensorZM": 158.2102,
+        "totalPhotoCurrent": 110,
+        "batteryVoltage": 4141
+      },
+      {
+        "sunSensorXP": 156.5806,
+        "sunSensorYP": 157.8256,
+        "sunSensorYM": -44.228806,
+        "sunSensorZP": 155.542,
+        "sunSensorZM": 158.2102,
+        "totalPhotoCurrent": 114,
+        "batteryVoltage": 4146
+      },
+      {
+        "sunSensorXP": 156.166,
+        "sunSensorYP": 157.8256,
+        "sunSensorYM": -44.228806,
+        "sunSensorZP": 155.7496,
+        "sunSensorZM": 158.0015,
+        "totalPhotoCurrent": 111,
+        "batteryVoltage": 4146
+      },
+      {
+        "sunSensorXP": 152.2273,
+        "sunSensorYP": 157.8256,
+        "sunSensorYM": -44.228806,
+        "sunSensorZP": 155.7496,
+        "sunSensorZM": 157.7928,
+        "totalPhotoCurrent": 109,
+        "batteryVoltage": 4141
+      },
+      {
+        "sunSensorXP": 113.8768,
+        "sunSensorYP": 157.61801,
+        "sunSensorYM": -44.020096,
+        "sunSensorZP": 155.7496,
+        "sunSensorZM": 157.3754,
+        "totalPhotoCurrent": 118,
+        "batteryVoltage": 4146
+      },
+      {
+        "sunSensorXP": 61.222595,
+        "sunSensorYP": 157.61801,
+        "sunSensorYM": -44.020096,
+        "sunSensorZP": 155.7496,
+        "sunSensorZM": 156.5406,
+        "totalPhotoCurrent": 124,
+        "batteryVoltage": 4146
+      },
+      {
+        "sunSensorXP": -20.039001,
+        "sunSensorYP": 157.2028,
+        "sunSensorYM": -44.020096,
+        "sunSensorZP": 155.7496,
+        "sunSensorZM": 151.9492,
+        "totalPhotoCurrent": 116,
+        "batteryVoltage": 4146
+      },
+      {
+        "sunSensorXP": -44.91501,
+        "sunSensorYP": 157.2028,
+        "sunSensorYM": -44.228806,
+        "sunSensorZP": 155.9572,
+        "sunSensorZM": 149.0274,
+        "totalPhotoCurrent": 116,
+        "batteryVoltage": 4146
+      },
+      {
+        "sunSensorXP": -44.707703,
+        "sunSensorYP": 157.2028,
+        "sunSensorYM": -44.228806,
+        "sunSensorZP": 155.9572,
+        "sunSensorZM": 146.3143,
+        "totalPhotoCurrent": 118,
+        "batteryVoltage": 4146
+      },
+      {
+        "sunSensorXP": -44.500412,
+        "sunSensorYP": 157.2028,
+        "sunSensorYM": -44.020096,
+        "sunSensorZP": 156.16481,
+        "sunSensorZM": 139.8446,
+        "totalPhotoCurrent": 116,
+        "batteryVoltage": 4146
+      },
+      {
+        "sunSensorXP": -44.91501,
+        "sunSensorYP": 157.2028,
+        "sunSensorYM": -44.228806,
+        "sunSensorZP": 156.16481,
+        "sunSensorZM": 130.6618,
+        "totalPhotoCurrent": 95,
+        "batteryVoltage": 4141
+      },
+      {
+        "sunSensorXP": -44.707703,
+        "sunSensorYP": 157.2028,
+        "sunSensorYM": -44.228806,
+        "sunSensorZP": 156.3724,
+        "sunSensorZM": 117.30499,
+        "totalPhotoCurrent": 115,
+        "batteryVoltage": 4146
+      },
+      {
+        "sunSensorXP": -44.91501,
+        "sunSensorYP": 157.2028,
+        "sunSensorYM": -44.228806,
+        "sunSensorZP": 156.58,
+        "sunSensorZM": 104.3656,
+        "totalPhotoCurrent": 114,
+        "batteryVoltage": 4146
+      },
+      {
+        "sunSensorXP": -44.707703,
+        "sunSensorYP": 157.2028,
+        "sunSensorYM": -44.228806,
+        "sunSensorZP": 156.58,
+        "sunSensorZM": 92.6784,
+        "totalPhotoCurrent": 104,
+        "batteryVoltage": 4141
+      },
+      {
+        "sunSensorXP": -44.500412,
+        "sunSensorYP": 157.2028,
+        "sunSensorYM": -44.020096,
+        "sunSensorZP": 156.78761,
+        "sunSensorZM": 82.0347,
+        "totalPhotoCurrent": 116,
+        "batteryVoltage": 4146
+      },
+      {
+        "sunSensorXP": -44.707703,
+        "sunSensorYP": 157.2028,
+        "sunSensorYM": -44.228806,
+        "sunSensorZP": 156.58,
+        "sunSensorZM": 73.269295,
+        "totalPhotoCurrent": 107,
+        "batteryVoltage": 4141
+      },
+      {
+        "sunSensorXP": -44.500412,
+        "sunSensorYP": 157.2028,
+        "sunSensorYM": -44.228806,
+        "sunSensorZP": 156.78761,
+        "sunSensorZM": 64.5039,
+        "totalPhotoCurrent": 116,
+        "batteryVoltage": 4146
+      },
+      {
+        "sunSensorXP": -44.707703,
+        "sunSensorYP": 157.2028,
+        "sunSensorYM": -0.61050415,
+        "sunSensorZP": 156.78761,
+        "sunSensorZM": 59.077698,
+        "totalPhotoCurrent": 111,
+        "batteryVoltage": 4146
+      },
+      {
+        "sunSensorXP": -44.500412,
+        "sunSensorYP": 156.99521,
+        "sunSensorYM": 46.138298,
+        "sunSensorZP": 156.78761,
+        "sunSensorZM": 56.781998,
+        "totalPhotoCurrent": 108,
+        "batteryVoltage": 4141
+      },
+      {
+        "sunSensorXP": -44.707703,
+        "sunSensorYP": 156.99521,
+        "sunSensorYM": 84.9565,
+        "sunSensorZP": 157.2028,
+        "sunSensorZM": 56.3646,
+        "totalPhotoCurrent": 108,
+        "batteryVoltage": 4146
+      },
+      {
+        "sunSensorXP": -44.91501,
+        "sunSensorYP": 156.78761,
+        "sunSensorYM": 121.479,
+        "sunSensorZP": 157.2028,
+        "sunSensorZM": 55.5298,
+        "totalPhotoCurrent": 102,
+        "batteryVoltage": 4141
+      },
+      {
+        "sunSensorXP": -44.91501,
+        "sunSensorYP": 156.58,
+        "sunSensorYM": 146.10559,
+        "sunSensorZP": 157.4104,
+        "sunSensorZM": 54.277596,
+        "totalPhotoCurrent": 113,
+        "batteryVoltage": 4141
+      },
+      {
+        "sunSensorXP": -44.707703,
+        "sunSensorYP": 156.16481,
+        "sunSensorYM": 155.9145,
+        "sunSensorZP": 157.4104,
+        "sunSensorZM": 56.781998,
+        "totalPhotoCurrent": 114,
+        "batteryVoltage": 4146
+      },
+      {
+        "sunSensorXP": -44.707703,
+        "sunSensorYP": 155.9572,
+        "sunSensorYM": 156.5406,
+        "sunSensorZP": 157.4104,
+        "sunSensorZM": 54.903694,
+        "totalPhotoCurrent": 112,
+        "batteryVoltage": 4141
+      },
+      {
+        "sunSensorXP": -44.707703,
+        "sunSensorYP": 155.1268,
+        "sunSensorYM": 157.1667,
+        "sunSensorZP": 157.4104,
+        "sunSensorZM": 49.4775,
+        "totalPhotoCurrent": 116,
+        "batteryVoltage": 4146
+      },
+      {
+        "sunSensorXP": -44.707703,
+        "sunSensorYP": 153.2584,
+        "sunSensorYM": 157.3754,
+        "sunSensorZP": 157.4104,
+        "sunSensorZM": 44.0513,
+        "totalPhotoCurrent": 113,
+        "batteryVoltage": 4146
+      },
+      {
+        "sunSensorXP": -44.707703,
+        "sunSensorYP": 120.8728,
+        "sunSensorYM": 157.58409,
+        "sunSensorZP": 157.4104,
+        "sunSensorZM": 37.7903,
+        "totalPhotoCurrent": 116,
+        "batteryVoltage": 4141
+      },
+      {
+        "sunSensorXP": -44.500412,
+        "sunSensorYP": 66.27401,
+        "sunSensorYM": 157.58409,
+        "sunSensorZP": 157.61801,
+        "sunSensorZM": 31.946701,
+        "totalPhotoCurrent": 119,
+        "batteryVoltage": 4146
+      },
+      {
+        "sunSensorXP": -44.707703,
+        "sunSensorYP": -44.16919,
+        "sunSensorYM": 157.3754,
+        "sunSensorZP": 157.4104,
+        "sunSensorZM": 27.9814,
+        "totalPhotoCurrent": 122,
+        "batteryVoltage": 4146
+      }
+    ],
+    "sequenceNumber": 1612286
+  },
+  {
+    "data": [
+      {
+        "sunSensorXP": 156.37329,
+        "sunSensorYP": 157.8256,
+        "sunSensorYM": -44.228806,
+        "sunSensorZP": 121.28801,
+        "sunSensorZM": 158.0015,
+        "totalPhotoCurrent": 109,
+        "batteryVoltage": 4141
+      },
+      {
+        "sunSensorXP": 156.166,
+        "sunSensorYP": 157.8256,
+        "sunSensorYM": -44.228806,
+        "sunSensorZP": 107.37881,
+        "sunSensorZM": 158.0015,
+        "totalPhotoCurrent": 108,
+        "batteryVoltage": 4141
+      },
+      {
+        "sunSensorXP": 155.1295,
+        "sunSensorYP": 157.8256,
+        "sunSensorYM": -44.228806,
+        "sunSensorZP": 95.338005,
+        "sunSensorZM": 158.0015,
+        "totalPhotoCurrent": 111,
+        "batteryVoltage": 4141
+      },
+      {
+        "sunSensorXP": 126.3148,
+        "sunSensorYP": 157.61801,
+        "sunSensorYM": -44.020096,
+        "sunSensorZP": 86.618805,
+        "sunSensorZM": 158.0015,
+        "totalPhotoCurrent": 113,
+        "batteryVoltage": 4141
+      },
+      {
+        "sunSensorXP": 90.659195,
+        "sunSensorYP": 157.61801,
+        "sunSensorYM": -44.020096,
+        "sunSensorZP": 82.67441,
+        "sunSensorZM": 158.0015,
+        "totalPhotoCurrent": 116,
+        "batteryVoltage": 4141
+      },
+      {
+        "sunSensorXP": 41.736397,
+        "sunSensorYP": 157.4104,
+        "sunSensorYM": -44.228806,
+        "sunSensorZP": 81.42881,
+        "sunSensorZM": 158.0015,
+        "totalPhotoCurrent": 115,
+        "batteryVoltage": 4146
+      },
+      {
+        "sunSensorXP": -20.246307,
+        "sunSensorYP": 157.2028,
+        "sunSensorYM": -44.228806,
+        "sunSensorZP": 83.920006,
+        "sunSensorZM": 158.0015,
+        "totalPhotoCurrent": 122,
+        "batteryVoltage": 4146
+      },
+      {
+        "sunSensorXP": -44.707703,
+        "sunSensorYP": 157.2028,
+        "sunSensorYM": -44.020096,
+        "sunSensorZP": 95.753204,
+        "sunSensorZM": 158.0015,
+        "totalPhotoCurrent": 123,
+        "batteryVoltage": 4146
+      },
+      {
+        "sunSensorXP": -44.707703,
+        "sunSensorYP": 157.2028,
+        "sunSensorYM": -44.228806,
+        "sunSensorZP": 116.928406,
+        "sunSensorZM": 158.0015,
+        "totalPhotoCurrent": 118,
+        "batteryVoltage": 4146
+      },
+      {
+        "sunSensorXP": -44.91501,
+        "sunSensorYP": 157.2028,
+        "sunSensorYM": -44.4375,
+        "sunSensorZP": 137.89601,
+        "sunSensorZM": 158.0015,
+        "totalPhotoCurrent": 111,
+        "batteryVoltage": 4141
+      },
+      {
+        "sunSensorXP": -44.707703,
+        "sunSensorYP": 157.2028,
+        "sunSensorYM": -44.228806,
+        "sunSensorZP": 154.0888,
+        "sunSensorZM": 158.2102,
+        "totalPhotoCurrent": 116,
+        "batteryVoltage": 4146
+      },
+      {
+        "sunSensorXP": -44.91501,
+        "sunSensorYP": 157.2028,
+        "sunSensorYM": -44.228806,
+        "sunSensorZP": 155.1268,
+        "sunSensorZM": 158.2102,
+        "totalPhotoCurrent": 96,
+        "batteryVoltage": 4141
+      },
+      {
+        "sunSensorXP": -44.707703,
+        "sunSensorYP": 157.2028,
+        "sunSensorYM": -44.228806,
+        "sunSensorZP": 155.33441,
+        "sunSensorZM": 158.2102,
+        "totalPhotoCurrent": 118,
+        "batteryVoltage": 4146
+      },
+      {
+        "sunSensorXP": -44.707703,
+        "sunSensorYP": 157.2028,
+        "sunSensorYM": -44.228806,
+        "sunSensorZP": 155.33441,
+        "sunSensorZM": 158.2102,
+        "totalPhotoCurrent": 117,
+        "batteryVoltage": 4141
+      },
+      {
+        "sunSensorXP": -44.707703,
+        "sunSensorYP": 156.99521,
+        "sunSensorYM": -44.020096,
+        "sunSensorZP": 155.7496,
+        "sunSensorZM": 158.2102,
+        "totalPhotoCurrent": 111,
+        "batteryVoltage": 4141
+      },
+      {
+        "sunSensorXP": -44.500412,
+        "sunSensorYP": 157.2028,
+        "sunSensorYM": -44.020096,
+        "sunSensorZP": 155.9572,
+        "sunSensorZM": 158.2102,
+        "totalPhotoCurrent": 100,
+        "batteryVoltage": 4141
+      },
+      {
+        "sunSensorXP": -44.707703,
+        "sunSensorYP": 157.2028,
+        "sunSensorYM": -44.020096,
+        "sunSensorZP": 156.16481,
+        "sunSensorZM": 157.3754,
+        "totalPhotoCurrent": 136,
+        "batteryVoltage": 4146
+      },
+      {
+        "sunSensorXP": -44.707703,
+        "sunSensorYP": 157.2028,
+        "sunSensorYM": -44.228806,
+        "sunSensorZP": 156.16481,
+        "sunSensorZM": 130.4531,
+        "totalPhotoCurrent": 113,
+        "batteryVoltage": 4146
+      },
+      {
+        "sunSensorXP": -44.91501,
+        "sunSensorYP": 157.2028,
+        "sunSensorYM": -28.57631,
+        "sunSensorZP": 156.58,
+        "sunSensorZM": 113.757095,
+        "totalPhotoCurrent": 116,
+        "batteryVoltage": 4146
+      },
+      {
+        "sunSensorXP": -44.91501,
+        "sunSensorYP": 156.99521,
+        "sunSensorYM": 24.642197,
+        "sunSensorZP": 156.78761,
+        "sunSensorZM": 110.8353,
+        "totalPhotoCurrent": 114,
+        "batteryVoltage": 4146
+      },
+      {
+        "sunSensorXP": -44.500412,
+        "sunSensorYP": 156.99521,
+        "sunSensorYM": 69.304,
+        "sunSensorZP": 156.99521,
+        "sunSensorZM": 147.5665,
+        "totalPhotoCurrent": 110,
+        "batteryVoltage": 4146
+      },
+      {
+        "sunSensorXP": -44.707703,
+        "sunSensorYP": 156.78761,
+        "sunSensorYM": 103.3221,
+        "sunSensorZP": 157.2028,
+        "sunSensorZM": 156.3319,
+        "totalPhotoCurrent": 109,
+        "batteryVoltage": 4141
+      },
+      {
+        "sunSensorXP": -44.707703,
+        "sunSensorYP": 156.3724,
+        "sunSensorYM": 136.92279,
+        "sunSensorZP": 157.4104,
+        "sunSensorZM": 140.6794,
+        "totalPhotoCurrent": 111,
+        "batteryVoltage": 4141
+      },
+      {
+        "sunSensorXP": -44.91501,
+        "sunSensorYP": 156.16481,
+        "sunSensorYM": 155.28839,
+        "sunSensorZP": 157.4104,
+        "sunSensorZM": 101.6525,
+        "totalPhotoCurrent": 108,
+        "batteryVoltage": 4141
+      },
+      {
+        "sunSensorXP": -44.707703,
+        "sunSensorYP": 155.7496,
+        "sunSensorYM": 156.958,
+        "sunSensorZP": 157.4104,
+        "sunSensorZM": 107.2874,
+        "totalPhotoCurrent": 116,
+        "batteryVoltage": 4146
+      },
+      {
+        "sunSensorXP": -44.707703,
+        "sunSensorYP": 154.9192,
+        "sunSensorYM": 157.3754,
+        "sunSensorZP": 157.61801,
+        "sunSensorZM": 68.2605,
+        "totalPhotoCurrent": 113,
+        "batteryVoltage": 4141
+      },
+      {
+        "sunSensorXP": -44.707703,
+        "sunSensorYP": 150.76721,
+        "sunSensorYM": 157.58409,
+        "sunSensorZP": 157.61801,
+        "sunSensorZM": 59.495094,
+        "totalPhotoCurrent": 106,
+        "batteryVoltage": 4146
+      },
+      {
+        "sunSensorXP": -44.707703,
+        "sunSensorYP": 116.928406,
+        "sunSensorYM": 157.58409,
+        "sunSensorZP": 157.61801,
+        "sunSensorZM": 51.147095,
+        "totalPhotoCurrent": 116,
+        "batteryVoltage": 4141
+      },
+      {
+        "sunSensorXP": -44.91501,
+        "sunSensorYP": 61.084007,
+        "sunSensorYM": 157.58409,
+        "sunSensorZP": 157.61801,
+        "sunSensorZM": 45.094795,
+        "totalPhotoCurrent": 119,
+        "batteryVoltage": 4141
+      },
+      {
+        "sunSensorXP": -44.91501,
+        "sunSensorYP": -43.961594,
+        "sunSensorYM": 157.3754,
+        "sunSensorZP": 157.61801,
+        "sunSensorZM": 40.712097,
+        "totalPhotoCurrent": 117,
+        "batteryVoltage": 4146
+      },
+      {
+        "sunSensorXP": -44.707703,
+        "sunSensorYP": -43.961594,
+        "sunSensorYM": 157.3754,
+        "sunSensorZP": 157.61801,
+        "sunSensorZM": 38.8338,
+        "totalPhotoCurrent": 114,
+        "batteryVoltage": 4146
+      },
+      {
+        "sunSensorXP": -44.91501,
+        "sunSensorYP": -44.16919,
+        "sunSensorYM": 157.3754,
+        "sunSensorZP": 157.61801,
+        "sunSensorZM": 39.042496,
+        "totalPhotoCurrent": 109,
+        "batteryVoltage": 4141
+      },
+      {
+        "sunSensorXP": -44.707703,
+        "sunSensorYP": -44.16919,
+        "sunSensorYM": 157.58409,
+        "sunSensorZP": 157.61801,
+        "sunSensorZM": 41.546898,
+        "totalPhotoCurrent": 120,
+        "batteryVoltage": 4146
+      },
+      {
+        "sunSensorXP": -44.707703,
+        "sunSensorYP": -43.961594,
+        "sunSensorYM": 157.3754,
+        "sunSensorZP": 157.61801,
+        "sunSensorZM": 46.555695,
+        "totalPhotoCurrent": 110,
+        "batteryVoltage": 4146
+      },
+      {
+        "sunSensorXP": -44.707703,
+        "sunSensorYP": -44.16919,
+        "sunSensorYM": 157.58409,
+        "sunSensorZP": 157.61801,
+        "sunSensorZM": 53.2341,
+        "totalPhotoCurrent": 117,
+        "batteryVoltage": 4146
+      },
+      {
+        "sunSensorXP": -44.707703,
+        "sunSensorYP": -44.16919,
+        "sunSensorYM": 157.58409,
+        "sunSensorZP": 157.61801,
+        "sunSensorZM": 127.9487,
+        "totalPhotoCurrent": 106,
+        "batteryVoltage": 4141
+      },
+      {
+        "sunSensorXP": -44.707703,
+        "sunSensorYP": -43.753998,
+        "sunSensorYM": 157.58409,
+        "sunSensorZP": 157.61801,
+        "sunSensorZM": 132.1227,
+        "totalPhotoCurrent": 109,
+        "batteryVoltage": 4141
+      },
+      {
+        "sunSensorXP": -44.707703,
+        "sunSensorYP": -43.961594,
+        "sunSensorYM": 157.58409,
+        "sunSensorZP": 157.61801,
+        "sunSensorZM": 78.0694,
+        "totalPhotoCurrent": 116,
+        "batteryVoltage": 4146
+      },
+      {
+        "sunSensorXP": -44.500412,
+        "sunSensorYP": -43.961594,
+        "sunSensorYM": 157.58409,
+        "sunSensorZP": 157.61801,
+        "sunSensorZM": 86.0,
+        "totalPhotoCurrent": 111,
+        "batteryVoltage": 4141
+      },
+      {
+        "sunSensorXP": -44.707703,
+        "sunSensorYP": -43.961594,
+        "sunSensorYM": 157.58409,
+        "sunSensorZP": 157.61801,
+        "sunSensorZM": 92.261,
+        "totalPhotoCurrent": 113,
+        "batteryVoltage": 4141
+      },
+      {
+        "sunSensorXP": -44.085815,
+        "sunSensorYP": -43.961594,
+        "sunSensorYM": 157.58409,
+        "sunSensorZP": 157.61801,
+        "sunSensorZM": 102.278595,
+        "totalPhotoCurrent": 113,
+        "batteryVoltage": 4146
+      },
+      {
+        "sunSensorXP": 7.739197,
+        "sunSensorYP": -43.753998,
+        "sunSensorYM": 157.58409,
+        "sunSensorZP": 157.61801,
+        "sunSensorZM": 116.887596,
+        "totalPhotoCurrent": 109,
+        "batteryVoltage": 4141
+      },
+      {
+        "sunSensorXP": 50.65029,
+        "sunSensorYP": -43.961594,
+        "sunSensorYM": 157.58409,
+        "sunSensorZP": 157.4104,
+        "sunSensorZM": 131.2879,
+        "totalPhotoCurrent": 109,
+        "batteryVoltage": 4141
+      },
+      {
+        "sunSensorXP": 86.5132,
+        "sunSensorYP": -43.546387,
+        "sunSensorYM": 157.58409,
+        "sunSensorZP": 157.4104,
+        "sunSensorZM": 153.6188,
+        "totalPhotoCurrent": 114,
+        "batteryVoltage": 4141
+      },
+      {
+        "sunSensorXP": 117.193596,
+        "sunSensorYP": -43.753998,
+        "sunSensorYM": 157.58409,
+        "sunSensorZP": 157.4104,
+        "sunSensorZM": 157.3754,
+        "totalPhotoCurrent": 111,
+        "batteryVoltage": 4141
+      },
+      {
+        "sunSensorXP": 146.8375,
+        "sunSensorYP": -43.546387,
+        "sunSensorYM": 157.58409,
+        "sunSensorZP": 157.4104,
+        "sunSensorZM": 157.7928,
+        "totalPhotoCurrent": 106,
+        "batteryVoltage": 4141
+      },
+      {
+        "sunSensorXP": 155.1295,
+        "sunSensorYP": -43.546387,
+        "sunSensorYM": 157.58409,
+        "sunSensorZP": 157.4104,
+        "sunSensorZM": 158.0015,
+        "totalPhotoCurrent": 106,
+        "batteryVoltage": 4141
+      },
+      {
+        "sunSensorXP": 155.7514,
+        "sunSensorYP": -43.546387,
+        "sunSensorYM": 157.58409,
+        "sunSensorZP": 157.2028,
+        "sunSensorZM": 158.0015,
+        "totalPhotoCurrent": 112,
+        "batteryVoltage": 4141
+      },
+      {
+        "sunSensorXP": 156.37329,
+        "sunSensorYP": -43.33879,
+        "sunSensorYM": 157.58409,
+        "sunSensorZP": 157.2028,
+        "sunSensorZM": 158.0015,
+        "totalPhotoCurrent": 113,
+        "batteryVoltage": 4141
+      },
+      {
+        "sunSensorXP": 156.7879,
+        "sunSensorYP": -43.546387,
+        "sunSensorYM": 157.58409,
+        "sunSensorZP": 156.99521,
+        "sunSensorZM": 158.2102,
+        "totalPhotoCurrent": 113,
+        "batteryVoltage": 4146
+      },
+      {
+        "sunSensorXP": 156.9952,
+        "sunSensorYP": -43.33879,
+        "sunSensorYM": 157.58409,
+        "sunSensorZP": 156.78761,
+        "sunSensorZM": 158.2102,
+        "totalPhotoCurrent": 121,
+        "batteryVoltage": 4146
+      },
+      {
+        "sunSensorXP": 157.2025,
+        "sunSensorYP": -43.546387,
+        "sunSensorYM": 157.58409,
+        "sunSensorZP": 156.58,
+        "sunSensorZM": 158.2102,
+        "totalPhotoCurrent": 123,
+        "batteryVoltage": 4146
+      },
+      {
+        "sunSensorXP": 157.2025,
+        "sunSensorYP": -43.546387,
+        "sunSensorYM": 157.58409,
+        "sunSensorZP": 156.58,
+        "sunSensorZM": 158.2102,
+        "totalPhotoCurrent": 114,
+        "batteryVoltage": 4146
+      },
+      {
+        "sunSensorXP": 157.2025,
+        "sunSensorYP": -43.33879,
+        "sunSensorYM": 157.58409,
+        "sunSensorZP": 156.58,
+        "sunSensorZM": 158.2102,
+        "totalPhotoCurrent": 107,
+        "batteryVoltage": 4146
+      },
+      {
+        "sunSensorXP": 157.2025,
+        "sunSensorYP": -43.546387,
+        "sunSensorYM": 157.58409,
+        "sunSensorZP": 156.3724,
+        "sunSensorZM": 158.2102,
+        "totalPhotoCurrent": 120,
+        "batteryVoltage": 4146
+      },
+      {
+        "sunSensorXP": 157.2025,
+        "sunSensorYP": -43.546387,
+        "sunSensorYM": 157.58409,
+        "sunSensorZP": 156.16481,
+        "sunSensorZM": 158.2102,
+        "totalPhotoCurrent": 112,
+        "batteryVoltage": 4146
+      },
+      {
+        "sunSensorXP": 157.2025,
+        "sunSensorYP": -43.753998,
+        "sunSensorYM": 157.58409,
+        "sunSensorZP": 155.9572,
+        "sunSensorZM": 158.2102,
+        "totalPhotoCurrent": 113,
+        "batteryVoltage": 4146
+      },
+      {
+        "sunSensorXP": 157.2025,
+        "sunSensorYP": -43.546387,
+        "sunSensorYM": 157.58409,
+        "sunSensorZP": 155.542,
+        "sunSensorZM": 158.2102,
+        "totalPhotoCurrent": 111,
+        "batteryVoltage": 4146
+      },
+      {
+        "sunSensorXP": 157.2025,
+        "sunSensorYP": -43.546387,
+        "sunSensorYM": 157.58409,
+        "sunSensorZP": 155.542,
+        "sunSensorZM": 158.2102,
+        "totalPhotoCurrent": 126,
+        "batteryVoltage": 4146
+      },
+      {
+        "sunSensorXP": 157.2025,
+        "sunSensorYP": -43.546387,
+        "sunSensorYM": 157.3754,
+        "sunSensorZP": 155.33441,
+        "sunSensorZM": 158.2102,
+        "totalPhotoCurrent": 109,
+        "batteryVoltage": 4141
+      }
+    ],
+    "sequenceNumber": 1612287
+  },
+  {
+    "data": [
+      {
+        "sunSensorXP": -44.707703,
+        "sunSensorYP": -44.376785,
+        "sunSensorYM": 157.3754,
+        "sunSensorZP": 157.61801,
+        "sunSensorZM": 30.903198,
+        "totalPhotoCurrent": 140,
+        "batteryVoltage": 4146
+      },
+      {
+        "sunSensorXP": -44.707703,
+        "sunSensorYP": -44.16919,
+        "sunSensorYM": 157.58409,
+        "sunSensorZP": 157.8256,
+        "sunSensorZM": 20.050797,
+        "totalPhotoCurrent": 132,
+        "batteryVoltage": 4146
+      },
+      {
+        "sunSensorXP": -44.707703,
+        "sunSensorYP": -43.961594,
+        "sunSensorYM": 157.58409,
+        "sunSensorZP": 157.8256,
+        "sunSensorZM": 9.198395,
+        "totalPhotoCurrent": 113,
+        "batteryVoltage": 4146
+      },
+      {
+        "sunSensorXP": -44.707703,
+        "sunSensorYP": -43.961594,
+        "sunSensorYM": 157.3754,
+        "sunSensorZP": 157.8256,
+        "sunSensorZM": -0.8191986,
+        "totalPhotoCurrent": 116,
+        "batteryVoltage": 4141
+      },
+      {
+        "sunSensorXP": -44.707703,
+        "sunSensorYP": -44.16919,
+        "sunSensorYM": 157.58409,
+        "sunSensorZP": 157.8256,
+        "sunSensorZM": -9.793304,
+        "totalPhotoCurrent": 111,
+        "batteryVoltage": 4141
+      },
+      {
+        "sunSensorXP": -44.707703,
+        "sunSensorYP": -44.16919,
+        "sunSensorYM": 157.58409,
+        "sunSensorZP": 157.8256,
+        "sunSensorZM": -18.141296,
+        "totalPhotoCurrent": 110,
+        "batteryVoltage": 4141
+      },
+      {
+        "sunSensorXP": -44.500412,
+        "sunSensorYP": -43.961594,
+        "sunSensorYM": 157.58409,
+        "sunSensorZP": 157.8256,
+        "sunSensorZM": -25.028397,
+        "totalPhotoCurrent": 106,
+        "batteryVoltage": 4141
+      },
+      {
+        "sunSensorXP": -44.91501,
+        "sunSensorYP": -44.16919,
+        "sunSensorYM": 157.58409,
+        "sunSensorZP": 157.8256,
+        "sunSensorZM": -31.289398,
+        "totalPhotoCurrent": 110,
+        "batteryVoltage": 4146
+      },
+      {
+        "sunSensorXP": -44.500412,
+        "sunSensorYP": -44.16919,
+        "sunSensorYM": 157.58409,
+        "sunSensorZP": 157.8256,
+        "sunSensorZM": -35.2547,
+        "totalPhotoCurrent": 102,
+        "batteryVoltage": 4141
+      },
+      {
+        "sunSensorXP": -40.354416,
+        "sunSensorYP": -43.961594,
+        "sunSensorYM": 157.58409,
+        "sunSensorZP": 157.8256,
+        "sunSensorZM": -36.715607,
+        "totalPhotoCurrent": 114,
+        "batteryVoltage": 4146
+      },
+      {
+        "sunSensorXP": 30.956795,
+        "sunSensorYP": -43.753998,
+        "sunSensorYM": 157.58409,
+        "sunSensorZP": 157.8256,
+        "sunSensorZM": -35.672104,
+        "totalPhotoCurrent": 107,
+        "batteryVoltage": 4141
+      },
+      {
+        "sunSensorXP": 74.904396,
+        "sunSensorYP": -43.546387,
+        "sunSensorYM": 157.3754,
+        "sunSensorZP": 157.8256,
+        "sunSensorZM": -32.750305,
+        "totalPhotoCurrent": 103,
+        "batteryVoltage": 4141
+      },
+      {
+        "sunSensorXP": 107.4505,
+        "sunSensorYP": -43.753998,
+        "sunSensorYM": 157.58409,
+        "sunSensorZP": 157.8256,
+        "sunSensorZM": -28.57631,
+        "totalPhotoCurrent": 109,
+        "batteryVoltage": 4141
+      },
+      {
+        "sunSensorXP": 138.75279,
+        "sunSensorYP": -43.546387,
+        "sunSensorYM": 157.58409,
+        "sunSensorZP": 157.8256,
+        "sunSensorZM": -22.941406,
+        "totalPhotoCurrent": 122,
+        "batteryVoltage": 4146
+      },
+      {
+        "sunSensorXP": 154.093,
+        "sunSensorYP": -43.33879,
+        "sunSensorYM": 157.58409,
+        "sunSensorZP": 157.8256,
+        "sunSensorZM": -15.845596,
+        "totalPhotoCurrent": 114,
+        "batteryVoltage": 4146
+      },
+      {
+        "sunSensorXP": 155.1295,
+        "sunSensorYP": -43.546387,
+        "sunSensorYM": 157.58409,
+        "sunSensorZP": 157.8256,
+        "sunSensorZM": -6.662796,
+        "totalPhotoCurrent": 109,
+        "batteryVoltage": 4141
+      },
+      {
+        "sunSensorXP": 155.7514,
+        "sunSensorYP": -43.546387,
+        "sunSensorYM": 157.58409,
+        "sunSensorZP": 157.8256,
+        "sunSensorZM": 3.7722015,
+        "totalPhotoCurrent": 105,
+        "batteryVoltage": 4141
+      },
+      {
+        "sunSensorXP": 156.166,
+        "sunSensorYP": -43.33879,
+        "sunSensorYM": 157.58409,
+        "sunSensorZP": 157.8256,
+        "sunSensorZM": 15.876801,
+        "totalPhotoCurrent": 112,
+        "batteryVoltage": 4146
+      },
+      {
+        "sunSensorXP": 156.5806,
+        "sunSensorYP": -43.546387,
+        "sunSensorYM": 157.58409,
+        "sunSensorZP": 157.61801,
+        "sunSensorZM": 30.2771,
+        "totalPhotoCurrent": 108,
+        "batteryVoltage": 4141
+      },
+      {
+        "sunSensorXP": 156.9952,
+        "sunSensorYP": -43.33879,
+        "sunSensorYM": 157.58409,
+        "sunSensorZP": 157.8256,
+        "sunSensorZM": 48.851395,
+        "totalPhotoCurrent": 119,
+        "batteryVoltage": 4146
+      },
+      {
+        "sunSensorXP": 157.2025,
+        "sunSensorYP": -43.546387,
+        "sunSensorYM": 157.58409,
+        "sunSensorZP": 157.8256,
+        "sunSensorZM": 73.6867,
+        "totalPhotoCurrent": 114,
+        "batteryVoltage": 4146
+      },
+      {
+        "sunSensorXP": 157.2025,
+        "sunSensorYP": -43.546387,
+        "sunSensorYM": 157.58409,
+        "sunSensorZP": 157.8256,
+        "sunSensorZM": 88.504395,
+        "totalPhotoCurrent": 108,
+        "batteryVoltage": 4146
+      },
+      {
+        "sunSensorXP": 157.4098,
+        "sunSensorYP": -43.546387,
+        "sunSensorYM": 157.58409,
+        "sunSensorZP": 157.61801,
+        "sunSensorZM": 99.1481,
+        "totalPhotoCurrent": 108,
+        "batteryVoltage": 4141
+      },
+      {
+        "sunSensorXP": 157.4098,
+        "sunSensorYP": -43.546387,
+        "sunSensorYM": 157.58409,
+        "sunSensorZP": 157.61801,
+        "sunSensorZM": 119.392,
+        "totalPhotoCurrent": 111,
+        "batteryVoltage": 4146
+      },
+      {
+        "sunSensorXP": 157.4098,
+        "sunSensorYP": -43.33879,
+        "sunSensorYM": 157.58409,
+        "sunSensorZP": 157.61801,
+        "sunSensorZM": 142.7664,
+        "totalPhotoCurrent": 106,
+        "batteryVoltage": 4141
+      },
+      {
+        "sunSensorXP": 157.4098,
+        "sunSensorYP": -43.33879,
+        "sunSensorYM": 157.58409,
+        "sunSensorZP": 157.61801,
+        "sunSensorZM": 156.1232,
+        "totalPhotoCurrent": 135,
+        "batteryVoltage": 4146
+      },
+      {
+        "sunSensorXP": 157.4098,
+        "sunSensorYP": -43.546387,
+        "sunSensorYM": 157.58409,
+        "sunSensorZP": 157.4104,
+        "sunSensorZM": 156.7493,
+        "totalPhotoCurrent": 100,
+        "batteryVoltage": 4141
+      },
+      {
+        "sunSensorXP": 157.4098,
+        "sunSensorYP": -43.753998,
+        "sunSensorYM": 157.58409,
+        "sunSensorZP": 157.4104,
+        "sunSensorZM": 158.0015,
+        "totalPhotoCurrent": 118,
+        "batteryVoltage": 4146
+      },
+      {
+        "sunSensorXP": 157.4098,
+        "sunSensorYP": -43.33879,
+        "sunSensorYM": 157.58409,
+        "sunSensorZP": 157.4104,
+        "sunSensorZM": 158.2102,
+        "totalPhotoCurrent": 119,
+        "batteryVoltage": 4146
+      },
+      {
+        "sunSensorXP": 157.2025,
+        "sunSensorYP": -43.546387,
+        "sunSensorYM": 157.58409,
+        "sunSensorZP": 156.99521,
+        "sunSensorZM": 158.2102,
+        "totalPhotoCurrent": 104,
+        "batteryVoltage": 4141
+      },
+      {
+        "sunSensorXP": 157.2025,
+        "sunSensorYP": -43.33879,
+        "sunSensorYM": 157.58409,
+        "sunSensorZP": 156.78761,
+        "sunSensorZM": 158.2102,
+        "totalPhotoCurrent": 87,
+        "batteryVoltage": 4141
+      },
+      {
+        "sunSensorXP": 157.4098,
+        "sunSensorYP": -43.546387,
+        "sunSensorYM": 157.58409,
+        "sunSensorZP": 156.3724,
+        "sunSensorZM": 158.2102,
+        "totalPhotoCurrent": 106,
+        "batteryVoltage": 4146
+      },
+      {
+        "sunSensorXP": 157.4098,
+        "sunSensorYP": -43.546387,
+        "sunSensorYM": 157.58409,
+        "sunSensorZP": 145.7848,
+        "sunSensorZM": 158.2102,
+        "totalPhotoCurrent": 113,
+        "batteryVoltage": 4146
+      },
+      {
+        "sunSensorXP": 157.2025,
+        "sunSensorYP": -43.546387,
+        "sunSensorYM": 157.1667,
+        "sunSensorZP": 132.2908,
+        "sunSensorZM": 158.0015,
+        "totalPhotoCurrent": 104,
+        "batteryVoltage": 4141
+      },
+      {
+        "sunSensorXP": 157.2025,
+        "sunSensorYP": -18.011597,
+        "sunSensorYM": 157.1667,
+        "sunSensorZP": 100.52801,
+        "sunSensorZM": 158.0015,
+        "totalPhotoCurrent": 108,
+        "batteryVoltage": 4141
+      },
+      {
+        "sunSensorXP": 157.2025,
+        "sunSensorYP": 37.00241,
+        "sunSensorYM": 157.1667,
+        "sunSensorZP": 70.0108,
+        "sunSensorZM": 158.0015,
+        "totalPhotoCurrent": 116,
+        "batteryVoltage": 4146
+      },
+      {
+        "sunSensorXP": 157.4098,
+        "sunSensorYP": 81.42881,
+        "sunSensorYM": 157.3754,
+        "sunSensorZP": 51.742004,
+        "sunSensorZM": 157.7928,
+        "totalPhotoCurrent": 109,
+        "batteryVoltage": 4141
+      },
+      {
+        "sunSensorXP": 157.4098,
+        "sunSensorYP": 125.647606,
+        "sunSensorYM": 157.1667,
+        "sunSensorZP": 33.888405,
+        "sunSensorZM": 157.7928,
+        "totalPhotoCurrent": 108,
+        "batteryVoltage": 4141
+      },
+      {
+        "sunSensorXP": 157.2025,
+        "sunSensorYP": 154.71161,
+        "sunSensorYM": 157.1667,
+        "sunSensorZP": 16.034805,
+        "sunSensorZM": 157.7928,
+        "totalPhotoCurrent": 108,
+        "batteryVoltage": 4141
+      },
+      {
+        "sunSensorXP": 157.2025,
+        "sunSensorYP": 156.16481,
+        "sunSensorYM": 154.6623,
+        "sunSensorZP": -0.78079224,
+        "sunSensorZM": 157.58409,
+        "totalPhotoCurrent": 120,
+        "batteryVoltage": 4146
+      },
+      {
+        "sunSensorXP": 157.2025,
+        "sunSensorYP": 156.58,
+        "sunSensorYM": 126.48779,
+        "sunSensorZP": -19.672394,
+        "sunSensorZM": 157.58409,
+        "totalPhotoCurrent": 101,
+        "batteryVoltage": 4141
+      },
+      {
+        "sunSensorXP": 157.2025,
+        "sunSensorYP": 156.78761,
+        "sunSensorYM": 59.495094,
+        "sunSensorZP": -37.110794,
+        "sunSensorZM": 157.58409,
+        "totalPhotoCurrent": 115,
+        "batteryVoltage": 4146
+      },
+      {
+        "sunSensorXP": 157.2025,
+        "sunSensorYP": 156.99521,
+        "sunSensorYM": -13.341202,
+        "sunSensorZP": -43.961594,
+        "sunSensorZM": 157.58409,
+        "totalPhotoCurrent": 121,
+        "batteryVoltage": 4141
+      },
+      {
+        "sunSensorXP": 157.2025,
+        "sunSensorYP": 157.2028,
+        "sunSensorYM": -44.228806,
+        "sunSensorZP": -44.16919,
+        "sunSensorZM": 157.58409,
+        "totalPhotoCurrent": 119,
+        "batteryVoltage": 4141
+      },
+      {
+        "sunSensorXP": 157.2025,
+        "sunSensorYP": 157.2028,
+        "sunSensorYM": -44.020096,
+        "sunSensorZP": -44.16919,
+        "sunSensorZM": 157.58409,
+        "totalPhotoCurrent": 124,
+        "batteryVoltage": 4146
+      },
+      {
+        "sunSensorXP": 157.2025,
+        "sunSensorYP": 157.4104,
+        "sunSensorYM": -44.020096,
+        "sunSensorZP": -43.961594,
+        "sunSensorZM": 157.58409,
+        "totalPhotoCurrent": 108,
+        "batteryVoltage": 4141
+      },
+      {
+        "sunSensorXP": 157.2025,
+        "sunSensorYP": 157.4104,
+        "sunSensorYM": -44.228806,
+        "sunSensorZP": -43.961594,
+        "sunSensorZM": 157.58409,
+        "totalPhotoCurrent": 109,
+        "batteryVoltage": 4141
+      },
+      {
+        "sunSensorXP": 157.2025,
+        "sunSensorYP": 157.4104,
+        "sunSensorYM": -44.228806,
+        "sunSensorZP": -44.16919,
+        "sunSensorZM": 157.58409,
+        "totalPhotoCurrent": 122,
+        "batteryVoltage": 4146
+      },
+      {
+        "sunSensorXP": 156.9952,
+        "sunSensorYP": 157.61801,
+        "sunSensorYM": -44.228806,
+        "sunSensorZP": -43.961594,
+        "sunSensorZM": 157.58409,
+        "totalPhotoCurrent": 110,
+        "batteryVoltage": 4141
+      },
+      {
+        "sunSensorXP": 156.9952,
+        "sunSensorYP": 157.4104,
+        "sunSensorYM": -44.228806,
+        "sunSensorZP": -44.376785,
+        "sunSensorZM": 157.58409,
+        "totalPhotoCurrent": 108,
+        "batteryVoltage": 4141
+      },
+      {
+        "sunSensorXP": 156.9952,
+        "sunSensorYP": 157.4104,
+        "sunSensorYM": -44.020096,
+        "sunSensorZP": -44.16919,
+        "sunSensorZM": 157.58409,
+        "totalPhotoCurrent": 108,
+        "batteryVoltage": 4141
+      },
+      {
+        "sunSensorXP": 156.9952,
+        "sunSensorYP": 157.61801,
+        "sunSensorYM": -44.4375,
+        "sunSensorZP": -44.16919,
+        "sunSensorZM": 157.58409,
+        "totalPhotoCurrent": 108,
+        "batteryVoltage": 4141
+      },
+      {
+        "sunSensorXP": 156.9952,
+        "sunSensorYP": 157.61801,
+        "sunSensorYM": -44.228806,
+        "sunSensorZP": -33.58159,
+        "sunSensorZM": 157.58409,
+        "totalPhotoCurrent": 106,
+        "batteryVoltage": 4141
+      },
+      {
+        "sunSensorXP": 156.7879,
+        "sunSensorYP": 157.61801,
+        "sunSensorYM": -44.4375,
+        "sunSensorZP": -5.347992,
+        "sunSensorZM": 157.58409,
+        "totalPhotoCurrent": 111,
+        "batteryVoltage": 4146
+      },
+      {
+        "sunSensorXP": 156.7879,
+        "sunSensorYP": 157.61801,
+        "sunSensorYM": -44.020096,
+        "sunSensorZP": 22.262802,
+        "sunSensorZM": 157.7928,
+        "totalPhotoCurrent": 112,
+        "batteryVoltage": 4141
+      },
+      {
+        "sunSensorXP": 156.7879,
+        "sunSensorYP": 157.61801,
+        "sunSensorYM": -44.228806,
+        "sunSensorZP": 42.192406,
+        "sunSensorZM": 157.7928,
+        "totalPhotoCurrent": 127,
+        "batteryVoltage": 4146
+      },
+      {
+        "sunSensorXP": 156.5806,
+        "sunSensorYP": 157.61801,
+        "sunSensorYM": -44.228806,
+        "sunSensorZP": 48.628006,
+        "sunSensorZM": 157.7928,
+        "totalPhotoCurrent": 117,
+        "batteryVoltage": 4141
+      },
+      {
+        "sunSensorXP": 156.5806,
+        "sunSensorYP": 157.61801,
+        "sunSensorYM": -44.020096,
+        "sunSensorZP": 55.68641,
+        "sunSensorZM": 157.7928,
+        "totalPhotoCurrent": 117,
+        "batteryVoltage": 4141
+      },
+      {
+        "sunSensorXP": 156.37329,
+        "sunSensorYP": 157.8256,
+        "sunSensorYM": -44.228806,
+        "sunSensorZP": 61.70681,
+        "sunSensorZM": 157.7928,
+        "totalPhotoCurrent": 92,
+        "batteryVoltage": 4136
+      },
+      {
+        "sunSensorXP": 156.166,
+        "sunSensorYP": 157.61801,
+        "sunSensorYM": -44.228806,
+        "sunSensorZP": 61.084007,
+        "sunSensorZM": 158.0015,
+        "totalPhotoCurrent": 116,
+        "batteryVoltage": 4141
+      }
+    ],
+    "sequenceNumber": 1612288
+  }
+]
