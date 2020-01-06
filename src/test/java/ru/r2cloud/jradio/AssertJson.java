@@ -8,6 +8,7 @@ import java.io.InputStreamReader;
 import java.lang.reflect.Array;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
+import java.nio.charset.StandardCharsets;
 import java.util.Date;
 import java.util.List;
 
@@ -21,7 +22,7 @@ public class AssertJson {
 	public static void assertObjectsEqual(String jsonFilename, Object actualObject, Class<?> clazz) {
 		assertNotNull(actualObject);
 		Object expected;
-		try (InputStreamReader reader = new InputStreamReader(AssertJson.class.getResourceAsStream("/expected/" + jsonFilename))) {
+		try (InputStreamReader reader = new InputStreamReader(AssertJson.class.getResourceAsStream("/expected/" + jsonFilename), StandardCharsets.UTF_8)) {
 			expected = GSON.fromJson(reader, clazz);
 		} catch (IOException e) {
 			throw new RuntimeException(e);

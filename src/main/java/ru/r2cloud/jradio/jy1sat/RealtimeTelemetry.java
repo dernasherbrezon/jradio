@@ -56,7 +56,7 @@ public class RealtimeTelemetry {
 	private float reversePower;
 
 	// PA i2c address 0x34
-	private Float deviceTemperature;
+	private double deviceTemperature;
 	private float busCurrent;
 	private float antennaTemp0;
 	private float antennaTemp1;
@@ -475,11 +475,11 @@ public class RealtimeTelemetry {
 		this.reversePower = reversePower;
 	}
 
-	public Float getDeviceTemperature() {
+	public double getDeviceTemperature() {
 		return deviceTemperature;
 	}
 
-	public void setDeviceTemperature(Float deviceTemperature) {
+	public void setDeviceTemperature(double deviceTemperature) {
 		this.deviceTemperature = deviceTemperature;
 	}
 

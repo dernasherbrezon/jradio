@@ -47,7 +47,7 @@ public class RealtimeTelemetry {
 	// PA
 	private float forwardPower;
 	private float reversePower;
-	private Float deviceTemperature;
+	private double deviceTemperature;
 	private float busCurrent;
 
 	// ANTS
@@ -147,19 +147,19 @@ public class RealtimeTelemetry {
 		deploymentWaitAtNextBoot = dis.readBoolean();
 	}
 
-	static float readXPlusTemperature(BitInputStream dis) throws IOException {
+	public static float readXPlusTemperature(BitInputStream dis) throws IOException {
 		return (-0.2073f * dis.readUnsignedInt(10)) + 158.239f;
 	}
 
-	static float readXMinusTemperature(BitInputStream dis) throws IOException {
+	public static float readXMinusTemperature(BitInputStream dis) throws IOException {
 		return (-0.2083f * dis.readUnsignedInt(10)) + 159.227f;
 	}
 
-	static float readYPlusTemperature(BitInputStream dis) throws IOException {
+	public static float readYPlusTemperature(BitInputStream dis) throws IOException {
 		return (-0.2076f * dis.readUnsignedInt(10)) + 158.656f;
 	}
 
-	static float readYMinusTemperature(BitInputStream dis) throws IOException {
+	public static float readYMinusTemperature(BitInputStream dis) throws IOException {
 		return (-0.2087f * dis.readUnsignedInt(10)) + 159.045f;
 	}
 
@@ -435,11 +435,11 @@ public class RealtimeTelemetry {
 		this.reversePower = reversePower;
 	}
 
-	public Float getDeviceTemperature() {
+	public double getDeviceTemperature() {
 		return deviceTemperature;
 	}
 
-	public void setDeviceTemperature(Float deviceTemperature) {
+	public void setDeviceTemperature(double deviceTemperature) {
 		this.deviceTemperature = deviceTemperature;
 	}
 

@@ -43,7 +43,7 @@
     "transmitCurrent50VBus": 28.619999,
     "forwardPower": 33.920418,
     "reversePower": 6.7844152,
-    "deviceTemperature": 7.0833335,
+    "deviceTemperature": 7.083377773037542,
     "busCurrent": 142.6915,
     "antennaTemp0": -7.5131965,
     "antennaTemp1": -7.5131965,
@@ -528,6 +528,6 @@
     -127,
     65
   ],
-  "beginSample": 277620,
+  "beginSample": 277680,
   "beginMillis": 0
 }

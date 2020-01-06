@@ -1,4 +1,4 @@
-package ru.r2cloud.jradio.jy1sat;
+package ru.r2cloud.jradio.nayif1;
 
 import java.io.IOException;
 
@@ -7,8 +7,8 @@ import ru.r2cloud.jradio.util.BitInputStream;
 
 public class WholeOrbit {
 
-	private float cctMictocontrollerTemp;
-	private float rfBoardCrystalTemp;
+	private double cctMictocontrollerTemp;
+	private double rfBoardCrystalTemp;
 	private double powerAmplifierTemp;
 
 	private float solarPanelTempXP;
@@ -25,22 +25,22 @@ public class WholeOrbit {
 	private int sunSensorZP;
 	private int sunSensorZM;
 
-	private int batteryTemp;
+	private long batteryTemp;
 	private int totPhotoCurr;
 	private int batteryVoltage;
 	private int totSystemCurr;
 
 	public WholeOrbit(BitInputStream dis) throws IOException {
-		cctMictocontrollerTemp = dis.readUnsignedInt(12);
-		rfBoardCrystalTemp = ((dis.readUnsignedInt(12) & 1023) * -0.98f) + 234.58f;
-		powerAmplifierTemp = PaTemperature.getPaTemp1024(dis.readUnsignedInt(12));
+		cctMictocontrollerTemp = calcMcuTemp(dis.readUnsignedInt(12));
+		rfBoardCrystalTemp = ((dis.readUnsignedInt(12) & 1023) * -0.3465) + 266.70646;
+		powerAmplifierTemp = PaTemperature.getPaTemp1024(dis.readUnsignedInt(12) & 1023);
 
-		solarPanelTempXP = -0.2073f * dis.readUnsignedInt(10) + 158.239f;
-		solarPanelTempXM = -0.2083f * dis.readUnsignedInt(10) + 159.227f;
-		solarPanelTempYP = -0.2076f * dis.readUnsignedInt(10) + 158.656f;
-		solarPanelTempYM = -0.2087f * dis.readUnsignedInt(10) + 159.045f;
-		solarPanelTempZP = -0.2076f * dis.readUnsignedInt(10) + 158.656f;
-		solarPanelTempZM = -0.2087f * dis.readUnsignedInt(10) + 159.045f;
+		solarPanelTempXP = -0.2080f * dis.readUnsignedInt(10) + 158.792f;
+		solarPanelTempXM = -0.2080f * dis.readUnsignedInt(10) + 158.792f;
+		solarPanelTempYP = -0.2080f * dis.readUnsignedInt(10) + 158.792f;
+		solarPanelTempYM = -0.2080f * dis.readUnsignedInt(10) + 158.792f;
+		solarPanelTempZP = -0.2080f * dis.readUnsignedInt(10) + 158.792f;
+		solarPanelTempZM = -0.2080f * dis.readUnsignedInt(10) + 158.792f;
 
 		sunSensorXP = dis.readUnsignedInt(10);
 		sunSensorXM = dis.readUnsignedInt(10);
@@ -49,25 +49,44 @@ public class WholeOrbit {
 		sunSensorZP = dis.readUnsignedInt(10);
 		sunSensorZM = dis.readUnsignedInt(10);
 
-		batteryTemp = dis.readUnsignedInt(8);
+		batteryTemp = twosComplement(dis.readUnsignedInt(8));
 		totPhotoCurr = dis.readUnsignedInt(10);
 		batteryVoltage = dis.readUnsignedInt(14);
 		totSystemCurr = dis.readUnsignedInt(12);
 	}
 
-	public float getCctMictocontrollerTemp() {
+	private static double calcMcuTemp(long adc) {
+		double vt = adc * 0.00078753; // Convert the ADC reading into voltage
+
+		if (vt >= 0.7012) // Check for Hot or Cold Slope
+		{
+			return 25.0 - ((vt - 0.7012) / 0.001646); // Cold Slope)
+		} else {
+			return 25.0 - ((vt - 0.7012) / 0.001749); // Hot Slope
+		}
+	}
+
+	private static long twosComplement(long value) {
+		long channelValue = value;
+		if (channelValue >= 128) {
+			channelValue = ~channelValue ^ 255;
+		}
+		return channelValue;
+	}
+
+	public double getCctMictocontrollerTemp() {
 		return cctMictocontrollerTemp;
 	}
 
-	public void setCctMictocontrollerTemp(float cctMictocontrollerTemp) {
+	public void setCctMictocontrollerTemp(double cctMictocontrollerTemp) {
 		this.cctMictocontrollerTemp = cctMictocontrollerTemp;
 	}
 
-	public float getRfBoardCrystalTemp() {
+	public double getRfBoardCrystalTemp() {
 		return rfBoardCrystalTemp;
 	}
 
-	public void setRfBoardCrystalTemp(float rfBoardCrystalTemp) {
+	public void setRfBoardCrystalTemp(double rfBoardCrystalTemp) {
 		this.rfBoardCrystalTemp = rfBoardCrystalTemp;
 	}
 
@@ -175,11 +194,11 @@ public class WholeOrbit {
 		this.sunSensorZM = sunSensorZM;
 	}
 
-	public int getBatteryTemp() {
+	public long getBatteryTemp() {
 		return batteryTemp;
 	}
 
-	public void setBatteryTemp(int batteryTemp) {
+	public void setBatteryTemp(long batteryTemp) {
 		this.batteryTemp = batteryTemp;
 	}
 

@@ -1,43 +1,44 @@
 package ru.r2cloud.jradio.ao73;
 
 public class PaTemperature {
-	
-	private static final float[] PA_TEMPS = new float[256];
-	
-	static {
-		// Data from adc 79 to 252 measured,
-        // 0-79 continues using gradient of last
-        // three values, 252 to 255 likewise
 
-        final double[][] tempToAdc = {{87.983, Double.MIN_VALUE}, {87.983, 0}, {
-                /*
-                 * first measured value
-                 */55.3, 79}, {49.6, 91}, {45.3, 103}, {41.1, 115}, {37.6, 125}, {35.7, 129}, {33.6, 137}, {30.6, 145},
-                {27.6, 154}, {25.1, 161}, {22.6, 169}, {20, 176}, {17.6, 183}, {15.1, 189}, {12.6, 196}, {10, 203},
-                {7.5, 208}, {5, 214}, {2.4, 220}, {0, 224}, {-2.9, 230}, {-5, 233}, {-7.5, 237}, {-10, 241},
-                {-12.3, 244}, {-15, 247}, {-20, 252}, {-22.846, 255}, {-22.846, Double.MAX_VALUE}};
+	private static final double[] PA_TEMPS = buildLookupTable(256);
+	private static final double[] PA_TEMPS_1024 = buildLookupTable(1024);
 
-        // calc values for all possible 8bit values
-        for (int adc = 0; adc < 256; ++adc) {
-            for (int j = 0; j < tempToAdc.length; j++) {
-                if (adc != 0 && adc < tempToAdc[j][1]) {
-                    final double t1 = tempToAdc[j][0];
-                    final double a1 = tempToAdc[j][1];
-                    final double diffa = tempToAdc[j - 1][1] - a1;
-                    final double difft = tempToAdc[j - 1][0] - t1;
-                    final double value = ((adc - a1) * (difft / diffa)) + t1;
-                    PA_TEMPS[adc] = (float)value;
-                    break;
-                }
-            }
-        }
+	private static double[] buildLookupTable(int tableSize) {
+		// Data from adc 30% to 98% measured, 0 to 30% continues using
+		// gradient of last three values, 98 to 100% likewise
+		double[][] tempToAdc = { { 87.983, Double.MIN_VALUE }, { 87.983, 0 }, { 55.3, 30.859 }, /* first measured value */
+				{ 49.6, 35.547 }, { 45.3, 40.234 }, { 41.1, 44.922 }, { 37.6, 48.828 }, { 35.7, 50.391 }, { 33.6, 53.516 }, { 30.6, 56.641 }, { 27.6, 60.156 }, { 25.1, 62.891 }, { 22.6, 66.016 }, { 20, 68.75 }, { 17.6, 71.484 }, { 15.1, 73.828 }, { 12.6, 76.563 }, { 10, 79.297 }, { 7.5, 81.25 }, { 5, 83.594 }, { 2.4, 85.938 }, { 0, 87.5 }, { -2.9, 89.844 }, { -5, 91.016 }, { -7.5, 92.578 }, { -10, 94.141 }, { -12.3, 95.313 }, { -15, 96.484 }, { -20, 98.438 }, /* last measured value */
+				{ -22.846, 100 }, { -22.846, Double.MAX_VALUE } };
+
+		double[] result = new double[tableSize];
+		// calc values for all possible 12bit values
+		for (int adc = 0; adc < tableSize; ++adc) {
+			double adc_percent = (100.0 / tableSize) * adc;
+			for (int j = 0; j < tempToAdc.length; j++) {
+				if (adc_percent < tempToAdc[j][1] && j != 0) {
+					double t1 = tempToAdc[j][0];
+					double a1 = tempToAdc[j][1];
+					double diffa = tempToAdc[j - 1][1] - a1;
+					double difft = tempToAdc[j - 1][0] - t1;
+					result[adc] = ((adc_percent - a1) * (difft / diffa)) + t1;
+					break;
+				}
+			}
+		}
+		return result;
 	}
 
-	public static final float getPaTemp(int value) {
+	public static final double getPaTemp(int value) {
 		return PA_TEMPS[value];
 	}
 	
+	public static final double getPaTemp1024(int value) {
+		return PA_TEMPS_1024[value];
+	}
+
 	private PaTemperature() {
-		//do nothing
+		// do nothing
 	}
 }
