@@ -24,6 +24,10 @@ public class HighResolutionData {
 	private double zCalibMtm;
 	private boolean zMeasValid;
 	private boolean measRetreiveError;
+	
+	public HighResolutionData() {
+		//do nothing
+	}
 
 	public HighResolutionData(BitInputStream dis) throws IOException {
 		sunSensorXP = dis.readUnsignedInt(10);
@@ -101,19 +105,19 @@ public class HighResolutionData {
 		this.sunSensorZM = sunSensorZM;
 	}
 
-	public double getxCalibMtm() {
+	public double getXCalibMtm() {
 		return xCalibMtm;
 	}
 
-	public void setxCalibMtm(double xCalibMtm) {
+	public void setXCalibMtm(double xCalibMtm) {
 		this.xCalibMtm = xCalibMtm;
 	}
 
-	public boolean isxMeasValid() {
+	public boolean getXMeasValid() {
 		return xMeasValid;
 	}
 
-	public void setxMeasValid(boolean xMeasValid) {
+	public void setXMeasValid(boolean xMeasValid) {
 		this.xMeasValid = xMeasValid;
 	}
 
@@ -125,19 +129,19 @@ public class HighResolutionData {
 		this.coilsActive = coilsActive;
 	}
 
-	public double getyCalibMtm() {
+	public double getYCalibMtm() {
 		return yCalibMtm;
 	}
 
-	public void setyCalibMtm(double yCalibMtm) {
+	public void setYCalibMtm(double yCalibMtm) {
 		this.yCalibMtm = yCalibMtm;
 	}
 
-	public boolean isyMeasValid() {
+	public boolean getYMeasValid() {
 		return yMeasValid;
 	}
 
-	public void setyMeasValid(boolean yMeasValid) {
+	public void setYMeasValid(boolean yMeasValid) {
 		this.yMeasValid = yMeasValid;
 	}
 
@@ -149,19 +153,19 @@ public class HighResolutionData {
 		this.measStartError = measStartError;
 	}
 
-	public double getzCalibMtm() {
+	public double getZCalibMtm() {
 		return zCalibMtm;
 	}
 
-	public void setzCalibMtm(double zCalibMtm) {
+	public void setZCalibMtm(double zCalibMtm) {
 		this.zCalibMtm = zCalibMtm;
 	}
 
-	public boolean iszMeasValid() {
+	public boolean getZMeasValid() {
 		return zMeasValid;
 	}
 
-	public void setzMeasValid(boolean zMeasValid) {
+	public void setZMeasValid(boolean zMeasValid) {
 		this.zMeasValid = zMeasValid;
 	}
 

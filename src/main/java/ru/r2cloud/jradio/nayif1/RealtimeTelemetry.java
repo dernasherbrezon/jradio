@@ -99,6 +99,10 @@ public class RealtimeTelemetry {
 	private boolean softwareABFOnOff;
 
 	private boolean deploymentWait;
+	
+	public RealtimeTelemetry() {
+		// do nothing
+	}
 
 	public RealtimeTelemetry(BitInputStream dis) throws IOException {
 		panelVolts1 = dis.readUnsignedInt(14);

@@ -29,6 +29,10 @@ public class WholeOrbit {
 	private int totPhotoCurr;
 	private int batteryVoltage;
 	private int totSystemCurr;
+	
+	public WholeOrbit() {
+		// do nothing
+	}
 
 	public WholeOrbit(BitInputStream dis) throws IOException {
 		cctMictocontrollerTemp = calcMcuTemp(dis.readUnsignedInt(12));
