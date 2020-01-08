@@ -76,6 +76,10 @@ public class RealtimeTelemetry {
 	private boolean softwareABF;
 	private boolean deploymentWaitAtNextBoot;
 
+	public RealtimeTelemetry() {
+		// do nothing
+	}
+	
 	public RealtimeTelemetry(BitInputStream dis) throws IOException {
 		solarPanelVoltageX = dis.readUnsignedShort();
 		solarPanelVoltageY = dis.readUnsignedShort();
@@ -219,11 +223,11 @@ public class RealtimeTelemetry {
 		this.rebootCount = rebootCount;
 	}
 
-	public int getEPSSoftwareErrors() {
+	public int getEPsSoftwareErrors() {
 		return ePsSoftwareErrors;
 	}
 
-	public void setEPSSoftwareErrors(int ePSSoftwareErrors) {
+	public void setEPsSoftwareErrors(int ePSSoftwareErrors) {
 		ePsSoftwareErrors = ePSSoftwareErrors;
 	}
 

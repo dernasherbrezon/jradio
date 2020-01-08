@@ -9,7 +9,11 @@ public class WholeOrbitDataBatch {
 
 	private WholeOrbit[] data = new WholeOrbit[104];
 	private String callsign;
-	private final int sequenceNumber;
+	private int sequenceNumber;
+	
+	public WholeOrbitDataBatch() {
+		// do nothing
+	}
 
 	public WholeOrbitDataBatch(int sequenceNumber, byte[] rawData) throws IOException {
 		this.sequenceNumber = sequenceNumber;
@@ -42,4 +46,7 @@ public class WholeOrbitDataBatch {
 		return sequenceNumber;
 	}	
 
+	public void setSequenceNumber(int sequenceNumber) {
+		this.sequenceNumber = sequenceNumber;
+	}
 }

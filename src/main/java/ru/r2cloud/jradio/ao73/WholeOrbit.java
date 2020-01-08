@@ -22,6 +22,10 @@ public class WholeOrbit {
 	private int totalPhotoCurrent;
 	private int batteryVoltage;
 	private int totalSystemCurrent;
+	
+	public WholeOrbit() {
+		// do nothing
+	}
 
 	public WholeOrbit(BitInputStream dis) throws IOException {
 		tempThermistorBlackChassis = (-0.024f * dis.readUnsignedInt(12)) + 75.244f;

@@ -14,6 +14,10 @@ public class HighResolutionData {
 
 	private int totalPhotoCurrent;
 	private int batteryVoltage;
+	
+	public HighResolutionData() {
+		// do nothing
+	}
 
 	public HighResolutionData(BitInputStream dis) throws IOException {
 		sunSensorXP = RealtimeTelemetry.readXPlusTemperature(dis);
