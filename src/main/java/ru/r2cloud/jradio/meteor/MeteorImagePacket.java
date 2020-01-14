@@ -1,7 +1,14 @@
 package ru.r2cloud.jradio.meteor;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
 import java.util.NoSuchElementException;
+
+import javax.imageio.plugins.jpeg.JPEGHuffmanTable;
+import javax.imageio.plugins.jpeg.JPEGQTable;
 
 import org.jtransforms.dct.DoubleDCT_2D;
 import org.slf4j.Logger;
@@ -12,6 +19,8 @@ import ru.r2cloud.jradio.lrpt.Packet;
 public class MeteorImagePacket implements Iterator<int[]> {
 
 	private static final Logger LOG = LoggerFactory.getLogger(MeteorImagePacket.class);
+	private static final int TWO_BYTES_POSSIBLE_VALUES = (int) (Math.pow(2, 8) * Math.pow(2, 8));
+	private static final int BIT_IN_TWO_BYTES = 16;
 
 	private final Packet packet;
 	private final int mcuNumber;
@@ -30,29 +39,33 @@ public class MeteorImagePacket implements Iterator<int[]> {
 	private boolean hasNext = false;
 
 	private static final int MAX_MCU_PER_PACKET = 14;
-	private static final byte[] initial_quantization_table = new byte[] { 16, 11, 10, 16, 24, 40, 51, 61, 12, 12, 14, 19, 26, 58, 60, 55, 14, 13, 16, 24, 40, 57, 69, 56, 14, 17, 22, 29, 51, 87, 80, 62, 18, 22, 37, 56, 68, 109, 103, 77, 24, 35, 55, 64, 81, 104, 113, 92, 49, 64, 78, 87, 103, 121, 120, 101, 72, 92, 95, 98, 112, 100, 103, 99 };
 	// used to convert from zigzag matrix to plain dct
 	private static final byte[] zigzag_indexes = new byte[] { 0, 1, 5, 6, 14, 15, 27, 28, 2, 4, 7, 13, 16, 26, 29, 42, 3, 8, 12, 17, 25, 30, 41, 43, 9, 11, 18, 24, 31, 40, 44, 53, 10, 19, 23, 32, 39, 45, 52, 54, 20, 22, 33, 38, 46, 51, 55, 60, 21, 34, 37, 47, 50, 56, 59, 61, 35, 36, 48, 49, 57, 58, 62, 63 };
 
 	// mapping between codeword and AcCode
 	// spatial table, stores less AcCode objects than 65536
 	private static AcCode[] acCodes = new AcCode[162];
+	private static DcCode[] dcCodes;
 	// mapping between all possible 2bytes and the codeword. Saves 12 bitwise shift and compare operations
-	private static int[] acLookup = new int[65536];
+	private static int[] acLookup = new int[TWO_BYTES_POSSIBLE_VALUES];
 	// lookup table for max 2 bytes. category lookup table has max 9 bits (i.e. 8 bit + 1 bit)
 	// it saves us 12 bitwise shift and compare operations (worst case scenario)
-	private static int[] dcLookup = new int[65536];
-	// map category (array index) to the number of bits in codeword. used to skip detected codeword and extract diff value
-	private static int[] codeLengthLookup = new int[] { 2, 3, 3, 3, 3, 3, 4, 5, 6, 7, 8, 9 };
-
+	private static int[] dcLookup = new int[TWO_BYTES_POSSIBLE_VALUES];
 	private static final DoubleDCT_2D DCTTransform = new DoubleDCT_2D(8, 8);
 
 	static {
 		setupAcCodes();
 
-		for (int i = 0; i < 65536; i++) {
+		dcCodes = createTable(JPEGHuffmanTable.StdDCLuminance);
+		Map<Integer, DcCode> index = indexByCode(dcCodes);
+		for (int i = 0; i < TWO_BYTES_POSSIBLE_VALUES; i++) {
 			acLookup[i] = map2BytesToAcCodeword(i);
-			dcLookup[i] = map2BytesToDcCategory(i);
+			DcCode code = findCode(i, index);
+			// shouldn't happen. defensive check
+			if (code == null) {
+				continue;
+			}
+			dcLookup[i] = code.getCategory();
 		}
 	}
 
@@ -85,12 +98,12 @@ public class MeteorImagePacket implements Iterator<int[]> {
 
 		double[] zigzagDct = new double[dct.length];
 
-		int dcCategory = dcLookup[getNext(16)];
+		int dcCategory = dcLookup[getNext(BIT_IN_TWO_BYTES)];
 		if (dcCategory == -1) {
 			LOG.info("invalid dc category");
 			return false;
 		}
-		int codeWordLength = codeLengthLookup[dcCategory];
+		int codeWordLength = dcCodes[dcCategory].getCodeLength();
 		currentBitIndex += codeWordLength;
 		int dcBitmask = getNext(dcCategory);
 		// dc category also defines number of bits in the diff value
@@ -105,7 +118,7 @@ public class MeteorImagePacket implements Iterator<int[]> {
 
 		// decode AC
 		for (int i = 1; i < 64; i++) {
-			int index = acLookup[getNext(16)];
+			int index = acLookup[getNext(BIT_IN_TWO_BYTES)];
 			if (index == -1) {
 				LOG.info("invalid ac codeword");
 				return false;
@@ -181,9 +194,9 @@ public class MeteorImagePacket implements Iterator<int[]> {
 		} else {
 			compressionRatio = 200.0f - 2 * qualityValue;
 		}
-		int[] result = new int[initial_quantization_table.length];
+		int[] result = new int[JPEGQTable.K1Luminance.getTable().length];
 		for (int i = 0; i < result.length; i++) {
-			result[i] = Math.round(compressionRatio / 100 * initial_quantization_table[i]);
+			result[i] = Math.round(compressionRatio / 100 * JPEGQTable.K1Luminance.getTable()[i]);
 			if (result[i] < 1) {
 				result[i] = 1;
 			}
@@ -232,48 +245,50 @@ public class MeteorImagePacket implements Iterator<int[]> {
 		return qualityValue;
 	}
 
-	// used to build dc lookup table
-	// for every possible 2 bytes of input, try to find category
-	// For example:
-	// input bytes - 1101 1100
-	// 110 should be mapped to 5 and ignore the rest of the input (1 1100). i.e. for every possible reminder (1 1100, 1 1101, 0 0100) output 5.
-	private static int map2BytesToDcCategory(int codeword) {
-		if ((codeword >> 14) == 0) {
-			return 0;
+	private static DcCode findCode(int twoByteIndex, Map<Integer, DcCode> index) {
+		// iterate from shorter codewords to longer
+		for (int j = BIT_IN_TWO_BYTES; j >= 0; j--) {
+			int codeword = twoByteIndex >> j;
+			DcCode code = index.get(codeword);
+			if (code == null) {
+				continue;
+			}
+			// make sure we index codeword of the right length
+			if (code.getCodeLength() != BIT_IN_TWO_BYTES - j) {
+				continue;
+			}
+			return code;
 		}
-
-		switch (codeword >> 13) {
-		case 2:
-			return 1;
-		case 3:
-			return 2;
-		case 4:
-			return 3;
-		case 5:
-			return 4;
-		case 6:
-			return 5;
-		default:
-			break;
-		}
-
-		if ((codeword >> 12) == 0x00E) {
-			return 6;
-		} else if ((codeword >> 11) == 0x01E) {
-			return 7;
-		} else if ((codeword >> 10) == 0x03E) {
-			return 8;
-		} else if ((codeword >> 9) == 0x07E) {
-			return 9;
-		} else if ((codeword >> 8) == 0x0FE) {
-			return 10;
-		} else if ((codeword >> 7) == 0x1FE) {
-			return 11;
-		} else {
-			return -1;
-		}
+		return null;
 	}
 
+	private static Map<Integer, DcCode> indexByCode(DcCode[] list) {
+		Map<Integer, DcCode> result = new HashMap<>();
+		for (DcCode cur : list) {
+			result.put(cur.getCodeword(), cur);
+		}
+		return result;
+	}
+
+	private static DcCode[] createTable(JPEGHuffmanTable table) {
+		List<DcCode> result = new ArrayList<>();
+		int code = 0;
+		int lengthIndex = 0;
+		for (int i = 0; i < table.getLengths().length; i++) {
+			for (int j = 0; j < table.getLengths()[i]; j++) {
+				DcCode cur = new DcCode();
+				cur.setCodeLength(i + 1);
+				cur.setCodeword(code);
+				cur.setCategory(table.getValues()[lengthIndex]);
+				result.add(cur);
+				code++;
+				lengthIndex++;
+			}
+			code <<= 1;
+		}
+		return result.toArray(new DcCode[0]);
+	}
+	
 	// used to build dc lookup table
 	// for every possible 2 bytes of input, try to find codeword
 	// For example:
