@@ -141,3 +141,15 @@ Multiply mul = new Multiply(source, source2, true);
 ```
 
 Where "getDopplerFrequency" was calculated using [predict4java](https://github.com/badgersoftdotcom/predict4java)
+
+## Usage
+
+Configure maven:
+
+```xml
+<dependency>
+        <groupId>ru.r2cloud</groupId>
+        <artifactId>jradio</artifactId>
+        <version>1.21</version>
+</dependency>
+```
