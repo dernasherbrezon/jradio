@@ -6,6 +6,7 @@ import static org.junit.Assert.fail;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.lang.reflect.Array;
+import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 import java.nio.charset.StandardCharsets;
@@ -35,7 +36,7 @@ public class AssertJson {
 			fail(message.toString());
 		}
 	}
-	
+
 	public static void assertObjectsEqual(String jsonFilename, Object actualObject) {
 		assertObjectsEqual(jsonFilename, actualObject, actualObject.getClass());
 	}
@@ -104,6 +105,17 @@ public class AssertJson {
 					curField = m.getName().substring(2);
 				} else {
 					continue;
+				}
+				// check if field marked as transient
+				// do not compare such fields
+				Field field;
+				try {
+					field = expected.getClass().getDeclaredField(Character.toLowerCase(curField.charAt(0)) + curField.substring(1));
+					if (Modifier.isTransient(field.getModifiers())) {
+						continue;
+					}
+				} catch (Exception e1) {
+					// ignore
 				}
 				try {
 					Object actualValue = m.invoke(actual);
