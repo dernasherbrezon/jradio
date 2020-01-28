@@ -15,11 +15,11 @@ public class CMX909bHeader {
 
 	private Control1 control1;
 	private Control2 control2;
-	
+
 	public CMX909bHeader() {
-		//do nothing
+		// do nothing
 	}
-	
+
 	public CMX909bHeader(DataInputStream dis) throws UncorrectableException, IOException {
 		int control1Byte = dis.readUnsignedByte();
 		int control2Byte = dis.readUnsignedByte();
@@ -27,12 +27,6 @@ public class CMX909bHeader {
 
 		control1Byte = Hamming.decode12b8((control1Byte << 4) | (fec >> 4));
 		control1 = new Control1();
-		MessageType type = MessageType.valueOfCode(control1Byte >> 5);
-		if (type != null) {
-			control1.setType(type);
-		} else {
-			LOG.info("unknown message type: {}", (control1Byte >> 5));
-		}
 		control1.setNumberOfBlocks((control1Byte & 0x1F) + 1);
 		control1.setNumberOfErrors((control1Byte & 0x1F));
 		control2Byte = Hamming.decode12b8((control2Byte << 4) | (fec & 0xF));
@@ -41,6 +35,18 @@ public class CMX909bHeader {
 		control2.setAck((control2Byte & 0x2) > 0);
 		control2.setSubaddress((byte) ((control2Byte >> 2) & 0x3));
 		control2.setAddress((byte) (control2Byte >> 4));
+
+		// set the type later to reduce noise in the logs
+		// if incoming data is corrupted, then it most likely fail on first Hamming decoding
+		// or second Hamming decoding
+		int messageTypeCode = control1Byte >> 5;
+		MessageType type = MessageType.valueOfCode(messageTypeCode);
+		if (type != null) {
+			control1.setType(type);
+		} else {
+			LOG.info("unknown message type: {}", messageTypeCode);
+		}
+
 	}
 
 	public Control1 getControl1() {
@@ -50,11 +56,11 @@ public class CMX909bHeader {
 	public void setControl1(Control1 control1) {
 		this.control1 = control1;
 	}
-	
+
 	public Control2 getControl2() {
 		return control2;
 	}
-	
+
 	public void setControl2(Control2 control2) {
 		this.control2 = control2;
 	}
