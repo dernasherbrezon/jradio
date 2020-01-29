@@ -150,6 +150,6 @@ Configure maven:
 <dependency>
         <groupId>ru.r2cloud</groupId>
         <artifactId>jradio</artifactId>
-        <version>1.21</version>
+        <version>1.22</version>
 </dependency>
 ```
