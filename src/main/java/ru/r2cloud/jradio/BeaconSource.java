@@ -51,6 +51,12 @@ public abstract class BeaconSource<T> implements Iterator<T>, Closeable {
 					LOG.debug("unable to decode beacon: {}", e.getMessage());
 				}
 				continue;
+			} catch (Exception e) {
+				// corrupted input might cause IllegalArgumentException or similar
+				// make sure only current byte[] fails
+				// and decoder continue to parse input
+				LOG.error("unable to parse beacon", e);
+				continue;
 			}
 
 			if (beacon == null) {
