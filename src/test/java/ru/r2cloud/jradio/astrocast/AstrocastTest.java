@@ -13,6 +13,7 @@ import ru.r2cloud.jradio.blocks.CorrelateAccessCodeTag;
 import ru.r2cloud.jradio.blocks.FixedLengthTagger;
 import ru.r2cloud.jradio.blocks.LowPassFilter;
 import ru.r2cloud.jradio.blocks.MultiplyConst;
+import ru.r2cloud.jradio.blocks.NrziDecode;
 import ru.r2cloud.jradio.blocks.TaggedStreamToPdu;
 import ru.r2cloud.jradio.blocks.UnpackedToPacked;
 import ru.r2cloud.jradio.blocks.Window;
@@ -36,7 +37,24 @@ public class AstrocastTest {
 		assertTrue(input.hasNext());
 		AssertJson.assertObjectsEqual("AstrocastBeacon.json", input.next());
 	}
-	
+
+	@Test
+	public void testDecodeTelemetry() throws Exception {
+		float gainMu = 0.175f * 5;
+		WavFileSource source = new WavFileSource(AstrocastTest.class.getClassLoader().getResourceAsStream("astrocast_nrzi.wav"));
+		MultiplyConst mc = new MultiplyConst(source, 10.0f);
+		LowPassFilter lpf = new LowPassFilter(mc, 5, 1.0, 1000, 600, Window.WIN_HAMMING, 6.76);
+		ClockRecoveryMM clockRecovery = new ClockRecoveryMM(lpf, lpf.getContext().getSampleRate() / 1200, (float) (0.25 * gainMu * gainMu), 0.5f, gainMu, 0.05f);
+		BinarySlicer bs = new BinarySlicer(clockRecovery);
+		NrziDecode nrzi = new NrziDecode(bs);
+		CorrelateAccessCodeTag correlateTag = new CorrelateAccessCodeTag(nrzi, 8, "0111010111111010110000011010001101011000110100000110010001110110", false);
+		UnpackedToPacked packed = new UnpackedToPacked(new FixedLengthTagger(correlateTag, 255 * 8), 1, Endianness.GR_MSB_FIRST);
+		TaggedStreamToPdu pdu = new TaggedStreamToPdu(packed);
+		input = new Astrocast(pdu);
+		assertTrue(input.hasNext());
+		AssertJson.assertObjectsEqual("AstrocastNrziBeacon.json", input.next());
+	}
+
 	@After
 	public void stop() throws Exception {
 		if (input != null) {
