@@ -1,7 +1,5 @@
 package ru.r2cloud.jradio.astrocast;
 
-import java.text.DecimalFormat;
-import java.text.DecimalFormatSymbols;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -31,20 +29,19 @@ public class NMEA0183 {
 		SimpleDateFormat sdf = new SimpleDateFormat("ddMMyy HHmmss.SSS");
 		sdf.setTimeZone(TimeZone.getTimeZone("UTC"));
 		time = sdf.parse(parts[9] + " " + parts[1]);
-		DecimalFormat format = createFormatter("##.##");
 		source = NMEA0183Source.valueOf(parts[0].substring(1, 3));
 		if (parts[2].equalsIgnoreCase("A")) {
 			status = true;
 		} else {
 			status = false;
 		}
-		latitude = format.parse(parts[3]).floatValue();
+		latitude = Float.parseFloat(parts[3]);
 		latitudeDirection = LatitudeDirection.valueOf(parts[4]);
-		longitude = format.parse(parts[5]).floatValue();
+		longitude = Float.parseFloat(parts[5]);
 		longitudeDirection = LongitudeDirection.valueOf(parts[6]);
-		speedOverGround = format.parse(parts[7]).floatValue();
-		trackMadeGood = format.parse(parts[8]).floatValue();
-		magneticVariation = format.parse(parts[10]).floatValue();
+		speedOverGround = Float.parseFloat(parts[7]);
+		trackMadeGood = Float.parseFloat(parts[8]);
+		magneticVariation = Float.parseFloat(parts[10]);
 		magneticVariationDirection = LongitudeDirection.valueOf(parts[11].substring(0, 1));
 	}
 
@@ -136,11 +133,4 @@ public class NMEA0183 {
 		this.magneticVariationDirection = magneticVariationDirection;
 	}
 
-	private static DecimalFormat createFormatter(String pattern) {
-		DecimalFormatSymbols decimalFormatSymbols = new DecimalFormatSymbols();
-		decimalFormatSymbols.setDecimalSeparator('.');
-		DecimalFormat decimalFormat = new DecimalFormat(pattern);
-		decimalFormat.setDecimalFormatSymbols(decimalFormatSymbols);
-		return decimalFormat;
-	}
 }

@@ -15,4 +15,9 @@ public class NMEA0183Test {
 		AssertJson.assertObjectsEqual("NMEA0183.json", new NMEA0183(data));
 	}
 
+	@SuppressWarnings("unused")
+	@Test(expected = NumberFormatException.class)
+	public void testInvalidFormat() throws ParseException {
+		new NMEA0183("$GPRMC,220516.38,A,513@.82,N,02311.12,W,13606,054.7,270816,020.3,W");
+	}
 }
