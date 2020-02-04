@@ -120,7 +120,7 @@ public class ReedSolomon {
 	}
 
 	public byte[] decodeData(byte[] data, int interleaving) throws UncorrectableException {
-		byte[] result = new byte[data.length - nroots * interleaving];
+		byte[] result = null;
 		for (int i = 0; i < interleaving; i++) {
 			// deinterleave
 			// transform 0 1 2 3 4 5 6 7 p1 p2 p3 p4 bytes into ${interleaving} blocks:
@@ -133,6 +133,11 @@ public class ReedSolomon {
 			}
 			// decode each block
 			byte[] decoded = decodeData(interleaved);
+			// allocate lazily
+			// decodeData might fail, so no need to generate array for that
+			if (result == null) {
+				result = new byte[data.length - nroots * interleaving];
+			}
 			// interleave error-corrected results back
 			for (int j = 0; j < decoded.length; j++) {
 				result[j * interleaving + i] = decoded[j];
@@ -142,7 +147,7 @@ public class ReedSolomon {
 	}
 
 	public byte[] decodeDualBasis(byte[] data, int interleaving) throws UncorrectableException {
-		byte[] result = new byte[data.length - nroots * interleaving];
+		byte[] result = null;
 		for (int i = 0; i < interleaving; i++) {
 			// deinterleave
 			// transform 0 1 2 3 4 5 6 7 p1 p2 p3 p4 bytes into ${interleaving} blocks:
@@ -155,6 +160,11 @@ public class ReedSolomon {
 			}
 			// decode each block
 			byte[] decoded = decodeDualBasis(interleaved);
+			// allocate lazily
+			// decodeData might fail, so no need to generate array for that
+			if (result == null) {
+				result = new byte[data.length - nroots * interleaving];
+			}
 			// interleave error-corrected results back
 			for (int j = 0; j < decoded.length; j++) {
 				result[j * interleaving + i] = decoded[j];
