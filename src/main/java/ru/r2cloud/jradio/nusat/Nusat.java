@@ -31,14 +31,14 @@ public class Nusat extends BeaconSource<NusatBeacon> {
 			LOG.debug("the length is: {}", length);
 		}
 		int crc8 = data[1] & 0xFF;
-		byte[] packet = Arrays.copyOfRange(data, 2, data.length);
-		Randomize.shuffle(packet);
-		if (Crc8.calculate(packet) != crc8) {
+		Randomize.shuffle(data, 2, data.length - 2);
+		if (Crc8.calculate(data, 2, data.length - 2) != crc8) {
 			if (LOG.isDebugEnabled()) {
 				LOG.debug("crc mismatch");
 			}
 			return null;
 		}
+		byte[] packet = Arrays.copyOfRange(data, 2, data.length);
 		NusatBeacon beacon = new NusatBeacon();
 		beacon.readExternal(packet);
 		return beacon;

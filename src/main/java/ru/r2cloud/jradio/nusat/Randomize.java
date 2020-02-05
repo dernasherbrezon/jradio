@@ -11,9 +11,9 @@ public class Randomize {
 			0x46, 0x4C, 0xEE, 0xC3, 0x75, 0x7D, 0xA6, 0x1C,
 			0xF2, 0x45, 0x01, 0x00, 0xFE, 0xAF, 0xFD, 0x03};
 
-	public static void shuffle(byte[] data) {
-		for (int i = 0; i < data.length; i++) {
-			data[i] = (byte) ((data[i] & 0xFF) ^ sequence[i % sequence.length]);
+	public static void shuffle(byte[] data, int offset, int length) {
+		for (int i = offset, j = 0; i < (offset + length); i++, j++) {
+			data[i] = (byte) ((data[i] & 0xFF) ^ sequence[j % sequence.length]);
 		}
 	}
 
