@@ -18,6 +18,7 @@ import ru.r2cloud.jradio.util.MathUtils;
 public class Eseo extends BeaconSource<EseoBeacon> {
 
 	private static final Logger LOG = LoggerFactory.getLogger(Eseo.class);
+	private static final ReedSolomon RS = new ReedSolomon(8, 0x11d, 1, 1, 16);
 
 	public Eseo(TaggedStreamToPdu input) {
 		super(input);
@@ -25,7 +26,7 @@ public class Eseo extends BeaconSource<EseoBeacon> {
 
 	@Override
 	protected EseoBeacon parseBeacon(byte[] raw) throws UncorrectableException, IOException {
-		CorrelateAccessCode code = new CorrelateAccessCode(1, EseoBeacon.FLAG);
+		CorrelateAccessCode code = new CorrelateAccessCode(2, EseoBeacon.FLAG);
 		// start from last index in case of reed-solomon code block is having EseoBeacon.FLAG
 		int endFlag = raw.length - 1;
 		while ((endFlag = code.lastIndexOf(raw, endFlag)) != -1) {
@@ -44,8 +45,7 @@ public class Eseo extends BeaconSource<EseoBeacon> {
 			raw = Arrays.copyOfRange(raw, 0, endFlag);
 
 			try {
-				ReedSolomon rs = new ReedSolomon(8, 0x11d, 1, 1, 16);
-				byte[] data = rs.decodeData(raw);
+				byte[] data = RS.decodeData(raw);
 				data = BitStuffing.destuffOnes(data, 5);
 				Randomize.shuffle(data);
 				Nrzi.decode(data);
