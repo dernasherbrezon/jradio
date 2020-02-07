@@ -97,32 +97,139 @@ Demodulators
 
 ## Supported satellites
 
-Using the blocks above, you could decode signals from the following satellites:
+Using the blocks above, it is possible to decode the following satellites:
 
-  * 1Kuns-Pf (NORAD 43466). Decode short and long beacon formats, images. Based on [gr-satellites](https://github.com/daniestevez/gr-satellites). See the pipeline at the [KunsPfTest](https://github.com/dernasherbrezon/jradio/blob/master/src/test/java/ru/r2cloud/jradio/kunspf/KunsPfTest.java)
-  * AAUSAT-4 (NORAD 41460). Digital telemetry only. Based on [gr-aausat](https://github.com/daniestevez/gr-aausat). See the pipeline at the [AAUSAT4Test](https://github.com/dernasherbrezon/jradio/blob/master/src/test/java/ru/r2cloud/jradio/aausat4/AAUSAT4Test.java)
-  * Aistechsat3 (NORAD 44103). See the pipeline at the [Aistechsat3Test](https://github.com/dernasherbrezon/jradio/blob/master/src/test/java/ru/r2cloud/jradio/aistechsat3/Aistechsat3Test.java)
-  * AO-73 (NORAD 39444). Decode telemetry beacon and aggregate payloads. Based on [gr-satellites](https://github.com/daniestevez/gr-satellites). See the pipeline at the [Ao73Test](https://github.com/dernasherbrezon/jradio/blob/master/src/test/java/ru/r2cloud/jradio/ao73/Ao73Test.java)
-  * Astrocast 0.1 (NORAD 43798). Decode telemetry beacon. Based on [gr-satellites](https://github.com/daniestevez/gr-satellites). See the pipeline at the [AstrocasatTest](https://github.com/dernasherbrezon/jradio/blob/master/src/test/java/ru/r2cloud/jradio/astrocasat/AstrocasatTest.java)
-  * AT03 (NORAD 42784). Decode telemetry beacon. Based on [gr-satellites](https://github.com/daniestevez/gr-satellites). See the pipeline at the [At03Test](https://github.com/dernasherbrezon/jradio/blob/master/src/test/java/ru/r2cloud/jradio/at03/At03Test.java)
-  * AU02/AU03 (NORAD 42723/42731). Decode telemetry beacon. Based on [gr-satellites](https://github.com/daniestevez/gr-satellites). See the pipeline at the [Au02Test](https://github.com/dernasherbrezon/jradio/blob/master/src/test/java/ru/r2cloud/jradio/au02/Au02Test.java)
-  * CA03 (NORAD 42734). Decode telemetry beacon. Based on [gr-satellites](https://github.com/daniestevez/gr-satellites). See the pipeline at the [Ca03Test](https://github.com/dernasherbrezon/jradio/blob/master/src/test/java/ru/r2cloud/jradio/ca03/Ca03Test.java)
-  * D-Star ONE (NORAD 43881). Decode telemetry beacon. Based on [gr-satellites](https://github.com/daniestevez/gr-satellites). See the pipeline at the [Dstar1Test](https://github.com/dernasherbrezon/jradio/blob/master/src/test/java/ru/r2cloud/jradio/dstar1/Dstar1Test.java)
-  * Entrysat (NORAD 44429). Decode telemetry beacon. Based on [gr-satellites](https://github.com/daniestevez/gr-satellites). See the pipeline at the [EntrysatTest](https://github.com/dernasherbrezon/jradio/blob/master/src/test/java/ru/r2cloud/jradio/entrysat/EntrysatTest.java)
-  * ESEO (NORAD 99912). Decode telemetry beacon. Decode telemetry from the funcube payload. Based on [gr-satellites](https://github.com/daniestevez/gr-satellites). See the pipeline at the [EseoTest](https://github.com/dernasherbrezon/jradio/blob/master/src/test/java/ru/r2cloud/jradio/eseo/EseoTest.java)
-  * Fmn1 (NORAD 43192). See the pipeline at the [Fmn1Test](https://github.com/dernasherbrezon/jradio/blob/master/src/test/java/ru/r2cloud/jradio/fmn1/Fmn1Test.java)
-  * GOMX-1 (NORAD 39430). Decode telemetry beacon. Based on [gr-satellites](https://github.com/daniestevez/gr-satellites). See the pipeline at the [Gomx1Test](https://github.com/dernasherbrezon/jradio/blob/master/src/test/java/ru/r2cloud/jradio/gomx1/Gomx1Test.java)
-  * Jy1sat (NORAD 43803). Decode telemetry beacon and aggregate payloads. Based on [gr-satellites](https://github.com/daniestevez/gr-satellites). See the pipeline at the [Nayif1Test](https://github.com/dernasherbrezon/jradio/blob/master/src/test/java/ru/r2cloud/jradio/jy1sat/Jy1satTest.java)
-  * Lume-1 (NORAD 43908) and AISTechSat 2(NORAD 43768). Decode telemetry beacon. Based on [gr-satellites](https://github.com/daniestevez/gr-satellites). See the pipeline at the [Lume1Test](https://github.com/dernasherbrezon/jradio/blob/master/src/test/java/ru/r2cloud/jradio/lume1/Lume1Test.java)
-  * Meteor-M N2 (NORAD 40069). Decode pictures. Based on [meteor-decoder](https://github.com/artlav/meteor_decoder) and [meteor-m2-lrpt](https://github.com/otti-soft/meteor-m2-lrpt). See the pipeline at the [MeteorImageTest](https://github.com/dernasherbrezon/jradio/blob/master/src/test/java/ru/r2cloud/jradio/meteor/MeteorImageTest.java)
-  * Mysat-1 (NORAD 44045). See the pipeline at the [Mysat1Test](https://github.com/dernasherbrezon/jradio/blob/master/src/test/java/ru/r2cloud/jradio/mysat1/Mysat1Test.java)
-  * Nayif1 (NORAD 42017). Decode telemetry beacon and aggregate payloads. Based on [gr-satellites](https://github.com/daniestevez/gr-satellites). See the pipeline at the [Nayif1Test](https://github.com/dernasherbrezon/jradio/blob/master/src/test/java/ru/r2cloud/jradio/nayif1/Nayif1Test.java)
-  * PwSat2 (NORAD 43776). Decode telemetry beacon. Based on [gr-satellites](https://github.com/daniestevez/gr-satellites). See the pipeline at the [PwSat2Test](https://github.com/dernasherbrezon/jradio/blob/master/src/test/java/ru/r2cloud/jradio/pwsat2/PwSat2Test.java)
-  * Reactor Hello World (NORAD 43743). Decode telemetry beacon. Based on [gr-satellites](https://github.com/daniestevez/gr-satellites), [rhw-ham](https://github.com/ReaktorSpaceLab/rhw-ham). See the pipeline at the [ReaktorHelloWorldTest](https://github.com/dernasherbrezon/jradio/blob/master/src/test/java/ru/r2cloud/jradio/rhw/ReaktorHelloWorldTest.java)
-  * S-NET A,B,C,D (NORAD 43186, 43187, 43188, 43189). Decode telemetry beacon. Based on [gr-satellites](https://github.com/daniestevez/gr-satellites). See the pipeline at the [SnetTest](https://github.com/dernasherbrezon/jradio/blob/master/src/test/java/ru/r2cloud/jradio/snet/SnetTest.java)
-  * Sat3Cat1 (NORAD 99901). Decode telemetry beacon. Based on [gr-satellites](https://github.com/daniestevez/gr-satellites). See the pipeline at the [Sat3Cat1Test](https://github.com/dernasherbrezon/jradio/blob/master/src/test/java/ru/r2cloud/jradio/sat3cat1/Sat3Cat1Test.java)
-  * Suomi100 (NORAD 43804). Decode telemetry beacon. Based on [gr-satellites](https://github.com/daniestevez/gr-satellites). See the pipeline at the [Suomi100Test](https://github.com/dernasherbrezon/jradio/blob/master/src/test/java/ru/r2cloud/jradio/suomi100/Suomi100Test.java)
-  * Technosat (NORAD 42829). Decode telemetry beacon. Based on [gr-satellites](https://github.com/daniestevez/gr-satellites) and [beesat-sdr](https://github.com/kappiman/beesat-sdr). See the pipeline at the [TechnosatTest](https://github.com/dernasherbrezon/jradio/blob/master/src/test/java/ru/r2cloud/jradio/technosat/TechnosatTest.java)
+<table>
+	<thead>
+		<tr>
+			<th>Name</th>
+			<th>NORAD</th>
+			<th>Sample code</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>1Kuns-Pf</td>
+			<td>43466</td>
+			<td>[KunsPfTest](https://github.com/dernasherbrezon/jradio/blob/master/src/test/java/ru/r2cloud/jradio/kunspf/KunsPfTest.java)</td>
+		</tr>
+		<tr>
+			<td>AAUSAT-4</td>
+			<td>41460</td>
+			<td>[AAUSAT4Test](https://github.com/dernasherbrezon/jradio/blob/master/src/test/java/ru/r2cloud/jradio/aausat4/AAUSAT4Test.java)</td>
+		</tr>
+		<tr>
+			<td>Aistechsat3</td>
+			<td>44103</td>
+			<td>[Aistechsat3Test](https://github.com/dernasherbrezon/jradio/blob/master/src/test/java/ru/r2cloud/jradio/aistechsat3/Aistechsat3Test.java)</td>
+		</tr>
+		<tr>
+			<td>AO-73</td>
+			<td>39444</td>
+			<td>[Ao73Test](https://github.com/dernasherbrezon/jradio/blob/master/src/test/java/ru/r2cloud/jradio/ao73/Ao73Test.java)</td>
+		</tr>
+		<tr>
+			<td>Astrocast 0.1</td>
+			<td>43798</td>
+			<td>[AstrocasatTest](https://github.com/dernasherbrezon/jradio/blob/master/src/test/java/ru/r2cloud/jradio/astrocasat/AstrocasatTest.java)</td>
+		</tr>
+		<tr>
+			<td>AT03</td>
+			<td>42784</td>
+			<td>[At03Test](https://github.com/dernasherbrezon/jradio/blob/master/src/test/java/ru/r2cloud/jradio/at03/At03Test.java)</td>
+		</tr>
+		<tr>
+			<td>AU02/AU03</td>
+			<td>42723/42731</td>
+			<td>[Au02Test](https://github.com/dernasherbrezon/jradio/blob/master/src/test/java/ru/r2cloud/jradio/au02/Au02Test.java)</td>
+		</tr>
+		<tr>
+			<td>CA03</td>
+			<td>42734</td>
+			<td>[Ca03Test](https://github.com/dernasherbrezon/jradio/blob/master/src/test/java/ru/r2cloud/jradio/ca03/Ca03Test.java)</td>
+		</tr>
+		<tr>
+			<td>D-Star ONE</td>
+			<td>43881</td>
+			<td>[Dstar1Test](https://github.com/dernasherbrezon/jradio/blob/master/src/test/java/ru/r2cloud/jradio/dstar1/Dstar1Test.java)</td>
+		</tr>
+		<tr>
+			<td>Entrysat</td>
+			<td>44429</td>
+			<td>[EntrysatTest](https://github.com/dernasherbrezon/jradio/blob/master/src/test/java/ru/r2cloud/jradio/entrysat/EntrysatTest.java)</td>
+		</tr>
+		<tr>
+			<td>ESEO</td>
+			<td>99912</td>
+			<td>[EseoTest](https://github.com/dernasherbrezon/jradio/blob/master/src/test/java/ru/r2cloud/jradio/eseo/EseoTest.java)</td>
+		</tr>
+		<tr>
+			<td>Fmn1</td>
+			<td>43192</td>
+			<td>[Fmn1Test](https://github.com/dernasherbrezon/jradio/blob/master/src/test/java/ru/r2cloud/jradio/fmn1/Fmn1Test.java)</td>
+		</tr>
+		<tr>
+			<td>GOMX-1</td>
+			<td>39430</td>
+			<td>[Gomx1Test](https://github.com/dernasherbrezon/jradio/blob/master/src/test/java/ru/r2cloud/jradio/gomx1/Gomx1Test.java)</td>
+		</tr>
+		<tr>
+			<td>Jy1sat</td>
+			<td>43803</td>
+			<td>[Nayif1Test](https://github.com/dernasherbrezon/jradio/blob/master/src/test/java/ru/r2cloud/jradio/jy1sat/Jy1satTest.java)</td>
+		</tr>
+		<tr>
+			<td>Lume-1 / AISTechSat 2</td>
+			<td>43908 / 43768</td>
+			<td>[Lume1Test](https://github.com/dernasherbrezon/jradio/blob/master/src/test/java/ru/r2cloud/jradio/lume1/Lume1Test.java)</td>
+		</tr>
+		<tr>
+			<td>Meteor-M N2</td>
+			<td>40069</td>
+			<td>[MeteorImageTest](https://github.com/dernasherbrezon/jradio/blob/master/src/test/java/ru/r2cloud/jradio/meteor/MeteorImageTest.java)</td>
+		</tr>
+		<tr>
+			<td>Mysat-1</td>
+			<td>44045</td>
+			<td>[Mysat1Test](https://github.com/dernasherbrezon/jradio/blob/master/src/test/java/ru/r2cloud/jradio/mysat1/Mysat1Test.java)</td>
+		</tr>
+		<tr>
+			<td>Nayif1</td>
+			<td>42017</td>
+			<td>[Nayif1Test](https://github.com/dernasherbrezon/jradio/blob/master/src/test/java/ru/r2cloud/jradio/nayif1/Nayif1Test.java)</td>
+		</tr>
+		<tr>
+			<td>PwSat2</td>
+			<td>43776</td>
+			<td>[PwSat2Test](https://github.com/dernasherbrezon/jradio/blob/master/src/test/java/ru/r2cloud/jradio/pwsat2/PwSat2Test.java)</td>
+		</tr>
+		<tr>
+			<td>Reactor Hello World</td>
+			<td>43743</td>
+			<td>[ReaktorHelloWorldTest](https://github.com/dernasherbrezon/jradio/blob/master/src/test/java/ru/r2cloud/jradio/rhw/ReaktorHelloWorldTest.java)</td>
+		</tr>
+		<tr>
+			<td>S-NET A,B,C,D</td>
+			<td>43186, 43187, 43188, 43189</td>
+			<td>[SnetTest](https://github.com/dernasherbrezon/jradio/blob/master/src/test/java/ru/r2cloud/jradio/snet/SnetTest.java)</td>
+		</tr>
+		<tr>
+			<td>Sat3Cat1</td>
+			<td>99901</td>
+			<td>[Sat3Cat1Test](https://github.com/dernasherbrezon/jradio/blob/master/src/test/java/ru/r2cloud/jradio/sat3cat1/Sat3Cat1Test.java)</td>
+		</tr>
+		<tr>
+			<td>Suomi100</td>
+			<td>43804</td>
+			<td>[Suomi100Test](https://github.com/dernasherbrezon/jradio/blob/master/src/test/java/ru/r2cloud/jradio/suomi100/Suomi100Test.java)</td>
+		</tr>
+		<tr>
+			<td>Technosat</td>
+			<td>42829</td>
+			<td>[TechnosatTest](https://github.com/dernasherbrezon/jradio/blob/master/src/test/java/ru/r2cloud/jradio/technosat/TechnosatTest.java)</td>
+		</tr>
+	</tbody>
+</table>
   
 ## Doppler correction
 
