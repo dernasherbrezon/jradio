@@ -87,6 +87,10 @@ public class AAUSAT4Beacon extends Beacon {
 	public int getLength() {
 		return length;
 	}
+	
+	public void setLength(int length) {
+		this.length = length;
+	}
 
 	public EPS getEps() {
 		return eps;
@@ -134,6 +138,14 @@ public class AAUSAT4Beacon extends Beacon {
 
 	public void setAis2(AIS ais2) {
 		this.ais2 = ais2;
+	}
+
+	public void setHeader(Header header) {
+		this.header = header;
+	}
+
+	public void setHmac(byte[] hmac) {
+		this.hmac = hmac;
 	}
 
 }

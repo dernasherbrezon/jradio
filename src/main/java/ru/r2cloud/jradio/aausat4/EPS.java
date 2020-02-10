@@ -17,6 +17,10 @@ public class EPS {
 	private byte temperature;
 	private byte paTemperature;
 	private byte mainVoltage;
+	
+	public EPS() {
+		//do nothing
+	}
 
 	public EPS(DataInputStream data) throws IOException {
 		bootCount = data.readUnsignedShort();

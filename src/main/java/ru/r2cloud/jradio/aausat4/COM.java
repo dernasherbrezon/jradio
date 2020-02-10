@@ -11,6 +11,10 @@ public class COM {
 	private short latestRssi;
 	private int latestBitCorrection;
 	private int latestByteCorrection;
+	
+	public COM() {
+		//do nothing
+	}
 
 	public COM(DataInputStream data) throws IOException {
 		bootCount = data.readUnsignedShort() & 0x1fff;

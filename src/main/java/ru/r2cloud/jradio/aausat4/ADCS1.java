@@ -10,6 +10,10 @@ public class ADCS1 {
 	private short bdot3;
 	private int state;
 
+	public ADCS1() {
+		// do nothing
+	}
+
 	public ADCS1(DataInputStream data) throws IOException {
 		bdot1 = data.readShort();
 		bdot2 = data.readShort();

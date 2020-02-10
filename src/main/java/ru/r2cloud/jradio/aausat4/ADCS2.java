@@ -9,6 +9,10 @@ public class ADCS2 {
 	private short gyro2;
 	private short gyro3;
 
+	public ADCS2() {
+		// do nothing
+	}
+
 	public ADCS2(DataInputStream data) throws IOException {
 		gyro1 = data.readShort();
 		gyro2 = data.readShort();

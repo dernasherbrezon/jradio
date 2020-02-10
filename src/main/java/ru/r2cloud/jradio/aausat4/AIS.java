@@ -8,6 +8,10 @@ public class AIS {
 	private int bootCount;
 	private int uniqueMssi;
 
+	public AIS() {
+		// do nothing
+	}
+
 	public AIS(DataInputStream data) throws IOException {
 		bootCount = data.readUnsignedShort();
 		data.skipBytes(4);
