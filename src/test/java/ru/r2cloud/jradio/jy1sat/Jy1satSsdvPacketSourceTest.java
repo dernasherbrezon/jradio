@@ -53,7 +53,7 @@ public class Jy1satSsdvPacketSourceTest {
 		assertFalse(decoder.hasNext());
 	}
 
-	private static void assertSsdvImage(String expectedName, SsdvImage cur) throws IOException {
+	public static void assertSsdvImage(String expectedName, SsdvImage cur) throws IOException {
 		try (InputStream is1 = Jy1satSsdvPacketSourceTest.class.getClassLoader().getResourceAsStream("expected/ssdv/" + expectedName + ".png")) {
 			BufferedImage expected = ImageIO.read(is1);
 			for (int i = 0; i < expected.getWidth(); i++) {
