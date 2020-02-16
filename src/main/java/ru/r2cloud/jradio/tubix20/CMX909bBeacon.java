@@ -101,13 +101,12 @@ public abstract class CMX909bBeacon extends Beacon {
 			deinterleaved[i] = (byte) Hamming.decode12b8((deinterleaved[i] << 4) | (fecDeinterleaved[i] & 0xFF));
 		}
 
-		byte[] result = Arrays.copyOfRange(deinterleaved, 0, length);
-		int crc16 = Crc16Ccitt.calculateReverse(result);
+		int crc16 = Crc16Ccitt.calculateReverse(deinterleaved, 0, length);
 		int expectedCrc = ((deinterleaved[deinterleaved.length - 2] & 0xFF) << 8) | (deinterleaved[deinterleaved.length - 1] & 0xFF);
 		if (crc16 != expectedCrc) {
 			throw new UncorrectableException("bad data block. crc mismatch");
 		}
-		return result;
+		return Arrays.copyOfRange(deinterleaved, 0, length);
 	}
 
 	public CMX909bHeader getHeader() {

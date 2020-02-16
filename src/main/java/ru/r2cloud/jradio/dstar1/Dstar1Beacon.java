@@ -5,6 +5,7 @@ import java.io.DataInputStream;
 import java.io.IOException;
 
 import ru.r2cloud.jradio.Beacon;
+import ru.r2cloud.jradio.crc.Crc16Ccitt;
 import ru.r2cloud.jradio.fec.ccsds.UncorrectableException;
 import ru.r2cloud.jradio.tubix20.CMX909bBeacon;
 import ru.r2cloud.jradio.tubix20.CMX909bHeader;
@@ -23,9 +24,13 @@ public class Dstar1Beacon extends Beacon {
 		header = new CMX909bHeader(dis);
 		MobitexRandomizer randomizer = new MobitexRandomizer();
 		byte[] dataFromBlocks = CMX909bBeacon.readDataBlocks(NUMBER_OF_BLOCKS, randomizer, dis);
-		if (dataFromBlocks != null) {
-			payload = new PayloadData(dataFromBlocks);
+		int crc16 = Crc16Ccitt.calculateReverse(dataFromBlocks, 0, dataFromBlocks.length - 2);
+		// crc16 in little endian
+		int expectedCrc = (dataFromBlocks[dataFromBlocks.length - 1] & 0xFF) << 8 | (dataFromBlocks[dataFromBlocks.length - 2] & 0xFF);
+		if (crc16 != expectedCrc) {
+			throw new UncorrectableException("bad data block. crc mismatch");
 		}
+		payload = new PayloadData(dataFromBlocks);
 	}
 
 	public PayloadData getPayload() {

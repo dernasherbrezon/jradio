@@ -44,7 +44,9 @@ public class CMX909bHeader {
 		if (type != null) {
 			control1.setType(type);
 		} else {
-			LOG.info("unknown message type: {}", messageTypeCode);
+			if (LOG.isDebugEnabled()) {
+				LOG.debug("unknown message type: {}", messageTypeCode);
+			}
 		}
 
 	}

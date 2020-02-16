@@ -16,11 +16,15 @@ public class Crc16Ccitt {
 		}
 		return crc & 0xFFFF;
 	}
-
+	
 	public static int calculateReverse(byte[] data) {
+		return calculateReverse(data, 0, data.length);
+	}
+	
+	public static int calculateReverse(byte[] data, int offset, int length) {
 		int crc16 = 0xFFFF;
 
-		for (int i = 0; i < data.length; ++i) {
+		for (int i = offset; i < (offset + length); ++i) {
 			int mask = 1;
 
 			for (int j = 0; j < 8; ++j) {

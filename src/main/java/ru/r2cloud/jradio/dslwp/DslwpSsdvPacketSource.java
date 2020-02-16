@@ -44,7 +44,8 @@ public class DslwpSsdvPacketSource implements Iterator<SsdvPacket> {
 			return true;
 		} catch (IOException e) {
 			LOG.error("unable to read the packet", e);
-			return false;
+			hasNext = false;
+			return hasNext;
 		}
 	}
 
