@@ -22,6 +22,7 @@ public abstract class CMX909bBeacon extends Beacon {
 	private static final Logger LOG = LoggerFactory.getLogger(CMX909bBeacon.class);
 
 	public static final int MAX_SIZE = 1 + 1 + 1 + 6 + 2 + 32 * 30;
+	public static final int BLOCK_SIZE_BYTES = 18;
 
 	private CMX909bHeader header;
 

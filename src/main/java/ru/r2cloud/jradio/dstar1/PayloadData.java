@@ -8,103 +8,112 @@ import ru.r2cloud.jradio.util.LittleEndianDataInputStream;
 
 public class PayloadData {
 
-	private int length;
-	private int id;
-	private long time;
-	private long reboots;
-	private long rtcVal;
-	private float batteryChargeIn;
-	private float batteryChargeOut;
-	private float batteryVoltage;
-	private float supply5V;
-	private float supply3v3;
-	private float pcuTotalCurrent;
-	private float solarXP;
-	private float solarXM;
-	private float solarYP;
-	private float solarYM;
-	private float solarZP;
-	private float solarZM;
-	private float solarTotal;
-	private float vccOut0;
-	private float vccOut1;
-	private float vccOut2;
-	private float vccOut3;
-	private float vccOut4;
-	private float vccOut5;
-	private float vccOut6;
-	private float vccOut7;
-	private float ssTotalCurrent;
-	private float eePROM1Current;
-	private float eePROM2Current;
-	private float extADC1;
-	private float extADC2;
-	private float extADC3;
-	private float extADC4;
-	private float rtcCurrent;
-	private float chargerDCDC;
-	private float systemV;
-	private float obcCurrent;
-	private int switches;
-	private int batteryTemperature;
-	private int scheduledCommands;
+	// all fields are explicitly Objects
+	// they can be null if payload was partially recovered
+	// this could happen because mobitex blocks are processed independantly
+	// and not all blocks can be recovered
+	private Integer length;
+	private Integer id;
+	private Long time;
+	private Long reboots;
+	private Long rtcVal;
+	private Float batteryChargeIn;
+	private Float batteryChargeOut;
+	private Float batteryVoltage;
+	private Float supply5V;
+	private Float supply3v3;
+	private Float pcuTotalCurrent;
+	private Float solarXP;
+	private Float solarXM;
+	private Float solarYP;
+	private Float solarYM;
+	private Float solarZP;
+	private Float solarZM;
+	private Float solarTotal;
+	private Float vccOut0;
+	private Float vccOut1;
+	private Float vccOut2;
+	private Float vccOut3;
+	private Float vccOut4;
+	private Float vccOut5;
+	private Float vccOut6;
+	private Float vccOut7;
+	private Float ssTotalCurrent;
+	private Float eePROM1Current;
+	private Float eePROM2Current;
+	private Float extADC1;
+	private Float extADC2;
+	private Float extADC3;
+	private Float extADC4;
+	private Float rtcCurrent;
+	private Float chargerDCDC;
+	private Float systemV;
+	private Float obcCurrent;
+	private Integer switches;
+	private Short batteryTemperature;
+	private Integer scheduledCommands;
 	private Mode mode;
-	private int crc16;
-	
+	private Short crc16;
+
 	public PayloadData() {
-		//do nothing
+		// do nothing
 	}
 
-	public PayloadData(byte[] data) throws IOException {
-		DataInputStream dis = new DataInputStream(new ByteArrayInputStream(data));
-		length = dis.readUnsignedByte();
-		id = dis.readUnsignedByte();
-		time = LittleEndianDataInputStream.readUnsignedInt(dis);
-		reboots = LittleEndianDataInputStream.readUnsignedInt(dis);
-		rtcVal = LittleEndianDataInputStream.readUnsignedInt(dis);
-		batteryChargeIn = dis.readUnsignedShort() * 2.5f / (4096 * 20 * 0.05f);
-		batteryChargeOut = dis.readUnsignedShort() * 2.5f / (4096 * 20 * 0.033f);
-		batteryVoltage = dis.readUnsignedShort() * 2.5f / 4096 * ((124 + 27.4f) / 27.4f);
-		supply5V = dis.readUnsignedShort() * (2.5f / 4096) * ((30.1f + 18.2f) / 18.2f);
-		supply3v3 = dis.readUnsignedShort() * (2.5f / 4096) * ((18.2f + 18.2f) / 18.2f);
-		pcuTotalCurrent = dis.readUnsignedShort() * 2.5f / (4096 * 20 * 1);
-		solarXP = dis.readUnsignedShort() * 2.5f / (4096 * 20 * 0.1f);
-		solarXM = dis.readUnsignedShort() * 2.5f / (4096 * 20 * 0.1f);
-		solarYP = dis.readUnsignedShort() * 2.5f / (4096 * 20 * 0.1f);
-		solarYM = dis.readUnsignedShort() * 2.5f / (4096 * 20 * 0.1f);
-		solarZP = dis.readUnsignedShort() * 2.5f / (4096 * 20 * 0.1f);
-		solarZM = dis.readUnsignedShort() * 2.5f / (4096 * 20 * 0.1f);
-		solarTotal = dis.readUnsignedShort() * (2.5f / 4096) * ((30.1f + 18.2f) / 18.2f);
-		vccOut0 = dis.readUnsignedShort() * 2.5f / (4096 * 20 * 0.1f);
-		vccOut1 = dis.readUnsignedShort() * 2.5f / (4096 * 20 * 0.1f);
-		vccOut2 = dis.readUnsignedShort() * 2.5f / (4096 * 20 * 0.1f);
-		vccOut3 = dis.readUnsignedShort() * 2.5f / (4096 * 20 * 0.1f);
-		vccOut4 = dis.readUnsignedShort() * 2.5f / (4096 * 20 * 0.05f);
-		vccOut5 = dis.readUnsignedShort() * 2.5f / (4096 * 20 * 0.05f);
-		vccOut6 = dis.readUnsignedShort() * 2.5f / (4096 * 20 * 0.05f);
-		vccOut7 = dis.readUnsignedShort() * 2.5f / (4096 * 20 * 0.05f);
-		ssTotalCurrent = dis.readUnsignedShort() * 2.5f / (4096 * 20 * 0.1f);
-		eePROM1Current = dis.readUnsignedShort() * 2.5f / (4096 * 20 * 0.2f);
-		eePROM2Current = dis.readUnsignedShort() * 2.5f / (4096 * 20 * 1);
-		extADC1 = dis.readUnsignedShort() * 2.5f / (4096 * 20 * 1);
-		extADC2 = dis.readUnsignedShort() * 2.5f / (4096 * 20 * 1);
-		extADC3 = dis.readUnsignedShort() * 2.5f / (4096 * 20 * 1);
-		extADC4 = dis.readUnsignedShort() * 2.5f / (4096 * 20 * 1);
-		rtcCurrent = dis.readUnsignedShort() * 2.5f / (4096 * 20 * 1);
-		chargerDCDC = dis.readUnsignedShort() * 2.5f / (4096 * 20 * 0.1f);
-		systemV = dis.readUnsignedShort() * 2.5f / (4096 * 20 * 0.1f);
-		obcCurrent = dis.readUnsignedShort() * 2.5f / (4096 * 20 * 0.1f);
-		switches = (dis.readUnsignedByte() << 16) | (dis.readUnsignedByte() << 8) | (dis.readUnsignedByte());
-		dis.skipBytes(1);
-		batteryTemperature = LittleEndianDataInputStream.readShort(dis);
-		scheduledCommands = dis.readUnsignedByte();
-		dis.skipBytes(10);
-		mode = Mode.valueOfCode(dis.readUnsignedByte());
-		dis.skipBytes(10);
-		crc16 = LittleEndianDataInputStream.readShort(dis);
+	public PayloadData(byte[] data) {
+		try {
+			DataInputStream dis = new DataInputStream(new ByteArrayInputStream(data));
+			length = dis.readUnsignedByte();
+			id = dis.readUnsignedByte();
+			time = LittleEndianDataInputStream.readUnsignedInt(dis);
+			reboots = LittleEndianDataInputStream.readUnsignedInt(dis);
+			rtcVal = LittleEndianDataInputStream.readUnsignedInt(dis);
+			batteryChargeIn = dis.readUnsignedShort() * 2.5f / (4096 * 20 * 0.05f);
+			batteryChargeOut = dis.readUnsignedShort() * 2.5f / (4096 * 20 * 0.033f);
+			batteryVoltage = dis.readUnsignedShort() * 2.5f / 4096 * ((124 + 27.4f) / 27.4f);
+			supply5V = dis.readUnsignedShort() * (2.5f / 4096) * ((30.1f + 18.2f) / 18.2f);
+			supply3v3 = dis.readUnsignedShort() * (2.5f / 4096) * ((18.2f + 18.2f) / 18.2f);
+			pcuTotalCurrent = dis.readUnsignedShort() * 2.5f / (4096 * 20 * 1);
+			solarXP = dis.readUnsignedShort() * 2.5f / (4096 * 20 * 0.1f);
+			solarXM = dis.readUnsignedShort() * 2.5f / (4096 * 20 * 0.1f);
+			solarYP = dis.readUnsignedShort() * 2.5f / (4096 * 20 * 0.1f);
+			solarYM = dis.readUnsignedShort() * 2.5f / (4096 * 20 * 0.1f);
+			solarZP = dis.readUnsignedShort() * 2.5f / (4096 * 20 * 0.1f);
+			solarZM = dis.readUnsignedShort() * 2.5f / (4096 * 20 * 0.1f);
+			solarTotal = dis.readUnsignedShort() * (2.5f / 4096) * ((30.1f + 18.2f) / 18.2f);
+			vccOut0 = dis.readUnsignedShort() * 2.5f / (4096 * 20 * 0.1f);
+			vccOut1 = dis.readUnsignedShort() * 2.5f / (4096 * 20 * 0.1f);
+			vccOut2 = dis.readUnsignedShort() * 2.5f / (4096 * 20 * 0.1f);
+			vccOut3 = dis.readUnsignedShort() * 2.5f / (4096 * 20 * 0.1f);
+			vccOut4 = dis.readUnsignedShort() * 2.5f / (4096 * 20 * 0.05f);
+			vccOut5 = dis.readUnsignedShort() * 2.5f / (4096 * 20 * 0.05f);
+			vccOut6 = dis.readUnsignedShort() * 2.5f / (4096 * 20 * 0.05f);
+			vccOut7 = dis.readUnsignedShort() * 2.5f / (4096 * 20 * 0.05f);
+			ssTotalCurrent = dis.readUnsignedShort() * 2.5f / (4096 * 20 * 0.1f);
+			eePROM1Current = dis.readUnsignedShort() * 2.5f / (4096 * 20 * 0.2f);
+			eePROM2Current = dis.readUnsignedShort() * 2.5f / (4096 * 20 * 1);
+			extADC1 = dis.readUnsignedShort() * 2.5f / (4096 * 20 * 1);
+			extADC2 = dis.readUnsignedShort() * 2.5f / (4096 * 20 * 1);
+			extADC3 = dis.readUnsignedShort() * 2.5f / (4096 * 20 * 1);
+			extADC4 = dis.readUnsignedShort() * 2.5f / (4096 * 20 * 1);
+			rtcCurrent = dis.readUnsignedShort() * 2.5f / (4096 * 20 * 1);
+			chargerDCDC = dis.readUnsignedShort() * 2.5f / (4096 * 20 * 0.1f);
+			systemV = dis.readUnsignedShort() * 2.5f / (4096 * 20 * 0.1f);
+			obcCurrent = dis.readUnsignedShort() * 2.5f / (4096 * 20 * 0.1f);
+			switches = (dis.readUnsignedByte() << 16) | (dis.readUnsignedByte() << 8) | (dis.readUnsignedByte());
+			dis.skipBytes(1);
+			batteryTemperature = LittleEndianDataInputStream.readShort(dis);
+			scheduledCommands = dis.readUnsignedByte();
+			dis.skipBytes(10);
+			mode = Mode.valueOfCode(dis.readUnsignedByte());
+			dis.skipBytes(10);
+			crc16 = LittleEndianDataInputStream.readShort(dis);
+		} catch (IOException e) {
+			// not all blocks could be recovered
+			// so payload might be partially read
+		}
 	}
 
-	public int getLength() {
+	public Integer getLength() {
 		return length;
 	}
 
@@ -112,7 +121,7 @@ public class PayloadData {
 		this.length = length;
 	}
 
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
 
@@ -120,7 +129,7 @@ public class PayloadData {
 		this.id = id;
 	}
 
-	public long getTime() {
+	public Long getTime() {
 		return time;
 	}
 
@@ -128,7 +137,7 @@ public class PayloadData {
 		this.time = time;
 	}
 
-	public long getReboots() {
+	public Long getReboots() {
 		return reboots;
 	}
 
@@ -136,7 +145,7 @@ public class PayloadData {
 		this.reboots = reboots;
 	}
 
-	public long getRtcVal() {
+	public Long getRtcVal() {
 		return rtcVal;
 	}
 
@@ -144,7 +153,7 @@ public class PayloadData {
 		this.rtcVal = rtcVal;
 	}
 
-	public float getBatteryChargeIn() {
+	public Float getBatteryChargeIn() {
 		return batteryChargeIn;
 	}
 
@@ -152,7 +161,7 @@ public class PayloadData {
 		this.batteryChargeIn = batteryChargeIn;
 	}
 
-	public float getBatteryChargeOut() {
+	public Float getBatteryChargeOut() {
 		return batteryChargeOut;
 	}
 
@@ -160,7 +169,7 @@ public class PayloadData {
 		this.batteryChargeOut = batteryChargeOut;
 	}
 
-	public float getBatteryVoltage() {
+	public Float getBatteryVoltage() {
 		return batteryVoltage;
 	}
 
@@ -168,7 +177,7 @@ public class PayloadData {
 		this.batteryVoltage = batteryVoltage;
 	}
 
-	public float getSupply5V() {
+	public Float getSupply5V() {
 		return supply5V;
 	}
 
@@ -176,7 +185,7 @@ public class PayloadData {
 		supply5V = supply5v;
 	}
 
-	public float getSupply3v3() {
+	public Float getSupply3v3() {
 		return supply3v3;
 	}
 
@@ -184,7 +193,7 @@ public class PayloadData {
 		this.supply3v3 = supply3v3;
 	}
 
-	public float getPcuTotalCurrent() {
+	public Float getPcuTotalCurrent() {
 		return pcuTotalCurrent;
 	}
 
@@ -192,7 +201,7 @@ public class PayloadData {
 		this.pcuTotalCurrent = pcuTotalCurrent;
 	}
 
-	public float getSolarXP() {
+	public Float getSolarXP() {
 		return solarXP;
 	}
 
@@ -200,7 +209,7 @@ public class PayloadData {
 		this.solarXP = solarXP;
 	}
 
-	public float getSolarXM() {
+	public Float getSolarXM() {
 		return solarXM;
 	}
 
@@ -208,7 +217,7 @@ public class PayloadData {
 		this.solarXM = solarXM;
 	}
 
-	public float getSolarYP() {
+	public Float getSolarYP() {
 		return solarYP;
 	}
 
@@ -216,7 +225,7 @@ public class PayloadData {
 		this.solarYP = solarYP;
 	}
 
-	public float getSolarYM() {
+	public Float getSolarYM() {
 		return solarYM;
 	}
 
@@ -224,7 +233,7 @@ public class PayloadData {
 		this.solarYM = solarYM;
 	}
 
-	public float getSolarZP() {
+	public Float getSolarZP() {
 		return solarZP;
 	}
 
@@ -232,7 +241,7 @@ public class PayloadData {
 		this.solarZP = solarZP;
 	}
 
-	public float getSolarZM() {
+	public Float getSolarZM() {
 		return solarZM;
 	}
 
@@ -240,7 +249,7 @@ public class PayloadData {
 		this.solarZM = solarZM;
 	}
 
-	public float getSolarTotal() {
+	public Float getSolarTotal() {
 		return solarTotal;
 	}
 
@@ -248,7 +257,7 @@ public class PayloadData {
 		this.solarTotal = solarTotal;
 	}
 
-	public float getVccOut0() {
+	public Float getVccOut0() {
 		return vccOut0;
 	}
 
@@ -256,7 +265,7 @@ public class PayloadData {
 		this.vccOut0 = vccOut0;
 	}
 
-	public float getVccOut1() {
+	public Float getVccOut1() {
 		return vccOut1;
 	}
 
@@ -264,7 +273,7 @@ public class PayloadData {
 		this.vccOut1 = vccOut1;
 	}
 
-	public float getVccOut2() {
+	public Float getVccOut2() {
 		return vccOut2;
 	}
 
@@ -272,7 +281,7 @@ public class PayloadData {
 		this.vccOut2 = vccOut2;
 	}
 
-	public float getVccOut3() {
+	public Float getVccOut3() {
 		return vccOut3;
 	}
 
@@ -280,7 +289,7 @@ public class PayloadData {
 		this.vccOut3 = vccOut3;
 	}
 
-	public float getVccOut4() {
+	public Float getVccOut4() {
 		return vccOut4;
 	}
 
@@ -288,7 +297,7 @@ public class PayloadData {
 		this.vccOut4 = vccOut4;
 	}
 
-	public float getVccOut5() {
+	public Float getVccOut5() {
 		return vccOut5;
 	}
 
@@ -296,7 +305,7 @@ public class PayloadData {
 		this.vccOut5 = vccOut5;
 	}
 
-	public float getVccOut6() {
+	public Float getVccOut6() {
 		return vccOut6;
 	}
 
@@ -304,7 +313,7 @@ public class PayloadData {
 		this.vccOut6 = vccOut6;
 	}
 
-	public float getVccOut7() {
+	public Float getVccOut7() {
 		return vccOut7;
 	}
 
@@ -312,7 +321,7 @@ public class PayloadData {
 		this.vccOut7 = vccOut7;
 	}
 
-	public float getSsTotalCurrent() {
+	public Float getSsTotalCurrent() {
 		return ssTotalCurrent;
 	}
 
@@ -320,7 +329,7 @@ public class PayloadData {
 		this.ssTotalCurrent = ssTotalCurrent;
 	}
 
-	public float getEePROM1Current() {
+	public Float getEePROM1Current() {
 		return eePROM1Current;
 	}
 
@@ -328,7 +337,7 @@ public class PayloadData {
 		this.eePROM1Current = eePROM1Current;
 	}
 
-	public float getEePROM2Current() {
+	public Float getEePROM2Current() {
 		return eePROM2Current;
 	}
 
@@ -336,7 +345,7 @@ public class PayloadData {
 		this.eePROM2Current = eePROM2Current;
 	}
 
-	public float getExtADC1() {
+	public Float getExtADC1() {
 		return extADC1;
 	}
 
@@ -344,7 +353,7 @@ public class PayloadData {
 		this.extADC1 = extADC1;
 	}
 
-	public float getExtADC2() {
+	public Float getExtADC2() {
 		return extADC2;
 	}
 
@@ -352,7 +361,7 @@ public class PayloadData {
 		this.extADC2 = extADC2;
 	}
 
-	public float getExtADC3() {
+	public Float getExtADC3() {
 		return extADC3;
 	}
 
@@ -360,7 +369,7 @@ public class PayloadData {
 		this.extADC3 = extADC3;
 	}
 
-	public float getExtADC4() {
+	public Float getExtADC4() {
 		return extADC4;
 	}
 
@@ -368,7 +377,7 @@ public class PayloadData {
 		this.extADC4 = extADC4;
 	}
 
-	public float getRtcCurrent() {
+	public Float getRtcCurrent() {
 		return rtcCurrent;
 	}
 
@@ -376,7 +385,7 @@ public class PayloadData {
 		this.rtcCurrent = rtcCurrent;
 	}
 
-	public float getChargerDCDC() {
+	public Float getChargerDCDC() {
 		return chargerDCDC;
 	}
 
@@ -384,7 +393,7 @@ public class PayloadData {
 		this.chargerDCDC = chargerDCDC;
 	}
 
-	public float getSystemV() {
+	public Float getSystemV() {
 		return systemV;
 	}
 
@@ -392,7 +401,7 @@ public class PayloadData {
 		this.systemV = systemV;
 	}
 
-	public float getObcCurrent() {
+	public Float getObcCurrent() {
 		return obcCurrent;
 	}
 
@@ -400,7 +409,7 @@ public class PayloadData {
 		this.obcCurrent = obcCurrent;
 	}
 
-	public int getSwitches() {
+	public Integer getSwitches() {
 		return switches;
 	}
 
@@ -408,15 +417,15 @@ public class PayloadData {
 		this.switches = switches;
 	}
 
-	public int getBatteryTemperature() {
+	public Short getBatteryTemperature() {
 		return batteryTemperature;
 	}
 
-	public void setBatteryTemperature(int batteryTemperature) {
+	public void setBatteryTemperature(Short batteryTemperature) {
 		this.batteryTemperature = batteryTemperature;
 	}
 
-	public int getScheduledCommands() {
+	public Integer getScheduledCommands() {
 		return scheduledCommands;
 	}
 
@@ -432,11 +441,11 @@ public class PayloadData {
 		this.mode = mode;
 	}
 
-	public int getCrc16() {
+	public Short getCrc16() {
 		return crc16;
 	}
 
-	public void setCrc16(int crc16) {
+	public void setCrc16(Short crc16) {
 		this.crc16 = crc16;
 	}
 
