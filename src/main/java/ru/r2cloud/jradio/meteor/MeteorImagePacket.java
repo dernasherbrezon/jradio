@@ -103,7 +103,9 @@ public class MeteorImagePacket implements Iterator<int[]> {
 
 		int dcCategory = dcLookup[getNext(BIT_IN_TWO_BYTES)];
 		if (dcCategory == -1) {
-			LOG.info("invalid dc category");
+			if (LOG.isDebugEnabled()) {
+				LOG.debug("unknown dc category");
+			}
 			return false;
 		}
 		int codeWordLength = dcCodes[dcCategory].getCodeLength();
@@ -123,7 +125,9 @@ public class MeteorImagePacket implements Iterator<int[]> {
 		for (int i = 1; i < 64; i++) {
 			AcCode code = acLookup[getNext(BIT_IN_TWO_BYTES)];
 			if (code == null) {
-				LOG.info("invalid ac codeword");
+				if (LOG.isDebugEnabled()) {
+					LOG.debug("unknown ac codeword");
+				}
 				return false;
 			}
 			currentBitIndex += code.getCodeLength();
@@ -134,6 +138,12 @@ public class MeteorImagePacket implements Iterator<int[]> {
 			i += code.getRun();
 			// not ZRL
 			if (code.getCategory() != 0) {
+				if (i >= zigzagDct.length) {
+					if (LOG.isDebugEnabled()) {
+						LOG.debug("invalid ac codeword");
+					}
+					return false;
+				}
 				int acBitmask = getNext(code.getCategory());
 				currentBitIndex += code.getCategory();
 				zigzagDct[i] = mapBitmaskToValue(code.getCategory(), acBitmask);

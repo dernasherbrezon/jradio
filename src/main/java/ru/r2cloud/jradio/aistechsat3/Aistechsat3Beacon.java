@@ -64,7 +64,9 @@ public class Aistechsat3Beacon extends Beacon {
 			payloadBeacon = new PayloadBeacon(dis);
 			break;
 		default:
-			LOG.info("Unknown beacon type: {}", beaconType);
+			if (LOG.isDebugEnabled()) {
+				LOG.debug("Unknown beacon type: {}", beaconType);
+			}
 		}
 	}
 
