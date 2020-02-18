@@ -16,6 +16,7 @@ import ru.r2cloud.jradio.fec.Crc16CcittFec;
 import ru.r2cloud.jradio.fec.Hamming;
 import ru.r2cloud.jradio.fec.ccsds.UncorrectableException;
 import ru.r2cloud.jradio.util.Deinterleave;
+import ru.r2cloud.jradio.util.GapData;
 
 public abstract class CMX909bBeacon extends Beacon {
 
@@ -60,12 +61,24 @@ public abstract class CMX909bBeacon extends Beacon {
 		}
 	}
 
-	public static byte[] readDataBlocks(int numberOfBlocks, MobitexRandomizer randomizer, DataInputStream dis) throws IOException, UncorrectableException {
-		ByteArrayOutputStream baos = new ByteArrayOutputStream();
-		int blockLength = 18;
+	public static GapData readGapDataBlocks(int numberOfBlocks, MobitexRandomizer randomizer, DataInputStream dis) throws IOException {
+		GapData result = new GapData(numberOfBlocks);
 		for (int i = 0; i < numberOfBlocks; i++) {
 			try {
-				byte[] block = readDatablock(randomizer, dis, blockLength);
+				byte[] block = readDatablock(randomizer, dis, BLOCK_SIZE_BYTES);
+				result.write(block);
+			} catch (UncorrectableException e) {
+				result.gap(BLOCK_SIZE_BYTES);
+			}
+		}
+		return result;
+	}
+
+	public static byte[] readDataBlocks(int numberOfBlocks, MobitexRandomizer randomizer, DataInputStream dis) throws IOException, UncorrectableException {
+		ByteArrayOutputStream baos = new ByteArrayOutputStream();
+		for (int i = 0; i < numberOfBlocks; i++) {
+			try {
+				byte[] block = readDatablock(randomizer, dis, BLOCK_SIZE_BYTES);
 				baos.write(block);
 			} catch (UncorrectableException e) {
 				// if some data recovered, then return it

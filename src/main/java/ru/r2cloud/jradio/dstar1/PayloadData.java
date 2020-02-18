@@ -1,10 +1,8 @@
 package ru.r2cloud.jradio.dstar1;
 
-import java.io.ByteArrayInputStream;
-import java.io.DataInputStream;
 import java.io.IOException;
 
-import ru.r2cloud.jradio.util.LittleEndianDataInputStream;
+import ru.r2cloud.jradio.util.GapDataInputStream;
 
 public class PayloadData {
 
@@ -59,58 +57,108 @@ public class PayloadData {
 		// do nothing
 	}
 
-	public PayloadData(byte[] data) {
+	public PayloadData(GapDataInputStream dis) {
 		try {
-			DataInputStream dis = new DataInputStream(new ByteArrayInputStream(data));
 			length = dis.readUnsignedByte();
 			id = dis.readUnsignedByte();
-			time = LittleEndianDataInputStream.readUnsignedInt(dis);
-			reboots = LittleEndianDataInputStream.readUnsignedInt(dis);
-			rtcVal = LittleEndianDataInputStream.readUnsignedInt(dis);
-			batteryChargeIn = dis.readUnsignedShort() * 2.5f / (4096 * 20 * 0.05f);
-			batteryChargeOut = dis.readUnsignedShort() * 2.5f / (4096 * 20 * 0.033f);
-			batteryVoltage = dis.readUnsignedShort() * 2.5f / 4096 * ((124 + 27.4f) / 27.4f);
-			supply5V = dis.readUnsignedShort() * (2.5f / 4096) * ((30.1f + 18.2f) / 18.2f);
-			supply3v3 = dis.readUnsignedShort() * (2.5f / 4096) * ((18.2f + 18.2f) / 18.2f);
-			pcuTotalCurrent = dis.readUnsignedShort() * 2.5f / (4096 * 20 * 1);
-			solarXP = dis.readUnsignedShort() * 2.5f / (4096 * 20 * 0.1f);
-			solarXM = dis.readUnsignedShort() * 2.5f / (4096 * 20 * 0.1f);
-			solarYP = dis.readUnsignedShort() * 2.5f / (4096 * 20 * 0.1f);
-			solarYM = dis.readUnsignedShort() * 2.5f / (4096 * 20 * 0.1f);
-			solarZP = dis.readUnsignedShort() * 2.5f / (4096 * 20 * 0.1f);
-			solarZM = dis.readUnsignedShort() * 2.5f / (4096 * 20 * 0.1f);
-			solarTotal = dis.readUnsignedShort() * (2.5f / 4096) * ((30.1f + 18.2f) / 18.2f);
-			vccOut0 = dis.readUnsignedShort() * 2.5f / (4096 * 20 * 0.1f);
-			vccOut1 = dis.readUnsignedShort() * 2.5f / (4096 * 20 * 0.1f);
-			vccOut2 = dis.readUnsignedShort() * 2.5f / (4096 * 20 * 0.1f);
-			vccOut3 = dis.readUnsignedShort() * 2.5f / (4096 * 20 * 0.1f);
-			vccOut4 = dis.readUnsignedShort() * 2.5f / (4096 * 20 * 0.05f);
-			vccOut5 = dis.readUnsignedShort() * 2.5f / (4096 * 20 * 0.05f);
-			vccOut6 = dis.readUnsignedShort() * 2.5f / (4096 * 20 * 0.05f);
-			vccOut7 = dis.readUnsignedShort() * 2.5f / (4096 * 20 * 0.05f);
-			ssTotalCurrent = dis.readUnsignedShort() * 2.5f / (4096 * 20 * 0.1f);
-			eePROM1Current = dis.readUnsignedShort() * 2.5f / (4096 * 20 * 0.2f);
-			eePROM2Current = dis.readUnsignedShort() * 2.5f / (4096 * 20 * 1);
-			extADC1 = dis.readUnsignedShort() * 2.5f / (4096 * 20 * 1);
-			extADC2 = dis.readUnsignedShort() * 2.5f / (4096 * 20 * 1);
-			extADC3 = dis.readUnsignedShort() * 2.5f / (4096 * 20 * 1);
-			extADC4 = dis.readUnsignedShort() * 2.5f / (4096 * 20 * 1);
-			rtcCurrent = dis.readUnsignedShort() * 2.5f / (4096 * 20 * 1);
-			chargerDCDC = dis.readUnsignedShort() * 2.5f / (4096 * 20 * 0.1f);
-			systemV = dis.readUnsignedShort() * 2.5f / (4096 * 20 * 0.1f);
-			obcCurrent = dis.readUnsignedShort() * 2.5f / (4096 * 20 * 0.1f);
-			switches = (dis.readUnsignedByte() << 16) | (dis.readUnsignedByte() << 8) | (dis.readUnsignedByte());
+			time = dis.readLittleEndianUnsignedInt();
+			reboots = dis.readLittleEndianUnsignedInt();
+			rtcVal = dis.readLittleEndianUnsignedInt();
+			batteryChargeIn = read005Adjusted(dis);
+			Integer unsignedShort = dis.readUnsignedShort();
+			if (unsignedShort != null) {
+				batteryChargeOut = unsignedShort * 2.5f / (4096 * 20 * 0.033f);
+			}
+			unsignedShort = dis.readUnsignedShort();
+			if (unsignedShort != null) {
+				batteryVoltage = unsignedShort * 2.5f / 4096 * ((124 + 27.4f) / 27.4f);
+			}
+			unsignedShort = dis.readUnsignedShort();
+			if (unsignedShort != null) {
+				supply5V = unsignedShort * (2.5f / 4096) * ((30.1f + 18.2f) / 18.2f);
+			}
+			unsignedShort = dis.readUnsignedShort();
+			if (unsignedShort != null) {
+				supply3v3 = unsignedShort * (2.5f / 4096) * ((18.2f + 18.2f) / 18.2f);
+			}
+			pcuTotalCurrent = read1Adjusted(dis);
+			solarXP = read01Adjusted(dis);
+			solarXM = read01Adjusted(dis);
+			solarYP = read01Adjusted(dis);
+			solarYM = read01Adjusted(dis);
+			solarZP = read01Adjusted(dis);
+			solarZM = read01Adjusted(dis);
+			unsignedShort = dis.readUnsignedShort();
+			if (unsignedShort != null) {
+				solarTotal = unsignedShort * (2.5f / 4096) * ((30.1f + 18.2f) / 18.2f);
+			}
+			vccOut0 = read01Adjusted(dis);
+			vccOut1 = read01Adjusted(dis);
+			vccOut2 = read01Adjusted(dis);
+			vccOut3 = read01Adjusted(dis);
+			vccOut4 = read005Adjusted(dis);
+			vccOut5 = read005Adjusted(dis);
+			vccOut6 = read005Adjusted(dis);
+			vccOut7 = read005Adjusted(dis);
+			ssTotalCurrent = read01Adjusted(dis);
+			unsignedShort = dis.readUnsignedShort();
+			if (unsignedShort != null) {
+				eePROM1Current = unsignedShort * 2.5f / (4096 * 20 * 0.2f);
+			}
+			eePROM2Current = read1Adjusted(dis);
+			extADC1 = read1Adjusted(dis);
+			extADC2 = read1Adjusted(dis);
+			extADC3 = read1Adjusted(dis);
+			extADC4 = read1Adjusted(dis);
+			rtcCurrent = read1Adjusted(dis);
+			chargerDCDC = read01Adjusted(dis);
+			systemV = read01Adjusted(dis);
+			obcCurrent = read01Adjusted(dis);
+
+			Integer b1 = dis.readUnsignedByte();
+			Integer b2 = dis.readUnsignedByte();
+			Integer b3 = dis.readUnsignedByte();
+			if (b1 != null && b2 != null && b3 != null) {
+				switches = (b1 << 16) | (b2 << 8) | (b3);
+			}
 			dis.skipBytes(1);
-			batteryTemperature = LittleEndianDataInputStream.readShort(dis);
+			batteryTemperature = dis.readLittleEndianShort();
 			scheduledCommands = dis.readUnsignedByte();
 			dis.skipBytes(10);
-			mode = Mode.valueOfCode(dis.readUnsignedByte());
+			Integer modeInt = dis.readUnsignedByte();
+			if (modeInt != null) {
+				mode = Mode.valueOfCode(modeInt);
+			}
 			dis.skipBytes(10);
-			crc16 = LittleEndianDataInputStream.readShort(dis);
+			crc16 = dis.readLittleEndianShort();
 		} catch (IOException e) {
 			// not all blocks could be recovered
 			// so payload might be partially read
 		}
+	}
+
+	private static Float read1Adjusted(GapDataInputStream dis) throws IOException {
+		Integer value = dis.readUnsignedShort();
+		if (value == null) {
+			return null;
+		}
+		return value * 2.5f / (4096 * 20 * 1);
+	}
+
+	private static Float read005Adjusted(GapDataInputStream dis) throws IOException {
+		Integer value = dis.readUnsignedShort();
+		if (value == null) {
+			return null;
+		}
+		return value * 2.5f / (4096 * 20 * 0.05f);
+	}
+
+	private static Float read01Adjusted(GapDataInputStream dis) throws IOException {
+		Integer value = dis.readUnsignedShort();
+		if (value == null) {
+			return null;
+		}
+		return value * 2.5f / (4096 * 20 * 0.1f);
 	}
 
 	public Integer getLength() {
