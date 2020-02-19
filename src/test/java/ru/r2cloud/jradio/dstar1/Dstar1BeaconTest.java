@@ -22,6 +22,16 @@ public class Dstar1BeaconTest {
 		AssertJson.assertObjectsEqual("Dstar1Beacon-partial.json", result);
 	}
 
+	@Test(expected = UncorrectableException.class)
+	public void testNoneRecovered() throws IOException, UncorrectableException {
+		byte[] data = new byte[190];
+		data[0] = 113;
+		data[1] = 6;
+		data[2] = 79;
+		Dstar1Beacon result = new Dstar1Beacon();
+		result.readExternal(data);
+	}
+
 	@Test
 	public void testPojo() {
 		assertPojoMethodsFor(Dstar1Beacon.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();

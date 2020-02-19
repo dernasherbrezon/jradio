@@ -61,7 +61,7 @@ public abstract class CMX909bBeacon extends Beacon {
 		}
 	}
 
-	public static GapData readGapDataBlocks(int numberOfBlocks, MobitexRandomizer randomizer, DataInputStream dis) throws IOException {
+	public static GapData readGapDataBlocks(int numberOfBlocks, MobitexRandomizer randomizer, DataInputStream dis) throws IOException, UncorrectableException {
 		GapData result = new GapData(numberOfBlocks);
 		for (int i = 0; i < numberOfBlocks; i++) {
 			try {
@@ -70,6 +70,9 @@ public abstract class CMX909bBeacon extends Beacon {
 			} catch (UncorrectableException e) {
 				result.gap(BLOCK_SIZE_BYTES);
 			}
+		}
+		if (result.getNonEmptyBlocks() == 0) {
+			throw new UncorrectableException("no blocks recovered");
 		}
 		return result;
 	}
