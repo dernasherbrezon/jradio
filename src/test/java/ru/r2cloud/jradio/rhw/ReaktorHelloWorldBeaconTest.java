@@ -1,5 +1,6 @@
 package ru.r2cloud.jradio.rhw;
 
+import static org.junit.Assert.assertNull;
 import static pl.pojo.tester.api.assertion.Assertions.assertPojoMethodsFor;
 
 import org.junit.Test;
@@ -35,6 +36,15 @@ public class ReaktorHelloWorldBeaconTest {
 		ReaktorHelloWorldBeacon result = new ReaktorHelloWorldBeacon();
 		result.readBeacon(data);
 		AssertJson.assertObjectsEqual("ReaktorHelloWorldBeacon-unknown.json", result);
+	}
+
+	@Test
+	public void testUnknownType() throws Exception {
+		byte[] data = new byte[1];
+		data[0] = 3;
+		ReaktorHelloWorldBeacon beacon = new ReaktorHelloWorldBeacon();
+		beacon.readBeacon(data);
+		assertNull(beacon.getType());
 	}
 
 	@Test

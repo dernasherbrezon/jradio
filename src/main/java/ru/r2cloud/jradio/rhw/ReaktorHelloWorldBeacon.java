@@ -32,6 +32,9 @@ public class ReaktorHelloWorldBeacon extends Beacon {
 	@Override
 	public void readBeacon(byte[] data) throws IOException {
 		type = RadioPacketType.valueOfCode(data[0]);
+		if (type == null) {
+			return;
+		}
 		switch (type) {
 		case RELAY:
 			relayPayload = Arrays.copyOfRange(data, 1, data.length);
