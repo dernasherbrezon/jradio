@@ -35,11 +35,6 @@ public class DslwpSsdvPacketSource implements Iterator<SsdvPacket> {
 		}
 		try {
 			IOUtils.readFully(is, payload);
-		} catch (IOException e) {
-			hasNext = false;
-			return hasNext;
-		}
-		try {
 			next = convert(payload);
 			return true;
 		} catch (IOException e) {

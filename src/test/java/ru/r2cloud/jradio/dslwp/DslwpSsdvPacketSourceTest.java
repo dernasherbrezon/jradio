@@ -1,8 +1,11 @@
 package ru.r2cloud.jradio.dslwp;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 
+import java.io.ByteArrayInputStream;
 import java.io.InputStream;
+import java.util.NoSuchElementException;
 
 import org.junit.Test;
 
@@ -26,4 +29,16 @@ public class DslwpSsdvPacketSourceTest {
 		assertEquals(1, total);
 	}
 
+	@Test(expected = NoSuchElementException.class)
+	public void testIllegalToCallNextFirst() throws Exception {
+		try (InputStream is = DslwpSsdvPacketSource.class.getClassLoader().getResourceAsStream("dslwp.bin")) {
+			new DslwpSsdvPacketSource(is).next();
+		}
+	}
+
+	@Test
+	public void testInvalidPayload() throws Exception {
+		ByteArrayInputStream bais = new ByteArrayInputStream(new byte[5]);
+		assertFalse(new DslwpSsdvPacketSource(bais).hasNext());
+	}
 }
