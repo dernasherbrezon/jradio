@@ -34,7 +34,7 @@ public class GapDataInputStream {
 		if (ch1 == null || ch2 == null) {
 			return null;
 		}
-		return (ch1 << 8) + (ch2 << 0);
+		return (ch1 << 8) + ch2;
 	}
 
 	public Short readLittleEndianShort() throws IOException {
