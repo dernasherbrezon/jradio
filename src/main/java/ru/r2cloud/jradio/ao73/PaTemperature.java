@@ -15,14 +15,14 @@ public class PaTemperature {
 		double[] result = new double[tableSize];
 		// calc values for all possible 12bit values
 		for (int adc = 0; adc < tableSize; ++adc) {
-			double adc_percent = (100.0 / tableSize) * adc;
+			double adcPercent = (100.0 / tableSize) * adc;
 			for (int j = 0; j < tempToAdc.length; j++) {
-				if (adc_percent < tempToAdc[j][1] && j != 0) {
+				if (adcPercent < tempToAdc[j][1] && j != 0) {
 					double t1 = tempToAdc[j][0];
 					double a1 = tempToAdc[j][1];
 					double diffa = tempToAdc[j - 1][1] - a1;
 					double difft = tempToAdc[j - 1][0] - t1;
-					result[adc] = ((adc_percent - a1) * (difft / diffa)) + t1;
+					result[adc] = ((adcPercent - a1) * (difft / diffa)) + t1;
 					break;
 				}
 			}
