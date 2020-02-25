@@ -199,6 +199,11 @@ Using the blocks above, it is possible to decode the following satellites:
 			<td><a href="https://github.com/dernasherbrezon/jradio/blob/master/src/test/java/ru/r2cloud/jradio/nayif1/Nayif1Test.java">Nayif1Test</a></td>
 		</tr>
 		<tr>
+			<td>OPS-SAT</td>
+			<td>44878</td>
+			<td><a href="https://github.com/dernasherbrezon/jradio/blob/master/src/test/java/ru/r2cloud/jradio/opssat/OpsSatTest.java">OpsSatTest</a></td>
+		</tr>
+		<tr>
 			<td>PwSat2</td>
 			<td>43776</td>
 			<td><a href="https://github.com/dernasherbrezon/jradio/blob/master/src/test/java/ru/r2cloud/jradio/pwsat2/PwSat2Test.java">PwSat2Test</a></td>
