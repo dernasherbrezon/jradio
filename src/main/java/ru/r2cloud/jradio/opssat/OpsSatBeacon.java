@@ -53,4 +53,12 @@ public class OpsSatBeacon extends Beacon {
 	public void setTelemetry(Telemetry telemetry) {
 		this.telemetry = telemetry;
 	}
+	
+	public byte[] getUnknownPayload() {
+		return unknownPayload;
+	}
+	
+	public void setUnknownPayload(byte[] unknownPayload) {
+		this.unknownPayload = unknownPayload;
+	}
 }
