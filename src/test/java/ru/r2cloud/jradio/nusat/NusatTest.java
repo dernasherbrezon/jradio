@@ -17,7 +17,6 @@ import ru.r2cloud.jradio.blocks.QuadratureDemodulation;
 import ru.r2cloud.jradio.blocks.TaggedStreamToPdu;
 import ru.r2cloud.jradio.blocks.UnpackedToPacked;
 import ru.r2cloud.jradio.blocks.Window;
-import ru.r2cloud.jradio.kunspf.KunsPfTest;
 import ru.r2cloud.jradio.source.WavFileSource;
 
 public class NusatTest {
@@ -27,7 +26,7 @@ public class NusatTest {
 	@Test
 	public void testDecodeTelemetry() throws Exception {
 		float gainMu = 0.175f;
-		WavFileSource source = new WavFileSource(KunsPfTest.class.getClassLoader().getResourceAsStream("nusat.wav"));
+		WavFileSource source = new WavFileSource(NusatTest.class.getClassLoader().getResourceAsStream("nusat.wav"));
 		float[] taps = Firdes.lowPass(1.0, source.getContext().getSampleRate(), 40000, 1000, Window.WIN_HAMMING, 6.76);
 		FrequencyXlatingFIRFilter xlating = new FrequencyXlatingFIRFilter(source, taps, 1, 5760);
 		QuadratureDemodulation qd = new QuadratureDemodulation(xlating, 0.2f);

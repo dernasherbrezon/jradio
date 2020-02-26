@@ -154,6 +154,11 @@ Using the blocks above, it is possible to decode the following satellites:
 			<td><a href="https://github.com/dernasherbrezon/jradio/blob/master/src/test/java/ru/r2cloud/jradio/dstar1/Dstar1Test.java">Dstar1Test</a></td>
 		</tr>
 		<tr>
+			<td>DELPHINI</td>
+			<td>44030</td>
+			<td><a href="https://github.com/dernasherbrezon/jradio/blob/master/src/test/java/ru/r2cloud/jradio/delphini/Delphini1Test.java">Delphini1Test</a></td>
+		</tr>
+		<tr>
 			<td>Entrysat</td>
 			<td>44429</td>
 			<td><a href="https://github.com/dernasherbrezon/jradio/blob/master/src/test/java/ru/r2cloud/jradio/entrysat/EntrysatTest.java">EntrysatTest</a></td>
