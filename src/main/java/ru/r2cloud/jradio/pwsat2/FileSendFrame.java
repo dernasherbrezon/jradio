@@ -8,6 +8,10 @@ import ru.r2cloud.jradio.util.StreamUtils;
 public class FileSendFrame extends GenericFrame {
 
 	private byte[] data;
+	
+	public FileSendFrame() {
+		//do nothing
+	}
 
 	public FileSendFrame(LittleEndianDataInputStream dis) throws IOException {
 		super(dis);

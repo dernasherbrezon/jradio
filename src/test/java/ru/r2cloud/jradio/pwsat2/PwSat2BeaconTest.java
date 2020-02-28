@@ -1,7 +1,10 @@
 package ru.r2cloud.jradio.pwsat2;
 
+import static pl.pojo.tester.api.assertion.Assertions.assertPojoMethodsFor;
+
 import org.junit.Test;
 
+import pl.pojo.tester.api.assertion.Method;
 import ru.r2cloud.jradio.AssertJson;
 import ru.r2cloud.jradio.fec.ViterbiTest;
 
@@ -47,4 +50,15 @@ public class PwSat2BeaconTest {
 		AssertJson.assertObjectsEqual("PwSat2Beacon-FileSendFrame.json", beacon);
 	}
 
+	@Test
+	public void testPojo() {
+		assertPojoMethodsFor(PwSat2Beacon.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
+		assertPojoMethodsFor(BeaconFrame.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
+		assertPojoMethodsFor(GenericFrame.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
+		assertPojoMethodsFor(ErrorCountersFrame.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
+		assertPojoMethodsFor(BootSlotsInfoFrame.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
+		assertPojoMethodsFor(FileRemoveFrame.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
+		assertPojoMethodsFor(FileSendFrame.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
+		assertPojoMethodsFor(FileListFrame.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
+	}
 }

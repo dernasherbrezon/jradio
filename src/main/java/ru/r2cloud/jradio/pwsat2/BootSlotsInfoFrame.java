@@ -9,6 +9,10 @@ public class BootSlotsInfoFrame extends GenericFrame {
 	private int primary;
 	private int failsafe;
 
+	public BootSlotsInfoFrame() {
+		// do nothing
+	}
+
 	public BootSlotsInfoFrame(LittleEndianDataInputStream dis) throws IOException {
 		super(dis);
 	}

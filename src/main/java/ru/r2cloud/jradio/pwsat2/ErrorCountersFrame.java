@@ -11,6 +11,10 @@ public class ErrorCountersFrame extends GenericFrame {
 
 	private List<ErrorCounter> counters;
 
+	public ErrorCountersFrame() {
+		// do nothing
+	}
+
 	public ErrorCountersFrame(LittleEndianDataInputStream dis) throws IOException {
 		super(dis);
 	}
@@ -32,11 +36,11 @@ public class ErrorCountersFrame extends GenericFrame {
 			// do nothing
 		}
 	}
-	
+
 	public List<ErrorCounter> getCounters() {
 		return counters;
 	}
-	
+
 	public void setCounters(List<ErrorCounter> counters) {
 		this.counters = counters;
 	}

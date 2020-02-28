@@ -8,6 +8,10 @@ import ru.r2cloud.jradio.util.LittleEndianDataInputStream;
 public class FileRemoveFrame extends GenericFrame {
 
 	private String path;
+	
+	public FileRemoveFrame() {
+		//do nothing
+	}
 
 	public FileRemoveFrame(LittleEndianDataInputStream dis) throws IOException {
 		super(dis);

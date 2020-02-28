@@ -10,6 +10,10 @@ import ru.r2cloud.jradio.util.LittleEndianDataInputStream;
 public class FileListFrame extends GenericFrame {
 
 	private List<FileEntry> files;
+	
+	public FileListFrame() {
+		//do nothing
+	}
 
 	public FileListFrame(LittleEndianDataInputStream dis) throws IOException {
 		super(dis);

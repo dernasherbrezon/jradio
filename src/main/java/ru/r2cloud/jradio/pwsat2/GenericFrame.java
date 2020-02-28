@@ -9,6 +9,10 @@ public class GenericFrame {
 	private int correlationId;
 	private int errorCode;
 
+	public GenericFrame() {
+		// do nothing
+	}
+
 	public GenericFrame(LittleEndianDataInputStream dis) throws IOException {
 		correlationId = dis.readUnsignedByte();
 		errorCode = dis.readUnsignedByte();
@@ -33,6 +37,6 @@ public class GenericFrame {
 
 	@SuppressWarnings("unused")
 	public void readExternal(LittleEndianDataInputStream dis) throws IOException {
-		//do nothing
+		// do nothing
 	}
 }

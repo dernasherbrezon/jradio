@@ -25,7 +25,7 @@ public class BeaconFrame {
 	private int n25Q2;
 	private int n25Q3;
 	private int n25qTMR;
-	private int fRAMTMR;
+	private int framTMR;
 	private int payload;
 	private int camera;
 	private int expSuns;
@@ -212,6 +212,10 @@ public class BeaconFrame {
 	private int imtqError6;
 	private int imtqError7;
 	private int imtqError8;
+	
+	public BeaconFrame() {
+		//do nothing
+	}
 
 	public BeaconFrame(LittleEndianDataInputStream dataInput) throws IOException {
 		LittleEndianBitInputStream dis = new LittleEndianBitInputStream(dataInput);
@@ -239,7 +243,7 @@ public class BeaconFrame {
 		n25Q2 = dis.readUnsignedByte();
 		n25Q3 = dis.readUnsignedByte();
 		n25qTMR = dis.readUnsignedByte();
-		fRAMTMR = dis.readUnsignedByte();
+		framTMR = dis.readUnsignedByte();
 		payload = dis.readUnsignedByte();
 		camera = dis.readUnsignedByte();
 		expSuns = dis.readUnsignedByte();
@@ -662,14 +666,14 @@ public class BeaconFrame {
 		this.n25qTMR = n25qTMR;
 	}
 
-	public int getfRAMTMR() {
-		return fRAMTMR;
+	public int getFramTMR() {
+		return framTMR;
 	}
-
-	public void setfRAMTMR(int fRAMTMR) {
-		this.fRAMTMR = fRAMTMR;
+	
+	public void setFramTMR(int framTMR) {
+		this.framTMR = framTMR;
 	}
-
+	
 	public int getPayload() {
 		return payload;
 	}
