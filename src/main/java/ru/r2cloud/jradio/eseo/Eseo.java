@@ -53,7 +53,9 @@ public class Eseo extends BeaconSource<EseoBeacon> {
 					data[i] = (byte) MathUtils.reverseBitsInByte(data[i] & 0xFF);
 				}
 				if (Crc16Ccitt.calculate(data) != 0) {
-					LOG.info("crc mismatch");
+					if (LOG.isDebugEnabled()) {
+						LOG.debug("crc mismatch");
+					}
 					continue;
 				}
 				byte[] packet = Arrays.copyOfRange(data, 0, data.length - 2);

@@ -30,7 +30,7 @@ public class Suomi100 extends BeaconSource<Suomi100Beacon> {
 		long expectedCrc32 = Crc32c.calculate(raw, 0, raw.length - CRC32_LENGTH);
 		if (actualCrc32 != expectedCrc32) {
 			if (LOG.isDebugEnabled()) {
-				LOG.debug("crc mismatched");
+				LOG.debug("crc mismatch");
 			}
 			return null;
 		}
@@ -39,7 +39,7 @@ public class Suomi100 extends BeaconSource<Suomi100Beacon> {
 		expectedCrc32 = Crc32c.calculate(raw, Header.LENGTH, raw.length - (Header.LENGTH + 2 * CRC32_LENGTH));
 		if (actualCrc32 != expectedCrc32) {
 			if (LOG.isDebugEnabled()) {
-				LOG.debug("crc mismatched");
+				LOG.debug("crc mismatch");
 			}
 			return null;
 		}

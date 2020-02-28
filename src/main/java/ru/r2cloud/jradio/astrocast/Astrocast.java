@@ -3,6 +3,9 @@ package ru.r2cloud.jradio.astrocast;
 import java.io.IOException;
 import java.util.Arrays;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import ru.r2cloud.jradio.BeaconSource;
 import ru.r2cloud.jradio.MessageInput;
 import ru.r2cloud.jradio.crc.Crc16Ccitt;
@@ -11,6 +14,8 @@ import ru.r2cloud.jradio.fec.ccsds.UncorrectableException;
 import ru.r2cloud.jradio.util.MathUtils;
 
 public class Astrocast extends BeaconSource<AstrocastBeacon> {
+
+	private static final Logger LOG = LoggerFactory.getLogger(Astrocast.class);
 
 	public Astrocast(MessageInput input) {
 		super(input);
@@ -30,6 +35,9 @@ public class Astrocast extends BeaconSource<AstrocastBeacon> {
 		int crc = ((frame[frame.length - 1] & 0xFF) << 8) | (frame[frame.length - 2] & 0xFF);
 		frame = Arrays.copyOfRange(frame, 0, frame.length - 2);
 		if (Crc16Ccitt.calculateReverse(frame) != crc) {
+			if (LOG.isDebugEnabled()) {
+				LOG.debug("crc mismatch");
+			}
 			return null;
 		}
 		AstrocastBeacon result = new AstrocastBeacon();

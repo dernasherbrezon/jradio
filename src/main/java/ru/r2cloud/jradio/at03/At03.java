@@ -34,7 +34,7 @@ public class At03 extends BeaconSource<At03Beacon> {
 		int crc = Crc16Arc.calculate(data);
 		if (crc != 0) {
 			if (LOG.isDebugEnabled()) {
-				LOG.debug("checksum mismtach: {}", crc);
+				LOG.debug("crc mismatch");
 			}
 			return null;
 		}

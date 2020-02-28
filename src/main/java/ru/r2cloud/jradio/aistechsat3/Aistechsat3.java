@@ -25,7 +25,9 @@ public class Aistechsat3 extends BeaconSource<Aistechsat3Beacon> {
 		long expectedCrc32 = Crc32c.calculate(data, Header.LENGTH, data.length - 4 - Header.LENGTH);
 		long actualCrc32 = ((data[data.length - 4] & 0xFFL) << 24) | ((data[data.length - 3] & 0xFFL) << 16) | ((data[data.length - 2] & 0xFFL) << 8) | (data[data.length - 1] & 0xFFL);
 		if (expectedCrc32 != actualCrc32) {
-			LOG.info("crc32 mismatch");
+			if (LOG.isDebugEnabled()) {
+				LOG.debug("crc mismatch");
+			}
 			return null;
 		}
 		byte[] packet = new byte[data.length - 4];

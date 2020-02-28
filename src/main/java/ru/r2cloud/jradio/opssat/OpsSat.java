@@ -42,7 +42,7 @@ public class OpsSat extends BeaconSource<OpsSatBeacon> {
 		long expectedCrc32 = Crc32c.calculate(payloadWithCrc, 0, payloadWithCrc.length - 4);
 		if (actualCrc32 != expectedCrc32) {
 			if (LOG.isDebugEnabled()) {
-				LOG.debug("crc mismatched");
+				LOG.debug("crc mismatch");
 			}
 			return null;
 		}
