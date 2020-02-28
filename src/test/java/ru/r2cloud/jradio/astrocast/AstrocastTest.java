@@ -65,7 +65,7 @@ public class AstrocastTest {
 		ClockRecoveryMM clockRecovery = new ClockRecoveryMM(lpf, lpf.getContext().getSampleRate() / 9600, (float) (0.25 * gainMu * gainMu), 0.5f, gainMu, 0.05f);
 		BinarySlicer bs = new BinarySlicer(clockRecovery);
 		CorrelateAccessCodeTag correlateTag = new CorrelateAccessCodeTag(bs, 4, "00011010110011111111110000011101", false);
-		TaggedStreamToPdu pdu = new TaggedStreamToPdu(new FixedLengthTagger(correlateTag, 255 * 8 * 5));
+		TaggedStreamToPdu pdu = new TaggedStreamToPdu(new UnpackedToPacked(new FixedLengthTagger(correlateTag, 255 * 8 * 5), 1, Endianness.GR_MSB_FIRST));
 		input9k6 = new Astrocast9k6(pdu);
 		assertTrue(input9k6.hasNext());
 		AssertJson.assertObjectsEqual("Astrocast9k6Beacon.json", input9k6.next());
