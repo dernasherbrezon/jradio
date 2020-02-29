@@ -1,0 +1,26 @@
+{
+  "sourceCallsign": "0PY0EFS",
+  "ttcData": "FLORIPASAT",
+  "rawData": [
+    2,
+    48,
+    80,
+    89,
+    48,
+    69,
+    70,
+    83,
+    70,
+    76,
+    79,
+    82,
+    73,
+    80,
+    65,
+    83,
+    65,
+    84
+  ],
+  "beginSample": 0,
+  "beginMillis": 0
+}

@@ -12,6 +12,8 @@ public class Floripasat1Beacon extends Beacon {
 
 	private String sourceCallsign;
 	private OBDHData obdhData;
+	private EPSData epsData;
+	private String ttcData;
 	private byte[] unknownPayload;
 
 	@Override
@@ -25,10 +27,19 @@ public class Floripasat1Beacon extends Beacon {
 		case 0:
 			obdhData = new OBDHData(dis);
 			break;
-			// TODO more types
+		case 1:
+			epsData = new EPSData(dis);
+			break;
+		case 2:
+			byte[] ttcBytes = new byte[dis.available()];
+			dis.readFully(ttcBytes);
+			ttcData = new String(ttcBytes, StandardCharsets.ISO_8859_1);
+			break;
 		default:
-			unknownPayload = new byte[dis.available()];
-			dis.readFully(unknownPayload);
+			if (dis.available() > 0) {
+				unknownPayload = new byte[dis.available()];
+				dis.readFully(unknownPayload);
+			}
 		}
 	}
 
@@ -56,4 +67,19 @@ public class Floripasat1Beacon extends Beacon {
 		this.unknownPayload = unknownPayload;
 	}
 
+	public EPSData getEpsData() {
+		return epsData;
+	}
+
+	public void setEpsData(EPSData epsData) {
+		this.epsData = epsData;
+	}
+
+	public String getTtcData() {
+		return ttcData;
+	}
+
+	public void setTtcData(String ttcData) {
+		this.ttcData = ttcData;
+	}
 }
