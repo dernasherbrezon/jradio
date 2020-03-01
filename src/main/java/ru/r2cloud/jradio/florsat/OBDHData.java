@@ -35,7 +35,7 @@ public class OBDHData extends EPSData {
 		imu_status = ((flags >> 4) & 0x1) > 0;
 		sd_card_status = ((flags >> 3) & 0x1) > 0;
 		rush_status = ((flags >> 1) & 0x1) > 0;
-		eps_status = ((flags >> 0) & 0x1) > 0;
+		eps_status = ((flags) & 0x1) > 0;
 		antenna_status = ((flags >> 5) & 0x1) > 0;
 
 		accelerometerX = imuAccel(dis.readShort());
@@ -51,8 +51,8 @@ public class OBDHData extends EPSData {
 		int b1 = dis.readUnsignedByte();
 		int b2 = dis.readUnsignedByte();
 		int b3 = dis.readUnsignedByte();
-		timeMinutes = ((b1 << 16) | (b2 << 8) | (b3 << 0)) % 60;
-		timeHours = ((b1 << 16) | (b2 << 8) | (b3 << 0)) / 60;
+		timeMinutes = ((b1 << 16) | (b2 << 8) | (b3)) % 60;
+		timeHours = ((b1 << 16) | (b2 << 8) | (b3)) / 60;
 
 		obdhResets = dis.readUnsignedShort();
 	}

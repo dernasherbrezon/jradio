@@ -119,7 +119,7 @@ public class Telemetry {
 			imuStatus = ((test_module_flags >> 4) & 1) > 0;
 			usdStatus = ((test_module_flags >> 3) & 1) > 0;
 			rushStatus = ((test_module_flags >> 1) & 1) > 0;
-			epsStatus = ((test_module_flags >> 0) & 1) > 0;
+			epsStatus = ((test_module_flags) & 1) > 0;
 			antennaStatus = ((test_module_flags >> 5) & 1) > 0;
 		}
 

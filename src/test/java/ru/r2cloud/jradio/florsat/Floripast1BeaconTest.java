@@ -1,7 +1,10 @@
 package ru.r2cloud.jradio.florsat;
 
+import static pl.pojo.tester.api.assertion.Assertions.assertPojoMethodsFor;
+
 import org.junit.Test;
 
+import pl.pojo.tester.api.assertion.Method;
 import ru.r2cloud.jradio.AssertJson;
 
 public class Floripast1BeaconTest {
@@ -20,5 +23,12 @@ public class Floripast1BeaconTest {
 		Floripasat1Beacon beacon = new Floripasat1Beacon();
 		beacon.readExternal(data);
 		AssertJson.assertObjectsEqual("Floripasat1BeaconTtc.json", beacon);
+	}
+	
+	@Test
+	public void testPojo() {
+		assertPojoMethodsFor(Floripasat1Beacon.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
+		assertPojoMethodsFor(OBDHData.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
+		assertPojoMethodsFor(EPSData.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
 	}
 }
