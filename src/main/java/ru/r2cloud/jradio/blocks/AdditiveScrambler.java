@@ -26,17 +26,4 @@ public class AdditiveScrambler {
 		lfsr.reset();
 	}
 
-	public void shufflePacked(byte[] data) {
-		for (int i = 0; i < data.length; i++) {
-			int currentIn = data[i] & 0xFF;
-			int currentOut = 0;
-			for (int j = 0; j < 8; j++) {
-				currentOut <<= 1;
-				currentOut |= ((currentIn >> (7 - j)) & 0x1) ^ lfsr.nextBit();
-			}
-			data[i] = (byte) currentOut;
-		}
-		lfsr.reset();
-	}
-
 }
