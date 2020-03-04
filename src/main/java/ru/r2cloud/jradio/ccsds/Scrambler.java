@@ -12,12 +12,12 @@ public class Scrambler {
 	}
 
 	public static void shuffle(byte[] data, int offset, int length) {
-		int ccsds_poly_pos = 0;
+		int ccsdsPolyPosition = 0;
 		for (int i = offset; i < (offset + length); i++) {
-			data[i] = (byte) ((data[i] & 0xFF) ^ POLY[ccsds_poly_pos]);
-			ccsds_poly_pos++;
-			if (ccsds_poly_pos >= 0xFF) {
-				ccsds_poly_pos = 0;
+			data[i] = (byte) ((data[i] & 0xFF) ^ POLY[ccsdsPolyPosition]);
+			ccsdsPolyPosition++;
+			if (ccsdsPolyPosition >= 0xFF) {
+				ccsdsPolyPosition = 0;
 			}
 		}
 	}
