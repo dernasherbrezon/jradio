@@ -5,11 +5,11 @@ import java.io.IOException;
 
 public class OBDHData extends EPSData {
 
-	private boolean imu_status;
-	private boolean sd_card_status;
-	private boolean rush_status;
-	private boolean eps_status;
-	private boolean antenna_status;
+	private boolean imuStatus;
+	private boolean sdCardStatus;
+	private boolean rushStatus;
+	private boolean epsStatus;
+	private boolean antennaStatus;
 
 	private double accelerometerX;
 	private double accelerometerY;
@@ -32,11 +32,11 @@ public class OBDHData extends EPSData {
 	public OBDHData(DataInputStream dis) throws IOException {
 		super(dis);
 		int flags = dis.readUnsignedByte();
-		imu_status = ((flags >> 4) & 0x1) > 0;
-		sd_card_status = ((flags >> 3) & 0x1) > 0;
-		rush_status = ((flags >> 1) & 0x1) > 0;
-		eps_status = ((flags) & 0x1) > 0;
-		antenna_status = ((flags >> 5) & 0x1) > 0;
+		imuStatus = ((flags >> 4) & 0x1) > 0;
+		sdCardStatus = ((flags >> 3) & 0x1) > 0;
+		rushStatus = ((flags >> 1) & 0x1) > 0;
+		epsStatus = ((flags) & 0x1) > 0;
+		antennaStatus = ((flags >> 5) & 0x1) > 0;
 
 		accelerometerX = imuAccel(dis.readShort());
 		accelerometerY = imuAccel(dis.readShort());
@@ -65,44 +65,44 @@ public class OBDHData extends EPSData {
 		return val * 250.0 / 32768.0;
 	}
 
-	public boolean isImu_status() {
-		return imu_status;
+	public boolean isImuStatus() {
+		return imuStatus;
 	}
 
-	public void setImu_status(boolean imu_status) {
-		this.imu_status = imu_status;
+	public void setImuStatus(boolean imuStatus) {
+		this.imuStatus = imuStatus;
 	}
 
-	public boolean isSd_card_status() {
-		return sd_card_status;
+	public boolean isSdCardStatus() {
+		return sdCardStatus;
 	}
 
-	public void setSd_card_status(boolean sd_card_status) {
-		this.sd_card_status = sd_card_status;
+	public void setSdCardStatus(boolean sdCardStatus) {
+		this.sdCardStatus = sdCardStatus;
 	}
 
-	public boolean isRush_status() {
-		return rush_status;
+	public boolean isRushStatus() {
+		return rushStatus;
 	}
 
-	public void setRush_status(boolean rush_status) {
-		this.rush_status = rush_status;
+	public void setRushStatus(boolean rushStatus) {
+		this.rushStatus = rushStatus;
 	}
 
-	public boolean isEps_status() {
-		return eps_status;
+	public boolean isEpsStatus() {
+		return epsStatus;
 	}
 
-	public void setEps_status(boolean eps_status) {
-		this.eps_status = eps_status;
+	public void setEpsStatus(boolean epsStatus) {
+		this.epsStatus = epsStatus;
 	}
 
-	public boolean isAntenna_status() {
-		return antenna_status;
+	public boolean isAntennaStatus() {
+		return antennaStatus;
 	}
 
-	public void setAntenna_status(boolean antenna_status) {
-		this.antenna_status = antenna_status;
+	public void setAntennaStatus(boolean antennaStatus) {
+		this.antennaStatus = antennaStatus;
 	}
 
 	public double getAccelerometerX() {
