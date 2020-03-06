@@ -16,12 +16,12 @@ public class Lucky7Beacon extends Beacon {
 	private String satelliteName;
 	private Integer totalResetCounter;
 	private Integer swapResetCounter;
-	private Integer batteryVoltage;
+	private Float batteryVoltage;
 	private Byte mcuTemperature;
 	private Byte paTemperature;
 	private Integer processorCurrent;
-	private Integer mcuVoltage3V3;
-	private Integer mcuVoltage1V2;
+	private Float mcuVoltage3V3;
+	private Float mcuVoltage1V2;
 	private Short angularRateX;
 	private Short angularRateY;
 	private Short angularRateZ;
@@ -43,12 +43,12 @@ public class Lucky7Beacon extends Beacon {
 		satelliteName = readString(dis, 6);
 		totalResetCounter = dis.readUnsignedShort();
 		swapResetCounter = dis.readUnsignedShort();
-		batteryVoltage = dis.readUnsignedByte() * 50;
+		batteryVoltage = dis.readUnsignedByte() / 50.0f;
 		mcuTemperature = dis.readByte();
 		paTemperature = dis.readByte();
 		processorCurrent = dis.readUnsignedByte();
-		mcuVoltage3V3 = dis.readUnsignedByte() * 50;
-		mcuVoltage1V2 = dis.readUnsignedByte() * 50;
+		mcuVoltage3V3 = dis.readUnsignedByte() / 50.0f;
+		mcuVoltage1V2 = dis.readUnsignedByte() / 50.0f;
 		angularRateX = dis.readShort();
 		angularRateY = dis.readShort();
 		angularRateZ = dis.readShort();
@@ -109,12 +109,28 @@ public class Lucky7Beacon extends Beacon {
 		this.swapResetCounter = swapResetCounter;
 	}
 
-	public Integer getBatteryVoltage() {
+	public Float getBatteryVoltage() {
 		return batteryVoltage;
 	}
 
-	public void setBatteryVoltage(Integer batteryVoltage) {
+	public void setBatteryVoltage(Float batteryVoltage) {
 		this.batteryVoltage = batteryVoltage;
+	}
+
+	public Float getMcuVoltage3V3() {
+		return mcuVoltage3V3;
+	}
+
+	public void setMcuVoltage3V3(Float mcuVoltage3V3) {
+		this.mcuVoltage3V3 = mcuVoltage3V3;
+	}
+
+	public Float getMcuVoltage1V2() {
+		return mcuVoltage1V2;
+	}
+
+	public void setMcuVoltage1V2(Float mcuVoltage1V2) {
+		this.mcuVoltage1V2 = mcuVoltage1V2;
 	}
 
 	public Byte getMcuTemperature() {
@@ -139,22 +155,6 @@ public class Lucky7Beacon extends Beacon {
 
 	public void setProcessorCurrent(Integer processorCurrent) {
 		this.processorCurrent = processorCurrent;
-	}
-
-	public Integer getMcuVoltage3V3() {
-		return mcuVoltage3V3;
-	}
-
-	public void setMcuVoltage3V3(Integer mcuVoltage3V3) {
-		this.mcuVoltage3V3 = mcuVoltage3V3;
-	}
-
-	public Integer getMcuVoltage1V2() {
-		return mcuVoltage1V2;
-	}
-
-	public void setMcuVoltage1V2(Integer mcuVoltage1V2) {
-		this.mcuVoltage1V2 = mcuVoltage1V2;
 	}
 
 	public Short getAngularRateX() {

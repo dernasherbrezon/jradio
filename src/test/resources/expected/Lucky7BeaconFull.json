@@ -1,0 +1,20 @@
+{
+  "obcId": 0,
+  "missionCounter": 16318,
+  "callsign": "OK0SAT",
+  "satelliteName": "LUCKY7",
+  "totalResetCounter": 52351,
+  "swapResetCounter": 50,
+  "batteryVoltage": 3.8,
+  "mcuTemperature": 24,
+  "paTemperature": 20,
+  "processorCurrent": 32,
+  "mcuVoltage3V3": 3.5,
+  "mcuVoltage1V2": 1.28,
+  "angularRateX": 2001,
+  "angularRateY": 2001,
+  "angularRateZ": 2001,
+  "antennaBurnwire": false,
+  "beginSample": 0,
+  "beginMillis": 0
+}
