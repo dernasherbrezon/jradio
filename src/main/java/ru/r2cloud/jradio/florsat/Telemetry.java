@@ -115,32 +115,32 @@ public class Telemetry {
 			resetCounter = (dis.readUnsignedByte() << 16) | (dis.readUnsignedByte() << 8) | (dis.readUnsignedByte());
 			resetCause = dis.readUnsignedByte();
 			clockFaultFlags = dis.readUnsignedByte();
-			int test_module_flags = dis.readUnsignedByte();
-			imuStatus = ((test_module_flags >> 4) & 1) > 0;
-			usdStatus = ((test_module_flags >> 3) & 1) > 0;
-			rushStatus = ((test_module_flags >> 1) & 1) > 0;
-			epsStatus = ((test_module_flags) & 1) > 0;
-			antennaStatus = ((test_module_flags >> 5) & 1) > 0;
+			int testModuleFlags = dis.readUnsignedByte();
+			imuStatus = ((testModuleFlags >> 4) & 1) > 0;
+			usdStatus = ((testModuleFlags >> 3) & 1) > 0;
+			rushStatus = ((testModuleFlags >> 1) & 1) > 0;
+			epsStatus = ((testModuleFlags) & 1) > 0;
+			antennaStatus = ((testModuleFlags >> 5) & 1) > 0;
 		}
 
 		if (imuFlag) {
-			imu1AccelX = IMUAccelConv(dis.readShort());
-			imu1AccelY = IMUAccelConv(dis.readShort());
-			imu1AccelZ = IMUAccelConv(dis.readShort());
-			imu1GyroX = IMUGyroConv(dis.readShort());
-			imu1GyroY = IMUGyroConv(dis.readShort());
-			imu1GyroZ = IMUGyroConv(dis.readShort());
-			imu2AccelX = IMUAccelConv(dis.readShort());
-			imu2AccelY = IMUAccelConv(dis.readShort());
-			imu2AccelZ = IMUAccelConv(dis.readShort());
-			imu2GyroX = IMUGyroConv(dis.readShort());
-			imu2GyroY = IMUGyroConv(dis.readShort());
-			imu2GyroZ = IMUGyroConv(dis.readShort());
+			imu1AccelX = imuAccelConv(dis.readShort());
+			imu1AccelY = imuAccelConv(dis.readShort());
+			imu1AccelZ = imuAccelConv(dis.readShort());
+			imu1GyroX = imuGyroConv(dis.readShort());
+			imu1GyroY = imuGyroConv(dis.readShort());
+			imu1GyroZ = imuGyroConv(dis.readShort());
+			imu2AccelX = imuAccelConv(dis.readShort());
+			imu2AccelY = imuAccelConv(dis.readShort());
+			imu2AccelZ = imuAccelConv(dis.readShort());
+			imu2GyroX = imuGyroConv(dis.readShort());
+			imu2GyroY = imuGyroConv(dis.readShort());
+			imu2GyroZ = imuGyroConv(dis.readShort());
 		}
 		if (obdhMiscFlag) {
-			mspTemperature = MSPInternalTempConv(dis.readUnsignedShort());
-			supplyVoltage = OBDHSupplyVoltConv(dis.readUnsignedShort());
-			supplyCurrent = OBDHSupplyCurrentConv(dis.readUnsignedShort());
+			mspTemperature = mspInternalTempConv(dis.readUnsignedShort());
+			supplyVoltage = obdhSupplyVoltConv(dis.readUnsignedShort());
+			supplyCurrent = obdhSupplyCurrentConv(dis.readUnsignedShort());
 		}
 		if (solarPanelsSensorsFlag) {
 			solarPanelsSensors = readUnsignedBytes(dis, 12);
@@ -151,38 +151,38 @@ public class Telemetry {
 		if (solarPanelsFlag) {
 			solarCurrent = new double[6];
 			for (int i = 0; i < solarCurrent.length; i++) {
-				solarCurrent[i] = SolarPanelCurrentConv(dis.readUnsignedShort());
+				solarCurrent[i] = solarPanelCurrentConv(dis.readUnsignedShort());
 			}
 			solarVoltage = new double[3];
 			for (int i = 0; i < solarVoltage.length; i++) {
-				solarVoltage[i] = SolarPanelVoltageConv(dis.readUnsignedShort());
+				solarVoltage[i] = solarPanelVoltageConv(dis.readUnsignedShort());
 			}
 		}
 		if (epsMiscFlag) {
-			boostVoltage = ADCVoltConv(dis.readUnsignedShort());
-			mainPowerVoltage = ADCVoltConv(dis.readUnsignedShort());
-			beaconEpsCurrent = BeaconEPSCurrentConv(dis.readUnsignedShort());
-			adcTemperature = ADCInternalTempConv(dis.readUnsignedShort());
+			boostVoltage = adcVoltConv(dis.readUnsignedShort());
+			mainPowerVoltage = adcVoltConv(dis.readUnsignedShort());
+			beaconEpsCurrent = beaconEPSCurrentConv(dis.readUnsignedShort());
+			adcTemperature = adcInternalTempConv(dis.readUnsignedShort());
 		}
 		if (batteryMonitorFlag) {
-			batAverageCurrent = BatCurrentConv(dis.readShort());
-			batTemperature = BatMonitorTempConv(dis.readShort());
-			bat1Voltage = BatVoltConv(dis.readShort());
-			bat2Voltage = BatVoltConv(dis.readShort());
-			batCurrent = BatCurrentConv(dis.readShort());
-			batAccumulatedCurrent = BatAccumulatedCurrentConv(dis.readUnsignedShort());
+			batAverageCurrent = batCurrentConv(dis.readShort());
+			batTemperature = batMonitorTempConv(dis.readShort());
+			bat1Voltage = batVoltConv(dis.readShort());
+			bat2Voltage = batVoltConv(dis.readShort());
+			batCurrent = batCurrentConv(dis.readShort());
+			batAccumulatedCurrent = batAccumulatedCurrentConv(dis.readUnsignedShort());
 			protectionRegister = dis.readUnsignedByte();
 			statusRegister = dis.readUnsignedByte();
 			cycleCounterRegister = dis.readUnsignedByte() * 2;
-			activeAbsoluteCapacity = RemainingAbsoluteCapacityConv(dis.readUnsignedShort());
-			standbyAbsoluteCapacity = RemainingAbsoluteCapacityConv(dis.readUnsignedShort());
+			activeAbsoluteCapacity = remainingAbsoluteCapacityConv(dis.readUnsignedShort());
+			standbyAbsoluteCapacity = remainingAbsoluteCapacityConv(dis.readUnsignedShort());
 			activeRelativeCapacity = dis.readUnsignedByte();
 			standbyRelativeCapacity = dis.readUnsignedByte();
 		}
 		if (temperaturesFlag) {
 			rtdMeasurement = new double[7];
 			for (int i = 0; i < rtdMeasurement.length; i++) {
-				rtdMeasurement[i] = ADCConv((dis.readUnsignedByte() << 16) | (dis.readUnsignedByte() << 8) | (dis.readUnsignedByte()));
+				rtdMeasurement[i] = adcConv((dis.readUnsignedByte() << 16) | (dis.readUnsignedByte() << 8) | (dis.readUnsignedByte()));
 			}
 		}
 		if (energyLevelFlag) {
@@ -196,47 +196,47 @@ public class Telemetry {
 		}
 	}
 
-	private static double ADCConv(int val) {
+	private static double adcConv(int val) {
 		return ((val * (1.65 * 2 / Math.pow(2, 24)) * 1e3) - 1000) * 1 / 3.85;
 	}
 
-	private static double RemainingAbsoluteCapacityConv(int val) {
+	private static double remainingAbsoluteCapacityConv(int val) {
 		return val * 1.6;
 	}
 
-	private static double BatAccumulatedCurrentConv(int val) {
+	private static double batAccumulatedCurrentConv(int val) {
 		return val * (6.25e-6 / 0.01);
 	}
 
-	private static double BatVoltConv(short val) {
+	private static double batVoltConv(short val) {
 		return (val / 32.0f) * 4.883e-3;
 	}
 
-	private static double BatMonitorTempConv(short val) {
+	private static double batMonitorTempConv(short val) {
 		return val * 0.125 / 32.0;
 	}
 
-	private static double BatCurrentConv(short val) {
+	private static double batCurrentConv(short val) {
 		return val * (1.5625e-6 / 0.01);
 	}
 
-	private static double ADCInternalTempConv(int val) {
+	private static double adcInternalTempConv(int val) {
 		return (val * (2.5 / 4095.0) - 0.680) * 70.0 / 0.170;
 	}
 
-	private static double BeaconEPSCurrentConv(int val) {
+	private static double beaconEPSCurrentConv(int val) {
 		return val * (2.5 / 4095.0) * (1.0 / (0.075 * 0.025 * 4020));
 	}
 
-	private static double ADCVoltConv(int val) {
+	private static double adcVoltConv(int val) {
 		return val * (2.5 / 4095.0) * (300e3 + 100e3) / (100e3);
 	}
 
-	private static double SolarPanelCurrentConv(int val) {
+	private static double solarPanelCurrentConv(int val) {
 		return val * (2.5 / 4095) * (1 / (0.05 * 0.025 * 3300));
 	}
 
-	private static double SolarPanelVoltageConv(int val) {
+	private static double solarPanelVoltageConv(int val) {
 		return val * (2.5 / 4095) * (100e3 + 93.1e3) / 100e3;
 	}
 
@@ -248,23 +248,23 @@ public class Telemetry {
 		return result;
 	}
 
-	private static double IMUAccelConv(short val) {
+	private static double imuAccelConv(short val) {
 		return val * 16.0 / 32768.0;
 	}
 
-	private static double IMUGyroConv(short val) {
+	private static double imuGyroConv(short val) {
 		return val * 250.0 / 32768.0;
 	}
 
-	private static double MSPInternalTempConv(int val) {
+	private static double mspInternalTempConv(int val) {
 		return ((val * 2.0 - 2048.0) * 55.0) / (2432.0 - 2048.0) + 30.0; // CAL1 = 2145 and CAL2 = 2508 for the OBDH MSP (F6659)
 	}
 
-	private static double OBDHSupplyVoltConv(int val) {
+	private static double obdhSupplyVoltConv(int val) {
 		return (val * 2 * 3.0) / 4095.0;
 	}
 
-	private static double OBDHSupplyCurrentConv(int val) {
+	private static double obdhSupplyCurrentConv(int val) {
 		return (1000 * val * 3.0) / (4095 * 0.05 * 0.025 * 20000);
 	}
 
