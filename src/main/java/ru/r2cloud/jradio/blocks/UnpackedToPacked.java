@@ -118,6 +118,17 @@ public class UnpackedToPacked implements ByteInput {
 		return result;
 	}
 
+	public static byte[] packLittleEndian(byte[] hardDecisionBits, int offsetBits, int lengthBytes) {
+		byte[] result = new byte[lengthBytes];
+		for (int i = offsetBits; i < result.length; i++) {
+			result[i] = 0x00;
+			for (int j = 0; j < 8; j++) {
+				result[i] |= (0x01 & hardDecisionBits[i * 8 + j]) << (8 - j - 1);
+			}
+		}
+		return result;
+	}
+
 	public static byte[] packSoft(byte[] softDecisionBits, int offsetBits, int lengthBytes) {
 		byte[] result = new byte[lengthBytes];
 		int max = offsetBits + lengthBytes * 8;

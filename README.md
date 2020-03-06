@@ -184,6 +184,11 @@ Using the blocks above, it is possible to decode the following satellites:
 			<td><a href="https://github.com/dernasherbrezon/jradio/blob/master/src/test/java/ru/r2cloud/jradio/jy1sat/Jy1satTest.java">Nayif1Test</a></td>
 		</tr>
 		<tr>
+			<td>Lucky-7</td>
+			<td>44406</td>
+			<td><a href="https://github.com/dernasherbrezon/jradio/blob/master/src/test/java/ru/r2cloud/jradio/lucky7/Lucky7Test.java">Lucky7Test</a></td>
+		</tr>
+		<tr>
 			<td>Lume-1 / AISTechSat 2</td>
 			<td>43908 / 43768</td>
 			<td><a href="https://github.com/dernasherbrezon/jradio/blob/master/src/test/java/ru/r2cloud/jradio/lume1/Lume1Test.java">Lume1Test</a></td>
