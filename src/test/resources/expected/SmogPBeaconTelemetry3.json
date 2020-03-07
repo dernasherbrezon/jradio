@@ -1,0 +1,112 @@
+{
+  "telemetry3": {
+    "timestamp": 1583459667,
+    "obcSupplyVoltage": 3.308,
+    "rtccTemperature": [
+      0,
+      26
+    ],
+    "eps2PanelATemperature": [
+      20.1,
+      18.6
+    ],
+    "comDataRate": 3,
+    "txPowerLevel": 3,
+    "comTxCurrent": 79,
+    "comRxCurrent": 21,
+    "com1Overcurrent": false,
+    "com2Overcurrent": false,
+    "com1LimiterSwitch": false,
+    "com2LimiterSwitch": true,
+    "com1LimiterSwitchOverride": false,
+    "com2LimiterSwitchOverride": false,
+    "msen": [
+      {
+        "msenGyroscope": [
+          0,
+          0,
+          0
+        ],
+        "msenMagneto": [
+          0,
+          0,
+          0
+        ],
+        "msenTemperature": 0.0
+      },
+      {
+        "msenGyroscope": [
+          -2,
+          1,
+          0
+        ],
+        "msenMagneto": [
+          74,
+          304,
+          -112
+        ],
+        "msenTemperature": 24.9
+      }
+    ],
+    "msenEnabled": [
+      false,
+      true
+    ],
+    "flash": [
+      false,
+      true
+    ],
+    "rtcc": [
+      false,
+      true
+    ],
+    "currentCom": 1,
+    "com": {
+      "timestamp": 1583459667,
+      "swrBridge": 23,
+      "lastRxRssi": 74,
+      "spectrumAnalyzerStatus": 1,
+      "activeComVoltage": 3.258,
+      "activeComTemperature": 32.3,
+      "activeComSpectrumAnalyzerTemperature": 27.6
+    },
+    "tid": [
+      {
+        "timestamp": 1583458815,
+        "temperature": 32.7,
+        "voltage": 4.973,
+        "radfetVoltage": [
+          1227298,
+          1265791
+        ],
+        "measurementSerial": 157
+      },
+      {
+        "timestamp": 1583458816,
+        "temperature": 32.3,
+        "voltage": 4.973,
+        "radfetVoltage": [
+          1248150,
+          1362465
+        ],
+        "measurementSerial": 157
+      }
+    ],
+    "ackInfo": [
+      {
+        "serial": 3082,
+        "rssi": -94.0
+      },
+      {
+        "serial": 3081,
+        "rssi": -93.5
+      },
+      {
+        "serial": 3080,
+        "rssi": -92.0
+      }
+    ]
+  },
+  "beginSample": 0,
+  "beginMillis": 0
+}

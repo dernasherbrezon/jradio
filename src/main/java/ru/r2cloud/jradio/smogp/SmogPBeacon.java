@@ -13,6 +13,7 @@ public class SmogPBeacon extends Beacon {
 	private SpectrumResult spectrumResult;
 	private Telemetry1 telemetry1;
 	private Telemetry2 telemetry2;
+	private Telemetry3 telemetry3;
 
 	private byte[] unknownPayload;
 
@@ -27,6 +28,9 @@ public class SmogPBeacon extends Beacon {
 		case 2:
 			telemetry2 = new Telemetry2(dis);
 			break;
+		case 3:
+			telemetry3 = new Telemetry3(dis);
+			break;
 		case 5:
 			spectrumResult = new SpectrumResult(dis);
 			break;
@@ -35,6 +39,14 @@ public class SmogPBeacon extends Beacon {
 			dis.readFully(unknownPayload);
 			break;
 		}
+	}
+
+	public Telemetry3 getTelemetry3() {
+		return telemetry3;
+	}
+
+	public void setTelemetry3(Telemetry3 telemetry3) {
+		this.telemetry3 = telemetry3;
 	}
 
 	public Telemetry2 getTelemetry2() {
