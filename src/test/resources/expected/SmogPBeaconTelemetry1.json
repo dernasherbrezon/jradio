@@ -1,0 +1,89 @@
+{
+  "telemetry1": {
+    "time": 1583459639,
+    "mppt": [
+      {
+        "timestamp": 1583458858,
+        "temperature": -276.4,
+        "lightSensor": 0.0,
+        "inputCurrent": 0,
+        "inputVoltage": 0.0,
+        "outputCurrent": 0,
+        "outputVoltage": 0.0,
+        "panelNumber": 1,
+        "panelStatus": "NOT_MONITORED"
+      },
+      {
+        "timestamp": 1583459087,
+        "temperature": -276.4,
+        "lightSensor": 0.0,
+        "inputCurrent": 0,
+        "inputVoltage": 0.0,
+        "outputCurrent": 0,
+        "outputVoltage": 0.0,
+        "panelNumber": 2,
+        "panelStatus": "NOT_MONITORED"
+      },
+      {
+        "timestamp": 1583458956,
+        "temperature": -276.4,
+        "lightSensor": 0.0,
+        "inputCurrent": 0,
+        "inputVoltage": 0.0,
+        "outputCurrent": 0,
+        "outputVoltage": 0.0,
+        "panelNumber": 3,
+        "panelStatus": "OPEN"
+      },
+      {
+        "timestamp": 1583459083,
+        "temperature": -276.4,
+        "lightSensor": 0.0,
+        "inputCurrent": 0,
+        "inputVoltage": 0.0,
+        "outputCurrent": 0,
+        "outputVoltage": 0.0,
+        "panelNumber": 4,
+        "panelStatus": "OPEN"
+      },
+      {
+        "timestamp": 1583459013,
+        "temperature": -276.4,
+        "lightSensor": 0.0,
+        "inputCurrent": 0,
+        "inputVoltage": 0.0,
+        "outputCurrent": 0,
+        "outputVoltage": 0.0,
+        "panelNumber": 5,
+        "panelStatus": "NOT_MONITORED"
+      },
+      {
+        "timestamp": 1583459061,
+        "temperature": -276.4,
+        "lightSensor": 0.0,
+        "inputCurrent": 0,
+        "inputVoltage": 0.0,
+        "outputCurrent": 0,
+        "outputVoltage": 0.0,
+        "panelNumber": 6,
+        "panelStatus": "NOT_MONITORED"
+      }
+    ],
+    "ackInfo": [
+      {
+        "serial": 3082,
+        "rssi": -94.0
+      },
+      {
+        "serial": 3081,
+        "rssi": -93.5
+      },
+      {
+        "serial": 3080,
+        "rssi": -92.0
+      }
+    ]
+  },
+  "beginSample": 0,
+  "beginMillis": 0
+}
