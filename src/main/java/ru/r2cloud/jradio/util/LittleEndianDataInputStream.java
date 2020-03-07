@@ -35,7 +35,7 @@ public class LittleEndianDataInputStream implements DataInput {
 	public final long readUnsignedInt() throws IOException {
 		return readUnsignedInt(dis);
 	}
-	
+
 	public static final long readUnsignedInt(DataInputStream dis) throws IOException {
 		int ch1 = dis.read();
 		int ch2 = dis.read();
@@ -55,7 +55,7 @@ public class LittleEndianDataInputStream implements DataInput {
 	public final short readShort() throws IOException {
 		return readShort(dis);
 	}
-	
+
 	public static final short readShort(DataInputStream dis) throws IOException {
 		int ch1 = dis.read();
 		int ch2 = dis.read();
@@ -117,7 +117,8 @@ public class LittleEndianDataInputStream implements DataInput {
 	}
 
 	/**
-	 * {@inheritDoc} 
+	 * {@inheritDoc}
+	 * 
 	 * @deprecated see java.io.DataInputStream.readLine
 	 */
 	@Override
@@ -129,5 +130,9 @@ public class LittleEndianDataInputStream implements DataInput {
 	@Override
 	public String readUTF() throws IOException {
 		return dis.readUTF();
+	}
+
+	public int available() throws IOException {
+		return dis.available();
 	}
 }
