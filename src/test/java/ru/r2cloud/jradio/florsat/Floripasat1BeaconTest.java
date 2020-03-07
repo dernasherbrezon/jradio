@@ -7,7 +7,7 @@ import org.junit.Test;
 import pl.pojo.tester.api.assertion.Method;
 import ru.r2cloud.jradio.AssertJson;
 
-public class Floripast1BeaconTest {
+public class Floripasat1BeaconTest {
 
 	@Test
 	public void testEpsData() throws Exception {
@@ -30,5 +30,7 @@ public class Floripast1BeaconTest {
 		assertPojoMethodsFor(Floripasat1Beacon.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
 		assertPojoMethodsFor(OBDHData.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
 		assertPojoMethodsFor(EPSData.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
+		assertPojoMethodsFor(Floripasat1DownlinkBeacon.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
+		assertPojoMethodsFor(Telemetry.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
 	}
 }
