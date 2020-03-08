@@ -1,0 +1,89 @@
+{
+  "smogTelemetry": {
+    "uptime": 486123,
+    "systemTime": 1583459669,
+    "obcId": 49,
+    "oscillator": "EXTERNAL",
+    "adcResultsValid": true,
+    "adcResults": {
+      "timestamp": 1583459669,
+      "internalReference": {
+        "vcc": 3.308,
+        "vbg": 1.2,
+        "vcore": 1.863,
+        "vextref": 2.099,
+        "an": [
+          1.723,
+          0.003,
+          0.724,
+          0.721
+        ]
+      },
+      "externalReference": {
+        "vcc": 3.228,
+        "vbg": 1.167,
+        "vcore": 1.813,
+        "vextref": 2.039,
+        "an": [
+          1.681,
+          0.006,
+          0.708,
+          0.702
+        ]
+      }
+    },
+    "spiStatus": {
+      "spiMuxFunctional": true,
+      "msenCsPinSelectFailed": false,
+      "rtccCsPinSelectFailed": false,
+      "flashCsPinSelectFailed": false,
+      "allCsPinDeselectFailed": false,
+      "misoPinTestFailed": false,
+      "mosiPinTestFailed": false,
+      "sclkPinTestFailed": false
+    },
+    "spiFlashStartcount": 1,
+    "spiMsenStartcount": 1,
+    "spiRtccStartcount": 1,
+    "randomNumber": 198,
+    "mpptBusStatuses": [
+      "NO_RESPONSE",
+      "NO_RESPONSE",
+      "NO_RESPONSE",
+      "NO_RESPONSE",
+      "NO_RESPONSE",
+      "NO_RESPONSE"
+    ],
+    "accuBusStatus": [
+      "OK",
+      "OK"
+    ],
+    "pcuBusStatus": [
+      "OK",
+      "OK"
+    ],
+    "currentCom": 2,
+    "comUptimeSeconds": 194872,
+    "comTxPowerLevel": 100,
+    "comTxCurrent": 79,
+    "comRxCurrent": 21,
+    "comTxVoltageDrop": 0.126,
+    "scheduledSpectrumAnalysisQueue": 0,
+    "scheduledFileDownloadQueue": 0,
+    "energyManagementMod": "NORMAL",
+    "morsePeriod": 8,
+    "radioCycle": 26.0,
+    "sleep": 0.0,
+    "lastTelecomandSecondsAgo": 16917,
+    "automaticAntennaOpenings": 0,
+    "cpuUsageCycles": 3109,
+    "cpuIdleUs": 19908086,
+    "cpuWorkOverUs": 25977523,
+    "obcFlashChecksum": 3944972172,
+    "obcFlashChecksumPrevDiff": 4294967295,
+    "scheduledDatalogQueue": 3,
+    "currentScheduledDatalog": 12340
+  },
+  "beginSample": 0,
+  "beginMillis": 0
+}

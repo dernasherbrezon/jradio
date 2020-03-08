@@ -14,6 +14,10 @@ public class SmogPBeacon extends Beacon {
 	private Telemetry1 telemetry1;
 	private Telemetry2 telemetry2;
 	private Telemetry3 telemetry3;
+	private ru.r2cloud.jradio.smogp.Beacon beacon;
+	private FileInfo fileInfo;
+	private FileFragment fileFragment;
+	private SMOGPTelemetry1 smogTelemetry;
 
 	private byte[] unknownPayload;
 
@@ -31,14 +35,58 @@ public class SmogPBeacon extends Beacon {
 		case 3:
 			telemetry3 = new Telemetry3(dis);
 			break;
+		case 4:
+			beacon = new ru.r2cloud.jradio.smogp.Beacon(dis);
+			break;
 		case 5:
 			spectrumResult = new SpectrumResult(dis);
+			break;
+		case 6:
+			fileInfo = new FileInfo(dis);
+			break;
+		case 7:
+			fileFragment = new FileFragment(dis);
+			break;
+		case 33:
+			smogTelemetry = new SMOGPTelemetry1(dis);
 			break;
 		default:
 			unknownPayload = new byte[dis.available()];
 			dis.readFully(unknownPayload);
 			break;
 		}
+	}
+
+	public SMOGPTelemetry1 getSmogTelemetry() {
+		return smogTelemetry;
+	}
+
+	public void setSmogTelemetry(SMOGPTelemetry1 smogTelemetry) {
+		this.smogTelemetry = smogTelemetry;
+	}
+
+	public FileFragment getFileFragment() {
+		return fileFragment;
+	}
+
+	public void setFileFragment(FileFragment fileFragment) {
+		this.fileFragment = fileFragment;
+	}
+
+	public FileInfo getFileInfo() {
+		return fileInfo;
+	}
+
+	public void setFileInfo(FileInfo fileInfo) {
+		this.fileInfo = fileInfo;
+	}
+
+	public ru.r2cloud.jradio.smogp.Beacon getBeacon() {
+		return beacon;
+	}
+
+	public void setBeacon(ru.r2cloud.jradio.smogp.Beacon beacon) {
+		this.beacon = beacon;
 	}
 
 	public Telemetry3 getTelemetry3() {
