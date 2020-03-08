@@ -1,4 +1,4 @@
-package ru.r2cloud.jradio.ao40;
+package ru.r2cloud.jradio.smogp;
 
 import java.io.IOException;
 import java.util.UUID;
@@ -10,21 +10,20 @@ import ru.r2cloud.jradio.MessageInput;
 import ru.r2cloud.jradio.Tag;
 import ru.r2cloud.jradio.blocks.CorrelateAccessCodeTag;
 
-public class Ao40CorrelateAccessCodeTag implements MessageInput {
+public class SmogPShortCorrelate implements MessageInput {
 
-	private static final int STEP = 80;
-	private static final int[] SYNCWORD = new int[] { 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 1, 1, 1, 0, 1, 1, 1, 1, 0, 0, 1, 0, 1, 1, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1, 1, 0, 0, 0, 1, 0, 1, 1, 1, 0, 1, 0, 1, 1, 0, 1, 1, 0, 0, 0 };
-	private static final int[] INVERTED_SYNCWORD = new int[] { 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 1, 0, 0, 0, 0, 1, 1, 0, 1, 0, 0, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 0, 1, 1, 0, 0, 1, 1, 1, 0, 1, 0, 0, 0, 1, 0, 1, 0, 0, 1, 0, 0, 1, 1, 1 };
+	private static final int STEP = 51;
+	private static final int[] SYNCWORD = new int[] { 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 1, 1, 1, 0, 1, 1, 1, 1, 0, 0, 1, 0, 1, 1, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1, 1, 0, 0, 0, 1, 0, 1 };
 
 	private final ByteInput input;
 	private final byte[] window;
 	private int currentIndex = 0;
 	private final int threshold;
 
-	public Ao40CorrelateAccessCodeTag(ByteInput input, int threshold) {
+	public SmogPShortCorrelate(ByteInput input, int threshold) {
 		this.input = input;
 		this.threshold = threshold;
-		window = new byte[STEP * 65];
+		window = new byte[STEP * 52];
 	}
 
 	@Override
@@ -35,20 +34,12 @@ public class Ao40CorrelateAccessCodeTag implements MessageInput {
 			if (currentIndex >= window.length) {
 				currentIndex = 0;
 			}
-			int matchType = match();
-			if (matchType == 0) {
+			if (!match()) {
 				continue;
 			}
 			byte[] result = new byte[window.length];
 			System.arraycopy(window, currentIndex, result, 0, window.length - currentIndex);
 			System.arraycopy(window, 0, result, window.length - currentIndex, currentIndex);
-			// solve phase ambiguity. ao40 is using BPSK, thus only 180deg phase ambiguity exists
-			if (matchType == 2) {
-				for (int i = 0; i < result.length; i++) {
-					// reverse soft bit
-					result[i] = (byte) (result[i] ^ 0xFF);
-				}
-			}
 			Tag tag = new Tag();
 			tag.setId(UUID.randomUUID().toString());
 			LongValueSource currentSample = getContext().getCurrentSample();
@@ -60,9 +51,8 @@ public class Ao40CorrelateAccessCodeTag implements MessageInput {
 		}
 	}
 
-	private int match() {
+	private boolean match() {
 		int match = 0;
-		int intertedMatch = 0;
 		for (int j = 0; j < SYNCWORD.length; j++) {
 			int bit;
 			int arrayIndex = currentIndex + j * STEP;
@@ -77,17 +67,11 @@ public class Ao40CorrelateAccessCodeTag implements MessageInput {
 			if (bit == SYNCWORD[j]) {
 				match++;
 			}
-			if (bit == INVERTED_SYNCWORD[j]) {
-				intertedMatch++;
-			}
 		}
 		if (match >= SYNCWORD.length - threshold) {
-			return 1;
+			return true;
 		}
-		if (intertedMatch >= INVERTED_SYNCWORD.length - threshold) {
-			return 2;
-		}
-		return 0;
+		return false;
 	}
 
 	@Override
