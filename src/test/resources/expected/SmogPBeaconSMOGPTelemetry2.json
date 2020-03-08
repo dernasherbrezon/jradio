@@ -1,0 +1,52 @@
+{
+  "smogTelemetry2": {
+    "msenDataValid": true,
+    "timestamp": 1583459774,
+    "temperature": 22.581453,
+    "msenGyroscope": [
+      -1.5243902,
+      0.85365856,
+      0.18292683
+    ],
+    "msenMagnetoRaw": [
+      66,
+      310,
+      -100
+    ],
+    "msenMagntoMinMaxValid": true,
+    "msenMagnetoMinMax": [
+      4,
+      269,
+      -211,
+      168,
+      367,
+      252
+    ],
+    "msenMagnetoScale": [
+      0.1734375,
+      0.17402345,
+      0.16757813
+    ],
+    "msenMagneto": [
+      -3.46875,
+      -1.2181642,
+      -20.276955
+    ],
+    "ackInfo": [
+      {
+        "serial": 3082,
+        "rssi": -94.0
+      },
+      {
+        "serial": 3081,
+        "rssi": -93.5
+      },
+      {
+        "serial": 3080,
+        "rssi": -92.0
+      }
+    ]
+  },
+  "beginSample": 0,
+  "beginMillis": 0
+}

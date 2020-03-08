@@ -234,6 +234,11 @@ Using the blocks above, it is possible to decode the following satellites:
 			<td><a href="https://github.com/dernasherbrezon/jradio/blob/master/src/test/java/ru/r2cloud/jradio/sat3cat1/Sat3Cat1Test.java">Sat3Cat1Test</a></td>
 		</tr>
 		<tr>
+			<td>SMOG-P</td>
+			<td>44832</td>
+			<td><a href="https://github.com/dernasherbrezon/jradio/blob/master/src/test/java/ru/r2cloud/jradio/smogp/SmogPTest.java">SmogPTest</a></td>
+		</tr>
+		<tr>
 			<td>Suomi100</td>
 			<td>43804</td>
 			<td><a href="https://github.com/dernasherbrezon/jradio/blob/master/src/test/java/ru/r2cloud/jradio/suomi100/Suomi100Test.java">Suomi100Test</a></td>

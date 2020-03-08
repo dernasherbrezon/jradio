@@ -17,7 +17,8 @@ public class SmogPBeacon extends Beacon {
 	private ru.r2cloud.jradio.smogp.Beacon beacon;
 	private FileInfo fileInfo;
 	private FileFragment fileFragment;
-	private SMOGPTelemetry1 smogTelemetry;
+	private AtlTelemetry1 smogTelemetry;
+	private AtlTelemetry2 smogTelemetry2;
 
 	private byte[] unknownPayload;
 
@@ -48,7 +49,10 @@ public class SmogPBeacon extends Beacon {
 			fileFragment = new FileFragment(dis);
 			break;
 		case 33:
-			smogTelemetry = new SMOGPTelemetry1(dis);
+			smogTelemetry = new AtlTelemetry1(dis, AtlTelemetry1.SMOG_CONST_TX_PWR_LEVEL_TO_MW);
+			break;
+		case 34:
+			smogTelemetry2 = new AtlTelemetry2(dis);
 			break;
 		default:
 			unknownPayload = new byte[dis.available()];
@@ -57,11 +61,19 @@ public class SmogPBeacon extends Beacon {
 		}
 	}
 
-	public SMOGPTelemetry1 getSmogTelemetry() {
+	public AtlTelemetry2 getSmogTelemetry2() {
+		return smogTelemetry2;
+	}
+
+	public void setSmogTelemetry2(AtlTelemetry2 smogTelemetry2) {
+		this.smogTelemetry2 = smogTelemetry2;
+	}
+
+	public AtlTelemetry1 getSmogTelemetry() {
 		return smogTelemetry;
 	}
 
-	public void setSmogTelemetry(SMOGPTelemetry1 smogTelemetry) {
+	public void setSmogTelemetry(AtlTelemetry1 smogTelemetry) {
 		this.smogTelemetry = smogTelemetry;
 	}
 

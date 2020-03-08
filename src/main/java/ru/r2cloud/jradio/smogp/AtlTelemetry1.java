@@ -4,9 +4,10 @@ import java.io.IOException;
 
 import ru.r2cloud.jradio.util.LittleEndianDataInputStream;
 
-public class SMOGPTelemetry1 {
+public class AtlTelemetry1 {
 
-	private final static int[] CONST_TX_PWR_LEVEL_TO_MW = new int[] { 10, 11, 12, 13, 14, 15, 16, 25, 29, 33, 38, 42, 46, 50, 75, 100 };
+	public static final int[] SMOG_CONST_TX_PWR_LEVEL_TO_MW = new int[] { 10, 11, 12, 13, 14, 15, 16, 25, 29, 33, 38, 42, 46, 50, 75, 100 };
+	public static final int[] ATL_CONST_TX_PWR_LEVEL_TO_MW = new int[] { 10, 25, 50, 100 };
 
 	private long uptime;
 	private long systemTime;
@@ -48,11 +49,11 @@ public class SMOGPTelemetry1 {
 	private int scheduledDatalogQueue;
 	private int currentScheduledDatalog;
 
-	public SMOGPTelemetry1() {
+	public AtlTelemetry1() {
 		// do nothing
 	}
 
-	public SMOGPTelemetry1(LittleEndianDataInputStream dis) throws IOException {
+	public AtlTelemetry1(LittleEndianDataInputStream dis, int[] constTxPwrLevelToMw) throws IOException {
 		uptime = dis.readUnsignedInt();
 		systemTime = dis.readUnsignedInt();
 		obcId = dis.readUnsignedByte();
@@ -80,8 +81,8 @@ public class SMOGPTelemetry1 {
 		currentCom = dis.readUnsignedByte();
 		comUptimeSeconds = dis.readUnsignedInt();
 		b = dis.readUnsignedByte();
-		if (b < CONST_TX_PWR_LEVEL_TO_MW.length) {
-			comTxPowerLevel = CONST_TX_PWR_LEVEL_TO_MW[b];
+		if (b < constTxPwrLevelToMw.length) {
+			comTxPowerLevel = constTxPwrLevelToMw[b];
 		}
 		comTxCurrent = dis.readShort();
 		comRxCurrent = dis.readShort();

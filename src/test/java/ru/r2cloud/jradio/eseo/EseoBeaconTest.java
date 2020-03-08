@@ -57,7 +57,7 @@ public class EseoBeaconTest {
 		b.readExternal(data);
 		AssertJson.assertObjectsEqual("Eseo-type6.json", b);
 	}
-	
+
 	@Test
 	public void testPojo() {
 		assertPojoMethodsFor(EquipmentStatus.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
@@ -87,7 +87,7 @@ public class EseoBeaconTest {
 		assertPojoMethodsFor(HSTXStatus.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
 		assertPojoMethodsFor(HSTXCommunicationCondition.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
 		assertPojoMethodsFor(HSTXMemoryCondition.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
-		
+
 		assertPojoMethodsFor(Type1.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
 		assertPojoMethodsFor(Type2.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
 		assertPojoMethodsFor(Type3.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();

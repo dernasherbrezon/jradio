@@ -46,4 +46,13 @@ public class SmogPBeaconTest {
 		result.readBeacon(data);
 		AssertJson.assertObjectsEqual("SmogPBeaconSMOGPTelemetry1.json", result);
 	}
+
+	@Test
+	public void testSMOGPTelemetry2() throws Exception {
+		byte[] data = ViterbiTest.hexStringToByteArray("2256BEAD615ED1A6B441381FC3BF5E895A3F2C513B3E420036019CFF5904000D012DFFA8006F01FC009A99313E3433323E9A992B3E00005EC0CEEC9BBF3437A2C10A0C4A090C4B080C4E070C4F060C51040C6C030C69020C6A010C67000C66FE0B59FD0B5AFC0B5AFB0B5AFA0B59F90B59F80B58000039247E0FD1111F55CC65");
+		SmogPBeacon result = new SmogPBeacon();
+		result.readBeacon(data);
+		AssertJson.assertObjectsEqual("SmogPBeaconSMOGPTelemetry2.json", result);
+	}
+
 }

@@ -48,7 +48,15 @@ public class LittleEndianDataInputStream implements DataInput {
 
 	@Override
 	public final float readFloat() throws IOException {
-		return dis.readFloat();
+		return Float.intBitsToFloat(readInt());
+	}
+
+	public float[] readFloat(int size) throws IOException {
+		float[] result = new float[size];
+		for (int i = 0; i < result.length; i++) {
+			result[i] = readFloat();
+		}
+		return result;
 	}
 
 	@Override
@@ -134,5 +142,13 @@ public class LittleEndianDataInputStream implements DataInput {
 
 	public int available() throws IOException {
 		return dis.available();
+	}
+
+	public short[] readShort(int size) throws IOException {
+		short[] result = new short[size];
+		for (int i = 0; i < result.length; i++) {
+			result[i] = readShort();
+		}
+		return result;
 	}
 }

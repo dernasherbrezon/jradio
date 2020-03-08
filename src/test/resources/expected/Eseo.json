@@ -210,9 +210,9 @@
       "initCANOPEN": false
     },
     "acsState": "SAFE",
-    "acsOmegaP": -3.7688637E19,
-    "acsOmegaQ": 1.0939219E-30,
-    "acsOmegaR": 3.1286229E10,
+    "acsOmegaP": 0.023683012,
+    "acsOmegaQ": -0.06242471,
+    "acsOmegaR": -0.6012163,
     "pmCurrentBp1": 106,
     "pmCurrentBp2": 109,
     "pmCurrentBp3": 98,
