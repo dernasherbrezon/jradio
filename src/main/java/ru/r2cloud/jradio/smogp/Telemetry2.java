@@ -49,4 +49,44 @@ public class Telemetry2 {
 		this.time = time;
 	}
 
+	public PcuDep[] getPcuDep() {
+		return pcuDep;
+	}
+
+	public void setPcuDep(PcuDep[] pcuDep) {
+		this.pcuDep = pcuDep;
+	}
+
+	public PcuSdc[] getPcuSdc() {
+		return pcuSdc;
+	}
+
+	public void setPcuSdc(PcuSdc[] pcuSdc) {
+		this.pcuSdc = pcuSdc;
+	}
+
+	public PcuBat[] getPcuBat() {
+		return pcuBat;
+	}
+
+	public void setPcuBat(PcuBat[] pcuBat) {
+		this.pcuBat = pcuBat;
+	}
+
+	public PcuBus[] getPcuBus() {
+		return pcuBus;
+	}
+
+	public void setPcuBus(PcuBus[] pcuBus) {
+		this.pcuBus = pcuBus;
+	}
+
+	public AckInfo[] getAckInfo() {
+		return ackInfo;
+	}
+
+	public void setAckInfo(AckInfo[] ackInfo) {
+		this.ackInfo = ackInfo;
+	}
+
 }

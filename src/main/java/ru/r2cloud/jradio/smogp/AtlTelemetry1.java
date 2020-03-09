@@ -6,8 +6,8 @@ import ru.r2cloud.jradio.util.LittleEndianDataInputStream;
 
 public class AtlTelemetry1 {
 
-	public static final int[] SMOG_CONST_TX_PWR_LEVEL_TO_MW = new int[] { 10, 11, 12, 13, 14, 15, 16, 25, 29, 33, 38, 42, 46, 50, 75, 100 };
-	public static final int[] ATL_CONST_TX_PWR_LEVEL_TO_MW = new int[] { 10, 25, 50, 100 };
+	static final int[] SMOG_CONST_TX_PWR_LEVEL_TO_MW = new int[] { 10, 11, 12, 13, 14, 15, 16, 25, 29, 33, 38, 42, 46, 50, 75, 100 };
+	static final int[] ATL_CONST_TX_PWR_LEVEL_TO_MW = new int[] { 10, 25, 50, 100 };
 
 	private long uptime;
 	private long systemTime;
