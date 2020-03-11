@@ -36,6 +36,15 @@ public class HdlcReceiverTest {
 		assertNotNull(result);
 		assertByteArrayEquals(data, result);
 	}
+	
+	@Test
+	public void testNonEvenFlags() throws Exception {
+		int[] data = new int[] { 0xF1, 0xA7 };
+		hdlc = new HdlcReceiver(new ArrayByteInput(createMessage(randomBytes(2), FLAG, FLAG, packedToUnpacked(createMessage(data, calculateCrc(data))), FLAG, randomBytes(2))), 5);
+		byte[] result = hdlc.readBytes();
+		assertNotNull(result);
+		assertByteArrayEquals(data, result);
+	}
 
 	@Test(expected = EOFException.class)
 	public void testInvalidCrc() throws Exception {
