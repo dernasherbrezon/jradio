@@ -2,6 +2,25 @@ package ru.r2cloud.jradio.blocks;
 
 public class Firdes {
 
+	public static float[] gaussian(double gain, double spb, double bt, int ntaps) {
+		float[] result = new float[ntaps];
+		double scale = 0;
+		double dt = 1.0 / spb;
+		double s = 1.0 / (Math.sqrt(Math.log(2.0)) / (2 * Math.PI * bt));
+		double t0 = -0.5 * ntaps;
+		double ts;
+		for (int i = 0; i < ntaps; i++) {
+			t0++;
+			ts = s * dt * t0;
+			result[i] = (float) Math.exp(-0.5 * ts * ts);
+			scale += result[i];
+		}
+		for (int i = 0; i < ntaps; i++) {
+			result[i] = (float) (result[i] / scale * gain);
+		}
+		return result;
+	}
+
 	public static float[] lowPass(double gain, double samplingFrequency, double cutoffFrequency, double transitionWidth, Window windowType, double beta) {
 		sanityCheck1f(samplingFrequency, cutoffFrequency, transitionWidth);
 
