@@ -22,7 +22,7 @@ public class HdlcReceiverTest {
 	@Test
 	public void testSuccess() throws Exception {
 		int[] data = new int[] { 0xF1, 0xA7 };
-		hdlc = new HdlcReceiver(new ArrayByteInput(createMessage(randomBytes(2), FLAG, packedToUnpacked(createMessage(data, calculateCrc(data))), FLAG, randomBytes(5))), 1000);
+		hdlc = new HdlcReceiver(new ArrayByteInput(createMessage(randomBytes(2), FLAG, packedToUnpacked(createMessage(data, calculateCrc(data))), FLAG, randomBytes(5))), 2);
 		byte[] result = hdlc.readBytes();
 		assertNotNull(result);
 		assertByteArrayEquals(data, result);

@@ -20,14 +20,18 @@ import ru.r2cloud.jradio.fec.ccsds.UncorrectableException;
 
 public class OpsSat extends BeaconSource<OpsSatBeacon> {
 
+	private static final int MESSAGE_SIZE = 110;
 	private static final Logger LOG = LoggerFactory.getLogger(OpsSat.class);
 
 	public OpsSat(ByteInput input) {
-		super(new HdlcReceiver(new Descrambler(new NrziDecode(input), 0x21, 0, 16), 10000));
+		super(new HdlcReceiver(new Descrambler(new NrziDecode(input), 0x21, 0, 16), MESSAGE_SIZE));
 	}
 
 	@Override
 	protected OpsSatBeacon parseBeacon(byte[] raw) throws UncorrectableException, IOException {
+		if (raw.length < MESSAGE_SIZE) {
+			return null;
+		}
 		DataInputStream dis = new DataInputStream(new ByteArrayInputStream(raw));
 		Header header = new Header(dis);
 
@@ -45,7 +49,7 @@ public class OpsSat extends BeaconSource<OpsSatBeacon> {
 			}
 			return null;
 		}
-		
+
 		OpsSatBeacon result = new OpsSatBeacon();
 		result.readExternal(payloadWithCrc);
 		result.setAx25Header(header);

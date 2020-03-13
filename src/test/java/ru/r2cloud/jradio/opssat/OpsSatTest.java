@@ -1,10 +1,12 @@
 package ru.r2cloud.jradio.opssat;
 
+import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 
 import org.junit.After;
 import org.junit.Test;
 
+import ru.r2cloud.jradio.ArrayByteInput;
 import ru.r2cloud.jradio.AssertJson;
 import ru.r2cloud.jradio.blocks.BinarySlicer;
 import ru.r2cloud.jradio.blocks.ClockRecoveryMM;
@@ -28,6 +30,12 @@ public class OpsSatTest {
 		input = new OpsSat(bs);
 		assertTrue(input.hasNext());
 		AssertJson.assertObjectsEqual("OpsSatBeacon.json", input.next());
+	}
+
+	@Test
+	public void testMaxMessageSize() throws Exception {
+		input = new OpsSat(new ArrayByteInput(0x01));
+		assertNull(input.parseBeacon(new byte[] { 0x01, 0x02 }));
 	}
 
 	@After

@@ -23,9 +23,9 @@ public class HdlcReceiver implements MessageInput {
 	private final ByteInput input;
 	private final byte[] window;
 
-	public HdlcReceiver(ByteInput input, int maxLength) {
+	public HdlcReceiver(ByteInput input, int maxLengthBytes) {
 		this.input = input;
-		this.window = new byte[((maxLength + FCS_LENGTH) * 8)];
+		this.window = new byte[((maxLengthBytes + FCS_LENGTH) * 8) + FLAG_LENGTH];
 	}
 
 	@Override
@@ -40,7 +40,7 @@ public class HdlcReceiver implements MessageInput {
 				if (foundStartFlag) {
 					window[packetLength] = curBit;
 					packetLength++;
-					if (packetLength >= window.length) {
+					if (packetLength > window.length) {
 						if (LOG.isDebugEnabled()) {
 							LOG.debug("found a packet with more than max length: {}. discarding it", packetLength);
 						}
