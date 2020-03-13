@@ -36,7 +36,7 @@ public class HdlcReceiverTest {
 		assertNotNull(result);
 		assertByteArrayEquals(data, result);
 	}
-	
+
 	@Test
 	public void testNonEvenFlags() throws Exception {
 		int[] data = new int[] { 0xF1, 0xA7 };
@@ -132,11 +132,19 @@ public class HdlcReceiverTest {
 	private static int[] randomBytes(int length) {
 		int[] result = new int[length];
 		Random r = new Random();
+		int ones = 0;
 		for (int i = 0; i < result.length; i++) {
+			if (ones == 6) {
+				result[i] = 0;
+				ones = 0;
+				continue;
+			}
 			if (r.nextBoolean()) {
 				result[i] = 1;
+				ones++;
 			} else {
 				result[i] = 0;
+				ones = 0;
 			}
 		}
 		return result;

@@ -38,9 +38,10 @@ public class HdlcReceiver implements MessageInput {
 			if (curBit == 1) {
 				ones++;
 				if (foundStartFlag) {
-					window[packetLength] = curBit;
-					packetLength++;
-					if (packetLength > window.length) {
+					if (packetLength < window.length) {
+						window[packetLength] = curBit;
+						packetLength++;
+					} else {
 						if (LOG.isDebugEnabled()) {
 							LOG.debug("found a packet with more than max length: {}. discarding it", packetLength);
 						}
@@ -81,9 +82,10 @@ public class HdlcReceiver implements MessageInput {
 
 				} else {
 					if (foundStartFlag) {
-						window[packetLength] = curBit;
-						packetLength++;
-						if (packetLength >= window.length) {
+						if (packetLength < window.length) {
+							window[packetLength] = curBit;
+							packetLength++;
+						} else {
 							if (LOG.isDebugEnabled()) {
 								LOG.debug("found a packet with more than max length: {}. discarding it", packetLength);
 							}
