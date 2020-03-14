@@ -1,19 +1,4 @@
 {
-  "ax25Header": {
-    "destinationAddress": {
-      "callsign": "DL0ESA",
-      "ssid": 0
-    },
-    "sourceAddress": {
-      "callsign": "DP0OPS",
-      "ssid": 0
-    },
-    "frameType": "U",
-    "sendSequenceNumber": 0,
-    "receiveSequenceNumber": 0,
-    "uControlType": "UI",
-    "pid": 240
-  },
   "cspHeader": {
     "priority": "CSP_PRIO_LOW",
     "source": 5,

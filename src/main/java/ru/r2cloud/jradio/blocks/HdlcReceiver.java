@@ -22,10 +22,16 @@ public class HdlcReceiver implements MessageInput {
 	private static final int FCS_LENGTH = 2;
 	private final ByteInput input;
 	private final byte[] window;
+	private final boolean checksum;
 
 	public HdlcReceiver(ByteInput input, int maxLengthBytes) {
+		this(input, maxLengthBytes, true);
+	}
+
+	public HdlcReceiver(ByteInput input, int maxLengthBytes, boolean checksum) {
 		this.input = input;
 		this.window = new byte[((maxLengthBytes + FCS_LENGTH) * 8) + FLAG_LENGTH];
+		this.checksum = checksum;
 	}
 
 	@Override
@@ -64,11 +70,13 @@ public class HdlcReceiver implements MessageInput {
 							continue;
 						}
 						byte[] frame = unpackedToPacked(packetLength - 2 * 8);
-						int crc = extractFcs(packetLength);
-						if (Crc16Ccitt.calculateReverse(frame) != crc) {
-							packetLength = 0;
-							ones = 0;
-							continue;
+						if (checksum) {
+							int crc = extractFcs(packetLength);
+							if (Crc16Ccitt.calculateReverse(frame) != crc) {
+								packetLength = 0;
+								ones = 0;
+								continue;
+							}
 						}
 						Tag tag = new Tag();
 						tag.setId(UUID.randomUUID().toString());

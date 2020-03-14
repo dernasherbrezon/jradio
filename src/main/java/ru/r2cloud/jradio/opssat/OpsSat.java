@@ -9,7 +9,6 @@ import org.slf4j.LoggerFactory;
 
 import ru.r2cloud.jradio.BeaconSource;
 import ru.r2cloud.jradio.ByteInput;
-import ru.r2cloud.jradio.ax25.Header;
 import ru.r2cloud.jradio.blocks.Descrambler;
 import ru.r2cloud.jradio.blocks.HdlcReceiver;
 import ru.r2cloud.jradio.blocks.NrziDecode;
@@ -24,7 +23,8 @@ public class OpsSat extends BeaconSource<OpsSatBeacon> {
 	private static final Logger LOG = LoggerFactory.getLogger(OpsSat.class);
 
 	public OpsSat(ByteInput input) {
-		super(new HdlcReceiver(new Descrambler(new NrziDecode(input), 0x21, 0, 16), MESSAGE_SIZE));
+		// false - rely on crc32 after reed solomon
+		super(new HdlcReceiver(new Descrambler(new NrziDecode(input), 0x21, 0, 16), MESSAGE_SIZE, false));
 	}
 
 	@Override
@@ -33,7 +33,9 @@ public class OpsSat extends BeaconSource<OpsSatBeacon> {
 			return null;
 		}
 		DataInputStream dis = new DataInputStream(new ByteArrayInputStream(raw));
-		Header header = new Header(dis);
+		// skip AX.25 header
+		// it is not verified by reed solomon or checksum, so likely to be invalid
+		dis.skip(16);
 
 		byte[] dataField = new byte[94];
 		dis.readFully(dataField);
@@ -52,7 +54,6 @@ public class OpsSat extends BeaconSource<OpsSatBeacon> {
 
 		OpsSatBeacon result = new OpsSatBeacon();
 		result.readExternal(payloadWithCrc);
-		result.setAx25Header(header);
 		return result;
 	}
 
