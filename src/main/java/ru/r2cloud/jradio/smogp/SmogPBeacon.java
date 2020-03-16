@@ -20,8 +20,6 @@ public class SmogPBeacon extends Beacon {
 	private AtlTelemetry1 smogTelemetry;
 	private AtlTelemetry2 smogTelemetry2;
 
-	private byte[] unknownPayload;
-
 	@Override
 	public void readBeacon(byte[] data) throws IOException, UncorrectableException {
 		LittleEndianDataInputStream dis = new LittleEndianDataInputStream(new DataInputStream(new ByteArrayInputStream(data)));
@@ -55,9 +53,7 @@ public class SmogPBeacon extends Beacon {
 			smogTelemetry2 = new AtlTelemetry2(dis);
 			break;
 		default:
-			unknownPayload = new byte[dis.available()];
-			dis.readFully(unknownPayload);
-			break;
+			throw new UncorrectableException("unknown packet type: " + type);
 		}
 	}
 
@@ -131,14 +127,6 @@ public class SmogPBeacon extends Beacon {
 
 	public void setSpectrumResult(SpectrumResult spectrumResult) {
 		this.spectrumResult = spectrumResult;
-	}
-
-	public byte[] getUnknownPayload() {
-		return unknownPayload;
-	}
-
-	public void setUnknownPayload(byte[] unknownPayload) {
-		this.unknownPayload = unknownPayload;
 	}
 
 }

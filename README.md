@@ -75,6 +75,7 @@ Forward error correction:
   * CCSDS ReedSolomon
   * BCH ReedSolomon
   * BCH(15,x,x)
+  * Repeat Accumulate decoder
   
 Frequency correction:
   
