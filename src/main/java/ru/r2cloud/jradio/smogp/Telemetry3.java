@@ -2,6 +2,7 @@ package ru.r2cloud.jradio.smogp;
 
 import java.io.IOException;
 
+import ru.r2cloud.jradio.fec.ccsds.UncorrectableException;
 import ru.r2cloud.jradio.util.LittleEndianDataInputStream;
 
 public class Telemetry3 {
@@ -39,14 +40,17 @@ public class Telemetry3 {
 		// do nothing
 	}
 
-	public Telemetry3(LittleEndianDataInputStream dis) throws IOException {
+	public Telemetry3(LittleEndianDataInputStream dis) throws IOException, UncorrectableException {
 		timestamp = dis.readUnsignedInt();
 		obcSupplyVoltage = dis.readUnsignedShort() / 1000.0f;
 		rtccTemperature = new short[2];
 		for (int i = 0; i < rtccTemperature.length; i++) {
 			rtccTemperature[i] = dis.readShort();
 		}
-		dis.skipBytes(2);
+		int unusedBytes = dis.readUnsignedShort();
+		if (unusedBytes != Short.MAX_VALUE) {
+			throw new UncorrectableException("invalid value");
+		}
 		eps2PanelATemperature = new float[2];
 		for (int i = 0; i < eps2PanelATemperature.length; i++) {
 			eps2PanelATemperature[i] = dis.readShort() / 10.0f;

@@ -26,34 +26,183 @@ public class SmogPBeacon extends Beacon {
 		int type = dis.readUnsignedByte();
 		switch (type) {
 		case 1:
+			validateTelemetry1(data);
 			telemetry1 = new Telemetry1(dis);
 			break;
 		case 2:
+			validateTelemetry2(data);
 			telemetry2 = new Telemetry2(dis);
 			break;
 		case 3:
+			validateTelemetry3(data);
 			telemetry3 = new Telemetry3(dis);
 			break;
 		case 4:
+			validateBeacon(data);
 			beacon = new ru.r2cloud.jradio.smogp.Beacon(dis);
 			break;
 		case 5:
+			validateSpectrumResult(data);
 			spectrumResult = new SpectrumResult(dis);
 			break;
 		case 6:
+			validateFileInfo(data);
 			fileInfo = new FileInfo(dis);
 			break;
 		case 7:
+			validateFileFragment(data);
 			fileFragment = new FileFragment(dis);
 			break;
 		case 33:
+			validateAtlTelemetry1(data);
 			smogTelemetry = new AtlTelemetry1(dis, AtlTelemetry1.SMOG_CONST_TX_PWR_LEVEL_TO_MW);
 			break;
 		case 34:
+			validateAtlTelemetry2(data);
 			smogTelemetry2 = new AtlTelemetry2(dis);
 			break;
 		default:
 			throw new UncorrectableException("unknown packet type: " + type);
+		}
+	}
+
+	private static void validateTelemetry1(byte[] data) throws UncorrectableException {
+		if (data.length != 128) {
+			throw new UncorrectableException("invalid packet length");
+		}
+		int offset = 5;
+		for (int i = 0; i < 6; i++) {
+			if ((data[offset + 16] & 0x07) > 0) {
+				throw new UncorrectableException("invalid value");
+			}
+			offset += 17;
+		}
+		validateUnusedBytes(data, 116, 2);
+	}
+
+	private static void validateTelemetry2(byte[] data) throws UncorrectableException {
+		if (data.length != 128) {
+			throw new UncorrectableException("invalid packet length");
+		}
+
+		int offset = 5;
+		for (int i = 0; i < 2; i++) {
+			if ((data[offset + 4] & 0x03) > 0) {
+				throw new UncorrectableException("invalid value");
+			}
+			offset += 9;
+		}
+		for (int i = 0; i < 2; i++) {
+			if ((data[offset + 16] & 0x0F) > 0) {
+				throw new UncorrectableException("invalid value");
+			}
+			offset += 17;
+		}
+		for (int i = 0; i < 2; i++) {
+			if ((data[offset + 10] & 0x03) > 0) {
+				throw new UncorrectableException("invalid value");
+			}
+			offset += 11;
+		}
+		for (int i = 0; i < 2; i++) {
+			if ((data[offset + 12] & 0x3F) > 0) {
+				throw new UncorrectableException("invalid value");
+			}
+			offset += 13;
+		}
+		validateUnusedBytes(data, 114, 4);
+	}
+
+	private static void validateTelemetry3(byte[] data) throws UncorrectableException {
+		if (data.length != 128) {
+			throw new UncorrectableException("invalid packet length");
+		}
+		if ((data[17] & 0x07) > 0) {
+			throw new UncorrectableException("invalid value");
+		}
+		if ((data[22] & 0x03) > 0) {
+			throw new UncorrectableException("invalid value");
+		}
+		if (data[70] != 1 && data[70] != 0) {
+			throw new UncorrectableException("invalid value");
+		}
+	}
+
+	private static void validateBeacon(byte[] data) throws UncorrectableException {
+		if (data.length != 128) {
+			throw new UncorrectableException("invalid packet length");
+		}
+		validateUnusedBytes(data, 110, 8);
+	}
+
+	private static void validateSpectrumResult(byte[] data) throws UncorrectableException {
+		if (data.length != 256) {
+			throw new UncorrectableException("invalid packet length");
+		}
+		if (data[13] > 9) {
+			throw new UncorrectableException("invalid value");
+		}
+		validateUnusedBytes(data, 18, 2);
+	}
+
+	private static void validateFileInfo(byte[] data) throws UncorrectableException {
+		if (data.length != 128) {
+			throw new UncorrectableException("invalid packet length");
+		}
+		int offset = 5;
+		for (int i = 0; i < 5; i++) {
+			if (data[offset + 4] != 0) {
+				throw new UncorrectableException("invalid value");
+			}
+			offset += 21;
+		}
+	}
+
+	private static void validateFileFragment(byte[] data) throws UncorrectableException {
+		if (data.length != 256) {
+			throw new UncorrectableException("invalid packet length");
+		}
+		if (data[12] != 0) {
+			throw new UncorrectableException("invalid value");
+		}
+	}
+
+	private static void validateAtlTelemetry1(byte[] data) throws UncorrectableException {
+		if (data.length != 128) {
+			throw new UncorrectableException("invalid packet length");
+		}
+		if (((char) data[9] != '1') && ((char) data[9] != '0')) {
+			throw new UncorrectableException("invalid value");
+		}
+		if (((char) data[10] != 'E') && ((char) data[10] != 'I')) {
+			throw new UncorrectableException("invalid value");
+		}
+		if (((char) data[11] != 'V') && ((char) data[11] != 'N')) {
+			throw new UncorrectableException("invalid value");
+		}
+		if ((data[63] != 2) && (data[63] != 1)) {
+			throw new UncorrectableException("invalid value");
+		}
+		if (data[117] != 0) {
+			throw new UncorrectableException("invalid value");
+		}
+	}
+
+	private static void validateAtlTelemetry2(byte[] data) throws UncorrectableException {
+		if (data.length != 128) {
+			throw new UncorrectableException("invalid packet length");
+		}
+		if (((char) data[1] != 'V') && ((char) data[1] != 'N')) {
+			throw new UncorrectableException("invalid value");
+		}
+		validateUnusedBytes(data, 116, 2);
+	}
+
+	private static void validateUnusedBytes(byte[] data, int offset, int length) throws UncorrectableException {
+		for (int i = 0; i < length; i++) {
+			if (data[offset + i] != 0) {
+				throw new UncorrectableException("invalid unused bytes");
+			}
 		}
 	}
 

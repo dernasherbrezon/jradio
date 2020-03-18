@@ -3,6 +3,7 @@ package ru.r2cloud.jradio.smogp;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 
+import ru.r2cloud.jradio.fec.ccsds.UncorrectableException;
 import ru.r2cloud.jradio.util.LittleEndianDataInputStream;
 
 public class FileFragment {
@@ -21,13 +22,22 @@ public class FileFragment {
 		// do nothing
 	}
 
-	public FileFragment(LittleEndianDataInputStream dis) throws IOException {
+	public FileFragment(LittleEndianDataInputStream dis) throws IOException, UncorrectableException {
 		timestamp = dis.readUnsignedInt();
 		packetIndex = dis.readUnsignedShort();
 		packetCount = dis.readUnsignedShort();
+		if (packetCount == 0 || packetCount > 128) {
+			throw new UncorrectableException("invalid packet count");
+		}
+		if (packetIndex >= packetCount) {
+			throw new UncorrectableException("invalid packet index");
+		}
 		fileType = dis.readUnsignedByte();
 		pageAddr = dis.readUnsignedShort();
 		fileSize = (dis.readUnsignedByte() << 16) | (dis.readUnsignedByte() << 8) | (dis.readUnsignedByte());
+		if ((fileSize / 217) > packetCount || ((fileSize / 217) + 1) < packetCount) {
+			throw new UncorrectableException("invalid file size");
+		}
 		fileTimestamp = dis.readUnsignedInt();
 		byte[] filenameBytes = new byte[10];
 		dis.readFully(filenameBytes);

@@ -29,7 +29,8 @@ public class SmogPTest {
 		FloatToChar f2char = new FloatToChar(rail, 127.0f);
 		input = new SmogP(f2char);
 		assertTrue(input.hasNext());
-		AssertJson.assertObjectsEqual("SmogPBeaconSpectrumResult.json", input.next());
+		SmogPBeacon next = input.next();
+		AssertJson.assertObjectsEqual("SmogPBeaconSpectrumResult.json", next);
 	}
 
 	@After
