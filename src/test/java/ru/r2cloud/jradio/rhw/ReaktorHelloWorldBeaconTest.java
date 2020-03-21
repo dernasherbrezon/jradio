@@ -1,6 +1,5 @@
 package ru.r2cloud.jradio.rhw;
 
-import static org.junit.Assert.assertNull;
 import static pl.pojo.tester.api.assertion.Assertions.assertPojoMethodsFor;
 
 import org.junit.Test;
@@ -8,6 +7,7 @@ import org.junit.Test;
 import pl.pojo.tester.api.assertion.Method;
 import ru.r2cloud.jradio.AssertJson;
 import ru.r2cloud.jradio.fec.ViterbiTest;
+import ru.r2cloud.jradio.fec.ccsds.UncorrectableException;
 
 public class ReaktorHelloWorldBeaconTest {
 
@@ -38,13 +38,12 @@ public class ReaktorHelloWorldBeaconTest {
 		AssertJson.assertObjectsEqual("ReaktorHelloWorldBeacon-unknown.json", result);
 	}
 
-	@Test
+	@Test(expected = UncorrectableException.class)
 	public void testUnknownType() throws Exception {
 		byte[] data = new byte[1];
 		data[0] = 3;
 		ReaktorHelloWorldBeacon beacon = new ReaktorHelloWorldBeacon();
 		beacon.readBeacon(data);
-		assertNull(beacon.getType());
 	}
 
 	@Test
