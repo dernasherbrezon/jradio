@@ -7,6 +7,7 @@ import java.util.Arrays;
 
 import ru.r2cloud.jradio.Beacon;
 import ru.r2cloud.jradio.csp.Header;
+import ru.r2cloud.jradio.fec.ccsds.UncorrectableException;
 import ru.r2cloud.jradio.util.LittleEndianDataInputStream;
 import ru.r2cloud.jradio.util.StreamUtils;
 
@@ -30,10 +31,10 @@ public class ReaktorHelloWorldBeacon extends Beacon {
 	private long signature;
 
 	@Override
-	public void readBeacon(byte[] data) throws IOException {
-		type = RadioPacketType.valueOfCode(data[0]);
+	public void readBeacon(byte[] data) throws IOException, UncorrectableException {
+		type = RadioPacketType.valueOfCode(data[0] & 0xFF);
 		if (type == null) {
-			return;
+			throw new UncorrectableException("unknown type: " + (data[0] & 0xFF));
 		}
 		switch (type) {
 		case RELAY:
