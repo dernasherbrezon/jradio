@@ -66,7 +66,7 @@ public class SmogPBeacon extends Beacon {
 		}
 	}
 
-	private static void validateTelemetry1(byte[] data) throws UncorrectableException {
+	public static void validateTelemetry1(byte[] data) throws UncorrectableException {
 		if (data.length != 128) {
 			throw new UncorrectableException("invalid packet length");
 		}
@@ -80,7 +80,7 @@ public class SmogPBeacon extends Beacon {
 		validateUnusedBytes(data, 116, 2);
 	}
 
-	private static void validateTelemetry2(byte[] data) throws UncorrectableException {
+	public static void validateTelemetry2(byte[] data) throws UncorrectableException {
 		if (data.length != 128) {
 			throw new UncorrectableException("invalid packet length");
 		}
@@ -113,7 +113,7 @@ public class SmogPBeacon extends Beacon {
 		validateUnusedBytes(data, 114, 4);
 	}
 
-	private static void validateTelemetry3(byte[] data) throws UncorrectableException {
+	public static void validateTelemetry3(byte[] data) throws UncorrectableException {
 		if (data.length != 128) {
 			throw new UncorrectableException("invalid packet length");
 		}
@@ -128,14 +128,14 @@ public class SmogPBeacon extends Beacon {
 		}
 	}
 
-	private static void validateBeacon(byte[] data) throws UncorrectableException {
+	public static void validateBeacon(byte[] data) throws UncorrectableException {
 		if (data.length != 128) {
 			throw new UncorrectableException("invalid packet length");
 		}
 		validateUnusedBytes(data, 110, 8);
 	}
 
-	private static void validateSpectrumResult(byte[] data) throws UncorrectableException {
+	public static void validateSpectrumResult(byte[] data) throws UncorrectableException {
 		if (data.length != 256) {
 			throw new UncorrectableException("invalid packet length");
 		}
@@ -145,7 +145,7 @@ public class SmogPBeacon extends Beacon {
 		validateUnusedBytes(data, 18, 2);
 	}
 
-	private static void validateFileInfo(byte[] data) throws UncorrectableException {
+	public static void validateFileInfo(byte[] data) throws UncorrectableException {
 		if (data.length != 128) {
 			throw new UncorrectableException("invalid packet length");
 		}
@@ -158,7 +158,7 @@ public class SmogPBeacon extends Beacon {
 		}
 	}
 
-	private static void validateFileFragment(byte[] data) throws UncorrectableException {
+	public static void validateFileFragment(byte[] data) throws UncorrectableException {
 		if (data.length != 256) {
 			throw new UncorrectableException("invalid packet length");
 		}
@@ -167,7 +167,7 @@ public class SmogPBeacon extends Beacon {
 		}
 	}
 
-	private static void validateAtlTelemetry1(byte[] data) throws UncorrectableException {
+	public static void validateAtlTelemetry1(byte[] data) throws UncorrectableException {
 		if (data.length != 128) {
 			throw new UncorrectableException("invalid packet length");
 		}
@@ -188,7 +188,7 @@ public class SmogPBeacon extends Beacon {
 		}
 	}
 
-	private static void validateAtlTelemetry2(byte[] data) throws UncorrectableException {
+	public static void validateAtlTelemetry2(byte[] data) throws UncorrectableException {
 		if (data.length != 128) {
 			throw new UncorrectableException("invalid packet length");
 		}
@@ -198,7 +198,7 @@ public class SmogPBeacon extends Beacon {
 		validateUnusedBytes(data, 116, 2);
 	}
 
-	private static void validateUnusedBytes(byte[] data, int offset, int length) throws UncorrectableException {
+	public static void validateUnusedBytes(byte[] data, int offset, int length) throws UncorrectableException {
 		for (int i = 0; i < length; i++) {
 			if (data[offset + i] != 0) {
 				throw new UncorrectableException("invalid unused bytes");

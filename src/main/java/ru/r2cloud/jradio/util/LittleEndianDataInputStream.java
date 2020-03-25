@@ -32,6 +32,14 @@ public class LittleEndianDataInputStream implements DataInput {
 		return (ch2 << 8) + ch1;
 	}
 
+	public int[] readUnsignedShort(int size) throws IOException {
+		int[] result = new int[size];
+		for (int i = 0; i < result.length; i++) {
+			result[i] = readUnsignedShort();
+		}
+		return result;
+	}
+
 	public final long readUnsignedInt() throws IOException {
 		return readUnsignedInt(dis);
 	}

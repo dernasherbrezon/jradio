@@ -1,0 +1,242 @@
+{
+  "telemetry3": {
+    "timestamp": 1575834648,
+    "obcSupplyVoltage": 3.335,
+    "rtccTemperature": [
+      23,
+      0
+    ],
+    "eps2PanelATemperature": [
+      20.6,
+      20.6
+    ],
+    "comDataRate": 1,
+    "txPowerLevel": 3,
+    "comTxCurrent": 130,
+    "comRxCurrent": 27,
+    "com1Overcurrent": false,
+    "com2Overcurrent": false,
+    "com1LimiterSwitch": false,
+    "com2LimiterSwitch": true,
+    "com1LimiterSwitchOverride": false,
+    "com2LimiterSwitchOverride": false,
+    "msen": [
+      {
+        "msenGyroscope": [
+          8,
+          25,
+          -9
+        ],
+        "msenMagneto": [
+          152,
+          504,
+          74
+        ],
+        "msenTemperature": 21.6
+      },
+      {
+        "msenGyroscope": [
+          0,
+          0,
+          0
+        ],
+        "msenMagneto": [
+          0,
+          0,
+          0
+        ],
+        "msenTemperature": 0.0
+      }
+    ],
+    "msenEnabled": [
+      true,
+      false
+    ],
+    "flash": [
+      true,
+      false
+    ],
+    "rtcc": [
+      true,
+      false
+    ],
+    "currentCom": 1,
+    "com": {
+      "timestamp": 1575834648,
+      "swrBridge": 8,
+      "lastRxRssi": 102,
+      "spectrumAnalyzerStatus": 1,
+      "activeComVoltage": 3.244,
+      "activeComTemperature": 35.6,
+      "activeComSpectrumAnalyzerTemperature": 26.5
+    },
+    "tid": [
+      {
+        "timestamp": 0,
+        "temperature": 0.0,
+        "voltage": 0.0,
+        "radfetVoltage": [
+          0,
+          0
+        ],
+        "measurementSerial": 0
+      },
+      {
+        "timestamp": 0,
+        "temperature": 0.0,
+        "voltage": 0.0,
+        "radfetVoltage": [
+          0,
+          0
+        ],
+        "measurementSerial": 0
+      }
+    ],
+    "ackInfo": [
+      {
+        "serial": 503,
+        "rssi": -80.0
+      },
+      {
+        "serial": 502,
+        "rssi": -76.5
+      },
+      {
+        "serial": 500,
+        "rssi": -88.0
+      }
+    ]
+  },
+  "rawData": [
+    3,
+    24,
+    84,
+    -19,
+    93,
+    7,
+    13,
+    23,
+    0,
+    0,
+    0,
+    -1,
+    127,
+    -50,
+    0,
+    -50,
+    0,
+    56,
+    -126,
+    0,
+    27,
+    0,
+    16,
+    8,
+    0,
+    25,
+    0,
+    -9,
+    -1,
+    -104,
+    0,
+    -8,
+    1,
+    74,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    -40,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    -87,
+    24,
+    84,
+    -19,
+    93,
+    8,
+    102,
+    1,
+    -84,
+    12,
+    100,
+    1,
+    9,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    -9,
+    1,
+    102,
+    -10,
+    1,
+    109,
+    -12,
+    1,
+    86,
+    -109,
+    -35,
+    -15,
+    96,
+    76,
+    -13,
+    92,
+    55,
+    -68,
+    -51
+  ],
+  "beginSample": 12425,
+  "beginMillis": 0
+}

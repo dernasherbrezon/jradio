@@ -27,11 +27,11 @@ public class SmogPShort extends BeaconSource<SmogPBeacon> {
 	@Override
 	protected SmogPBeacon parseBeacon(byte[] raw) throws UncorrectableException, IOException {
 		SmogPBeacon result = new SmogPBeacon();
-		result.readExternal(fecDecode(raw));
+		result.readExternal(fecDecode(viterbi, raw));
 		return result;
 	}
 
-	private byte[] fecDecode(byte[] data) throws UncorrectableException {
+	public static byte[] fecDecode(ViterbiSoft viterbi, byte[] data) throws UncorrectableException {
 		byte[] symbols = Deinterleave.deinterleaveBitsUnpacked(data, 0, COLS, ROWS); // 2652
 		byte[] skipped = new byte[((RS_LENGTH + 1) * 8) * 2]; // 2592
 		System.arraycopy(symbols, SKIP, skipped, 0, symbols.length - SKIP);
