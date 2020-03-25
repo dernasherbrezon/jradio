@@ -35,7 +35,10 @@ public class OpsSat extends BeaconSource<OpsSatBeacon> {
 		DataInputStream dis = new DataInputStream(new ByteArrayInputStream(raw));
 		// skip AX.25 header
 		// it is not verified by reed solomon or checksum, so likely to be invalid
-		dis.skip(16);
+		long reallySkipped = dis.skip(16);
+		if (reallySkipped != 16) {
+			throw new IOException("unable to skip");
+		}
 
 		byte[] dataField = new byte[94];
 		dis.readFully(dataField);
