@@ -1,7 +1,10 @@
 package ru.r2cloud.jradio.atl1;
 
+import static pl.pojo.tester.api.assertion.Assertions.assertPojoMethodsFor;
+
 import org.junit.Test;
 
+import pl.pojo.tester.api.assertion.Method;
 import ru.r2cloud.jradio.AssertJson;
 import ru.r2cloud.jradio.fec.ViterbiTest;
 
@@ -15,4 +18,10 @@ public class Atl1BeaconTest {
 		AssertJson.assertObjectsEqual("Atl1Telemetry3.json", result);
 	}
 
+	@Test
+	public void testPojo() {
+		assertPojoMethodsFor(Atl1Beacon.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
+		assertPojoMethodsFor(AtlAccuMeasurement.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
+		assertPojoMethodsFor(AtlTelemetry3.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
+	}
 }
