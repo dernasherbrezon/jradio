@@ -185,6 +185,11 @@ Using the blocks above, it is possible to decode the following satellites:
 			<td><a href="https://github.com/dernasherbrezon/jradio/blob/master/src/test/java/ru/r2cloud/jradio/gomx1/Gomx1Test.java">Gomx1Test</a></td>
 		</tr>
 		<tr>
+			<td>Itasat1</td>
+			<td>43786</td>
+			<td><a href="https://github.com/dernasherbrezon/jradio/blob/master/src/test/java/ru/r2cloud/jradio/itasat1/Itasat1Test.java">Itasat1Test</a></td>
+		</tr>
+		<tr>
 			<td>Jy1sat</td>
 			<td>43803</td>
 			<td><a href="https://github.com/dernasherbrezon/jradio/blob/master/src/test/java/ru/r2cloud/jradio/jy1sat/Jy1satTest.java">Nayif1Test</a></td>
