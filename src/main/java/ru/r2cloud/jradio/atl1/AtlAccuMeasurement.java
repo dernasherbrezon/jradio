@@ -46,7 +46,8 @@ public class AtlAccuMeasurement {
 		double b = -5.775e-7;
 		double lsb = (uRefp - uRefm) / 65536.0;
 
-		double iTemp, rTemp;
+		double iTemp;
+		double rTemp;
 		double rT;
 		double tPt100;
 
