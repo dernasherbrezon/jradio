@@ -10,7 +10,7 @@ import ru.r2cloud.jradio.ax25.Header;
 import ru.r2cloud.jradio.fec.ccsds.UncorrectableException;
 import ru.r2cloud.jradio.util.StreamUtils;
 
-public class Itaset1Beacon extends Beacon {
+public class Itasat1Beacon extends Beacon {
 
 	private Header header;
 	private int sync;
