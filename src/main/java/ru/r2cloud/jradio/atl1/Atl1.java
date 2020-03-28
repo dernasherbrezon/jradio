@@ -15,8 +15,9 @@ public class Atl1 extends Ao40BeaconSource<Atl1Beacon> {
 
 	@Override
 	protected Atl1Beacon parseAo40Beacon(byte[] raw) throws UncorrectableException, IOException {
-		// TODO Auto-generated method stub
-		return null;
+		Atl1Beacon result = new Atl1Beacon();
+		result.readExternal(raw);
+		return result;
 	}
 
 }
