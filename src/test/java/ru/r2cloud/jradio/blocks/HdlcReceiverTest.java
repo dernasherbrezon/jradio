@@ -20,6 +20,20 @@ public class HdlcReceiverTest {
 	private HdlcReceiver hdlc;
 
 	@Test
+	public void testTwoPacketsOneByOne() throws Exception {
+		int[] data = new int[] { 0xF1, 0xA7 };
+		int explicitlyBigBuffer = 200;
+		int[] payload = packedToUnpacked(createMessage(data, calculateCrc(data)));
+		hdlc = new HdlcReceiver(new ArrayByteInput(createMessage(randomBytes(2), FLAG, payload, FLAG, FLAG, payload, FLAG)), explicitlyBigBuffer);
+		byte[] result = hdlc.readBytes();
+		assertNotNull(result);
+		assertByteArrayEquals(data, result);
+		result = hdlc.readBytes();
+		assertNotNull(result);
+		assertByteArrayEquals(data, result);
+	}
+	
+	@Test
 	public void testSuccess() throws Exception {
 		int[] data = new int[] { 0xF1, 0xA7 };
 		hdlc = new HdlcReceiver(new ArrayByteInput(createMessage(randomBytes(2), FLAG, packedToUnpacked(createMessage(data, calculateCrc(data))), FLAG, randomBytes(5))), 2);
