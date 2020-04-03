@@ -56,8 +56,11 @@ public class OpsSat extends BeaconSource<OpsSatBeacon> {
 			return null;
 		}
 
+		byte[] payloadWithoutCrc = new byte[payloadWithCrc.length - 4];
+		System.arraycopy(payloadWithCrc, 0, payloadWithoutCrc, 0, payloadWithoutCrc.length);
+
 		OpsSatBeacon result = new OpsSatBeacon();
-		result.readExternal(payloadWithCrc);
+		result.readExternal(payloadWithoutCrc);
 		return result;
 	}
 

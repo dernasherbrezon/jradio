@@ -22,6 +22,7 @@ public class OpsSatBeacon extends Beacon {
 		// source = 5 is the telemetry
 		// according to the spec, opssat can sometimes send non-telemetry packets on UHF
 		if (cspHeader.getSource() != 5) {
+			// 4 is for crc-32
 			unknownPayload = new byte[dis.available()];
 			dis.readFully(unknownPayload);
 			return;
