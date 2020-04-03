@@ -5,6 +5,7 @@ import java.io.IOException;
 
 public class Header {
 
+	public static final int LENGTH_BYTES = 16;
 	private AddressSubfield destinationAddress;
 	private AddressSubfield sourceAddress;
 	private FrameType frameType;

@@ -9,6 +9,7 @@ import org.slf4j.LoggerFactory;
 
 import ru.r2cloud.jradio.BeaconSource;
 import ru.r2cloud.jradio.ByteInput;
+import ru.r2cloud.jradio.ax25.Header;
 import ru.r2cloud.jradio.blocks.Descrambler;
 import ru.r2cloud.jradio.blocks.HdlcReceiver;
 import ru.r2cloud.jradio.blocks.NrziDecode;
@@ -19,28 +20,28 @@ import ru.r2cloud.jradio.fec.ccsds.UncorrectableException;
 
 public class OpsSat extends BeaconSource<OpsSatBeacon> {
 
-	private static final int MESSAGE_SIZE = 110;
+	private static final int MINIMUM_MESSAGE_SIZE = 110;
 	private static final Logger LOG = LoggerFactory.getLogger(OpsSat.class);
 
 	public OpsSat(ByteInput input) {
 		// false - rely on crc32 after reed solomon
-		super(new HdlcReceiver(new Descrambler(new NrziDecode(input), 0x21, 0, 16), MESSAGE_SIZE, false));
+		super(new HdlcReceiver(new Descrambler(new NrziDecode(input), 0x21, 0, 16), MINIMUM_MESSAGE_SIZE * 10, false));
 	}
 
 	@Override
 	protected OpsSatBeacon parseBeacon(byte[] raw) throws UncorrectableException, IOException {
-		if (raw.length < MESSAGE_SIZE) {
+		if (raw.length < MINIMUM_MESSAGE_SIZE) {
 			return null;
 		}
 		DataInputStream dis = new DataInputStream(new ByteArrayInputStream(raw));
 		// skip AX.25 header
 		// it is not verified by reed solomon or checksum, so likely to be invalid
-		long reallySkipped = dis.skip(16);
-		if (reallySkipped != 16) {
+		long reallySkipped = dis.skip(Header.LENGTH_BYTES);
+		if (reallySkipped != Header.LENGTH_BYTES) {
 			throw new IOException("unable to skip");
 		}
 
-		byte[] dataField = new byte[94];
+		byte[] dataField = new byte[raw.length - Header.LENGTH_BYTES];
 		dis.readFully(dataField);
 
 		Scrambler.shuffle(dataField);
