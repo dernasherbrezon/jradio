@@ -41,7 +41,7 @@ public class FileFragment {
 		fileTimestamp = dis.readUnsignedInt();
 		byte[] filenameBytes = new byte[10];
 		dis.readFully(filenameBytes);
-		filename = new String(filenameBytes, StandardCharsets.ISO_8859_1);
+		filename = new String(filenameBytes, StandardCharsets.ISO_8859_1).trim();
 		data = new byte[217];
 		dis.readFully(data);
 	}
