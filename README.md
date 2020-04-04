@@ -110,6 +110,11 @@ Using the blocks above, it is possible to decode the following satellites:
 	</thead>
 	<tbody>
 		<tr>
+			<td>DELFI-C3 (DO-64)</td>
+			<td>32789</td>
+			<td><a href="https://github.com/dernasherbrezon/jradio/blob/master/src/test/java/ru/r2cloud/jradio/delfic3/DelfiC3Test.java">DelfiC3Test</a></td>
+		</tr>
+		<tr>
 			<td>1Kuns-Pf</td>
 			<td>43466</td>
 			<td><a href="https://github.com/dernasherbrezon/jradio/blob/master/src/test/java/ru/r2cloud/jradio/kunspf/KunsPfTest.java">KunsPfTest</a></td>

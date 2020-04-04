@@ -1,0 +1,325 @@
+{
+  "header": {
+    "destinationAddress": {
+      "callsign": "TLM",
+      "ssid": 0
+    },
+    "sourceAddress": {
+      "callsign": "DLFIC3",
+      "ssid": 0
+    },
+    "frameType": "U",
+    "sendSequenceNumber": 0,
+    "receiveSequenceNumber": 0,
+    "uControlType": "UI",
+    "pid": 240
+  },
+  "bootCounter": 2273,
+  "sequenceCounter": 0,
+  "payload": {
+    "zpXp": [
+      {
+        "i": 4,
+        "v": 0
+      },
+      {
+        "i": 4,
+        "v": 0
+      },
+      {
+        "i": 4,
+        "v": 0
+      },
+      {
+        "i": 4,
+        "v": 0
+      },
+      {
+        "i": 4,
+        "v": 0
+      },
+      {
+        "i": 4,
+        "v": 0
+      },
+      {
+        "i": 4,
+        "v": 864
+      },
+      {
+        "i": 0,
+        "v": 1304
+      }
+    ],
+    "zpXm": [
+      {
+        "i": 0,
+        "v": 0
+      },
+      {
+        "i": 0,
+        "v": 8
+      },
+      {
+        "i": 0,
+        "v": 648
+      },
+      {
+        "i": 0,
+        "v": 680
+      },
+      {
+        "i": 0,
+        "v": 608
+      },
+      {
+        "i": 0,
+        "v": 360
+      },
+      {
+        "i": 0,
+        "v": 24
+      },
+      {
+        "i": 0,
+        "v": 0
+      }
+    ],
+    "zmYm": [
+      {
+        "i": 0,
+        "v": 0
+      },
+      {
+        "i": 0,
+        "v": 0
+      },
+      {
+        "i": 0,
+        "v": 0
+      },
+      {
+        "i": 0,
+        "v": 0
+      },
+      {
+        "i": 0,
+        "v": 0
+      },
+      {
+        "i": 0,
+        "v": 0
+      },
+      {
+        "i": 0,
+        "v": 0
+      },
+      {
+        "i": 0,
+        "v": 0
+      }
+    ],
+    "zmYp": [
+      {
+        "i": 4,
+        "v": 0
+      },
+      {
+        "i": 4,
+        "v": 0
+      },
+      {
+        "i": 4,
+        "v": 0
+      },
+      {
+        "i": 4,
+        "v": 0
+      },
+      {
+        "i": 4,
+        "v": 0
+      },
+      {
+        "i": 4,
+        "v": 1024
+      },
+      {
+        "i": 4,
+        "v": 0
+      },
+      {
+        "i": 4,
+        "v": 0
+      }
+    ],
+    "tfscZpXpTemperature": -11.37100000000001,
+    "tfscZpXmTemperature": 26.100000000000023,
+    "tfscZmYmTemperature": -154.07999999999998,
+    "tfscZmYpTemperature": 130.58500000000004,
+    "rd": {
+      "rdXpV": 220,
+      "rdXmV": 232,
+      "rdXpI": 56,
+      "rdXmI": 80,
+      "rdYmV": 58,
+      "rdYpV": 210,
+      "rdYmI": 1020,
+      "rdYpI": 1020
+    },
+    "awss": {
+      "zm": {
+        "sunPresence": 0,
+        "sampleNumber": 0,
+        "receiverStatus": 0,
+        "sensorStatus": 0,
+        "sensorId": 0,
+        "transmissionErrors": 0,
+        "supplyVoltage": 0,
+        "temperature": 0,
+        "adcValueQ1": 0,
+        "adcValueQ2": 0,
+        "adcValueQ3": 0,
+        "adcValueQ4": 0
+      },
+      "zp": {
+        "sunPresence": 0,
+        "sampleNumber": 0,
+        "receiverStatus": 0,
+        "sensorStatus": 0,
+        "sensorId": 0,
+        "transmissionErrors": 0,
+        "supplyVoltage": 0,
+        "temperature": 0,
+        "adcValueQ1": 0,
+        "adcValueQ2": 0,
+        "adcValueQ3": 0,
+        "adcValueQ4": 0
+      },
+      "zmTimestamp": 0,
+      "zpTimestamp": 0
+    }
+  },
+  "rawData": [
+    -88,
+    -104,
+    -101,
+    64,
+    64,
+    64,
+    0,
+    -120,
+    -104,
+    -116,
+    -110,
+    -122,
+    102,
+    1,
+    3,
+    -16,
+    -31,
+    8,
+    0,
+    0,
+    1,
+    1,
+    0,
+    1,
+    0,
+    1,
+    0,
+    1,
+    0,
+    1,
+    0,
+    1,
+    0,
+    1,
+    108,
+    0,
+    -93,
+    0,
+    0,
+    0,
+    1,
+    0,
+    81,
+    0,
+    85,
+    0,
+    76,
+    0,
+    45,
+    0,
+    3,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1,
+    0,
+    1,
+    0,
+    1,
+    0,
+    1,
+    0,
+    1,
+    0,
+    1,
+    -128,
+    1,
+    0,
+    1,
+    0,
+    -95,
+    -81,
+    56,
+    -3,
+    110,
+    116,
+    14,
+    20,
+    29,
+    105,
+    -1,
+    -1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+  ],
+  "beginSample": 34734,
+  "beginMillis": 0
+}
