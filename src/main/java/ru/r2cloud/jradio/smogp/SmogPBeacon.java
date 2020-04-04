@@ -10,6 +10,9 @@ import ru.r2cloud.jradio.util.LittleEndianDataInputStream;
 
 public class SmogPBeacon extends Beacon {
 
+	private static final String INVALID_VALUE_MESSAGE = "invalid value";
+	private static final String INVALID_PACKET_LENGTH_MESSAGE = "invalid packet length";
+	
 	private SpectrumResult spectrumResult;
 	private Telemetry1 telemetry1;
 	private Telemetry2 telemetry2;
@@ -68,12 +71,12 @@ public class SmogPBeacon extends Beacon {
 
 	public static void validateTelemetry1(byte[] data) throws UncorrectableException {
 		if (data.length != 128) {
-			throw new UncorrectableException("invalid packet length");
+			throw new UncorrectableException(INVALID_PACKET_LENGTH_MESSAGE);
 		}
 		int offset = 5;
 		for (int i = 0; i < 6; i++) {
 			if ((data[offset + 16] & 0x07) > 0) {
-				throw new UncorrectableException("invalid value");
+				throw new UncorrectableException(INVALID_VALUE_MESSAGE);
 			}
 			offset += 17;
 		}
@@ -82,31 +85,31 @@ public class SmogPBeacon extends Beacon {
 
 	public static void validateTelemetry2(byte[] data) throws UncorrectableException {
 		if (data.length != 128) {
-			throw new UncorrectableException("invalid packet length");
+			throw new UncorrectableException(INVALID_PACKET_LENGTH_MESSAGE);
 		}
 
 		int offset = 5;
 		for (int i = 0; i < 2; i++) {
 			if ((data[offset + 4] & 0x03) > 0) {
-				throw new UncorrectableException("invalid value");
+				throw new UncorrectableException(INVALID_VALUE_MESSAGE);
 			}
 			offset += 9;
 		}
 		for (int i = 0; i < 2; i++) {
 			if ((data[offset + 16] & 0x0F) > 0) {
-				throw new UncorrectableException("invalid value");
+				throw new UncorrectableException(INVALID_VALUE_MESSAGE);
 			}
 			offset += 17;
 		}
 		for (int i = 0; i < 2; i++) {
 			if ((data[offset + 10] & 0x03) > 0) {
-				throw new UncorrectableException("invalid value");
+				throw new UncorrectableException(INVALID_VALUE_MESSAGE);
 			}
 			offset += 11;
 		}
 		for (int i = 0; i < 2; i++) {
 			if ((data[offset + 12] & 0x3F) > 0) {
-				throw new UncorrectableException("invalid value");
+				throw new UncorrectableException(INVALID_VALUE_MESSAGE);
 			}
 			offset += 13;
 		}
@@ -115,44 +118,44 @@ public class SmogPBeacon extends Beacon {
 
 	public static void validateTelemetry3(byte[] data) throws UncorrectableException {
 		if (data.length != 128) {
-			throw new UncorrectableException("invalid packet length");
+			throw new UncorrectableException(INVALID_PACKET_LENGTH_MESSAGE);
 		}
 		if ((data[17] & 0x07) > 0) {
-			throw new UncorrectableException("invalid value");
+			throw new UncorrectableException(INVALID_VALUE_MESSAGE);
 		}
 		if ((data[22] & 0x03) > 0) {
-			throw new UncorrectableException("invalid value");
+			throw new UncorrectableException(INVALID_VALUE_MESSAGE);
 		}
 		if (data[70] != 1 && data[70] != 0) {
-			throw new UncorrectableException("invalid value");
+			throw new UncorrectableException(INVALID_VALUE_MESSAGE);
 		}
 	}
 
 	public static void validateBeacon(byte[] data) throws UncorrectableException {
 		if (data.length != 128) {
-			throw new UncorrectableException("invalid packet length");
+			throw new UncorrectableException(INVALID_PACKET_LENGTH_MESSAGE);
 		}
 		validateUnusedBytes(data, 110, 8);
 	}
 
 	public static void validateSpectrumResult(byte[] data) throws UncorrectableException {
 		if (data.length != 256) {
-			throw new UncorrectableException("invalid packet length");
+			throw new UncorrectableException(INVALID_PACKET_LENGTH_MESSAGE);
 		}
 		if (data[13] > 9) {
-			throw new UncorrectableException("invalid value");
+			throw new UncorrectableException(INVALID_VALUE_MESSAGE);
 		}
 		validateUnusedBytes(data, 18, 2);
 	}
 
 	public static void validateFileInfo(byte[] data) throws UncorrectableException {
 		if (data.length != 128) {
-			throw new UncorrectableException("invalid packet length");
+			throw new UncorrectableException(INVALID_PACKET_LENGTH_MESSAGE);
 		}
 		int offset = 5;
 		for (int i = 0; i < 5; i++) {
 			if (data[offset + 4] != 0) {
-				throw new UncorrectableException("invalid value");
+				throw new UncorrectableException(INVALID_VALUE_MESSAGE);
 			}
 			offset += 21;
 		}
@@ -160,40 +163,40 @@ public class SmogPBeacon extends Beacon {
 
 	public static void validateFileFragment(byte[] data) throws UncorrectableException {
 		if (data.length != 256) {
-			throw new UncorrectableException("invalid packet length");
+			throw new UncorrectableException(INVALID_PACKET_LENGTH_MESSAGE);
 		}
 		if (data[12] != 0) {
-			throw new UncorrectableException("invalid value");
+			throw new UncorrectableException(INVALID_VALUE_MESSAGE);
 		}
 	}
 
 	public static void validateAtlTelemetry1(byte[] data) throws UncorrectableException {
 		if (data.length != 128) {
-			throw new UncorrectableException("invalid packet length");
+			throw new UncorrectableException(INVALID_PACKET_LENGTH_MESSAGE);
 		}
 		if (((char) data[9] != '1') && ((char) data[9] != '0')) {
-			throw new UncorrectableException("invalid value");
+			throw new UncorrectableException(INVALID_VALUE_MESSAGE);
 		}
 		if (((char) data[10] != 'E') && ((char) data[10] != 'I')) {
-			throw new UncorrectableException("invalid value");
+			throw new UncorrectableException(INVALID_VALUE_MESSAGE);
 		}
 		if (((char) data[11] != 'V') && ((char) data[11] != 'N')) {
-			throw new UncorrectableException("invalid value");
+			throw new UncorrectableException(INVALID_VALUE_MESSAGE);
 		}
 		if ((data[63] != 2) && (data[63] != 1)) {
-			throw new UncorrectableException("invalid value");
+			throw new UncorrectableException(INVALID_VALUE_MESSAGE);
 		}
 		if (data[117] != 0) {
-			throw new UncorrectableException("invalid value");
+			throw new UncorrectableException(INVALID_VALUE_MESSAGE);
 		}
 	}
 
 	public static void validateAtlTelemetry2(byte[] data) throws UncorrectableException {
 		if (data.length != 128) {
-			throw new UncorrectableException("invalid packet length");
+			throw new UncorrectableException(INVALID_PACKET_LENGTH_MESSAGE);
 		}
 		if (((char) data[1] != 'V') && ((char) data[1] != 'N')) {
-			throw new UncorrectableException("invalid value");
+			throw new UncorrectableException(INVALID_VALUE_MESSAGE);
 		}
 		validateUnusedBytes(data, 116, 2);
 	}
