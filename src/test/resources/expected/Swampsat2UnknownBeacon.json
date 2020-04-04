@@ -1,0 +1,22 @@
+{
+  "header": {
+    "destinationAddress": {
+      "callsign": "WR4UF",
+      "ssid": 0
+    },
+    "sourceAddress": {
+      "callsign": "WK2XID",
+      "ssid": 0
+    },
+    "frameType": "U",
+    "sendSequenceNumber": 0,
+    "receiveSequenceNumber": 0,
+    "uControlType": "UI",
+    "pid": 240
+  },
+  "unknownPayload": [
+    0
+  ],
+  "beginSample": 0,
+  "beginMillis": 0
+}

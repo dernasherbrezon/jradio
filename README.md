@@ -260,6 +260,11 @@ Using the blocks above, it is possible to decode the following satellites:
 			<td><a href="https://github.com/dernasherbrezon/jradio/blob/master/src/test/java/ru/r2cloud/jradio/suomi100/Suomi100Test.java">Suomi100Test</a></td>
 		</tr>
 		<tr>
+			<td>SWAMPSAT-2</td>
+			<td>45115</td>
+			<td><a href="https://github.com/dernasherbrezon/jradio/blob/master/src/test/java/ru/r2cloud/jradio/swampsat2/Swampsat2Test.java">Swampsat2Test</a></td>
+		</tr>
+		<tr>
 			<td>Technosat</td>
 			<td>42829</td>
 			<td><a href="https://github.com/dernasherbrezon/jradio/blob/master/src/test/java/ru/r2cloud/jradio/technosat/TechnosatTest.java">TechnosatTest</a></td>
