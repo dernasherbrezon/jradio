@@ -49,7 +49,7 @@ public class Vutrx {
 		frequencyoffsetTx = dis.readUnsignedShort();
 		frequencyoffsetRx = dis.readUnsignedShort();
 		int dtmf = dis.readUnsignedByte();
-		dtmfTone = ((dtmf >> 0) & 0b1111);
+		dtmfTone = ((dtmf) & 0b1111);
 		dtmfCounter = ((dtmf >> 4) & 0b1111);
 		current3v3 = dis.readShort() * 3e-6;
 		current5v = dis.readShort() * 62e-6;

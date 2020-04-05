@@ -30,7 +30,7 @@ public class Antennas {
 	public Antennas(LittleEndianDataInputStream dis) throws IOException {
 		temperature = dis.readUnsignedShort() * 3.3 / 1023;
 		int raw = dis.readUnsignedByte();
-		statusArmed = ((raw >> 0) & 0x1) > 0;
+		statusArmed = ((raw) & 0x1) > 0;
 		statusDeploymentactive4 = ((raw >> 1) & 0x1) > 0;
 		statusStopcriteria4 = ((raw >> 2) & 0x1) > 0;
 		statusDeploymentflag4 = ((raw >> 3) & 0x1) > 0;
@@ -39,7 +39,7 @@ public class Antennas {
 		statusStopcriteria3 = ((raw >> 6) & 0x1) > 0;
 		statusDeploymentflag3 = ((raw >> 7) & 0x1) > 0;
 		raw = dis.readUnsignedByte();
-		statusIgnoreswitches = ((raw >> 0) & 0x1) > 0;
+		statusIgnoreswitches = ((raw) & 0x1) > 0;
 		statusDeploymentactive2 = ((raw >> 1) & 0x1) > 0;
 		statusStopcriteria2 = ((raw >> 2) & 0x1) > 0;
 		statusDeploymentflag2 = ((raw >> 3) & 0x1) > 0;

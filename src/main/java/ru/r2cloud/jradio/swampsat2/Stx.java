@@ -38,7 +38,7 @@ public class Stx {
 		bufferUnderrun = dis.readUnsignedShort();
 
 		int raw = dis.readUnsignedByte();
-		poweramplifierStatusFrequencylock = ((raw >> 0) & 0x1) > 0;
+		poweramplifierStatusFrequencylock = ((raw) & 0x1) > 0;
 		poweramplifierStatusPowergood = ((raw >> 1) & 0x1) > 0;
 
 		rfPoweroutput = dis.readUnsignedShort() * 3.0 * 28 / 4096 / 18;

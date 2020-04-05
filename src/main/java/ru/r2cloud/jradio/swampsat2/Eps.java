@@ -137,7 +137,7 @@ public class Eps {
 		pdmstateAdac5v = ((raw >> 6) & 0x1) > 0;
 		pdmstateVlf5v = ((raw >> 7) & 0x1) > 0;
 		raw = dis.readUnsignedByte();
-		pdmstateAnts = ((raw >> 0) & 0x1) > 0;
+		pdmstateAnts = ((raw) & 0x1) > 0;
 		pdmstateAdac3v3 = ((raw >> 1) & 0x1) > 0;
 		pdmstateGps3v3 = ((raw >> 2) & 0x1) > 0;
 
