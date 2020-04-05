@@ -269,6 +269,11 @@ Using the blocks above, it is possible to decode the following satellites:
 			<td>42829</td>
 			<td><a href="https://github.com/dernasherbrezon/jradio/blob/master/src/test/java/ru/r2cloud/jradio/technosat/TechnosatTest.java">TechnosatTest</a></td>
 		</tr>
+		<tr>
+			<td>QARMAN</td>
+			<td>45263</td>
+			<td><a href="https://github.com/dernasherbrezon/jradio/blob/master/src/test/java/ru/r2cloud/jradio/qarman/QarmanTest.java">QarmanTest</a></td>
+		</tr>		
 	</tbody>
 </table>
   
