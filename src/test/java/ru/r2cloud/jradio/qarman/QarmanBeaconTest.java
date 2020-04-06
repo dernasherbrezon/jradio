@@ -1,7 +1,10 @@
 package ru.r2cloud.jradio.qarman;
 
+import static pl.pojo.tester.api.assertion.Assertions.assertPojoMethodsFor;
+
 import org.junit.Test;
 
+import pl.pojo.tester.api.assertion.Method;
 import ru.r2cloud.jradio.AssertJson;
 import ru.r2cloud.jradio.fec.ViterbiTest;
 
@@ -23,4 +26,10 @@ public class QarmanBeaconTest {
 		AssertJson.assertObjectsEqual("QarmanLowPowerModeBeacon.json", result);
 	}
 
+	@Test
+	public void testPojo() {
+		assertPojoMethodsFor(QarmanBeacon.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
+		assertPojoMethodsFor(ShortFrame.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
+		assertPojoMethodsFor(LongFrame.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
+	}
 }

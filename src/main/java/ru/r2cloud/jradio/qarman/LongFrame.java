@@ -235,19 +235,19 @@ public class LongFrame extends ShortFrame {
 		this.magneticFieldZ = magneticFieldZ;
 	}
 
-	public double getyAngularRate() {
+	public double getYAngularRate() {
 		return yAngularRate;
 	}
 
-	public void setyAngularRate(double yAngularRate) {
+	public void setYAngularRate(double yAngularRate) {
 		this.yAngularRate = yAngularRate;
 	}
 
-	public double getyWheelSpeed() {
+	public double getYWheelSpeed() {
 		return yWheelSpeed;
 	}
 
-	public void setyWheelSpeed(double yWheelSpeed) {
+	public void setYWheelSpeed(double yWheelSpeed) {
 		this.yWheelSpeed = yWheelSpeed;
 	}
 
