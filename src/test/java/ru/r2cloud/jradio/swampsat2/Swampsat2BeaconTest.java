@@ -1,7 +1,10 @@
 package ru.r2cloud.jradio.swampsat2;
 
+import static pl.pojo.tester.api.assertion.Assertions.assertPojoMethodsFor;
+
 import org.junit.Test;
 
+import pl.pojo.tester.api.assertion.Method;
 import ru.r2cloud.jradio.AssertJson;
 import ru.r2cloud.jradio.fec.ViterbiTest;
 
@@ -29,5 +32,15 @@ public class Swampsat2BeaconTest {
 		Swampsat2Beacon result = new Swampsat2Beacon();
 		result.readBeacon(data);
 		AssertJson.assertObjectsEqual("Swampsat2UnknownBeacon.json", result);
+	}
+	
+	@Test
+	public void testPojo() {
+		assertPojoMethodsFor(Swampsat2Beacon.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
+		assertPojoMethodsFor(Eps.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
+		assertPojoMethodsFor(Battery.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
+		assertPojoMethodsFor(Vutrx.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
+		assertPojoMethodsFor(Antennas.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
+		assertPojoMethodsFor(Stx.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
 	}
 }
