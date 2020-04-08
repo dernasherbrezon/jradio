@@ -18,10 +18,6 @@ public class LsbBitInputStream {
 		return (this.buffer & 1 << 7 - this.bitsleft) != 0;
 	}
 
-	public int getNumberOfBitsInBuffer() {
-		return this.bitsleft;
-	}
-
 	public int available() throws IOException {
 		return this.stream.available() * 8;
 	}
