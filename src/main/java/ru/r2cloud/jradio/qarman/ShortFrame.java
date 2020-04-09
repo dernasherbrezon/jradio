@@ -29,7 +29,7 @@ public class ShortFrame {
 	private boolean pressureSensor;
 	private boolean uhfCommunications;
 	private boolean gpsCommunications;
-	private boolean XPL;
+	private boolean xpl;
 	private boolean aeroSDS3V3;
 	private boolean aeroSDS5V;
 	private boolean iridium3V3;
@@ -85,7 +85,7 @@ public class ShortFrame {
 		pressureSensor = bis.readBoolean();
 		uhfCommunications = bis.readBoolean();
 		gpsCommunications = bis.readBoolean();
-		XPL = bis.readBoolean();
+		xpl = bis.readBoolean();
 		aeroSDS3V3 = bis.readBoolean();
 		aeroSDS5V = bis.readBoolean();
 		iridium3V3 = bis.readBoolean();
@@ -274,12 +274,12 @@ public class ShortFrame {
 		this.gpsCommunications = gpsCommunications;
 	}
 
-	public boolean isXPL() {
-		return XPL;
+	public boolean isXpl() {
+		return xpl;
 	}
 
-	public void setXPL(boolean xPL) {
-		XPL = xPL;
+	public void setXpl(boolean xpl) {
+		this.xpl = xpl;
 	}
 
 	public boolean isAeroSDS3V3() {

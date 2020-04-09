@@ -59,7 +59,7 @@
     "pressureSensor": true,
     "uhfCommunications": true,
     "gpsCommunications": false,
-    "XPL": false,
+    "xpl": false,
     "aeroSDS3V3": true,
     "aeroSDS5V": false,
     "iridium3V3": false,
