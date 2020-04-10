@@ -18,7 +18,7 @@ public class PwSat2Test {
 	public void testDecodeTelemetry() throws Exception {
 		WavFileSource source = new WavFileSource(PwSat2Test.class.getClassLoader().getResourceAsStream("pwsat2.wav"));
 		FloatToComplex f2c = new FloatToComplex(source);
-		BpskDemodulator bpsk = new BpskDemodulator(f2c, 1200, 5, 1500.0, 2000.0f, false);
+		BpskDemodulator bpsk = new BpskDemodulator(f2c, 1200, 5, 1500.0, false);
 		input = new PwSat2(bpsk);
 		assertTrue(input.hasNext());
 		AssertJson.assertObjectsEqual("PwSat2Beacon.json", input.next());

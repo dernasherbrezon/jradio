@@ -18,7 +18,7 @@ public class EntrysatTest {
 	public void testSuccess() throws Exception {
 		WavFileSource source = new WavFileSource(EntrysatTest.class.getClassLoader().getResourceAsStream("entrysat.wav"));
 		FloatToComplex fc = new FloatToComplex(source);
-		BpskDemodulator bpsk = new BpskDemodulator(fc, 9600, 1, 12000, 7500.0f, false);
+		BpskDemodulator bpsk = new BpskDemodulator(fc, 9600, 1, 12000, false);
 		input = new Entrysat(bpsk);
 		assertTrue(input.hasNext());
 		AssertJson.assertObjectsEqual("EntrysatBeacon.json", input.next());

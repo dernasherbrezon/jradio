@@ -18,7 +18,7 @@ public class Fmn1Test {
 	public void testSuccess() throws Exception {
 		WavFileSource source = new WavFileSource(Fmn1Test.class.getClassLoader().getResourceAsStream("fmn1.wav"));
 		FloatToComplex fc = new FloatToComplex(source);
-		BpskDemodulator bpsk = new BpskDemodulator(fc, 9600, 1, 12000, 7500.0f, false);
+		BpskDemodulator bpsk = new BpskDemodulator(fc, 9600, 1, 12000, false);
 		input = new Fmn1(bpsk);
 		assertTrue(input.hasNext());
 		AssertJson.assertObjectsEqual("Fmn1Beacon.json", input.next());

@@ -18,7 +18,7 @@ public class Nayif1Test {
 	public void testDecodeTelemetry() throws Exception {
 		WavFileSource source = new WavFileSource(Nayif1Test.class.getClassLoader().getResourceAsStream("nayif1.wav"));
 		FloatToComplex fc = new FloatToComplex(source);
-		BpskDemodulator bpsk = new BpskDemodulator(fc, 1200, 5, 1000, 2000.0f, true);
+		BpskDemodulator bpsk = new BpskDemodulator(fc, 1200, 5, 1000, true);
 		input = new Nayif1(bpsk);
 		assertTrue(input.hasNext());
 		AssertJson.assertObjectsEqual("Nayif1Beacon.json", input.next());

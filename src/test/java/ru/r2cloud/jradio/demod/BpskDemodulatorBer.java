@@ -37,7 +37,7 @@ public class BpskDemodulatorBer {
 		Constellation bpsk = new Constellation(new float[] { -1, 0, 1, 0 }, new int[0], 2, 1);
 		ConstellationModulator constel = new ConstellationModulator(pack, bpsk, sps, false, true, 0.35f);
 		ChannelModel channel = new ChannelModel(constel, EbN0_to_noise_voltage(ebno, sps), 0, 1.0f, null, 42);
-		BpskDemodulator bpskDemod = new BpskDemodulator(channel, 1200, 1, 0, 2000.0f, false);
+		BpskDemodulator bpskDemod = new BpskDemodulator(channel, 1200, 1, 0, false);
 		SoftToHard s2h = new SoftToHard(bpskDemod);
 		for (int i = 0; i < 1000; i++) {
 			s2h.readByte();

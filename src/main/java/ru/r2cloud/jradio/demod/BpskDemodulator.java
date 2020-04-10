@@ -19,25 +19,23 @@ import ru.r2cloud.jradio.blocks.Window;
 
 public class BpskDemodulator implements ByteInput {
 
-	private static final float LOW_PASS_THRESHOLD = 1.1f; // 10%
-
 	private final FloatToChar f2char;
 
 	// produces soft stream of bytes
-	public BpskDemodulator(FloatInput input, int symbolRate, int decimation, double centerFrequency, float bandwidth, boolean differential) {
+	public BpskDemodulator(FloatInput input, int symbolRate, int decimation, double centerFrequency, boolean differential) {
 		FloatInput next = input;
 		if (centerFrequency != 0.0 || decimation != 1) {
-			float[] taps = Firdes.lowPass(1.0, next.getContext().getSampleRate(), symbolRate * LOW_PASS_THRESHOLD, 1000, Window.WIN_HAMMING, 6.76);
+			float[] taps = Firdes.lowPass(1.0, next.getContext().getSampleRate(), symbolRate * 2.0, symbolRate * 0.2, Window.WIN_HAMMING, 6.76);
 			next = new FrequencyXlatingFIRFilter(next, taps, decimation, centerFrequency);
 		}
-		RmsAgc agc = new RmsAgc(next, 1e-2f, 0.5f);
-		float samplesPerSymbol = agc.getContext().getSampleRate() / symbolRate;
-		FLLBandEdge fll = new FLLBandEdge(agc, samplesPerSymbol, 0.35f, 100, 0.01f);
-		LowPassFilterComplex lpf = new LowPassFilterComplex(fll, 1.0, bandwidth, 500, Window.WIN_HAMMING, 6.76);
+		float samplesPerSymbol = next.getContext().getSampleRate() / symbolRate;
+		RmsAgc agc = new RmsAgc(next, 2e-2f / samplesPerSymbol, 1.0f);
+		FLLBandEdge fll = new FLLBandEdge(agc, samplesPerSymbol, 0.35f, 100, (float) (2 * Math.PI / agc.getContext().getSampleRate() * 20));
+		LowPassFilterComplex lpf = new LowPassFilterComplex(fll, 1.0, symbolRate, symbolRate * 0.1, Window.WIN_HAMMING, 6.76);
 		int nfilts = 16;
 		float[] rrcTaps = Firdes.rootRaisedCosine(nfilts, nfilts, 1.0f / samplesPerSymbol, 0.35f, (int) (11 * samplesPerSymbol * nfilts));
 		PolyphaseClockSyncComplex clock = new PolyphaseClockSyncComplex(lpf, samplesPerSymbol, 0.1f, rrcTaps, nfilts, nfilts / 2, 1.5f, 1);
-		next = new CostasLoop(clock, 0.1f, 2, false);
+		next = new CostasLoop(clock, (float) (2 * Math.PI / symbolRate * 50), 2, false);
 		if (differential) {
 			next = new DelayOne(next);
 		}
