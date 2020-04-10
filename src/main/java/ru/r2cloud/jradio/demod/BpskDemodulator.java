@@ -14,7 +14,7 @@ import ru.r2cloud.jradio.blocks.FloatToChar;
 import ru.r2cloud.jradio.blocks.FrequencyXlatingFIRFilter;
 import ru.r2cloud.jradio.blocks.LowPassFilterComplex;
 import ru.r2cloud.jradio.blocks.PolyphaseClockSyncComplex;
-import ru.r2cloud.jradio.blocks.RmsAgc;
+import ru.r2cloud.jradio.blocks.RmsAgcComplex;
 import ru.r2cloud.jradio.blocks.Window;
 
 public class BpskDemodulator implements ByteInput {
@@ -29,7 +29,7 @@ public class BpskDemodulator implements ByteInput {
 			next = new FrequencyXlatingFIRFilter(next, taps, decimation, centerFrequency);
 		}
 		float samplesPerSymbol = next.getContext().getSampleRate() / symbolRate;
-		RmsAgc agc = new RmsAgc(next, 2e-2f / samplesPerSymbol, 1.0f);
+		RmsAgcComplex agc = new RmsAgcComplex(next, 2e-2f / samplesPerSymbol, 1.0f);
 		FLLBandEdge fll = new FLLBandEdge(agc, samplesPerSymbol, 0.35f, 100, (float) (2 * Math.PI / agc.getContext().getSampleRate() * 20));
 		LowPassFilterComplex lpf = new LowPassFilterComplex(fll, 1.0, symbolRate, symbolRate * 0.1, Window.WIN_HAMMING, 6.76);
 		int nfilts = 16;

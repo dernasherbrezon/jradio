@@ -21,6 +21,7 @@ import ru.r2cloud.jradio.blocks.QuadratureDemodulation;
 import ru.r2cloud.jradio.blocks.Rail;
 import ru.r2cloud.jradio.blocks.TaggedStreamToPdu;
 import ru.r2cloud.jradio.blocks.Window;
+import ru.r2cloud.jradio.demod.FskDemodulator;
 import ru.r2cloud.jradio.detection.GmskFrequencyCorrection;
 import ru.r2cloud.jradio.detection.PeakDetection;
 import ru.r2cloud.jradio.detection.PeakInterval;
@@ -102,10 +103,8 @@ public class AAUSAT4Test {
 	}
 
 	private void setupDemodulator(FloatInput source) {
-		ClockRecoveryMM clockRecovery = new ClockRecoveryMM(source, source.getContext().getSampleRate() / 2400, (float) (0.25 * 0.175 * 0.175), 0.005f, 0.175f, 0.005f);
-		Rail rail = new Rail(clockRecovery, -1.0f, 1.0f);
-		FloatToChar f2char = new FloatToChar(rail, 127.0f);
-		CorrelateAccessCodeTag correlateTag = new CorrelateAccessCodeTag(f2char, 10, "010011110101101000110100010000110101010101000010", true);
+		FskDemodulator demod = new FskDemodulator(source, 2400, 0.175f);
+		CorrelateAccessCodeTag correlateTag = new CorrelateAccessCodeTag(demod, 10, "010011110101101000110100010000110101010101000010", true);
 		input = new AAUSAT4(new TaggedStreamToPdu(new FixedLengthTagger(correlateTag, AAUSAT4.VITERBI_TAIL_SIZE + 8))); // 8 for fsm
 	}
 

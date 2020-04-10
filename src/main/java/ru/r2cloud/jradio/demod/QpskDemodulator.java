@@ -12,14 +12,14 @@ import ru.r2cloud.jradio.blocks.Firdes;
 import ru.r2cloud.jradio.blocks.FloatToChar;
 import ru.r2cloud.jradio.blocks.PolyphaseClockSyncComplex;
 import ru.r2cloud.jradio.blocks.Rail;
-import ru.r2cloud.jradio.blocks.RmsAgc;
+import ru.r2cloud.jradio.blocks.RmsAgcComplex;
 
 public class QpskDemodulator implements ByteInput {
 
 	private final FloatToChar f2char;
 
 	public QpskDemodulator(FloatInput source, int symbolRate, Constellation constel) {
-		RmsAgc agc = new RmsAgc(source, 1e-2f, 0.5f);
+		RmsAgcComplex agc = new RmsAgcComplex(source, 1e-2f, 0.5f);
 		float omega = agc.getContext().getSampleRate() / symbolRate;
 		int nfilts = 16;
 		float[] rrcTaps = Firdes.rootRaisedCosine(nfilts, nfilts, 1.0f / omega, 0.5f, (int) (11 * omega * nfilts));

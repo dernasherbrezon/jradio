@@ -6,7 +6,7 @@ import ru.r2cloud.jradio.Context;
 import ru.r2cloud.jradio.FloatInput;
 import ru.r2cloud.jradio.util.MathUtils;
 
-public class RmsAgc implements FloatInput {
+public class RmsAgcComplex implements FloatInput {
 
 	private final FloatInput source;
 	private final float[] currentComplex = new float[2];
@@ -17,7 +17,7 @@ public class RmsAgc implements FloatInput {
 	private final float reference;
 	private float average;
 
-	public RmsAgc(FloatInput source, float alpha, float reference) {
+	public RmsAgcComplex(FloatInput source, float alpha, float reference) {
 		if (source.getContext().getChannels() != 2) {
 			throw new IllegalArgumentException("not a complex input: " + source.getContext().getChannels());
 		}

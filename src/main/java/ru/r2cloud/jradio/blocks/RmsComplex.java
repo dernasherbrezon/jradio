@@ -5,7 +5,7 @@ import java.io.IOException;
 import ru.r2cloud.jradio.Context;
 import ru.r2cloud.jradio.FloatInput;
 
-public class Rms implements FloatInput {
+public class RmsComplex implements FloatInput {
 
 	private final FloatInput source;
 	private final Context context;
@@ -13,7 +13,7 @@ public class Rms implements FloatInput {
 	private final float beta;
 	private float average;
 
-	public Rms(FloatInput source, float alpha) {
+	public RmsComplex(FloatInput source, float alpha) {
 		if (source.getContext().getChannels() != 2) {
 			throw new IllegalArgumentException("not a complex input: " + source.getContext().getChannels());
 		}
