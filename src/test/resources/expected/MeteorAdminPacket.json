@@ -1,0 +1,59 @@
+{
+  "hour": 8,
+  "minute": 44,
+  "second": 22,
+  "lineScanLatency": 20,
+  "msuMrCode": 0,
+  "digitalTelemetry": {
+    "channel1Mode": "TYPE4",
+    "channel2Mode": "TYPE4",
+    "channel3Mode": "TYPE4",
+    "channel4Mode": "TYPE5",
+    "channel5Mode": "TYPE5",
+    "channel6Mode": "TYPE5",
+    "fp1Status": {
+      "elem1": "LIMIT_TOP",
+      "elem2": "NORM",
+      "elem3": "NORM",
+      "elem4": "LIMIT_TOP"
+    },
+    "fp2Status": {
+      "elem1": "NORM",
+      "elem2": "NORM",
+      "elem3": "NORM",
+      "elem4": "NORM"
+    },
+    "fp3Status": {
+      "elem1": "NORM",
+      "elem2": "NORM",
+      "elem3": "NORM",
+      "elem4": "NORM"
+    },
+    "protectiveCover1Opened": true,
+    "protectiveCover2Opened": false,
+    "puRhWorking": true,
+    "vipSynchronized": true,
+    "dnsSynchronized": true,
+    "dnsBackupActive": false,
+    "alignmentInChannels123Active": false,
+    "bosBackupActive": false,
+    "internalCalibrationEnabled": true
+  },
+  "calibrationDetails": [
+    65,
+    -127,
+    -43,
+    -104,
+    25,
+    100,
+    1,
+    -78,
+    58,
+    -16,
+    72,
+    -8,
+    69,
+    23,
+    -114
+  ]
+}
