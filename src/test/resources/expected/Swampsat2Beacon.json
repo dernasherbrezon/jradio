@@ -141,7 +141,7 @@
     "temperatureTop": 0.0,
     "temperatureBottom": 0.0,
     "temperaturePoweramplifier": -50.0,
-    "synth_offset": 2400.0,
+    "synthOffset": 2400.0,
     "bufferOverrun": 0,
     "bufferUnderrun": 0,
     "poweramplifierStatusFrequencylock": false,

@@ -13,7 +13,7 @@ public class Stx {
 	private double temperatureTop;
 	private double temperatureBottom;
 	private double temperaturePoweramplifier;
-	private double synth_offset;
+	private double synthOffset;
 	private int bufferOverrun;
 	private int bufferUnderrun;
 
@@ -33,7 +33,7 @@ public class Stx {
 		temperatureTop = ((dis.readShort() >> 4) & 0b1111_1111_1111) * 0.0625;
 		temperatureBottom = ((dis.readShort() >> 4) & 0b1111_1111_1111) * 0.0625;
 		temperaturePoweramplifier = ((dis.readUnsignedByte() * 3.0 / 4096) - 0.5) * 100;
-		synth_offset = dis.readUnsignedByte() * 0.5 + 2400;
+		synthOffset = dis.readUnsignedByte() * 0.5 + 2400;
 		bufferOverrun = dis.readUnsignedShort();
 		bufferUnderrun = dis.readUnsignedShort();
 
@@ -100,12 +100,12 @@ public class Stx {
 		this.temperaturePoweramplifier = temperaturePoweramplifier;
 	}
 
-	public double getSynth_offset() {
-		return synth_offset;
+	public double getSynthOffset() {
+		return synthOffset;
 	}
-
-	public void setSynth_offset(double synth_offset) {
-		this.synth_offset = synth_offset;
+	
+	public void setSynthOffset(double synthOffset) {
+		this.synthOffset = synthOffset;
 	}
 
 	public int getBufferOverrun() {
