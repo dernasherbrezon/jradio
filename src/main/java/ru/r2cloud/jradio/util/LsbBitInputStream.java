@@ -38,16 +38,16 @@ public class LsbBitInputStream {
 		String[] wb = new String[] { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "A", "B", "C", "D", "E", "F" };
 		int rest = n % 4;
 		int resterend = n - rest;
-		String str = "";
+		StringBuilder str = new StringBuilder();
 		for (int i = 0; i < resterend / 4; ++i) {
 			int tbHexed = this.readBitsAsInt(4);
-			str = wb[tbHexed] + str;
+			str.insert(0, wb[tbHexed]);
 		}
 		if (rest != 0) {
 			int tbHexed = this.readBitsAsInt(rest);
-			str = wb[tbHexed] + str;
+			str.insert(0, wb[tbHexed]);
 		}
-		return str;
+		return str.toString();
 	}
 
 	public LsbBitInputStream(InputStream istream) {
