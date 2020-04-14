@@ -7,7 +7,6 @@ class MovingAverage {
 	private final BoundedQueue delayLine;
 	private final int length;
 	private float out;
-	private float outD1;
 	private float outD2;
 
 	MovingAverage(int length) {
@@ -19,7 +18,7 @@ class MovingAverage {
 	}
 
 	float filter(float x) {
-		outD1 = out;
+		float outD1 = out;
 		out = delayLine.poll();
 		delayLine.add(x);
 		float y = x - outD1 + outD2;
