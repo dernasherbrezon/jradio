@@ -30,7 +30,6 @@ public class Swampsat2Beacon extends Beacon {
 		LittleEndianDataInputStream ldis = new LittleEndianDataInputStream(dis);
 		if (isAckMessage(data)) {
 			acknowledge = true;
-			return;
 		} else if (dis.available() == 185) {
 			eps = new Eps(ldis);
 			battery = new Battery(ldis);
