@@ -27,6 +27,10 @@ public class Swampsat2Beacon extends Beacon {
 	public void readBeacon(byte[] data) throws IOException, UncorrectableException {
 		DataInputStream dis = new DataInputStream(new ByteArrayInputStream(data));
 		header = new Header(dis);
+		String callsign = header.getSourceAddress().getCallsign();
+		if (!callsign.equals("WK2XID")) {
+			throw new UncorrectableException("unsupported callsign: " + callsign);
+		}
 		LittleEndianDataInputStream ldis = new LittleEndianDataInputStream(dis);
 		if (isAckMessage(data)) {
 			acknowledge = true;
