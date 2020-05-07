@@ -1,0 +1,156 @@
+{
+  "ax25Header": {
+    "destinationAddress": {
+      "callsign": "",
+      "ssid": 0
+    },
+    "sourceAddress": {
+      "callsign": "",
+      "ssid": 0
+    },
+    "frameType": "U",
+    "sendSequenceNumber": 0,
+    "receiveSequenceNumber": 0,
+    "uControlType": "UI",
+    "pid": 240
+  },
+  "cspHeader": {
+    "priority": "CSP_PRIO_CRITICAL",
+    "source": 1,
+    "destination": 0,
+    "sourcePort": 9,
+    "destinationPort": 38,
+    "ffrag": false,
+    "fhmac": false,
+    "fxtea": false,
+    "frdp": false,
+    "fcrc32": false
+  },
+  "telemetry": {
+    "identifier": "QUETZAL1",
+    "cdhs": {
+      "hour": 3,
+      "minute": 12,
+      "second": 27,
+      "day": 0,
+      "month": 0,
+      "year": 0,
+      "admStatus1": true,
+      "admStatus2": false,
+      "admStatus3": false,
+      "admStatus4": false,
+      "epsStatus": "SUCCESS",
+      "heaterStatus": {
+        "mode": "AUTONOMOUS",
+        "status": false
+      },
+      "adcsStatus": "SUCCESS",
+      "payloadStatus": "SUCCESS",
+      "admResetCounter": 0,
+      "epsResetCounter": 0,
+      "adcsSoftwareResetCounter": 0,
+      "adcsHardwareResetCounter": 0,
+      "commsHardwareResetCounter": 0,
+      "cdhsResetCounter": 68
+    },
+    "eps": {
+      "temperatureNo1": 44.745003,
+      "stateOfCharge": 83,
+      "batteryVoltage": 2507.9683,
+      "averageCurrent": 56005.793,
+      "averagePower": 7490.285,
+      "stateOfHealth": 218,
+      "ina1": {
+        "voltage": 1.48155
+      },
+      "ina2": {
+        "voltage": 3.12375
+      },
+      "ina3": {
+        "voltage": 4.23045
+      },
+      "adcsCurrent": 512,
+      "commsCurrent": 0,
+      "payloadCurrent": 17408,
+      "heaterCurrent": 0,
+      "heaterShortCircuit": false,
+      "payloadShortCircuit": false,
+      "commsShortCircuit": false,
+      "adcsShortCircuit": false,
+      "heaterOvercurrent": false,
+      "payloadOvercurrent": false,
+      "commsOvercurrent": false,
+      "adcsOvercurrent": false,
+      "commFlags": {
+        "ina1": false,
+        "ina2": false,
+        "ina3": false,
+        "bq27441": false,
+        "tmp100": true
+      },
+      "transFlags": {
+        "ina1": true,
+        "ina2": true,
+        "ina3": true,
+        "bq27441": true,
+        "tmp100": true
+      }
+    },
+    "adcs": {
+      "gyroX": -75.68628,
+      "gyroY": -20.0,
+      "gyroZ": 9.803922,
+      "magX": -1294.8029,
+      "magY": -1294.9219,
+      "magZ": -1300.0,
+      "adc11": 9890.56,
+      "adc12": 0.0,
+      "adc13": 9890.56,
+      "adc14": 0.0,
+      "adc15": 2858.99,
+      "adc16": 2704.45,
+      "adc21": 1622.6699,
+      "adc22": 14063.14,
+      "adc23": 1468.1299,
+      "adc24": 1545.3999,
+      "adc25": 2781.72,
+      "adc26": 2858.99,
+      "bno055Temperature": 20,
+      "tmp100Temperature": -19695,
+      "bno055Transmission": false,
+      "adc1Transmission": false,
+      "adc2Transmission": true,
+      "tmp100Transmission": true
+    },
+    "packageCounter": 15,
+    "payloadMode": "UNKNOWN",
+    "pictureCounter": 3,
+    "ramParams": {
+      "cDHSCycleTime": 205,
+      "cDHSWDTTime": 0,
+      "aDMSOCLimit": 0,
+      "aDCSSOCLimit": 0,
+      "cOMMSSOCLimit": 10,
+      "pLDSOCLimit": 24,
+      "hTRCycleTime": 60,
+      "heaterEmergencyOnTime": 30,
+      "heaterEmergencyOffTime": 50,
+      "aDMCycleTime": 70,
+      "aDMBurnTime": 30,
+      "aDMMaxCycles": 1,
+      "aDMWaitTime1": 1,
+      "aDMWaitTime2": 1,
+      "aDMEnable": 60,
+      "cOMMCycleTime": 4,
+      "pLDCycleTime": 30,
+      "pLDOperationMode": 30,
+      "cameraResolution": 1,
+      "cameraExposure": 5,
+      "cameraPictureSaveTime": 30,
+      "payloadEnable": 1
+    },
+    "uvgMessage": "UVG a Guatemala, SI se"
+  },
+  "beginSample": 0,
+  "beginMillis": 0
+}

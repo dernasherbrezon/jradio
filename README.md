@@ -274,7 +274,12 @@ Using the blocks above, it is possible to decode the following satellites:
 			<td>QARMAN</td>
 			<td>45263</td>
 			<td><a href="https://github.com/dernasherbrezon/jradio/blob/master/src/test/java/ru/r2cloud/jradio/qarman/QarmanTest.java">QarmanTest</a></td>
-		</tr>		
+		</tr>	
+		<tr>
+			<td>Quetzal1</td>
+			<td>45598</td>
+			<td>Use Ax25G3ruhBeaconSource with FskDemodulator 4800</td>
+		</tr>	
 	</tbody>
 </table>
   
