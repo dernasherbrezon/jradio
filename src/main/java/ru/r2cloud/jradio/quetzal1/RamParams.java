@@ -57,59 +57,59 @@ public class RamParams {
 		payloadEnable = dis.readUnsignedByte();
 	}
 
-	public int getcDHSCycleTime() {
+	public int getCDHSCycleTime() {
 		return cDHSCycleTime;
 	}
 
-	public void setcDHSCycleTime(int cDHSCycleTime) {
+	public void setCDHSCycleTime(int cDHSCycleTime) {
 		this.cDHSCycleTime = cDHSCycleTime;
 	}
 
-	public int getcDHSWDTTime() {
+	public int getCDHSWDTTime() {
 		return cDHSWDTTime;
 	}
 
-	public void setcDHSWDTTime(int cDHSWDTTime) {
+	public void setCDHSWDTTime(int cDHSWDTTime) {
 		this.cDHSWDTTime = cDHSWDTTime;
 	}
 
-	public int getaDMSOCLimit() {
+	public int getADMSOCLimit() {
 		return aDMSOCLimit;
 	}
 
-	public void setaDMSOCLimit(int aDMSOCLimit) {
+	public void setADMSOCLimit(int aDMSOCLimit) {
 		this.aDMSOCLimit = aDMSOCLimit;
 	}
 
-	public int getaDCSSOCLimit() {
+	public int getADCSSOCLimit() {
 		return aDCSSOCLimit;
 	}
 
-	public void setaDCSSOCLimit(int aDCSSOCLimit) {
+	public void setADCSSOCLimit(int aDCSSOCLimit) {
 		this.aDCSSOCLimit = aDCSSOCLimit;
 	}
 
-	public int getcOMMSSOCLimit() {
+	public int getCOMMSSOCLimit() {
 		return cOMMSSOCLimit;
 	}
 
-	public void setcOMMSSOCLimit(int cOMMSSOCLimit) {
+	public void setCOMMSSOCLimit(int cOMMSSOCLimit) {
 		this.cOMMSSOCLimit = cOMMSSOCLimit;
 	}
 
-	public int getpLDSOCLimit() {
+	public int getPLDSOCLimit() {
 		return pLDSOCLimit;
 	}
 
-	public void setpLDSOCLimit(int pLDSOCLimit) {
+	public void setPLDSOCLimit(int pLDSOCLimit) {
 		this.pLDSOCLimit = pLDSOCLimit;
 	}
 
-	public int gethTRCycleTime() {
+	public int getHTRCycleTime() {
 		return hTRCycleTime;
 	}
 
-	public void sethTRCycleTime(int hTRCycleTime) {
+	public void setHTRCycleTime(int hTRCycleTime) {
 		this.hTRCycleTime = hTRCycleTime;
 	}
 
@@ -129,75 +129,75 @@ public class RamParams {
 		this.heaterEmergencyOffTime = heaterEmergencyOffTime;
 	}
 
-	public int getaDMCycleTime() {
+	public int getADMCycleTime() {
 		return aDMCycleTime;
 	}
 
-	public void setaDMCycleTime(int aDMCycleTime) {
+	public void setADMCycleTime(int aDMCycleTime) {
 		this.aDMCycleTime = aDMCycleTime;
 	}
 
-	public int getaDMBurnTime() {
+	public int getADMBurnTime() {
 		return aDMBurnTime;
 	}
 
-	public void setaDMBurnTime(int aDMBurnTime) {
+	public void setADMBurnTime(int aDMBurnTime) {
 		this.aDMBurnTime = aDMBurnTime;
 	}
 
-	public int getaDMMaxCycles() {
+	public int getADMMaxCycles() {
 		return aDMMaxCycles;
 	}
 
-	public void setaDMMaxCycles(int aDMMaxCycles) {
+	public void setADMMaxCycles(int aDMMaxCycles) {
 		this.aDMMaxCycles = aDMMaxCycles;
 	}
 
-	public int getaDMWaitTime1() {
+	public int getADMWaitTime1() {
 		return aDMWaitTime1;
 	}
 
-	public void setaDMWaitTime1(int aDMWaitTime1) {
+	public void setADMWaitTime1(int aDMWaitTime1) {
 		this.aDMWaitTime1 = aDMWaitTime1;
 	}
 
-	public int getaDMWaitTime2() {
+	public int getADMWaitTime2() {
 		return aDMWaitTime2;
 	}
 
-	public void setaDMWaitTime2(int aDMWaitTime2) {
+	public void setADMWaitTime2(int aDMWaitTime2) {
 		this.aDMWaitTime2 = aDMWaitTime2;
 	}
 
-	public int getaDMEnable() {
+	public int getADMEnable() {
 		return aDMEnable;
 	}
 
-	public void setaDMEnable(int aDMEnable) {
+	public void setADMEnable(int aDMEnable) {
 		this.aDMEnable = aDMEnable;
 	}
 
-	public int getcOMMCycleTime() {
+	public int getCOMMCycleTime() {
 		return cOMMCycleTime;
 	}
 
-	public void setcOMMCycleTime(int cOMMCycleTime) {
+	public void setCOMMCycleTime(int cOMMCycleTime) {
 		this.cOMMCycleTime = cOMMCycleTime;
 	}
 
-	public int getpLDCycleTime() {
+	public int getPLDCycleTime() {
 		return pLDCycleTime;
 	}
 
-	public void setpLDCycleTime(int pLDCycleTime) {
+	public void setPLDCycleTime(int pLDCycleTime) {
 		this.pLDCycleTime = pLDCycleTime;
 	}
 
-	public int getpLDOperationMode() {
+	public int getPLDOperationMode() {
 		return pLDOperationMode;
 	}
 
-	public void setpLDOperationMode(int pLDOperationMode) {
+	public void setPLDOperationMode(int pLDOperationMode) {
 		this.pLDOperationMode = pLDOperationMode;
 	}
 
