@@ -186,6 +186,11 @@ Using the blocks above, it is possible to decode the following satellites:
 			<td><a href="https://github.com/dernasherbrezon/jradio/blob/master/src/test/java/ru/r2cloud/jradio/fmn1/Fmn1Test.java">Fmn1Test</a></td>
 		</tr>
 		<tr>
+			<td>FOX-1A</td>
+			<td>40967</td>
+			<td><a href="https://github.com/dernasherbrezon/jradio/blob/master/src/test/java/ru/r2cloud/jradio/fox/FoxTest.java">FoxTest</a></td>
+		</tr>
+		<tr>
 			<td>GOMX-1</td>
 			<td>39430</td>
 			<td><a href="https://github.com/dernasherbrezon/jradio/blob/master/src/test/java/ru/r2cloud/jradio/gomx1/Gomx1Test.java">Gomx1Test</a></td>
