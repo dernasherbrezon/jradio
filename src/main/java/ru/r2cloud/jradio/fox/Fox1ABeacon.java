@@ -26,12 +26,12 @@ public class Fox1ABeacon extends Beacon {
 		case 2:
 			payloadMax = new PayloadMaxValues(dis);
 			break;
-		 case 3:
-		 payloadMin = new PayloadMinValues(dis);
-		 break;
-		// case 4:
-		// payloadRadExp = new PayloadRadExpData(dis);
-		// break;
+		case 3:
+			payloadMin = new PayloadMinValues(dis);
+			break;
+		case 4:
+			payloadRadExp = new PayloadRadExpData(dis);
+			break;
 		default:
 			throw new UncorrectableException("unknown type: " + header.getType());
 		}

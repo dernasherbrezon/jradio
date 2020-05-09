@@ -22,5 +22,13 @@ public class Fox1ABeaconTest {
 		result.readBeacon(data);
 		AssertJson.assertObjectsEqual("Fox1ABeaconMaxValues.json", result);
 	}
+	
+	@Test
+	public void testRadExperiment() throws Exception {
+		byte[] data = ViterbiTest.hexStringToByteArray("C1A7080F004000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000");
+		Fox1ABeacon result = new Fox1ABeacon();
+		result.readBeacon(data);
+		AssertJson.assertObjectsEqual("Fox1ABeaconRadExp.json", result);
+	}
 
 }
