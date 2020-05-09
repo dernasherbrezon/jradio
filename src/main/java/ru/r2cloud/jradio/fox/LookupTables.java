@@ -29,19 +29,27 @@ class LookupTables {
 		FOX1A_IHUTEMPSN7.put(679, 30.0f);
 		FOX1A_IHUTEMPSN7.put(855, 110.0f);
 		
-		FOX1A_RSSI.put(0, -150.0f);
-		FOX1A_RSSI.put(1342, -140.0f);
-		FOX1A_RSSI.put(1525, -115.0f);
-		FOX1A_RSSI.put(1662, -110.0f);
-		FOX1A_RSSI.put(1770, -105.0f);
-		FOX1A_RSSI.put(1900, -100.0f);
-		FOX1A_RSSI.put(2025, -95.0f);
-		FOX1A_RSSI.put(2170, -90.0f);
-		FOX1A_RSSI.put(2310, -85.0f);
-		FOX1A_RSSI.put(2400, -80.0f);
-		FOX1A_RSSI.put(2415, -75.0f);
-		FOX1A_RSSI.put(4095, -75.0f);
-		
+		FOX1A_RSSI.put(0, -140.0f);
+		FOX1A_RSSI.put(920, -127.0f);
+		FOX1A_RSSI.put(953, -124.0f);
+		FOX1A_RSSI.put(1002, -121.0f);
+		FOX1A_RSSI.put(1065, -118.0f);
+		FOX1A_RSSI.put(1133, -115.0f);
+		FOX1A_RSSI.put(1197, -112.0f);
+		FOX1A_RSSI.put(1262, -109.0f);
+		FOX1A_RSSI.put(1335, -106.0f);
+		FOX1A_RSSI.put(1414, -103.0f);
+		FOX1A_RSSI.put(1490, -100.0f);
+		FOX1A_RSSI.put(1593, -95.0f);
+		FOX1A_RSSI.put(1698, -90.0f);
+		FOX1A_RSSI.put(1816, -85.0f);
+		FOX1A_RSSI.put(1920, -80.0f);
+		FOX1A_RSSI.put(1963, -77.0f);
+		FOX1A_RSSI.put(1984, -75.0f);
+		FOX1A_RSSI.put(1995, -73.0f);
+		FOX1A_RSSI.put(2000, -70.0f);
+		FOX1A_RSSI.put(2003, -65.0f);
+		FOX1A_RSSI.put(4095, -65.0f);
 		
 		TEMPERATURE.put(507,-55.0f);
 		TEMPERATURE.put(510,-54.0f);

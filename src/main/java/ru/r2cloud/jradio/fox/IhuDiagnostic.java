@@ -115,7 +115,7 @@ public class IhuDiagnostic {
 			readTimeout2 = (rawValue >> 24) & 0xff;
 			break;
 		case GYRO1Z: // Gyro1Z - this is the "extra" Z axis reading. We have 2 chips, each with 2 axis. So we have Z twice
-			gyro1Z = PayloadRealtime.calcMemsValue((rawValue >> 8) & 0xfff, 2045);
+			gyro1Z = PayloadData.calcMemsValue((rawValue >> 8) & 0xfff, 2045);
 			break;
 		case GYRO1V: // Gyro1V
 			gyro1Volt = LookupTables.lookup("FOX1A_IHUVBATTSN7", (rawValue >> 8) & 0xfff) / 2;

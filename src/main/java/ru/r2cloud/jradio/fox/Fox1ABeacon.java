@@ -23,12 +23,12 @@ public class Fox1ABeacon extends Beacon {
 		case 1:
 			payloadRealtime = new PayloadRealtime(dis);
 			break;
-		// case 2:
-		// payloadMax = new PayloadMaxValues(dis);
-		// break;
-		// case 3:
-		// payloadMin = new PayloadMinValues(dis);
-		// break;
+		case 2:
+			payloadMax = new PayloadMaxValues(dis);
+			break;
+		 case 3:
+		 payloadMin = new PayloadMinValues(dis);
+		 break;
 		// case 4:
 		// payloadRadExp = new PayloadRadExpData(dis);
 		// break;
