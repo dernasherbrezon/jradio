@@ -28,6 +28,9 @@ public class LowPassFilter implements FloatInput {
 		if (source.getContext().getChannels() != 1) {
 			throw new IllegalArgumentException("not a float input: " + source.getContext().getChannels());
 		}
+		if (!Double.isFinite(gain)) {
+			throw new IllegalArgumentException("invalid gain");
+		}
 		this.source = source;
 		this.decimation = decimation;
 		float[] taps = Firdes.lowPass(gain, source.getContext().getSampleRate(), cutoffFrequency, transitionWidth, windowType, beta);

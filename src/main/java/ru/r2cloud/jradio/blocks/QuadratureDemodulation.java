@@ -19,6 +19,9 @@ public class QuadratureDemodulation implements FloatInput {
 		if (source.getContext().getChannels() != 2) {
 			throw new IllegalArgumentException("complex input is expected. got: " + source.getContext().getChannels());
 		}
+		if (!Float.isFinite(gain)) {
+			throw new IllegalArgumentException("invalid gain");
+		}
 		this.gain = gain;
 		this.source = source;
 		context = new Context(source.getContext());
