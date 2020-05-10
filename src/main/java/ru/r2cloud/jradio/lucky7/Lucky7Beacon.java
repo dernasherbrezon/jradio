@@ -41,6 +41,9 @@ public class Lucky7Beacon extends Beacon {
 		missionCounter = (dis.readUnsignedByte() << 16) | (dis.readUnsignedByte() << 8) | (dis.readUnsignedByte());
 		callsign = readString(dis, 6);
 		satelliteName = readString(dis, 6);
+		if (!satelliteName.equalsIgnoreCase("LUCKY7")) {
+			throw new UncorrectableException("invalid satellite name: " + satelliteName);
+		}
 		totalResetCounter = dis.readUnsignedShort();
 		swapResetCounter = dis.readUnsignedShort();
 		batteryVoltage = dis.readUnsignedByte() / 50.0f;
