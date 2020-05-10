@@ -7,7 +7,7 @@ import ru.r2cloud.jradio.Beacon;
 import ru.r2cloud.jradio.fec.ccsds.UncorrectableException;
 import ru.r2cloud.jradio.util.LsbBitInputStream;
 
-public class Fox1BBeacon extends Beacon {
+public class Fox1CBeacon extends Beacon {
 
 	private FoxHeader header;
 	private Payload1BRealtime payloadRealtime;
@@ -19,21 +19,18 @@ public class Fox1BBeacon extends Beacon {
 	public void readBeacon(byte[] data) throws IOException, UncorrectableException {
 		LsbBitInputStream dis = new LsbBitInputStream(new ByteArrayInputStream(data));
 		header = new FoxHeader(dis);
-		if (header.getFoxId() != 2) {
+		if (header.getFoxId() != 3) {
 			throw new UncorrectableException("invalid fox id: " + header.getFoxId());
 		}
 		switch (header.getType()) {
 		case 1:
-			payloadRealtime = new Payload1BRealtime(dis, "FOX1B", false);
+			payloadRealtime = new Payload1BRealtime(dis, "FOX1C", true);
 			break;
 		case 2:
-			payloadMax = new Payload1BMaxValues(dis, "FOX1B", false);
+			payloadMax = new Payload1BMaxValues(dis, "FOX1C", true);
 			break;
 		case 3:
-			payloadMin = new Payload1BMinValues(dis, "FOX1B", false);
-			break;
-		case 4:
-			payloadRadExp = new PayloadRadExpData(dis);
+			payloadMin = new Payload1BMinValues(dis, "FOX1C", true);
 			break;
 		default:
 			throw new UncorrectableException("unknown type: " + header.getType());

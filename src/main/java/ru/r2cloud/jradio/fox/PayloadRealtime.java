@@ -27,7 +27,7 @@ public class PayloadRealtime extends PayloadData {
 
 	public PayloadRealtime(LsbBitInputStream dis) throws IOException {
 		super(dis);
-		ihuDiagnosticData = new IhuDiagnostic(dis.readBitsAsInt(32));
+		ihuDiagnosticData = new IhuDiagnostic(dis.readBitsAsInt(32), "FOX1A");
 
 		experiment1Failure = dis.readBit();
 		experiment2Failure = dis.readBit();

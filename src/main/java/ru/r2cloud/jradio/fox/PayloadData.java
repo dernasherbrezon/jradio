@@ -62,7 +62,7 @@ public class PayloadData {
 	public PayloadData(LsbBitInputStream dis) throws IOException {
 		batteryAVolt = dis.readBitsAsInt(12) * VOLTAGE_STEP_FOR_2V5_SENSORS;
 		batteryBVolt = dis.readBitsAsInt(12) * VOLTAGE_STEP_FOR_2V5_SENSORS / 0.76f;
-		batteryCVolt = LookupTables.lookup("FOX1A_IHUVBATTSN7", dis.readBitsAsInt(12));
+		batteryCVolt = LookupTables.lookup("FOX1A_IHUVBATT", dis.readBitsAsInt(12));
 		batteryATemperature = LookupTables.lookup("BATTERY_TEMP", dis.readBitsAsInt(12));
 		batteryBTemperature = LookupTables.lookup("BATTERY_TEMP", dis.readBitsAsInt(12));
 		batteryCTemperature = LookupTables.lookup("BATTERY_TEMP", dis.readBitsAsInt(12));
@@ -97,19 +97,19 @@ public class PayloadData {
 		rxTemperature = LookupTables.lookup("TEMPERATURE", dis.readBitsAsInt(12));
 
 		rssi = LookupTables.lookup("FOX1A_RSSI", dis.readBitsAsInt(12));
-		ihuTemperature = LookupTables.lookup("FOX1A_IHUTEMPSN7", dis.readBitsAsInt(12));
+		ihuTemperature = LookupTables.lookup("FOX1A_IHUTEMP", dis.readBitsAsInt(12));
 
-		xAngularVelocity = calcMemsValue(dis.readBitsAsInt(12), 2087);
-		yAngularVelocity = calcMemsValue(dis.readBitsAsInt(12), 2101);
-		zAngularVelocity = calcMemsValue(dis.readBitsAsInt(12), 2045);
+		xAngularVelocity = calcMemsValue(dis.readBitsAsInt(12), (int) LookupTables.lookup("FOX1A_MEMSREST", 1));
+		yAngularVelocity = calcMemsValue(dis.readBitsAsInt(12), (int) LookupTables.lookup("FOX1A_MEMSREST", 2));
+		zAngularVelocity = calcMemsValue(dis.readBitsAsInt(12), (int) LookupTables.lookup("FOX1A_MEMSREST", 3));
 
 		exp4Temperature = LookupTables.lookup("TEMPERATURE", dis.readBitsAsInt(12));
 		psuCurrent = dis.readBitsAsInt(12) * VOLTAGE_STEP_FOR_3V_SENSORS / PSU_CURRENT_SCALING_FACTOR;
 	}
 
 	public static float calcMemsValue(int value, int restValue) {
-		float volts = LookupTables.lookup("FOX1A_IHUVBATTSN7", value) / 2;
-		float memsZeroValue = LookupTables.lookup("FOX1A_IHUVBATTSN7", restValue);
+		float volts = LookupTables.lookup("FOX1A_IHUVBATT", value) / 2;
+		float memsZeroValue = LookupTables.lookup("FOX1A_IHUVBATT", restValue);
 		memsZeroValue = memsZeroValue / 2;
 		return (volts - memsZeroValue) / MEMS_VOLT_PER_DPS;
 	}

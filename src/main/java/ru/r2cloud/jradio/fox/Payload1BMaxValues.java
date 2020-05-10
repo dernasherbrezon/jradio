@@ -23,8 +23,8 @@ public class Payload1BMaxValues extends Payload1BData {
 		// do nothing
 	}
 
-	public Payload1BMaxValues(LsbBitInputStream dis) throws IOException {
-		super(dis);
+	public Payload1BMaxValues(LsbBitInputStream dis, String lookupTablePrefix, boolean useIHUVBatt) throws IOException {
+		super(dis, lookupTablePrefix, useIHUVBatt);
 		int rawValue = dis.readBitsAsInt(32);
 		watchDogReports = rawValue & 0x1ff;
 		// Error code is the next 5 bits

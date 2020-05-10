@@ -63,10 +63,14 @@ public class Payload1BData {
 		// do nothing
 	}
 
-	public Payload1BData(LsbBitInputStream dis) throws IOException {
+	public Payload1BData(LsbBitInputStream dis, String lookupTablePrefix, boolean useIHUVBatt) throws IOException {
 		batteryAVolt = dis.readBitsAsInt(12) * VOLTAGE_STEP_FOR_2V5_SENSORS;
 		batteryBVolt = dis.readBitsAsInt(12) * VOLTAGE_STEP_FOR_2V5_SENSORS / 0.76f;
-		batteryCVolt = dis.readBitsAsInt(12) * VOLTAGE_STEP_FOR_2V5_SENSORS / BATTERY_C_SCALING_FACTOR;
+		if (useIHUVBatt) {
+			batteryCVolt = LookupTables.lookup(lookupTablePrefix + "_IHUVBATT", dis.readBitsAsInt(12));
+		} else {
+			batteryCVolt = dis.readBitsAsInt(12) * VOLTAGE_STEP_FOR_2V5_SENSORS / BATTERY_C_SCALING_FACTOR;
+		}
 		batteryATemperature = LookupTables.lookup("BATTERY_TEMP", dis.readBitsAsInt(12));
 		batteryBTemperature = LookupTables.lookup("BATTERY_TEMP", dis.readBitsAsInt(12));
 		batteryCTemperature = LookupTables.lookup("BATTERY_TEMP", dis.readBitsAsInt(12));
@@ -100,12 +104,12 @@ public class Payload1BData {
 		txTemperature = LookupTables.lookup("TEMPERATURE", dis.readBitsAsInt(12));
 		rxTemperature = LookupTables.lookup("TEMPERATURE", dis.readBitsAsInt(12));
 
-		rssi = LookupTables.lookup("FOX1B_RSSI", dis.readBitsAsInt(12));
-		ihuTemperature = LookupTables.lookup("FOX1B_IHUTEMPSN12", dis.readBitsAsInt(12));
+		rssi = LookupTables.lookup(lookupTablePrefix + "_RSSI", dis.readBitsAsInt(12));
+		ihuTemperature = LookupTables.lookup(lookupTablePrefix + "_IHUTEMP", dis.readBitsAsInt(12));
 
-		xAngularVelocity = calcMemsValue(dis.readBitsAsInt(12), 2009);
-		yAngularVelocity = calcMemsValue(dis.readBitsAsInt(12), 2033);
-		zAngularVelocity = calcMemsValue(dis.readBitsAsInt(12), 1993);
+		xAngularVelocity = calcMemsValue(lookupTablePrefix, dis.readBitsAsInt(12), (int) LookupTables.lookup(lookupTablePrefix + "_MEMSREST", 1));
+		yAngularVelocity = calcMemsValue(lookupTablePrefix, dis.readBitsAsInt(12), (int) LookupTables.lookup(lookupTablePrefix + "_MEMSREST", 2));
+		zAngularVelocity = calcMemsValue(lookupTablePrefix, dis.readBitsAsInt(12), (int) LookupTables.lookup(lookupTablePrefix + "_MEMSREST", 3));
 
 		exp4Temperature = LookupTables.lookup("TEMPERATURE", dis.readBitsAsInt(12));
 		psuCurrent = dis.readBitsAsInt(12) * VOLTAGE_STEP_FOR_2V5_SENSORS/MPPT_CURRENT_SCALING_FACTOR *1000;
@@ -124,9 +128,9 @@ public class Payload1BData {
 		return (float) t;
 	}
 
-	public static float calcMemsValue(int value, int restValue) {
-		float volts = LookupTables.lookup("FOX1B_IHUVBATTSN12", value) / 2;
-		float memsZeroValue = LookupTables.lookup("FOX1B_IHUVBATTSN12", restValue);
+	public static float calcMemsValue(String lookupTablePrefix, int value, int restValue) {
+		float volts = LookupTables.lookup(lookupTablePrefix + "_IHUVBATT", value) / 2;
+		float memsZeroValue = LookupTables.lookup(lookupTablePrefix + "_IHUVBATT", restValue);
 		memsZeroValue = memsZeroValue / 2;
 		return (volts - memsZeroValue) / MEMS_VOLT_PER_DPS;
 	}

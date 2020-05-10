@@ -22,8 +22,8 @@ public class Payload1BMinValues extends Payload1BData {
 		// do nothing
 	}
 
-	public Payload1BMinValues(LsbBitInputStream dis) throws IOException {
-		super(dis);
+	public Payload1BMinValues(LsbBitInputStream dis, String lookupTablePrefix, boolean useIHUVBatt) throws IOException {
+		super(dis, lookupTablePrefix, useIHUVBatt);
 		int rawValue = dis.readBitsAsInt(32);
 		dacOverflows = rawValue & 0xff;
 		i2c1Retries = (rawValue >> 8) & 0x0f;

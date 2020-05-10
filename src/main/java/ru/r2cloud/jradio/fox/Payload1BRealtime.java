@@ -25,9 +25,9 @@ public class Payload1BRealtime extends Payload1BData {
 		// do nothing
 	}
 
-	public Payload1BRealtime(LsbBitInputStream dis) throws IOException {
-		super(dis);
-		ihuDiagnosticData = new IhuDiagnostic(dis.readBitsAsInt(32));
+	public Payload1BRealtime(LsbBitInputStream dis, String lookupTablePrefix, boolean useIHUVBatt) throws IOException {
+		super(dis, lookupTablePrefix, useIHUVBatt);
+		ihuDiagnosticData = new IhuDiagnostic(dis.readBitsAsInt(32), lookupTablePrefix);
 
 		experiment1Failure = dis.readBit();
 		experiment2Failure = dis.readBit();

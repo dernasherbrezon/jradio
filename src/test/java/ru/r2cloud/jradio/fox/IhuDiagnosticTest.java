@@ -8,7 +8,7 @@ public class IhuDiagnosticTest {
 
 	@Test
 	public void testDownlinkControl() {
-		IhuDiagnostic result = new IhuDiagnostic(151915524);
+		IhuDiagnostic result = new IhuDiagnostic(151915524, "FOX1A");
 		AssertJson.assertObjectsEqual("IhuDiagnostic1.json", result);
 	}
 	

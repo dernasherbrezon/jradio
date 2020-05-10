@@ -73,7 +73,7 @@ public class IhuDiagnostic {
 		// do nothing
 	}
 
-	public IhuDiagnostic(int rawValue) {
+	public IhuDiagnostic(int rawValue, String lookupTablePrefix) {
 		int type = rawValue & 0xff;
 		switch (type) {
 		case SPININFO_1:
@@ -118,12 +118,12 @@ public class IhuDiagnostic {
 			gyro1Z = PayloadData.calcMemsValue((rawValue >> 8) & 0xfff, 2045);
 			break;
 		case GYRO1V: // Gyro1V
-			gyro1Volt = LookupTables.lookup("FOX1A_IHUVBATTSN7", (rawValue >> 8) & 0xfff) / 2;
+			gyro1Volt = LookupTables.lookup(lookupTablePrefix + "_IHUVBATT", (rawValue >> 8) & 0xfff) / 2;
 			cameraChecksumErrors = (rawValue >> 24) & 0xff; // last 8 bits
 			cameraChecksumErrors = cameraChecksumErrors - 1; // This is initialized to 1, so we subtract that initial value
 			break;
 		case GYRO2V: // Gyro2V
-			gyro2Volt = LookupTables.lookup("FOX1A_IHUVBATTSN7", (rawValue >> 8) & 0xfff) / 2;
+			gyro2Volt = LookupTables.lookup(lookupTablePrefix + "_IHUVBATT", (rawValue >> 8) & 0xfff) / 2;
 			hsAudioBufferUnderflows = (rawValue >> 24) & 0xff; // last 8 bits
 			break;
 		case IHU_SW_VERSION: // Version of the software on the IHU
@@ -138,14 +138,14 @@ public class IhuDiagnostic {
 			bus1Status = (rawValue >> 28) & 0xf;
 			break;
 		case UNKNOWN: // IHU measurement of bus voltage
-			busVoltage = LookupTables.lookup("FOX1A_IHUVBATTSN7", (rawValue >> 8) & 0xfff);
+			busVoltage = LookupTables.lookup(lookupTablePrefix + "_IHUVBATT", (rawValue >> 8) & 0xfff);
 			break;
 		case IHU_TEMP_CALIBRATION_VOLTAGE: // IHU measurement of bus voltage
 			tempCalibrationVoltage = (rawValue >> 8) & 0xffffff; // 24 bits of temp calibration
 			break;
 		case AUTO_SAFE_VOLTAGES:
-			autoSafeVoltageIn = LookupTables.lookup("FOX1A_IHUVBATTSN7", (rawValue >> 8) & 0xfff) * 99 / 25;
-			autoSafeVoltageOut = LookupTables.lookup("FOX1A_IHUVBATTSN7", (rawValue >> 20) & 0xfff) * 99 / 25;
+			autoSafeVoltageIn = LookupTables.lookup(lookupTablePrefix + "_IHUVBATT", (rawValue >> 8) & 0xfff) * 99 / 25;
+			autoSafeVoltageOut = LookupTables.lookup(lookupTablePrefix + "_IHUVBATT", (rawValue >> 20) & 0xfff) * 99 / 25;
 			break;
 		}
 	}
