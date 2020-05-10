@@ -27,16 +27,12 @@ public class Lucky7Beacon extends Beacon {
 	private Short angularRateZ;
 	private Boolean antennaBurnwire;
 
-	private byte[] unknownPayload;
-
 	@Override
 	public void readBeacon(byte[] data) throws IOException, UncorrectableException {
 		DataInputStream dis = new DataInputStream(new ByteArrayInputStream(data));
 		obcId = (dis.readUnsignedByte() << 16) | (dis.readUnsignedByte() << 8) | (dis.readUnsignedByte());
 		if (obcId != 0x800000 && obcId != 0x000000) {
-			unknownPayload = new byte[dis.available()];
-			dis.readFully(unknownPayload);
-			return;
+			throw new UncorrectableException("unknown obcid: " + obcId);
 		}
 		missionCounter = (dis.readUnsignedByte() << 16) | (dis.readUnsignedByte() << 8) | (dis.readUnsignedByte());
 		callsign = readString(dis, 6);
@@ -190,14 +186,6 @@ public class Lucky7Beacon extends Beacon {
 
 	public void setAntennaBurnwire(Boolean antennaBurnwire) {
 		this.antennaBurnwire = antennaBurnwire;
-	}
-
-	public byte[] getUnknownPayload() {
-		return unknownPayload;
-	}
-
-	public void setUnknownPayload(byte[] unknownPayload) {
-		this.unknownPayload = unknownPayload;
 	}
 
 }
