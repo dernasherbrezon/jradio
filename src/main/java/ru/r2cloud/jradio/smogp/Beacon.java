@@ -27,7 +27,7 @@ public class Beacon {
 		timestamp = dis.readUnsignedInt();
 		byte[] messageData = new byte[80];
 		dis.readFully(messageData);
-		beaconMessage = new String(messageData, StandardCharsets.ISO_8859_1);
+		beaconMessage = new String(messageData, StandardCharsets.ISO_8859_1).trim();
 		validPackets = dis.readUnsignedInt();
 		rxErrorWrongSize = dis.readUnsignedShort();
 		rxErrorGolayFailed = dis.readUnsignedShort();
