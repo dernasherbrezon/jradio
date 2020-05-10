@@ -1,0 +1,53 @@
+{
+  "header": {
+    "type": 1,
+    "uptime": 318120,
+    "resetCount": 75,
+    "foxId": 2
+  },
+  "payloadRealtime": {
+    "ihuDiagnosticData": {
+      "writeTimeout2": 0,
+      "busBusyTimeout2": 0,
+      "readTimeout2": 0
+    },
+    "experiment1Failure": true,
+    "experiment2Failure": true,
+    "experiment3Failure": true,
+    "experiment4Failure": false,
+    "battI2CFailure": false,
+    "psu1I2CFailure": false,
+    "psu2I2CFailure": false,
+    "numberOfGroundCommandedTlmResets": 0,
+    "rxAntenna": true,
+    "txAntenna": true,
+    "batteryAVolt": 1.3269043,
+    "batteryBVolt": 2.6550293,
+    "batteryCVolt": 3.9990234,
+    "batteryATemperature": 16.675,
+    "batteryBTemperature": 15.731708,
+    "batteryCTemperature": 16.1,
+    "totalBatteryCurrent": -487.40912,
+    "batteryBoardTemperature": 14.025,
+    "panelPlusXVolt": 0.0016494624,
+    "panelMinusXVolt": 0.004948387,
+    "panelPlusYVolt": 0.011546236,
+    "panelMinusYVolt": 0.009896774,
+    "panelPlusZVolt": 0.029690322,
+    "panelMinusZVolt": 0.0016494624,
+    "pcuTemperature": 21.682926,
+    "spin": 0.0,
+    "txPaCurrent": 212.91504,
+    "txTemperature": 24.235294,
+    "rxTemperature": 23.205883,
+    "rssi": -126.723076,
+    "ihuTemperature": 44.666668,
+    "xAngularVelocity": 2.3941987,
+    "yAngularVelocity": -5.154065,
+    "zAngularVelocity": -10.063451,
+    "exp4Temperature": -224.0,
+    "psuCurrent": 0.7324219
+  },
+  "beginSample": 0,
+  "beginMillis": 0
+}
