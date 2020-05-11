@@ -29,6 +29,10 @@ class LookupTables {
 	private final static Map<Integer, Float> FOX1C_IHUVBATTSN12 = new TreeMap<>();
 	private final static Map<Integer, Float> FOX1C_MEMSREST = new TreeMap<>();
 
+	private final static Map<Integer, Float> FOX1D_RSSI = new TreeMap<>();
+	private final static Map<Integer, Float> FOX1D_IHUVBATT = new TreeMap<>();
+	private final static Map<Integer, Float> FOX1D_MEMSREST = new TreeMap<>();
+
 	static {
 		ALL_TABLES.put("BATTERY_TEMP", BATTERY_TEMP);
 		ALL_TABLES.put("SOLAR_PANEL_TEMP", SOLAR_PANEL_TEMP);
@@ -49,6 +53,11 @@ class LookupTables {
 		ALL_TABLES.put("FOX1C_IHUVBATT", FOX1C_IHUVBATTSN12);
 		ALL_TABLES.put("FOX1C_MEMSREST", FOX1C_MEMSREST);
 
+		ALL_TABLES.put("FOX1D_RSSI", FOX1D_RSSI);
+		ALL_TABLES.put("FOX1D_IHUTEMP", FOX1A_IHUTEMPSN7); // Yes, table is re-used
+		ALL_TABLES.put("FOX1D_IHUVBATT", FOX1D_IHUVBATT);
+		ALL_TABLES.put("FOX1D_MEMSREST", FOX1D_MEMSREST);
+
 		FOX1A_MEMSREST.put(1, 2087f);
 		FOX1A_MEMSREST.put(2, 2101f);
 		FOX1A_MEMSREST.put(3, 2045f);
@@ -60,6 +69,10 @@ class LookupTables {
 		FOX1C_MEMSREST.put(1, 2058f);
 		FOX1C_MEMSREST.put(2, 2068f);
 		FOX1C_MEMSREST.put(3, 2090f);
+
+		FOX1D_MEMSREST.put(1, 2170f);
+		FOX1D_MEMSREST.put(2, 2090f);
+		FOX1D_MEMSREST.put(3, 2079f);
 
 		FOX1A_IHUTEMPSN7.put(679, 30.0f);
 		FOX1A_IHUTEMPSN7.put(855, 110.0f);
@@ -131,6 +144,26 @@ class LookupTables {
 		FOX1C_RSSI.put(2320, -65f);
 		FOX1C_RSSI.put(4095, -65f);
 
+		FOX1D_RSSI.put(0, -140f);
+		FOX1D_RSSI.put(1054, -127f);
+		FOX1D_RSSI.put(1201, -121f);
+		FOX1D_RSSI.put(1291, -118f);
+		FOX1D_RSSI.put(1370, -115f);
+		FOX1D_RSSI.put(1453, -112f);
+		FOX1D_RSSI.put(1534, -109f);
+		FOX1D_RSSI.put(1607, -106f);
+		FOX1D_RSSI.put(1671, -103f);
+		FOX1D_RSSI.put(1736, -100f);
+		FOX1D_RSSI.put(1867, -95f);
+		FOX1D_RSSI.put(1997, -90f);
+		FOX1D_RSSI.put(2087, -85f);
+		FOX1D_RSSI.put(2125, -80f);
+		FOX1D_RSSI.put(2128, -77f);
+		FOX1D_RSSI.put(2129, -75f);
+		FOX1D_RSSI.put(2128, -70f);
+		FOX1D_RSSI.put(2123, -65f);
+		FOX1D_RSSI.put(4096, -65f);
+
 		FOX1B_IHUVBATTSN12.put(0, 0f);
 		FOX1B_IHUVBATTSN12.put(26, 0.006f);
 		FOX1B_IHUVBATTSN12.put(39, 0.2f);
@@ -186,6 +219,17 @@ class LookupTables {
 		FOX1C_IHUVBATTSN12.put(3031, 4.4f);
 		FOX1C_IHUVBATTSN12.put(3080, 4.5f);
 		FOX1C_IHUVBATTSN12.put(4096, 6f);
+
+		FOX1D_IHUVBATT.put(0, 0f);
+		FOX1D_IHUVBATT.put(2634, 3.6f);
+		FOX1D_IHUVBATT.put(2647, 3.62f);
+		FOX1D_IHUVBATT.put(2692, 3.68f);
+		FOX1D_IHUVBATT.put(2698, 3.7f);
+		FOX1D_IHUVBATT.put(2720, 3.73f);
+		FOX1D_IHUVBATT.put(2765, 3.8f);
+		FOX1D_IHUVBATT.put(2822, 3.9f);
+		FOX1D_IHUVBATT.put(2862, 3.96f);
+		FOX1D_IHUVBATT.put(4096, 6f);
 
 		TEMPERATURE.put(507, -55.0f);
 		TEMPERATURE.put(510, -54.0f);
