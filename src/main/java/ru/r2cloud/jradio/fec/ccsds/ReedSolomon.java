@@ -188,8 +188,11 @@ public class ReedSolomon {
 	}
 
 	public byte[] decodeData(byte[] data) throws UncorrectableException {
+		return decodeData(data, null, 0);
+	}
+	
+	public byte[] decodeData(byte[] data, int[] erasurePositions, int noEras) throws UncorrectableException {
 		int pad = nn - nroots - (data.length - nroots);
-		int noEras = 0;
 
 		if (pad < 0 || pad > 222) {
 			throw new IllegalArgumentException("invalid pad: " + pad);
@@ -249,6 +252,20 @@ public class ReedSolomon {
 		} else {
 
 			lambda[0] = 1;
+			
+			if (noEras > 0) {
+				/* Init lambda to be the erasure locator polynomial */
+				lambda[1] = alphaTo[modnn(prim * (nn - 1 - erasurePositions[0]))];
+				for (i = 1; i < noEras; i++) {
+					int u = modnn(prim * (nn - 1 - erasurePositions[i]));
+					for (j = i + 1; j > 0; j--) {
+						tmp = indexOf[lambda[j - 1]];
+						if (tmp != a0) {
+							lambda[j] ^= alphaTo[modnn(u + tmp)];
+						}
+					}
+				}
+			}
 
 			for (i = 0; i < nroots + 1; i++) {
 				b[i] = indexOf[lambda[i]];
