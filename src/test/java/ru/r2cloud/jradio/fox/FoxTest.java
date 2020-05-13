@@ -30,13 +30,32 @@ public class FoxTest {
 		codes.add("0011111010");
 		codes.add("1100000101");
 		CorrelateAccessCodeTag correlate = new CorrelateAccessCodeTag(s2h, 0, codes, false);
-		// slow speed size = 96
-		TaggedStreamToPdu pdu = new TaggedStreamToPdu(new FixedLengthTagger(correlate, 96 * 10));
+		TaggedStreamToPdu pdu = new TaggedStreamToPdu(new FixedLengthTagger(correlate, Fox.SLOW_FRAME_SIZE * 10));
 		input = new Fox<>(pdu, Fox1ABeacon.class);
 		assertTrue(input.hasNext());
 		AssertJson.assertObjectsEqual("Fox1ABeacon.json", input.next());
 	}
 
+	@Test
+	public void testHighSpeed() throws Exception {
+		float gainMu = 0.175f * 3;
+		WavFileSource source = new WavFileSource(FoxTest.class.getClassLoader().getResourceAsStream("fox1dWithImage.wav"));
+		FskDemodulator demod = new FskDemodulator(source, 9600, 0.0f, gainMu, 1, 2000);
+		SoftToHard s2h = new SoftToHard(demod);
+		Set<String> codes = new HashSet<>();
+		codes.add("0011111010");
+		codes.add("1100000101");
+		CorrelateAccessCodeTag correlate = new CorrelateAccessCodeTag(s2h, 0, codes, false);
+		TaggedStreamToPdu pdu = new TaggedStreamToPdu(new FixedLengthTagger(correlate, HighSpeedFox.HIGH_SPEED_FRAME_SIZE * 10));
+		HighSpeedFox input = new HighSpeedFox(pdu);
+		while( input.hasNext() ) {
+			input.next();
+		}
+		input.close();
+//		assertTrue(input.hasNext());
+//		AssertJson.assertObjectsEqual("Fox1ABeacon.json", input.next());
+	}
+	
 	@After
 	public void stop() throws Exception {
 		if (input != null) {
