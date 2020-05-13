@@ -17,9 +17,12 @@ public class PictureScanLine {
 	public PictureScanLine(LsbBitInputStream dis) throws IOException {
 		dis.readBitsAsInt(6 * 8); // skip preamble
 		counter = dis.readBitsAsInt(8);
-		int raw = dis.readBitsAsInt(16);
-		int length = (raw & 0x3FF);
-		lineNumber = (raw >> 12) & 0x3F;
+		
+		int descriptor = dis.readBitsAsInt(8);
+		int descriptor2 = dis.readBitsAsInt(8);
+		
+		int length = ((descriptor & 0x3) << 8) + (descriptor2); // 2 lsb of first byte and the second byte together
+		lineNumber = descriptor >> 2; // we want the 6 msbs
 
 		data = new byte[length];
 		for (int i = 0; i < data.length; i++) {

@@ -37,12 +37,13 @@ public class Fox1DBeacon extends Beacon {
 			for (int i = 0; i < lineCount; i++) {
 				pictureScanLines.add(new PictureScanLine(dis));
 			}
-		}
-		int herciLineCount = dis.readBitsAsInt(8);
-		if (herciLineCount > 0 && herciLineCount <= MAX_HERCI_PAYLOADS) {
-			herciPayloads = new ArrayList<>(herciLineCount);
-			for (int i = 0; i < herciLineCount; i++) {
-				herciPayloads.add(new HerciPayload(dis));
+		} else {
+			int herciLineCount = dis.readBitsAsInt(8);
+			if (herciLineCount > 0 && herciLineCount <= MAX_HERCI_PAYLOADS) {
+				herciPayloads = new ArrayList<>(herciLineCount);
+				for (int i = 0; i < herciLineCount; i++) {
+					herciPayloads.add(new HerciPayload(dis));
+				}
 			}
 		}
 	}
