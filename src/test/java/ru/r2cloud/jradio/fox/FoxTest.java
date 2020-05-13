@@ -48,12 +48,9 @@ public class FoxTest {
 		CorrelateAccessCodeTag correlate = new CorrelateAccessCodeTag(s2h, 0, codes, false);
 		TaggedStreamToPdu pdu = new TaggedStreamToPdu(new FixedLengthTagger(correlate, HighSpeedFox.HIGH_SPEED_FRAME_SIZE * 10));
 		HighSpeedFox input = new HighSpeedFox(pdu);
-		while( input.hasNext() ) {
-			input.next();
-		}
+		assertTrue(input.hasNext());
+		AssertJson.assertObjectsEqual("Fox1DBeacon-highspeed.json", input.next());
 		input.close();
-//		assertTrue(input.hasNext());
-//		AssertJson.assertObjectsEqual("Fox1ABeacon.json", input.next());
 	}
 	
 	@After

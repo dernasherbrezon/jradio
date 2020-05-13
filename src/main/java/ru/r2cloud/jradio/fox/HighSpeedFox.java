@@ -50,7 +50,7 @@ public class HighSpeedFox extends BeaconSource<Fox1DBeacon> {
 					throw e;
 				}
 			}
-			
+
 			// the below is about how to fit 4600 bytes into 21 interleaved
 			// reed solomon codeword
 			// first rs codeword has 3 bytes padding at the beginning
@@ -60,7 +60,7 @@ public class HighSpeedFox extends BeaconSource<Fox1DBeacon> {
 				// Reset to the first code word
 				currentRsBuffer = 0;
 			}
-			
+
 			int finalIndex;
 			if (totalBytesProcessed >= PAYLOAD_SIZE + 1) {
 				// parity bytes
@@ -74,7 +74,7 @@ public class HighSpeedFox extends BeaconSource<Fox1DBeacon> {
 			}
 
 			rsBuffers[currentRsBuffer][finalIndex] = curByte;
-			
+
 			currentRsBuffer++;
 			if (currentRsBuffer >= rsBuffers.length) {
 				currentRsBuffer = 0;
@@ -82,12 +82,27 @@ public class HighSpeedFox extends BeaconSource<Fox1DBeacon> {
 			}
 
 		}
-		
+
+		byte[] payload = null;
 		for (int i = 0; i < rsBuffers.length; i++) {
-			//TODO extract data
-			ReedSolomon.CCSDS.decodeData(rsBuffers[i], erasurePositions[i], numberOfErasures[i]);
+			byte[] data = ReedSolomon.CCSDS.decodeData(rsBuffers[i], erasurePositions[i], numberOfErasures[i]);
+			// lazily initialize to avoid array creation
+			if (payload == null) {
+				payload = new byte[PAYLOAD_SIZE];
+			}
+			int padding;
+			if (i == 0) {
+				padding = 3;
+			} else {
+				padding = 4;
+			}
+			for (int j = padding, dest = 0; j < data.length; j++, dest++) {
+				payload[dest * INTERLEAVING + i] = data[j];
+			}
 		}
-		return null;
+		Fox1DBeacon result = new Fox1DBeacon();
+		result.readExternalHighSpeed(payload);
+		return result;
 	}
 
 }
