@@ -1,7 +1,7 @@
 {
   "beacon": {
     "timestamp": 1583459671,
-    "beaconMessage": "First operating 1PQ satellite in space!\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000",
+    "beaconMessage": "First operating 1PQ satellite in space!",
     "validPackets": 59,
     "rxErrorWrongSize": 0,
     "rxErrorGolayFailed": 0,
