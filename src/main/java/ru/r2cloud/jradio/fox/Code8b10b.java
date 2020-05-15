@@ -6,7 +6,7 @@ import ru.r2cloud.jradio.fec.ccsds.UncorrectableException;
 
 public class Code8b10b {
 
-	private static final int ENCODE_8B10B[][] = {
+	private static final int[][] ENCODE_8B10B = {
 			// RD = -1 cases
 			{ /* 00 */ 0x274, /* 01 */ 0x1d4, /* 02 */ 0x2d4, /* 03 */ 0x71b, /* 04 */ 0x354, /* 05 */ 0x69b, /* 06 */ 0x59b, /* 07 */ 0x78b, /* 08 */ 0x394, /* 09 */ 0x65b, /* 0a */ 0x55b, /* 0b */ 0x74b, /* 0c */ 0x4db, /* 0d */ 0x6cb, /* 0e */ 0x5cb, /* 0f */ 0x174, /* 10 */ 0x1b4, /* 11 */ 0x63b, /* 12 */ 0x53b, /* 13 */ 0x72b, /* 14 */ 0x4bb, /* 15 */ 0x6ab, /* 16 */ 0x5ab, /* 17 */ 0x3a4, /* 18 */ 0x334, /* 19 */ 0x66b, /* 1a */ 0x56b, /* 1b */ 0x364, /* 1c */ 0x4eb, /* 1d */ 0x2e4,
 					/* 1e */ 0x1e4, /* 1f */ 0x2b4, /* 20 */ 0x679, /* 21 */ 0x5d9, /* 22 */ 0x6d9, /* 23 */ 0x319, /* 24 */ 0x759, /* 25 */ 0x299, /* 26 */ 0x199, /* 27 */ 0x389, /* 28 */ 0x799, /* 29 */ 0x259, /* 2a */ 0x159, /* 2b */ 0x349, /* 2c */ 0x0d9, /* 2d */ 0x2c9, /* 2e */ 0x1c9, /* 2f */ 0x579, /* 30 */ 0x5b9, /* 31 */ 0x239, /* 32 */ 0x139, /* 33 */ 0x329, /* 34 */ 0x0b9, /* 35 */ 0x2a9, /* 36 */ 0x1a9, /* 37 */ 0x7a9, /* 38 */ 0x739, /* 39 */ 0x269, /* 3a */ 0x169, /* 3b */ 0x769,
@@ -26,7 +26,7 @@ public class Code8b10b {
 					/* b4 */ 0x4ba, /* b5 */ 0x6aa, /* b6 */ 0x5aa, /* b7 */ 0x05a, /* b8 */ 0x0ca, /* b9 */ 0x66a, /* ba */ 0x56a, /* bb */ 0x09a, /* bc */ 0x4ea, /* bd */ 0x11a, /* be */ 0x21a, /* bf */ 0x14a, /* c0 */ 0x186, /* c1 */ 0x226, /* c2 */ 0x126, /* c3 */ 0x716, /* c4 */ 0x0a6, /* c5 */ 0x696, /* c6 */ 0x596, /* c7 */ 0x476, /* c8 */ 0x066, /* c9 */ 0x656, /* ca */ 0x556, /* cb */ 0x746, /* cc */ 0x4d6, /* cd */ 0x6c6, /* ce */ 0x5c6, /* cf */ 0x286, /* d0 */ 0x246, /* d1 */ 0x636,
 					/* d2 */ 0x536, /* d3 */ 0x726, /* d4 */ 0x4b6, /* d5 */ 0x6a6, /* d6 */ 0x5a6, /* d7 */ 0x056, /* d8 */ 0x0c6, /* d9 */ 0x666, /* da */ 0x566, /* db */ 0x096, /* dc */ 0x4e6, /* dd */ 0x116, /* de */ 0x216, /* df */ 0x146, /* e0 */ 0x58e, /* e1 */ 0x62e, /* e2 */ 0x52e, /* e3 */ 0x311, /* e4 */ 0x4ae, /* e5 */ 0x291, /* e6 */ 0x191, /* e7 */ 0x071, /* e8 */ 0x46e, /* e9 */ 0x251, /* ea */ 0x151, /* eb */ 0x348, /* ec */ 0x0d1, /* ed */ 0x2c8, /* ee */ 0x1c8, /* ef */ 0x68e,
 					/* f0 */ 0x64e, /* f1 */ 0x231, /* f2 */ 0x131, /* f3 */ 0x321, /* f4 */ 0x0b1, /* f5 */ 0x2a1, /* f6 */ 0x1a1, /* f7 */ 0x45e, /* f8 */ 0x4ce, /* f9 */ 0x261, /* fa */ 0x161, /* fb */ 0x49e, /* fc */ 0x0e1, /* fd */ 0x51e, /* fe */ 0x61e, /* ff */ 0x54e, } };
-	private static final int DECODE_8B10B[] = new int[0x3FF + 1]; // 10b
+	private static final int[] DECODE_8B10B = new int[0x3FF + 1]; // 10b
 	private static final int MISSING = 0xFFFF;
 
 	static {
@@ -48,5 +48,9 @@ public class Code8b10b {
 
 	public static int encode(byte word) {
 		return ENCODE_8B10B[0][(word & 0xFF)];
+	}
+
+	private Code8b10b() {
+		// do nothing
 	}
 }
