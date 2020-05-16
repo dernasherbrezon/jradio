@@ -11,6 +11,7 @@ import ru.r2cloud.jradio.util.LsbBitInputStream;
 
 public class Fox1DBeacon extends Beacon {
 
+	private static final String FOX1D_TABLE_PREFIX = "FOX1D";
 	private static final int MAX_HERCI_PAYLOADS = 5;
 
 	private FoxHeader header;
@@ -21,16 +22,24 @@ public class Fox1DBeacon extends Beacon {
 	private List<PictureScanLine> pictureScanLines;
 	private List<HerciPayload> herciPayloads;
 
-	public void readExternalHighSpeed(byte[] data) throws IOException, UncorrectableException {
-		setRawData(data);
+	@Override
+	public void readBeacon(byte[] data) throws IOException, UncorrectableException {
 		LsbBitInputStream dis = new LsbBitInputStream(new ByteArrayInputStream(data));
 		header = new FoxHeader(dis);
 		if (header.getFoxId() != 4) {
 			throw new UncorrectableException("invalid fox id: " + header.getFoxId());
 		}
-		payloadRealtime = new Payload1BRealtime(dis, "FOX1D", true);
-		payloadMax = new Payload1BMaxValues(dis, "FOX1D", true);
-		payloadMin = new Payload1BMinValues(dis, "FOX1D", true);
+		if( data.length > 64 ) {
+			readHighSpeedData(dis);
+		} else {
+			readSlowSpeedData(dis);
+		}
+	}
+
+	private void readHighSpeedData(LsbBitInputStream dis) throws IOException {
+		payloadRealtime = new Payload1BRealtime(dis, FOX1D_TABLE_PREFIX, true);
+		payloadMax = new Payload1BMaxValues(dis, FOX1D_TABLE_PREFIX, true);
+		payloadMin = new Payload1BMinValues(dis, FOX1D_TABLE_PREFIX, true);
 		int lineCount = dis.readBitsAsInt(8);
 		if (lineCount != 0) {
 			pictureScanLines = new ArrayList<>(lineCount);
@@ -47,23 +56,17 @@ public class Fox1DBeacon extends Beacon {
 			}
 		}
 	}
-
-	@Override
-	public void readBeacon(byte[] data) throws IOException, UncorrectableException {
-		LsbBitInputStream dis = new LsbBitInputStream(new ByteArrayInputStream(data));
-		header = new FoxHeader(dis);
-		if (header.getFoxId() != 4) {
-			throw new UncorrectableException("invalid fox id: " + header.getFoxId());
-		}
+	
+	private void readSlowSpeedData(LsbBitInputStream dis) throws IOException, UncorrectableException {
 		switch (header.getType()) {
 		case 1:
-			payloadRealtime = new Payload1BRealtime(dis, "FOX1D", true);
+			payloadRealtime = new Payload1BRealtime(dis, FOX1D_TABLE_PREFIX, true);
 			break;
 		case 2:
-			payloadMax = new Payload1BMaxValues(dis, "FOX1D", true);
+			payloadMax = new Payload1BMaxValues(dis, FOX1D_TABLE_PREFIX, true);
 			break;
 		case 3:
-			payloadMin = new Payload1BMinValues(dis, "FOX1D", true);
+			payloadMin = new Payload1BMinValues(dis, FOX1D_TABLE_PREFIX, true);
 			break;
 		case 4:
 			payloadRadExp = new PayloadRadExpData(dis);

@@ -101,7 +101,7 @@ public class HighSpeedFox extends BeaconSource<Fox1DBeacon> {
 			}
 		}
 		Fox1DBeacon result = new Fox1DBeacon();
-		result.readExternalHighSpeed(payload);
+		result.readExternal(payload);
 		return result;
 	}
 
