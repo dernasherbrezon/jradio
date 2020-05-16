@@ -11,12 +11,12 @@ public class IhuDiagnostic {
 	private static final int COMMAND_COUNT = 6;
 	private static final int I2C1_ERRORS = 7;
 	private static final int I2C2_ERRORS = 8;
-	private static final int GYRO1Z = 11;
-	private static final int GYRO1V = 12;
-	private static final int GYRO2V = 13;
+	private static final int GYRO1Z_DATA = 11;
+	private static final int GYRO1V_DATA = 12;
+	private static final int GYRO2V_DATA = 13;
 	private static final int UNKNOWN = 15;
 	private static final int IHU_SW_VERSION = 14;
-	private static final int ISISStatus = 16;
+	private static final int ISIS_STATUS = 16;
 	private static final int IHU_TEMP_CALIBRATION_VOLTAGE = 17;
 	private static final int AUTO_SAFE_VOLTAGES = 18;
 
@@ -75,6 +75,7 @@ public class IhuDiagnostic {
 
 	public IhuDiagnostic(int rawValue, String lookupTablePrefix) {
 		int type = rawValue & 0xff;
+		String ihuvBatteryTableName = lookupTablePrefix + "_IHUVBATT";
 		switch (type) {
 		case SPININFO_1:
 			spin1 = rawValue >> 8;
@@ -114,16 +115,16 @@ public class IhuDiagnostic {
 			busBusyTimeout2 = (rawValue >> 16) & 0xff;
 			readTimeout2 = (rawValue >> 24) & 0xff;
 			break;
-		case GYRO1Z: // Gyro1Z - this is the "extra" Z axis reading. We have 2 chips, each with 2 axis. So we have Z twice
+		case GYRO1Z_DATA: // Gyro1Z - this is the "extra" Z axis reading. We have 2 chips, each with 2 axis. So we have Z twice
 			gyro1Z = PayloadData.calcMemsValue((rawValue >> 8) & 0xfff, 2045);
 			break;
-		case GYRO1V: // Gyro1V
-			gyro1Volt = LookupTables.lookup(lookupTablePrefix + "_IHUVBATT", (rawValue >> 8) & 0xfff) / 2;
+		case GYRO1V_DATA: // Gyro1V
+			gyro1Volt = LookupTables.lookup(ihuvBatteryTableName, (rawValue >> 8) & 0xfff) / 2;
 			cameraChecksumErrors = (rawValue >> 24) & 0xff; // last 8 bits
 			cameraChecksumErrors = cameraChecksumErrors - 1; // This is initialized to 1, so we subtract that initial value
 			break;
-		case GYRO2V: // Gyro2V
-			gyro2Volt = LookupTables.lookup(lookupTablePrefix + "_IHUVBATT", (rawValue >> 8) & 0xfff) / 2;
+		case GYRO2V_DATA: // Gyro2V
+			gyro2Volt = LookupTables.lookup(ihuvBatteryTableName, (rawValue >> 8) & 0xfff) / 2;
 			hsAudioBufferUnderflows = (rawValue >> 24) & 0xff; // last 8 bits
 			break;
 		case IHU_SW_VERSION: // Version of the software on the IHU
@@ -131,21 +132,23 @@ public class IhuDiagnostic {
 			swMajor = (rawValue >> 16) & 0xff;
 			swMinor = (rawValue >> 24) & 0xff;
 			break;
-		case ISISStatus: // Version of the software on the IHU
+		case ISIS_STATUS: // Version of the software on the IHU
 			antStatus = (rawValue >> 8) & 0xffff; // shift away the type byte and get 16 bit status
 			// Bus status - 0 - did not try to read, 1 tried and failed, tried and succeeded
 			bus0Status = (rawValue >> 24) & 0xf;
 			bus1Status = (rawValue >> 28) & 0xf;
 			break;
 		case UNKNOWN: // IHU measurement of bus voltage
-			busVoltage = LookupTables.lookup(lookupTablePrefix + "_IHUVBATT", (rawValue >> 8) & 0xfff);
+			busVoltage = LookupTables.lookup(ihuvBatteryTableName, (rawValue >> 8) & 0xfff);
 			break;
 		case IHU_TEMP_CALIBRATION_VOLTAGE: // IHU measurement of bus voltage
 			tempCalibrationVoltage = (rawValue >> 8) & 0xffffff; // 24 bits of temp calibration
 			break;
 		case AUTO_SAFE_VOLTAGES:
-			autoSafeVoltageIn = LookupTables.lookup(lookupTablePrefix + "_IHUVBATT", (rawValue >> 8) & 0xfff) * 99 / 25;
-			autoSafeVoltageOut = LookupTables.lookup(lookupTablePrefix + "_IHUVBATT", (rawValue >> 20) & 0xfff) * 99 / 25;
+			autoSafeVoltageIn = LookupTables.lookup(ihuvBatteryTableName, (rawValue >> 8) & 0xfff) * 99 / 25;
+			autoSafeVoltageOut = LookupTables.lookup(ihuvBatteryTableName, (rawValue >> 20) & 0xfff) * 99 / 25;
+			break;
+		default:
 			break;
 		}
 	}
