@@ -26,12 +26,12 @@ public class FskDemodulator implements ByteInput {
 		if (next.getContext().getChannels() == 2) {
 			next = new QuadratureDemodulation(next, (float) (next.getContext().getSampleRate() / (2 * Math.PI * deviation)));
 		}
-		LowPassFilter lpf2 = new LowPassFilter(next, decimation, 1.0, (double) baudRate / 2, transitionWidth, Window.WIN_HAMMING, 6.76);
-		float samplesPerSymbol = lpf2.getContext().getSampleRate() / baudRate;
-		DcBlocker dc = new DcBlocker(lpf2, (int) (Math.ceil(samplesPerSymbol * 32)), true);		
-		ClockRecoveryMM clockRecovery = new ClockRecoveryMM(dc, samplesPerSymbol, (float) (0.25 * gainMu * gainMu), 0.5f, gainMu, 0.005f);
-		Rail rail = new Rail(clockRecovery, -1.0f, 1.0f);
-		this.source = new FloatToChar(rail, 127.0f);
+		next = new LowPassFilter(next, decimation, 1.0, (double) baudRate / 2, transitionWidth, Window.WIN_HAMMING, 6.76);
+		float samplesPerSymbol = next.getContext().getSampleRate() / baudRate;
+		next = new DcBlocker(next, (int) (Math.ceil(samplesPerSymbol * 32)), true);		
+		next = new ClockRecoveryMM(next, samplesPerSymbol, (float) (0.25 * gainMu * gainMu), 0.5f, gainMu, 0.005f);
+		next = new Rail(next, -1.0f, 1.0f);
+		this.source = new FloatToChar(next, 127.0f);
 	}
 
 	@Override
