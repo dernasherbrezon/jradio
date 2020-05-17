@@ -6,12 +6,14 @@
     "foxId": 2
   },
   "payloadMax": {
+  "ihuHardError": {
     "watchDogReports": 63,
     "error": "Unknown",
     "mramErrorCount": 0,
     "nonFatalErrorCount": 0,
     "ihuTask": "Unknown",
-    "alignment": 8,
+    "alignment": 8
+    },
     "maxTimestampResetCount": 74,
     "maxTimestampUptime": 311325,
     "safeModeIndication": false,

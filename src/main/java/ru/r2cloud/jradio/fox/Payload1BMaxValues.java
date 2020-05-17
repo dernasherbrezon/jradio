@@ -6,13 +6,7 @@ import ru.r2cloud.jradio.util.LsbBitInputStream;
 
 public class Payload1BMaxValues extends Payload1BData {
 
-	private int watchDogReports;
-	private IhuErrorType error;
-	private int mramErrorCount;
-	private int nonFatalErrorCount;
-	private IhuTask ihuTask;
-	private int alignment;
-
+	private IhuHardError ihuHardError;
 	private int maxTimestampResetCount;
 	private int maxTimestampUptime;
 	private boolean safeModeIndication;
@@ -25,18 +19,7 @@ public class Payload1BMaxValues extends Payload1BData {
 
 	public Payload1BMaxValues(LsbBitInputStream dis, String lookupTablePrefix, boolean useIHUVBatt) throws IOException {
 		super(dis, lookupTablePrefix, useIHUVBatt);
-		int rawValue = dis.readBitsAsInt(32);
-		watchDogReports = rawValue & 0x1ff;
-		// Error code is the next 5 bits
-		error = IhuErrorType.valueOfCode((rawValue >> 9) & 0x1f);
-		// mramErrorCount is the next 3 bits
-		mramErrorCount = (rawValue >> 14) & 0x07;
-		// nonFatalErrorCount is the next 3 bits
-		nonFatalErrorCount = (rawValue >> 17) & 0x07;
-		// taskNumber is the next 4 bits
-		ihuTask = IhuTask.valueOfCode((rawValue >> 20) & 0x0f);
-		// alignment is the next 8 bits
-		alignment = (rawValue >> 24) & 0xff;
+		ihuHardError = new IhuHardError(dis);
 		maxTimestampResetCount = dis.readBitsAsInt(16);
 		maxTimestampUptime = dis.readBitsAsInt(25);
 		safeModeIndication = dis.readBit();
@@ -45,52 +28,12 @@ public class Payload1BMaxValues extends Payload1BData {
 		dis.readBitsAsInt(20);
 	}
 
-	public int getWatchDogReports() {
-		return watchDogReports;
+	public IhuHardError getIhuHardError() {
+		return ihuHardError;
 	}
-
-	public void setWatchDogReports(int watchDogReports) {
-		this.watchDogReports = watchDogReports;
-	}
-
-	public IhuErrorType getError() {
-		return error;
-	}
-
-	public void setError(IhuErrorType error) {
-		this.error = error;
-	}
-
-	public int getMramErrorCount() {
-		return mramErrorCount;
-	}
-
-	public void setMramErrorCount(int mramErrorCount) {
-		this.mramErrorCount = mramErrorCount;
-	}
-
-	public int getNonFatalErrorCount() {
-		return nonFatalErrorCount;
-	}
-
-	public void setNonFatalErrorCount(int nonFatalErrorCount) {
-		this.nonFatalErrorCount = nonFatalErrorCount;
-	}
-
-	public IhuTask getIhuTask() {
-		return ihuTask;
-	}
-
-	public void setIhuTask(IhuTask ihuTask) {
-		this.ihuTask = ihuTask;
-	}
-
-	public int getAlignment() {
-		return alignment;
-	}
-
-	public void setAlignment(int alignment) {
-		this.alignment = alignment;
+	
+	public void setIhuHardError(IhuHardError ihuHardError) {
+		this.ihuHardError = ihuHardError;
 	}
 
 	public int getMaxTimestampResetCount() {

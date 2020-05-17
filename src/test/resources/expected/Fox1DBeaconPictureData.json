@@ -53,12 +53,14 @@
     "psuCurrent": 718.99414
   },
   "payloadMax": {
+  "ihuHardError": {
     "watchDogReports": 0,
     "error": "PowerCycle",
     "mramErrorCount": 0,
     "nonFatalErrorCount": 0,
     "ihuTask": "Unknown",
-    "alignment": 55,
+    "alignment": 55
+    },
     "maxTimestampResetCount": 69,
     "maxTimestampUptime": 472405,
     "safeModeIndication": false,
