@@ -284,6 +284,11 @@ Using the blocks above, it is possible to decode the following satellites:
 			<td>Quetzal1</td>
 			<td>45598</td>
 			<td>Use Ax25G3ruhBeaconSource with FskDemodulator 4800</td>
+		</tr>
+		<tr>
+			<td>Huskysat-1</td>
+			<td>45119</td>
+			<td><a href="https://github.com/dernasherbrezon/jradio/blob/master/src/test/java/ru/r2cloud/jradio/huskysat1/Huskysat1Test.java">Huskysat1Test</a></td>
 		</tr>	
 	</tbody>
 </table>
