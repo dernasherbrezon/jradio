@@ -106,7 +106,7 @@
     "i2c2Retries": 0,
     "spiRetries": 0,
     "mramCRCs": 0
-    }
+    },
     "maxTimestampResetCount": 69,
     "maxTimestampUptime": 472405,
     "safeModeIndication": false,
