@@ -49,6 +49,12 @@ public class LsbBitInputStream {
 		}
 		return str.toString();
 	}
+	
+	public void readFully(byte[] data) throws IOException {
+		for (int i = 0; i < data.length; i++) {
+			data[i] = (byte)readBitsAsInt(8);
+		}
+	}
 
 	public LsbBitInputStream(InputStream istream) {
 		this.stream = istream;

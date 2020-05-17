@@ -105,11 +105,13 @@
     "psuCurrent": 929.93164
   },
   "payloadMin": {
+  "softError": {
     "dacOverflows": 1,
     "i2c1Retries": 0,
     "i2c2Retries": 0,
     "spiRetries": 0,
-    "mramCRCs": 0,
+    "mramCRCs": 0
+    },
     "maxTimestampResetCount": 69,
     "maxTimestampUptime": 472405,
     "safeModeIndication": false,

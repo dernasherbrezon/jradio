@@ -6,10 +6,12 @@
     "foxId": 1
   },
   "payloadMin": {
+  "softError": {
     "dacOverflows": 4,
     "i2cRetries": 0,
     "spiRetries": 0,
-    "mramCRCs": 0,
+    "mramCRCs": 0
+    },
     "maxTimestampResetCount": 44,
     "maxTimestampUptime": 245,
     "safeModeIndication": true,

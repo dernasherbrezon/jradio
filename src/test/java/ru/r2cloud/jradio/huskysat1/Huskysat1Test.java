@@ -2,9 +2,6 @@ package ru.r2cloud.jradio.huskysat1;
 
 import static org.junit.Assert.assertTrue;
 
-import java.io.BufferedInputStream;
-import java.io.FileInputStream;
-
 import org.junit.After;
 import org.junit.Test;
 
@@ -40,5 +37,5 @@ public class Huskysat1Test {
 			input.close();
 		}
 	}
-	
+
 }
