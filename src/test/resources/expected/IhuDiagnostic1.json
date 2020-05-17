@@ -1,5 +1,5 @@
 {
-  "downlinkState1": "SafeWaitTlm",
-  "downlinkState2": "SafeCar2",
-  "downlinkState3": "Safe"
+  "downlinkState1": "SAFE_WAIT_TLM",
+  "downlinkState2": "SAFE_CAR2",
+  "downlinkState3": "SAFE"
 }
