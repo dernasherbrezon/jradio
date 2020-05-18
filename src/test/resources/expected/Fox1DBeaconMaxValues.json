@@ -8,7 +8,7 @@
   "payloadMax": {
   "ihuHardError": {
     "watchDogReports": 0,
-    "error": "PowerCycle",
+    "error": "POWER_CYCLE",
     "mramErrorCount": 0,
     "nonFatalErrorCount": 0,
     "ihuTask": "Unknown",
