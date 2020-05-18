@@ -8,7 +8,7 @@
   "payloadMax": {
   "ihuHardError": {
     "watchDogReports": 63,
-    "error": "Unknown",
+    "error": "UNKNOWN",
     "mramErrorCount": 0,
     "nonFatalErrorCount": 0,
     "ihuTask": "Unknown",
