@@ -2,12 +2,12 @@ package ru.r2cloud.jradio.fox;
 
 public enum IhuTask {
 
-	Unknown(0), Audio(1), // = 1
-	Telemetry(2), // 2,
-	Control(3), // 3
-	Command(4), // 4,
-	Idle(5), // 5,
-	Experiment(6); // 6,
+	UNKNOWN(0), AUDIO(1), // = 1
+	TELEMETRY(2), // 2,
+	CONTROL(3), // 3
+	COMMAND(4), // 4,
+	IDLE(5), // 5,
+	EXPERIMENT(6); // 6,
 
 	private final int code;
 
@@ -21,6 +21,6 @@ public enum IhuTask {
 				return cur;
 			}
 		}
-		return Unknown;
+		return UNKNOWN;
 	}
 }

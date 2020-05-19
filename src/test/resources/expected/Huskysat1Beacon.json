@@ -268,7 +268,7 @@
         "error": "POWER_CYCLE",
         "mramErrorCount": 0,
         "nonFatalErrorCount": 0,
-        "ihuTask": "Unknown",
+        "ihuTask": "UNKNOWN",
         "alignment": 166
       },
       "ihuDiagnosticData": {
@@ -332,7 +332,7 @@
         "error": "POWER_CYCLE",
         "mramErrorCount": 0,
         "nonFatalErrorCount": 0,
-        "ihuTask": "Unknown",
+        "ihuTask": "UNKNOWN",
         "alignment": 166
       },
       "ihuDiagnosticData": {
@@ -398,7 +398,7 @@
         "error": "POWER_CYCLE",
         "mramErrorCount": 0,
         "nonFatalErrorCount": 0,
-        "ihuTask": "Unknown",
+        "ihuTask": "UNKNOWN",
         "alignment": 166
       },
       "ihuDiagnosticData": {

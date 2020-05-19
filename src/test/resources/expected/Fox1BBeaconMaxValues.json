@@ -11,7 +11,7 @@
     "error": "UNKNOWN",
     "mramErrorCount": 0,
     "nonFatalErrorCount": 0,
-    "ihuTask": "Unknown",
+    "ihuTask": "UNKNOWN",
     "alignment": 8
     },
     "maxTimestampResetCount": 74,
