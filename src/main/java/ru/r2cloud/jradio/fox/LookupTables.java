@@ -10,33 +10,33 @@ public class LookupTables {
 
 	private static final float ERROR_VALUE = 9999;
 
-	private final static Map<String, Map<Integer, Float>> ALL_TABLES = new HashMap<>();
-	private final static Map<Integer, Float> FOX1A_IHUVBATTSN7 = new TreeMap<>();
-	private final static Map<Integer, Float> BATTERY_TEMP = new TreeMap<>();
-	private final static Map<Integer, Float> SOLAR_PANEL_TEMP = new TreeMap<>();
-	private final static Map<Integer, Float> TEMPERATURE = new TreeMap<>();
+	private static final Map<String, Map<Integer, Float>> ALL_TABLES = new HashMap<>();
+	private static final Map<Integer, Float> FOX1A_IHUVBATTSN7 = new TreeMap<>();
+	private static final Map<Integer, Float> BATTERY_TEMP = new TreeMap<>();
+	private static final Map<Integer, Float> SOLAR_PANEL_TEMP = new TreeMap<>();
+	private static final Map<Integer, Float> TEMPERATURE = new TreeMap<>();
 
-	private final static Map<Integer, Float> FOX1A_RSSI = new TreeMap<>();
-	private final static Map<Integer, Float> FOX1A_IHUTEMPSN7 = new TreeMap<>();
-	private final static Map<Integer, Float> FOX1A_MEMSREST = new TreeMap<>();
+	private static final Map<Integer, Float> FOX1A_RSSI = new TreeMap<>();
+	private static final Map<Integer, Float> FOX1A_IHUTEMPSN7 = new TreeMap<>();
+	private static final Map<Integer, Float> FOX1A_MEMSREST = new TreeMap<>();
 
-	private final static Map<Integer, Float> FOX1B_RSSI = new TreeMap<>();
-	private final static Map<Integer, Float> FOX1B_IHUTEMPSN12 = new TreeMap<>();
-	private final static Map<Integer, Float> FOX1B_IHUVBATTSN12 = new TreeMap<>();
-	private final static Map<Integer, Float> FOX1B_MEMSREST = new TreeMap<>();
+	private static final Map<Integer, Float> FOX1B_RSSI = new TreeMap<>();
+	private static final Map<Integer, Float> FOX1B_IHUTEMPSN12 = new TreeMap<>();
+	private static final Map<Integer, Float> FOX1B_IHUVBATTSN12 = new TreeMap<>();
+	private static final Map<Integer, Float> FOX1B_MEMSREST = new TreeMap<>();
 
-	private final static Map<Integer, Float> FOX1C_RSSI = new TreeMap<>();
-	private final static Map<Integer, Float> FOX1C_IHUVBATTSN12 = new TreeMap<>();
-	private final static Map<Integer, Float> FOX1C_MEMSREST = new TreeMap<>();
+	private static final Map<Integer, Float> FOX1C_RSSI = new TreeMap<>();
+	private static final Map<Integer, Float> FOX1C_IHUVBATTSN12 = new TreeMap<>();
+	private static final Map<Integer, Float> FOX1C_MEMSREST = new TreeMap<>();
 
-	private final static Map<Integer, Float> FOX1D_RSSI = new TreeMap<>();
-	private final static Map<Integer, Float> FOX1D_IHUVBATT = new TreeMap<>();
-	private final static Map<Integer, Float> FOX1D_MEMSREST = new TreeMap<>();
-	
-	private final static Map<Integer, Float> HUSKYSAT_IHUVBATT = new TreeMap<>();
-	private final static Map<Integer, Float> HUSKYSAT_IHUTEMP = new TreeMap<>();
-	private final static Map<Integer, Float> HUSKYSAT_ISISANTTEMP = new TreeMap<>();
-	
+	private static final Map<Integer, Float> FOX1D_RSSI = new TreeMap<>();
+	private static final Map<Integer, Float> FOX1D_IHUVBATT = new TreeMap<>();
+	private static final Map<Integer, Float> FOX1D_MEMSREST = new TreeMap<>();
+
+	private static final Map<Integer, Float> HUSKYSAT_IHUVBATT = new TreeMap<>();
+	private static final Map<Integer, Float> HUSKYSAT_IHUTEMP = new TreeMap<>();
+	private static final Map<Integer, Float> HUSKYSAT_ISISANTTEMP = new TreeMap<>();
+
 	static {
 		ALL_TABLES.put("BATTERY_TEMP", BATTERY_TEMP);
 		ALL_TABLES.put("SOLAR_PANEL_TEMP", SOLAR_PANEL_TEMP);
@@ -61,7 +61,7 @@ public class LookupTables {
 		ALL_TABLES.put("FOX1D_IHUTEMP", FOX1A_IHUTEMPSN7); // Yes, table is re-used
 		ALL_TABLES.put("FOX1D_IHUVBATT", FOX1D_IHUVBATT);
 		ALL_TABLES.put("FOX1D_MEMSREST", FOX1D_MEMSREST);
-		
+
 		ALL_TABLES.put("HUSKYSAT_IHUVBATT", HUSKYSAT_IHUVBATT);
 		ALL_TABLES.put("HUSKYSAT_RSSI", FOX1A_RSSI);
 		ALL_TABLES.put("HUSKYSAT_IHUTEMP", HUSKYSAT_IHUTEMP);
@@ -88,7 +88,7 @@ public class LookupTables {
 
 		FOX1B_IHUTEMPSN12.put(670, 30.0f);
 		FOX1B_IHUTEMPSN12.put(850, 110.0f);
-		
+
 		HUSKYSAT_IHUTEMP.put(610, 30.0f);
 		HUSKYSAT_IHUTEMP.put(770, 110.0f);
 
@@ -927,5 +927,9 @@ public class LookupTables {
 
 	private static float linearInterpolation(float x, float x0, float x1, float y0, float y1) {
 		return y0 + (y1 - y0) * ((x - x0) / (x1 - x0));
+	}
+
+	private LookupTables() {
+		// do nothing
 	}
 }
