@@ -6,6 +6,12 @@ import ru.r2cloud.jradio.util.LsbBitInputStream;
 
 public class PayloadData {
 
+	private static final String FOX1A_MEMSREST = "FOX1A_MEMSREST";
+	private static final String TEMPERATURE = "TEMPERATURE";
+	private static final String SOLAR_PANEL_TEMP = "SOLAR_PANEL_TEMP";
+	private static final String BATTERY_TEMP = "BATTERY_TEMP";
+	private static final String FOX1A_IHUVBATT = "FOX1A_IHUVBATT";
+	
 	private static final float BATTERY_CURRENT_MIN = 0.05f; // The minimum voltage that the current sensor can measure across the sense resistor
 	private static final float VOLTAGE_STEP_FOR_2V5_SENSORS = 2.5f / 4096; // 0.0006103515625; // Multiply DAC by this to get value in Volts
 	private static final float VOLTAGE_STEP_FOR_3V_SENSORS = 3.0f / 4096; // 0.000732421875; // Multiply DAC by this to get value in Volts
@@ -62,12 +68,12 @@ public class PayloadData {
 	public PayloadData(LsbBitInputStream dis) throws IOException {
 		batteryAVolt = dis.readBitsAsInt(12) * VOLTAGE_STEP_FOR_2V5_SENSORS;
 		batteryBVolt = dis.readBitsAsInt(12) * VOLTAGE_STEP_FOR_2V5_SENSORS / 0.76f;
-		batteryCVolt = LookupTables.lookup("FOX1A_IHUVBATT", dis.readBitsAsInt(12));
-		batteryATemperature = LookupTables.lookup("BATTERY_TEMP", dis.readBitsAsInt(12));
-		batteryBTemperature = LookupTables.lookup("BATTERY_TEMP", dis.readBitsAsInt(12));
-		batteryCTemperature = LookupTables.lookup("BATTERY_TEMP", dis.readBitsAsInt(12));
+		batteryCVolt = LookupTables.lookup(FOX1A_IHUVBATT, dis.readBitsAsInt(12));
+		batteryATemperature = LookupTables.lookup(BATTERY_TEMP, dis.readBitsAsInt(12));
+		batteryBTemperature = LookupTables.lookup(BATTERY_TEMP, dis.readBitsAsInt(12));
+		batteryCTemperature = LookupTables.lookup(BATTERY_TEMP, dis.readBitsAsInt(12));
 		totalBatteryCurrent = ((dis.readBitsAsInt(12) * VOLTAGE_STEP_FOR_2V5_SENSORS - BATTERY_CURRENT_MIN) * BATTERY_CURRENT_ZERO + 2) * 1000;
-		batteryBoardTemperature = LookupTables.lookup("BATTERY_TEMP", dis.readBitsAsInt(12));
+		batteryBoardTemperature = LookupTables.lookup(BATTERY_TEMP, dis.readBitsAsInt(12));
 
 		panelPlusXVolt = dis.readBitsAsInt(12) * VOLTAGE_STEP_FOR_3V_SENSORS / SOLAR_PANEL_SCALING_FACTOR;
 		panelMinusXVolt = dis.readBitsAsInt(12) * VOLTAGE_STEP_FOR_3V_SENSORS / SOLAR_PANEL_SCALING_FACTOR;
@@ -76,14 +82,14 @@ public class PayloadData {
 		panelPlusZVolt = dis.readBitsAsInt(12) * VOLTAGE_STEP_FOR_3V_SENSORS / SOLAR_PANEL_SCALING_FACTOR;
 		panelMinusZVolt = dis.readBitsAsInt(12) * VOLTAGE_STEP_FOR_3V_SENSORS / SOLAR_PANEL_SCALING_FACTOR;
 
-		panelPlusXTemperature = LookupTables.lookup("SOLAR_PANEL_TEMP", dis.readBitsAsInt(12));
-		panelMinusXTemperature = LookupTables.lookup("SOLAR_PANEL_TEMP", dis.readBitsAsInt(12));
-		panelPlusYTemperature = LookupTables.lookup("SOLAR_PANEL_TEMP", dis.readBitsAsInt(12));
-		panelMinusYTemperature = LookupTables.lookup("SOLAR_PANEL_TEMP", dis.readBitsAsInt(12));
-		panelPlusZTemperature = LookupTables.lookup("SOLAR_PANEL_TEMP", dis.readBitsAsInt(12));
-		panelMinusZTemperature = LookupTables.lookup("SOLAR_PANEL_TEMP", dis.readBitsAsInt(12));
+		panelPlusXTemperature = LookupTables.lookup(SOLAR_PANEL_TEMP, dis.readBitsAsInt(12));
+		panelMinusXTemperature = LookupTables.lookup(SOLAR_PANEL_TEMP, dis.readBitsAsInt(12));
+		panelPlusYTemperature = LookupTables.lookup(SOLAR_PANEL_TEMP, dis.readBitsAsInt(12));
+		panelMinusYTemperature = LookupTables.lookup(SOLAR_PANEL_TEMP, dis.readBitsAsInt(12));
+		panelPlusZTemperature = LookupTables.lookup(SOLAR_PANEL_TEMP, dis.readBitsAsInt(12));
+		panelMinusZTemperature = LookupTables.lookup(SOLAR_PANEL_TEMP, dis.readBitsAsInt(12));
 
-		pcuTemperature = LookupTables.lookup("TEMPERATURE", dis.readBitsAsInt(12));
+		pcuTemperature = LookupTables.lookup(TEMPERATURE, dis.readBitsAsInt(12));
 		int raw = dis.readBitsAsInt(12);
 		if (raw > (2048 - 1)) {
 			raw = -4096 + raw;
@@ -93,23 +99,23 @@ public class PayloadData {
 		float paVolts = dis.readBitsAsInt(12) * VOLTAGE_STEP_FOR_3V_SENSORS;
 		float paCurrent = paVolts / PA_CURRENT_INA194_FACTOR / PA_CURRENT_SHUNT_RESISTOR_FACTOR;
 		txPaCurrent = paCurrent * 1000;
-		txTemperature = LookupTables.lookup("TEMPERATURE", dis.readBitsAsInt(12));
-		rxTemperature = LookupTables.lookup("TEMPERATURE", dis.readBitsAsInt(12));
+		txTemperature = LookupTables.lookup(TEMPERATURE, dis.readBitsAsInt(12));
+		rxTemperature = LookupTables.lookup(TEMPERATURE, dis.readBitsAsInt(12));
 
 		rssi = LookupTables.lookup("FOX1A_RSSI", dis.readBitsAsInt(12));
 		ihuTemperature = LookupTables.lookup("FOX1A_IHUTEMP", dis.readBitsAsInt(12));
 
-		xAngularVelocity = calcMemsValue(dis.readBitsAsInt(12), (int) LookupTables.lookup("FOX1A_MEMSREST", 1));
-		yAngularVelocity = calcMemsValue(dis.readBitsAsInt(12), (int) LookupTables.lookup("FOX1A_MEMSREST", 2));
-		zAngularVelocity = calcMemsValue(dis.readBitsAsInt(12), (int) LookupTables.lookup("FOX1A_MEMSREST", 3));
+		xAngularVelocity = calcMemsValue(dis.readBitsAsInt(12), (int) LookupTables.lookup(FOX1A_MEMSREST, 1));
+		yAngularVelocity = calcMemsValue(dis.readBitsAsInt(12), (int) LookupTables.lookup(FOX1A_MEMSREST, 2));
+		zAngularVelocity = calcMemsValue(dis.readBitsAsInt(12), (int) LookupTables.lookup(FOX1A_MEMSREST, 3));
 
-		exp4Temperature = LookupTables.lookup("TEMPERATURE", dis.readBitsAsInt(12));
+		exp4Temperature = LookupTables.lookup(TEMPERATURE, dis.readBitsAsInt(12));
 		psuCurrent = dis.readBitsAsInt(12) * VOLTAGE_STEP_FOR_3V_SENSORS / PSU_CURRENT_SCALING_FACTOR;
 	}
 
 	public static float calcMemsValue(int value, int restValue) {
-		float volts = LookupTables.lookup("FOX1A_IHUVBATT", value) / 2;
-		float memsZeroValue = LookupTables.lookup("FOX1A_IHUVBATT", restValue);
+		float volts = LookupTables.lookup(FOX1A_IHUVBATT, value) / 2;
+		float memsZeroValue = LookupTables.lookup(FOX1A_IHUVBATT, restValue);
 		memsZeroValue = memsZeroValue / 2;
 		return (volts - memsZeroValue) / MEMS_VOLT_PER_DPS;
 	}
