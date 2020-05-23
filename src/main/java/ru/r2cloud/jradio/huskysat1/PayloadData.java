@@ -7,6 +7,7 @@ import ru.r2cloud.jradio.util.LsbBitInputStream;
 
 public class PayloadData {
 
+	private static final String HUSKYSAT_IHUVBATT = "HUSKYSAT_IHUVBATT";
 	private static final float PA_CURRENT_INA194_FACTOR = 50;
 	private static final float VOLTAGE_STEP_FOR_2V5_SENSORS = 2.5f / 4096;
 
@@ -51,7 +52,7 @@ public class PayloadData {
 	}
 
 	public PayloadData(LsbBitInputStream dis) throws IOException {
-		vBattVoltage = LookupTables.lookup("HUSKYSAT_IHUVBATT", dis.readBitsAsInt(12)) / 2 / 0.2424f;
+		vBattVoltage = LookupTables.lookup(HUSKYSAT_IHUVBATT, dis.readBitsAsInt(12)) / 2 / 0.2424f;
 		gyroTemperature = dis.readBitsAsInt(12) * 0.1f - 40;
 		txPowerAmplifierCurrent = convert(dis);
 		txTemperature = convertTemperature(dis);
@@ -361,35 +362,34 @@ public class PayloadData {
 	}
 
 	private static float convert(LsbBitInputStream dis) throws IOException {
-		float voltspa = LookupTables.lookup("HUSKYSAT_IHUVBATT", dis.readBitsAsInt(12));
+		float voltspa = LookupTables.lookup(HUSKYSAT_IHUVBATT, dis.readBitsAsInt(12));
 		voltspa = voltspa / 2;
 		float pacurrent = voltspa / PA_CURRENT_INA194_FACTOR / 0.1f;
 		return 1000 * pacurrent;
 	}
 
 	private static float convertTemperature(LsbBitInputStream dis) throws IOException {
-		float volts = LookupTables.lookup("HUSKYSAT_IHUVBATT", dis.readBitsAsInt(12));
+		float volts = LookupTables.lookup(HUSKYSAT_IHUVBATT, dis.readBitsAsInt(12));
 		volts = volts / 2;
 		return 100 * volts - 50; // TMP36 sensor conversion graph is a straight line where 0.5V is 0C and 0.01V rise is 1C increase. So 0.75V is 25C
 	}
 
 	private static float convertFwdPower(LsbBitInputStream dis) throws IOException {
-		float x = LookupTables.lookup("HUSKYSAT_IHUVBATT", dis.readBitsAsInt(12));
+		float x = LookupTables.lookup(HUSKYSAT_IHUVBATT, dis.readBitsAsInt(12));
 		x = x / 2;
 		double y = 1.7685f * Math.pow(x, 3) - 13.107f * Math.pow(x, 2) + 36.436f * x - 13.019f;
 		return (float) Math.pow(10, y / 10);
 	}
 
 	private static float convertRssi(LsbBitInputStream dis) throws IOException {
-		float x = LookupTables.lookup("HUSKYSAT_IHUVBATT", dis.readBitsAsInt(12));
+		float x = LookupTables.lookup(HUSKYSAT_IHUVBATT, dis.readBitsAsInt(12));
 		x = x / 2;
-		float y = 46.566f * x - 135.54f;
-		return y;
+		return 46.566f * x - 135.54f;
 	}
 
 	private static float convertAntennaTemperature(LsbBitInputStream dis) throws IOException {
-		double V = (3.3 / 1023) * 1000 * dis.readBitsAsInt(12);
-		return LookupTables.lookup("HUSKYSAT_ISISANTTEMP", (int) V);
+		double v = (3.3 / 1023) * 1000 * dis.readBitsAsInt(12);
+		return LookupTables.lookup("HUSKYSAT_ISISANTTEMP", (int) v);
 	}
 
 	private static float convertSpin(LsbBitInputStream dis) throws IOException {
@@ -425,7 +425,7 @@ public class PayloadData {
 	}
 
 	private static float convertLtVga(LsbBitInputStream dis) throws IOException {
-		float volts = LookupTables.lookup("HUSKYSAT_IHUVBATT", dis.readBitsAsInt(12));
+		float volts = LookupTables.lookup(HUSKYSAT_IHUVBATT, dis.readBitsAsInt(12));
 		volts = volts / 2;
 		return volts;
 	}
