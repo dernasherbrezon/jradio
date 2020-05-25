@@ -290,6 +290,11 @@ Using the blocks above, it is possible to decode the following satellites:
 			<td>45119</td>
 			<td><a href="https://github.com/dernasherbrezon/jradio/blob/master/src/test/java/ru/r2cloud/jradio/huskysat1/Huskysat1Test.java">Huskysat1Test</a></td>
 		</tr>	
+		<tr>
+			<td>Painani-1</td>
+			<td>44365</td>
+			<td>Use Ax25G3ruhBeaconSource with FskDemodulator 9600</td>
+		</tr>
 	</tbody>
 </table>
   

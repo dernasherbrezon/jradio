@@ -1,0 +1,27 @@
+{
+  "header": {
+    "destinationAddress": {
+      "callsign": "EARTH",
+      "ssid": 0
+    },
+    "sourceAddress": {
+      "callsign": "SPACE",
+      "ssid": 0
+    },
+    "frameType": "U",
+    "sendSequenceNumber": 0,
+    "receiveSequenceNumber": 0,
+    "uControlType": "UI",
+    "pid": 240
+  },
+  "shortTelemetry": {
+    "internalTemperature": -2,
+    "paTemperature": -2,
+    "current3V3": 0.06189,
+    "voltage3V3": 3.3960001,
+    "current5V": 0.0,
+    "voltage5V": 5.168
+  },
+  "beginSample": 0,
+  "beginMillis": 0
+}

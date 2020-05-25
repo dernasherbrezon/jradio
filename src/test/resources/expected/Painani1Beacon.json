@@ -1,0 +1,47 @@
+{
+  "header": {
+    "destinationAddress": {
+      "callsign": "EARTH",
+      "ssid": 0
+    },
+    "sourceAddress": {
+      "callsign": "SPACE",
+      "ssid": 0
+    },
+    "frameType": "U",
+    "sendSequenceNumber": 0,
+    "receiveSequenceNumber": 0,
+    "uControlType": "UI",
+    "pid": 240
+  },
+  "telemetry": {
+    "length": 53,
+    "antenna": 132,
+    "temperaturePanel1": 0,
+    "temperaturePanel2": 0,
+    "temperaturePanel3": 0,
+    "temperatureBank1": 0,
+    "temperatureBank2": 0,
+    "chargeBank1": 10876,
+    "chargeBank2": 0,
+    "gyroX": 205,
+    "gyroY": -13,
+    "gyroZ": 7,
+    "state": 1,
+    "reboots": 135,
+    "rtc": 17565755431,
+    "voltageBank1": 4063,
+    "voltageBank2": 0,
+    "currentBank1": -44,
+    "currentBank2": 0,
+    "gps": 0,
+    "voltage3V3": 3261,
+    "batteryVoltage": 3908,
+    "lnaVoltage": 155,
+    "voltage5V": 4969,
+    "voltageGps": 1190,
+    "cameraVoltage": 3934
+  },
+  "beginSample": 0,
+  "beginMillis": 0
+}
