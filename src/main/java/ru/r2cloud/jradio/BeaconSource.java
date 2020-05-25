@@ -1,6 +1,7 @@
 package ru.r2cloud.jradio;
 
 import java.io.Closeable;
+import java.io.EOFException;
 import java.io.IOException;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
@@ -35,7 +36,11 @@ public abstract class BeaconSource<T> implements Iterator<T>, Closeable {
 				if (raw == null || raw.length == 0) {
 					continue;
 				}
+			} catch (EOFException e) {
+				current = null;
+				return false;
 			} catch (IOException e) {
+				LOG.error("unable to read input", e);
 				current = null;
 				return false;
 			}
@@ -70,6 +75,7 @@ public abstract class BeaconSource<T> implements Iterator<T>, Closeable {
 			current = beacon;
 			return true;
 		}
+		LOG.info("thread interrupted. stopping...");
 		return false;
 	}
 
