@@ -13,8 +13,8 @@ public class WodCanTelemetry {
 
 	private boolean overflow;
 	private byte[] data;
-	private int WODTimestampReset;
-	private int WODTimestampUptime;
+	private int wodTimestampReset;
+	private int wodTimestampUptime;
 	private boolean crcError;
 
 	public WodCanTelemetry() {
@@ -32,8 +32,8 @@ public class WodCanTelemetry {
 		overflow = dis.readBit();
 		data = new byte[71];
 		dis.readFully(data);
-		WODTimestampReset = dis.readBitsAsInt(16);
-		WODTimestampUptime = dis.readBitsAsInt(25);
+		wodTimestampReset = dis.readBitsAsInt(16);
+		wodTimestampUptime = dis.readBitsAsInt(25);
 		crcError = dis.readBit();
 		dis.readBitsAsInt(6);
 	}
@@ -86,20 +86,20 @@ public class WodCanTelemetry {
 		this.data = data;
 	}
 
-	public int getWODTimestampReset() {
-		return WODTimestampReset;
+	public int getWodTimestampReset() {
+		return wodTimestampReset;
 	}
 
-	public void setWODTimestampReset(int wODTimestampReset) {
-		WODTimestampReset = wODTimestampReset;
+	public void setWodTimestampReset(int wodTimestampReset) {
+		this.wodTimestampReset = wodTimestampReset;
 	}
 
-	public int getWODTimestampUptime() {
-		return WODTimestampUptime;
+	public int getWodTimestampUptime() {
+		return wodTimestampUptime;
 	}
 
-	public void setWODTimestampUptime(int wODTimestampUptime) {
-		WODTimestampUptime = wODTimestampUptime;
+	public void setWodTimestampUptime(int wodTimestampUptime) {
+		this.wodTimestampUptime = wodTimestampUptime;
 	}
 
 	public boolean isCrcError() {

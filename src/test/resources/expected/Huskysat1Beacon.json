@@ -90,8 +90,8 @@
         -91,
         -91
       ],
-      "WODTimestampReset": 0,
-      "WODTimestampUptime": 1024921,
+      "wodTimestampReset": 0,
+      "wodTimestampUptime": 1024921,
       "crcError": false
     },
     {
@@ -173,8 +173,8 @@
         -91,
         -91
       ],
-      "WODTimestampReset": 0,
-      "WODTimestampUptime": 1024985,
+      "wodTimestampReset": 0,
+      "wodTimestampUptime": 1024985,
       "crcError": false
     },
     {
@@ -256,8 +256,8 @@
         -91,
         -91
       ],
-      "WODTimestampReset": 0,
-      "WODTimestampUptime": 1025049,
+      "wodTimestampReset": 0,
+      "wodTimestampUptime": 1025049,
       "crcError": false
     }
   ],
