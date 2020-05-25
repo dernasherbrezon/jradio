@@ -393,19 +393,19 @@ public class PayloadData {
 	}
 
 	private static float convertSpin(LsbBitInputStream dis) throws IOException {
-		float spin = dis.readBitsAsInt(16) - 32768; // signed 16 bit with 32768 added by IHU
+		float spin = (float) dis.readBitsAsInt(16) - 32768; // signed 16 bit with 32768 added by IHU
 		spin = spin / 131.0f; // 131 per dps
 		return spin;
 	}
 
 	private static float convertAccelerator(LsbBitInputStream dis) throws IOException {
-		float acc = dis.readBitsAsInt(16) - 32768; // signed 16 bit with 32768 added by IHU
+		float acc = (float) dis.readBitsAsInt(16) - 32768; // signed 16 bit with 32768 added by IHU
 		acc = acc / 16384.0f; // 16384 per g. If we want this in m/s * 9.80665
 		return acc;
 	}
 
 	private static float convertMagnetometer(LsbBitInputStream dis) throws IOException {
-		float mag = dis.readBitsAsInt(16) - 32768; // signed 16 bit with 32768 added by IHU
+		float mag = (float) dis.readBitsAsInt(16) - 32768; // signed 16 bit with 32768 added by IHU
 		mag = mag * 0.6f; // 0.6 micro Tesla per count value
 		return mag;
 	}
@@ -414,7 +414,7 @@ public class PayloadData {
 		float x = dis.readBitsAsInt(12) * 1000 * VOLTAGE_STEP_FOR_2V5_SENSORS / 0.758f; // where 0.758 is the voltage divider
 		float y = 0.1727f * x - 34.583f;
 		float result = (float) Math.pow(10, y / 10);
-		if( !Float.isFinite(result) ) {
+		if (!Float.isFinite(result)) {
 			return null;
 		}
 		return result;
