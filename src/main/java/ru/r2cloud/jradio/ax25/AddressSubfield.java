@@ -9,6 +9,10 @@ public class AddressSubfield {
 	private String callsign;
 	private int ssid;
 
+	public AddressSubfield() {
+		// do nothing
+	}
+
 	public AddressSubfield(DataInputStream dis) throws IOException {
 		byte[] callsignData = new byte[6];
 		dis.readFully(callsignData);
