@@ -1,0 +1,58 @@
+{
+  "header": {
+    "destinationAddress": {
+      "callsign": "WI2XVT",
+      "ssid": 0
+    },
+    "sourceAddress": {
+      "callsign": "WI2XVT",
+      "ssid": 0
+    },
+    "frameType": "I",
+    "sendSequenceNumber": 0,
+    "receiveSequenceNumber": 0,
+    "pid": 146
+  },
+  "relay": {
+    "callsign": "2XVT0",
+    "ssid": 8
+  },
+  "spacecraftTelemetry": {
+    "messageNumber": 33425,
+    "time": 1590302809,
+    "mode": "IDLE",
+    "idleTimer": 20397,
+    "vbatVoltage": 8.69085,
+    "solarPanelCurrentXPlus": 0.0427,
+    "solarPanelCurrentXMinus": 0.001708,
+    "solarPanelCurrentYPlus": 0.031719998,
+    "solarPanelCurrentZPlus": 0.14981599,
+    "solarPanelCurrentZMinus": 0.023667999,
+    "stensatBoardTemperature": 5.1700134,
+    "epsBoardTemperature": 12.52002,
+    "nexusSBoardTemperature": 11.540009,
+    "acsBoardTemperature": 15.950012,
+    "routerBoardTemperature": 16.440002,
+    "lithiumBoardTemperature": 0.76000977,
+    "solarPanelTempXPlus": 248.5,
+    "solarPanelTempXMinus": 18.25,
+    "solarPanelTempYPlus": 19.0,
+    "solarPanelTempZPlus": 2.75,
+    "solarPanelTempZMinus": 38.25,
+    "batteryVoltage": 8.35884,
+    "watchdogCurrent": 0.021000002,
+    "spacecraftCurrent": 0.2445,
+    "sensorInterfaceCurrent": 0.040250003,
+    "gpsArduinoCurrent": 0.0,
+    "gpsNovatelCurrent": -1.0,
+    "stensatCurrent": 0.048068,
+    "acsCurrent": 0.0,
+    "routerCurrent": 0.08424,
+    "lithiumCurrent": 0.082499996,
+    "magX": 3620.0,
+    "magY": 1689.0,
+    "magZ": 1746.0
+  },
+  "beginSample": 0,
+  "beginMillis": 0
+}

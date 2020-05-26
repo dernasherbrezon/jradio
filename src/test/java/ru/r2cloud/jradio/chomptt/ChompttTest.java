@@ -17,6 +17,7 @@ public class ChompttTest {
 	public void testSuccess() throws Exception {
 		float gainMu = 0.175f * 3;
 		WavFileSource source = new WavFileSource(ChompttTest.class.getClassLoader().getResourceAsStream("chomptt.wav"));
+		// deviation = 1000 works better
 		AfskDemodulator demod = new AfskDemodulator(source, 1200, 500, 1700, gainMu);
 		input = new Chomptt(demod);
 		assertTrue(input.hasNext());

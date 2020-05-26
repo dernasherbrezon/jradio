@@ -40,10 +40,11 @@ public class ChompttBeacon extends Beacon {
 			dis = new DataInputStream(new ByteArrayInputStream(Ascii85.decode(encodedBytes)));
 			LittleEndianDataInputStream ldis = new LittleEndianDataInputStream(dis);
 			payloadTelemetry = new PayloadTelemetry(ldis);
-		} else if (raw.startsWith(CHOMPTT_PREFIX)) {
+		} else if (raw.startsWith("CHOMPT")) { // found CHOMPT\<~ in the real telemetry. checking both
 			String encodedBytes = raw.substring(CHOMPTT_PREFIX.length(), raw.length() - 2);
 			dis = new DataInputStream(new ByteArrayInputStream(Ascii85.decode(encodedBytes)));
-			spacecraftTelemetry = new SpacecraftTelemetry(dis);
+			LittleEndianDataInputStream ldis = new LittleEndianDataInputStream(dis);
+			spacecraftTelemetry = new SpacecraftTelemetry(ldis);
 		} else {
 			throw new UncorrectableException("unknown beacon: " + raw);
 		}
