@@ -12,7 +12,7 @@ import ru.r2cloud.jradio.fec.ccsds.UncorrectableException;
 public class HighSpeedFox<T extends Beacon> extends BeaconSource<T> {
 
 	public static final int HIGH_SPEED_FRAME_SIZE = 5272;
-	private static final int INTERLEAVING = 21;
+	private static final int DEFAULT_INTERLEAVING = 21;
 	private static final int PAYLOAD_SIZE = 4600;
 	private static final int MAX_ERASURES = 15;
 	private static final int[] RS_PADDING = { 3, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4 };
@@ -27,7 +27,7 @@ public class HighSpeedFox<T extends Beacon> extends BeaconSource<T> {
 	private final int payloadSize;
 
 	public HighSpeedFox(MessageInput input, Class<T> clazz) {
-		this(input, clazz, RS_PADDING, INTERLEAVING, PAYLOAD_SIZE);
+		this(input, clazz, RS_PADDING, DEFAULT_INTERLEAVING, PAYLOAD_SIZE);
 	}
 
 	public HighSpeedFox(MessageInput input, Class<T> clazz, int[] padding, int interleaving, int payloadSize) {
@@ -55,7 +55,7 @@ public class HighSpeedFox<T extends Beacon> extends BeaconSource<T> {
 		for (int i = 0; i < raw.length / 10; i++) {
 			int cur = 0;
 			for (int j = 0; j < 10; j++) {
-				cur += ((raw[i * 10 + j] << (10 - j - 1)));
+				cur += (raw[i * 10 + j] << (10 - j - 1));
 			}
 			byte curByte = -1;
 			try {
