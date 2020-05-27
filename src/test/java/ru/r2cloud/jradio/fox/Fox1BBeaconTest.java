@@ -1,7 +1,10 @@
 package ru.r2cloud.jradio.fox;
 
+import static pl.pojo.tester.api.assertion.Assertions.assertPojoMethodsFor;
+
 import org.junit.Test;
 
+import pl.pojo.tester.api.assertion.Method;
 import ru.r2cloud.jradio.AssertJson;
 import ru.r2cloud.jradio.fec.ViterbiTest;
 
@@ -39,4 +42,9 @@ public class Fox1BBeaconTest {
 		AssertJson.assertObjectsEqual("Fox1BBeaconMinValues.json", result);
 	}
 
+	@Test
+	public void testPojo() {
+		assertPojoMethodsFor(Fox1BBeacon.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
+		assertPojoMethodsFor(FoxHeader.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
+	}
 }
