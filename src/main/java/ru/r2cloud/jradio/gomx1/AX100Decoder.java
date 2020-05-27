@@ -46,7 +46,7 @@ public class AX100Decoder implements MessageInput {
 		throw new EOFException();
 	}
 
-	public byte[] decode(byte[] raw) throws IOException, UncorrectableException {
+	public byte[] decode(byte[] raw) throws UncorrectableException {
 		byte[] hardDecisionGolay = UnpackedToPacked.packSoft(raw, 0, 3);
 		int lengthField = ((hardDecisionGolay[0] & 0xFF) << 16) | ((hardDecisionGolay[1] & 0xFF) << 8) | (hardDecisionGolay[2] & 0xFF);
 		lengthField = golay.decode(lengthField);
@@ -59,7 +59,7 @@ public class AX100Decoder implements MessageInput {
 		}
 		// raw is a soft decision
 		if ((frameLength + 3) * 8 > raw.length) {
-			throw new IOException("not enough data: " + raw.length + " expected: " + frameLength);
+			throw new UncorrectableException("not enough data: " + raw.length + " expected: " + frameLength);
 		}
 		int minFrameLength = 0;
 		if (rsFlag > 0 || forceReedSolomon) {
