@@ -3,6 +3,9 @@ package ru.r2cloud.jradio.fox;
 import java.io.IOException;
 import java.util.Arrays;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import ru.r2cloud.jradio.Beacon;
 import ru.r2cloud.jradio.BeaconSource;
 import ru.r2cloud.jradio.MessageInput;
@@ -10,6 +13,8 @@ import ru.r2cloud.jradio.fec.ccsds.ReedSolomon;
 import ru.r2cloud.jradio.fec.ccsds.UncorrectableException;
 
 public class HighSpeedFox<T extends Beacon> extends BeaconSource<T> {
+
+	private static final Logger LOG = LoggerFactory.getLogger(HighSpeedFox.class);
 
 	public static final int HIGH_SPEED_FRAME_SIZE = 5272;
 	private static final int DEFAULT_INTERLEAVING = 21;
@@ -113,8 +118,12 @@ public class HighSpeedFox<T extends Beacon> extends BeaconSource<T> {
 		T result;
 		try {
 			result = clazz.newInstance();
-		} catch (Exception e) {
-			throw new IOException(e);
+		} catch (InstantiationException e) {
+			LOG.error("unable to init beacon", e);
+			return null;
+		} catch (IllegalAccessException e) {
+			LOG.error("unable to read beacon", e);
+			return null;
 		}
 		result.readExternal(payload);
 		return result;

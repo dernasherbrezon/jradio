@@ -2,6 +2,9 @@ package ru.r2cloud.jradio.fox;
 
 import java.io.IOException;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import ru.r2cloud.jradio.Beacon;
 import ru.r2cloud.jradio.BeaconSource;
 import ru.r2cloud.jradio.MessageInput;
@@ -9,6 +12,8 @@ import ru.r2cloud.jradio.fec.ccsds.ReedSolomon;
 import ru.r2cloud.jradio.fec.ccsds.UncorrectableException;
 
 public class Fox<T extends Beacon> extends BeaconSource<T> {
+
+	private static final Logger LOG = LoggerFactory.getLogger(Fox.class);
 
 	public static final int SLOW_FRAME_SIZE = 96;
 	private final Class<T> clazz;
@@ -26,8 +31,12 @@ public class Fox<T extends Beacon> extends BeaconSource<T> {
 		T result;
 		try {
 			result = clazz.newInstance();
-		} catch (Exception e) {
-			throw new IOException(e);
+		} catch (InstantiationException e) {
+			LOG.error("unable to init beacon", e);
+			return null;
+		} catch (IllegalAccessException e) {
+			LOG.error("unable to read beacon", e);
+			return null;
 		}
 		result.readExternal(message);
 		return result;

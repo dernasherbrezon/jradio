@@ -2,6 +2,9 @@ package ru.r2cloud.jradio;
 
 import java.io.IOException;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import ru.r2cloud.jradio.blocks.Descrambler;
 import ru.r2cloud.jradio.blocks.HdlcReceiver;
 import ru.r2cloud.jradio.blocks.NrziDecode;
@@ -9,6 +12,8 @@ import ru.r2cloud.jradio.blocks.SoftToHard;
 import ru.r2cloud.jradio.fec.ccsds.UncorrectableException;
 
 public class Ax25G3ruhBeaconSource<T extends Beacon> extends BeaconSource<T> {
+
+	private static final Logger LOG = LoggerFactory.getLogger(Ax25G3ruhBeaconSource.class);
 
 	private final Class<T> clazz;
 
@@ -19,13 +24,18 @@ public class Ax25G3ruhBeaconSource<T extends Beacon> extends BeaconSource<T> {
 
 	@Override
 	protected T parseBeacon(byte[] raw) throws UncorrectableException, IOException {
+		T result;
 		try {
-			T result = clazz.newInstance();
-			result.readExternal(raw);
-			return result;
-		} catch (Exception e) {
-			throw new RuntimeException(e);
+			result = clazz.newInstance();
+		} catch (InstantiationException e) {
+			LOG.error("unable to init beacon", e);
+			return null;
+		} catch (IllegalAccessException e) {
+			LOG.error("unable to read beacon", e);
+			return null;
 		}
+		result.readExternal(raw);
+		return result;
 	}
 
 }
