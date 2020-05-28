@@ -41,11 +41,20 @@ public class HdlcReceiverTest {
 		assertNotNull(result);
 		assertByteArrayEquals(data, result);
 	}
+	
+	@Test
+	public void testIgnoreFailedCrc() throws Exception {
+		int[] data = new int[] { 0xF1, 0xA7 };
+		hdlc = new HdlcReceiver(new ArrayByteInput(createMessage(randomBytes(2), FLAG, randomBytes(4), FLAG, packedToUnpacked(createMessage(data, calculateCrc(data))), FLAG, randomBytes(5))), 2);
+		byte[] result = hdlc.readBytes();
+		assertNotNull(result);
+		assertByteArrayEquals(data, result);
+	}
 
 	@Test
 	public void testIgnoreOutOfBoundsPackets() throws Exception {
 		int[] data = new int[] { 0xF1, 0xA7 };
-		hdlc = new HdlcReceiver(new ArrayByteInput(createMessage(randomBytes(2), FLAG, randomBytes(10), FLAG, randomBytes(5), FLAG, packedToUnpacked(createMessage(data, calculateCrc(data))), FLAG, randomBytes(2))), 5);
+		hdlc = new HdlcReceiver(new ArrayByteInput(createMessage(randomBytes(2), FLAG, randomBytes(6), FLAG, randomBytes(5), FLAG, packedToUnpacked(createMessage(data, calculateCrc(data))), FLAG, randomBytes(2))), 5);
 		byte[] result = hdlc.readBytes();
 		assertNotNull(result);
 		assertByteArrayEquals(data, result);
@@ -144,6 +153,7 @@ public class HdlcReceiverTest {
 	}
 
 	private static int[] randomBytes(int length) {
+		length = length * 8;
 		int[] result = new int[length];
 		Random r = new Random();
 		int ones = 0;
