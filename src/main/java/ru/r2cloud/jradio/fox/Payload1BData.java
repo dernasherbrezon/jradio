@@ -6,10 +6,10 @@ import ru.r2cloud.jradio.util.LsbBitInputStream;
 
 public class Payload1BData {
 
-	private static final String _MEMSREST = "_MEMSREST";
+	private static final String MEMSREST = "_MEMSREST";
 	private static final String TEMPERATURE = "TEMPERATURE";
 	private static final String BATTERY_TEMP = "BATTERY_TEMP";
-	private static final String _IHUVBATT = "_IHUVBATT";
+	private static final String IHUVBATT = "_IHUVBATT";
 	private static final float BATTERY_CURRENT_MIN = 0.05f; // The minimum voltage that the current sensor can measure across the sense resistor
 	private static final float VOLTAGE_STEP_FOR_2V5_SENSORS = 2.5f / 4096; // 0.0006103515625; // Multiply DAC by this to get value in Volts
 	private static final float MPPT_SOLAR_PANEL_SCALING_FACTOR = 6.54f / 2.42f; // per Burns, then multiply. Note that Bryce gave: 0.37069; // 30.1/(30.1+51.1). Multiply the solar panel reading by the 2V5 Sensor step and then divide by this factor
@@ -71,7 +71,7 @@ public class Payload1BData {
 		batteryAVolt = dis.readBitsAsInt(12) * VOLTAGE_STEP_FOR_2V5_SENSORS;
 		batteryBVolt = dis.readBitsAsInt(12) * VOLTAGE_STEP_FOR_2V5_SENSORS / 0.76f;
 		if (useIHUVBatt) {
-			batteryCVolt = LookupTables.lookup(lookupTablePrefix + _IHUVBATT, dis.readBitsAsInt(12));
+			batteryCVolt = LookupTables.lookup(lookupTablePrefix + IHUVBATT, dis.readBitsAsInt(12));
 		} else {
 			batteryCVolt = dis.readBitsAsInt(12) * VOLTAGE_STEP_FOR_2V5_SENSORS / BATTERY_C_SCALING_FACTOR;
 		}
@@ -111,9 +111,9 @@ public class Payload1BData {
 		rssi = LookupTables.lookup(lookupTablePrefix + "_RSSI", dis.readBitsAsInt(12));
 		ihuTemperature = LookupTables.lookup(lookupTablePrefix + "_IHUTEMP", dis.readBitsAsInt(12));
 
-		xAngularVelocity = calcMemsValue(lookupTablePrefix, dis.readBitsAsInt(12), (int) LookupTables.lookup(lookupTablePrefix + _MEMSREST, 1));
-		yAngularVelocity = calcMemsValue(lookupTablePrefix, dis.readBitsAsInt(12), (int) LookupTables.lookup(lookupTablePrefix + _MEMSREST, 2));
-		zAngularVelocity = calcMemsValue(lookupTablePrefix, dis.readBitsAsInt(12), (int) LookupTables.lookup(lookupTablePrefix + _MEMSREST, 3));
+		xAngularVelocity = calcMemsValue(lookupTablePrefix, dis.readBitsAsInt(12), (int) LookupTables.lookup(lookupTablePrefix + MEMSREST, 1));
+		yAngularVelocity = calcMemsValue(lookupTablePrefix, dis.readBitsAsInt(12), (int) LookupTables.lookup(lookupTablePrefix + MEMSREST, 2));
+		zAngularVelocity = calcMemsValue(lookupTablePrefix, dis.readBitsAsInt(12), (int) LookupTables.lookup(lookupTablePrefix + MEMSREST, 3));
 
 		exp4Temperature = LookupTables.lookup(TEMPERATURE, dis.readBitsAsInt(12));
 		psuCurrent = dis.readBitsAsInt(12) * VOLTAGE_STEP_FOR_2V5_SENSORS/MPPT_CURRENT_SCALING_FACTOR *1000;
@@ -133,8 +133,8 @@ public class Payload1BData {
 	}
 
 	public static float calcMemsValue(String lookupTablePrefix, int value, int restValue) {
-		float volts = LookupTables.lookup(lookupTablePrefix + _IHUVBATT, value) / 2;
-		float memsZeroValue = LookupTables.lookup(lookupTablePrefix + _IHUVBATT, restValue);
+		float volts = LookupTables.lookup(lookupTablePrefix + IHUVBATT, value) / 2;
+		float memsZeroValue = LookupTables.lookup(lookupTablePrefix + IHUVBATT, restValue);
 		memsZeroValue = memsZeroValue / 2;
 		return (volts - memsZeroValue) / MEMS_VOLT_PER_DPS;
 	}
