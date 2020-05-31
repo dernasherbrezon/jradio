@@ -355,27 +355,27 @@ public class Payload1BData {
 		this.ihuTemperature = ihuTemperature;
 	}
 
-	public float getxAngularVelocity() {
+	public float getXAngularVelocity() {
 		return xAngularVelocity;
 	}
 
-	public void setxAngularVelocity(float xAngularVelocity) {
+	public void setXAngularVelocity(float xAngularVelocity) {
 		this.xAngularVelocity = xAngularVelocity;
 	}
 
-	public float getyAngularVelocity() {
+	public float getYAngularVelocity() {
 		return yAngularVelocity;
 	}
 
-	public void setyAngularVelocity(float yAngularVelocity) {
+	public void setYAngularVelocity(float yAngularVelocity) {
 		this.yAngularVelocity = yAngularVelocity;
 	}
 
-	public float getzAngularVelocity() {
+	public float getZAngularVelocity() {
 		return zAngularVelocity;
 	}
 
-	public void setzAngularVelocity(float zAngularVelocity) {
+	public void setZAngularVelocity(float zAngularVelocity) {
 		this.zAngularVelocity = zAngularVelocity;
 	}
 

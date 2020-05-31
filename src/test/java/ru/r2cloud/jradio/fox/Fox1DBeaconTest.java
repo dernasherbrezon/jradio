@@ -54,6 +54,7 @@ public class Fox1DBeaconTest {
 	public void testPojo() {
 		assertPojoMethodsFor(Fox1DBeacon.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
 		assertPojoMethodsFor(FoxHeader.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
+		assertPojoMethodsFor(Payload1BData.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
 		assertPojoMethodsFor(Payload1BRealtime.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
 		assertPojoMethodsFor(Payload1BMaxValues.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
 		assertPojoMethodsFor(Payload1BMinValues.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
