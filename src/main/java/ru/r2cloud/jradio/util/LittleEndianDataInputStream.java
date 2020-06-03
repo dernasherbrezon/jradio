@@ -18,6 +18,10 @@ public class LittleEndianDataInputStream implements DataInput {
 		return dis.read(b);
 	}
 
+	public int read() throws IOException {
+		return dis.read();
+	}
+
 	@Override
 	public final int readUnsignedByte() throws IOException {
 		return dis.readUnsignedByte();
