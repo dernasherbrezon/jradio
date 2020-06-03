@@ -61,5 +61,8 @@ public class Fox1DBeaconTest {
 		assertPojoMethodsFor(PayloadRadExpData.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
 		assertPojoMethodsFor(PictureScanLine.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
 		assertPojoMethodsFor(HerciPayload.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
+		assertPojoMethodsFor(IhuDiagnostic.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
+		assertPojoMethodsFor(IhuHardError.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
+		assertPojoMethodsFor(IhuSoftError.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
 	}
 }
