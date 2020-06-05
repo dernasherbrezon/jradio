@@ -1,7 +1,10 @@
 package ru.r2cloud.jradio.uwe4;
 
+import static pl.pojo.tester.api.assertion.Assertions.assertPojoMethodsFor;
+
 import org.junit.Test;
 
+import pl.pojo.tester.api.assertion.Method;
 import ru.r2cloud.jradio.AssertJson;
 import ru.r2cloud.jradio.fec.ViterbiTest;
 
@@ -21,5 +24,11 @@ public class Uwe4BeaconTest {
 		Uwe4Beacon result = new Uwe4Beacon();
 		result.readBeacon(data);
 		AssertJson.assertObjectsEqual("Uwe4BeaconUnknown.json", result);
+	}
+	
+	@Test
+	public void testPojo() {
+		assertPojoMethodsFor(Uwe4Beacon.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
+		assertPojoMethodsFor(Telemetry.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
 	}
 }
