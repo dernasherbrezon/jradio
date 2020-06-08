@@ -1,7 +1,7 @@
 package ru.r2cloud.jradio.fec;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotEquals;
 
 import org.junit.Test;
 
@@ -39,7 +39,7 @@ public class GolayTest {
 	@Test
 	public void testDetect7() throws UncorrectableException {
 		int result = g.decode(0b1000_0101_1011_1010_1001_1101);
-		assertFalse(0b1000_0101_1011_0101_0101_0101 == result);
+		assertNotEquals(0b1000_0101_1011_0101_0101_0101, result);
 	}
 
 }
