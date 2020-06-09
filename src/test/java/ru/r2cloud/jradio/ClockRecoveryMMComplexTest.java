@@ -9,8 +9,7 @@ import ru.r2cloud.jradio.source.InputStreamSource;
 public class ClockRecoveryMMComplexTest {
 
 	@Test
-	// ignore since rounding error for d_mu accumulates
-	@Ignore
+	@Ignore("rounding error for d_mu accumulates")
 	public void testLRPT() throws Exception {
 		// float omega = (float) ((222222 * 1.0) / (72000 * 1.0));
 		float omega = 3.08642f;
