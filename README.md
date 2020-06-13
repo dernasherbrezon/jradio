@@ -299,7 +299,12 @@ Using the blocks above, it is possible to decode the following satellites:
 			<td>CHOMPTT</td>
 			<td>43855</td>
 			<td><a href="https://github.com/dernasherbrezon/jradio/blob/master/src/test/java/ru/r2cloud/jradio/chomptt/ChompttTest.java">ChompttTest</a></td>
-		</tr>		
+		</tr>
+		<tr>
+			<td>PolyItan1</td>
+			<td>40042</td>
+			<td>Use Ax25G3ruhBeaconSource with FskDemodulator 9600</td>
+		</tr>
 	</tbody>
 </table>
   

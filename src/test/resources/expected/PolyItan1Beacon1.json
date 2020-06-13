@@ -1,0 +1,53 @@
+{
+  "header": {
+    "destinationAddress": {
+      "callsign": "QST",
+      "ssid": 0
+    },
+    "sourceAddress": {
+      "callsign": "EM0UKP",
+      "ssid": 0
+    },
+    "frameType": "U",
+    "sendSequenceNumber": 0,
+    "receiveSequenceNumber": 0,
+    "uControlType": "UI",
+    "pid": 240
+  },
+  "beacon1": {
+    "deviceErrors": 0,
+    "ss256": 169,
+    "rtcSeconds": 1591481502,
+    "satMode": 2,
+    "submode": 0,
+    "magtlX": 0,
+    "magtlY": 0,
+    "magtlZ": 0,
+    "gyroX": 0,
+    "gyroY": 0,
+    "gyroZ": 0,
+    "muxi3v3": 2.2,
+    "muxi5v0": 0.90000004,
+    "ads1248Tmp": 0.0,
+    "arege": 32,
+    "antennaStatus": 0,
+    "charge": 384.1,
+    "chargeCalculated": 4257452069,
+    "eab1": -26902,
+    "eab2": -14296,
+    "eab3": 3317,
+    "vAcb": -51,
+    "cab1": -47,
+    "cab2": -36,
+    "cab3": 129,
+    "cFromSbAll": 71,
+    "cLoadAll": 1095,
+    "temperatureAb2": 0.0,
+    "temperatureAb3": 0.0,
+    "pSbx": 1162,
+    "pSby": 995,
+    "pSbz": 4136
+  },
+  "beginSample": 0,
+  "beginMillis": 0
+}

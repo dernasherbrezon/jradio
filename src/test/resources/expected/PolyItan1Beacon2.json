@@ -1,0 +1,28 @@
+{
+  "header": {
+    "destinationAddress": {
+      "callsign": "QST",
+      "ssid": 0
+    },
+    "sourceAddress": {
+      "callsign": "EM0UKP",
+      "ssid": 0
+    },
+    "frameType": "U",
+    "sendSequenceNumber": 0,
+    "receiveSequenceNumber": 0,
+    "uControlType": "UI",
+    "pid": 240
+  },
+  "beacon2": {
+    "deviceStatus": 3,
+    "rtcSeconds": 1591481510,
+    "temperature2": 26.6,
+    "temperature1": 32.9,
+    "u3v3Digi": 3297,
+    "u3v3Rf": 3211,
+    "u3v3RfAmp": 3297
+  },
+  "beginSample": 0,
+  "beginMillis": 0
+}
