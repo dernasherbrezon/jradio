@@ -1,0 +1,64 @@
+{
+  "header": {
+    "destinationAddress": {
+      "callsign": "CQ",
+      "ssid": 0
+    },
+    "sourceAddress": {
+      "callsign": "II0US",
+      "ssid": 0
+    },
+    "frameType": "U",
+    "sendSequenceNumber": 0,
+    "receiveSequenceNumber": 0,
+    "uControlType": "UI",
+    "pid": 240
+  },
+  "packetIndex": 13617,
+  "groundIndexAck": 47257,
+  "packetType": 1,
+  "beacon2": {
+    "payloadSize": 56,
+    "rebootCounter": 130,
+    "uptime": 96886028,
+    "unixTime": 1590820023,
+    "tempMcu": 12,
+    "tempFpga": 12,
+    "magnetometer": [
+      -76,
+      -60,
+      50
+    ],
+    "gyroscope": [
+      1765,
+      -2025,
+      -954
+    ],
+    "cpuCurrent": 251,
+    "tempRadio": 0,
+    "payloadReserved": [
+      28,
+      50
+    ],
+    "temperatureBottom": 55,
+    "temperatureUpperPart": 70,
+    "payloadReserved2": 111,
+    "eps": {
+      "vbat": 16013,
+      "currentSun": 38,
+      "currentOut": 13,
+      "vpanel01": 1048,
+      "vpanel02": 1015,
+      "vpanel03": 1097,
+      "current01": 0,
+      "current02": 278,
+      "current03": 682,
+      "batTemperature": 11
+    },
+    "payloadReserved3": 15,
+    "satelliteErrorFlags": 0,
+    "satelliteOperationStatus": 5
+  },
+  "beginSample": 0,
+  "beginMillis": 0
+}

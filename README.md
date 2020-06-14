@@ -305,6 +305,11 @@ Using the blocks above, it is possible to decode the following satellites:
 			<td>40042</td>
 			<td>Use Ax25G3ruhBeaconSource with FskDemodulator 9600</td>
 		</tr>
+		<tr>
+			<td>Unisat6</td>
+			<td>40012</td>
+			<td>Use Ax25G3ruhBeaconSource with FskDemodulator 9600</td>
+		</tr>		
 	</tbody>
 </table>
   

@@ -163,4 +163,12 @@ public class LittleEndianDataInputStream implements DataInput {
 		}
 		return result;
 	}
+
+	public int[] readUnsignedByte(int size) throws IOException {
+		int[] result = new int[size];
+		for (int i = 0; i < result.length; i++) {
+			result[i] = readUnsignedByte();
+		}
+		return result;
+	}
 }
