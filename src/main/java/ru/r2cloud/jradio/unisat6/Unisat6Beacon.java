@@ -1,21 +1,18 @@
 package ru.r2cloud.jradio.unisat6;
 
-import java.io.ByteArrayInputStream;
 import java.io.DataInputStream;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 
-import ru.r2cloud.jradio.Beacon;
-import ru.r2cloud.jradio.ax25.Header;
+import ru.r2cloud.jradio.ax25.Ax25Beacon;
 import ru.r2cloud.jradio.fec.ccsds.UncorrectableException;
 import ru.r2cloud.jradio.util.LittleEndianDataInputStream;
 
-public class Unisat6Beacon extends Beacon {
+public class Unisat6Beacon extends Ax25Beacon {
 
 	private static final byte[] SYN_PACKET = "US6".getBytes(StandardCharsets.ISO_8859_1);
 
-	private Header header;
 	private int packetIndex;
 	private int groundIndexAck; // ACK to ground commands
 	private int packetType;
@@ -23,9 +20,7 @@ public class Unisat6Beacon extends Beacon {
 	private byte[] unknownPayload;
 
 	@Override
-	public void readBeacon(byte[] data) throws IOException, UncorrectableException {
-		DataInputStream dis = new DataInputStream(new ByteArrayInputStream(data));
-		header = new Header(dis);
+	public void readBeacon(DataInputStream dis) throws IOException, UncorrectableException {
 		byte[] synPacket = new byte[3];
 		dis.readFully(synPacket);
 		if (!Arrays.equals(synPacket, SYN_PACKET)) {
@@ -41,14 +36,6 @@ public class Unisat6Beacon extends Beacon {
 			unknownPayload = new byte[dis.available()];
 			dis.readFully(unknownPayload);
 		}
-	}
-
-	public Header getHeader() {
-		return header;
-	}
-
-	public void setHeader(Header header) {
-		this.header = header;
 	}
 
 	public int getPacketIndex() {

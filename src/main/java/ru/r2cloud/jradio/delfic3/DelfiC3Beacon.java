@@ -1,17 +1,14 @@
 package ru.r2cloud.jradio.delfic3;
 
-import java.io.ByteArrayInputStream;
 import java.io.DataInputStream;
 import java.io.IOException;
 
-import ru.r2cloud.jradio.Beacon;
-import ru.r2cloud.jradio.ax25.Header;
+import ru.r2cloud.jradio.ax25.Ax25Beacon;
 import ru.r2cloud.jradio.fec.ccsds.UncorrectableException;
 import ru.r2cloud.jradio.util.LsbBitInputStream;
 
-public class DelfiC3Beacon extends Beacon {
+public class DelfiC3Beacon extends Ax25Beacon {
 
-	private Header header;
 	private int bootCounter;
 	private int sequenceCounter;
 	private Payload payload;
@@ -19,10 +16,7 @@ public class DelfiC3Beacon extends Beacon {
 	private String auxiliaryData;
 
 	@Override
-	public void readBeacon(byte[] data) throws IOException, UncorrectableException {
-		DataInputStream dis = new DataInputStream(new ByteArrayInputStream(data));
-		header = new Header(dis);
-
+	public void readBeacon(DataInputStream dis) throws IOException, UncorrectableException {
 		LsbBitInputStream bis = new LsbBitInputStream(dis);
 		bootCounter = bis.readBitsAsInt(12);
 		bis.readBitsAsInt(4);
@@ -42,14 +36,6 @@ public class DelfiC3Beacon extends Beacon {
 		default:
 			throw new UncorrectableException("unknown type: " + type);
 		}
-	}
-
-	public Header getHeader() {
-		return header;
-	}
-
-	public void setHeader(Header header) {
-		this.header = header;
 	}
 
 	public int getBootCounter() {
@@ -87,7 +73,7 @@ public class DelfiC3Beacon extends Beacon {
 	public String getAuxiliaryData() {
 		return auxiliaryData;
 	}
-	
+
 	public void setAuxiliaryData(String auxiliaryData) {
 		this.auxiliaryData = auxiliaryData;
 	}

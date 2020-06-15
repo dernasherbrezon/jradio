@@ -1,17 +1,13 @@
 package ru.r2cloud.jradio.uwe4;
 
-import java.io.ByteArrayInputStream;
 import java.io.DataInputStream;
 import java.io.IOException;
 
-import ru.r2cloud.jradio.Beacon;
-import ru.r2cloud.jradio.ax25.Header;
+import ru.r2cloud.jradio.ax25.Ax25Beacon;
 import ru.r2cloud.jradio.fec.ccsds.UncorrectableException;
 import ru.r2cloud.jradio.util.LittleEndianDataInputStream;
 
-public class Uwe4Beacon extends Beacon {
-
-	private Header header;
+public class Uwe4Beacon extends Ax25Beacon {
 
 	private boolean routeSet;
 	private boolean size1;
@@ -38,11 +34,9 @@ public class Uwe4Beacon extends Beacon {
 
 	private Telemetry telemetry;
 	private byte[] unknownPayload;
-
+	
 	@Override
-	public void readBeacon(byte[] data) throws IOException, UncorrectableException {
-		DataInputStream dis = new DataInputStream(new ByteArrayInputStream(data));
-		header = new Header(dis);
+	public void readBeacon(DataInputStream dis) throws IOException, UncorrectableException {
 		LittleEndianDataInputStream ldis = new LittleEndianDataInputStream(dis);
 		int raw = ldis.readUnsignedByte();
 		routeSet = ((raw >> 6) & 0x1) > 0;
@@ -77,14 +71,6 @@ public class Uwe4Beacon extends Beacon {
 			return;
 		}
 		telemetry = new Telemetry(ldis);
-	}
-
-	public Header getHeader() {
-		return header;
-	}
-
-	public void setHeader(Header header) {
-		this.header = header;
 	}
 
 	public boolean isRouteSet() {

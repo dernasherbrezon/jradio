@@ -1,30 +1,25 @@
 package ru.r2cloud.jradio.qarman;
 
-import java.io.ByteArrayInputStream;
 import java.io.DataInputStream;
 import java.io.IOException;
 
-import ru.r2cloud.jradio.Beacon;
-import ru.r2cloud.jradio.ax25.Header;
+import ru.r2cloud.jradio.ax25.Ax25Beacon;
 import ru.r2cloud.jradio.fec.ccsds.UncorrectableException;
 import ru.r2cloud.jradio.util.BitInputStream;
 
-public class QarmanBeacon extends Beacon {
+public class QarmanBeacon extends Ax25Beacon {
 
 	private static final int LONG_FRAME_SIZE = 74;
 	private static final int SHORT_FRAME_SIZE = 39;
 
-	private Header header;
 	private ShortFrame shortFrame;
 	private LongFrame longFrame;
 	private byte[] unknownPayload;
-
+	
 	@Override
-	public void readBeacon(byte[] data) throws IOException, UncorrectableException {
-		DataInputStream dis = new DataInputStream(new ByteArrayInputStream(data));
-		header = new Header(dis);
-		if (!header.getSourceAddress().getCallsign().equals("ON05BE")) {
-			throw new UncorrectableException("invalid source: " + header.getSourceAddress().getCallsign());
+	public void readBeacon(DataInputStream dis) throws IOException, UncorrectableException {
+		if (!getHeader().getSourceAddress().getCallsign().equals("ON05BE")) {
+			throw new UncorrectableException("invalid source: " + getHeader().getSourceAddress().getCallsign());
 		}
 		BitInputStream bis = new BitInputStream(dis);
 		if (dis.available() == SHORT_FRAME_SIZE) {
@@ -35,14 +30,6 @@ public class QarmanBeacon extends Beacon {
 			unknownPayload = new byte[dis.available()];
 			dis.readFully(unknownPayload);
 		}
-	}
-
-	public Header getHeader() {
-		return header;
-	}
-
-	public void setHeader(Header header) {
-		this.header = header;
 	}
 
 	public ShortFrame getShortFrame() {

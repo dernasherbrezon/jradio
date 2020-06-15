@@ -1,22 +1,19 @@
 package ru.r2cloud.jradio.entrysat;
 
-import java.io.ByteArrayInputStream;
 import java.io.DataInputStream;
 import java.io.IOException;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.TimeZone;
 
-import ru.r2cloud.jradio.Beacon;
-import ru.r2cloud.jradio.ax25.Header;
+import ru.r2cloud.jradio.ax25.Ax25Beacon;
 import ru.r2cloud.jradio.ax25.UFrameControlType;
 import ru.r2cloud.jradio.fec.ccsds.UncorrectableException;
 import ru.r2cloud.jradio.util.BitInputStream;
 import ru.r2cloud.jradio.util.StreamUtils;
 
-public class EntrysatBeacon extends Beacon {
+public class EntrysatBeacon extends Ax25Beacon {
 
-	private Header header;
 	private int pid;
 	private long time; // not used
 	private int version;
@@ -41,10 +38,8 @@ public class EntrysatBeacon extends Beacon {
 	private float battTemp;
 
 	@Override
-	public void readBeacon(byte[] data) throws IOException, UncorrectableException {
-		DataInputStream dis = new DataInputStream(new ByteArrayInputStream(data));
-		header = new Header(dis);
-		if (!header.getuControlType().equals(UFrameControlType.UI)) {
+	public void readBeacon(DataInputStream dis) throws IOException, UncorrectableException {
+		if (!getHeader().getuControlType().equals(UFrameControlType.UI)) {
 			return;
 		}
 
@@ -91,14 +86,6 @@ public class EntrysatBeacon extends Beacon {
 		// 1f c6 : Packet CRC
 		// b0 : Frame status, AX.25 transfer frame information field (fixed)
 		// 09 be fe 23 : Time, AX.25 transfer frame information field, Coded in Little Endian (last packet sent)
-	}
-
-	public Header getHeader() {
-		return header;
-	}
-
-	public void setHeader(Header header) {
-		this.header = header;
 	}
 
 	public int getPid() {

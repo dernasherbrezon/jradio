@@ -7,26 +7,22 @@ import java.nio.charset.StandardCharsets;
 
 import com.github.fzakaria.ascii85.Ascii85;
 
-import ru.r2cloud.jradio.Beacon;
 import ru.r2cloud.jradio.ax25.AddressSubfield;
-import ru.r2cloud.jradio.ax25.Header;
+import ru.r2cloud.jradio.ax25.Ax25Beacon;
 import ru.r2cloud.jradio.fec.ccsds.UncorrectableException;
 import ru.r2cloud.jradio.util.LittleEndianDataInputStream;
 
-public class ChompttBeacon extends Beacon {
+public class ChompttBeacon extends Ax25Beacon {
 
 	private static final String CHOMPTT_PREFIX = "CHOMPTT<~";
 	private static final String OPTI_PREFIX = "OPTI<~";
 
-	private Header header;
 	private AddressSubfield relay;
 	private PayloadTelemetry payloadTelemetry;
 	private SpacecraftTelemetry spacecraftTelemetry;
 
 	@Override
-	public void readBeacon(byte[] data) throws IOException, UncorrectableException {
-		DataInputStream dis = new DataInputStream(new ByteArrayInputStream(data));
-		header = new Header(dis);
+	public void readBeacon(DataInputStream dis) throws IOException, UncorrectableException {
 		relay = new AddressSubfield(dis);
 		byte[] rawBytes = new byte[dis.available()];
 		dis.readFully(rawBytes);
@@ -48,14 +44,6 @@ public class ChompttBeacon extends Beacon {
 		} else {
 			throw new UncorrectableException("unknown beacon: " + raw);
 		}
-	}
-
-	public Header getHeader() {
-		return header;
-	}
-
-	public void setHeader(Header header) {
-		this.header = header;
 	}
 
 	public AddressSubfield getRelay() {

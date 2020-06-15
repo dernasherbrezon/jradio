@@ -1,27 +1,22 @@
 package ru.r2cloud.jradio.polyitan1;
 
-import java.io.ByteArrayInputStream;
 import java.io.DataInputStream;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 
-import ru.r2cloud.jradio.Beacon;
-import ru.r2cloud.jradio.ax25.Header;
+import ru.r2cloud.jradio.ax25.Ax25Beacon;
 import ru.r2cloud.jradio.fec.ccsds.UncorrectableException;
 import ru.r2cloud.jradio.util.LittleEndianDataInputStream;
 
-public class PolyItan1Beacon extends Beacon {
+public class PolyItan1Beacon extends Ax25Beacon {
 
-	private Header header;
 	private String beacon0;
 	private Beacon1 beacon1;
 	private Beacon2 beacon2;
 	private byte[] unknownPayload;
-
+	
 	@Override
-	public void readBeacon(byte[] data) throws IOException, UncorrectableException {
-		DataInputStream dis = new DataInputStream(new ByteArrayInputStream(data));
-		header = new Header(dis);
+	public void readBeacon(DataInputStream dis) throws IOException, UncorrectableException {
 		int type = dis.readUnsignedByte();
 		switch (type) {
 		case 0:
@@ -40,14 +35,6 @@ public class PolyItan1Beacon extends Beacon {
 			dis.readFully(unknownPayload);
 			break;
 		}
-	}
-
-	public Header getHeader() {
-		return header;
-	}
-
-	public void setHeader(Header header) {
-		this.header = header;
 	}
 
 	public String getBeacon0() {

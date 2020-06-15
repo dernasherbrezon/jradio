@@ -1,23 +1,21 @@
 package ru.r2cloud.jradio.pwsat2;
 
-import java.io.ByteArrayInputStream;
 import java.io.DataInputStream;
 import java.io.IOException;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import ru.r2cloud.jradio.Beacon;
+import ru.r2cloud.jradio.ax25.Ax25Beacon;
 import ru.r2cloud.jradio.ax25.FrameType;
-import ru.r2cloud.jradio.ax25.Header;
 import ru.r2cloud.jradio.ax25.UFrameControlType;
+import ru.r2cloud.jradio.fec.ccsds.UncorrectableException;
 import ru.r2cloud.jradio.util.LittleEndianDataInputStream;
 
-public class PwSat2Beacon extends Beacon {
+public class PwSat2Beacon extends Ax25Beacon {
 
 	private static final Logger LOG = LoggerFactory.getLogger(PwSat2Beacon.class);
 
-	private Header header;
 	private DownlinkApid apid;
 	private int seq;
 	private GenericFrame genericFrame;
@@ -27,13 +25,11 @@ public class PwSat2Beacon extends Beacon {
 	private FileRemoveFrame fileRemove;
 	private FileSendFrame fileSend;
 	private FileListFrame fileList;
-
+	
 	@Override
-	public void readBeacon(byte[] data) throws IOException {
-		DataInputStream dis = new DataInputStream(new ByteArrayInputStream(data));
-		header = new Header(dis);
+	public void readBeacon(DataInputStream dis) throws IOException, UncorrectableException {
 		// only i or U + UI have information
-		if (!header.getFrameType().equals(FrameType.I) && (header.getFrameType().equals(FrameType.U) && !header.getuControlType().equals(UFrameControlType.UI))) {
+		if (!getHeader().getFrameType().equals(FrameType.I) && (getHeader().getFrameType().equals(FrameType.U) && !getHeader().getuControlType().equals(UFrameControlType.UI))) {
 			return;
 		}
 		LittleEndianDataInputStream littleEndian = new LittleEndianDataInputStream(dis);
@@ -125,14 +121,6 @@ public class PwSat2Beacon extends Beacon {
 
 	public void setBeaconFrame(BeaconFrame beaconFrame) {
 		this.beaconFrame = beaconFrame;
-	}
-
-	public Header getHeader() {
-		return header;
-	}
-
-	public void setHeader(Header header) {
-		this.header = header;
 	}
 
 	public GenericFrame getGenericFrame() {

@@ -1,19 +1,16 @@
 package ru.r2cloud.jradio.mysat1;
 
-import java.io.ByteArrayInputStream;
 import java.io.DataInputStream;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 
-import ru.r2cloud.jradio.Beacon;
-import ru.r2cloud.jradio.ax25.Header;
+import ru.r2cloud.jradio.ax25.Ax25Beacon;
 import ru.r2cloud.jradio.ax25.UFrameControlType;
 import ru.r2cloud.jradio.fec.ccsds.UncorrectableException;
 import ru.r2cloud.jradio.util.StreamUtils;
 
-public class Mysat1Beacon extends Beacon {
+public class Mysat1Beacon extends Ax25Beacon {
 
-	private Header header;
 	private String callsign;
 
 	private int obcMode;
@@ -40,10 +37,8 @@ public class Mysat1Beacon extends Beacon {
 	private float epsTotalSystemCurrent;
 
 	@Override
-	public void readBeacon(byte[] data) throws IOException, UncorrectableException {
-		DataInputStream dis = new DataInputStream(new ByteArrayInputStream(data));
-		header = new Header(dis);
-		if (!header.getuControlType().equals(UFrameControlType.UI)) {
+	public void readBeacon(DataInputStream dis) throws IOException, UncorrectableException {
+		if (!getHeader().getuControlType().equals(UFrameControlType.UI)) {
 			return;
 		}
 		byte[] callsignBytes = new byte[5];
@@ -72,14 +67,6 @@ public class Mysat1Beacon extends Beacon {
 		obc5v0Current = dis.readUnsignedShort() / 1000.0f;
 		epsTotalPvCurrent = dis.readUnsignedShort() / 1000.0f;
 		epsTotalSystemCurrent = dis.readUnsignedShort() / 1000.0f;
-	}
-
-	public Header getHeader() {
-		return header;
-	}
-
-	public void setHeader(Header header) {
-		this.header = header;
 	}
 
 	public String getCallsign() {

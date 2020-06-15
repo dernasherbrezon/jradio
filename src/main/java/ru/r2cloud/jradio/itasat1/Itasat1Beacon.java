@@ -1,18 +1,15 @@
 package ru.r2cloud.jradio.itasat1;
 
-import java.io.ByteArrayInputStream;
 import java.io.DataInputStream;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 
-import ru.r2cloud.jradio.Beacon;
-import ru.r2cloud.jradio.ax25.Header;
+import ru.r2cloud.jradio.ax25.Ax25Beacon;
 import ru.r2cloud.jradio.fec.ccsds.UncorrectableException;
 import ru.r2cloud.jradio.util.StreamUtils;
 
-public class Itasat1Beacon extends Beacon {
+public class Itasat1Beacon extends Ax25Beacon {
 
-	private Header header;
 	private int sync;
 	private int type;
 	private byte[] unknownPayload;
@@ -77,9 +74,7 @@ public class Itasat1Beacon extends Beacon {
 	private EpsResetCode epsLastResetCode;
 
 	@Override
-	public void readBeacon(byte[] data) throws IOException, UncorrectableException {
-		DataInputStream dis = new DataInputStream(new ByteArrayInputStream(data));
-		header = new Header(dis);
+	public void readBeacon(DataInputStream dis) throws IOException, UncorrectableException {
 		sync = dis.readUnsignedShort();
 		type = dis.readUnsignedByte();
 		if (type != 1) {
@@ -150,14 +145,6 @@ public class Itasat1Beacon extends Beacon {
 		epsResetCount = StreamUtils.readUnsignedInt(dis);
 
 		epsLastResetCode = EpsResetCode.valueOfCode(dis.readUnsignedByte());
-	}
-
-	public Header getHeader() {
-		return header;
-	}
-
-	public void setHeader(Header header) {
-		this.header = header;
 	}
 
 	public int getSync() {
