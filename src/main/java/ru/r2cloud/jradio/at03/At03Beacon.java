@@ -48,7 +48,7 @@ public class At03Beacon extends Beacon {
 			obc2Beacon = new OBC2Beacon(dis);
 			break;
 		default:
-			throw new IOException("unsupported beacon type: " + type);
+			throw new UncorrectableException("unsupported beacon type: " + type);
 		}
 	}
 
