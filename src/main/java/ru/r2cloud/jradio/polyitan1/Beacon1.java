@@ -45,17 +45,17 @@ public class Beacon1 {
 	}
 
 	public Beacon1(LittleEndianDataInputStream dis) throws IOException {
-		deviceErrors = read3Bytes(dis);
+		deviceErrors = dis.readUnsigned3Bytes();
 		ss256 = dis.readUnsignedByte();
 		rtcSeconds = dis.readInt();
 		satMode = dis.readUnsignedByte();
 		submode = dis.readUnsignedByte();
-		magtlX = read3Bytes(dis);
-		magtlY = read3Bytes(dis);
-		magtlZ = read3Bytes(dis);
-		gyroX = read3Bytes(dis);
-		gyroY = read3Bytes(dis);
-		gyroZ = read3Bytes(dis);
+		magtlX = dis.readUnsigned3Bytes();
+		magtlY = dis.readUnsigned3Bytes();
+		magtlZ = dis.readUnsigned3Bytes();
+		gyroX = dis.readUnsigned3Bytes();
+		gyroY = dis.readUnsigned3Bytes();
+		gyroZ = dis.readUnsigned3Bytes();
 
 		muxi3v3 = dis.readUnsignedShort() * 0.1f;
 		muxi5v0 = dis.readUnsignedShort() * 0.1f;
@@ -334,13 +334,6 @@ public class Beacon1 {
 
 	public void setPSbz(short pSbz) {
 		this.pSbz = pSbz;
-	}
-
-	private static int read3Bytes(LittleEndianDataInputStream dis) throws IOException {
-		int b1 = dis.readUnsignedByte();
-		int b2 = dis.readUnsignedByte();
-		int b3 = dis.readUnsignedByte();
-		return (b3 << 16) | (b2 << 8) | b1;
 	}
 
 }

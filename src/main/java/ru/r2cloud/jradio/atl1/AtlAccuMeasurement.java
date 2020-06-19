@@ -27,11 +27,8 @@ public class AtlAccuMeasurement {
 		w1bus = dis.readUnsignedByte();
 		timestamp = dis.readUnsignedInt();
 		batteryCurrent = convertBatteryCurrent(index, dis.readUnsignedShort());
-		int[] raw = new int[6];
-		for (int i = 0; i < raw.length; i++) {
-			raw[i] = dis.readUnsignedShort();
-		}
-		temperatures = new double[5];
+		int[] raw = dis.readUnsignedShort(6);
+		temperatures = new double[raw.length - 1];
 		for (int i = 0; i < temperatures.length; i++) {
 			temperatures[i] = convertTemperature(index, i, raw[0], raw[i + 1]);
 		}

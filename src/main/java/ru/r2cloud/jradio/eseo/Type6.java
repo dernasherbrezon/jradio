@@ -116,10 +116,7 @@ public class Type6 {
 		lmpVtdig = dis.readUnsignedByte() * 0.020f;
 		lmpMem = dis.readUnsignedByte() * 4096;
 		lmpOfst = dis.readByte() * 4.88f;
-		int ch1 = dis.readUnsignedByte();
-		int ch2 = dis.readUnsignedByte();
-		int ch3 = dis.readUnsignedByte();
-		lmpSw = (ch3 << 16) | (ch2 << 8) | ch1;
+		lmpSw = dis.readUnsigned3Bytes();
 		pcamMcurCurr = dis.readUnsignedByte();
 		pcamImgCurr = dis.readUnsignedByte();
 		pcamMcuTemp = dis.readShort() * 0.1f;
