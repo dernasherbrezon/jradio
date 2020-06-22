@@ -104,4 +104,19 @@ public class Header {
 		this.pid = pid;
 	}
 
+	@Override
+	public String toString() {
+		StringBuilder result = new StringBuilder();
+		result.append(sourceAddress).append(" To ").append(destinationAddress);
+		result.append(" <");
+		if (uControlType != null) {
+			result.append(uControlType);
+		} else {
+			result.append(frameType);
+		}
+		result.append(" Pid=").append(pid);
+		result.append(">");
+		return result.toString();
+	}
+
 }

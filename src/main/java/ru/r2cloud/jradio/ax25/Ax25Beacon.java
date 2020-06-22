@@ -30,4 +30,13 @@ public class Ax25Beacon extends Beacon {
 	public void setHeader(Header header) {
 		this.header = header;
 	}
+
+	@Override
+	public String toString() {
+		if (header == null) {
+			return "null";
+		} else {
+			return header.toString();
+		}
+	}
 }

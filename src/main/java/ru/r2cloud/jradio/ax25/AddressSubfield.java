@@ -39,5 +39,10 @@ public class AddressSubfield {
 	public void setSsid(int ssid) {
 		this.ssid = ssid;
 	}
+	
+	@Override
+	public String toString() {
+		return callsign;
+	}
 
 }
