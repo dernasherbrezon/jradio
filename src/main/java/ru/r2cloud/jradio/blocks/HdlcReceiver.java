@@ -23,15 +23,17 @@ public class HdlcReceiver implements MessageInput {
 	private final ByteInput input;
 	private final byte[] window;
 	private final boolean checksum;
+	private final int minBits;
 
 	public HdlcReceiver(ByteInput input, int maxLengthBytes) {
-		this(input, maxLengthBytes, true);
+		this(input, maxLengthBytes, 0, true);
 	}
 
-	public HdlcReceiver(ByteInput input, int maxLengthBytes, boolean checksum) {
+	public HdlcReceiver(ByteInput input, int maxLengthBytes, int minBytes, boolean checksum) {
 		this.input = input;
 		this.window = new byte[((maxLengthBytes + FCS_LENGTH) * 8) + FLAG_LENGTH];
 		this.checksum = checksum;
+		this.minBits = 8 * (minBytes + FCS_LENGTH);
 	}
 
 	@Override
@@ -64,12 +66,12 @@ public class HdlcReceiver implements MessageInput {
 					} else {
 						// pop back 7bits of the last flag
 						packetLength = packetLength - FLAG_LENGTH;
-						if (packetLength % 8 != 0 || packetLength / 8 <= 2) {
+						if (packetLength % 8 != 0 || packetLength < minBits) {
 							packetLength = 0;
 							ones = 0;
 							continue;
 						}
-						byte[] frame = unpackedToPacked(packetLength - 2 * 8);
+						byte[] frame = unpackedToPacked(packetLength - FCS_LENGTH * 8);
 						if (checksum) {
 							int crc = extractFcs(packetLength);
 							if (Crc16Ccitt.calculateReverse(frame) != crc) {

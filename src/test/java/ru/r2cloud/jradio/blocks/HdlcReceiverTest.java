@@ -20,6 +20,16 @@ public class HdlcReceiverTest {
 	private HdlcReceiver hdlc;
 
 	@Test
+	public void testMinimumMessageSize() throws Exception {
+		int[] data = new int[] { 0xF1, 0xA7, 0xE4, 0x56 };
+		int[] smallMessage = new int[] { 0x00, 0x01 };
+		hdlc = new HdlcReceiver(new ArrayByteInput(createMessage(randomBytes(2), FLAG, packedToUnpacked(createMessage(smallMessage, calculateCrc(smallMessage))), FLAG, packedToUnpacked(createMessage(data, calculateCrc(data))), FLAG)), 10, 3, true);
+		byte[] result = hdlc.readBytes();
+		assertNotNull(result);
+		assertByteArrayEquals(data, result);
+	}
+
+	@Test
 	public void testTwoPacketsOneByOne() throws Exception {
 		int[] data = new int[] { 0xF1, 0xA7 };
 		int explicitlyBigBuffer = 200;
@@ -32,7 +42,7 @@ public class HdlcReceiverTest {
 		assertNotNull(result);
 		assertByteArrayEquals(data, result);
 	}
-	
+
 	@Test
 	public void testSuccess() throws Exception {
 		int[] data = new int[] { 0xF1, 0xA7 };
@@ -41,7 +51,7 @@ public class HdlcReceiverTest {
 		assertNotNull(result);
 		assertByteArrayEquals(data, result);
 	}
-	
+
 	@Test
 	public void testIgnoreFailedCrc() throws Exception {
 		int[] data = new int[] { 0xF1, 0xA7 };

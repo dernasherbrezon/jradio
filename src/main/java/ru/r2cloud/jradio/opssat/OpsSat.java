@@ -25,7 +25,7 @@ public class OpsSat extends BeaconSource<OpsSatBeacon> {
 
 	public OpsSat(ByteInput input) {
 		// false - rely on crc32 after reed solomon
-		super(new HdlcReceiver(new Descrambler(new NrziDecode(input), 0x21, 0, 16), MINIMUM_MESSAGE_SIZE * 10, false));
+		super(new HdlcReceiver(new Descrambler(new NrziDecode(input), 0x21, 0, 16), MINIMUM_MESSAGE_SIZE * 10, MINIMUM_MESSAGE_SIZE, false));
 	}
 
 	@Override
