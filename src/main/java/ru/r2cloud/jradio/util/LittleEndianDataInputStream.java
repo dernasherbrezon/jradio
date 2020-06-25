@@ -26,7 +26,7 @@ public class LittleEndianDataInputStream implements DataInput {
 	public final int readUnsignedByte() throws IOException {
 		return dis.readUnsignedByte();
 	}
-	
+
 	public int readUnsigned3Bytes() throws IOException {
 		int b1 = dis.readUnsignedByte();
 		int b2 = dis.readUnsignedByte();
@@ -178,4 +178,9 @@ public class LittleEndianDataInputStream implements DataInput {
 		}
 		return result;
 	}
+
+	public DataInputStream getBigEndianDataInputStream() {
+		return dis;
+	}
+
 }
