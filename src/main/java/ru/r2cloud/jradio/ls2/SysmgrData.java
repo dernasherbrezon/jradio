@@ -174,51 +174,51 @@ public class SysmgrData {
 		this.rfAmpTemperature = rfAmpTemperature;
 	}
 
-	public float getxMinusTemperature() {
+	public float getXMinusTemperature() {
 		return xMinusTemperature;
 	}
 
-	public void setxMinusTemperature(float xMinusTemperature) {
+	public void setXMinusTemperature(float xMinusTemperature) {
 		this.xMinusTemperature = xMinusTemperature;
 	}
 
-	public float getxPlusTemperature() {
+	public float getXPlusTemperature() {
 		return xPlusTemperature;
 	}
 
-	public void setxPlusTemperature(float xPlusTemperature) {
+	public void setXPlusTemperature(float xPlusTemperature) {
 		this.xPlusTemperature = xPlusTemperature;
 	}
 
-	public float getyMinusTemperature() {
+	public float getYMinusTemperature() {
 		return yMinusTemperature;
 	}
 
-	public void setyMinusTemperature(float yMinusTemperature) {
+	public void setYMinusTemperature(float yMinusTemperature) {
 		this.yMinusTemperature = yMinusTemperature;
 	}
 
-	public float getyPlusTemperature() {
+	public float getYPlusTemperature() {
 		return yPlusTemperature;
 	}
 
-	public void setyPlusTemperature(float yPlusTemperature) {
+	public void setYPlusTemperature(float yPlusTemperature) {
 		this.yPlusTemperature = yPlusTemperature;
 	}
 
-	public float getzMinusTemperature() {
+	public float getZMinusTemperature() {
 		return zMinusTemperature;
 	}
 
-	public void setzMinusTemperature(float zMinusTemperature) {
+	public void setZMinusTemperature(float zMinusTemperature) {
 		this.zMinusTemperature = zMinusTemperature;
 	}
 
-	public float getzPlusTemperature() {
+	public float getZPlusTemperature() {
 		return zPlusTemperature;
 	}
 
-	public void setzPlusTemperature(float zPlusTemperature) {
+	public void setZPlusTemperature(float zPlusTemperature) {
 		this.zPlusTemperature = zPlusTemperature;
 	}
 
@@ -318,147 +318,147 @@ public class SysmgrData {
 		this.daughterBVoltage = daughterBVoltage;
 	}
 
-	public float getxMinusInternalCurrent() {
+	public float getXMinusInternalCurrent() {
 		return xMinusInternalCurrent;
 	}
 
-	public void setxMinusInternalCurrent(float xMinusInternalCurrent) {
+	public void setXMinusInternalCurrent(float xMinusInternalCurrent) {
 		this.xMinusInternalCurrent = xMinusInternalCurrent;
 	}
 
-	public float getxMinusInternalVoltage() {
+	public float getXMinusInternalVoltage() {
 		return xMinusInternalVoltage;
 	}
 
-	public void setxMinusInternalVoltage(float xMinusInternalVoltage) {
+	public void setXMinusInternalVoltage(float xMinusInternalVoltage) {
 		this.xMinusInternalVoltage = xMinusInternalVoltage;
 	}
 
-	public float getxMinusExternalCurrent() {
+	public float getXMinusExternalCurrent() {
 		return xMinusExternalCurrent;
 	}
 
-	public void setxMinusExternalCurrent(float xMinusExternalCurrent) {
+	public void setXMinusExternalCurrent(float xMinusExternalCurrent) {
 		this.xMinusExternalCurrent = xMinusExternalCurrent;
 	}
 
-	public float getxMinusExternalVoltage() {
+	public float getXMinusExternalVoltage() {
 		return xMinusExternalVoltage;
 	}
 
-	public void setxMinusExternalVoltage(float xMinusExternalVoltage) {
+	public void setXMinusExternalVoltage(float xMinusExternalVoltage) {
 		this.xMinusExternalVoltage = xMinusExternalVoltage;
 	}
 
-	public float getxPlusInternalCurrent() {
+	public float getXPlusInternalCurrent() {
 		return xPlusInternalCurrent;
 	}
 
-	public void setxPlusInternalCurrent(float xPlusInternalCurrent) {
+	public void setXPlusInternalCurrent(float xPlusInternalCurrent) {
 		this.xPlusInternalCurrent = xPlusInternalCurrent;
 	}
 
-	public float getxPlusInternalVoltage() {
+	public float getXPlusInternalVoltage() {
 		return xPlusInternalVoltage;
 	}
 
-	public void setxPlusInternalVoltage(float xPlusInternalVoltage) {
+	public void setXPlusInternalVoltage(float xPlusInternalVoltage) {
 		this.xPlusInternalVoltage = xPlusInternalVoltage;
 	}
 
-	public float getxPlusExternalCurrent() {
+	public float getXPlusExternalCurrent() {
 		return xPlusExternalCurrent;
 	}
 
-	public void setxPlusExternalCurrent(float xPlusExternalCurrent) {
+	public void setXPlusExternalCurrent(float xPlusExternalCurrent) {
 		this.xPlusExternalCurrent = xPlusExternalCurrent;
 	}
 
-	public float getxPlusExternalVoltage() {
+	public float getXPlusExternalVoltage() {
 		return xPlusExternalVoltage;
 	}
 
-	public void setxPlusExternalVoltage(float xPlusExternalVoltage) {
+	public void setXPlusExternalVoltage(float xPlusExternalVoltage) {
 		this.xPlusExternalVoltage = xPlusExternalVoltage;
 	}
 
-	public float getyMinusInternalCurrent() {
+	public float getYMinusInternalCurrent() {
 		return yMinusInternalCurrent;
 	}
 
-	public void setyMinusInternalCurrent(float yMinusInternalCurrent) {
+	public void setYMinusInternalCurrent(float yMinusInternalCurrent) {
 		this.yMinusInternalCurrent = yMinusInternalCurrent;
 	}
 
-	public float getyMinusInternalVoltage() {
+	public float getYMinusInternalVoltage() {
 		return yMinusInternalVoltage;
 	}
 
-	public void setyMinusInternalVoltage(float yMinusInternalVoltage) {
+	public void setYMinusInternalVoltage(float yMinusInternalVoltage) {
 		this.yMinusInternalVoltage = yMinusInternalVoltage;
 	}
 
-	public float getyMinusExternalCurrent() {
+	public float getYMinusExternalCurrent() {
 		return yMinusExternalCurrent;
 	}
 
-	public void setyMinusExternalCurrent(float yMinusExternalCurrent) {
+	public void setYMinusExternalCurrent(float yMinusExternalCurrent) {
 		this.yMinusExternalCurrent = yMinusExternalCurrent;
 	}
 
-	public float getyMinusExternalVoltage() {
+	public float getYMinusExternalVoltage() {
 		return yMinusExternalVoltage;
 	}
 
-	public void setyMinusExternalVoltage(float yMinusExternalVoltage) {
+	public void setYMinusExternalVoltage(float yMinusExternalVoltage) {
 		this.yMinusExternalVoltage = yMinusExternalVoltage;
 	}
 
-	public float getyPlusInternalCurrent() {
+	public float getYPlusInternalCurrent() {
 		return yPlusInternalCurrent;
 	}
 
-	public void setyPlusInternalCurrent(float yPlusInternalCurrent) {
+	public void setYPlusInternalCurrent(float yPlusInternalCurrent) {
 		this.yPlusInternalCurrent = yPlusInternalCurrent;
 	}
 
-	public float getyPlusInternalVoltage() {
+	public float getYPlusInternalVoltage() {
 		return yPlusInternalVoltage;
 	}
 
-	public void setyPlusInternalVoltage(float yPlusInternalVoltage) {
+	public void setYPlusInternalVoltage(float yPlusInternalVoltage) {
 		this.yPlusInternalVoltage = yPlusInternalVoltage;
 	}
 
-	public float getyPlusExternalCurrent() {
+	public float getYPlusExternalCurrent() {
 		return yPlusExternalCurrent;
 	}
 
-	public void setyPlusExternalCurrent(float yPlusExternalCurrent) {
+	public void setYPlusExternalCurrent(float yPlusExternalCurrent) {
 		this.yPlusExternalCurrent = yPlusExternalCurrent;
 	}
 
-	public float getyPlusExternalVoltage() {
+	public float getYPlusExternalVoltage() {
 		return yPlusExternalVoltage;
 	}
 
-	public void setyPlusExternalVoltage(float yPlusExternalVoltage) {
+	public void setYPlusExternalVoltage(float yPlusExternalVoltage) {
 		this.yPlusExternalVoltage = yPlusExternalVoltage;
 	}
 
-	public float getzMinusExternalCurrent() {
+	public float getZMinusExternalCurrent() {
 		return zMinusExternalCurrent;
 	}
 
-	public void setzMinusExternalCurrent(float zMinusExternalCurrent) {
+	public void setZMinusExternalCurrent(float zMinusExternalCurrent) {
 		this.zMinusExternalCurrent = zMinusExternalCurrent;
 	}
 
-	public float getzMinusExternalVoltage() {
+	public float getZMinusExternalVoltage() {
 		return zMinusExternalVoltage;
 	}
 
-	public void setzMinusExternalVoltage(float zMinusExternalVoltage) {
+	public void setZMinusExternalVoltage(float zMinusExternalVoltage) {
 		this.zMinusExternalVoltage = zMinusExternalVoltage;
 	}
 

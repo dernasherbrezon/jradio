@@ -293,27 +293,27 @@ public class BeaconData {
 		this.quaternion3 = quaternion3;
 	}
 
-	public float getxRate() {
+	public float getXRate() {
 		return xRate;
 	}
 
-	public void setxRate(float xRate) {
+	public void setXRate(float xRate) {
 		this.xRate = xRate;
 	}
 
-	public float getyRate() {
+	public float getYRate() {
 		return yRate;
 	}
 
-	public void setyRate(float yRate) {
+	public void setYRate(float yRate) {
 		this.yRate = yRate;
 	}
 
-	public float getzRate() {
+	public float getZRate() {
 		return zRate;
 	}
 
-	public void setzRate(float zRate) {
+	public void setZRate(float zRate) {
 		this.zRate = zRate;
 	}
 
@@ -541,51 +541,51 @@ public class BeaconData {
 		this.cams = cams;
 	}
 
-	public float getxTorquerCurrent() {
+	public float getXTorquerCurrent() {
 		return xTorquerCurrent;
 	}
 
-	public void setxTorquerCurrent(float xTorquerCurrent) {
+	public void setXTorquerCurrent(float xTorquerCurrent) {
 		this.xTorquerCurrent = xTorquerCurrent;
 	}
 
-	public float getxTorquerVoltage() {
+	public float getXTorquerVoltage() {
 		return xTorquerVoltage;
 	}
 
-	public void setxTorquerVoltage(float xTorquerVoltage) {
+	public void setXTorquerVoltage(float xTorquerVoltage) {
 		this.xTorquerVoltage = xTorquerVoltage;
 	}
 
-	public float getyTorquerCurrent() {
+	public float getYTorquerCurrent() {
 		return yTorquerCurrent;
 	}
 
-	public void setyTorquerCurrent(float yTorquerCurrent) {
+	public void setYTorquerCurrent(float yTorquerCurrent) {
 		this.yTorquerCurrent = yTorquerCurrent;
 	}
 
-	public float getyTorquerVoltage() {
+	public float getYTorquerVoltage() {
 		return yTorquerVoltage;
 	}
 
-	public void setyTorquerVoltage(float yTorquerVoltage) {
+	public void setYTorquerVoltage(float yTorquerVoltage) {
 		this.yTorquerVoltage = yTorquerVoltage;
 	}
 
-	public float getzTorquerCurrent() {
+	public float getZTorquerCurrent() {
 		return zTorquerCurrent;
 	}
 
-	public void setzTorquerCurrent(float zTorquerCurrent) {
+	public void setZTorquerCurrent(float zTorquerCurrent) {
 		this.zTorquerCurrent = zTorquerCurrent;
 	}
 
-	public float getzTorquerVoltage() {
+	public float getZTorquerVoltage() {
 		return zTorquerVoltage;
 	}
 
-	public void setzTorquerVoltage(float zTorquerVoltage) {
+	public void setZTorquerVoltage(float zTorquerVoltage) {
 		this.zTorquerVoltage = zTorquerVoltage;
 	}
 
