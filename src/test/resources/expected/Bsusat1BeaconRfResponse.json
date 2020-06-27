@@ -1,0 +1,39 @@
+{
+  "modemId": 1,
+  "operationTime": 97,
+  "rebootCount": 194,
+  "mcusr": 5,
+  "txPaTemperature": 22.526648,
+  "txPaVoltage": 2.2,
+  "txPowerAttenuation": 1.5,
+  "batteryVoltage": 8.03833,
+  "systemVoltage": 4.9804688,
+  "sequenceNumber": 1,
+  "powerSaveStateOn": true,
+  "modemOnPeriod": 10,
+  "obcStatus": "UNKNOWN",
+  "epsStatus": "OK",
+  "dataType": 1,
+  "rfResponse": {
+    "fecCrcStatus": true,
+    "messageState": "ALL_OK",
+    "rssi": 56
+  },
+  "header": {
+    "destinationAddress": {
+      "callsign": "EU1XX",
+      "ssid": 0
+    },
+    "sourceAddress": {
+      "callsign": "EU10S",
+      "ssid": 0
+    },
+    "frameType": "U",
+    "sendSequenceNumber": 0,
+    "receiveSequenceNumber": 0,
+    "uControlType": "UI",
+    "pid": 240
+  },
+  "beginSample": 0,
+  "beginMillis": 0
+}

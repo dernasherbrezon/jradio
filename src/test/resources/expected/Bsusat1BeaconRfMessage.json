@@ -1,0 +1,37 @@
+{
+  "modemId": 1,
+  "operationTime": 95,
+  "rebootCount": 16,
+  "mcusr": 5,
+  "txPaTemperature": 21.769623,
+  "txPaVoltage": 2.2,
+  "txPowerAttenuation": 1.5,
+  "batteryVoltage": 8.125305,
+  "systemVoltage": 4.9804688,
+  "sequenceNumber": 1,
+  "powerSaveStateOn": true,
+  "modemOnPeriod": 10,
+  "obcStatus": "UNKNOWN",
+  "epsStatus": "OK",
+  "dataType": 3,
+  "rfMessage": {
+    "message": "May Leaders: JA6PL JA5BLZ JA1GDE / F6OBT UX5UL SV3CIX / ITR / OZ7SAT a"
+  },
+  "header": {
+    "destinationAddress": {
+      "callsign": "EU1XX",
+      "ssid": 0
+    },
+    "sourceAddress": {
+      "callsign": "EU10S",
+      "ssid": 0
+    },
+    "frameType": "U",
+    "sendSequenceNumber": 0,
+    "receiveSequenceNumber": 0,
+    "uControlType": "UI",
+    "pid": 240
+  },
+  "beginSample": 0,
+  "beginMillis": 0
+}
