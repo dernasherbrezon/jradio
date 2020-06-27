@@ -84,8 +84,8 @@ public class RfSettings {
 		anL = bis.readUnsignedByte();
 		pampVoltage = Bsusat1Beacon.getPaVoltage(bis.readUnsignedByte());
 		txAttenuator = bis.readUnsignedByte() * 0.5f;
-		minPaTemperature = ((bis.readUnsignedByte() * 10 / 1024 * 2500) - 509) / 6.45f;
-		maxPaTemperature = ((bis.readUnsignedByte() * 10 / 1024 * 2500) - 509) / 6.45f;
+		minPaTemperature = ((bis.readUnsignedByte() * 10f / 1024 * 2500) - 509) / 6.45f;
+		maxPaTemperature = ((bis.readUnsignedByte() * 10f / 1024 * 2500) - 509) / 6.45f;
 		modemRxDatarate = bis.readUnsignedByte() * 100;
 		modemTxDatarate = bis.readUnsignedByte() * 100;
 		rxCtrlb1 = bis.readUnsignedByte();
