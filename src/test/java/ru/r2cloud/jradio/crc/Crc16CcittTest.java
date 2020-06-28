@@ -30,4 +30,22 @@ public class Crc16CcittTest {
 		assertEquals(0x906E, Crc16Ccitt.calculateReverse(data));
 	}
 
+	@Test
+	public void testReverseBits() {
+		byte[] data = "123456789".getBytes(StandardCharsets.ISO_8859_1);
+		byte[] unpacked = unpackLittleEndian(data);
+		assertEquals(0x906E, Crc16Ccitt.calculateReverseLsbBits(unpacked, 0, unpacked.length));
+	}
+
+	private static byte[] unpackLittleEndian(byte[] data) {
+		byte[] result = new byte[data.length * 8];
+		for (int i = 0; i < data.length; i++) {
+			int cur = data[i] & 0xFF;
+			for (int j = 0; j < 8; j++) {
+				result[i * 8 + j] = (byte) ((cur >> j) & 0x1);
+			}
+		}
+		return result;
+	}
+
 }

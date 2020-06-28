@@ -71,15 +71,17 @@ public class HdlcReceiver implements MessageInput {
 							ones = 0;
 							continue;
 						}
-						byte[] frame = unpackedToPacked(packetLength - FCS_LENGTH * 8);
+						int payloadLength = packetLength - FCS_LENGTH * 8;
 						if (checksum) {
+							int expected = Crc16Ccitt.calculateReverseLsbBits(window, 0, payloadLength);
 							int crc = extractFcs(packetLength);
-							if (Crc16Ccitt.calculateReverse(frame) != crc) {
+							if (expected != crc) {
 								packetLength = 0;
 								ones = 0;
 								continue;
 							}
 						}
+						byte[] frame = unpackedToPacked(payloadLength);
 						Tag tag = new Tag();
 						tag.setId(UUID.randomUUID().toString());
 						LongValueSource currentSample = getContext().getCurrentSample();
