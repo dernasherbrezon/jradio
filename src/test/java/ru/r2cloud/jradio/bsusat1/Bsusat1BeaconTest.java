@@ -1,7 +1,10 @@
 package ru.r2cloud.jradio.bsusat1;
 
+import static pl.pojo.tester.api.assertion.Assertions.assertPojoMethodsFor;
+
 import org.junit.Test;
 
+import pl.pojo.tester.api.assertion.Method;
 import ru.r2cloud.jradio.AssertJson;
 import ru.r2cloud.jradio.fec.ViterbiTest;
 
@@ -31,4 +34,15 @@ public class Bsusat1BeaconTest {
 		AssertJson.assertObjectsEqual("Bsusat1BeaconRfResponse.json", result);
 	}
 
+	@Test
+	public void testPojo() {
+		assertPojoMethodsFor(Bsusat1Beacon.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
+		assertPojoMethodsFor(RfResponse.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
+		assertPojoMethodsFor(RfImage.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
+		assertPojoMethodsFor(RfMessage.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
+		assertPojoMethodsFor(RfCommandList.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
+		assertPojoMethodsFor(RfSettings.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
+		assertPojoMethodsFor(EpsFullTelemetry.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
+		assertPojoMethodsFor(EpsShortTelemetry.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
+	}
 }

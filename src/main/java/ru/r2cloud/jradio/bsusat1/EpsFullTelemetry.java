@@ -348,27 +348,27 @@ public class EpsFullTelemetry extends EpsShortTelemetry {
 		this.externalFlashPower = externalFlashPower;
 	}
 
-	public boolean isxAxisControlPower() {
+	public boolean isXAxisControlPower() {
 		return xAxisControlPower;
 	}
 
-	public void setxAxisControlPower(boolean xAxisControlPower) {
+	public void setXAxisControlPower(boolean xAxisControlPower) {
 		this.xAxisControlPower = xAxisControlPower;
 	}
 
-	public boolean isyAxisControlPower() {
+	public boolean isYAxisControlPower() {
 		return yAxisControlPower;
 	}
 
-	public void setyAxisControlPower(boolean yAxisControlPower) {
+	public void setYAxisControlPower(boolean yAxisControlPower) {
 		this.yAxisControlPower = yAxisControlPower;
 	}
 
-	public boolean iszAxisControlPower() {
+	public boolean isZAxisControlPower() {
 		return zAxisControlPower;
 	}
 
-	public void setzAxisControlPower(boolean zAxisControlPower) {
+	public void setZAxisControlPower(boolean zAxisControlPower) {
 		this.zAxisControlPower = zAxisControlPower;
 	}
 
