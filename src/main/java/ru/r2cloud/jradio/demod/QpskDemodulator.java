@@ -19,15 +19,16 @@ public class QpskDemodulator implements ByteInput {
 	private final FloatToChar f2char;
 
 	public QpskDemodulator(FloatInput source, int symbolRate, Constellation constel) {
-		RmsAgcComplex agc = new RmsAgcComplex(source, 1e-2f, 0.5f);
-		float omega = agc.getContext().getSampleRate() / symbolRate;
+		FloatInput next = source;
+		next = new RmsAgcComplex(source, 1e-2f, 0.5f);
+		float samplesPerSymbol = next.getContext().getSampleRate() / symbolRate;
 		int nfilts = 16;
-		float[] rrcTaps = Firdes.rootRaisedCosine(nfilts, nfilts, 1.0f / omega, 0.5f, (int) (11 * omega * nfilts));
-		PolyphaseClockSyncComplex clockmm = new PolyphaseClockSyncComplex(agc, omega, 0.1f, rrcTaps, nfilts, nfilts / 2, 1.5f, 1);
-		CostasLoop costas = new CostasLoop(clockmm, 0.006f, 4, false);
-		ConstellationSoftDecoder constelDecoder = new ConstellationSoftDecoder(costas, constel);
-		Rail rail = new Rail(constelDecoder, -1.0f, 1.0f);
-		f2char = new FloatToChar(rail, 127.0f);
+		float[] rrcTaps = Firdes.rootRaisedCosine(nfilts, nfilts, 1.0f / samplesPerSymbol, 0.5f, (int) (11 * samplesPerSymbol * nfilts));
+		next = new PolyphaseClockSyncComplex(next, samplesPerSymbol, 0.1f, rrcTaps, nfilts, nfilts / 2, 1.5f, 1);
+		next = new CostasLoop(next, 0.006f, 4, false);
+		next = new ConstellationSoftDecoder(next, constel);
+		next = new Rail(next, -1.0f, 1.0f);
+		f2char = new FloatToChar(next, 127.0f);
 	}
 
 	@Override
