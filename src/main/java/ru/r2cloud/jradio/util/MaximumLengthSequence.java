@@ -28,4 +28,7 @@ public class MaximumLengthSequence {
 		return result;
 	}
 
+	private MaximumLengthSequence() {
+		// do nothing
+	}
 }
