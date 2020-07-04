@@ -8,6 +8,8 @@ public class Vcdu {
 	public static final int SIZE = 892;
 	public static final int VITERBI_SIZE = (SIZE / 4 + 32) * 4;
 	public static final int VITERBI_TAIL_SIZE = (VITERBI_SIZE + 1) * 16;
+	private static final int PRIMARY_HEADER_LENGTH = 6;
+	private static final int SECONDARY_HEADER_LENGTH = 8;
 
 	private int version;
 	private VcduId id;
@@ -46,12 +48,12 @@ public class Vcdu {
 				// primary header was not read
 				if (previousPartial.getVersion() == -1) {
 					readPrimaryHeader(newUserData, 0, previousPartial);
-					userDataIndex += 6;
+					userDataIndex += PRIMARY_HEADER_LENGTH;
 				}
 				// primary header was read, but secondary header was not.
 				if (previousPartial.isSecondaryHeader() && previousPartial.getNumberOfDays() == -1) {
 					readSecondaryHeader(newUserData, userDataIndex, previousPartial);
-					userDataIndex += 8;
+					userDataIndex += SECONDARY_HEADER_LENGTH;
 				}
 
 				if (userDataIndex != 0) {
@@ -65,7 +67,7 @@ public class Vcdu {
 				// sometimes user data cannot be recovered even if VCDU is next
 				int expectedLength = previousPartial.getLength() + 1;
 				if (previousPartial.isSecondaryHeader()) {
-					expectedLength -= 8;
+					expectedLength -= SECONDARY_HEADER_LENGTH;
 				}
 				if (previousPartial.getUserData().length == expectedLength) {
 					packets.add(previousPartial);
@@ -74,24 +76,26 @@ public class Vcdu {
 			}
 			int index = 10 + mPdu.getHeaderFirstPointer();
 			// 6 is for minimum header size
-			while (data.length >= index + 6) {
+			while (data.length >= index + PRIMARY_HEADER_LENGTH) {
 				Packet packet = new Packet();
 				readPrimaryHeader(data, index, packet);
+				index += PRIMARY_HEADER_LENGTH;
+
+				// corrupted packet. discard the rest of vcdu
+				if (packet.getLength() == 0) {
+					index = data.length;
+					continue;
+				}
+				
 				// for +1 see the length field description
 				int userDataLength = packet.getLength() + 1;
-				int userDataIndex;
-				if (packet.isSecondaryHeader() && data.length >= index + 6 + 8) {
-					readSecondaryHeader(data, index + 6, packet);
-					userDataLength -= 8;
-					// 9 + 1
-					userDataIndex = 14;
-				} else {
-					// 5 + 1
-					userDataIndex = 6;
+				if (packet.isSecondaryHeader() && data.length >= index + SECONDARY_HEADER_LENGTH) {
+					readSecondaryHeader(data, index, packet);
+					userDataLength -= SECONDARY_HEADER_LENGTH;
+					index += SECONDARY_HEADER_LENGTH;
 				}
 
 				byte[] userData;
-				index += userDataIndex;
 				if (index + userDataLength > data.length) {
 					userData = new byte[data.length - index];
 					System.arraycopy(data, index, userData, 0, userData.length);
