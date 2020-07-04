@@ -8,6 +8,7 @@ public class Vcdu {
 	public static final int SIZE = 892;
 	public static final int VITERBI_SIZE = (SIZE / 4 + 32) * 4;
 	public static final int VITERBI_TAIL_SIZE = (VITERBI_SIZE + 1) * 16;
+	private static final int VCDU_HEADER_LENGTH = 10;
 	private static final int PRIMARY_HEADER_LENGTH = 6;
 	private static final int SECONDARY_HEADER_LENGTH = 8;
 
@@ -43,7 +44,7 @@ public class Vcdu {
 			if (mPdu.getHeaderFirstPointer() != 0 && previousPartial != null) {
 				byte[] newUserData = new byte[previousPartial.getUserData().length + mPdu.getHeaderFirstPointer()];
 				System.arraycopy(previousPartial.getUserData(), 0, newUserData, 0, previousPartial.getUserData().length);
-				System.arraycopy(data, 10, newUserData, previousPartial.getUserData().length, mPdu.getHeaderFirstPointer());
+				System.arraycopy(data, VCDU_HEADER_LENGTH, newUserData, previousPartial.getUserData().length, mPdu.getHeaderFirstPointer());
 				int userDataIndex = 0;
 				// primary header was not read
 				if (previousPartial.getVersion() == -1) {
@@ -74,7 +75,7 @@ public class Vcdu {
 				}
 
 			}
-			int index = 10 + mPdu.getHeaderFirstPointer();
+			int index = VCDU_HEADER_LENGTH + mPdu.getHeaderFirstPointer();
 			// 6 is for minimum header size
 			while (data.length >= index + PRIMARY_HEADER_LENGTH) {
 				Packet packet = new Packet();
@@ -122,7 +123,7 @@ public class Vcdu {
 			if (previousPartial != null) {
 				byte[] newUserData = new byte[previousPartial.getUserData().length + data.length - 10];
 				System.arraycopy(previousPartial.getUserData(), 0, newUserData, 0, previousPartial.getUserData().length);
-				System.arraycopy(data, 10, newUserData, previousPartial.getUserData().length, data.length - 10);
+				System.arraycopy(data, VCDU_HEADER_LENGTH, newUserData, previousPartial.getUserData().length, data.length - 10);
 				previousPartial.setUserData(newUserData);
 				this.partial = previousPartial;
 			}
