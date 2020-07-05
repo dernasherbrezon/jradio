@@ -18,6 +18,27 @@ public class MathUtils {
 		x1 -= x2;
 		return (float) 0.5 * x1;
 	}
+	
+	/**
+	 * Least Common Multiple
+	 * @param number1
+	 * @param number2
+	 * @return
+	 */
+	public static int lcm(int number1, int number2) {
+		if (number1 == 0 || number2 == 0) {
+			return 0;
+		}
+		int absNumber1 = Math.abs(number1);
+		int absNumber2 = Math.abs(number2);
+		int absHigherNumber = Math.max(absNumber1, absNumber2);
+		int absLowerNumber = Math.min(absNumber1, absNumber2);
+		int lcm = absHigherNumber;
+		while (lcm % absLowerNumber != 0) {
+			lcm += absHigherNumber;
+		}
+		return lcm;
+	}
 
 	public static float[] exp(float real, float img) {
 		float[] result = new float[2];

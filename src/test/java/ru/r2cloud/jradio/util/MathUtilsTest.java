@@ -5,6 +5,11 @@ import static org.junit.Assert.assertEquals;
 import org.junit.Test;
 
 public class MathUtilsTest {
+	
+	@Test
+	public void testLcm() {
+		assertEquals(36, MathUtils.lcm(12, 18));
+	}
 
 	@Test
 	public void testRounding() {
