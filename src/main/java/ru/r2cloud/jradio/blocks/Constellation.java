@@ -1,6 +1,8 @@
 package ru.r2cloud.jradio.blocks;
 
 public class Constellation {
+	
+	public static final Constellation BPSK = new Constellation(new float[] { -1, 0, 1, 0 }, new int[] { 0, 1 }, 2, 1);
 
 	private final float[] constell;
 	private final int[] preDiffCode;

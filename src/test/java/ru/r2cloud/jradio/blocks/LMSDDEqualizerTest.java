@@ -11,8 +11,7 @@ public class LMSDDEqualizerTest {
 	@Test
 	public void test() throws Exception {
 		WavFileSource wav = new WavFileSource(LMSDDEqualizerTest.class.getClassLoader().getResourceAsStream("stereo.wav"));
-		Constellation constellation = new Constellation(new float[] { -1.0f, 0.0f, 1.0f, 0.0f }, new int[] { 0, 1 }, 2, 1);
-		try (FloatInput source = new LMSDDEqualizer(wav, 2, 0.05f, 2, constellation)) {
+		try (FloatInput source = new LMSDDEqualizer(wav, 2, 0.05f, 2, Constellation.BPSK)) {
 			TestUtil.assertFloatInput("lmsdd.bin", source);
 		}
 	}

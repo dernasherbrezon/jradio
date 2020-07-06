@@ -30,4 +30,8 @@ public class CircularArray {
 		return array.length;
 	}
 
+	public void setCurrentPos(int currentPos) {
+		this.currentPos = currentPos;		
+	}
+
 }

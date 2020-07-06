@@ -6,18 +6,25 @@ import java.io.IOException;
 public class ArrayFloatInput implements FloatInput {
 
 	private final Context context;
-	private float[] result;
+	private final boolean repeat;
+	private final float[] result;
 	private int index;
 
 	public ArrayFloatInput(Context context, float... result) {
 		this.context = context;
 		this.result = result;
+		this.repeat = false;
+	}
+
+	public ArrayFloatInput(boolean repeat, float... result) {
+		this.result = result;
+		this.repeat = repeat;
+		context = new Context();
+		context.setChannels(2);
 	}
 
 	public ArrayFloatInput(float... result) {
-		this.result = result;
-		context = new Context();
-		context.setChannels(2);
+		this(false, result);
 	}
 
 	@Override
@@ -28,7 +35,11 @@ public class ArrayFloatInput implements FloatInput {
 	@Override
 	public float readFloat() throws IOException {
 		if (index >= result.length) {
-			throw new EOFException();
+			if (!repeat) {
+				throw new EOFException();
+			} else {
+				index = 0;
+			}
 		}
 		float cur = result[index];
 		index++;
