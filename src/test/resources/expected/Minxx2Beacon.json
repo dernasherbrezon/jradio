@@ -1,0 +1,45 @@
+{
+  "spacecraftMode": 4,
+  "eclipse": true,
+  "pointingMode": 1,
+  "commandAcceptCount": 1856,
+  "cdhBoardTemperature": 9.5,
+  "enableX123": true,
+  "enableSps": true,
+  "commBoardTemperature": 4.6875,
+  "motherboardTemperature": 3.875,
+  "epsBoardTemperature": 14.3125,
+  "batteryVoltage": 7.514887,
+  "solarPanelMinusYCurrent": 0.0,
+  "solarPanelMinusYVoltage": 0.015996093,
+  "solarPanelPlusXCurrent": 0.0,
+  "solarPanelPlusXVoltage": 0.007998046,
+  "solarPanelPlusYCurrent": 0.0,
+  "solarPanelPlusYVoltage": 0.015996093,
+  "solarPanelMinusYTemperature": -23.287994,
+  "solarPanelPlusXTemperature": -2.1855927,
+  "solarPanelPlusYTemperature": -21.543991,
+  "batteryChargeCurrent": 5.9792023,
+  "batteryDischargeCurrent": 692.4416,
+  "batteryTemperature": -16.00032,
+  "xp": 53,
+  "spsX": 0.0,
+  "spsY": 2.9999999E-4,
+  "header": {
+    "destinationAddress": {
+      "callsign": "MINXS2",
+      "ssid": 0
+    },
+    "sourceAddress": {
+      "callsign": "CQ",
+      "ssid": 0
+    },
+    "frameType": "U",
+    "sendSequenceNumber": 0,
+    "receiveSequenceNumber": 0,
+    "uControlType": "UI",
+    "pid": 240
+  },
+  "beginSample": 0,
+  "beginMillis": 0
+}
