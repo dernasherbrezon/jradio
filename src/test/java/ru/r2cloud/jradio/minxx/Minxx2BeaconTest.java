@@ -1,7 +1,10 @@
 package ru.r2cloud.jradio.minxx;
 
+import static pl.pojo.tester.api.assertion.Assertions.assertPojoMethodsFor;
+
 import org.junit.Test;
 
+import pl.pojo.tester.api.assertion.Method;
 import ru.r2cloud.jradio.AssertJson;
 import ru.r2cloud.jradio.fec.ViterbiTest;
 
@@ -15,4 +18,8 @@ public class Minxx2BeaconTest {
 		AssertJson.assertObjectsEqual("Minxx2Beacon.json", result);
 	}
 	
+	@Test
+	public void testPojo() {
+		assertPojoMethodsFor(Minxx2Beacon.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
+	}
 }
