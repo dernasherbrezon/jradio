@@ -1,13 +1,10 @@
 package ru.r2cloud.jradio.smogp;
 
 import java.io.IOException;
-import java.util.UUID;
 
 import ru.r2cloud.jradio.ByteInput;
 import ru.r2cloud.jradio.Context;
-import ru.r2cloud.jradio.LongValueSource;
 import ru.r2cloud.jradio.MessageInput;
-import ru.r2cloud.jradio.Tag;
 import ru.r2cloud.jradio.blocks.CorrelateAccessCodeTag;
 
 public class SmogPShortCorrelate implements MessageInput {
@@ -40,13 +37,7 @@ public class SmogPShortCorrelate implements MessageInput {
 			byte[] result = new byte[window.length];
 			System.arraycopy(window, currentIndex, result, 0, window.length - currentIndex);
 			System.arraycopy(window, 0, result, window.length - currentIndex, currentIndex);
-			Tag tag = new Tag();
-			tag.setId(UUID.randomUUID().toString());
-			LongValueSource currentSample = getContext().getCurrentSample();
-			if (currentSample != null) {
-				tag.put(CorrelateAccessCodeTag.SOURCE_SAMPLE, currentSample.getValue());
-			}
-			getContext().put(tag.getId(), tag);
+			CorrelateAccessCodeTag.markStartOfPacket(getContext());
 			return result;
 		}
 	}

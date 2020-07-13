@@ -1,13 +1,10 @@
 package ru.r2cloud.jradio.ao40;
 
 import java.io.IOException;
-import java.util.UUID;
 
 import ru.r2cloud.jradio.ByteInput;
 import ru.r2cloud.jradio.Context;
-import ru.r2cloud.jradio.LongValueSource;
 import ru.r2cloud.jradio.MessageInput;
-import ru.r2cloud.jradio.Tag;
 import ru.r2cloud.jradio.blocks.CorrelateAccessCodeTag;
 
 public class Ao40CorrelateAccessCodeTag implements MessageInput {
@@ -49,13 +46,7 @@ public class Ao40CorrelateAccessCodeTag implements MessageInput {
 					result[i] = (byte) (result[i] ^ 0xFF);
 				}
 			}
-			Tag tag = new Tag();
-			tag.setId(UUID.randomUUID().toString());
-			LongValueSource currentSample = getContext().getCurrentSample();
-			if (currentSample != null) {
-				tag.put(CorrelateAccessCodeTag.SOURCE_SAMPLE, currentSample.getValue());
-			}
-			getContext().put(tag.getId(), tag);
+			CorrelateAccessCodeTag.markStartOfPacket(getContext());
 			return result;
 		}
 	}

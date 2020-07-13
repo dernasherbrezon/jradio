@@ -95,6 +95,16 @@ public class CorrelateAccessCodeTag implements ByteInput {
 
 		return result;
 	}
+	
+	public static void markStartOfPacket(Context context) {
+		LongValueSource currentSample = context.getCurrentSample();
+		if (currentSample != null) {
+			Tag tag = new Tag();
+			tag.setId(UUID.randomUUID().toString());
+			tag.put(CorrelateAccessCodeTag.SOURCE_SAMPLE, currentSample.getValue());
+			context.put(tag.getId(), tag);
+		}
+	}
 
 	@Override
 	public void close() throws IOException {
