@@ -16,6 +16,12 @@ public class InterpFIRFilter implements FloatInput {
 	private int currentFilter;
 
 	public InterpFIRFilter(FloatInput input, int interpolation, float[] taps) {
+		if (interpolation < 1) {
+			throw new IllegalArgumentException("interpolation should be positive");
+		}
+		if (taps == null || taps.length == 0) {
+			throw new IllegalArgumentException("empty taps");
+		}
 		this.input = input;
 		int n = taps.length % interpolation;
 		float[] newTaps;
