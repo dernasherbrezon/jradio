@@ -46,6 +46,7 @@ All blocks meant to be binary compatible with gnuradio versions. This will ensur
   * GUI Histogram Sink (Spectogram) 
   * HardToSoft. Convert hard decision stream to soft stream.
   * HdlcReceiver. Out-of-tree block. Extracts HDLC frame from the unpacked stream of bytes
+  * InterpFIRFilter
   * LowPassFilter and LowPassFilterComplex
   * LMSDDEqualizer
   * MapBlock

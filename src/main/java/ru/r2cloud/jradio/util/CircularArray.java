@@ -33,5 +33,18 @@ public class CircularArray {
 	public void setCurrentPos(int currentPos) {
 		this.currentPos = currentPos;		
 	}
+	
+	@Override
+	public String toString() {
+		StringBuilder result = new StringBuilder("[");
+		for (int i = getCurrentPos() - 1; i >=0 ; i--) {
+			result.append(" ").append(array[i]);
+		}
+		for (int i = getSize() - 1; i >= getCurrentPos() ; i--) {
+			result.append(" ").append(array[i]);
+		}
+		result.append("]");
+		return result.toString();
+	}
 
 }
