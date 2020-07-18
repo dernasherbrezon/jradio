@@ -1,11 +1,22 @@
 package ru.r2cloud.jradio.util;
 
+import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
 public class MathUtilsTest {
-	
+
+	@Test
+	public void testConvolve() {
+		assertArrayEquals(new float[] { 0, 1, 2.5f, 4, 1.5f }, MathUtils.convolve(new float[] { 0, 1, 0.5f }, new float[] { 1, 2, 3 }), 0.0f);
+	}
+
+	@Test
+	public void testConvolve2() {
+		assertArrayEquals(new float[] { 1, 3, 5, 7, 9, 11, 13, 15, 8 }, MathUtils.convolve(new float[] { 1, 2, 3, 4, 5, 6, 7, 8 }, new float[] { 1, 1 }), 0.0f);
+	}
+
 	@Test
 	public void testLcm() {
 		assertEquals(36, MathUtils.lcm(12, 18));

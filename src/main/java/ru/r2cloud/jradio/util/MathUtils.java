@@ -18,9 +18,10 @@ public class MathUtils {
 		x1 -= x2;
 		return (float) 0.5 * x1;
 	}
-	
+
 	/**
 	 * Least Common Multiple
+	 * 
 	 * @param number1
 	 * @param number2
 	 * @return
@@ -198,6 +199,20 @@ public class MathUtils {
 			return 1;
 		}
 		return (float) (Math.sin(Math.PI * x) / (Math.PI * x));
+	}
+
+	public static float[] convolve(float[] x, float[] y) {
+		float[] result = new float[x.length + y.length - 1];
+		float[] temp = new float[result.length];
+		System.arraycopy(x, 0, temp, 0, x.length);
+		for (int i = 0; i < result.length; i++) {
+			float sum = 0.0f;
+			for (int j = 0, k = i; j < y.length && k >= 0; j++, k--) {
+				sum += y[j] * temp[k];
+			}
+			result[i] = sum;
+		}
+		return result;
 	}
 
 	private MathUtils() {
