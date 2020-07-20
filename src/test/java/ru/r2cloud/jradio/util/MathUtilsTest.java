@@ -8,6 +8,11 @@ import org.junit.Test;
 public class MathUtilsTest {
 
 	@Test
+	public void testFloatToFixed() {
+		assertEquals(1025347913, MathUtils.floatToFixed(1.5f));
+	}
+	
+	@Test
 	public void testConvolve() {
 		assertArrayEquals(new float[] { 0, 1, 2.5f, 4, 1.5f }, MathUtils.convolve(new float[] { 0, 1, 0.5f }, new float[] { 1, 2, 3 }), 0.0f);
 	}

@@ -42,6 +42,7 @@ All blocks meant to be binary compatible with gnuradio versions. This will ensur
   * FloatToChar
   * FloatToComplex
   * FractionalResampler
+  * FrequencyModulator
   * [FrequencyXlatingFIRFilter](http://blog.sdr.hu/grblocks/xlating-fir.html)
   * GUI Histogram Sink (Spectogram) 
   * HardToSoft. Convert hard decision stream to soft stream.
