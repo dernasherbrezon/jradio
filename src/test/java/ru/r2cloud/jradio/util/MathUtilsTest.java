@@ -8,10 +8,30 @@ import org.junit.Test;
 public class MathUtilsTest {
 
 	@Test
+	public void testSincos() {
+		float[] complex = new float[2];
+		MathUtils.sincos(-168515, complex);
+		assertEquals(-0.000246525f, complex[0], 0.0f);
+		assertEquals(1.0f, complex[1], 0.0f);
+	}
+
+	@Test
 	public void testFloatToFixed() {
 		assertEquals(1025347913, MathUtils.floatToFixed(1.5f));
 	}
-	
+
+	@Test
+	public void testFloatToFixed2() {
+		float[] complex = new float[2];
+		for (int i = 0; i < 8; i++) {
+			float angle = (float) (i * Math.PI / 4);
+			int fixed = MathUtils.floatToFixed(angle);
+			MathUtils.sincos(fixed, complex);
+			assertEquals(Math.sin(angle), complex[1], 0.00001f);
+			assertEquals(Math.cos(angle), complex[0], 0.00001f);
+		}
+	}
+
 	@Test
 	public void testConvolve() {
 		assertArrayEquals(new float[] { 0, 1, 2.5f, 4, 1.5f }, MathUtils.convolve(new float[] { 0, 1, 0.5f }, new float[] { 1, 2, 3 }), 0.0f);

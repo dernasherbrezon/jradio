@@ -36,7 +36,7 @@ public class MathUtils {
 		int sin_index = (int)(ux >> (WORDBITS - NBITS));
 		complex[1] = SINE_TABLE[sin_index][0] * (ux >> 1) + SINE_TABLE[sin_index][1];
 
-		ux = x + 0x40000000L;
+		ux = (x + 0x40000000) & 0xFFFFFFFFL;
 		int cos_index = (int)(ux >> (WORDBITS - NBITS));
 		complex[0] = SINE_TABLE[cos_index][0] * (ux >> 1) + SINE_TABLE[cos_index][1];
 

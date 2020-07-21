@@ -26,7 +26,7 @@ public class ConstellationModulator implements FloatInput {
 			next = new DifferentialEncoder(next, (int) arity);
 		}
 
-		ChunksToSymbols chunksToSymbols = new ChunksToSymbols(next, constellation.getConstell());
+		ChunksToSymbolsComplex chunksToSymbols = new ChunksToSymbolsComplex(next, constellation.getConstell());
 
 		int nfilts = 32;
 		int ntaps = nfilts * 11 * (int) samplesPerSymbol;

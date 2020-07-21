@@ -18,10 +18,10 @@ public class QpskDemodulator implements ByteInput {
 
 	private final FloatToChar f2char;
 
-	public QpskDemodulator(FloatInput source, int symbolRate, Constellation constel) {
+	public QpskDemodulator(FloatInput source, int baudRate, Constellation constel) {
 		FloatInput next = source;
 		next = new RmsAgcComplex(source, 1e-2f, 0.5f);
-		float samplesPerSymbol = next.getContext().getSampleRate() / symbolRate;
+		float samplesPerSymbol = next.getContext().getSampleRate() / baudRate;
 		int nfilts = 16;
 		float[] rrcTaps = Firdes.rootRaisedCosine(nfilts, nfilts, 1.0f / samplesPerSymbol, 0.5f, (int) (11 * samplesPerSymbol * nfilts));
 		next = new PolyphaseClockSyncComplex(next, samplesPerSymbol, 0.1f, rrcTaps, nfilts, nfilts / 2, 1.5f, 1);

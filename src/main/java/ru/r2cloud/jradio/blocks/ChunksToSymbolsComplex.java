@@ -6,7 +6,7 @@ import ru.r2cloud.jradio.ByteInput;
 import ru.r2cloud.jradio.Context;
 import ru.r2cloud.jradio.FloatInput;
 
-public class ChunksToSymbols implements FloatInput {
+public class ChunksToSymbolsComplex implements FloatInput {
 
 	private final ByteInput input;
 	private final float[] symbols;
@@ -15,7 +15,7 @@ public class ChunksToSymbols implements FloatInput {
 	private int currentIndex = 0;
 	private boolean real = true;
 
-	public ChunksToSymbols(ByteInput input, float[] symbols) {
+	public ChunksToSymbolsComplex(ByteInput input, float[] symbols) {
 		this.input = input;
 		this.symbols = symbols;
 		context = new Context(input.getContext());
