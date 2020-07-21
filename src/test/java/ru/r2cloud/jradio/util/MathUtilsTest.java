@@ -8,14 +8,6 @@ import org.junit.Test;
 public class MathUtilsTest {
 
 	@Test
-	public void testSincos() {
-		float[] complex = new float[2];
-		MathUtils.sincos(-168515, complex);
-		assertEquals(-0.000246525f, complex[0], 0.0f);
-		assertEquals(1.0f, complex[1], 0.0f);
-	}
-
-	@Test
 	public void testFloatToFixed() {
 		assertEquals(1025347913, MathUtils.floatToFixed(1.5f));
 	}
