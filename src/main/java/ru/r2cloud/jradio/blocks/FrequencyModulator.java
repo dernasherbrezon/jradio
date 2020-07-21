@@ -14,7 +14,7 @@ public class FrequencyModulator implements FloatInput {
 
 	private final float[] complex = new float[2];
 	private int complexIndex;
-	private float d_phase = 0;
+	private float phase = 0;
 
 	public FrequencyModulator(FloatInput input, float sensitivity) {
 		this.input = input;
@@ -29,10 +29,10 @@ public class FrequencyModulator implements FloatInput {
 		if (complexIndex >= complex.length) {
 			complexIndex = 0;
 
-			d_phase = d_phase + sensitivity * input.readFloat();
-			d_phase = (float) ((d_phase + Math.PI) % (2 * Math.PI) - Math.PI);
+			phase = phase + sensitivity * input.readFloat();
+			phase = (float) ((phase + Math.PI) % (2 * Math.PI) - Math.PI);
 
-			int angle = MathUtils.floatToFixed(d_phase);
+			int angle = MathUtils.floatToFixed(phase);
 			MathUtils.sincos(angle, complex);
 		}
 
