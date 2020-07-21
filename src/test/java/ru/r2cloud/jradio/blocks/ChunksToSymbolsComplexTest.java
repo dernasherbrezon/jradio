@@ -6,7 +6,7 @@ import org.junit.Test;
 
 import ru.r2cloud.jradio.ArrayByteInput;
 
-public class ChunksToSymbolsTest {
+public class ChunksToSymbolsComplexTest {
 
 	@Test
 	public void testSuccess() throws Exception {
