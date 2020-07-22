@@ -16,7 +16,7 @@ All blocks meant to be binary compatible with gnuradio versions. This will ensur
   * BinarySlicer
   * Cc11xxReceiver. Out-of-tree block. Decodes frames produced by [cc11xx](http://www.ti.com/product/CC1101/description). Based on [gr-cc11xx](https://github.com/andrepuschmann/gr-cc11xx)
   * ChannelModel
-  * ChunksToSymbolsComplex
+  * ChunksToSymbols and ChunksToSymbolsComplex
   * [ClockRecoveryMM](https://www.tablix.org/~avian/blog/archives/2015/03/notes_on_m_m_clock_recovery/) and [ClockRecoveryMMComplex](https://www.tablix.org/~avian/blog/archives/2015/03/notes_on_m_m_clock_recovery/)
   * ComplexConjugate
   * ComplexToReal
