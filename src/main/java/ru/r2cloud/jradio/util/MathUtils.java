@@ -33,14 +33,12 @@ public class MathUtils {
 
 	public static void sincos(int x, float[] complex) {
 		long ux = x & 0xFFFFFFFFL;
-		int sin_index = (int)(ux >> (WORDBITS - NBITS));
-		complex[1] = SINE_TABLE[sin_index][0] * (ux >> 1) + SINE_TABLE[sin_index][1];
+		int sinIndex = (int)(ux >> (WORDBITS - NBITS));
+		complex[1] = SINE_TABLE[sinIndex][0] * (ux >> 1) + SINE_TABLE[sinIndex][1];
 
 		ux = (x + 0x40000000) & 0xFFFFFFFFL;
-		int cos_index = (int)(ux >> (WORDBITS - NBITS));
-		complex[0] = SINE_TABLE[cos_index][0] * (ux >> 1) + SINE_TABLE[cos_index][1];
-
-		return;
+		int cosIndex = (int)(ux >> (WORDBITS - NBITS));
+		complex[0] = SINE_TABLE[cosIndex][0] * (ux >> 1) + SINE_TABLE[cosIndex][1];
 	}
 
 	/**
