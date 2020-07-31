@@ -9,6 +9,7 @@ import ru.r2cloud.jradio.ax25.AddressSubfield;
 import ru.r2cloud.jradio.ax25.FrameType;
 import ru.r2cloud.jradio.ax25.SFrameControlType;
 import ru.r2cloud.jradio.ax25.UFrameControlType;
+import ru.r2cloud.jradio.fec.ccsds.UncorrectableException;
 
 public class EseoBeacon extends Beacon {
 
@@ -37,7 +38,7 @@ public class EseoBeacon extends Beacon {
 	private SFrameControlType sFrameType;
 
 	@Override
-	public void readBeacon(byte[] data) throws IOException {
+	public void readBeacon(byte[] data) throws IOException, UncorrectableException {
 		if (data.length == 21) {
 			frame = FrameType.U;
 		} else if (data.length == 22) {

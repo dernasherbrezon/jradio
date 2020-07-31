@@ -3,6 +3,8 @@ package ru.r2cloud.jradio.ax25;
 import java.io.DataInputStream;
 import java.io.IOException;
 
+import ru.r2cloud.jradio.fec.ccsds.UncorrectableException;
+
 public class Header {
 
 	public static final int LENGTH_BYTES = 16;
@@ -19,7 +21,7 @@ public class Header {
 		// do nothing
 	}
 
-	public Header(DataInputStream dis) throws IOException {
+	public Header(DataInputStream dis) throws IOException, UncorrectableException {
 		destinationAddress = new AddressSubfield(dis);
 		sourceAddress = new AddressSubfield(dis);
 		int controlBits = dis.readUnsignedByte();
@@ -36,7 +38,7 @@ public class Header {
 				pid = dis.readUnsignedByte();
 			}
 		} else {
-			throw new IllegalArgumentException();
+			throw new IOException("unsupported control bits:" + controlBits);
 		}
 	}
 
