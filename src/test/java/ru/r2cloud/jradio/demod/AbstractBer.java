@@ -20,7 +20,7 @@ public abstract class AbstractBer {
 	private final float[] fftData;
 	private final int[] inputData;
 	protected final float sampleRate = 48000.0f;
-	protected final float sps = 2.0f;
+	protected final float sps = 5.0f;
 	private final float[] curComplex = new float[2];
 
 	public AbstractBer() {
@@ -41,22 +41,23 @@ public abstract class AbstractBer {
 		ByteInput demod = createModulatorDemodulator(pack, ebno);
 		SoftToHard s2h = new SoftToHard(demod);
 		int drop = 2;
-		float min = 1e+12f;
+		float sum = 0.0f;
+		int total = 0;
 		for (int i = 0; i < 50; i++) {
 			float[] curBatch = new float[fftData.length];
-			for (int j = 0; j < curBatch.length / 2; j++) {
+			for (int j = 0; j < curBatch.length; j += 2) {
 				// populate only Re part
 				// shift from [0;1] interval to [-1;1] interval
-				curBatch[2 * j] = 2 * s2h.readByte() - 1.0f;
+				curBatch[j] = 2 * s2h.readByte() - 1.0f;
 			}
 
 			FFT.complexForward(curBatch);
 
 			float[] multiplied = new float[curBatch.length];
-			for (int j = 0; j < curBatch.length / 2; j++) {
-				MathUtils.multiply(curComplex, curBatch[2 * j], curBatch[2 * j + 1], fftData[2 * j], fftData[2 * j + 1]);
-				multiplied[2 * j] = curComplex[0];
-				multiplied[2 * j + 1] = curComplex[1];
+			for (int j = 0; j < curBatch.length; j += 2) {
+				MathUtils.multiply(curComplex, curBatch[j], curBatch[j + 1], fftData[j], fftData[j + 1]);
+				multiplied[j] = curComplex[0];
+				multiplied[j + 1] = curComplex[1];
 			}
 
 			for (int j = 0; j < multiplied.length; j++) {
@@ -73,11 +74,12 @@ public abstract class AbstractBer {
 
 			float result = maxMagnitude * -0.5f + 0.5f;
 			if (i >= drop) {
-				min = Float.min(result, min);
+				sum += result;
+				total++;
 			}
 		}
 		s2h.close();
-		return min;
+		return sum / total;
 	}
 
 	public abstract ByteInput createModulatorDemodulator(ByteInput input, float ebno);
