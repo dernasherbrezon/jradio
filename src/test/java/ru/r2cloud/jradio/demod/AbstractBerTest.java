@@ -14,7 +14,7 @@ public class AbstractBerTest {
 	@Test
 	public void test() throws IOException {
 		NoOpBer ber = new NoOpBer();
-		assertEquals(0.0, ber.calculateBer(0.0f), 0.0);
+		assertEquals(0.0, ber.calculateBer(0.0f), 0.0000001);
 	}
 
 	private static class NoOpBer extends AbstractBer {
