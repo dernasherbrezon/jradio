@@ -15,7 +15,7 @@ public class AfskDemodulator implements ByteInput {
 
 	private final ByteInput source;
 
-	public AfskDemodulator(FloatInput source, int baudRate, float deviation, float afCarrier, float gainMu) {
+	public AfskDemodulator(FloatInput source, int baudRate, float deviation, float afCarrier, int decimation) {
 		FloatInput next = source;
 		if (next.getContext().getChannels() == 2) {
 			next = new QuadratureDemodulation(next, (float) (next.getContext().getSampleRate() / (2 * Math.PI * deviation)));
@@ -24,8 +24,8 @@ public class AfskDemodulator implements ByteInput {
 		float filterTransition = 0.1f * Math.abs(deviation);
 		float[] taps = Firdes.lowPass(1, next.getContext().getSampleRate(), filterCutoff, filterTransition, Window.WIN_HAMMING, 6.76);
 		next = new FloatToComplex(next);
-		next = new FrequencyXlatingFIRFilter(next, taps, 1, afCarrier);
-		this.source = new FskDemodulator(next, baudRate, gainMu);
+		next = new FrequencyXlatingFIRFilter(next, taps, decimation, afCarrier);
+		this.source = new FskDemodulator(next, baudRate);
 	}
 
 	@Override

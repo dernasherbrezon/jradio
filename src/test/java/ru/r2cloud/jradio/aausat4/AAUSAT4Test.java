@@ -103,7 +103,7 @@ public class AAUSAT4Test {
 	}
 
 	private void setupDemodulator(FloatInput source) {
-		FskDemodulator demod = new FskDemodulator(source, 2400, 0.175f);
+		FskDemodulator demod = new FskDemodulator(source, 2400);
 		CorrelateAccessCodeTag correlateTag = new CorrelateAccessCodeTag(demod, 10, "010011110101101000110100010000110101010101000010", true);
 		input = new AAUSAT4(new TaggedStreamToPdu(new FixedLengthTagger(correlateTag, AAUSAT4.VITERBI_TAIL_SIZE + 8))); // 8 for fsm
 	}

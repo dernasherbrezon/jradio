@@ -19,9 +19,8 @@ public class KunsPfTest {
 
 	@Test
 	public void testDecodeTelemetry() throws Exception {
-		float gainMu = 0.175f * 3;
 		WavFileSource source = new WavFileSource(KunsPfTest.class.getClassLoader().getResourceAsStream("1kuns_pf.wav"));
-		FskDemodulator demod = new FskDemodulator(source, 1200, gainMu);
+		FskDemodulator demod = new FskDemodulator(source, 1200, 5000.0f, 5, 2000);
 		CorrelateAccessCodeTag correlateTag = new CorrelateAccessCodeTag(demod, 4, "10010011000010110101000111011110", true);
 		// 73 choosen as an estimated packet length in test.
 		// in real prod, it better to have max - 255

@@ -21,9 +21,8 @@ public class At03Test {
 
 	@Test
 	public void testSucess() throws Exception {
-		float gainMu = 0.175f;
 		WavFileSource source = new WavFileSource(At03Test.class.getClassLoader().getResourceAsStream("at03.wav"));
-		FskDemodulator demod = new FskDemodulator(source, 9600, gainMu);
+		FskDemodulator demod = new FskDemodulator(source, 9600);
 		SoftToHard s2h = new SoftToHard(demod);
 		CorrelateAccessCodeTag correlateTag = new CorrelateAccessCodeTag(s2h, 1, "0010110111010100", false);
 		TaggedStreamToPdu pdu = new TaggedStreamToPdu(new UnpackedToPacked(new FixedLengthTagger(correlateTag, 64 * 8), 1, Endianness.GR_MSB_FIRST));

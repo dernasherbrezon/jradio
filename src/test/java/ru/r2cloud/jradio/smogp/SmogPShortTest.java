@@ -15,9 +15,8 @@ public class SmogPShortTest {
 
 	@Test
 	public void testDecodeTelemetry() throws Exception {
-		float gainMu = 0.175f * 3;
 		WavFileSource source = new WavFileSource(SmogPShortTest.class.getClassLoader().getResourceAsStream("smog_p_short.wav"));
-		FskDemodulator demod = new FskDemodulator(source, 1250, gainMu);
+		FskDemodulator demod = new FskDemodulator(source, 1250);
 		input = new SmogPShort(demod);
 		assertTrue(input.hasNext());
 		AssertJson.assertObjectsEqual("SmogPShortBeacon.json", input.next());

@@ -22,9 +22,8 @@ public class Ca03Test {
 
 	@Test
 	public void testSucess9600() throws Exception {
-		float gainMu = 0.175f * 3;
 		WavFileSource source = new WavFileSource(Ca03Test.class.getClassLoader().getResourceAsStream("ca03_9k6.wav"));
-		FskDemodulator demod = new FskDemodulator(source, 9600, gainMu);
+		FskDemodulator demod = new FskDemodulator(source, 9600);
 		SoftToHard s2h = new SoftToHard(demod);
 		Descrambler des = new Descrambler(s2h, 0x21, 0x00, 16);
 		CorrelateAccessCodeTag correlateTag = new CorrelateAccessCodeTag(des, 6, "10010011000010110101000111011110", false);
@@ -33,12 +32,11 @@ public class Ca03Test {
 		assertTrue(input.hasNext());
 		AssertJson.assertObjectsEqual("Ca03Beacon.json", input.next());
 	}
-	
+
 	@Test
 	public void testSucess4800() throws Exception {
-		float gainMu = 0.175f * 3;
 		WavFileSource source = new WavFileSource(Ca03Test.class.getClassLoader().getResourceAsStream("ca03.wav"));
-		FskDemodulator demod = new FskDemodulator(source, 4800, gainMu);
+		FskDemodulator demod = new FskDemodulator(source, 4800, 5000.0f, 2, 2000);
 		SoftToHard s2h = new SoftToHard(demod);
 		Descrambler des = new Descrambler(s2h, 0x21, 0x00, 16);
 		CorrelateAccessCodeTag correlateTag = new CorrelateAccessCodeTag(des, 6, "10010011000010110101000111011110", false);

@@ -23,10 +23,9 @@ public class Dstar1Test {
 
 	@Test
 	public void testSucess() throws Exception {
-		float gainMu = 0.175f;
 		WavFileSource source = new WavFileSource(Dstar1Test.class.getClassLoader().getResourceAsStream("dstar_one.wav"));
 		MultiplyConst mc = new MultiplyConst(source, -1.0f);
-		FskDemodulator demod = new FskDemodulator(mc, 4800, gainMu);
+		FskDemodulator demod = new FskDemodulator(mc, 4800);
 		SoftToHard s2h = new SoftToHard(demod);
 		CorrelateAccessCodeTag correlateTag = new CorrelateAccessCodeTag(s2h, 6, "11001100110011000101011101100101", false);
 		TaggedStreamToPdu pdu = new TaggedStreamToPdu(new UnpackedToPacked(new FixedLengthTagger(correlateTag, CMX909bBeacon.MAX_SIZE * 8), 1, Endianness.GR_MSB_FIRST));

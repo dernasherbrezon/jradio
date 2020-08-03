@@ -22,9 +22,8 @@ public class FoxTest {
 
 	@Test
 	public void testSuccess() throws Exception {
-		float gainMu = 0.175f * 5;
 		WavFileSource source = new WavFileSource(FoxTest.class.getClassLoader().getResourceAsStream("slowFox1a.wav"));
-		FskDemodulator demod = new FskDemodulator(source, 200, 0.0f, gainMu, 120, 200);
+		FskDemodulator demod = new FskDemodulator(source, 200, 0.0f, 120, 200);
 		SoftToHard s2h = new SoftToHard(demod);
 		Set<String> codes = new HashSet<>();
 		codes.add("0011111010");
@@ -38,9 +37,8 @@ public class FoxTest {
 
 	@Test
 	public void testHighSpeed() throws Exception {
-		float gainMu = 0.175f * 3;
 		WavFileSource source = new WavFileSource(FoxTest.class.getClassLoader().getResourceAsStream("fox1dWithImage.wav"));
-		FskDemodulator demod = new FskDemodulator(source, 9600, 0.0f, gainMu, 1, 2000);
+		FskDemodulator demod = new FskDemodulator(source, 9600, 0.0f, 1, 2000);
 		SoftToHard s2h = new SoftToHard(demod);
 		Set<String> codes = new HashSet<>();
 		codes.add("0011111010");

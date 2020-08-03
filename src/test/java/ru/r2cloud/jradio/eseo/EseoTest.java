@@ -20,9 +20,8 @@ public class EseoTest {
 
 	@Test
 	public void testSuccess() throws Exception {
-		float gainMu = 0.175f;
 		WavFileSource source = new WavFileSource(EseoTest.class.getClassLoader().getResourceAsStream("eseo.wav"));
-		FskDemodulator demod = new FskDemodulator(source, 9600, gainMu);
+		FskDemodulator demod = new FskDemodulator(source, 9600);
 		SoftToHard s2h = new SoftToHard(demod);
 		CorrelateAccessCodeTag correlateTag = new CorrelateAccessCodeTag(s2h, 1, EseoBeacon.FLAG, false);
 		TaggedStreamToPdu pdu = new TaggedStreamToPdu(new UnpackedToPacked(new FixedLengthTagger(correlateTag, 257 * 8), 1, Endianness.GR_MSB_FIRST));

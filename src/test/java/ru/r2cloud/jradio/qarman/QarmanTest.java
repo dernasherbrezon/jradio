@@ -16,9 +16,8 @@ public class QarmanTest {
 
 	@Test
 	public void testDecodeTelemetry() throws Exception {
-		float gainMu = 0.175f * 3;
 		WavFileSource source = new WavFileSource(QarmanTest.class.getClassLoader().getResourceAsStream("qarman.wav"));
-		FskDemodulator demod = new FskDemodulator(source, 9600, gainMu);
+		FskDemodulator demod = new FskDemodulator(source, 9600);
 		input = new Ax25G3ruhBeaconSource<>(demod, QarmanBeacon.class);
 		assertTrue(input.hasNext());
 		AssertJson.assertObjectsEqual("QarmanBeacon.json", input.next());

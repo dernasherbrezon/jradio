@@ -19,9 +19,8 @@ public class Suomi100Test {
 
 	@Test
 	public void testDecodeTelemetry() throws Exception {
-		float gainMu = 0.175f * 3;
 		WavFileSource source = new WavFileSource(Suomi100Test.class.getClassLoader().getResourceAsStream("suomi_100.wav"));
-		FskDemodulator demod = new FskDemodulator(source, 9600, gainMu);
+		FskDemodulator demod = new FskDemodulator(source, 9600);
 		CorrelateAccessCodeTag correlateTag = new CorrelateAccessCodeTag(demod, 4, "10010011000010110101000111011110", true);
 		TaggedStreamToPdu pdu = new TaggedStreamToPdu(new FixedLengthTagger(correlateTag, 255 * 8));
 		AX100Decoder ax100 = new AX100Decoder(pdu, false, true, true);

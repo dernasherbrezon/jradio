@@ -18,9 +18,8 @@ public class OpsSatTest {
 
 	@Test
 	public void testDecodeTelemetry() throws Exception {
-		float gainMu = 0.175f * 3;
 		WavFileSource source = new WavFileSource(OpsSatTest.class.getClassLoader().getResourceAsStream("ops_sat.wav"));
-		FskDemodulator demod = new FskDemodulator(source, 9600, gainMu);
+		FskDemodulator demod = new FskDemodulator(source, 9600);
 		SoftToHard s2h = new SoftToHard(demod);
 		input = new OpsSat(s2h);
 		assertTrue(input.hasNext());

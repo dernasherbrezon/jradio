@@ -13,7 +13,6 @@ import ru.r2cloud.jradio.blocks.SoftToHard;
 import ru.r2cloud.jradio.blocks.TaggedStreamToPdu;
 import ru.r2cloud.jradio.blocks.UnpackedToPacked;
 import ru.r2cloud.jradio.demod.FskDemodulator;
-import ru.r2cloud.jradio.kunspf.KunsPfTest;
 import ru.r2cloud.jradio.source.WavFileSource;
 import ru.r2cloud.jradio.tubix20.CMX909bBeacon;
 
@@ -23,9 +22,8 @@ public class TechnosatTest {
 
 	@Test
 	public void testDecodeTelemetry() throws Exception {
-		float gainMu = 0.175f * 3;
-		WavFileSource source = new WavFileSource(KunsPfTest.class.getClassLoader().getResourceAsStream("technosat.wav"));
-		FskDemodulator demod = new FskDemodulator(source, 4800, gainMu);
+		WavFileSource source = new WavFileSource(TechnosatTest.class.getClassLoader().getResourceAsStream("technosat.wav"));
+		FskDemodulator demod = new FskDemodulator(source, 4800);
 		SoftToHard s2h = new SoftToHard(demod);
 		CorrelateAccessCodeTag correlateTag = new CorrelateAccessCodeTag(s2h, 4, "111011110000111011110000", false);
 		TaggedStreamToPdu pdu = new TaggedStreamToPdu(new UnpackedToPacked(new FixedLengthTagger(correlateTag, CMX909bBeacon.MAX_SIZE * 8), 1, Endianness.GR_MSB_FIRST));

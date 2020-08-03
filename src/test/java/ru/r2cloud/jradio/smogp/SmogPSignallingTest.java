@@ -21,9 +21,8 @@ public class SmogPSignallingTest {
 
 	@Test
 	public void testDecodeTelemetry() throws Exception {
-		float gainMu = 0.175f * 3;
 		WavFileSource source = new WavFileSource(SmogPSignallingTest.class.getClassLoader().getResourceAsStream("smog_p_signalling.wav"));
-		FskDemodulator demod = new FskDemodulator(source, 1250, gainMu);
+		FskDemodulator demod = new FskDemodulator(source, 1250);
 		SoftToHard s2h = new SoftToHard(demod);
 		CorrelateAccessCodeTag correlateTag = new CorrelateAccessCodeTag(s2h, 8, "0010110111010100100101111111110111010011011110110000111100011111", false);
 		UnpackedToPacked packed = new UnpackedToPacked(new FixedLengthTagger(correlateTag, 64 * 8), 1, Endianness.GR_MSB_FIRST);

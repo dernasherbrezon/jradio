@@ -19,9 +19,8 @@ public class Lucky7Test {
 
 	@Test
 	public void testDecodeTelemetry() throws Exception {
-		float gainMu = 0.175f;
 		WavFileSource source = new WavFileSource(Lucky7Test.class.getClassLoader().getResourceAsStream("lucky_7.wav"));
-		FskDemodulator demod = new FskDemodulator(source, 4800, gainMu);
+		FskDemodulator demod = new FskDemodulator(source, 4800);
 		SoftToHard s2h = new SoftToHard(demod);
 		CorrelateAccessCodeTag correlateTag = new CorrelateAccessCodeTag(s2h, 3, "0010110111010100", false);
 		TaggedStreamToPdu pdu = new TaggedStreamToPdu(new FixedLengthTagger(correlateTag, 37 * 8));

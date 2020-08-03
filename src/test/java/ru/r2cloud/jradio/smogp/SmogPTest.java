@@ -15,9 +15,8 @@ public class SmogPTest {
 
 	@Test
 	public void testDecodeTelemetry() throws Exception {
-		float gainMu = 0.175f * 3;
 		WavFileSource source = new WavFileSource(SmogPTest.class.getClassLoader().getResourceAsStream("smog_p_long.wav"));
-		FskDemodulator demod = new FskDemodulator(source, 1250, gainMu);
+		FskDemodulator demod = new FskDemodulator(source, 1250);
 		input = new SmogP(demod);
 		assertTrue(input.hasNext());
 		SmogPBeacon next = input.next();
