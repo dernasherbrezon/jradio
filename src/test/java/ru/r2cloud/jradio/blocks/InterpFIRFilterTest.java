@@ -8,6 +8,24 @@ import ru.r2cloud.jradio.source.InputStreamSource;
 
 public class InterpFIRFilterTest {
 
+	@SuppressWarnings({ "resource", "unused" })
+	@Test(expected = IllegalArgumentException.class)
+	public void testInvalidInterpolation() {
+		new InterpFIRFilter(null, 0, new float[] { 1.0f });
+	}
+
+	@SuppressWarnings({ "resource", "unused" })
+	@Test(expected = IllegalArgumentException.class)
+	public void testInvalidTaps() {
+		new InterpFIRFilter(null, 1, new float[0]);
+	}
+
+	@SuppressWarnings({ "resource", "unused" })
+	@Test(expected = IllegalArgumentException.class)
+	public void testInvalidTaps2() {
+		new InterpFIRFilter(null, 1, null);
+	}
+
 	@Test
 	public void test() throws Exception {
 		Context ctx = new Context();
