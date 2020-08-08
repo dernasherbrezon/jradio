@@ -3,17 +3,17 @@ package ru.r2cloud.jradio.aausat4;
 import java.io.DataInputStream;
 import java.io.IOException;
 
-public class ADCS2 {
+public class Adcs2 {
 
 	private short gyro1;
 	private short gyro2;
 	private short gyro3;
 
-	public ADCS2() {
+	public Adcs2() {
 		// do nothing
 	}
 
-	public ADCS2(DataInputStream data) throws IOException {
+	public Adcs2(DataInputStream data) throws IOException {
 		gyro1 = data.readShort();
 		gyro2 = data.readShort();
 		gyro3 = data.readShort();

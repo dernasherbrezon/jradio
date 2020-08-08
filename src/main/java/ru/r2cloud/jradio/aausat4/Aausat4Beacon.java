@@ -8,17 +8,17 @@ import java.util.Arrays;
 import ru.r2cloud.jradio.Beacon;
 import ru.r2cloud.jradio.csp.Header;
 
-public class AAUSAT4Beacon extends Beacon {
+public class Aausat4Beacon extends Beacon {
 
 	private int length;
 	private Header header;
 	private byte[] hmac;
-	private EPS eps;
-	private COM com;
-	private ADCS1 adcs1;
-	private ADCS2 adcs2;
-	private AIS ais1;
-	private AIS ais2;
+	private Eps eps;
+	private Com com;
+	private Adcs1 adcs1;
+	private Adcs2 adcs2;
+	private Ais ais1;
+	private Ais ais2;
 
 	// # [ 1 byte | 20 bytes | 10 bytes | 7 bytes | 6 bytes | 20 bytes | 20
 	// bytes ]
@@ -45,32 +45,32 @@ public class AAUSAT4Beacon extends Beacon {
 		boolean ais2Valid = (valid & (1 << 5)) > 0;
 
 		if (epsValid) {
-			eps = new EPS(data);
+			eps = new Eps(data);
 		} else {
 			data.skipBytes(20);
 		}
 		if (comValid) {
-			com = new COM(data);
+			com = new Com(data);
 		} else {
 			data.skipBytes(10);
 		}
 		if (adcs1Valid) {
-			adcs1 = new ADCS1(data);
+			adcs1 = new Adcs1(data);
 		} else {
 			data.skipBytes(7);
 		}
 		if (adcs2Valid) {
-			adcs2 = new ADCS2(data);
+			adcs2 = new Adcs2(data);
 		} else {
 			data.skipBytes(6);
 		}
 		if (ais1Valid) {
-			ais1 = new AIS(data);
+			ais1 = new Ais(data);
 		} else {
 			data.skipBytes(20);
 		}
 		if (ais2Valid) {
-			ais2 = new AIS(data);
+			ais2 = new Ais(data);
 		} else {
 			data.skipBytes(20);
 		}
@@ -92,51 +92,51 @@ public class AAUSAT4Beacon extends Beacon {
 		this.length = length;
 	}
 
-	public EPS getEps() {
+	public Eps getEps() {
 		return eps;
 	}
 
-	public void setEps(EPS eps) {
+	public void setEps(Eps eps) {
 		this.eps = eps;
 	}
 
-	public COM getCom() {
+	public Com getCom() {
 		return com;
 	}
 
-	public void setCom(COM com) {
+	public void setCom(Com com) {
 		this.com = com;
 	}
 
-	public ADCS1 getAdcs1() {
+	public Adcs1 getAdcs1() {
 		return adcs1;
 	}
 
-	public void setAdcs1(ADCS1 adcs1) {
+	public void setAdcs1(Adcs1 adcs1) {
 		this.adcs1 = adcs1;
 	}
 
-	public ADCS2 getAdcs2() {
+	public Adcs2 getAdcs2() {
 		return adcs2;
 	}
 
-	public void setAdcs2(ADCS2 adcs2) {
+	public void setAdcs2(Adcs2 adcs2) {
 		this.adcs2 = adcs2;
 	}
 
-	public AIS getAis1() {
+	public Ais getAis1() {
 		return ais1;
 	}
 
-	public void setAis1(AIS ais1) {
+	public void setAis1(Ais ais1) {
 		this.ais1 = ais1;
 	}
 
-	public AIS getAis2() {
+	public Ais getAis2() {
 		return ais2;
 	}
 
-	public void setAis2(AIS ais2) {
+	public void setAis2(Ais ais2) {
 		this.ais2 = ais2;
 	}
 

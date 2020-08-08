@@ -3,7 +3,7 @@ package ru.r2cloud.jradio.aausat4;
 import java.io.DataInputStream;
 import java.io.IOException;
 
-public class EPS {
+public class Eps {
 
 	private int bootCount;
 	private long uptime;
@@ -18,11 +18,11 @@ public class EPS {
 	private byte paTemperature;
 	private byte mainVoltage;
 	
-	public EPS() {
+	public Eps() {
 		//do nothing
 	}
 
-	public EPS(DataInputStream data) throws IOException {
+	public Eps(DataInputStream data) throws IOException {
 		bootCount = data.readUnsignedShort();
 		uptime = data.readInt() & 0xffffffffl;
 		realtimeClock = data.readInt() & 0xffffffffl;

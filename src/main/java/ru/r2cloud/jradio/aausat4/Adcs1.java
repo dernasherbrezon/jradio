@@ -3,18 +3,18 @@ package ru.r2cloud.jradio.aausat4;
 import java.io.DataInputStream;
 import java.io.IOException;
 
-public class ADCS1 {
+public class Adcs1 {
 
 	private short bdot1;
 	private short bdot2;
 	private short bdot3;
 	private int state;
 
-	public ADCS1() {
+	public Adcs1() {
 		// do nothing
 	}
 
-	public ADCS1(DataInputStream data) throws IOException {
+	public Adcs1(DataInputStream data) throws IOException {
 		bdot1 = data.readShort();
 		bdot2 = data.readShort();
 		bdot3 = data.readShort();

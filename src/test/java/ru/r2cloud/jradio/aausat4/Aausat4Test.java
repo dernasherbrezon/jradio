@@ -32,9 +32,9 @@ import ru.r2cloud.jradio.source.Waveform;
 import ru.r2cloud.jradio.util.RepeatedWavSource;
 import ru.r2cloud.jradio.util.ThroughputStream;
 
-public class AAUSAT4Test {
+public class Aausat4Test {
 
-	private AAUSAT4 input;
+	private Aausat4 input;
 
 	public static void main(String[] args) throws Exception {
 		final ThroughputStream throughputStream = new ThroughputStream(new RepeatedWavSource("aausat-4.wav", 1));
@@ -42,7 +42,7 @@ public class AAUSAT4Test {
 		Rail rail = new Rail(clockRecovery, -1.0f, 1.0f);
 		FloatToChar f2char = new FloatToChar(rail, 127.0f);
 		CorrelateAccessCodeTag correlateTag = new CorrelateAccessCodeTag(f2char, 10, "010011110101101000110100010000110101010101000010", true);
-		AAUSAT4 input = new AAUSAT4(new TaggedStreamToPdu(new FixedLengthTagger(correlateTag, AAUSAT4.VITERBI_TAIL_SIZE + 8))); // 8 for fsm
+		Aausat4 input = new Aausat4(new TaggedStreamToPdu(new FixedLengthTagger(correlateTag, Aausat4.VITERBI_TAIL_SIZE + 8))); // 8 for fsm
 		Thread t = new Thread(new Runnable() {
 
 			@Override
@@ -91,12 +91,12 @@ public class AAUSAT4Test {
 	}
 
 	private static InputStream getStream() throws Exception {
-		return AAUSAT4Test.class.getClassLoader().getResourceAsStream("aausat-4-with-offset-2.wav");
+		return Aausat4Test.class.getClassLoader().getResourceAsStream("aausat-4-with-offset-2.wav");
 	}
 
 	@Test
 	public void testSuccess() throws Exception {
-		WavFileSource source = new WavFileSource(AAUSAT4Test.class.getClassLoader().getResourceAsStream("aausat-4.wav"));
+		WavFileSource source = new WavFileSource(Aausat4Test.class.getClassLoader().getResourceAsStream("aausat-4.wav"));
 		setupDemodulator(source);
 		assertTrue(input.hasNext());
 		AssertJson.assertObjectsEqual("AAUSAT4Beacon.json", input.next());
@@ -105,7 +105,7 @@ public class AAUSAT4Test {
 	private void setupDemodulator(FloatInput source) {
 		FskDemodulator demod = new FskDemodulator(source, 2400);
 		CorrelateAccessCodeTag correlateTag = new CorrelateAccessCodeTag(demod, 10, "010011110101101000110100010000110101010101000010", true);
-		input = new AAUSAT4(new TaggedStreamToPdu(new FixedLengthTagger(correlateTag, AAUSAT4.VITERBI_TAIL_SIZE + 8))); // 8 for fsm
+		input = new Aausat4(new TaggedStreamToPdu(new FixedLengthTagger(correlateTag, Aausat4.VITERBI_TAIL_SIZE + 8))); // 8 for fsm
 	}
 
 	@After

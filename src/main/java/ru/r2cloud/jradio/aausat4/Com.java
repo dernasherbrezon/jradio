@@ -3,7 +3,7 @@ package ru.r2cloud.jradio.aausat4;
 import java.io.DataInputStream;
 import java.io.IOException;
 
-public class COM {
+public class Com {
 
 	private int bootCount;
 	private int packetsReceived;
@@ -12,11 +12,11 @@ public class COM {
 	private int latestBitCorrection;
 	private int latestByteCorrection;
 	
-	public COM() {
+	public Com() {
 		//do nothing
 	}
 
-	public COM(DataInputStream data) throws IOException {
+	public Com(DataInputStream data) throws IOException {
 		bootCount = data.readUnsignedShort() & 0x1fff;
 		packetsReceived = data.readUnsignedShort();
 		packetsSend = data.readUnsignedShort();

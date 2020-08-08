@@ -3,16 +3,16 @@ package ru.r2cloud.jradio.aausat4;
 import java.io.DataInputStream;
 import java.io.IOException;
 
-public class AIS {
+public class Ais {
 
 	private int bootCount;
 	private int uniqueMssi;
 
-	public AIS() {
+	public Ais() {
 		// do nothing
 	}
 
-	public AIS(DataInputStream data) throws IOException {
+	public Ais(DataInputStream data) throws IOException {
 		bootCount = data.readUnsignedShort();
 		data.skipBytes(4);
 		uniqueMssi = data.readUnsignedShort();
