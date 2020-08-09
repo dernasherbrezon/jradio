@@ -1,5 +1,6 @@
 package ru.r2cloud.jradio.blocks;
 
+import java.io.EOFException;
 import java.io.IOException;
 
 import ru.r2cloud.jradio.ByteInput;
@@ -19,17 +20,24 @@ public class TaggedStreamToPdu implements MessageInput {
 	public byte[] readBytes() throws IOException {
 		Tag tag = null;
 		byte firstByte;
+		Integer length = null;
 		do {
 			// discard bytes
 			firstByte = input.readByte();
 			tag = getContext().getCurrent();
 			if (tag != null) {
-				break;
+				length = (Integer) tag.get(FixedLengthTagger.LENGTH);
+				if (length != null) {
+					break;
+				}
 			}
 		} while (true);
 
-		@SuppressWarnings("null")
-		int length = (Integer) tag.get(FixedLengthTagger.LENGTH);
+		// length cannot be null due to while(true) above
+		if (length == null) {
+			throw new EOFException();
+		}
+
 		byte[] result = new byte[length];
 		result[0] = firstByte;
 		for (int i = 1; i < length; i++) {
@@ -43,7 +51,7 @@ public class TaggedStreamToPdu implements MessageInput {
 	public void close() throws IOException {
 		input.close();
 	}
-	
+
 	@Override
 	public Context getContext() {
 		return input.getContext();
