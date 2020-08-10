@@ -67,12 +67,8 @@ public class UnpackedToPacked implements ByteInput {
 			for (int j = 0; j < 8; j++) {
 				tmp = (byte) ((tmp << 1) | getBitBe1(indexTmp, bitsPerChunk));
 				indexTmp++;
-				// reduce length of message
 				if (j == 0) {
-					tag = input.getContext().getCurrent();
-					if (tag != null) {
-						tag.put(FixedLengthTagger.LENGTH, (Integer) tag.get(FixedLengthTagger.LENGTH) / 8);
-					}
+					tag = readLengthTag();
 				}
 			}
 			result = tmp;
@@ -82,12 +78,8 @@ public class UnpackedToPacked implements ByteInput {
 			for (int j = 0; j < 8; j++) {
 				tmp2 = (tmp2 >> 1) | (getBitBe1(indexTmp, bitsPerChunk) << (8 - 1));
 				indexTmp++;
-				// reduce length of message
 				if (j == 0) {
-					tag = input.getContext().getCurrent();
-					if (tag != null) {
-						tag.put(FixedLengthTagger.LENGTH, (Integer) tag.get(FixedLengthTagger.LENGTH) / 8);
-					}
+					tag = readLengthTag();
 				}
 			}
 			result = (byte) tmp2;
@@ -99,8 +91,23 @@ public class UnpackedToPacked implements ByteInput {
 			context.put(tag.getId(), tag);
 		}
 		context.setCurrent(tag);
+
 		index = indexTmp;
 		return result;
+	}
+
+	private Tag readLengthTag() {
+		Tag tag = input.getContext().getCurrent();
+		if (tag == null) {
+			return null;
+		}
+		Integer length = (Integer) tag.get(FixedLengthTagger.LENGTH);
+		if (length == null) {
+			return null;
+		}
+		// reduce length of message
+		tag.put(FixedLengthTagger.LENGTH, length / 8);
+		return tag;
 	}
 
 	@Override
