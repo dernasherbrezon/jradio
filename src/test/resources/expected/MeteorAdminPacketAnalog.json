@@ -1,0 +1,42 @@
+{
+  "hour": 13,
+  "minute": 57,
+  "second": 53,
+  "lineScanLatency": 152,
+  "msuMrCode": 0,
+  "analogTelemetry": {
+    "rawControlPoint1Temperature": -56,
+    "rawFpFkzTemperature": -54,
+    "rawControlHighVoltageFpVk2": 80,
+    "rawControlHighVoltageFpVk1": 79,
+    "rawIRTemperature": 76,
+    "rawCurrentVk3": 116,
+    "rawCurrentVk2": 117,
+    "rawCurrentVk1": 116,
+    "rawG3Temperature": 101,
+    "rawG2Temperature": 103,
+    "rawG1Temperature": 111,
+    "rawX3Temperature": 89,
+    "rawX2Temperature": -127,
+    "rawX1Temperature": -79,
+    "rawFp6Temperature": -122,
+    "rawFp5Temperature": 82
+  },
+  "calibrationDetails": [
+    59,
+    -127,
+    -42,
+    16,
+    25,
+    115,
+    65,
+    -78,
+    54,
+    -20,
+    72,
+    -9,
+    5,
+    19,
+    113
+  ]
+}
