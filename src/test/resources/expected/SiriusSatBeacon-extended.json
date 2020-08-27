@@ -1,0 +1,57 @@
+{
+  "extendedBeacon": {
+    "carrierBoardTemperature": 14,
+    "magneticFieldX": 1244.8099,
+    "magneticFieldY": -5276.113,
+    "magneticFieldZ": 32168.17,
+    "angularVelocityX": -3.4542847,
+    "angularVelocityY": -12.815247,
+    "angularVelocityZ": -3.7384033,
+    "resetCounter": 0,
+    "lastResetReason": 0,
+    "flags": 0,
+    "lastTelemetryTimestamp": 1598564238,
+    "payloadFlags": 0,
+    "lastPayloadTelemetryTimestamp": 1598564238,
+    "payloadBoardTemperature": 0,
+    "payloadMpuTemperature": 0,
+    "payloadCurrentSensor1": 0,
+    "payloadCurrentSensor2": 0,
+    "payloadResetCounter": 110,
+    "payloadLastResetTimestamp": 1598493814,
+    "channel1CountRate": 0,
+    "channel2CountRate": 0,
+    "channel3CountRate": 0,
+    "channel4CountRate": 0,
+    "channel5CountRate": 0,
+    "channel6CountRate": 0,
+    "lastTransmittedBufferSegment1Pointer": 22475,
+    "writePointerSegment1": 22474,
+    "lastTransmittedBufferSegment2Pointer": 0,
+    "writePointerSegment2": 0,
+    "lastTransmittedBufferSegment3Pointer": 0,
+    "writePointerSegment3": 32767,
+    "lastEventChannel1M1l1": 0,
+    "lastEventChannel1L2h1": 0,
+    "lastEventChannel1H2m2": 0,
+    "lastEventChannel2M1l1": 0,
+    "lastEventChannel2L2h1": 0,
+    "lastEventChannel2H2m2": 0
+  },
+  "header": {
+    "destinationAddress": {
+      "callsign": "R2ANF",
+      "ssid": 0
+    },
+    "sourceAddress": {
+      "callsign": "RS13S",
+      "ssid": 1
+    },
+    "frameType": "I",
+    "sendSequenceNumber": 0,
+    "receiveSequenceNumber": 0,
+    "pid": 240
+  },
+  "beginSample": 0,
+  "beginMillis": 0
+}
