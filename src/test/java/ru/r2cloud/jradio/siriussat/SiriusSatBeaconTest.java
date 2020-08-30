@@ -1,7 +1,10 @@
 package ru.r2cloud.jradio.siriussat;
 
+import static pl.pojo.tester.api.assertion.Assertions.assertPojoMethodsFor;
+
 import org.junit.Test;
 
+import pl.pojo.tester.api.assertion.Method;
 import ru.r2cloud.jradio.AssertJson;
 import ru.r2cloud.jradio.fec.ViterbiTest;
 
@@ -29,5 +32,12 @@ public class SiriusSatBeaconTest {
 		SiriusSatBeacon result = new SiriusSatBeacon();
 		result.readBeacon(data);
 		AssertJson.assertObjectsEqual("SiriusSatBeacon-extended.json", result);
+	}
+	
+	@Test
+	public void testPojo() {
+		assertPojoMethodsFor(SiriusSatBeacon.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
+		assertPojoMethodsFor(ShortBeacon.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
+		assertPojoMethodsFor(ExtendedBeacon.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
 	}
 }
