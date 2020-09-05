@@ -10,6 +10,8 @@ public class Header {
 	public static final int LENGTH_BYTES = 16;
 	private AddressSubfield destinationAddress;
 	private AddressSubfield sourceAddress;
+	private AddressSubfield repeaterAddress;
+	private AddressSubfield repeater2Address;
 	private FrameType frameType;
 	private int sendSequenceNumber;
 	private int receiveSequenceNumber;
@@ -22,8 +24,20 @@ public class Header {
 	}
 
 	public Header(DataInputStream dis) throws IOException, UncorrectableException {
+		this(dis, true);
+	}
+
+	public Header(DataInputStream dis, boolean checkForRepeater) throws IOException, UncorrectableException {
 		destinationAddress = new AddressSubfield(dis);
 		sourceAddress = new AddressSubfield(dis);
+		if (checkForRepeater) {
+			if (sourceAddress.getExtensionBit() == 0) {
+				repeaterAddress = new AddressSubfield(dis);
+			}
+			if (repeaterAddress != null && repeaterAddress.getExtensionBit() == 0) {
+				repeater2Address = new AddressSubfield(dis);
+			}
+		}
 		int controlBits = dis.readUnsignedByte();
 		if ((controlBits & 0b1) == 0) {
 			frameType = FrameType.I;
@@ -106,10 +120,32 @@ public class Header {
 		this.pid = pid;
 	}
 
+	public AddressSubfield getRepeaterAddress() {
+		return repeaterAddress;
+	}
+
+	public void setRepeaterAddress(AddressSubfield repeaterAddress) {
+		this.repeaterAddress = repeaterAddress;
+	}
+
+	public AddressSubfield getRepeater2Address() {
+		return repeater2Address;
+	}
+
+	public void setRepeater2Address(AddressSubfield repeater2Address) {
+		this.repeater2Address = repeater2Address;
+	}
+
 	@Override
 	public String toString() {
 		StringBuilder result = new StringBuilder();
 		result.append(sourceAddress).append(" To ").append(destinationAddress);
+		if (repeaterAddress != null) {
+			result.append(" Via ").append(repeaterAddress);
+			if (repeater2Address != null) {
+				result.append(", ").append(repeater2Address);
+			}
+		}
 		result.append(" <");
 		if (uControlType != null) {
 			result.append(uControlType);

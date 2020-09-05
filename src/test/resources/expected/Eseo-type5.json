@@ -6,7 +6,8 @@
   },
   "sourceAddress": {
     "callsign": "IW4DUL",
-    "ssid": 0
+    "ssid": 0,
+    "extensionBit": 1
   },
   "sendSequenceNumber": 48,
   "receiveSequenceNumber": 127,

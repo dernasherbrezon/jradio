@@ -1,15 +1,18 @@
 package ru.r2cloud.jradio.itasat1;
 
+import java.io.ByteArrayInputStream;
 import java.io.DataInputStream;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 
-import ru.r2cloud.jradio.ax25.Ax25Beacon;
+import ru.r2cloud.jradio.Beacon;
+import ru.r2cloud.jradio.ax25.Header;
 import ru.r2cloud.jradio.fec.ccsds.UncorrectableException;
 import ru.r2cloud.jradio.util.StreamUtils;
 
-public class Itasat1Beacon extends Ax25Beacon {
+public class Itasat1Beacon extends Beacon {
 
+	private Header header;
 	private int sync;
 	private int type;
 	private byte[] unknownPayload;
@@ -74,7 +77,9 @@ public class Itasat1Beacon extends Ax25Beacon {
 	private EpsResetCode epsLastResetCode;
 
 	@Override
-	public void readBeacon(DataInputStream dis) throws IOException, UncorrectableException {
+	public void readBeacon(byte[] data) throws IOException, UncorrectableException {
+		DataInputStream dis = new DataInputStream(new ByteArrayInputStream(data));
+		header = new Header(dis, false);	
 		sync = dis.readUnsignedShort();
 		type = dis.readUnsignedByte();
 		if (type != 1) {
@@ -555,4 +560,11 @@ public class Itasat1Beacon extends Ax25Beacon {
 		this.epsLastResetCode = epsLastResetCode;
 	}
 
+	public Header getHeader() {
+		return header;
+	}
+	
+	public void setHeader(Header header) {
+		this.header = header;
+	}
 }

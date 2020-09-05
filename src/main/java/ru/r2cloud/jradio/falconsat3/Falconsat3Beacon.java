@@ -13,6 +13,7 @@ public class Falconsat3Beacon extends Ax25Beacon {
 	private LoaderStatusLine lstat;
 	private Pblist pblist;
 	private BroadcastFileFrame fileFrame;
+	private BroadcastDirFrame dirFrame;
 	private PacketControl packetControl;
 	private Telemetry telemetry;
 	private Telemetry2 telemetry2;
@@ -37,8 +38,8 @@ public class Falconsat3Beacon extends Ax25Beacon {
 			} else if (destination.equalsIgnoreCase("QST")) {
 				if (getHeader().getPid() == 0xbb) {
 					fileFrame = new BroadcastFileFrame(dis);
-				} else if( getHeader().getPid() == 0xbd ) {
-					//TODO handle dir listing messages
+				} else if (getHeader().getPid() == 0xbd) {
+					dirFrame = new BroadcastDirFrame(dis);
 				}
 			} else if (destination.equalsIgnoreCase("TLMI")) {
 				telemetry = new Telemetry(dis);
@@ -97,7 +98,7 @@ public class Falconsat3Beacon extends Ax25Beacon {
 	public BroadcastFileFrame getFileFrame() {
 		return fileFrame;
 	}
-	
+
 	public void setFileFrame(BroadcastFileFrame fileFrame) {
 		this.fileFrame = fileFrame;
 	}
@@ -174,4 +175,11 @@ public class Falconsat3Beacon extends Ax25Beacon {
 		this.telemetry2 = telemetry2;
 	}
 
+	public BroadcastDirFrame getDirFrame() {
+		return dirFrame;
+	}
+	
+	public void setDirFrame(BroadcastDirFrame dirFrame) {
+		this.dirFrame = dirFrame;
+	}
 }

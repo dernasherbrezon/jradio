@@ -6,7 +6,8 @@
     },
     "sourceAddress": {
       "callsign": "WK2XID",
-      "ssid": 0
+      "ssid": 0,
+      "extensionBit": 1
     },
     "frameType": "U",
     "sendSequenceNumber": 0,

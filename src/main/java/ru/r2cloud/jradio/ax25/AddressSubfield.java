@@ -12,6 +12,7 @@ public class AddressSubfield {
 	private static final Pattern PATTERN = Pattern.compile("^[A-Za-z0-9]*$");
 	private String callsign;
 	private int ssid;
+	private int extensionBit;
 
 	public AddressSubfield() {
 		// do nothing
@@ -29,6 +30,15 @@ public class AddressSubfield {
 		}
 		int raw = dis.readUnsignedByte();
 		ssid = (raw >> 1) & 0b1111;
+		extensionBit = (raw & 0x1);
+	}
+	
+	public int getExtensionBit() {
+		return extensionBit;
+	}
+	
+	public void setExtensionBit(int extensionBit) {
+		this.extensionBit = extensionBit;
 	}
 
 	public String getCallsign() {

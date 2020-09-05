@@ -1,22 +1,4 @@
 {
-  "header": {
-    "destinationAddress": {
-      "callsign": "WI2XVT",
-      "ssid": 0
-    },
-    "sourceAddress": {
-      "callsign": "WI2XVT",
-      "ssid": 0
-    },
-    "frameType": "I",
-    "sendSequenceNumber": 0,
-    "receiveSequenceNumber": 0,
-    "pid": 146
-  },
-  "relay": {
-    "callsign": "2XVT0",
-    "ssid": 8
-  },
   "payloadTelemetry": {
     "unclearedError": true,
     "unclearedChannel1Error": false,
@@ -77,6 +59,28 @@
     },
     "counterTime": 64415,
     "overflowTime": 8975292
+  },
+  "header": {
+    "destinationAddress": {
+      "callsign": "WI2XVT",
+      "ssid": 0,
+      "extensionBit": 0
+    },
+    "sourceAddress": {
+      "callsign": "WI2XVT",
+      "ssid": 0,
+      "extensionBit": 0
+    },
+    "repeaterAddress": {
+      "callsign": "WI2XVT",
+      "ssid": 0,
+      "extensionBit": 1
+    },
+    "frameType": "U",
+    "sendSequenceNumber": 0,
+    "receiveSequenceNumber": 0,
+    "uControlType": "UI",
+    "pid": 240
   },
   "rawData": [
     -82,
@@ -149,6 +153,6 @@
     126,
     62
   ],
-  "beginSample": 107813,
+  "beginSample": 107830,
   "beginMillis": 0
 }
