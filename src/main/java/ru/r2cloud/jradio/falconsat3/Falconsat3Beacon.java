@@ -12,7 +12,7 @@ public class Falconsat3Beacon extends Ax25Beacon {
 	private PacsatHousekeepingTask pht;
 	private LoaderStatusLine lstat;
 	private Pblist pblist;
-	private Qst qst;
+	private BroadcastFileFrame fileFrame;
 	private PacketControl packetControl;
 	private Telemetry telemetry;
 	private Telemetry2 telemetry2;
@@ -36,7 +36,7 @@ public class Falconsat3Beacon extends Ax25Beacon {
 				pblist = new Pblist(readMessage(dis));
 			} else if (destination.equalsIgnoreCase("QST")) {
 				if (getHeader().getPid() == 0xbb) {
-					qst = new Qst(dis);
+					fileFrame = new BroadcastFileFrame(dis);
 				} else if( getHeader().getPid() == 0xbd ) {
 					//TODO handle dir listing messages
 				}
@@ -94,12 +94,12 @@ public class Falconsat3Beacon extends Ax25Beacon {
 		this.pblist = pblist;
 	}
 
-	public Qst getQst() {
-		return qst;
+	public BroadcastFileFrame getFileFrame() {
+		return fileFrame;
 	}
-
-	public void setQst(Qst qst) {
-		this.qst = qst;
+	
+	public void setFileFrame(BroadcastFileFrame fileFrame) {
+		this.fileFrame = fileFrame;
 	}
 
 	public PacketControl getPacketControl() {

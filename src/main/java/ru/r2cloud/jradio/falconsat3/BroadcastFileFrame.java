@@ -8,20 +8,19 @@ import ru.r2cloud.jradio.crc.Crc16Ccitt;
 import ru.r2cloud.jradio.fec.ccsds.UncorrectableException;
 import ru.r2cloud.jradio.util.LittleEndianDataInputStream;
 
-public class Qst {
+public class BroadcastFileFrame {
 
-	private boolean lengthPresent;
 	private boolean eof;
 	private long fileId;
 	private FileType type;
 	private int offset;
 	private byte[] data;
 
-	public Qst() {
+	public BroadcastFileFrame() {
 		// do nothing
 	}
 
-	public Qst(DataInputStream dis) throws IOException, UncorrectableException {
+	public BroadcastFileFrame(DataInputStream dis) throws IOException, UncorrectableException {
 		byte[] bytes = new byte[dis.available()];
 		dis.readFully(bytes);
 		if (Crc16Ccitt.calculate(bytes) != 0) {
@@ -30,21 +29,19 @@ public class Qst {
 		DataInputStream newDis = new DataInputStream(new ByteArrayInputStream(bytes));
 		LittleEndianDataInputStream ldis = new LittleEndianDataInputStream(newDis);
 		int flags = ldis.readUnsignedByte();
-		lengthPresent = (flags & 0b1) > 0;
 		eof = ((flags >> 1) & 0b1) > 0;
 		fileId = ldis.readUnsignedInt();
 		type = FileType.valueOfType(ldis.readUnsignedByte());
 		offset = ldis.readUnsigned3Bytes();
-		data = new byte[ldis.available() - 2];
+		int length;
+		if ((flags & 0b1) > 0) {
+			// It is the number of bits that are to be used in the data field.
+			length = ldis.readUnsignedShort() / 8;
+		} else {
+			length = ldis.available();
+		}
+		data = new byte[length - 2];
 		ldis.readFully(data);
-	}
-
-	public boolean isLengthPresent() {
-		return lengthPresent;
-	}
-
-	public void setLengthPresent(boolean lengthPresent) {
-		this.lengthPresent = lengthPresent;
 	}
 
 	public boolean isEof() {
