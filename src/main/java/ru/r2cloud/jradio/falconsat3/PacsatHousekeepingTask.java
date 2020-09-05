@@ -9,7 +9,7 @@ import java.util.regex.Pattern;
 
 public class PacsatHousekeepingTask {
 
-	private static final Pattern PATTERN = Pattern.compile("^PHT: uptime is (\\d+)/(\\d+):(\\d+):(\\d+).  Time is (.*?)$");
+	private static final Pattern PATTERN = Pattern.compile("^PHT: uptime is (\\d+)/(\\d+):(\\d+):(\\d+).  Time is (.+)\r?");
 
 	private int days;
 	private int hours;
@@ -21,7 +21,7 @@ public class PacsatHousekeepingTask {
 	public PacsatHousekeepingTask() {
 		// do nothing
 	}
-
+	
 	public PacsatHousekeepingTask(String message) throws IOException {
 		Matcher m = PATTERN.matcher(message.trim());
 		if (!m.find()) {

@@ -6,7 +6,7 @@ import java.util.regex.Pattern;
 
 public class LoaderStatusLine {
 
-	private static final Pattern PATTERN = Pattern.compile("^([IA]{1}) P:(.*?) o:(\\d+) l:(\\d+) f:(\\d+), d:(\\d+) st:(\\d+) e:(\\d+)$");
+	private static final Pattern PATTERN = Pattern.compile("^([IA]{1}) P:(.*?) o:(\\d+) l:(\\d+) f:(\\d+), d:(\\d+) st:(\\d+) e:(\\d+)");
 
 	private LoaderStatus status;
 	private String address;
@@ -20,7 +20,7 @@ public class LoaderStatusLine {
 	public LoaderStatusLine() {
 		// do nothing
 	}
-
+	
 	public LoaderStatusLine(String message) throws IOException {
 		Matcher m = PATTERN.matcher(message.trim());
 		if (!m.find()) {

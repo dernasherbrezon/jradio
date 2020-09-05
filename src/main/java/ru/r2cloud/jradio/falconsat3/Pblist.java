@@ -6,9 +6,10 @@ import java.util.regex.Pattern;
 
 public class Pblist {
 
-	private static final Pattern PATTERN = Pattern.compile("^PB: (.*?)");
+	private static final Pattern PATTERN = Pattern.compile("^PB: (.+)");
+	private static final Pattern SPACE = Pattern.compile(" ");
 
-	private String activeCallsign;
+	private String[] activeCallsigns;
 
 	public Pblist() {
 		// do nothing
@@ -20,17 +21,16 @@ public class Pblist {
 			throw new IOException("unsupported");
 		}
 		String callsign = m.group(1).trim();
-		if (!callsign.equalsIgnoreCase("Empty")) {
-			activeCallsign = callsign;
+		if (!callsign.startsWith("Empty")) {
+			activeCallsigns = SPACE.split(callsign);
 		}
 	}
 
-	public String getActiveCallsign() {
-		return activeCallsign;
+	public String[] getActiveCallsigns() {
+		return activeCallsigns;
 	}
 
-	public void setActiveCallsign(String activeCallsign) {
-		this.activeCallsign = activeCallsign;
+	public void setActiveCallsigns(String[] activeCallsigns) {
+		this.activeCallsigns = activeCallsigns;
 	}
-
 }

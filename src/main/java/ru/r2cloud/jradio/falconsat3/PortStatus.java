@@ -6,7 +6,7 @@ import java.util.regex.Pattern;
 
 public class PortStatus {
 
-	private static final Pattern PATTERN = Pattern.compile("^C0:(.{2}) C1:(.{2}) C2:(.{2}) C3:(.{2}) C4:(.{2}) C5:(.{2})$");
+	private static final Pattern PATTERN = Pattern.compile("^C0:([A-F0-9]{2}) C1:([A-F0-9]{2}) C2:([A-F0-9]{2}) C3:([A-F0-9]{2}) C4:([A-F0-9]{2}) C5:([A-F0-9]{1,})");
 
 	private int ch0;
 	private int ch1;

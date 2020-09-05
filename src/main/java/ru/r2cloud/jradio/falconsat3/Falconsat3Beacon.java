@@ -35,7 +35,11 @@ public class Falconsat3Beacon extends Ax25Beacon {
 			} else if (destination.equalsIgnoreCase("PBLIST")) {
 				pblist = new Pblist(readMessage(dis));
 			} else if (destination.equalsIgnoreCase("QST")) {
-				qst = new Qst(dis);
+				if (getHeader().getPid() == 0xbb) {
+					qst = new Qst(dis);
+				} else if( getHeader().getPid() == 0xbd ) {
+					//TODO handle dir listing messages
+				}
 			} else if (destination.equalsIgnoreCase("TLMI")) {
 				telemetry = new Telemetry(dis);
 			} else if (destination.equalsIgnoreCase("TLM2")) {

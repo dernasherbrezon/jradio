@@ -6,7 +6,7 @@ import java.util.regex.Pattern;
 
 public class FilesystemStatus {
 
-	private static final Pattern PATTERN = Pattern.compile("^B:\\s+(\\d+)$");
+	private static final Pattern PATTERN = Pattern.compile("^B:\\s+(\\d+)");
 
 	private long bytesSent;
 

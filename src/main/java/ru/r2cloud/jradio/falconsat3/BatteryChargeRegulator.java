@@ -6,7 +6,7 @@ import java.util.regex.Pattern;
 
 public class BatteryChargeRegulator {
 
-	private static final Pattern PATTERN = Pattern.compile("^BCR:bv=(\\d+) bi=(\\d+) sens=(\\d+) top=(\\d+) low=(\\d+) t1=(\\d+) t2=(\\d+) sv=(\\d+) si=(\\d+)$");
+	private static final Pattern PATTERN = Pattern.compile("^BCR:bv=(\\d+) bi=(\\d+) sens=(\\d+) top=(\\d+) low=(\\d+) t1=(\\d+) t2=(\\d+) sv=(\\d+) si=(\\d*)");
 
 	private int bv;
 	private int bi;
@@ -16,7 +16,7 @@ public class BatteryChargeRegulator {
 	private int t1;
 	private int t2;
 	private int sv;
-	private int si;
+	private Integer si;
 
 	public BatteryChargeRegulator() {
 		// do nothing
@@ -35,7 +35,10 @@ public class BatteryChargeRegulator {
 		t1 = Integer.parseInt(m.group(6));
 		t2 = Integer.parseInt(m.group(7));
 		sv = Integer.parseInt(m.group(8));
-		si = Integer.parseInt(m.group(9));
+		String siStr = m.group(9);
+		if (siStr.trim().length() != 0) {
+			si = Integer.parseInt(siStr);
+		}
 	}
 
 	public int getBv() {
@@ -102,11 +105,11 @@ public class BatteryChargeRegulator {
 		this.sv = sv;
 	}
 
-	public int getSi() {
+	public Integer getSi() {
 		return si;
 	}
 
-	public void setSi(int si) {
+	public void setSi(Integer si) {
 		this.si = si;
 	}
 

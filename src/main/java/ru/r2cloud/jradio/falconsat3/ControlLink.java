@@ -6,7 +6,7 @@ import java.util.regex.Pattern;
 
 public class ControlLink {
 
-	private static final Pattern PATTERN = Pattern.compile("^CL:(\\d+)$");
+	private static final Pattern PATTERN = Pattern.compile("^CL:(\\d+)");
 
 	private boolean linkIsWorking;
 
