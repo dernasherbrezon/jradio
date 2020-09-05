@@ -1,0 +1,24 @@
+package ru.r2cloud.jradio.falconsat3;
+
+public enum FileType {
+
+	ASCII_TEXT(0), RLI_MBL_MESSAGE(1), RLI_MBL_IMPORT_FILE(2), UOSAT_WHOLE_ORBIT_DATA(3), EXE_FILE(6), COM_FILE(7), KEPLERIAN_NASA(8), KEPLERIAN_AMSAT(9), MULTIPLE_FILES_NON_ASCII(12), MULTIPLE_FILES_ASCII(13), GIF(14), PCX(15), JPG(16), CONFIRMATION_MESSAGE(17),
+
+	U_L_CONFIG_FILES(200), AL_FTL0_PB_ACTIVITY_LOGS(201), BL_BROADCAST_LOGS(202), WD_WHOLE_DATA_LOGS(203), ADCS_LOGS(204), TDE_DATA(205), SCTE_DATA(206), TRANSPUTER_LOGS(207), SEU_LOGS(208), CPE_FILES(209), BATTERY_CHARGE_LOGS(210), IMAGE_FILES(211), SPL_LOGS(212), PCT_LOGS(213), PCT_COMMAND_LOGS(214), QUICK_LOOK_IMAGE_FILES(215), TIMETAGGED_TELECOMMAND_LOGS(216), CALLSIGN_LIST_LOGS(217), GPS_DATA_FILE(218);
+
+	private final int type;
+
+	private FileType(int type) {
+		this.type = type;
+	}
+
+	public static FileType valueOfType(int type) {
+		for (FileType cur : values()) {
+			if (cur.type == type) {
+				return cur;
+			}
+		}
+		return null;
+	}
+
+}
