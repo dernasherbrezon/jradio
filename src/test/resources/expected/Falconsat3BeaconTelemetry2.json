@@ -1,0 +1,43 @@
+{
+  "telemetry2": {
+    "magnetometerXVoltage": 2.5829911,
+    "magnetometerYVoltage": 1.5345839,
+    "magnetometerZVoltage": 1.942017,
+    "magnetometer2p5VMon": 2481,
+    "minusXTorqueCurrent": 0,
+    "plusXTorqueCurrent": 0,
+    "minusYTorqueCurrent": 0,
+    "plusYTorqueCurrent": 0,
+    "suppressVFdbk": 0,
+    "planeTSenseA": 0,
+    "extraTlmSig": 0,
+    "minusZTorqueCurrent": 0,
+    "plusZTorqueCurrent": 0,
+    "cgBoomTemp": 2033,
+    "edacAdr7": 0,
+    "edacAdr15": 0,
+    "edacAdr23": 0,
+    "edacBank0": 0,
+    "edacBank1": 0,
+    "edacBank2": 0,
+    "channelNumber": 72,
+    "timestamp": 1599166553
+  },
+  "header": {
+    "destinationAddress": {
+      "callsign": "TLM2",
+      "ssid": 1
+    },
+    "sourceAddress": {
+      "callsign": "PFS3",
+      "ssid": 1
+    },
+    "frameType": "U",
+    "sendSequenceNumber": 0,
+    "receiveSequenceNumber": 0,
+    "uControlType": "UI",
+    "pid": 240
+  },
+  "beginSample": 0,
+  "beginMillis": 0
+}

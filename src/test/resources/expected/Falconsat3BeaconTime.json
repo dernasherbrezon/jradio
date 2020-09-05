@@ -1,0 +1,26 @@
+{
+  "pht": {
+    "days": 922,
+    "hours": 22,
+    "minutes": 26,
+    "seconds": 34,
+    "currentTime": 1599166473000
+  },
+  "header": {
+    "destinationAddress": {
+      "callsign": "TIME",
+      "ssid": 1
+    },
+    "sourceAddress": {
+      "callsign": "PFS3",
+      "ssid": 1
+    },
+    "frameType": "U",
+    "sendSequenceNumber": 0,
+    "receiveSequenceNumber": 0,
+    "uControlType": "UI",
+    "pid": 240
+  },
+  "beginSample": 0,
+  "beginMillis": 0
+}

@@ -1,0 +1,27 @@
+{
+  "portStatus": {
+    "ch0": 189,
+    "ch1": 0,
+    "ch2": 241,
+    "ch3": 80,
+    "ch4": 241,
+    "ch5": 0
+  },
+  "header": {
+    "destinationAddress": {
+      "callsign": "TLMS",
+      "ssid": 1
+    },
+    "sourceAddress": {
+      "callsign": "PFS3",
+      "ssid": 1
+    },
+    "frameType": "U",
+    "sendSequenceNumber": 0,
+    "receiveSequenceNumber": 0,
+    "uControlType": "UI",
+    "pid": 240
+  },
+  "beginSample": 0,
+  "beginMillis": 0
+}

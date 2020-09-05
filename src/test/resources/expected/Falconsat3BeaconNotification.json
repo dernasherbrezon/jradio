@@ -1,0 +1,22 @@
+{
+  "notification": {
+    "message": "\u003eReload complete, BBS and digi open, Unproto APRS via PFS3-1"
+  },
+  "header": {
+    "destinationAddress": {
+      "callsign": "USAFA",
+      "ssid": 1
+    },
+    "sourceAddress": {
+      "callsign": "PFS3",
+      "ssid": 1
+    },
+    "frameType": "U",
+    "sendSequenceNumber": 0,
+    "receiveSequenceNumber": 0,
+    "uControlType": "UI",
+    "pid": 240
+  },
+  "beginSample": 0,
+  "beginMillis": 0
+}

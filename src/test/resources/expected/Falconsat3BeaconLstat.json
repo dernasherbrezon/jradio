@@ -1,0 +1,29 @@
+{
+  "lstat": {
+    "status": "IDLE",
+    "address": "0x13A8",
+    "o": 0,
+    "l": 31367,
+    "f": 31449,
+    "digipeaterOn": true,
+    "taskNumber": 4,
+    "errorCounter": 68
+  },
+  "header": {
+    "destinationAddress": {
+      "callsign": "LSTAT",
+      "ssid": 0
+    },
+    "sourceAddress": {
+      "callsign": "PFS3",
+      "ssid": 1
+    },
+    "frameType": "U",
+    "sendSequenceNumber": 0,
+    "receiveSequenceNumber": 0,
+    "uControlType": "UI",
+    "pid": 240
+  },
+  "beginSample": 0,
+  "beginMillis": 0
+}

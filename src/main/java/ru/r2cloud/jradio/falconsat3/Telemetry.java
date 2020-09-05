@@ -5,9 +5,8 @@ import java.io.IOException;
 
 import ru.r2cloud.jradio.util.LittleEndianDataInputStream;
 
-public class Telemetry {
+public class Telemetry extends TelemetryFrame {
 
-	private long timestamp;
 	private float batteryVoltageAll;
 	private float batteryVoltage12345;
 	private float batteryVoltage1234;
@@ -43,7 +42,7 @@ public class Telemetry {
 	private float planeDACVoltageMonitor;
 	private float bcr4vOutputVoltage;
 	private float batteryTipMassVoltage;
-	private float muxedPdbData;
+	private int muxedPdbData;
 	private float sTransmitterTemperature;
 	private float uhfTransmitterTemperature;
 	private float solarYPlusTemperature;
@@ -53,14 +52,14 @@ public class Telemetry {
 	private float batteryTemperature;
 	private float mainVoltageRegualtorBcrTemperature;
 	private float uhfVRegTransmitterTemperature;
-	private float dataBroadcastTime;
+	private int dataBroadcastTime;
 	private boolean digipeaterOn;
-	private float txtBroadcastRatio;
-	private float batteryManagementState;
+	private int txtBroadcastRatio;
+	private int batteryManagementState;
 
 	private WodState wodState;
 
-	private float edacErrors;
+	private int edacErrors;
 	private float boomBatChgCurrent;
 	private float pdb9V;
 	private float boomBatChgVoltage;
@@ -77,10 +76,13 @@ public class Telemetry {
 	public Telemetry() {
 		// do nothing
 	}
-
+	
 	public Telemetry(DataInputStream dis) throws IOException {
-		LittleEndianDataInputStream ldis = new LittleEndianDataInputStream(dis);
-		timestamp = ldis.readUnsignedInt();
+		super(dis);
+	}
+
+	@Override
+	public void read(LittleEndianDataInputStream ldis) throws IOException {
 		ldis.skipBytes(6);
 		batteryVoltageAll = 0.37321091f + ldis.readUnsignedShort() * 0.007016996f;
 		batteryVoltage12345 = 0.14166988f + ldis.readUnsignedShort() * 0.005074014f;
@@ -121,7 +123,6 @@ public class Telemetry {
 		batteryTipMassVoltage = -0.014632698f + ldis.readUnsignedShort() * 0.001007278f;
 		muxedPdbData = ldis.readUnsignedShort();
 		ldis.skipBytes(6);
-		// a + bx + cx^2 + dx^3 + ex^4 + fx^5
 		sTransmitterTemperature = readTemperature(ldis);
 		uhfTransmitterTemperature = readTemperature(ldis);
 		ldis.skipBytes(4);
@@ -159,16 +160,9 @@ public class Telemetry {
 	}
 
 	private static float readTemperature(LittleEndianDataInputStream ldis) throws IOException {
+		// a + bx + cx^2 + dx^3 + ex^4 + fx^5
 		int raw = ldis.readUnsignedShort();
 		return 150.08461f + raw * -0.38715711f + raw * raw * 0.00063101f + raw * raw * raw * -6.09E-07f + raw * raw * raw * raw * 2.96E-10f + raw * raw * raw * raw * raw * -5.70E-14f;
-	}
-
-	public long getTimestamp() {
-		return timestamp;
-	}
-
-	public void setTimestamp(long timestamp) {
-		this.timestamp = timestamp;
 	}
 
 	public float getBatteryVoltageAll() {
@@ -403,14 +397,6 @@ public class Telemetry {
 		this.batteryTipMassVoltage = batteryTipMassVoltage;
 	}
 
-	public float getMuxedPdbData() {
-		return muxedPdbData;
-	}
-
-	public void setMuxedPdbData(float muxedPdbData) {
-		this.muxedPdbData = muxedPdbData;
-	}
-
 	public float getsTransmitterTemperature() {
 		return sTransmitterTemperature;
 	}
@@ -483,36 +469,12 @@ public class Telemetry {
 		this.uhfVRegTransmitterTemperature = uhfVRegTransmitterTemperature;
 	}
 
-	public float getDataBroadcastTime() {
-		return dataBroadcastTime;
-	}
-
-	public void setDataBroadcastTime(float dataBroadcastTime) {
-		this.dataBroadcastTime = dataBroadcastTime;
-	}
-
 	public boolean isDigipeaterOn() {
 		return digipeaterOn;
 	}
 
 	public void setDigipeaterOn(boolean digipeaterOn) {
 		this.digipeaterOn = digipeaterOn;
-	}
-
-	public float getTxtBroadcastRatio() {
-		return txtBroadcastRatio;
-	}
-
-	public void setTxtBroadcastRatio(float txtBroadcastRatio) {
-		this.txtBroadcastRatio = txtBroadcastRatio;
-	}
-
-	public float getBatteryManagementState() {
-		return batteryManagementState;
-	}
-
-	public void setBatteryManagementState(float batteryManagementState) {
-		this.batteryManagementState = batteryManagementState;
 	}
 
 	public WodState getWodState() {
@@ -523,11 +485,43 @@ public class Telemetry {
 		this.wodState = wodState;
 	}
 
-	public float getEdacErrors() {
+	public int getMuxedPdbData() {
+		return muxedPdbData;
+	}
+
+	public void setMuxedPdbData(int muxedPdbData) {
+		this.muxedPdbData = muxedPdbData;
+	}
+
+	public int getDataBroadcastTime() {
+		return dataBroadcastTime;
+	}
+
+	public void setDataBroadcastTime(int dataBroadcastTime) {
+		this.dataBroadcastTime = dataBroadcastTime;
+	}
+
+	public int getTxtBroadcastRatio() {
+		return txtBroadcastRatio;
+	}
+
+	public void setTxtBroadcastRatio(int txtBroadcastRatio) {
+		this.txtBroadcastRatio = txtBroadcastRatio;
+	}
+
+	public int getBatteryManagementState() {
+		return batteryManagementState;
+	}
+
+	public void setBatteryManagementState(int batteryManagementState) {
+		this.batteryManagementState = batteryManagementState;
+	}
+
+	public int getEdacErrors() {
 		return edacErrors;
 	}
 
-	public void setEdacErrors(float edacErrors) {
+	public void setEdacErrors(int edacErrors) {
 		this.edacErrors = edacErrors;
 	}
 

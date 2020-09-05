@@ -1,0 +1,25 @@
+{
+  "bbstat": {
+    "uplinkAAvailable": true,
+    "uplinkBAvailable": true,
+    "uplinkCAvailable": true,
+    "uplinkDAvailable": true
+  },
+  "header": {
+    "destinationAddress": {
+      "callsign": "BBSTAT",
+      "ssid": 0
+    },
+    "sourceAddress": {
+      "callsign": "PFS3",
+      "ssid": 12
+    },
+    "frameType": "U",
+    "sendSequenceNumber": 0,
+    "receiveSequenceNumber": 0,
+    "uControlType": "UI",
+    "pid": 240
+  },
+  "beginSample": 0,
+  "beginMillis": 0
+}

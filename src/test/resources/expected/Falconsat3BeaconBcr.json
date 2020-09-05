@@ -1,0 +1,30 @@
+{
+  "bcr": {
+    "bv": 1128,
+    "bi": 150,
+    "sens": 1377,
+    "top": 1128,
+    "low": 0,
+    "t1": 486,
+    "t2": 970,
+    "sv": 1388,
+    "si": 110
+  },
+  "header": {
+    "destinationAddress": {
+      "callsign": "BCR",
+      "ssid": 1
+    },
+    "sourceAddress": {
+      "callsign": "PFS3",
+      "ssid": 1
+    },
+    "frameType": "U",
+    "sendSequenceNumber": 0,
+    "receiveSequenceNumber": 0,
+    "uControlType": "UI",
+    "pid": 240
+  },
+  "beginSample": 0,
+  "beginMillis": 0
+}
