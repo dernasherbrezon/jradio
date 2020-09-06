@@ -83,10 +83,6 @@ Forward error correction:
   * BCH(15,x,x)
   * Repeat Accumulate decoder
   
-Frequency correction:
-  
-  * GmskFrequencyCorrection. Calculates frequency correction based on 2 main GMSK spikes
-  
 Coding:
  
   * NRZI
@@ -101,6 +97,8 @@ Randomization
 Demodulators
 
   * BpskDemodulator for BPSK and DBPSK
+  * QpskDemodulator
+  * FskDemodulator for FSK, GFSK and GMSK
 
 ## Supported satellites
 
@@ -354,6 +352,6 @@ Configure maven:
 <dependency>
         <groupId>ru.r2cloud</groupId>
         <artifactId>jradio</artifactId>
-        <version>1.44</version>
+        <version>1.47</version>
 </dependency>
 ```
