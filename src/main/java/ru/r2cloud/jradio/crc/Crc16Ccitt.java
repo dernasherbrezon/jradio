@@ -3,8 +3,12 @@ package ru.r2cloud.jradio.crc;
 public class Crc16Ccitt {
 
 	public static int calculate(byte[] data) {
+		return calculate(data, 0, data.length);
+	}
+
+	public static int calculate(byte[] data, int offset, int length) {
 		int crc = 0;
-		for (int i = 0; i < data.length; ++i) {
+		for (int i = offset; i < (offset + length); ++i) {
 			crc ^= data[i] << 8;
 			for (int j = 0; j < 8; ++j) {
 				if ((crc & 0x8000) > 0) {
@@ -16,11 +20,11 @@ public class Crc16Ccitt {
 		}
 		return crc & 0xFFFF;
 	}
-	
+
 	public static int calculateReverse(byte[] data) {
 		return calculateReverse(data, 0, data.length);
 	}
-	
+
 	public static int calculateReverse(byte[] data, int offset, int length) {
 		int crc16 = 0xFFFF;
 
@@ -45,14 +49,14 @@ public class Crc16Ccitt {
 		}
 		return (crc16 ^ 0xFFFF);
 	}
-	
+
 	public static int calculateReverseLsbBits(byte[] data, int offset, int length) {
 		int crc16 = 0xFFFF;
 
 		for (int i = offset; i < (offset + length); ++i) {
 			int feedback = 0;
 
-			if (data[i]  != 0) {
+			if (data[i] != 0) {
 				feedback = 1;
 			}
 
