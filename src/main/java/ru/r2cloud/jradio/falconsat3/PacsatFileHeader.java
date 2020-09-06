@@ -19,6 +19,7 @@ public class PacsatFileHeader {
 	private Integer seuFlag;
 	private FileType type;
 	private Integer bodyChecksum;
+	private Integer headerChecksumAvailable;
 	private Integer headerChecksum;
 	private Integer bodyOffset;
 
@@ -86,6 +87,7 @@ public class PacsatFileHeader {
 				bodyChecksum = ldis.readUnsignedShort();
 				break;
 			case 0x0a:
+				headerChecksumAvailable = ldis.available();
 				headerChecksum = ldis.readUnsignedShort();
 				break;
 			case 0x0b:
@@ -392,4 +394,11 @@ public class PacsatFileHeader {
 		this.userFilename = userFilename;
 	}
 
+	public Integer getHeaderChecksumAvailable() {
+		return headerChecksumAvailable;
+	}
+	
+	public void setHeaderChecksumAvailable(Integer headerChecksumAvailable) {
+		this.headerChecksumAvailable = headerChecksumAvailable;
+	}
 }

@@ -26,7 +26,7 @@ public class FileExtractor {
 				BroadcastFileFrame frame = cur.get(i);
 				if (i == 0 && frame.getOffset() != 0) {
 					// can't restore the file without header
-					continue;
+					break;
 				}
 
 				if (i == 0 && frame.getOffset() == 0) {
@@ -39,7 +39,15 @@ public class FileExtractor {
 						break;
 					}
 
-					// TODO validate header crc?
+					int headerChecksumOffset = frame.getData().length - header.getHeaderChecksumAvailable();
+					// a bit of hack here:
+					// header was already read. it is safe to modify checksum bytes in it
+					frame.getData()[headerChecksumOffset] = 0;
+					frame.getData()[headerChecksumOffset + 1] = 0;
+
+					if (Crc16SumOfBytes.calculate(frame.getData(), 0, header.getBodyOffset()) != header.getHeaderChecksum()) {
+						break;
+					}
 
 					file = new PacsatFile();
 					file.setHeader(header);
