@@ -9,6 +9,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 
 import ru.r2cloud.jradio.crc.Crc16SumOfBytes;
 
@@ -151,35 +152,45 @@ public class FileExtractor {
 	}
 
 	private static Map<Long, List<BroadcastFileFrame>> groupBy(List<Falconsat3Beacon> frames) {
-		Map<Long, List<BroadcastFileFrame>> groupByFileId = new HashMap<>();
+		Map<Long, Map<FrameKey, BroadcastFileFrame>> groupByFileId = new HashMap<>();
 		for (Falconsat3Beacon cur : frames) {
-			if (cur.getFileFrame() == null) {
+			BroadcastFileFrame fileFrame = cur.getFileFrame();
+			if (fileFrame == null) {
 				continue;
 			}
-			List<BroadcastFileFrame> previous = groupByFileId.get(cur.getFileFrame().getFileId());
+			Map<FrameKey, BroadcastFileFrame> previous = groupByFileId.get(fileFrame.getFileId());
 			if (previous == null) {
-				previous = new ArrayList<>();
-				groupByFileId.put(cur.getFileFrame().getFileId(), previous);
+				previous = new HashMap<>();
+				groupByFileId.put(fileFrame.getFileId(), previous);
 			}
-			previous.add(cur.getFileFrame());
+			previous.put(new FrameKey(fileFrame.getFileId(), fileFrame.getOffset()), fileFrame);
 		}
-		return groupByFileId;
+		Map<Long, List<BroadcastFileFrame>> result = new HashMap<>();
+		for (Entry<Long, Map<FrameKey, BroadcastFileFrame>> cur : groupByFileId.entrySet()) {
+			result.put(cur.getKey(), new ArrayList<>(cur.getValue().values()));
+		}
+		return result;
 	}
 
 	private static Map<Long, List<BroadcastDirFrame>> groupByDirFrames(List<Falconsat3Beacon> frames) {
-		Map<Long, List<BroadcastDirFrame>> groupByFileId = new HashMap<>();
+		Map<Long, Map<FrameKey, BroadcastDirFrame>> groupByFileId = new HashMap<>();
 		for (Falconsat3Beacon cur : frames) {
-			if (cur.getDirFrame() == null) {
+			BroadcastDirFrame dirFrame = cur.getDirFrame();
+			if (dirFrame == null) {
 				continue;
 			}
-			List<BroadcastDirFrame> previous = groupByFileId.get(cur.getDirFrame().getFileId());
+			Map<FrameKey, BroadcastDirFrame> previous = groupByFileId.get(dirFrame.getFileId());
 			if (previous == null) {
-				previous = new ArrayList<>();
-				groupByFileId.put(cur.getDirFrame().getFileId(), previous);
+				previous = new HashMap<>();
+				groupByFileId.put(dirFrame.getFileId(), previous);
 			}
-			previous.add(cur.getDirFrame());
+			previous.put(new FrameKey(dirFrame.getFileId(), dirFrame.getOffset()), dirFrame);
 		}
-		return groupByFileId;
+		Map<Long, List<BroadcastDirFrame>> result = new HashMap<>();
+		for (Entry<Long, Map<FrameKey, BroadcastDirFrame>> cur : groupByFileId.entrySet()) {
+			result.put(cur.getKey(), new ArrayList<>(cur.getValue().values()));
+		}
+		return result;
 	}
 
 }

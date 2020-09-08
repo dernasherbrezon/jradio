@@ -18,6 +18,8 @@ public class FileExtractorTest {
 		beacon1.readExternal(new byte[] { -94, -90, -88, 64, 64, 64, 2, -96, -116, -90, 102, 64, 64, 23, 3, -67, 32, 34, 60, 0, 0, 0, 0, 0, 0, -66, 4, 67, 95, -48, 4, 67, 95, -86, 85, 1, 0, 4, 34, 60, 0, 0, 2, 0, 8, 65, 76, 49, 50, 48, 56, 50, 51, 3, 0, 3, 32, 32, 32, 4, 0, 4, 116, 24, 0, 0, 5, 0, 4, -30, -75, 65, 95, 6, 0, 4, -66, 4, 67, 95, 18, 0, 4, -66, 4, 67, 95, 7, 0, 1, 0, 8, 0, 1, -55, 9, 0, 2, -11, -79, 10, 0, 2, 63, 12, 11, 0, 2, 80, 0, 0, 0, 0, -60, 71 });
 		List<Falconsat3Beacon> beacons = new ArrayList<>();
 		beacons.add(beacon1);
+		// check de-duplication
+		beacons.add(beacon1);
 		List<PacsatDirEntry> result = FileExtractor.readDirectory(beacons);
 		assertEquals(1, result.size());
 		AssertJson.assertObjectsEqual("PacsatDirEntry.json", result.get(0));
@@ -36,6 +38,8 @@ public class FileExtractorTest {
 
 		List<Falconsat3Beacon> beacons = new ArrayList<>();
 		beacons.add(beacon2);
+		beacons.add(beacon1);
+		// check de-duplication
 		beacons.add(beacon1);
 		List<PacsatFile> result = FileExtractor.readFiles(beacons);
 		assertEquals(1, result.size());
