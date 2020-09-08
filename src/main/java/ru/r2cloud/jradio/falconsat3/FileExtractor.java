@@ -1,6 +1,7 @@
 package ru.r2cloud.jradio.falconsat3;
 
 import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.DataInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -12,6 +13,76 @@ import java.util.Map;
 import ru.r2cloud.jradio.crc.Crc16SumOfBytes;
 
 public class FileExtractor {
+
+	public static List<PacsatDirEntry> readDirectory(List<Falconsat3Beacon> frames) {
+		List<PacsatDirEntry> result = new ArrayList<>();
+
+		Map<Long, List<BroadcastDirFrame>> groupByFileId = groupByDirFrames(frames);
+
+		for (List<BroadcastDirFrame> cur : groupByFileId.values()) {
+			Collections.sort(cur, BroadcastDirFrameComparator.INSTANCE);
+
+			byte[] body = mergeFramesTogether(cur);
+			if (body == null) {
+				continue;
+			}
+
+			PacsatFileHeader header = null;
+			try {
+				header = new PacsatFileHeader(new DataInputStream(new ByteArrayInputStream(body)));
+			} catch (IOException e) {
+				continue;
+			}
+
+			int headerChecksumOffset = body.length - header.getHeaderChecksumAvailable();
+			// a bit of hack here:
+			// header was already read. it is safe to modify checksum bytes in it
+			body[headerChecksumOffset] = 0;
+			body[headerChecksumOffset + 1] = 0;
+
+			if (Crc16SumOfBytes.calculate(body, 0, header.getBodyOffset()) != header.getHeaderChecksum()) {
+				continue;
+			}
+
+			BroadcastDirFrame lastFrame = cur.get(cur.size() - 1);
+
+			PacsatDirEntry dirEntry = new PacsatDirEntry();
+			dirEntry.setHeader(header);
+			dirEntry.setFileId(lastFrame.getFileId());
+			dirEntry.setNewest(lastFrame.isNewest());
+			dirEntry.setNewTime(lastFrame.getNewTime());
+			dirEntry.setOldTime(lastFrame.getOldTime());
+			result.add(dirEntry);
+		}
+
+		return result;
+	}
+
+	private static byte[] mergeFramesTogether(List<BroadcastDirFrame> cur) {
+		// fail-fast if we don't have the last frame
+		if (!cur.get(cur.size() - 1).isEof()) {
+			return null;
+		}
+		ByteArrayOutputStream baos = new ByteArrayOutputStream();
+		long lastOffset = 0;
+		for (int i = 0; i < cur.size(); i++) {
+			BroadcastDirFrame frame = cur.get(i);
+			if (frame.getOffset() != lastOffset) {
+				// can't restore the file without header
+				return null;
+			}
+
+			try {
+				baos.write(frame.getData());
+			} catch (IOException e1) {
+				return null;
+			}
+
+			lastOffset = frame.getData().length;
+		}
+
+		return baos.toByteArray();
+	}
 
 	public static List<PacsatFile> readFiles(List<Falconsat3Beacon> frames) {
 		List<PacsatFile> result = new ArrayList<>();
@@ -91,6 +162,22 @@ public class FileExtractor {
 				groupByFileId.put(cur.getFileFrame().getFileId(), previous);
 			}
 			previous.add(cur.getFileFrame());
+		}
+		return groupByFileId;
+	}
+
+	private static Map<Long, List<BroadcastDirFrame>> groupByDirFrames(List<Falconsat3Beacon> frames) {
+		Map<Long, List<BroadcastDirFrame>> groupByFileId = new HashMap<>();
+		for (Falconsat3Beacon cur : frames) {
+			if (cur.getDirFrame() == null) {
+				continue;
+			}
+			List<BroadcastDirFrame> previous = groupByFileId.get(cur.getDirFrame().getFileId());
+			if (previous == null) {
+				previous = new ArrayList<>();
+				groupByFileId.put(cur.getDirFrame().getFileId(), previous);
+			}
+			previous.add(cur.getDirFrame());
 		}
 		return groupByFileId;
 	}

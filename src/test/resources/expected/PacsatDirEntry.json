@@ -1,0 +1,22 @@
+{
+  "header": {
+    "fileNumber": 15394,
+    "filename": "AL120823",
+    "fileSize": 6260,
+    "createTime": 1598141922,
+    "lastModifiedTime": 1598227646,
+    "seuFlag": 0,
+    "type": "AL_FTL0_PB_ACTIVITY_LOGS",
+    "bodyChecksum": 45557,
+    "headerChecksumAvailable": 10,
+    "headerChecksum": 3135,
+    "bodyOffset": 80,
+    "uploadTime": 1598227646,
+    "priority": 0,
+    "bbsMessageType": 0
+  },
+  "newest": false,
+  "newTime": 1598227664,
+  "oldTime": 1598227646,
+  "fileId": 15394
+}
