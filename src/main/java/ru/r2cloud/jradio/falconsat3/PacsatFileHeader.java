@@ -156,6 +156,9 @@ public class PacsatFileHeader {
 			case 0x26:
 				userFilename = readString(ldis, length);
 				break;
+			default:
+				// skip unknown tags
+				ldis.skipBytes(length);
 			}
 		}
 	}
@@ -397,7 +400,7 @@ public class PacsatFileHeader {
 	public Integer getHeaderChecksumAvailable() {
 		return headerChecksumAvailable;
 	}
-	
+
 	public void setHeaderChecksumAvailable(Integer headerChecksumAvailable) {
 		this.headerChecksumAvailable = headerChecksumAvailable;
 	}

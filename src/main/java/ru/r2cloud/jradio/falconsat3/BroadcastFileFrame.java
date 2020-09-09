@@ -1,11 +1,8 @@
 package ru.r2cloud.jradio.falconsat3;
 
-import java.io.ByteArrayInputStream;
 import java.io.DataInputStream;
 import java.io.IOException;
 
-import ru.r2cloud.jradio.crc.Crc16Ccitt;
-import ru.r2cloud.jradio.fec.ccsds.UncorrectableException;
 import ru.r2cloud.jradio.util.LittleEndianDataInputStream;
 
 public class BroadcastFileFrame {
@@ -20,14 +17,8 @@ public class BroadcastFileFrame {
 		// do nothing
 	}
 
-	public BroadcastFileFrame(DataInputStream dis) throws IOException, UncorrectableException {
-		byte[] bytes = new byte[dis.available()];
-		dis.readFully(bytes);
-		if (Crc16Ccitt.calculate(bytes) != 0) {
-			throw new UncorrectableException("crc mismatch");
-		}
-		DataInputStream newDis = new DataInputStream(new ByteArrayInputStream(bytes));
-		LittleEndianDataInputStream ldis = new LittleEndianDataInputStream(newDis);
+	public BroadcastFileFrame(DataInputStream dis) throws IOException {
+		LittleEndianDataInputStream ldis = new LittleEndianDataInputStream(dis);
 		int flags = ldis.readUnsignedByte();
 		eof = ((flags >> 1) & 0b1) > 0;
 		fileId = ldis.readUnsignedInt();

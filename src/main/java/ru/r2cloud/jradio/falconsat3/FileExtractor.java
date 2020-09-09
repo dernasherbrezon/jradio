@@ -79,7 +79,32 @@ public class FileExtractor {
 				return null;
 			}
 
-			lastOffset = frame.getData().length;
+			lastOffset += frame.getData().length;
+		}
+
+		return baos.toByteArray();
+	}
+
+	private static byte[] mergeFileFramesTogether(List<BroadcastFileFrame> frames) {
+		// don't rely on eof from the broadcastfileframe.
+		// for some reason falconsat-3 has always true there
+		// check body length later
+		ByteArrayOutputStream baos = new ByteArrayOutputStream();
+		long lastOffset = 0;
+		for (int i = 0; i < frames.size(); i++) {
+			BroadcastFileFrame frame = frames.get(i);
+			if (frame.getOffset() != lastOffset) {
+				// can't restore the file without header
+				return null;
+			}
+
+			try {
+				baos.write(frame.getData());
+			} catch (IOException e1) {
+				return null;
+			}
+
+			lastOffset += frame.getData().length;
 		}
 
 		return baos.toByteArray();
@@ -93,59 +118,48 @@ public class FileExtractor {
 		for (List<BroadcastFileFrame> cur : groupByFileId.values()) {
 			Collections.sort(cur, BroadcastFileFrameComparator.INSTANCE);
 
-			PacsatFile file = null;
-			for (int i = 0; i < cur.size(); i++) {
-				BroadcastFileFrame frame = cur.get(i);
-				if (i == 0 && frame.getOffset() != 0) {
-					// can't restore the file without header
-					break;
-				}
-
-				if (i == 0 && frame.getOffset() == 0) {
-					DataInputStream dis = new DataInputStream(new ByteArrayInputStream(frame.getData()));
-					PacsatFileHeader header;
-					try {
-						header = new PacsatFileHeader(dis);
-					} catch (IOException e) {
-						// first chunk is invalid
-						break;
-					}
-
-					int headerChecksumOffset = frame.getData().length - header.getHeaderChecksumAvailable();
-					// a bit of hack here:
-					// header was already read. it is safe to modify checksum bytes in it
-					frame.getData()[headerChecksumOffset] = 0;
-					frame.getData()[headerChecksumOffset + 1] = 0;
-
-					if (Crc16SumOfBytes.calculate(frame.getData(), 0, header.getBodyOffset()) != header.getHeaderChecksum()) {
-						break;
-					}
-
-					file = new PacsatFile();
-					file.setHeader(header);
-					file.setFileId(frame.getFileId());
-					file.setBody(new byte[header.getFileSize().intValue() - header.getBodyOffset()]);
-
-					byte[] part;
-					try {
-						part = new byte[dis.available()];
-						dis.readFully(part);
-					} catch (IOException e) {
-						break;
-					}
-					file.append(part, 0);
-				} else {
-					// safecheck. file should be initialized on i == 0
-					if (file != null) {
-						// offset includes the header size
-						file.append(frame.getData(), frame.getOffset() - file.getHeader().getBodyOffset());
-					}
-				}
+			byte[] body = mergeFileFramesTogether(cur);
+			if (body == null) {
+				continue;
 			}
 
-			if (file != null && file.isComplete() && Crc16SumOfBytes.calculate(file.getBody()) == file.getHeader().getBodyChecksum()) {
-				result.add(file);
+			PacsatFileHeader header = null;
+			try {
+				header = new PacsatFileHeader(new DataInputStream(new ByteArrayInputStream(body)));
+			} catch (IOException e) {
+				continue;
 			}
+
+			int headerChecksumOffset = body.length - header.getHeaderChecksumAvailable();
+			// a bit of hack here:
+			// header was already read. it is safe to modify checksum bytes in it
+			body[headerChecksumOffset] = 0;
+			body[headerChecksumOffset + 1] = 0;
+
+			if (Crc16SumOfBytes.calculate(body, 0, header.getBodyOffset()) != header.getHeaderChecksum()) {
+				continue;
+			}
+
+			if (header.getFileSize().intValue() != body.length) {
+				// this could happen if the last frame was not received
+				// falconsat-3 doesn't correctly send eof flag for file frames
+				continue;
+			}
+
+			byte[] payload = new byte[header.getFileSize().intValue() - header.getBodyOffset()];
+			System.arraycopy(body, header.getBodyOffset(), payload, 0, payload.length);
+
+			if (Crc16SumOfBytes.calculate(payload) != header.getBodyChecksum()) {
+				continue;
+			}
+
+			BroadcastFileFrame lastFrame = cur.get(cur.size() - 1);
+
+			PacsatFile file = new PacsatFile();
+			file.setHeader(header);
+			file.setFileId(lastFrame.getFileId());
+			file.setBody(payload);
+			result.add(file);
 		}
 
 		return result;

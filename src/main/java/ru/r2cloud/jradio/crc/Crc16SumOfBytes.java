@@ -11,7 +11,7 @@ public class Crc16SumOfBytes {
 		for (int i = offset; i < (offset + length); i++) {
 			result += data[i] & 0xFF;
 		}
-		return result;
+		return result & 0xFFFF;
 	}
 
 }

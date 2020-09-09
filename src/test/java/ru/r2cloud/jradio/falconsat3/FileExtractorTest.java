@@ -9,8 +9,21 @@ import java.util.List;
 import org.junit.Test;
 
 import ru.r2cloud.jradio.AssertJson;
+import ru.r2cloud.jradio.BeaconInputStream;
 
 public class FileExtractorTest {
+	
+	@Test
+	public void testHeaderStretchedAcrossSeveralFrames() throws Exception {
+		List<Falconsat3Beacon> beacons = new ArrayList<>();
+		try (BeaconInputStream<Falconsat3Beacon> cur = new BeaconInputStream<>(FileExtractorTest.class.getClassLoader().getResourceAsStream("pacsat.bin"), Falconsat3Beacon.class)){
+			while( cur.hasNext() ) {
+				beacons.add(cur.next());
+			}
+		}
+		List<PacsatFile> result = FileExtractor.readFiles(beacons);
+		assertEquals(1, result.size());
+	}
 
 	@Test
 	public void testDirFrame() throws Exception {

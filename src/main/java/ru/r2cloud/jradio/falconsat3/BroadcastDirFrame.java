@@ -1,6 +1,5 @@
 package ru.r2cloud.jradio.falconsat3;
 
-import java.io.ByteArrayInputStream;
 import java.io.DataInputStream;
 import java.io.IOException;
 
@@ -22,16 +21,7 @@ public class BroadcastDirFrame {
 	}
 
 	public BroadcastDirFrame(DataInputStream dis) throws IOException {
-		byte[] bytes = new byte[dis.available()];
-		dis.readFully(bytes);
-		// unable to get DirFrames without CRC error
-		// either crc incorrectly calculated on falconsat-3
-		// or algorithm is different
-		// if (Crc16Ccitt.calculate(bytes) != 0) {
-		// throw new UncorrectableException("crc mismatch");
-		// }
-		DataInputStream newDis = new DataInputStream(new ByteArrayInputStream(bytes));
-		LittleEndianDataInputStream ldis = new LittleEndianDataInputStream(newDis);
+		LittleEndianDataInputStream ldis = new LittleEndianDataInputStream(dis);
 		int flags = ldis.readUnsignedByte();
 		eof = ((flags >> 5) & 0b1) > 0;
 		newest = ((flags >> 6) & 0b1) > 0;
