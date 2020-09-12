@@ -1,0 +1,100 @@
+{
+  "packetNum": 654,
+  "applinkNum": 215,
+  "sectorStatus": {
+    "statusInfo": [
+      {
+        "sectorNum": 50,
+        "shootingTime": 0,
+        "format": "JPEG_MAX1",
+        "continuousShootingNum": 256,
+        "dataSize": 17922,
+        "storageStartAddress": 200
+      },
+      {
+        "sectorNum": 51,
+        "shootingTime": 0,
+        "continuousShootingNum": 65535,
+        "dataSize": 16777215,
+        "storageStartAddress": 16777215
+      },
+      {
+        "sectorNum": 52,
+        "shootingTime": 0,
+        "continuousShootingNum": 65535,
+        "dataSize": 16777215,
+        "storageStartAddress": 16777215
+      },
+      {
+        "sectorNum": 53,
+        "shootingTime": 0,
+        "format": "JPEG_MAX1",
+        "continuousShootingNum": 256,
+        "dataSize": 8962,
+        "storageStartAddress": 212
+      },
+      {
+        "sectorNum": 54,
+        "shootingTime": 0,
+        "continuousShootingNum": 65535,
+        "dataSize": 16777215,
+        "storageStartAddress": 16777215
+      },
+      {
+        "sectorNum": 55,
+        "shootingTime": 0,
+        "continuousShootingNum": 65535,
+        "dataSize": 16777215,
+        "storageStartAddress": 16777215
+      },
+      {
+        "sectorNum": 56,
+        "shootingTime": 0,
+        "format": "JPEG_MAX1",
+        "continuousShootingNum": 256,
+        "dataSize": 2818,
+        "storageStartAddress": 224
+      },
+      {
+        "sectorNum": 57,
+        "shootingTime": 0,
+        "continuousShootingNum": 65535,
+        "dataSize": 16777215,
+        "storageStartAddress": 16777215
+      },
+      {
+        "sectorNum": 58,
+        "shootingTime": 0,
+        "continuousShootingNum": 65535,
+        "dataSize": 16777215,
+        "storageStartAddress": 16777215
+      },
+      {
+        "sectorNum": 59,
+        "shootingTime": 0,
+        "continuousShootingNum": 65535,
+        "dataSize": 16777215,
+        "storageStartAddress": 16777215
+      }
+    ]
+  },
+  "header": {
+    "destinationAddress": {
+      "callsign": "NEXUS",
+      "ssid": 0,
+      "extensionBit": 0
+    },
+    "sourceAddress": {
+      "callsign": "JS1YAV",
+      "ssid": 0,
+      "extensionBit": 1
+    },
+    "frameType": "U",
+    "sendSequenceNumber": 0,
+    "receiveSequenceNumber": 0,
+    "uControlType": "UI",
+    "pid": 240
+  },
+  "beginSample": 0,
+  "beginMillis": 0
+}

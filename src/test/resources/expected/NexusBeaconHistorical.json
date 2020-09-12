@@ -1,0 +1,77 @@
+{
+  "packetNum": 843,
+  "applinkNum": 248,
+  "historicalHk": [
+    {
+      "satelliteTime": 158697346000,
+      "forcedExecution": false,
+      "heater": false,
+      "regulator3v5": false,
+      "cdh": true,
+      "cam": false,
+      "qpsk": true,
+      "fsk": false,
+      "tpr": false,
+      "resetInformationFmr": 1,
+      "resetInformationCdh": 133,
+      "resetInformationCw": 1,
+      "resetInformationEps": 1,
+      "resetInformationSg": 1,
+      "batteryVoltage": 3.9489746,
+      "batteryCurrent": 1215.8203,
+      "currentData": [
+        0.0,
+        0.0,
+        4.638672,
+        0.0,
+        96.43555,
+        13.305664
+      ],
+      "batteryTemperature1": -0.16674805,
+      "batteryTemperature2": 10.366745,
+      "regulator5vTemperature1": 8.45356,
+      "regulator5vTemperature2": 4.3968735,
+      "regulator3v5Temperature": 4.885437,
+      "powerAmplifierTemperature": 26.260712,
+      "qpskTransmitterTemperature": 1.3175278,
+      "fskTransmitterTemperature": -1.0888672,
+      "solarXPlusTemperature": -14.992538,
+      "solarYPlusTemperature": 1.3905716,
+      "solarZPlusTemperature": -14.589767,
+      "solarXMinusTemperature": 1.477623,
+      "solarYMinusTemperature": -18.84114,
+      "solarZMinusTemperature": -6.7907257,
+      "busTransmitterTemperature": -1.5133133,
+      "busReceiverTemperature": 5.7046814,
+      "gyroXTemperature": -1605.0,
+      "gyroYTemperature": -3036.2,
+      "gyroZTemperature": 6484.8003,
+      "gyroX": 114.625,
+      "gyroY": 82.512505,
+      "gyroZ": 14.4375,
+      "magnetDataX": 24633.79,
+      "magnetDataY": 29052.734,
+      "magnetDataZ": 40722.656,
+      "magnetDataRef": 21875.0
+    }
+  ],
+  "header": {
+    "destinationAddress": {
+      "callsign": "NEXUS",
+      "ssid": 0,
+      "extensionBit": 0
+    },
+    "sourceAddress": {
+      "callsign": "JS1YAV",
+      "ssid": 0,
+      "extensionBit": 1
+    },
+    "frameType": "U",
+    "sendSequenceNumber": 0,
+    "receiveSequenceNumber": 0,
+    "uControlType": "UI",
+    "pid": 240
+  },
+  "beginSample": 0,
+  "beginMillis": 0
+}
