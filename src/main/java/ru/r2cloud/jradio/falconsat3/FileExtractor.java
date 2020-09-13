@@ -207,4 +207,7 @@ public class FileExtractor {
 		return result;
 	}
 
+	private FileExtractor() {
+		// do nothing
+	}
 }

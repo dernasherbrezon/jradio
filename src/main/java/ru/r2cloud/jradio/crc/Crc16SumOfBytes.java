@@ -14,4 +14,8 @@ public class Crc16SumOfBytes {
 		return result & 0xFFFF;
 	}
 
+	private Crc16SumOfBytes() {
+		// do nothing
+	}
+
 }
