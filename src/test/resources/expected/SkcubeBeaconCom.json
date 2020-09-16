@@ -1,0 +1,46 @@
+{
+  "com": {
+    "timestamp": 52301516,
+    "fwVersion": 51,
+    "activeCOM": 2,
+    "digipeaterMode": 0,
+    "numberOfReboots": 50,
+    "outputReflectedPower": 3471,
+    "outputForwardPower": 3963,
+    "outputReflectedPowerCW": 3161,
+    "outputForwardPowerCW": 3652,
+    "rssi": 1443,
+    "rssiNoise": 1624,
+    "mcuTemperature": 3,
+    "paTemperature": 13,
+    "cwBeaconSent": 36542,
+    "packetsSent": 36417,
+    "correctPacketsReceived": 554,
+    "brokenPacketReceived": 15880,
+    "comProtocolError": 34958,
+    "gsProtocolError": 282,
+    "txDisableStatus": 0,
+    "orbitTime": 73,
+    "timeslotStart": 0,
+    "timeslotEnd": 0
+  },
+  "header": {
+    "destinationAddress": {
+      "callsign": "OM3KAA",
+      "ssid": 0,
+      "extensionBit": 0
+    },
+    "sourceAddress": {
+      "callsign": "OM9SAT",
+      "ssid": 0,
+      "extensionBit": 1
+    },
+    "frameType": "U",
+    "sendSequenceNumber": 0,
+    "receiveSequenceNumber": 0,
+    "uControlType": "UI",
+    "pid": 240
+  },
+  "beginSample": 0,
+  "beginMillis": 0
+}
