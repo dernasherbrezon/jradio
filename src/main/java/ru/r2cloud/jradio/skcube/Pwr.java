@@ -93,10 +93,10 @@ public class Pwr {
 
 	private int tsTemp;
 	private long countCOMpacket;
-	private int PSUError;
-	private int PSULastError;
-	private int COMError;
-	private int COMLastError;
+	private int psuError;
+	private int psuLastError;
+	private int comError;
+	private int comLastError;
 
 	private int cdhsILimit;
 	private int comILimit;
@@ -205,10 +205,10 @@ public class Pwr {
 		psuServiceMode = ((raw >> 15) & 0x1) > 0;
 		tsTemp = dis.readShort();
 		countCOMpacket = dis.readUnsignedInt();
-		PSUError = dis.readShort();
-		PSULastError = dis.readShort();
-		COMError = dis.readShort();
-		COMLastError = dis.readShort();
+		psuError = dis.readShort();
+		psuLastError = dis.readShort();
+		comError = dis.readShort();
+		comLastError = dis.readShort();
 
 		cdhsILimit = dis.readUnsignedByte();
 		comILimit = dis.readUnsignedByte();
@@ -898,36 +898,36 @@ public class Pwr {
 		this.countCOMpacket = countCOMpacket;
 	}
 
-	public int getPSUError() {
-		return PSUError;
+	public int getPsuError() {
+		return psuError;
 	}
 
-	public void setPSUError(int pSUError) {
-		PSUError = pSUError;
+	public void setPsuError(int psuError) {
+		this.psuError = psuError;
 	}
 
-	public int getPSULastError() {
-		return PSULastError;
+	public int getPsuLastError() {
+		return psuLastError;
 	}
 
-	public void setPSULastError(int pSULastError) {
-		PSULastError = pSULastError;
+	public void setPsuLastError(int psuLastError) {
+		this.psuLastError = psuLastError;
 	}
 
-	public int getCOMError() {
-		return COMError;
+	public int getComError() {
+		return comError;
 	}
 
-	public void setCOMError(int cOMError) {
-		COMError = cOMError;
+	public void setComError(int comError) {
+		this.comError = comError;
 	}
 
-	public int getCOMLastError() {
-		return COMLastError;
+	public int getComLastError() {
+		return comLastError;
 	}
 
-	public void setCOMLastError(int cOMLastError) {
-		COMLastError = cOMLastError;
+	public void setComLastError(int comLastError) {
+		this.comLastError = comLastError;
 	}
 
 	public int getCdhsILimit() {
