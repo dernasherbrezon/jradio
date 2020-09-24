@@ -1,7 +1,10 @@
 package ru.r2cloud.jradio.skcube;
 
+import static pl.pojo.tester.api.assertion.Assertions.assertPojoMethodsFor;
+
 import org.junit.Test;
 
+import pl.pojo.tester.api.assertion.Method;
 import ru.r2cloud.jradio.AssertJson;
 import ru.r2cloud.jradio.fec.ViterbiTest;
 
@@ -42,4 +45,12 @@ public class SkcubeBeaconTest {
 		AssertJson.assertObjectsEqual("SkcubeBeaconAdcs.json", result);
 	}
 
+	@Test
+	public void testPojo() {
+		assertPojoMethodsFor(SkcubeBeacon.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
+		assertPojoMethodsFor(Cdhs.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
+		assertPojoMethodsFor(Adcs.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
+		assertPojoMethodsFor(Com.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
+		assertPojoMethodsFor(Pwr.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
+	}
 }

@@ -14,55 +14,55 @@ public class Pwr {
 	private int reboots;
 	private int countCOMErrors;
 	private int countPSUErrors;
-	private int iSolarYp;
-	private int iSolarXp;
-	private int iSolarYm;
-	private int iSolarXm;
-	private int iSolarZp;
-	private int iSolarZm;
-	private int tSolarYp;
-	private int tSolarXp;
-	private int tSolarYm;
-	private int tSolarXm;
-	private int tSolarZp;
-	private int tSolarZm;
-	private int uBatA;
-	private int uBatB;
-	private int tBat;
-	private int cBatA;
-	private int cBatB;
+	private int currentemperatureSolarYp;
+	private int currentemperatureSolarXp;
+	private int currentemperatureSolarYm;
+	private int currentemperatureSolarXm;
+	private int currentemperatureSolarZp;
+	private int currentemperatureSolarZm;
+	private int temperatureSolarYp;
+	private int temperatureSolarXp;
+	private int temperatureSolarYm;
+	private int temperatureSolarXm;
+	private int temperatureSolarZp;
+	private int temperatureSolarZm;
+	private int voltageBatA;
+	private int voltageBatB;
+	private int temperatureBat;
+	private int capacityBatA;
+	private int capacityBatB;
 	private int capacity;
-	private int iBatA;
-	private int iBatB;
-	private int iBatAmin;
-	private int iBatBmin;
-	private int iBatAmax;
-	private int iBatBmax;
-	private int iBatAavg;
-	private int iBatBavg;
-	private int iCDHSmin;
-	private int iCDHSmax;
-	private int iCDHSavg;
-	private int iCDHSactual;
-	private int iCOMmin;
-	private int iCOMmax;
-	private int iCOMavg;
-	private int iCOMactual;
-	private int iCAMmin;
-	private int iCAMmax;
-	private int iCAMavg;
-	private int iCAMactual;
-	private int iEXPmin;
-	private int iEXPmax;
-	private int iEXPavg;
-	private int iEXPactual;
-	private int iADCSmin;
-	private int iADCSmax;
-	private int iADCSavg;
-	private int iADCSactual;
-	private int uSYSmin;
-	private int uSYSmax;
-	private int uSYSactual;
+	private int currentBatA;
+	private int currentBatB;
+	private int currentBatAmin;
+	private int currentBatBmin;
+	private int currentBatAmax;
+	private int currentBatBmax;
+	private int currentBatAavg;
+	private int currentBatBavg;
+	private int currentCdhsMin;
+	private int currentCdhsMax;
+	private int currentCdhsAvg;
+	private int currentCdhsActual;
+	private int currentComMin;
+	private int currentComMax;
+	private int currentComAvg;
+	private int currentComActual;
+	private int currentCamMin;
+	private int currentCamMax;
+	private int currentCamAvg;
+	private int currentCamActual;
+	private int currentExpMin;
+	private int currentExpMax;
+	private int currentExpAvg;
+	private int currentExpActual;
+	private int currentAdcsMin;
+	private int currentAdcsMax;
+	private int currentAdcsAvg;
+	private int currentAdcsActual;
+	private int voltageSysMin;
+	private int voltageSysMax;
+	private int voltageSysActual;
 
 	private boolean psuErrorTrxSwOvercurrent;
 	private boolean psuErrorTrxHwOvercurrent;
@@ -126,55 +126,55 @@ public class Pwr {
 		reboots = dis.readUnsignedShort();
 		countCOMErrors = dis.readUnsignedShort();
 		countPSUErrors = dis.readUnsignedShort();
-		iSolarYp = dis.readShort();
-		iSolarXp = dis.readShort();
-		iSolarYm = dis.readShort();
-		iSolarXm = dis.readShort();
-		iSolarZp = dis.readShort();
-		iSolarZm = dis.readShort();
-		tSolarYp = dis.readShort();
-		tSolarXp = dis.readShort();
-		tSolarYm = dis.readShort();
-		tSolarXm = dis.readShort();
-		tSolarZp = dis.readShort();
-		tSolarZm = dis.readShort();
-		uBatA = dis.readShort();
-		uBatB = dis.readShort();
-		tBat = dis.readShort();
-		cBatA = dis.readUnsignedShort();
-		cBatB = dis.readUnsignedShort();
+		currentemperatureSolarYp = dis.readShort();
+		currentemperatureSolarXp = dis.readShort();
+		currentemperatureSolarYm = dis.readShort();
+		currentemperatureSolarXm = dis.readShort();
+		currentemperatureSolarZp = dis.readShort();
+		currentemperatureSolarZm = dis.readShort();
+		temperatureSolarYp = dis.readShort();
+		temperatureSolarXp = dis.readShort();
+		temperatureSolarYm = dis.readShort();
+		temperatureSolarXm = dis.readShort();
+		temperatureSolarZp = dis.readShort();
+		temperatureSolarZm = dis.readShort();
+		voltageBatA = dis.readShort();
+		voltageBatB = dis.readShort();
+		temperatureBat = dis.readShort();
+		capacityBatA = dis.readUnsignedShort();
+		capacityBatB = dis.readUnsignedShort();
 		capacity = dis.readUnsignedShort();
-		iBatA = dis.readShort();
-		iBatB = dis.readShort();
-		iBatAmin = dis.readShort();
-		iBatBmin = dis.readShort();
-		iBatAmax = dis.readShort();
-		iBatBmax = dis.readShort();
-		iBatAavg = dis.readShort();
-		iBatBavg = dis.readShort();
-		iCDHSmin = dis.readShort();
-		iCDHSmax = dis.readShort();
-		iCDHSavg = dis.readShort();
-		iCDHSactual = dis.readShort();
-		iCOMmin = dis.readShort();
-		iCOMmax = dis.readShort();
-		iCOMavg = dis.readShort();
-		iCOMactual = dis.readShort();
-		iCAMmin = dis.readShort();
-		iCAMmax = dis.readShort();
-		iCAMavg = dis.readShort();
-		iCAMactual = dis.readShort();
-		iEXPmin = dis.readShort();
-		iEXPmax = dis.readShort();
-		iEXPavg = dis.readShort();
-		iEXPactual = dis.readShort();
-		iADCSmin = dis.readShort();
-		iADCSmax = dis.readShort();
-		iADCSavg = dis.readShort();
-		iADCSactual = dis.readShort();
-		uSYSmin = dis.readUnsignedShort();
-		uSYSmax = dis.readUnsignedShort();
-		uSYSactual = dis.readUnsignedShort();
+		currentBatA = dis.readShort();
+		currentBatB = dis.readShort();
+		currentBatAmin = dis.readShort();
+		currentBatBmin = dis.readShort();
+		currentBatAmax = dis.readShort();
+		currentBatBmax = dis.readShort();
+		currentBatAavg = dis.readShort();
+		currentBatBavg = dis.readShort();
+		currentCdhsMin = dis.readShort();
+		currentCdhsMax = dis.readShort();
+		currentCdhsAvg = dis.readShort();
+		currentCdhsActual = dis.readShort();
+		currentComMin = dis.readShort();
+		currentComMax = dis.readShort();
+		currentComAvg = dis.readShort();
+		currentComActual = dis.readShort();
+		currentCamMin = dis.readShort();
+		currentCamMax = dis.readShort();
+		currentCamAvg = dis.readShort();
+		currentCamActual = dis.readShort();
+		currentExpMin = dis.readShort();
+		currentExpMax = dis.readShort();
+		currentExpAvg = dis.readShort();
+		currentExpActual = dis.readShort();
+		currentAdcsMin = dis.readShort();
+		currentAdcsMax = dis.readShort();
+		currentAdcsAvg = dis.readShort();
+		currentAdcsActual = dis.readShort();
+		voltageSysMin = dis.readUnsignedShort();
+		voltageSysMax = dis.readUnsignedShort();
+		voltageSysActual = dis.readUnsignedShort();
 		int raw = dis.readUnsignedShort();
 		psuErrorTrxSwOvercurrent = (raw & 0x1) > 0;
 		psuErrorTrxHwOvercurrent = ((raw >> 1) & 0x1) > 0;
@@ -290,140 +290,140 @@ public class Pwr {
 		this.countPSUErrors = countPSUErrors;
 	}
 
-	public int getiSolarYp() {
-		return iSolarYp;
+	public int getCurrentemperatureSolarYp() {
+		return currentemperatureSolarYp;
 	}
 
-	public void setiSolarYp(int iSolarYp) {
-		this.iSolarYp = iSolarYp;
+	public void setCurrentemperatureSolarYp(int currentemperatureSolarYp) {
+		this.currentemperatureSolarYp = currentemperatureSolarYp;
 	}
 
-	public int getiSolarXp() {
-		return iSolarXp;
+	public int getCurrentemperatureSolarXp() {
+		return currentemperatureSolarXp;
 	}
 
-	public void setiSolarXp(int iSolarXp) {
-		this.iSolarXp = iSolarXp;
+	public void setCurrentemperatureSolarXp(int currentemperatureSolarXp) {
+		this.currentemperatureSolarXp = currentemperatureSolarXp;
 	}
 
-	public int getiSolarYm() {
-		return iSolarYm;
+	public int getCurrentemperatureSolarYm() {
+		return currentemperatureSolarYm;
 	}
 
-	public void setiSolarYm(int iSolarYm) {
-		this.iSolarYm = iSolarYm;
+	public void setCurrentemperatureSolarYm(int currentemperatureSolarYm) {
+		this.currentemperatureSolarYm = currentemperatureSolarYm;
 	}
 
-	public int getiSolarXm() {
-		return iSolarXm;
+	public int getCurrentemperatureSolarXm() {
+		return currentemperatureSolarXm;
 	}
 
-	public void setiSolarXm(int iSolarXm) {
-		this.iSolarXm = iSolarXm;
+	public void setCurrentemperatureSolarXm(int currentemperatureSolarXm) {
+		this.currentemperatureSolarXm = currentemperatureSolarXm;
 	}
 
-	public int getiSolarZp() {
-		return iSolarZp;
+	public int getCurrentemperatureSolarZp() {
+		return currentemperatureSolarZp;
 	}
 
-	public void setiSolarZp(int iSolarZp) {
-		this.iSolarZp = iSolarZp;
+	public void setCurrentemperatureSolarZp(int currentemperatureSolarZp) {
+		this.currentemperatureSolarZp = currentemperatureSolarZp;
 	}
 
-	public int getiSolarZm() {
-		return iSolarZm;
+	public int getCurrentemperatureSolarZm() {
+		return currentemperatureSolarZm;
 	}
 
-	public void setiSolarZm(int iSolarZm) {
-		this.iSolarZm = iSolarZm;
+	public void setCurrentemperatureSolarZm(int currentemperatureSolarZm) {
+		this.currentemperatureSolarZm = currentemperatureSolarZm;
 	}
 
-	public int gettSolarYp() {
-		return tSolarYp;
+	public int getTemperatureSolarYp() {
+		return temperatureSolarYp;
 	}
 
-	public void settSolarYp(int tSolarYp) {
-		this.tSolarYp = tSolarYp;
+	public void setTemperatureSolarYp(int temperatureSolarYp) {
+		this.temperatureSolarYp = temperatureSolarYp;
 	}
 
-	public int gettSolarXp() {
-		return tSolarXp;
+	public int getTemperatureSolarXp() {
+		return temperatureSolarXp;
 	}
 
-	public void settSolarXp(int tSolarXp) {
-		this.tSolarXp = tSolarXp;
+	public void setTemperatureSolarXp(int temperatureSolarXp) {
+		this.temperatureSolarXp = temperatureSolarXp;
 	}
 
-	public int gettSolarYm() {
-		return tSolarYm;
+	public int getTemperatureSolarYm() {
+		return temperatureSolarYm;
 	}
 
-	public void settSolarYm(int tSolarYm) {
-		this.tSolarYm = tSolarYm;
+	public void setTemperatureSolarYm(int temperatureSolarYm) {
+		this.temperatureSolarYm = temperatureSolarYm;
 	}
 
-	public int gettSolarXm() {
-		return tSolarXm;
+	public int getTemperatureSolarXm() {
+		return temperatureSolarXm;
 	}
 
-	public void settSolarXm(int tSolarXm) {
-		this.tSolarXm = tSolarXm;
+	public void setTemperatureSolarXm(int temperatureSolarXm) {
+		this.temperatureSolarXm = temperatureSolarXm;
 	}
 
-	public int gettSolarZp() {
-		return tSolarZp;
+	public int getTemperatureSolarZp() {
+		return temperatureSolarZp;
 	}
 
-	public void settSolarZp(int tSolarZp) {
-		this.tSolarZp = tSolarZp;
+	public void setTemperatureSolarZp(int temperatureSolarZp) {
+		this.temperatureSolarZp = temperatureSolarZp;
 	}
 
-	public int gettSolarZm() {
-		return tSolarZm;
+	public int getTemperatureSolarZm() {
+		return temperatureSolarZm;
 	}
 
-	public void settSolarZm(int tSolarZm) {
-		this.tSolarZm = tSolarZm;
+	public void setTemperatureSolarZm(int temperatureSolarZm) {
+		this.temperatureSolarZm = temperatureSolarZm;
 	}
 
-	public int getuBatA() {
-		return uBatA;
+	public int getVoltageBatA() {
+		return voltageBatA;
 	}
 
-	public void setuBatA(int uBatA) {
-		this.uBatA = uBatA;
+	public void setVoltageBatA(int voltageBatA) {
+		this.voltageBatA = voltageBatA;
 	}
 
-	public int getuBatB() {
-		return uBatB;
+	public int getVoltageBatB() {
+		return voltageBatB;
 	}
 
-	public void setuBatB(int uBatB) {
-		this.uBatB = uBatB;
+	public void setVoltageBatB(int voltageBatB) {
+		this.voltageBatB = voltageBatB;
 	}
 
-	public int gettBat() {
-		return tBat;
+	public int getTemperatureBat() {
+		return temperatureBat;
 	}
 
-	public void settBat(int tBat) {
-		this.tBat = tBat;
+	public void setTemperatureBat(int temperatureBat) {
+		this.temperatureBat = temperatureBat;
 	}
 
-	public int getcBatA() {
-		return cBatA;
+	public int getCapacityBatA() {
+		return capacityBatA;
 	}
 
-	public void setcBatA(int cBatA) {
-		this.cBatA = cBatA;
+	public void setCapacityBatA(int capacityBatA) {
+		this.capacityBatA = capacityBatA;
 	}
 
-	public int getcBatB() {
-		return cBatB;
+	public int getCapacityBatB() {
+		return capacityBatB;
 	}
 
-	public void setcBatB(int cBatB) {
-		this.cBatB = cBatB;
+	public void setCapacityBatB(int capacityBatB) {
+		this.capacityBatB = capacityBatB;
 	}
 
 	public int getCapacity() {
@@ -434,252 +434,252 @@ public class Pwr {
 		this.capacity = capacity;
 	}
 
-	public int getiBatA() {
-		return iBatA;
+	public int getCurrentBatA() {
+		return currentBatA;
 	}
 
-	public void setiBatA(int iBatA) {
-		this.iBatA = iBatA;
+	public void setCurrentBatA(int currentBatA) {
+		this.currentBatA = currentBatA;
 	}
 
-	public int getiBatB() {
-		return iBatB;
+	public int getCurrentBatB() {
+		return currentBatB;
 	}
 
-	public void setiBatB(int iBatB) {
-		this.iBatB = iBatB;
+	public void setCurrentBatB(int currentBatB) {
+		this.currentBatB = currentBatB;
 	}
 
-	public int getiBatAmin() {
-		return iBatAmin;
+	public int getCurrentBatAmin() {
+		return currentBatAmin;
 	}
 
-	public void setiBatAmin(int iBatAmin) {
-		this.iBatAmin = iBatAmin;
+	public void setCurrentBatAmin(int currentBatAmin) {
+		this.currentBatAmin = currentBatAmin;
 	}
 
-	public int getiBatBmin() {
-		return iBatBmin;
+	public int getCurrentBatBmin() {
+		return currentBatBmin;
 	}
 
-	public void setiBatBmin(int iBatBmin) {
-		this.iBatBmin = iBatBmin;
+	public void setCurrentBatBmin(int currentBatBmin) {
+		this.currentBatBmin = currentBatBmin;
 	}
 
-	public int getiBatAmax() {
-		return iBatAmax;
+	public int getCurrentBatAmax() {
+		return currentBatAmax;
 	}
 
-	public void setiBatAmax(int iBatAmax) {
-		this.iBatAmax = iBatAmax;
+	public void setCurrentBatAmax(int currentBatAmax) {
+		this.currentBatAmax = currentBatAmax;
 	}
 
-	public int getiBatBmax() {
-		return iBatBmax;
+	public int getCurrentBatBmax() {
+		return currentBatBmax;
 	}
 
-	public void setiBatBmax(int iBatBmax) {
-		this.iBatBmax = iBatBmax;
+	public void setCurrentBatBmax(int currentBatBmax) {
+		this.currentBatBmax = currentBatBmax;
 	}
 
-	public int getiBatAavg() {
-		return iBatAavg;
+	public int getCurrentBatAavg() {
+		return currentBatAavg;
 	}
 
-	public void setiBatAavg(int iBatAavg) {
-		this.iBatAavg = iBatAavg;
+	public void setCurrentBatAavg(int currentBatAavg) {
+		this.currentBatAavg = currentBatAavg;
 	}
 
-	public int getiBatBavg() {
-		return iBatBavg;
+	public int getCurrentBatBavg() {
+		return currentBatBavg;
 	}
 
-	public void setiBatBavg(int iBatBavg) {
-		this.iBatBavg = iBatBavg;
+	public void setCurrentBatBavg(int currentBatBavg) {
+		this.currentBatBavg = currentBatBavg;
 	}
 
-	public int getiCDHSmin() {
-		return iCDHSmin;
+	public int getCurrentCdhsMin() {
+		return currentCdhsMin;
 	}
 
-	public void setiCDHSmin(int iCDHSmin) {
-		this.iCDHSmin = iCDHSmin;
+	public void setCurrentCdhsMin(int currentCdhsMin) {
+		this.currentCdhsMin = currentCdhsMin;
 	}
 
-	public int getiCDHSmax() {
-		return iCDHSmax;
+	public int getCurrentCdhsMax() {
+		return currentCdhsMax;
 	}
 
-	public void setiCDHSmax(int iCDHSmax) {
-		this.iCDHSmax = iCDHSmax;
+	public void setCurrentCdhsMax(int currentCdhsMax) {
+		this.currentCdhsMax = currentCdhsMax;
 	}
 
-	public int getiCDHSavg() {
-		return iCDHSavg;
+	public int getCurrentCdhsAvg() {
+		return currentCdhsAvg;
 	}
 
-	public void setiCDHSavg(int iCDHSavg) {
-		this.iCDHSavg = iCDHSavg;
+	public void setCurrentCdhsAvg(int currentCdhsAvg) {
+		this.currentCdhsAvg = currentCdhsAvg;
 	}
 
-	public int getiCDHSactual() {
-		return iCDHSactual;
+	public int getCurrentCdhsActual() {
+		return currentCdhsActual;
 	}
 
-	public void setiCDHSactual(int iCDHSactual) {
-		this.iCDHSactual = iCDHSactual;
+	public void setCurrentCdhsActual(int currentCdhsActual) {
+		this.currentCdhsActual = currentCdhsActual;
 	}
 
-	public int getiCOMmin() {
-		return iCOMmin;
+	public int getCurrentComMin() {
+		return currentComMin;
 	}
 
-	public void setiCOMmin(int iCOMmin) {
-		this.iCOMmin = iCOMmin;
+	public void setCurrentComMin(int currentComMin) {
+		this.currentComMin = currentComMin;
 	}
 
-	public int getiCOMmax() {
-		return iCOMmax;
+	public int getCurrentComMax() {
+		return currentComMax;
 	}
 
-	public void setiCOMmax(int iCOMmax) {
-		this.iCOMmax = iCOMmax;
+	public void setCurrentComMax(int currentComMax) {
+		this.currentComMax = currentComMax;
 	}
 
-	public int getiCOMavg() {
-		return iCOMavg;
+	public int getCurrentComAvg() {
+		return currentComAvg;
 	}
 
-	public void setiCOMavg(int iCOMavg) {
-		this.iCOMavg = iCOMavg;
+	public void setCurrentComAvg(int currentComAvg) {
+		this.currentComAvg = currentComAvg;
 	}
 
-	public int getiCOMactual() {
-		return iCOMactual;
+	public int getCurrentComActual() {
+		return currentComActual;
 	}
 
-	public void setiCOMactual(int iCOMactual) {
-		this.iCOMactual = iCOMactual;
+	public void setCurrentComActual(int currentComActual) {
+		this.currentComActual = currentComActual;
 	}
 
-	public int getiCAMmin() {
-		return iCAMmin;
+	public int getCurrentCamMin() {
+		return currentCamMin;
 	}
 
-	public void setiCAMmin(int iCAMmin) {
-		this.iCAMmin = iCAMmin;
+	public void setCurrentCamMin(int currentCamMin) {
+		this.currentCamMin = currentCamMin;
 	}
 
-	public int getiCAMmax() {
-		return iCAMmax;
+	public int getCurrentCamMax() {
+		return currentCamMax;
 	}
 
-	public void setiCAMmax(int iCAMmax) {
-		this.iCAMmax = iCAMmax;
+	public void setCurrentCamMax(int currentCamMax) {
+		this.currentCamMax = currentCamMax;
 	}
 
-	public int getiCAMavg() {
-		return iCAMavg;
+	public int getCurrentCamAvg() {
+		return currentCamAvg;
 	}
 
-	public void setiCAMavg(int iCAMavg) {
-		this.iCAMavg = iCAMavg;
+	public void setCurrentCamAvg(int currentCamAvg) {
+		this.currentCamAvg = currentCamAvg;
 	}
 
-	public int getiCAMactual() {
-		return iCAMactual;
+	public int getCurrentCamActual() {
+		return currentCamActual;
 	}
 
-	public void setiCAMactual(int iCAMactual) {
-		this.iCAMactual = iCAMactual;
+	public void setCurrentCamActual(int currentCamActual) {
+		this.currentCamActual = currentCamActual;
 	}
 
-	public int getiEXPmin() {
-		return iEXPmin;
+	public int getCurrentExpMin() {
+		return currentExpMin;
 	}
 
-	public void setiEXPmin(int iEXPmin) {
-		this.iEXPmin = iEXPmin;
+	public void setCurrentExpMin(int currentExpMin) {
+		this.currentExpMin = currentExpMin;
 	}
 
-	public int getiEXPmax() {
-		return iEXPmax;
+	public int getCurrentExpMax() {
+		return currentExpMax;
 	}
 
-	public void setiEXPmax(int iEXPmax) {
-		this.iEXPmax = iEXPmax;
+	public void setCurrentExpMax(int currentExpMax) {
+		this.currentExpMax = currentExpMax;
 	}
 
-	public int getiEXPavg() {
-		return iEXPavg;
+	public int getCurrentExpAvg() {
+		return currentExpAvg;
 	}
 
-	public void setiEXPavg(int iEXPavg) {
-		this.iEXPavg = iEXPavg;
+	public void setCurrentExpAvg(int currentExpAvg) {
+		this.currentExpAvg = currentExpAvg;
 	}
 
-	public int getiEXPactual() {
-		return iEXPactual;
+	public int getCurrentExpActual() {
+		return currentExpActual;
 	}
 
-	public void setiEXPactual(int iEXPactual) {
-		this.iEXPactual = iEXPactual;
+	public void setCurrentExpActual(int currentExpActual) {
+		this.currentExpActual = currentExpActual;
 	}
 
-	public int getiADCSmin() {
-		return iADCSmin;
+	public int getCurrentAdcsMin() {
+		return currentAdcsMin;
 	}
 
-	public void setiADCSmin(int iADCSmin) {
-		this.iADCSmin = iADCSmin;
+	public void setCurrentAdcsMin(int currentAdcsMin) {
+		this.currentAdcsMin = currentAdcsMin;
 	}
 
-	public int getiADCSmax() {
-		return iADCSmax;
+	public int getCurrentAdcsMax() {
+		return currentAdcsMax;
 	}
 
-	public void setiADCSmax(int iADCSmax) {
-		this.iADCSmax = iADCSmax;
+	public void setCurrentAdcsMax(int currentAdcsMax) {
+		this.currentAdcsMax = currentAdcsMax;
 	}
 
-	public int getiADCSavg() {
-		return iADCSavg;
+	public int getCurrentAdcsAvg() {
+		return currentAdcsAvg;
 	}
 
-	public void setiADCSavg(int iADCSavg) {
-		this.iADCSavg = iADCSavg;
+	public void setCurrentAdcsAvg(int currentAdcsAvg) {
+		this.currentAdcsAvg = currentAdcsAvg;
 	}
 
-	public int getiADCSactual() {
-		return iADCSactual;
+	public int getCurrentAdcsActual() {
+		return currentAdcsActual;
 	}
 
-	public void setiADCSactual(int iADCSactual) {
-		this.iADCSactual = iADCSactual;
+	public void setCurrentAdcsActual(int currentAdcsActual) {
+		this.currentAdcsActual = currentAdcsActual;
 	}
 
-	public int getuSYSmin() {
-		return uSYSmin;
+	public int getVoltageSysMin() {
+		return voltageSysMin;
 	}
 
-	public void setuSYSmin(int uSYSmin) {
-		this.uSYSmin = uSYSmin;
+	public void setVoltageSysMin(int voltageSysMin) {
+		this.voltageSysMin = voltageSysMin;
 	}
 
-	public int getuSYSmax() {
-		return uSYSmax;
+	public int getVoltageSysMax() {
+		return voltageSysMax;
 	}
 
-	public void setuSYSmax(int uSYSmax) {
-		this.uSYSmax = uSYSmax;
+	public void setVoltageSysMax(int voltageSysMax) {
+		this.voltageSysMax = voltageSysMax;
 	}
 
-	public int getuSYSactual() {
-		return uSYSactual;
+	public int getVoltageSysActual() {
+		return voltageSysActual;
 	}
 
-	public void setuSYSactual(int uSYSactual) {
-		this.uSYSactual = uSYSactual;
+	public void setVoltageSysActual(int voltageSysActual) {
+		this.voltageSysActual = voltageSysActual;
 	}
 
 	public boolean isPsuErrorTrxSwOvercurrent() {
