@@ -20,12 +20,12 @@ import ru.r2cloud.jradio.fec.ccsds.UncorrectableException;
 
 public class OpsSat extends BeaconSource<OpsSatBeacon> {
 
-	private static final int MINIMUM_MESSAGE_SIZE = 110;
+	private static final int MINIMUM_MESSAGE_SIZE = Header.LENGTH_BYTES + 32 + 1; // 32 for reed solomon parity bytes
 	private static final Logger LOG = LoggerFactory.getLogger(OpsSat.class);
 
 	public OpsSat(ByteInput input) {
 		// false - rely on crc32 after reed solomon
-		super(new HdlcReceiver(new Descrambler(new NrziDecode(input), 0x21, 0, 16), MINIMUM_MESSAGE_SIZE * 10, MINIMUM_MESSAGE_SIZE, false));
+		super(new HdlcReceiver(new Descrambler(new NrziDecode(input), 0x21, 0, 16), Header.LENGTH_BYTES + 255 + 1, MINIMUM_MESSAGE_SIZE, false));
 	}
 
 	@Override
