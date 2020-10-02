@@ -8,6 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import ru.r2cloud.jradio.Beacon;
+import ru.r2cloud.jradio.crc.Crc32c;
 import ru.r2cloud.jradio.csp.Header;
 import ru.r2cloud.jradio.fec.ccsds.UncorrectableException;
 
@@ -34,6 +35,13 @@ public class Aistechsat3Beacon extends Beacon {
 	public void readBeacon(byte[] data) throws IOException, UncorrectableException {
 		DataInputStream dis = new DataInputStream(new ByteArrayInputStream(data));
 		header = new Header(dis);
+		if (header.isFcrc32()) {
+			long expectedCrc32 = Crc32c.calculate(data, Header.LENGTH, data.length - 4 - Header.LENGTH);
+			long actualCrc32 = ((data[data.length - 4] & 0xFFL) << 24) | ((data[data.length - 3] & 0xFFL) << 16) | ((data[data.length - 2] & 0xFFL) << 8) | (data[data.length - 1] & 0xFFL);
+			if (expectedCrc32 != actualCrc32) {
+				throw new UncorrectableException("crc mismatch");
+			}
+		}
 		protocolVersion = dis.readUnsignedByte();
 		beaconType = dis.readUnsignedByte();
 		version = dis.readUnsignedByte();
