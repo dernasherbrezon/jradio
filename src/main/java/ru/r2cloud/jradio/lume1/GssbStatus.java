@@ -1,8 +1,7 @@
 package ru.r2cloud.jradio.lume1;
 
+import java.io.DataInputStream;
 import java.io.IOException;
-
-import ru.r2cloud.jradio.util.BitInputStream;
 
 public class GssbStatus {
 
@@ -15,11 +14,11 @@ public class GssbStatus {
 		//do nothing
 	}
 
-	public GssbStatus(BitInputStream bis) throws IOException {
-		rebootCount = bis.readUnsignedInt(8);
-		currentState = bis.readUnsignedInt(8);
-		antennaState = bis.readUnsignedInt(8);
-		attemptsTotal = bis.readUnsignedInt(16);
+	public GssbStatus(DataInputStream bis) throws IOException {
+		rebootCount = bis.readUnsignedByte();
+		currentState = bis.readUnsignedByte();
+		antennaState = bis.readUnsignedByte();
+		attemptsTotal = bis.readUnsignedShort();
 	}
 
 	public int getRebootCount() {

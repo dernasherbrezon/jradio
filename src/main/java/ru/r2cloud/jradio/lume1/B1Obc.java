@@ -1,9 +1,10 @@
 package ru.r2cloud.jradio.lume1;
 
+import java.io.DataInputStream;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 
-import ru.r2cloud.jradio.util.BitInputStream;
+import ru.r2cloud.jradio.util.StreamUtils;
 
 public class B1Obc {
 
@@ -36,43 +37,46 @@ public class B1Obc {
 	private String swVersion;
 	private int trConn;
 	private int trConnActive;
-	
+
 	public B1Obc() {
-		//do nothing
+		// do nothing
 	}
 
-	public B1Obc(BitInputStream bis) throws IOException {
-		bootCause = bis.readUnsignedLong(32);
-		bootCount = bis.readUnsignedInt(16);
-		clock = bis.readUnsignedLong(32);
-		curFlash = bis.readUnsignedInt(16);
-		fsMounted = bis.readUnsignedByte();
-		rawImage = bis.readByte();
-		tempA = bis.readUnsignedInt(16) * 0.1f;
-		tempB = bis.readUnsignedInt(16) * 0.1f;
-		ticks = bis.readUnsignedLong(32);
-		magX = bis.readFloat();
-		magY = bis.readFloat();
-		magZ = bis.readFloat();
-		memFree = bis.readUnsignedLong(32);
-		bufferFree = bis.readUnsignedLong(32);
-		uptime = bis.readUnsignedLong(32);
-		gyroX = bis.readFloat();
-		gyroY = bis.readFloat();
-		gyroZ = bis.readFloat();
-		gyroTemp = bis.readFloat();
-		flashTotal = bis.readLong();
-		flashUsed = bis.readLong();
-		flashFree = bis.readLong();
-		gpioTest = bis.readUnsignedByte();
-		gpioSw = bis.readUnsignedByte();
-		gpioPwr = bis.readUnsignedByte();
-		state = bis.readUnsignedByte();
-		byte[] swVersionBytes = new byte[32];
-		bis.readFully(swVersionBytes);
+	public B1Obc(DataInputStream dis) throws IOException {
+		bootCause = StreamUtils.readUnsignedInt(dis);
+		bootCount = dis.readUnsignedShort();
+		clock = StreamUtils.readUnsignedInt(dis);
+		curFlash = dis.readUnsignedShort();
+		fsMounted = dis.readUnsignedByte();
+		rawImage = dis.readByte();
+		tempA = dis.readUnsignedShort() * 0.1f;
+		tempB = dis.readUnsignedShort() * 0.1f;
+		ticks = StreamUtils.readUnsignedInt(dis);
+		magX = dis.readFloat();
+		magY = dis.readFloat();
+		magZ = dis.readFloat();
+		memFree = StreamUtils.readUnsignedInt(dis);
+		bufferFree = StreamUtils.readUnsignedInt(dis);
+		uptime = StreamUtils.readUnsignedInt(dis);
+		gyroX = dis.readFloat();
+		gyroY = dis.readFloat();
+		gyroZ = dis.readFloat();
+		gyroTemp = dis.readFloat();
+		flashTotal = dis.readLong();
+		flashUsed = dis.readLong();
+		flashFree = dis.readLong();
+		gpioTest = dis.readUnsignedByte();
+		gpioSw = dis.readUnsignedByte();
+		gpioPwr = dis.readUnsignedByte();
+		state = dis.readUnsignedByte();
+		int swLength = Math.min(dis.available(), 32);
+		byte[] swVersionBytes = new byte[swLength];
+		dis.readFully(swVersionBytes);
 		swVersion = new String(swVersionBytes, StandardCharsets.ISO_8859_1).trim();
-		trConn = bis.readUnsignedByte();
-		trConnActive = bis.readUnsignedByte();
+		if (dis.available() > 0) {
+			trConn = dis.readUnsignedByte();
+			trConnActive = dis.readUnsignedByte();
+		}
 	}
 
 	public long getBootCause() {

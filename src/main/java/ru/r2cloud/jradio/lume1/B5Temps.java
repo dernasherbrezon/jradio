@@ -1,8 +1,7 @@
 package ru.r2cloud.jradio.lume1;
 
+import java.io.DataInputStream;
 import java.io.IOException;
-
-import ru.r2cloud.jradio.util.BitInputStream;
 
 public class B5Temps {
 
@@ -36,22 +35,22 @@ public class B5Temps {
 		//do nothing
 	}
 
-	public B5Temps(BitInputStream bis) throws IOException {
+	public B5Temps(DataInputStream bis) throws IOException {
 		sunsTempPx = bis.readFloat();
 		sunsTempNx = bis.readFloat();
 		sunsTempPy = bis.readFloat();
 		sunsTempNy = bis.readFloat();
 		sunsTempPz = bis.readFloat();
-		bis.skipBits(32);
+		bis.skipBytes(4);
 		extMagTemp32 = bis.readFloat();
 		fssTempPx = bis.readFloat();
 		fssTempNx = bis.readFloat();
 		fssTempPy = bis.readFloat();
 		fssTempNy = bis.readFloat();
 		fssTempPz = bis.readFloat();
-		bis.skipBits(32);
-		bis.skipBits(32);
-		bis.skipBits(32);
+		bis.skipBytes(4);
+		bis.skipBytes(4);
+		bis.skipBytes(4);
 		gyroTemp32 = bis.readFloat();
 		aocsTempA = bis.readShort() * 0.1f;
 		aocsTempB = bis.readShort() * 0.1f;

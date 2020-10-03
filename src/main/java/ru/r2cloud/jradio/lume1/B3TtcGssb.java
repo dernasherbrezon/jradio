@@ -1,8 +1,9 @@
 package ru.r2cloud.jradio.lume1;
 
+import java.io.DataInputStream;
 import java.io.IOException;
 
-import ru.r2cloud.jradio.util.BitInputStream;
+import ru.r2cloud.jradio.util.StreamUtils;
 
 public class B3TtcGssb {
 
@@ -39,7 +40,7 @@ public class B3TtcGssb {
 		//do nothing
 	}
 
-	public B3TtcGssb(BitInputStream bis) throws IOException {
+	public B3TtcGssb(DataInputStream bis) throws IOException {
 		nx = new GssbStatus(bis);
 		ny = new GssbStatus(bis);
 		px = new GssbStatus(bis);
@@ -49,21 +50,21 @@ public class B3TtcGssb {
 		lastRferr = bis.readShort();
 		lastRssi = bis.readShort();
 
-		totRxBytes = bis.readUnsignedLong(32);
-		rxBytes = bis.readUnsignedLong(32);
-		totRxCount = bis.readUnsignedLong(32);
-		rxCount = bis.readUnsignedLong(32);
-		totTxBytes = bis.readUnsignedLong(32);
-		txBytes = bis.readUnsignedLong(32);
-		totTxCount = bis.readUnsignedLong(32);
-		txCount = bis.readUnsignedLong(32);
+		totRxBytes = StreamUtils.readUnsignedInt(bis);
+		rxBytes = StreamUtils.readUnsignedInt(bis);
+		totRxCount = StreamUtils.readUnsignedInt(bis);
+		rxCount = StreamUtils.readUnsignedInt(bis);
+		totTxBytes = StreamUtils.readUnsignedInt(bis);
+		txBytes = StreamUtils.readUnsignedInt(bis);
+		totTxCount = StreamUtils.readUnsignedInt(bis);
+		txCount = StreamUtils.readUnsignedInt(bis);
 
 		tempPa = bis.readShort() * 0.1f;
-		bootCause = bis.readUnsignedLong(32);
+		bootCause = StreamUtils.readUnsignedInt(bis);
 		bgndRssi = bis.readShort();
 		activeConf = bis.readUnsignedByte();
-		bootCount = bis.readUnsignedInt(16);
-		lastContact = bis.readUnsignedLong(32);
+		bootCount = bis.readUnsignedShort();
+		lastContact = StreamUtils.readUnsignedInt(bis);
 		txDuty = bis.readUnsignedByte();
 	}
 

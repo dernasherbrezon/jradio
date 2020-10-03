@@ -1,8 +1,9 @@
 package ru.r2cloud.jradio.lume1;
 
+import java.io.DataInputStream;
 import java.io.IOException;
 
-import ru.r2cloud.jradio.util.BitInputStream;
+import ru.r2cloud.jradio.util.StreamUtils;
 
 public class B2Eps {
 
@@ -76,83 +77,83 @@ public class B2Eps {
 		//do nothing
 	}
 
-	public B2Eps(BitInputStream bis) throws IOException {
-		outputOffDelta0 = bis.readUnsignedInt(16);
-		outputOffDelta1 = bis.readUnsignedInt(16);
-		outputOffDelta2 = bis.readUnsignedInt(16);
-		outputOffDelta3 = bis.readUnsignedInt(16);
-		outputOffDelta4 = bis.readUnsignedInt(16);
-		outputOffDelta5 = bis.readUnsignedInt(16);
-		outputOffDelta6 = bis.readUnsignedInt(16);
-		outputOffDelta7 = bis.readUnsignedInt(16);
+	public B2Eps(DataInputStream dis) throws IOException {
+		outputOffDelta0 = dis.readUnsignedShort();
+		outputOffDelta1 = dis.readUnsignedShort();
+		outputOffDelta2 = dis.readUnsignedShort();
+		outputOffDelta3 = dis.readUnsignedShort();
+		outputOffDelta4 = dis.readUnsignedShort();
+		outputOffDelta5 = dis.readUnsignedShort();
+		outputOffDelta6 = dis.readUnsignedShort();
+		outputOffDelta7 = dis.readUnsignedShort();
 
-		outputOnDelta0 = bis.readUnsignedInt(16);
-		outputOnDelta1 = bis.readUnsignedInt(16);
-		outputOnDelta2 = bis.readUnsignedInt(16);
-		outputOnDelta3 = bis.readUnsignedInt(16);
-		outputOnDelta4 = bis.readUnsignedInt(16);
-		outputOnDelta5 = bis.readUnsignedInt(16);
-		outputOnDelta6 = bis.readUnsignedInt(16);
-		outputOnDelta7 = bis.readUnsignedInt(16);
+		outputOnDelta0 = dis.readUnsignedShort();
+		outputOnDelta1 = dis.readUnsignedShort();
+		outputOnDelta2 = dis.readUnsignedShort();
+		outputOnDelta3 = dis.readUnsignedShort();
+		outputOnDelta4 = dis.readUnsignedShort();
+		outputOnDelta5 = dis.readUnsignedShort();
+		outputOnDelta6 = dis.readUnsignedShort();
+		outputOnDelta7 = dis.readUnsignedShort();
 
-		wdtCspPingsLeft0 = bis.readUnsignedInt(8);
-		wdtCspPingsLeft1 = bis.readUnsignedInt(8);
+		wdtCspPingsLeft0 = dis.readUnsignedByte();
+		wdtCspPingsLeft1 = dis.readUnsignedByte();
 
-		bootCause = bis.readUnsignedInt(8);
-		curSun = bis.readUnsignedInt(16);
-		curIn0 = bis.readUnsignedInt(16);
-		curIn1 = bis.readUnsignedInt(16);
-		curIn2 = bis.readUnsignedInt(16);
-		curOut0 = bis.readUnsignedInt(16);
-		curOut1 = bis.readUnsignedInt(16);
-		curOut2 = bis.readUnsignedInt(16);
-		curOut3 = bis.readUnsignedInt(16);
-		curOut4 = bis.readUnsignedInt(16);
-		curOut5 = bis.readUnsignedInt(16);
-		curSys = bis.readUnsignedInt(16);
-		temp0 = bis.readUnsignedInt(16);
-		temp1 = bis.readUnsignedInt(16);
-		temp2 = bis.readUnsignedInt(16);
-		temp3 = bis.readUnsignedInt(16);
-		temp4 = bis.readUnsignedInt(16);
-		temp5 = bis.readUnsignedInt(16);
+		bootCause = dis.readUnsignedByte();
+		curSun = dis.readUnsignedShort();
+		curIn0 = dis.readUnsignedShort();
+		curIn1 = dis.readUnsignedShort();
+		curIn2 = dis.readUnsignedShort();
+		curOut0 = dis.readUnsignedShort();
+		curOut1 = dis.readUnsignedShort();
+		curOut2 = dis.readUnsignedShort();
+		curOut3 = dis.readUnsignedShort();
+		curOut4 = dis.readUnsignedShort();
+		curOut5 = dis.readUnsignedShort();
+		curSys = dis.readUnsignedShort();
+		temp0 = dis.readUnsignedShort();
+		temp1 = dis.readUnsignedShort();
+		temp2 = dis.readUnsignedShort();
+		temp3 = dis.readUnsignedShort();
+		temp4 = dis.readUnsignedShort();
+		temp5 = dis.readUnsignedShort();
 
-		battMode = bis.readUnsignedInt(8);
-		pptMode = bis.readUnsignedInt(8);
-		counterBoot = bis.readUnsignedLong(32);
+		battMode = dis.readUnsignedByte();
+		pptMode = dis.readUnsignedByte();
+		counterBoot = StreamUtils.readUnsignedInt(dis);
 
-		latchup0 = bis.readUnsignedInt(16);
-		latchup1 = bis.readUnsignedInt(16);
-		latchup2 = bis.readUnsignedInt(16);
-		latchup3 = bis.readUnsignedInt(16);
-		latchup4 = bis.readUnsignedInt(16);
-		latchup5 = bis.readUnsignedInt(16);
+		latchup0 = dis.readUnsignedShort();
+		latchup1 = dis.readUnsignedShort();
+		latchup2 = dis.readUnsignedShort();
+		latchup3 = dis.readUnsignedShort();
+		latchup4 = dis.readUnsignedShort();
+		latchup5 = dis.readUnsignedShort();
 
-		counterWdtCsp0 = bis.readUnsignedLong(32);
-		counterWdtCsp1 = bis.readUnsignedLong(32);
-		counterWdtGnd = bis.readUnsignedLong(32);
-		counterWdtI2C = bis.readUnsignedLong(32);
+		counterWdtCsp0 = StreamUtils.readUnsignedInt(dis);
+		counterWdtCsp1 = StreamUtils.readUnsignedInt(dis);
+		counterWdtGnd = StreamUtils.readUnsignedInt(dis);
+		counterWdtI2C = StreamUtils.readUnsignedInt(dis);
 
-		output0 = bis.readUnsignedInt(8);
-		output1 = bis.readUnsignedInt(8);
-		output2 = bis.readUnsignedInt(8);
-		output3 = bis.readUnsignedInt(8);
-		output4 = bis.readUnsignedInt(8);
-		output5 = bis.readUnsignedInt(8);
-		output6 = bis.readUnsignedInt(8);
-		output7 = bis.readUnsignedInt(8);
+		output0 = dis.readUnsignedByte();
+		output1 = dis.readUnsignedByte();
+		output2 = dis.readUnsignedByte();
+		output3 = dis.readUnsignedByte();
+		output4 = dis.readUnsignedByte();
+		output5 = dis.readUnsignedByte();
+		output6 = dis.readUnsignedByte();
+		output7 = dis.readUnsignedByte();
 
-		wdtGndTimeLeft = bis.readUnsignedLong(32);
-		wdtI2CTimeLeft = bis.readUnsignedLong(32);
+		wdtGndTimeLeft = StreamUtils.readUnsignedInt(dis);
+		wdtI2CTimeLeft = StreamUtils.readUnsignedInt(dis);
 
-		vBatt = bis.readUnsignedInt(16);
+		vBatt = dis.readUnsignedShort();
 
-		vboostV0 = bis.readUnsignedInt(16);
-		vboostV1 = bis.readUnsignedInt(16);
-		vboostV2 = bis.readUnsignedInt(16);
+		vboostV0 = dis.readUnsignedShort();
+		vboostV1 = dis.readUnsignedShort();
+		vboostV2 = dis.readUnsignedShort();
 
-		wdtCspc0 = bis.readUnsignedInt(8);
-		wdtCspc1 = bis.readUnsignedInt(8);
+		wdtCspc0 = dis.readUnsignedByte();
+		wdtCspc1 = dis.readUnsignedByte();
 	}
 
 	public int getOutputOffDelta0() {

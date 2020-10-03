@@ -134,6 +134,11 @@ Using the blocks above, it is possible to decode the following satellites:
 			<td><a href="https://github.com/dernasherbrezon/jradio/blob/master/src/test/java/ru/r2cloud/jradio/aistechsat3/Aistechsat3Test.java">Aistechsat3Test</a></td>
 		</tr>
 		<tr>
+			<td>Aistechsat2</td>
+			<td>43768</td>
+			<td>Same as Aistechsat3. See <a href="https://github.com/dernasherbrezon/jradio/blob/master/src/test/java/ru/r2cloud/jradio/aistechsat3/Aistechsat3Test.java">Aistechsat3Test</a></td>
+		</tr>
+		<tr>
 			<td>AO-73</td>
 			<td>39444</td>
 			<td><a href="https://github.com/dernasherbrezon/jradio/blob/master/src/test/java/ru/r2cloud/jradio/ao73/Ao73Test.java">Ao73Test</a></td>

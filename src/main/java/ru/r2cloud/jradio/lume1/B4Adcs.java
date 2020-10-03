@@ -1,8 +1,9 @@
 package ru.r2cloud.jradio.lume1;
 
+import java.io.DataInputStream;
 import java.io.IOException;
 
-import ru.r2cloud.jradio.util.BitInputStream;
+import ru.r2cloud.jradio.util.StreamUtils;
 
 public class B4Adcs {
 
@@ -45,7 +46,7 @@ public class B4Adcs {
 		//do nothing
 	}
 
-	public B4Adcs(BitInputStream bis) throws IOException {
+	public B4Adcs(DataInputStream bis) throws IOException {
 		extMagValid = bis.readUnsignedByte();
 		extMagX = bis.readFloat();
 		extMagY = bis.readFloat();
@@ -73,13 +74,13 @@ public class B4Adcs {
 		adsMode = bis.readByte();
 		ephemMode = bis.readByte();
 		bdotDetumb = bis.readUnsignedByte();
-		bootCause = bis.readUnsignedLong(32);
-		bootCount = bis.readUnsignedInt(16);
-		curGssb1 = bis.readUnsignedInt(16);
-		curGssb2 = bis.readUnsignedInt(16);
-		curPwm = bis.readUnsignedInt(16);
-		curGps = bis.readUnsignedInt(16);
-		curWde = bis.readUnsignedInt(16);
+		bootCause = StreamUtils.readUnsignedInt(bis);
+		bootCount = bis.readUnsignedShort();
+		curGssb1 = bis.readUnsignedShort();
+		curGssb2 = bis.readUnsignedShort();
+		curPwm = bis.readUnsignedShort();
+		curGps = bis.readUnsignedShort();
+		curWde = bis.readUnsignedShort();
 	}
 
 	public int getExtMagValid() {

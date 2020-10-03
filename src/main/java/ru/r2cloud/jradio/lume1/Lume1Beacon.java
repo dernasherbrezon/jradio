@@ -7,7 +7,6 @@ import java.io.IOException;
 import ru.r2cloud.jradio.Beacon;
 import ru.r2cloud.jradio.ccsds.TmTransferFrame;
 import ru.r2cloud.jradio.csp.Header;
-import ru.r2cloud.jradio.util.BitInputStream;
 
 public class Lume1Beacon extends Beacon {
 
@@ -26,23 +25,26 @@ public class Lume1Beacon extends Beacon {
 		DataInputStream dis = new DataInputStream(new ByteArrayInputStream(data));
 		header = new Header(dis);
 		transferFrame = new TmTransferFrame(dis);
-		BitInputStream bis = new BitInputStream(transferFrame.getPayload());
-		id = bis.readUnsignedInt(16);
+		if (transferFrame.getSecondaryHeader() == null || transferFrame.getSecondaryHeader().getServiceType() != 0x3 || transferFrame.getSecondaryHeader().getMessageSubtype() != 0x19) {
+			return;
+		}
+		dis = new DataInputStream(new ByteArrayInputStream(transferFrame.getPayload()));
+		id = dis.readUnsignedShort();
 		switch (id) {
 		case 1:
-			b1obc = new B1Obc(bis);
+			b1obc = new B1Obc(dis);
 			break;
 		case 2:
-			b2eps = new B2Eps(bis);
+			b2eps = new B2Eps(dis);
 			break;
 		case 3:
-			b3TtcGssb = new B3TtcGssb(bis);
+			b3TtcGssb = new B3TtcGssb(dis);
 			break;
 		case 4:
-			b4Adcs = new B4Adcs(bis);
+			b4Adcs = new B4Adcs(dis);
 			break;
 		case 5:
-			b5Temps = new B5Temps(bis);
+			b5Temps = new B5Temps(dis);
 			break;
 		default:
 			break;
