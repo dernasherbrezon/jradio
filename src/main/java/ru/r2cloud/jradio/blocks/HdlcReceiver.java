@@ -21,6 +21,8 @@ public class HdlcReceiver implements MessageInput {
 	private final byte[] window;
 	private final boolean checksum;
 	private final int minBits;
+	
+	private boolean foundStartFlag = false;
 
 	public HdlcReceiver(ByteInput input, int maxLengthBytes) {
 		this(input, maxLengthBytes, 0, true);
@@ -36,7 +38,6 @@ public class HdlcReceiver implements MessageInput {
 	@Override
 	public byte[] readBytes() throws IOException {
 		int ones = 0;
-		boolean foundStartFlag = false;
 		int packetLength = 0;
 		while (true) {
 			byte curBit = input.readByte();

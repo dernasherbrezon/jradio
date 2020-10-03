@@ -51,6 +51,18 @@ public class HdlcReceiverTest {
 		assertNotNull(result);
 		assertByteArrayEquals(data, result);
 	}
+	
+	@Test
+	public void testOneByOne() throws Exception {
+		int[] data = new int[] { 0xF1, 0xA7 };
+		hdlc = new HdlcReceiver(new ArrayByteInput(createMessage(randomBytes(2), FLAG, packedToUnpacked(createMessage(data, calculateCrc(data))), FLAG, packedToUnpacked(createMessage(data, calculateCrc(data))), FLAG, randomBytes(5))), 2);
+		byte[] result = hdlc.readBytes();
+		assertNotNull(result);
+		assertByteArrayEquals(data, result);
+		result = hdlc.readBytes();
+		assertNotNull(result);
+		assertByteArrayEquals(data, result);
+	}
 
 	@Test
 	public void testIgnoreFailedCrc() throws Exception {
