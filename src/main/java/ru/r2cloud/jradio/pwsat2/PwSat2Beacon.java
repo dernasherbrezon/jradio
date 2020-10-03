@@ -25,7 +25,9 @@ public class PwSat2Beacon extends Ax25Beacon {
 	private FileRemoveFrame fileRemove;
 	private FileSendFrame fileSend;
 	private FileListFrame fileList;
-	
+
+	private byte[] unknownPayload;
+
 	@Override
 	public void readBeacon(DataInputStream dis) throws IOException, UncorrectableException {
 		// only i or U + UI have information
@@ -39,11 +41,12 @@ public class PwSat2Beacon extends Ax25Beacon {
 		} else {
 			int temp = marker | (littleEndian.readUnsignedByte() << 8) | (littleEndian.readUnsignedByte() << 16);
 			apid = DownlinkApid.valueOfCode(temp & 0b00111111);
+			seq = temp >> 6;
 			if (apid == null) {
-				LOG.info("unknown apid: {}", (temp & 0b00111111));
+				unknownPayload = new byte[littleEndian.available()];
+				littleEndian.readFully(unknownPayload);
 				return;
 			}
-			seq = temp >> 6;
 			switch (apid) {
 			case PONG:
 			case OPERATION:
@@ -169,6 +172,14 @@ public class PwSat2Beacon extends Ax25Beacon {
 
 	public void setFileList(FileListFrame fileList) {
 		this.fileList = fileList;
+	}
+	
+	public byte[] getUnknownPayload() {
+		return unknownPayload;
+	}
+	
+	public void setUnknownPayload(byte[] unknownPayload) {
+		this.unknownPayload = unknownPayload;
 	}
 
 }
