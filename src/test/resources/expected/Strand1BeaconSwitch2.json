@@ -1,0 +1,11 @@
+{
+  "sequenceNumber": 189,
+  "length": 9,
+  "solarPanelDeployFire": {
+    "status": "OFF",
+    "current": 0.0,
+    "voltage": 182.0
+  },
+  "beginSample": 0,
+  "beginMillis": 0
+}

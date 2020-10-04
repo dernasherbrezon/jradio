@@ -314,6 +314,11 @@ Using the blocks above, it is possible to decode the following satellites:
 			<td><a href="https://github.com/dernasherbrezon/jradio/blob/master/src/test/java/ru/r2cloud/jradio/alsat1n/Alsat1nTest.java">Alsat1nTest</a></td>
 		</tr>		
 		<tr>
+			<td>STRAND-1</td>
+			<td>39090</td>
+			<td><a href="https://github.com/dernasherbrezon/jradio/blob/master/src/main/java/ru/r2cloud/jradio/strand1/Strand1.java">Strand1</a></td>
+		</tr>		
+		<tr>
 			<td>PolyItan1</td>
 			<td>40042</td>
 			<td>Use Ax25G3ruhBeaconSource with FskDemodulator 9600</td>

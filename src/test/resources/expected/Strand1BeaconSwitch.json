@@ -1,0 +1,11 @@
+{
+  "sequenceNumber": 180,
+  "length": 9,
+  "pptPowerSupply": {
+    "status": "OFF",
+    "current": 22.102133,
+    "voltage": -694.80505
+  },
+  "beginSample": 0,
+  "beginMillis": 0
+}
