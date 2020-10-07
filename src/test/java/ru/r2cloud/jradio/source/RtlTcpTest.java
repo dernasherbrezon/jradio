@@ -80,8 +80,8 @@ public class RtlTcpTest {
 		settings.setFrequency(102000000);
 		settings.setSampleRate(96000);
 		tcp = new RtlTcp(iface.getHostName(), port, settings);
-		assertEquals(-0.971875011920929, tcp.readFloat(), 0.0);
-		assertEquals(-0.964062511920929, tcp.readFloat(), 0.0);
+		assertEquals(-0.97265625, tcp.readFloat(), 0.0);
+		assertEquals(-0.96484375, tcp.readFloat(), 0.0);
 		assertEquals(tunerType, tcp.getTunerType());
 		assertEquals(tunerGainCount, tcp.getTunerGainCount());
 
