@@ -18,15 +18,15 @@ public class PlutoSdrTest {
 	public void basic() throws Exception {
 		final ByteArrayOutputStream baos = new ByteArrayOutputStream();
 		DataOutputStream dos = new DataOutputStream(baos);
-		dos.writeByte(10);
-		dos.writeByte(20);
-		dos.writeByte(30);
-		dos.writeByte(40);
+		dos.writeByte(154);
+		dos.writeByte(255);
+		dos.writeByte(207);
+		dos.writeByte(0);
 
 		sdr = new PlutoSdr(new ByteArrayInputStream(baos.toByteArray()), 0.0f, 10L);
-		assertEquals(-0.9212493896484375, sdr.readFloat(), 0.0000001);
+		assertEquals(-0.0498046875, sdr.readFloat(), 0.0000001);
 		assertEquals(0.0f, sdr.getContext().getCurrentSample().getValue(), 0.0f);
-		assertEquals(-0.7643890380859375, sdr.readFloat(), 0.0000001);
+		assertEquals(0.10107421875, sdr.readFloat(), 0.0000001);
 		try {
 			sdr.readFloat();
 			fail("eof expected");
