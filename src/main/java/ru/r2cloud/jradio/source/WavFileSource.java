@@ -44,13 +44,13 @@ public class WavFileSource implements FloatInput {
 			}
 		}
 		if (context.getSampleSizeInBits() == 16) {
-			int s = (((buf[currentBufIndex + 1] & 0xFF) << 8) | (buf[currentBufIndex] & 0xff));
+			short s = (short) ((buf[currentBufIndex + 1] << 8) | (buf[currentBufIndex] & 0xff));
 			currentBufIndex += 2;
-			return (s - 32767.5f) / 32768;
+			return ((float) s / Short.MAX_VALUE);
 		} else {
-			int s = (buf[currentBufIndex] & 0xFF);
+			short s = (short) (buf[currentBufIndex] & 0xFF);
 			currentBufIndex += 1;
-			return (s - 127.5f) / 128.0f;
+			return ((float) s / 128) - 1;
 		}
 	}
 
