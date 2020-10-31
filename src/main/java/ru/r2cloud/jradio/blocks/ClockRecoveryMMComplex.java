@@ -49,7 +49,7 @@ public class ClockRecoveryMMComplex implements FloatInput {
 
 		context = new Context(source.getContext());
 		// unpredictable number of samples will be dropped
-		context.setSampleRate(0.0f);
+		// leave sample rate as-is
 		// this block decimates the stream
 		// however it is unknown in advance the decimation rate
 		// put null, to let downstream blocks aware of it

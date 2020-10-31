@@ -42,7 +42,7 @@ public class ClockRecoveryMM implements FloatInput {
 
 		context = new Context(source.getContext());
 		// unpredictable number of samples will be dropped
-		context.setSampleRate(0.0f);
+		// leave sample rate as-is
 		context.setTotalSamples(null);
 	}
 
