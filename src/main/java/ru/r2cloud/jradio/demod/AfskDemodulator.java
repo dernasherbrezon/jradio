@@ -18,14 +18,14 @@ public class AfskDemodulator implements ByteInput {
 	public AfskDemodulator(FloatInput source, int baudRate, float deviation, float afCarrier, int decimation) {
 		FloatInput next = source;
 		if (next.getContext().getChannels() == 2) {
-			next = new QuadratureDemodulation(next, (float) (next.getContext().getSampleRate() / (2 * Math.PI * deviation)));
+			next = new QuadratureDemodulation(next, 1);
 		}
 		float filterCutoff = 2 * Math.abs(deviation);
 		float filterTransition = 0.1f * Math.abs(deviation);
 		float[] taps = Firdes.lowPass(1, next.getContext().getSampleRate(), filterCutoff, filterTransition, Window.WIN_HAMMING, 6.76);
 		next = new FloatToComplex(next);
 		next = new FrequencyXlatingFIRFilter(next, taps, decimation, afCarrier);
-		this.source = new FskDemodulator(next, baudRate);
+		this.source = new FskDemodulator(next, baudRate, 5000.0f, 1, 2000, false);
 	}
 
 	@Override
