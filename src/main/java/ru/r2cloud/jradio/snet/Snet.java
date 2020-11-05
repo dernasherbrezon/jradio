@@ -104,7 +104,7 @@ public class Snet extends BeaconSource<SnetBeacon> {
 		return result;
 	}
 
-	private static byte[] extractPdu(LTUFrameHeader header, byte[] bits) throws UncorrectableException {
+	public static byte[] extractPdu(LTUFrameHeader header, byte[] bits) throws UncorrectableException {
 		int bchD;
 		int dataBitsPerCodeword;
 		byte[] pdu = null;
@@ -159,7 +159,7 @@ public class Snet extends BeaconSource<SnetBeacon> {
 		if (pdu == null) {
 			return null;
 		}
-
+		
 		// convert LSB to MSB
 		for (int i = 0; i < pdu.length; i += 8) {
 			for (int j = 0; j < 4; j++) {

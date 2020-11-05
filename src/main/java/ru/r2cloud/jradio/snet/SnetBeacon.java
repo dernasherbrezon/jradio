@@ -16,6 +16,8 @@ public class SnetBeacon extends Beacon {
 	private ADCSTelemetry adcsTelemetry;
 	private EPSTelemetry epsTelemetry;
 
+	private byte[] unknownPayload;
+
 	@Override
 	public void readBeacon(byte[] data) throws IOException {
 		DataInputStream dis = new DataInputStream(new ByteArrayInputStream(data));
@@ -26,6 +28,9 @@ public class SnetBeacon extends Beacon {
 			adcsTelemetry = new ADCSTelemetry(lbis);
 		} else if (snetHeader.getFcidMajor() == 9 && snetHeader.getFcidSub() == 0) {
 			epsTelemetry = new EPSTelemetry(lbis);
+		} else {
+			unknownPayload = new byte[dis.available()];
+			dis.readFully(unknownPayload);
 		}
 	}
 

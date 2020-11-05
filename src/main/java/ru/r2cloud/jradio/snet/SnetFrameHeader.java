@@ -18,10 +18,11 @@ public class SnetFrameHeader {
 	private boolean timeTaggedSetting;
 	private boolean timeTagged;
 	private int dataLength;
-	private long timeTag;
-	
+	private Long timeTag;
+	private SnetFrameHeaderExtension extension;
+
 	public SnetFrameHeader() {
-		//do nothing
+		// do nothing
 	}
 
 	public SnetFrameHeader(BitInputStream bis) throws IOException {
@@ -30,7 +31,7 @@ public class SnetFrameHeader {
 		fcidMajor = bis.readUnsignedInt(6);
 		fcidSub = bis.readUnsignedInt(10);
 		urgent = bis.readBoolean();
-		bis.skipBits(1);
+		boolean extended = bis.readBoolean();
 		checkCrc = bis.readBoolean();
 		multiFrame = bis.readBoolean();
 		timeTaggedSetting = bis.readBoolean();
@@ -48,6 +49,17 @@ public class SnetFrameHeader {
 			cal.set(Calendar.MILLISECOND, 0);
 			timeTag = cal.getTimeInMillis() + halfSecondsfrom2000 * 500;
 		}
+		if (extended) {
+			extension = new SnetFrameHeaderExtension(bis);
+		}
+	}
+	
+	public SnetFrameHeaderExtension getExtension() {
+		return extension;
+	}
+	
+	public void setExtension(SnetFrameHeaderExtension extension) {
+		this.extension = extension;
 	}
 
 	public int getCrc() {
@@ -122,11 +134,11 @@ public class SnetFrameHeader {
 		this.dataLength = dataLength;
 	}
 
-	public long getTimeTag() {
+	public Long getTimeTag() {
 		return timeTag;
 	}
 
-	public void setTimeTag(long timeTag) {
+	public void setTimeTag(Long timeTag) {
 		this.timeTag = timeTag;
 	}
 
