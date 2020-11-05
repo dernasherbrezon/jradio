@@ -33,6 +33,14 @@ public class SnetBeacon extends Beacon {
 			dis.readFully(unknownPayload);
 		}
 	}
+	
+	public byte[] getUnknownPayload() {
+		return unknownPayload;
+	}
+	
+	public void setUnknownPayload(byte[] unknownPayload) {
+		this.unknownPayload = unknownPayload;
+	}
 
 	public SnetFrameHeader getSnetHeader() {
 		return snetHeader;

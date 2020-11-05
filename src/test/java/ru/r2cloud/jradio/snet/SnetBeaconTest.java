@@ -31,6 +31,7 @@ public class SnetBeaconTest {
 		assertPojoMethodsFor(SnetBeacon.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
 		assertPojoMethodsFor(LTUFrameHeader.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
 		assertPojoMethodsFor(SnetFrameHeader.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
+		assertPojoMethodsFor(SnetFrameHeaderExtension.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
 		assertPojoMethodsFor(ADCSTelemetry.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
 		assertPojoMethodsFor(EPSTelemetry.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
 		assertPojoMethodsFor(BatteryCurrent.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
