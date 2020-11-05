@@ -337,7 +337,12 @@ Using the blocks above, it is possible to decode the following satellites:
 			<td>CubeBel-1</td>
 			<td>43666</td>
 			<td>Use Ax25G3ruhBeaconSource with FskDemodulator 9600</td>
-		</tr>		
+		</tr>
+		<tr>
+			<td>Salsat</td>
+			<td>46495</td>
+			<td>Use AfskDemodulator 1200 baud -600 deviation 1500 offset with Salsat decoder</td>
+		</tr>	
 	</tbody>
 </table>
   
