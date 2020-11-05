@@ -25,7 +25,7 @@ public class AfskDemodulator implements ByteInput {
 		float[] taps = Firdes.lowPass(1, next.getContext().getSampleRate(), filterCutoff, filterTransition, Window.WIN_HAMMING, 6.76);
 		next = new FloatToComplex(next);
 		next = new FrequencyXlatingFIRFilter(next, taps, decimation, afCarrier);
-		this.source = new FskDemodulator(next, baudRate, 5000.0f, 1, 2000, false);
+		this.source = new FskDemodulator(next, baudRate, deviation, 1, 2000, false);
 	}
 
 	@Override
