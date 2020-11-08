@@ -1,0 +1,46 @@
+{
+  "uhfStatus": {
+    "timestamp": 1604858715,
+    "cpuVoltage": 3299,
+    "batteryVoltage": 12493,
+    "cpuTemperature": 4,
+    "amplifierTemperature": 0,
+    "flags": {
+      "fec": true,
+      "downlinkOn": true,
+      "bandLock": true,
+      "xor": false,
+      "aes128": false,
+      "amplifierOverTemperature": false
+    }
+  },
+  "header": {
+    "destinationAddress": {
+      "callsign": "APDST4",
+      "ssid": 6,
+      "extensionBit": 0
+    },
+    "sourceAddress": {
+      "callsign": "RS17S",
+      "ssid": 6,
+      "extensionBit": 0
+    },
+    "repeaterAddress": {
+      "callsign": "WIDE1",
+      "ssid": 1,
+      "extensionBit": 0
+    },
+    "repeater2Address": {
+      "callsign": "WIDE2",
+      "ssid": 1,
+      "extensionBit": 1
+    },
+    "frameType": "U",
+    "sendSequenceNumber": 0,
+    "receiveSequenceNumber": 0,
+    "uControlType": "UI",
+    "pid": 240
+  },
+  "beginSample": 0,
+  "beginMillis": 0
+}

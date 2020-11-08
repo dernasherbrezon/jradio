@@ -1,0 +1,54 @@
+{
+  "secondRedundantCpu": {
+    "timestamp": 1604830721,
+    "cpuVoltage": 3261,
+    "cpuTemperature": 28832,
+    "flags": {
+      "onyxOn": false,
+      "llcOnyxFault": false,
+      "llcSramFault": false,
+      "fault1v8r": false,
+      "fault1v8m": false,
+      "fault3v3v12": false,
+      "picReadyRaw": false,
+      "picReadyConv": false,
+      "picReadyCompressed": false,
+      "picReadyCompressed8": false,
+      "sdPicWriteOk": false,
+      "sdPicReadOk": false,
+      "sdGetInfoOk": true,
+      "sdEraseOk": false,
+      "sdFull": false,
+      "adcReady": true
+    }
+  },
+  "header": {
+    "destinationAddress": {
+      "callsign": "APDST4",
+      "ssid": 6,
+      "extensionBit": 0
+    },
+    "sourceAddress": {
+      "callsign": "RS17S",
+      "ssid": 6,
+      "extensionBit": 0
+    },
+    "repeaterAddress": {
+      "callsign": "WIDE1",
+      "ssid": 1,
+      "extensionBit": 0
+    },
+    "repeater2Address": {
+      "callsign": "WIDE2",
+      "ssid": 1,
+      "extensionBit": 1
+    },
+    "frameType": "U",
+    "sendSequenceNumber": 0,
+    "receiveSequenceNumber": 0,
+    "uControlType": "UI",
+    "pid": 240
+  },
+  "beginSample": 0,
+  "beginMillis": 0
+}
