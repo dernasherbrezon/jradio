@@ -36,7 +36,7 @@ public class PlutoSdr implements FloatInput {
 			throw new EOFException();
 		}
 		// hardware spec from iio: le:S12/16>>0
-		short value = (short) ((ch2 << 8) + (ch1 << 0));
+		short value = (short) ((ch2 << 8) + ch1);
 		float result = value / 2048.0f; // 2^12.
 		if (!outputReal) {
 			framePos++;
