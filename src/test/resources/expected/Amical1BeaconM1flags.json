@@ -1,0 +1,63 @@
+{
+  "m1Type": {
+    "timestamp": 1603686654,
+    "flags": {
+      "imcAocsOk": false,
+      "imcCulOk": true,
+      "imcCurOk": true,
+      "imcVhfOk": true,
+      "imcUhfOk": true,
+      "vhfDownlink": false,
+      "uhfDownlink": true,
+      "imcCheck": false,
+      "beaconMode": true,
+      "cyclicResetOn": false,
+      "survivalMode": false,
+      "payloadOff": false,
+      "cuAutoOff": true,
+      "tmLog": true,
+      "culOn": false,
+      "culFault": false,
+      "curOn": false,
+      "curFault": false,
+      "cuOn": false,
+      "culDead": 0,
+      "curDead": 0,
+      "fault3v3r": false,
+      "fault3v3m": false,
+      "charger": false,
+      "chargem": false,
+      "survivalStart": false,
+      "survivalEnd": false
+    }
+  },
+  "header": {
+    "destinationAddress": {
+      "callsign": "APDST4",
+      "ssid": 6,
+      "extensionBit": 0
+    },
+    "sourceAddress": {
+      "callsign": "RS17S",
+      "ssid": 6,
+      "extensionBit": 0
+    },
+    "repeaterAddress": {
+      "callsign": "WIDE1",
+      "ssid": 1,
+      "extensionBit": 0
+    },
+    "repeater2Address": {
+      "callsign": "WIDE2",
+      "ssid": 1,
+      "extensionBit": 1
+    },
+    "frameType": "U",
+    "sendSequenceNumber": 0,
+    "receiveSequenceNumber": 0,
+    "uControlType": "UI",
+    "pid": 240
+  },
+  "beginSample": 0,
+  "beginMillis": 0
+}

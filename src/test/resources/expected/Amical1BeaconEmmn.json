@@ -1,0 +1,41 @@
+{
+  "mainPowerManagement": {
+    "timestamp": 1603637810,
+    "voltageIn": 12374,
+    "voltageSolar": 3137,
+    "currentIn": 40,
+    "powerIn": 16,
+    "powerPeak": 1775,
+    "temperatureCpu": 2,
+    "voltageCpu": 334
+  },
+  "header": {
+    "destinationAddress": {
+      "callsign": "APDST4",
+      "ssid": 6,
+      "extensionBit": 0
+    },
+    "sourceAddress": {
+      "callsign": "RS17S",
+      "ssid": 6,
+      "extensionBit": 0
+    },
+    "repeaterAddress": {
+      "callsign": "WIDE1",
+      "ssid": 1,
+      "extensionBit": 0
+    },
+    "repeater2Address": {
+      "callsign": "WIDE2",
+      "ssid": 1,
+      "extensionBit": 1
+    },
+    "frameType": "U",
+    "sendSequenceNumber": 0,
+    "receiveSequenceNumber": 0,
+    "uControlType": "UI",
+    "pid": 240
+  },
+  "beginSample": 0,
+  "beginMillis": 0
+}
