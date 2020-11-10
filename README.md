@@ -342,7 +342,12 @@ Using the blocks above, it is possible to decode the following satellites:
 			<td>Salsat</td>
 			<td>46495</td>
 			<td>Use AfskDemodulator 1200 baud -600 deviation 1500 offset with Salsat decoder</td>
-		</tr>	
+		</tr>
+		<tr>
+			<td>Armadillo</td>
+			<td>44352</td>
+			<td>Use Ax25G3ruhBeaconSource with FskDemodulator 19200 and ArmadilloBeacon</td>
+		</tr>		
 	</tbody>
 </table>
   
