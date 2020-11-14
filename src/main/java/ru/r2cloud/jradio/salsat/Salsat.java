@@ -76,10 +76,7 @@ public class Salsat extends BeaconSource<SnetBeacon> {
 		}
 
 		if (ltuHeader.getPduLength() == 0) {
-			SnetBeacon result = new SnetBeacon();
-			result.setHeader(ltuHeader);
-			result.setRawData(header);
-			return result;
+			return null;
 		}
 
 		// 7. extract PDU
@@ -93,10 +90,9 @@ public class Salsat extends BeaconSource<SnetBeacon> {
 			}
 			return null;
 		}
-		
+
 		// 9. Parse data
 		SnetBeacon result = new SnetBeacon();
-		result.setHeader(ltuHeader);
 		result.readExternal(UnpackedToPacked.pack(pdu));
 		return result;
 	}

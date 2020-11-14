@@ -1,23 +1,4 @@
 {
-  "header": {
-    "srcId": 8,
-    "dstId": 127,
-    "frCntTx": 0,
-    "frCntRx": 0,
-    "snr": 15,
-    "aiTypeSrc": 0,
-    "aiTypeDst": 0,
-    "dfcId": 0,
-    "caller": false,
-    "arq": false,
-    "pduTypeId": false,
-    "bchRq": false,
-    "hailing": false,
-    "udf11": false,
-    "pduLength": 128,
-    "crc13": 3049,
-    "crc5": 26
-  },
   "snetHeader": {
     "crc": 9432,
     "fcidMajor": 0,

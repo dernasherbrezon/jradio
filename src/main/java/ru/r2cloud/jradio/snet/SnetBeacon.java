@@ -11,7 +11,6 @@ import ru.r2cloud.jradio.util.LittleEndianDataInputStream;
 
 public class SnetBeacon extends Beacon {
 
-	private LTUFrameHeader header;
 	private SnetFrameHeader snetHeader;
 	private ADCSTelemetry adcsTelemetry;
 	private EPSTelemetry epsTelemetry;
@@ -33,11 +32,11 @@ public class SnetBeacon extends Beacon {
 			dis.readFully(unknownPayload);
 		}
 	}
-	
+
 	public byte[] getUnknownPayload() {
 		return unknownPayload;
 	}
-	
+
 	public void setUnknownPayload(byte[] unknownPayload) {
 		this.unknownPayload = unknownPayload;
 	}
@@ -64,14 +63,6 @@ public class SnetBeacon extends Beacon {
 
 	public void setEpsTelemetry(EPSTelemetry epsTelemetry) {
 		this.epsTelemetry = epsTelemetry;
-	}
-
-	public void setHeader(LTUFrameHeader header) {
-		this.header = header;
-	}
-
-	public LTUFrameHeader getHeader() {
-		return header;
 	}
 
 }
