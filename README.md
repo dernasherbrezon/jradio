@@ -347,7 +347,12 @@ Using the blocks above, it is possible to decode the following satellites:
 			<td>Armadillo</td>
 			<td>44352</td>
 			<td>Use Ax25G3ruhBeaconSource with FskDemodulator 19200 and ArmadilloBeacon</td>
-		</tr>		
+		</tr>
+		<tr>
+			<td>Spooqy1</td>
+			<td>44332</td>
+			<td><a href="https://github.com/dernasherbrezon/jradio/blob/master/src/main/java/ru/r2cloud/jradio/spooqy1/Spooqy1Test.java">Spooqy1Test</a></td>
+		</tr>
 	</tbody>
 </table>
   
