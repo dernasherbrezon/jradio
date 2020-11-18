@@ -1,5 +1,6 @@
 {
-  "obcId": 8396800,
+  "vcid": 128,
+  "counter": 8192,
   "unknownPayload": [
     0,
     0,
@@ -32,9 +33,7 @@
     0,
     0,
     0,
-    0,
-    72,
-    45
+    0
   ],
   "rawData": [
     -128,
@@ -75,6 +74,6 @@
     72,
     45
   ],
-  "beginSample": 4467,
+  "beginSample": 4553,
   "beginMillis": 0
 }
