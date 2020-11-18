@@ -10,7 +10,8 @@ import ru.r2cloud.jradio.fec.ccsds.UncorrectableException;
 
 public class Lucky7Beacon extends Beacon {
 
-	private int obcId;
+	private int vcid;
+	private int counter;
 	private Integer missionCounter;
 	private String callsign;
 	private String satelliteName;
@@ -29,12 +30,32 @@ public class Lucky7Beacon extends Beacon {
 
 	private byte[] unknownPayload;
 
+	private Integer imageTotalChunks;
+	private Integer imageChunk;
+	private byte[] imageData;
+
 	@Override
 	public void readBeacon(byte[] data) throws IOException, UncorrectableException {
 		DataInputStream dis = new DataInputStream(new ByteArrayInputStream(data));
-		obcId = (dis.readUnsignedByte() << 16) | (dis.readUnsignedByte() << 8) | (dis.readUnsignedByte());
-		if (obcId != 0x800000 && obcId != 0x000000) {
-			unknownPayload = new byte[dis.available()];
+		vcid = dis.readUnsignedByte();
+		counter = (dis.readUnsignedByte() << 8) | (dis.readUnsignedByte());
+		if (vcid == 0x80 && counter >= 0xC000) {
+			imageChunk = (dis.readUnsignedByte() << 8) | (dis.readUnsignedByte());
+			imageTotalChunks = (dis.readUnsignedByte() << 8) | (dis.readUnsignedByte());
+			// some image chunks contain 0xFACE in the imageChunk
+			// with some unknown payload. The total chunks value seems ok
+			if (imageChunk > imageTotalChunks) {
+				unknownPayload = new byte[dis.available() - 2];
+				dis.readFully(unknownPayload);
+			} else {
+				// the last 2 bytes are CRC
+				imageData = new byte[dis.available() - 2];
+				dis.readFully(imageData);
+			}
+			return;
+		}
+		if ((vcid != 0x80 && vcid != 0x00) || counter != 0) {
+			unknownPayload = new byte[dis.available() - 2];
 			dis.readFully(unknownPayload);
 			return;
 		}
@@ -64,12 +85,40 @@ public class Lucky7Beacon extends Beacon {
 		return new String(callsignBytes, StandardCharsets.ISO_8859_1);
 	}
 
-	public int getObcId() {
-		return obcId;
+	public Integer getImageChunk() {
+		return imageChunk;
 	}
 
-	public void setObcId(int obcId) {
-		this.obcId = obcId;
+	public void setImageChunk(Integer imageChunk) {
+		this.imageChunk = imageChunk;
+	}
+
+	public Integer getImageTotalChunks() {
+		return imageTotalChunks;
+	}
+
+	public void setImageTotalChunks(Integer imageTotalChunks) {
+		this.imageTotalChunks = imageTotalChunks;
+	}
+
+	public byte[] getImageData() {
+		return imageData;
+	}
+
+	public int getVcid() {
+		return vcid;
+	}
+
+	public void setVcid(int vcid) {
+		this.vcid = vcid;
+	}
+
+	public void setCounter(int counter) {
+		this.counter = counter;
+	}
+
+	public int getCounter() {
+		return counter;
 	}
 
 	public Integer getMissionCounter() {
