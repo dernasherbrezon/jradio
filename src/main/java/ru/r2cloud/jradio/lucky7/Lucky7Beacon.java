@@ -104,6 +104,10 @@ public class Lucky7Beacon extends Beacon {
 	public byte[] getImageData() {
 		return imageData;
 	}
+	
+	public void setImageData(byte[] imageData) {
+		this.imageData = imageData;
+	}
 
 	public int getVcid() {
 		return vcid;
