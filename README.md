@@ -353,6 +353,11 @@ Using the blocks above, it is possible to decode the following satellites:
 			<td>44332</td>
 			<td><a href="https://github.com/dernasherbrezon/jradio/blob/master/src/main/java/ru/r2cloud/jradio/spooqy1/Spooqy1Test.java">Spooqy1Test</a></td>
 		</tr>
+		<tr>
+			<td>NORBI</td>
+			<td>46494</td>
+			<td>Use Ax25G3ruhBeaconSource with FskDemodulator 9600 and beacon NorbiBeacon</td>
+		</tr>		
 	</tbody>
 </table>
   
