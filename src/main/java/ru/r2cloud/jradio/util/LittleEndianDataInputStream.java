@@ -31,9 +31,22 @@ public class LittleEndianDataInputStream implements DataInput {
 		int b1 = dis.readUnsignedByte();
 		int b2 = dis.readUnsignedByte();
 		int b3 = dis.readUnsignedByte();
+		if ((b1 | b2 | b3) < 0)
+			throw new EOFException();
 		return (b3 << 16) | (b2 << 8) | b1;
 	}
 
+	public long readUnsigned5Bytes() throws IOException {
+		int b1 = dis.readUnsignedByte();
+		int b2 = dis.readUnsignedByte();
+		int b3 = dis.readUnsignedByte();
+		int b4 = dis.readUnsignedByte();
+		int b5 = dis.readUnsignedByte();
+		if ((b1 | b2 | b3 | b4 | b5) < 0)
+			throw new EOFException();
+		return ((long)b5 << 32) | ((long)b4 << 24) | (b3 << 16) | (b2 << 8) | b1;
+	}
+	
 	@Override
 	public final int readUnsignedShort() throws IOException {
 		int ch1 = dis.read();
