@@ -4,8 +4,6 @@ import static org.junit.Assert.assertArrayEquals;
 
 import org.junit.Test;
 
-import ru.r2cloud.jradio.tubix20.MobitexRandomizer;
-
 public class MobitexRandomizerTest {
 
 	//randomizer is stateful. make sure it handles full 511bit cycle. ~64 bytes

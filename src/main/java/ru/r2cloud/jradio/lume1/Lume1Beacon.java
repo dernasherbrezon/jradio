@@ -4,13 +4,12 @@ import java.io.ByteArrayInputStream;
 import java.io.DataInputStream;
 import java.io.IOException;
 
-import ru.r2cloud.jradio.Beacon;
 import ru.r2cloud.jradio.ccsds.TmTransferFrame;
-import ru.r2cloud.jradio.csp.Header;
+import ru.r2cloud.jradio.csp.CspBeacon;
+import ru.r2cloud.jradio.fec.ccsds.UncorrectableException;
 
-public class Lume1Beacon extends Beacon {
+public class Lume1Beacon extends CspBeacon {
 
-	private Header header;
 	private TmTransferFrame transferFrame;
 
 	private int id;
@@ -21,9 +20,7 @@ public class Lume1Beacon extends Beacon {
 	private B5Temps b5Temps;
 
 	@Override
-	public void readBeacon(byte[] data) throws IOException {
-		DataInputStream dis = new DataInputStream(new ByteArrayInputStream(data));
-		header = new Header(dis);
+	public void readBeacon(DataInputStream dis) throws IOException, UncorrectableException {
 		transferFrame = new TmTransferFrame(dis);
 		if (transferFrame.getSecondaryHeader() == null || transferFrame.getSecondaryHeader().getServiceType() != 0x3 || transferFrame.getSecondaryHeader().getMessageSubtype() != 0x19) {
 			return;
@@ -90,14 +87,6 @@ public class Lume1Beacon extends Beacon {
 
 	public void setB5Temps(B5Temps b5Temps) {
 		this.b5Temps = b5Temps;
-	}
-
-	public Header getHeader() {
-		return header;
-	}
-
-	public void setHeader(Header header) {
-		this.header = header;
 	}
 
 	public TmTransferFrame getTransferFrame() {
