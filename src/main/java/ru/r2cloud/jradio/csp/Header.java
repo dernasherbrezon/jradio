@@ -121,5 +121,13 @@ public class Header {
 	public void setFcrc32(boolean fcrc32) {
 		this.fcrc32 = fcrc32;
 	}
+	
+	@Override
+	public String toString() {
+		StringBuilder result = new StringBuilder();
+		result.append(source).append(":").append(sourcePort).append(" To ").append(destination).append(":").append(destinationPort);
+		result.append(" ").append(priority.name());
+		return result.toString();
+	}
 
 }

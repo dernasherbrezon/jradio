@@ -31,4 +31,13 @@ public class CspBeacon extends Beacon {
 		this.header = header;
 	}
 
+	@Override
+	public String toString() {
+		if (header == null) {
+			return "null";
+		} else {
+			return header.toString();
+		}
+	}
+
 }
