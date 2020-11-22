@@ -16,7 +16,7 @@ public class DelfiC3Test {
 	@Test
 	public void testDecodeTelemetry() throws Exception {
 		WavFileSource source = new WavFileSource(DelfiC3Test.class.getClassLoader().getResourceAsStream("delfic3.wav"));
-		BpskDemodulator bpsk = new BpskDemodulator(source, 1200, 1, 1000, true);
+		BpskDemodulator bpsk = new BpskDemodulator(source, 1200, 1, 1400, true);
 		input = new DelfiC3(bpsk);
 		assertTrue(input.hasNext());
 		AssertJson.assertObjectsEqual("DelfiC3PayloadBeacon.json", input.next());

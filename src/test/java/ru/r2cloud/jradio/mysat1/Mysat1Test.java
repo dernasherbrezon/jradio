@@ -19,7 +19,7 @@ public class Mysat1Test {
 	public void testSuccess1200() throws Exception {
 		WavFileSource source = new WavFileSource(Mysat1Test.class.getClassLoader().getResourceAsStream("mysat1.wav"));
 		FloatToComplex fc = new FloatToComplex(source);
-		BpskDemodulator bpsk = new BpskDemodulator(fc, 1200, 1, 1300, false);
+		BpskDemodulator bpsk = new BpskDemodulator(fc, 1200, 1, 1700, false);
 		input = new Ax25G3ruhBeaconSource<>(bpsk, Mysat1Beacon.class);
 		assertTrue(input.hasNext());
 		AssertJson.assertObjectsEqual("Mysat1Beacon.json", input.next());

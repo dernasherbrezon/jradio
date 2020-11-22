@@ -22,7 +22,7 @@ public class Huskysat1Test {
 	public void testDecodeTelemetry() throws Exception {
 		WavFileSource source = new WavFileSource(Huskysat1Test.class.getClassLoader().getResourceAsStream("huskysat1.wav"));
 		FloatToComplex f2c = new FloatToComplex(source);
-		BpskDemodulator bpsk = new BpskDemodulator(f2c, 1200, 1, 600, true);
+		BpskDemodulator bpsk = new BpskDemodulator(f2c, 1200, 1, 400, true);
 		SoftToHard s2h = new SoftToHard(bpsk);
 		CorrelateAccessCodeTag correlate = new CorrelateAccessCodeTag(s2h, 4, "1000111110011010010000101011101", false);
 		TaggedStreamToPdu pdu = new TaggedStreamToPdu(new FixedLengthTagger(correlate, Huskysat1.FRAME_SIZE * 10));

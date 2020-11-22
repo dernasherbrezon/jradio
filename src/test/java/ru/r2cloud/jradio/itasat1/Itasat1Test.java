@@ -19,7 +19,7 @@ public class Itasat1Test {
 	public void testDecodeTelemetry() throws Exception {
 		WavFileSource source = new WavFileSource(Itasat1Test.class.getClassLoader().getResourceAsStream("itasat1.wav"));
 		FloatToComplex fc = new FloatToComplex(source);
-		BpskDemodulator demod = new BpskDemodulator(fc, 1200, 1, 1200, false);
+		BpskDemodulator demod = new BpskDemodulator(fc, 1200, 1, 1700, false);
 		SoftToHard s2h = new SoftToHard(demod);
 		input = new Itasat1(s2h);
 		assertTrue(input.hasNext());
