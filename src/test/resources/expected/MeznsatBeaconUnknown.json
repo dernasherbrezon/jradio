@@ -1,0 +1,35 @@
+{
+  "unknownPayload": [
+    77,
+    90,
+    1,
+    0,
+    0,
+    77,
+    101,
+    122,
+    110,
+    83,
+    65,
+    84
+  ],
+  "header": {
+    "destinationAddress": {
+      "callsign": "A68MI",
+      "ssid": 0,
+      "extensionBit": 0
+    },
+    "sourceAddress": {
+      "callsign": "A68MZ",
+      "ssid": 0,
+      "extensionBit": 1
+    },
+    "frameType": "U",
+    "sendSequenceNumber": 0,
+    "receiveSequenceNumber": 0,
+    "uControlType": "UI",
+    "pid": 240
+  },
+  "beginSample": 0,
+  "beginMillis": 0
+}

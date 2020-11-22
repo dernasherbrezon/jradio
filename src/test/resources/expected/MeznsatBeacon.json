@@ -1,0 +1,56 @@
+{
+  "telemetry": {
+    "callsign": "MEZNSAT",
+    "mode": "GROUND_CONTACT",
+    "dayOfMonth": 22,
+    "dayOfWeek": 1,
+    "hour": 9,
+    "minute": 26,
+    "sec": 8,
+    "obcResetCount": 101,
+    "obcTemp": 22,
+    "vbatt": 16522,
+    "sysCurrent": 310,
+    "battTemp": 20,
+    "extBatt1Temp": 6,
+    "extBatt2Temp": 6,
+    "epsReboots": 45,
+    "receiverCurrent": 101.36174,
+    "transmitterCurrent": 171.43283,
+    "paTemp": 48.66565,
+    "paCurrent": 443.8945,
+    "adcsRunMode": 1,
+    "estimatedXAngularRate": 0.98999995,
+    "estimatedYAngularRate": -0.5,
+    "estimatedZAngularRate": -1.39,
+    "estimatedQ1": 0,
+    "estimatedQ2": 0,
+    "estimatedQ3": 0,
+    "antTemp": 13.5767975,
+    "minusZTemp": 20.15918,
+    "plusZTemp": 10.847656,
+    "minusYTemp": 8.918945,
+    "plusYTemp": 17.201172,
+    "minusXTemp": 21.944336,
+    "plusXTemp": 9.448242
+  },
+  "header": {
+    "destinationAddress": {
+      "callsign": "A68MI",
+      "ssid": 0,
+      "extensionBit": 0
+    },
+    "sourceAddress": {
+      "callsign": "A68MZ",
+      "ssid": 0,
+      "extensionBit": 1
+    },
+    "frameType": "U",
+    "sendSequenceNumber": 0,
+    "receiveSequenceNumber": 0,
+    "uControlType": "UI",
+    "pid": 240
+  },
+  "beginSample": 0,
+  "beginMillis": 0
+}
