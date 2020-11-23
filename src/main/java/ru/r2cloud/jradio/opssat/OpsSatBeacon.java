@@ -5,12 +5,10 @@ import java.io.DataInputStream;
 import java.io.IOException;
 
 import ru.r2cloud.jradio.Beacon;
-import ru.r2cloud.jradio.ax25.Header;
 import ru.r2cloud.jradio.fec.ccsds.UncorrectableException;
 
 public class OpsSatBeacon extends Beacon {
 
-	private Header ax25Header;
 	private ru.r2cloud.jradio.csp.Header cspHeader;
 	private byte[] unknownPayload;
 	private Telemetry telemetry;
@@ -31,14 +29,6 @@ public class OpsSatBeacon extends Beacon {
 		telemetry = new Telemetry(dis);
 	}
 
-	public Header getAx25Header() {
-		return ax25Header;
-	}
-
-	public void setAx25Header(Header ax25Header) {
-		this.ax25Header = ax25Header;
-	}
-
 	public ru.r2cloud.jradio.csp.Header getCspHeader() {
 		return cspHeader;
 	}
@@ -54,11 +44,11 @@ public class OpsSatBeacon extends Beacon {
 	public void setTelemetry(Telemetry telemetry) {
 		this.telemetry = telemetry;
 	}
-	
+
 	public byte[] getUnknownPayload() {
 		return unknownPayload;
 	}
-	
+
 	public void setUnknownPayload(byte[] unknownPayload) {
 		this.unknownPayload = unknownPayload;
 	}

@@ -26,7 +26,7 @@ public class Header {
 	}
 
 	public Header(byte[] data) {
-		this(((long)data[0] << 24) | (data[1] << 16) | (data[2] << 8) | data[3]);
+		this((((data[0] & 0xFF) << 24) | ((data[1] & 0xFF) << 16) | ((data[2] & 0xFF) << 8) | (data[3] & 0xFF)) & 0xFFFFFFFFL);
 	}
 
 	private Header(long packed) {
@@ -121,13 +121,62 @@ public class Header {
 	public void setFcrc32(boolean fcrc32) {
 		this.fcrc32 = fcrc32;
 	}
-	
+
 	@Override
 	public String toString() {
 		StringBuilder result = new StringBuilder();
 		result.append(source).append(":").append(sourcePort).append(" To ").append(destination).append(":").append(destinationPort);
 		result.append(" ").append(priority.name());
 		return result.toString();
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + destination;
+		result = prime * result + destinationPort;
+		result = prime * result + (fcrc32 ? 1231 : 1237);
+		result = prime * result + (ffrag ? 1231 : 1237);
+		result = prime * result + (fhmac ? 1231 : 1237);
+		result = prime * result + (frdp ? 1231 : 1237);
+		result = prime * result + (fxtea ? 1231 : 1237);
+		result = prime * result + ((priority == null) ? 0 : priority.hashCode());
+		result = prime * result + source;
+		result = prime * result + sourcePort;
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Header other = (Header) obj;
+		if (destination != other.destination)
+			return false;
+		if (destinationPort != other.destinationPort)
+			return false;
+		if (fcrc32 != other.fcrc32)
+			return false;
+		if (ffrag != other.ffrag)
+			return false;
+		if (fhmac != other.fhmac)
+			return false;
+		if (frdp != other.frdp)
+			return false;
+		if (fxtea != other.fxtea)
+			return false;
+		if (priority != other.priority)
+			return false;
+		if (source != other.source)
+			return false;
+		if (sourcePort != other.sourcePort)
+			return false;
+		return true;
 	}
 
 }

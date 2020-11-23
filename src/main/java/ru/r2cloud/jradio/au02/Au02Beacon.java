@@ -1,19 +1,15 @@
 package ru.r2cloud.jradio.au02;
 
-import java.io.ByteArrayInputStream;
 import java.io.DataInputStream;
-import java.io.EOFException;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
-import java.util.Arrays;
 
-import ru.r2cloud.jradio.Beacon;
-import ru.r2cloud.jradio.csp.Header;
+import ru.r2cloud.jradio.csp.CspBeacon;
+import ru.r2cloud.jradio.fec.ccsds.UncorrectableException;
 import ru.r2cloud.jradio.util.StreamUtils;
 
-public class Au02Beacon extends Beacon {
+public class Au02Beacon extends CspBeacon {
 
-	private Header header;
 	private long timestamp;
 	private String callsign;
 	private byte flags;
@@ -27,13 +23,7 @@ public class Au02Beacon extends Beacon {
 	private byte batTemp;
 
 	@Override
-	public void readBeacon(byte[] data) throws IOException {
-		header = new Header(Arrays.copyOfRange(data, 0, Header.LENGTH));
-		DataInputStream dis = new DataInputStream(new ByteArrayInputStream(data));
-		int actualSkipped = dis.skipBytes(Header.LENGTH);
-		if (actualSkipped < Header.LENGTH) {
-			throw new EOFException();
-		}
+	public void readBeacon(DataInputStream dis) throws IOException, UncorrectableException {
 		timestamp = StreamUtils.readUnsignedInt(dis);
 		byte[] callsignBuf = new byte[6];
 		dis.readFully(callsignBuf);
@@ -47,14 +37,6 @@ public class Au02Beacon extends Beacon {
 		comTemp = dis.readByte();
 		epsTemp = dis.readByte();
 		batTemp = dis.readByte();
-	}
-
-	public Header getHeader() {
-		return header;
-	}
-
-	public void setHeader(Header header) {
-		this.header = header;
 	}
 
 	public long getTimestamp() {
