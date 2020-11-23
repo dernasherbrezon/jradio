@@ -4,9 +4,6 @@ import java.io.ByteArrayInputStream;
 import java.io.DataInputStream;
 import java.io.IOException;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import ru.r2cloud.jradio.BeaconSource;
 import ru.r2cloud.jradio.ByteInput;
 import ru.r2cloud.jradio.ax25.Header;
@@ -14,14 +11,12 @@ import ru.r2cloud.jradio.blocks.Descrambler;
 import ru.r2cloud.jradio.blocks.HdlcReceiver;
 import ru.r2cloud.jradio.blocks.NrziDecode;
 import ru.r2cloud.jradio.ccsds.Scrambler;
-import ru.r2cloud.jradio.crc.Crc32c;
 import ru.r2cloud.jradio.fec.ccsds.ReedSolomon;
 import ru.r2cloud.jradio.fec.ccsds.UncorrectableException;
 
 public class OpsSat extends BeaconSource<OpsSatBeacon> {
 
 	private static final int MINIMUM_MESSAGE_SIZE = Header.LENGTH_BYTES + 32 + 1; // 32 for reed solomon parity bytes
-	private static final Logger LOG = LoggerFactory.getLogger(OpsSat.class);
 
 	public OpsSat(ByteInput input) {
 		// false - rely on crc32 after reed solomon
@@ -47,20 +42,8 @@ public class OpsSat extends BeaconSource<OpsSatBeacon> {
 		Scrambler.shuffle(dataField);
 		byte[] payloadWithCrc = ReedSolomon.CCSDS.decodeData(dataField);
 
-		long actualCrc32 = ((payloadWithCrc[payloadWithCrc.length - 4] & 0xFFL) << 24) | ((payloadWithCrc[payloadWithCrc.length - 3] & 0xFFL) << 16) | ((payloadWithCrc[payloadWithCrc.length - 2] & 0xFFL) << 8) | (payloadWithCrc[payloadWithCrc.length - 1] & 0xFFL);
-		long expectedCrc32 = Crc32c.calculate(payloadWithCrc, 0, payloadWithCrc.length - 4);
-		if (actualCrc32 != expectedCrc32) {
-			if (LOG.isDebugEnabled()) {
-				LOG.debug("crc mismatch");
-			}
-			return null;
-		}
-
-		byte[] payloadWithoutCrc = new byte[payloadWithCrc.length - 4];
-		System.arraycopy(payloadWithCrc, 0, payloadWithoutCrc, 0, payloadWithoutCrc.length);
-
 		OpsSatBeacon result = new OpsSatBeacon();
-		result.readExternal(payloadWithoutCrc);
+		result.readExternal(payloadWithCrc);
 		return result;
 	}
 

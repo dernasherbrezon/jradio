@@ -4,22 +4,29 @@ import java.io.ByteArrayInputStream;
 import java.io.DataInputStream;
 import java.io.IOException;
 
-import ru.r2cloud.jradio.Beacon;
+import ru.r2cloud.jradio.csp.CspBeacon;
+import ru.r2cloud.jradio.csp.Header;
 import ru.r2cloud.jradio.fec.ccsds.UncorrectableException;
 
-public class OpsSatBeacon extends Beacon {
+public class OpsSatBeacon extends CspBeacon {
 
-	private ru.r2cloud.jradio.csp.Header cspHeader;
 	private byte[] unknownPayload;
 	private Telemetry telemetry;
 
 	@Override
 	public void readBeacon(byte[] data) throws IOException, UncorrectableException {
 		DataInputStream dis = new DataInputStream(new ByteArrayInputStream(data));
-		cspHeader = new ru.r2cloud.jradio.csp.Header(dis);
+		header = new Header(dis);
+		// enforce crc32 check for opssat
+		// header doesn't contain crc32=true
+		readBeaconWithCrc32Check(data, dis);
+	}
+
+	@Override
+	public void readBeacon(DataInputStream dis) throws IOException, UncorrectableException {
 		// source = 5 is the telemetry
 		// according to the spec, opssat can sometimes send non-telemetry packets on UHF
-		if (cspHeader.getSource() != 5) {
+		if (getHeader().getSource() != 5) {
 			// 4 is for crc-32
 			unknownPayload = new byte[dis.available()];
 			dis.readFully(unknownPayload);
@@ -27,14 +34,6 @@ public class OpsSatBeacon extends Beacon {
 		}
 
 		telemetry = new Telemetry(dis);
-	}
-
-	public ru.r2cloud.jradio.csp.Header getCspHeader() {
-		return cspHeader;
-	}
-
-	public void setCspHeader(ru.r2cloud.jradio.csp.Header cspHeader) {
-		this.cspHeader = cspHeader;
 	}
 
 	public Telemetry getTelemetry() {
