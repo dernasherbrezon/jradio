@@ -1,15 +1,15 @@
 {
-  "pblist": {
-    "activeCallsign": ""
-  },
+  "pblist": {},
   "header": {
     "destinationAddress": {
       "callsign": "PBLIST",
-      "ssid": 0
+      "ssid": 0,
+      "extensionBit": 0
     },
     "sourceAddress": {
       "callsign": "PFS3",
-      "ssid": 11
+      "ssid": 11,
+      "extensionBit": 1
     },
     "frameType": "U",
     "sendSequenceNumber": 0,

@@ -1,12 +1,15 @@
 {
+  "beacon0": "CQ de EM0UKPI QSL via UT4UZB k",
   "header": {
     "destinationAddress": {
       "callsign": "QST",
-      "ssid": 0
+      "ssid": 0,
+      "extensionBit": 0
     },
     "sourceAddress": {
       "callsign": "EM0UKP",
-      "ssid": 0
+      "ssid": 0,
+      "extensionBit": 1
     },
     "frameType": "U",
     "sendSequenceNumber": 0,
@@ -14,7 +17,6 @@
     "uControlType": "UI",
     "pid": 240
   },
-  "beacon0": "CQ de EM0UKPI QSL via UT4UZB k",
   "beginSample": 0,
   "beginMillis": 0
 }

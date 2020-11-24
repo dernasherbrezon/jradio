@@ -2,7 +2,8 @@
   "frame": "I",
   "destinationAddress": {
     "callsign": "ESEO",
-    "ssid": 0
+    "ssid": 0,
+    "extensionBit": 0
   },
   "sourceAddress": {
     "callsign": "IW4DUL",
@@ -662,6 +663,6 @@
     0,
     0
   ],
-  "beginSample": 3488,
+  "beginSample": 3776,
   "beginMillis": 0
 }

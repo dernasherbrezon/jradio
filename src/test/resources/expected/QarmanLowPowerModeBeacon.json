@@ -1,19 +1,4 @@
 {
-  "header": {
-    "destinationAddress": {
-      "callsign": "ON4VKI",
-      "ssid": 0
-    },
-    "sourceAddress": {
-      "callsign": "ON05BE",
-      "ssid": 0
-    },
-    "frameType": "U",
-    "sendSequenceNumber": 0,
-    "receiveSequenceNumber": 0,
-    "uControlType": "UI",
-    "pid": 240
-  },
   "shortFrame": {
     "batteryVoltage": 7.99649296875,
     "obcTemperature": 32.52021563342318,
@@ -61,6 +46,23 @@
     "panelYp": false,
     "panelYm": false,
     "panelXm": false
+  },
+  "header": {
+    "destinationAddress": {
+      "callsign": "ON4VKI",
+      "ssid": 0,
+      "extensionBit": 0
+    },
+    "sourceAddress": {
+      "callsign": "ON05BE",
+      "ssid": 0,
+      "extensionBit": 1
+    },
+    "frameType": "U",
+    "sendSequenceNumber": 0,
+    "receiveSequenceNumber": 0,
+    "uControlType": "UI",
+    "pid": 240
   },
   "beginSample": 0,
   "beginMillis": 0

@@ -1,19 +1,4 @@
 {
-  "header": {
-    "destinationAddress": {
-      "callsign": "PWSAT2",
-      "ssid": 0
-    },
-    "sourceAddress": {
-      "callsign": "PWSAT2",
-      "ssid": 0
-    },
-    "frameType": "U",
-    "sendSequenceNumber": 0,
-    "receiveSequenceNumber": 0,
-    "uControlType": "UI",
-    "pid": 240
-  },
   "apid": "BOOT_SLOTS_INFO",
   "seq": 0,
   "bootSlots": {
@@ -21,6 +6,23 @@
     "failsafe": 7,
     "correlationId": 103,
     "errorCode": 0
+  },
+  "header": {
+    "destinationAddress": {
+      "callsign": "PWSAT2",
+      "ssid": 0,
+      "extensionBit": 0
+    },
+    "sourceAddress": {
+      "callsign": "PWSAT2",
+      "ssid": 0,
+      "extensionBit": 1
+    },
+    "frameType": "U",
+    "sendSequenceNumber": 0,
+    "receiveSequenceNumber": 0,
+    "uControlType": "UI",
+    "pid": 240
   },
   "rawData": [
     -96,

@@ -242,11 +242,13 @@
   "header": {
     "destinationAddress": {
       "callsign": "R2ANF",
-      "ssid": 0
+      "ssid": 0,
+      "extensionBit": 0
     },
     "sourceAddress": {
       "callsign": "RS13S",
-      "ssid": 1
+      "ssid": 1,
+      "extensionBit": 1
     },
     "frameType": "I",
     "sendSequenceNumber": 0,

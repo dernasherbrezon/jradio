@@ -1,19 +1,4 @@
 {
-  "header": {
-    "destinationAddress": {
-      "callsign": "CQ",
-      "ssid": 0
-    },
-    "sourceAddress": {
-      "callsign": "II0US",
-      "ssid": 0
-    },
-    "frameType": "U",
-    "sendSequenceNumber": 0,
-    "receiveSequenceNumber": 0,
-    "uControlType": "UI",
-    "pid": 240
-  },
   "packetIndex": 13617,
   "groundIndexAck": 47257,
   "packetType": 1,
@@ -58,6 +43,23 @@
     "payloadReserved3": 15,
     "satelliteErrorFlags": 0,
     "satelliteOperationStatus": 5
+  },
+  "header": {
+    "destinationAddress": {
+      "callsign": "CQ",
+      "ssid": 0,
+      "extensionBit": 0
+    },
+    "sourceAddress": {
+      "callsign": "II0US",
+      "ssid": 0,
+      "extensionBit": 1
+    },
+    "frameType": "U",
+    "sendSequenceNumber": 0,
+    "receiveSequenceNumber": 0,
+    "uControlType": "UI",
+    "pid": 240
   },
   "beginSample": 0,
   "beginMillis": 0

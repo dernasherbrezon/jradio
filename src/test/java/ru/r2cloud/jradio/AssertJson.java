@@ -93,7 +93,7 @@ public class AssertJson {
 				}
 			}
 		} else {
-			Method[] methods = expected.getClass().getDeclaredMethods();
+			Method[] methods = expected.getClass().getMethods();
 			for (Method m : methods) {
 				if (!Modifier.isPublic(m.getModifiers())) {
 					continue;

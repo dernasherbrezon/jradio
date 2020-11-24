@@ -1,19 +1,4 @@
 {
-  "header": {
-    "destinationAddress": {
-      "callsign": "A68MY",
-      "ssid": 1
-    },
-    "sourceAddress": {
-      "callsign": "A68MY",
-      "ssid": 0
-    },
-    "frameType": "U",
-    "sendSequenceNumber": 0,
-    "receiveSequenceNumber": 0,
-    "uControlType": "UI",
-    "pid": 240
-  },
   "callsign": "A68MY",
   "obcMode": 2,
   "obcResetCounter": 369098752,
@@ -37,6 +22,23 @@
   "obc5v0Current": 0.0,
   "epsTotalPvCurrent": 52.48,
   "epsTotalSystemCurrent": 36.608,
+  "header": {
+    "destinationAddress": {
+      "callsign": "A68MY",
+      "ssid": 1,
+      "extensionBit": 0
+    },
+    "sourceAddress": {
+      "callsign": "A68MY",
+      "ssid": 0,
+      "extensionBit": 1
+    },
+    "frameType": "U",
+    "sendSequenceNumber": 0,
+    "receiveSequenceNumber": 0,
+    "uControlType": "UI",
+    "pid": 240
+  },
   "rawData": [
     -126,
     108,
@@ -97,6 +99,6 @@
     -113,
     0
   ],
-  "beginSample": 154527,
+  "beginSample": 58556,
   "beginMillis": 0
 }

@@ -23,7 +23,7 @@ public class TechnosatTest {
 	@Test
 	public void testDecodeTelemetry() throws Exception {
 		WavFileSource source = new WavFileSource(TechnosatTest.class.getClassLoader().getResourceAsStream("technosat.wav"));
-		FskDemodulator demod = new FskDemodulator(source, 4800);
+		FskDemodulator demod = new FskDemodulator(source, 4800, 5000.0f, 2, 2000, false);
 		SoftToHard s2h = new SoftToHard(demod);
 		CorrelateAccessCodeTag correlateTag = new CorrelateAccessCodeTag(s2h, 4, "111011110000111011110000", false);
 		TaggedStreamToPdu pdu = new TaggedStreamToPdu(new UnpackedToPacked(new FixedLengthTagger(correlateTag, CMX909bBeacon.MAX_SIZE * 8), 1, Endianness.GR_MSB_FIRST));

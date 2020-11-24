@@ -1,10 +1,10 @@
 {
   "length": 86,
   "header": {
-    "sourcePort": 6,
-    "priority": "CSP_PRIO_LOW",
+    "priority": "CSP_PRIO_CRITICAL",
     "source": 0,
     "destination": 11,
+    "sourcePort": 6,
     "destinationPort": 18,
     "ffrag": false,
     "fhmac": true,
@@ -48,8 +48,6 @@
     "bootCount": 343,
     "uniqueMssi": 65535
   },
-  "beginSample": 54797,
-  "beginMillis": 0,
   "rawData": [
     0,
     86,
@@ -143,5 +141,7 @@
     0,
     59,
     0
-  ]
+  ],
+  "beginSample": 56107,
+  "beginMillis": 0
 }

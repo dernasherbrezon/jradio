@@ -1,19 +1,4 @@
 {
-  "header": {
-    "destinationAddress": {
-      "callsign": "CQ",
-      "ssid": 0
-    },
-    "sourceAddress": {
-      "callsign": "HB9GSF",
-      "ssid": 0
-    },
-    "frameType": "U",
-    "sendSequenceNumber": 0,
-    "receiveSequenceNumber": 0,
-    "uControlType": "UI",
-    "pid": 240
-  },
   "gpsBeacon": {
     "source": "GP",
     "time": 1472335516038,
@@ -35,6 +20,23 @@
     "rssi": -85,
     "afc": 9338,
     "downloadFormat": 236
+  },
+  "header": {
+    "destinationAddress": {
+      "callsign": "CQ",
+      "ssid": 0,
+      "extensionBit": 0
+    },
+    "sourceAddress": {
+      "callsign": "HB9GSF",
+      "ssid": 0,
+      "extensionBit": 1
+    },
+    "frameType": "U",
+    "sendSequenceNumber": 0,
+    "receiveSequenceNumber": 0,
+    "uControlType": "UI",
+    "pid": 240
   },
   "rawData": [
     -122,
@@ -225,6 +227,6 @@
     32,
     32
   ],
-  "beginSample": 53755,
+  "beginSample": 31820,
   "beginMillis": 0
 }

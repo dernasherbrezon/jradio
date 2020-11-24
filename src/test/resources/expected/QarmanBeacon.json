@@ -1,19 +1,4 @@
 {
-  "header": {
-    "destinationAddress": {
-      "callsign": "ON4VKI",
-      "ssid": 0
-    },
-    "sourceAddress": {
-      "callsign": "ON05BE",
-      "ssid": 0
-    },
-    "frameType": "U",
-    "sendSequenceNumber": 0,
-    "receiveSequenceNumber": 0,
-    "uControlType": "UI",
-    "pid": 240
-  },
   "longFrame": {
     "panelXpBeingReleased": true,
     "panelYpBeingReleased": true,
@@ -85,6 +70,23 @@
     "panelYp": false,
     "panelYm": false,
     "panelXm": false
+  },
+  "header": {
+    "destinationAddress": {
+      "callsign": "ON4VKI",
+      "ssid": 0,
+      "extensionBit": 0
+    },
+    "sourceAddress": {
+      "callsign": "ON05BE",
+      "ssid": 0,
+      "extensionBit": 1
+    },
+    "frameType": "U",
+    "sendSequenceNumber": 0,
+    "receiveSequenceNumber": 0,
+    "uControlType": "UI",
+    "pid": 240
   },
   "rawData": [
     -98,
@@ -178,6 +180,6 @@
     1,
     -32
   ],
-  "beginSample": 36126,
+  "beginSample": 36375,
   "beginMillis": 0
 }

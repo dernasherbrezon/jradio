@@ -6,6 +6,21 @@
     "foxId": 1
   },
   "payloadRealtime": {
+    "ihuDiagnosticData": {
+      "writeTimeout2": 1,
+      "busBusyTimeout2": 0,
+      "readTimeout2": 0
+    },
+    "experiment1Failure": false,
+    "experiment2Failure": true,
+    "experiment3Failure": true,
+    "experiment4Failure": false,
+    "battI2CFailure": true,
+    "psu1I2CFailure": false,
+    "psu2I2CFailure": false,
+    "numberOfGroundCommandedTlmResets": 0,
+    "rxAntenna": true,
+    "txAntenna": true,
     "batteryAVolt": 0.0,
     "batteryBVolt": 0.0,
     "batteryCVolt": 0.0,
@@ -31,28 +46,13 @@
     "txPaCurrent": 88.47657,
     "txTemperature": -1.074074,
     "rxTemperature": 24.558823,
-    "rssi": -141.64679,
+    "rssi": -115.52941,
     "ihuTemperature": 48.181816,
     "xAngularVelocity": 0.075302325,
     "yAngularVelocity": -0.50828975,
     "zAngularVelocity": -0.24473344,
     "exp4Temperature": 163.0,
-    "psuCurrent": 5.859375,
-    "ihuDiagnosticData": {
-      "writeTimeout2": 1,
-      "busBusyTimeout2": 0,
-      "readTimeout2": 0
-    },
-    "experiment1Failure": false,
-    "experiment2Failure": true,
-    "experiment3Failure": true,
-    "experiment4Failure": false,
-    "battI2CFailure": true,
-    "psu1I2CFailure": false,
-    "psu2I2CFailure": false,
-    "numberOfGroundCommandedTlmResets": 0,
-    "rxAntenna": true,
-    "txAntenna": true
+    "psuCurrent": 5.859375
   },
   "rawData": [
     97,

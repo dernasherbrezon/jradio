@@ -345,11 +345,13 @@
   "header": {
     "destinationAddress": {
       "callsign": "N6CP",
-      "ssid": 1
+      "ssid": 1,
+      "extensionBit": 0
     },
     "sourceAddress": {
       "callsign": "KK6HIT",
-      "ssid": 10
+      "ssid": 10,
+      "extensionBit": 1
     },
     "frameType": "U",
     "sendSequenceNumber": 0,

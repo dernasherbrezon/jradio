@@ -1,19 +1,4 @@
 {
-  "header": {
-    "destinationAddress": {
-      "callsign": "DD0UWE",
-      "ssid": 0
-    },
-    "sourceAddress": {
-      "callsign": "DP0UWH",
-      "ssid": 0
-    },
-    "frameType": "U",
-    "sendSequenceNumber": 0,
-    "receiveSequenceNumber": 0,
-    "uControlType": "UI",
-    "pid": 240
-  },
   "routeSet": true,
   "size1": true,
   "abuf": false,
@@ -53,6 +38,23 @@
     -108,
     3
   ],
+  "header": {
+    "destinationAddress": {
+      "callsign": "DD0UWE",
+      "ssid": 0,
+      "extensionBit": 0
+    },
+    "sourceAddress": {
+      "callsign": "DP0UWH",
+      "ssid": 0,
+      "extensionBit": 1
+    },
+    "frameType": "U",
+    "sendSequenceNumber": 0,
+    "receiveSequenceNumber": 0,
+    "uControlType": "UI",
+    "pid": 240
+  },
   "beginSample": 0,
   "beginMillis": 0
 }

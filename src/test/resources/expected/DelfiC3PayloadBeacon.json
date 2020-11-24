@@ -1,19 +1,4 @@
 {
-  "header": {
-    "destinationAddress": {
-      "callsign": "TLM",
-      "ssid": 0
-    },
-    "sourceAddress": {
-      "callsign": "DLFIC3",
-      "ssid": 0
-    },
-    "frameType": "U",
-    "sendSequenceNumber": 0,
-    "receiveSequenceNumber": 0,
-    "uControlType": "UI",
-    "pid": 240
-  },
   "bootCounter": 2273,
   "sequenceCounter": 0,
   "payload": {
@@ -200,6 +185,23 @@
       "zpTimestamp": 0
     }
   },
+  "header": {
+    "destinationAddress": {
+      "callsign": "TLM",
+      "ssid": 0,
+      "extensionBit": 0
+    },
+    "sourceAddress": {
+      "callsign": "DLFIC3",
+      "ssid": 0,
+      "extensionBit": 1
+    },
+    "frameType": "U",
+    "sendSequenceNumber": 0,
+    "receiveSequenceNumber": 0,
+    "uControlType": "UI",
+    "pid": 240
+  },
   "rawData": [
     -88,
     -104,
@@ -320,6 +322,6 @@
     0,
     0
   ],
-  "beginSample": 34734,
+  "beginSample": 34986,
   "beginMillis": 0
 }

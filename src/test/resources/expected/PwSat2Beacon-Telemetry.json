@@ -1,19 +1,4 @@
 {
-  "header": {
-    "destinationAddress": {
-      "callsign": "PWSAT2",
-      "ssid": 0
-    },
-    "sourceAddress": {
-      "callsign": "PWSAT2",
-      "ssid": 0
-    },
-    "frameType": "U",
-    "sendSequenceNumber": 0,
-    "receiveSequenceNumber": 0,
-    "uControlType": "UI",
-    "pid": 240
-  },
   "seq": 0,
   "beaconFrame": {
     "bootCounter": 2,
@@ -34,7 +19,7 @@
     "n25Q2": 0,
     "n25Q3": 0,
     "n25qTMR": 0,
-    "fRAMTMR": 0,
+    "framTMR": 0,
     "payload": 0,
     "camera": 0,
     "expSuns": 0,
@@ -198,6 +183,23 @@
     "imtqError6": 0,
     "imtqError7": 0,
     "imtqError8": 0
+  },
+  "header": {
+    "destinationAddress": {
+      "callsign": "PWSAT2",
+      "ssid": 0,
+      "extensionBit": 0
+    },
+    "sourceAddress": {
+      "callsign": "PWSAT2",
+      "ssid": 0,
+      "extensionBit": 1
+    },
+    "frameType": "U",
+    "sendSequenceNumber": 0,
+    "receiveSequenceNumber": 0,
+    "uControlType": "UI",
+    "pid": 240
   },
   "rawData": [
     -96,

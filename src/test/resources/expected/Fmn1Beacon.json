@@ -1,12 +1,15 @@
 {
+  "message": "BUAA BEACON STARTS",
   "header": {
     "destinationAddress": {
       "callsign": "BUAAGS",
-      "ssid": 0
+      "ssid": 0,
+      "extensionBit": 0
     },
     "sourceAddress": {
       "callsign": "BUAABJ",
-      "ssid": 0
+      "ssid": 0,
+      "extensionBit": 1
     },
     "frameType": "U",
     "sendSequenceNumber": 0,
@@ -14,7 +17,6 @@
     "uControlType": "UI",
     "pid": 240
   },
-  "message": "BUAA BEACON STARTS",
   "rawData": [
     -124,
     -86,
@@ -51,6 +53,6 @@
     84,
     83
   ],
-  "beginSample": 6598,
+  "beginSample": 6516,
   "beginMillis": 0
 }

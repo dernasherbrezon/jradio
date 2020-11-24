@@ -8,11 +8,13 @@
   "header": {
     "destinationAddress": {
       "callsign": "BBSTAT",
-      "ssid": 0
+      "ssid": 0,
+      "extensionBit": 0
     },
     "sourceAddress": {
       "callsign": "PFS3",
-      "ssid": 12
+      "ssid": 12,
+      "extensionBit": 1
     },
     "frameType": "U",
     "sendSequenceNumber": 0,

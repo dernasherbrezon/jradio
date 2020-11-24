@@ -1,19 +1,4 @@
 {
-  "header": {
-    "destinationAddress": {
-      "callsign": "F6KTA",
-      "ssid": 0
-    },
-    "sourceAddress": {
-      "callsign": "ON02FR",
-      "ssid": 0
-    },
-    "frameType": "U",
-    "sendSequenceNumber": 0,
-    "receiveSequenceNumber": 0,
-    "uControlType": "UI",
-    "pid": 240
-  },
   "pid": 0,
   "time": 0,
   "version": 0,
@@ -35,6 +20,23 @@
   "trxTemp": 24.5,
   "epsTemp": 25.0,
   "battTemp": 23.0,
+  "header": {
+    "destinationAddress": {
+      "callsign": "F6KTA",
+      "ssid": 0,
+      "extensionBit": 0
+    },
+    "sourceAddress": {
+      "callsign": "ON02FR",
+      "ssid": 0,
+      "extensionBit": 1
+    },
+    "frameType": "U",
+    "sendSequenceNumber": 0,
+    "receiveSequenceNumber": 0,
+    "uControlType": "UI",
+    "pid": 240
+  },
   "rawData": [
     -116,
     108,
@@ -87,6 +89,6 @@
     -2,
     35
   ],
-  "beginSample": 75630,
+  "beginSample": 53693,
   "beginMillis": 0
 }

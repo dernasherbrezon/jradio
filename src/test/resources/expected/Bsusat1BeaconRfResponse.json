@@ -22,11 +22,13 @@
   "header": {
     "destinationAddress": {
       "callsign": "EU1XX",
-      "ssid": 0
+      "ssid": 0,
+      "extensionBit": 0
     },
     "sourceAddress": {
       "callsign": "EU10S",
-      "ssid": 0
+      "ssid": 0,
+      "extensionBit": 1
     },
     "frameType": "U",
     "sendSequenceNumber": 0,

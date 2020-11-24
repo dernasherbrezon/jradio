@@ -1,19 +1,4 @@
 {
-  "header": {
-    "destinationAddress": {
-      "callsign": "PWSAT2",
-      "ssid": 0
-    },
-    "sourceAddress": {
-      "callsign": "PWSAT2",
-      "ssid": 0
-    },
-    "frameType": "U",
-    "sendSequenceNumber": 0,
-    "receiveSequenceNumber": 0,
-    "uControlType": "UI",
-    "pid": 240
-  },
   "apid": "FILE_LIST",
   "seq": 2,
   "fileList": {
@@ -49,6 +34,23 @@
     ],
     "correlationId": 5,
     "errorCode": 0
+  },
+  "header": {
+    "destinationAddress": {
+      "callsign": "PWSAT2",
+      "ssid": 0,
+      "extensionBit": 0
+    },
+    "sourceAddress": {
+      "callsign": "PWSAT2",
+      "ssid": 0,
+      "extensionBit": 1
+    },
+    "frameType": "U",
+    "sendSequenceNumber": 0,
+    "receiveSequenceNumber": 0,
+    "uControlType": "UI",
+    "pid": 240
   },
   "rawData": [
     -96,

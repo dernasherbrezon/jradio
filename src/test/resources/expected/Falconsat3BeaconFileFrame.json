@@ -1,6 +1,5 @@
 {
   "fileFrame": {
-    "lengthPresent": false,
     "eof": true,
     "fileId": 15339,
     "type": "JPG",
@@ -255,11 +254,13 @@
   "header": {
     "destinationAddress": {
       "callsign": "QST",
-      "ssid": 1
+      "ssid": 1,
+      "extensionBit": 0
     },
     "sourceAddress": {
       "callsign": "PFS3",
-      "ssid": 11
+      "ssid": 11,
+      "extensionBit": 1
     },
     "frameType": "U",
     "sendSequenceNumber": 0,

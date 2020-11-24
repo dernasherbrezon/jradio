@@ -1,22 +1,4 @@
 {
-  "header": {
-    "destinationAddress": {
-      "callsign": "WI2XVT",
-      "ssid": 0
-    },
-    "sourceAddress": {
-      "callsign": "WI2XVT",
-      "ssid": 0
-    },
-    "frameType": "I",
-    "sendSequenceNumber": 0,
-    "receiveSequenceNumber": 0,
-    "pid": 146
-  },
-  "relay": {
-    "callsign": "2XVT0",
-    "ssid": 8
-  },
   "spacecraftTelemetry": {
     "messageNumber": 33425,
     "time": 1590302809,
@@ -52,6 +34,28 @@
     "magX": 3620.0,
     "magY": 1689.0,
     "magZ": 1746.0
+  },
+  "header": {
+    "destinationAddress": {
+      "callsign": "WI2XVT",
+      "ssid": 0,
+      "extensionBit": 0
+    },
+    "sourceAddress": {
+      "callsign": "WI2XVT",
+      "ssid": 0,
+      "extensionBit": 0
+    },
+    "repeaterAddress": {
+      "callsign": "WI2XVT",
+      "ssid": 0,
+      "extensionBit": 1
+    },
+    "frameType": "U",
+    "sendSequenceNumber": 0,
+    "receiveSequenceNumber": 0,
+    "uControlType": "UI",
+    "pid": 240
   },
   "beginSample": 0,
   "beginMillis": 0

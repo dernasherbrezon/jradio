@@ -12,7 +12,6 @@ import java.util.Random;
 import org.junit.After;
 import org.junit.Test;
 
-import ru.r2cloud.jradio.ao40.Ao40CorrelateAccessCodeTag;
 import ru.r2cloud.jradio.source.InputStreamSource;
 import ru.r2cloud.jradio.util.StreamUtils;
 

@@ -28,11 +28,13 @@
   "header": {
     "destinationAddress": {
       "callsign": "MINXS2",
-      "ssid": 0
+      "ssid": 0,
+      "extensionBit": 0
     },
     "sourceAddress": {
       "callsign": "CQ",
-      "ssid": 0
+      "ssid": 0,
+      "extensionBit": 1
     },
     "frameType": "U",
     "sendSequenceNumber": 0,

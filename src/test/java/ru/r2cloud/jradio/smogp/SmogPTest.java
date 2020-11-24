@@ -19,8 +19,7 @@ public class SmogPTest {
 		FskDemodulator demod = new FskDemodulator(source, 1250);
 		input = new SmogP(demod);
 		assertTrue(input.hasNext());
-		SmogPBeacon next = input.next();
-		AssertJson.assertObjectsEqual("SmogPBeaconSpectrumResult.json", next);
+		AssertJson.assertObjectsEqual("SmogPBeaconSpectrumResult.json", input.next());
 	}
 
 	@After

@@ -5,7 +5,6 @@ import static org.junit.Assert.assertArrayEquals;
 import org.junit.Test;
 
 import ru.r2cloud.jradio.fec.ViterbiTest;
-import ru.r2cloud.jradio.fec.ccsds.Randomize;
 
 public class RandomizeTest {
 

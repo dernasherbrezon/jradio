@@ -13,11 +13,13 @@
   "header": {
     "destinationAddress": {
       "callsign": "BCR",
-      "ssid": 1
+      "ssid": 1,
+      "extensionBit": 0
     },
     "sourceAddress": {
       "callsign": "PFS3",
-      "ssid": 1
+      "ssid": 1,
+      "extensionBit": 1
     },
     "frameType": "U",
     "sendSequenceNumber": 0,

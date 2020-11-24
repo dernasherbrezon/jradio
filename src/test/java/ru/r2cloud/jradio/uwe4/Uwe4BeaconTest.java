@@ -25,7 +25,7 @@ public class Uwe4BeaconTest {
 		result.readBeacon(data);
 		AssertJson.assertObjectsEqual("Uwe4BeaconUnknown.json", result);
 	}
-	
+
 	@Test
 	public void testPojo() {
 		assertPojoMethodsFor(Uwe4Beacon.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
