@@ -27,12 +27,9 @@ public class Ax25G3ruhBeaconSource<T extends Beacon> extends BeaconSource<T> {
 	protected T parseBeacon(byte[] raw) throws UncorrectableException, IOException {
 		T result;
 		try {
-			result = clazz.newInstance();
-		} catch (InstantiationException e) {
+			result = clazz.getDeclaredConstructor().newInstance();
+		} catch (Exception e) {
 			LOG.error("unable to init beacon", e);
-			return null;
-		} catch (IllegalAccessException e) {
-			LOG.error("unable to read beacon", e);
 			return null;
 		}
 		result.readExternal(raw);

@@ -25,7 +25,7 @@ public class BeaconInputStream<T extends Beacon> implements Iterator<T>, Closeab
 			int length = is.readInt();
 			byte[] raw = new byte[length];
 			is.readFully(raw);
-			T result = clazz.newInstance();
+			T result = clazz.getDeclaredConstructor().newInstance();
 			result.readExternal(raw);
 			result.setBeginMillis(is.readLong());
 			result.setBeginSample(is.readLong());

@@ -13,7 +13,7 @@ import ru.r2cloud.jradio.gomx1.AX100Decoder;
 
 public class Ax100BeaconSource<T extends Beacon> extends BeaconSource<T> {
 
-	private static final Logger LOG = LoggerFactory.getLogger(Ax25G3ruhBeaconSource.class);
+	private static final Logger LOG = LoggerFactory.getLogger(Ax100BeaconSource.class);
 
 	private final Class<T> clazz;
 
@@ -34,12 +34,9 @@ public class Ax100BeaconSource<T extends Beacon> extends BeaconSource<T> {
 	protected T parseBeacon(byte[] raw) throws UncorrectableException, IOException {
 		T result;
 		try {
-			result = clazz.newInstance();
-		} catch (InstantiationException e) {
+			result = clazz.getDeclaredConstructor().newInstance();
+		} catch (Exception e) {
 			LOG.error("unable to init beacon", e);
-			return null;
-		} catch (IllegalAccessException e) {
-			LOG.error("unable to read beacon", e);
 			return null;
 		}
 		result.readExternal(raw);
