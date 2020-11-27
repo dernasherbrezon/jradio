@@ -30,28 +30,12 @@ public class Snet extends BeaconSource<SnetBeacon> {
 	@Override
 	protected SnetBeacon parseBeacon(byte[] raw) throws UncorrectableException, IOException {
 		// 1. de-interleave header
-		byte[] headerBits = Deinterleave.deinterleaveBitsUnpacked(raw, 0, CHUNK_LENGTH_BITS, NUMBER_OF_HEADER_CHUNKS);
-		// 2. correct errors BCH(15,5,7)
-		for (int i = 0; i < NUMBER_OF_HEADER_CHUNKS; i++) {
-			Bch15.decode(headerBits, i * CHUNK_LENGTH_BITS, 7);
-		}
-		// 3. extract data. last 5 bits of each chunk, LSB
-		// round 70 bits to 9 bytes. last 2 bits are expected to be 0
-		byte[] headerDataBits = new byte[HEADER_LENGTH_BYTES * 8];
-		int dstIndex = 0;
-		for (int i = 0; i < NUMBER_OF_HEADER_CHUNKS; i++) {
-			for (int j = 0; j < 5; j++) {
-				int srcIndex = (i + 1) * CHUNK_LENGTH_BITS - 1 - j;
-				headerDataBits[dstIndex] = headerBits[srcIndex];
-				dstIndex++;
-			}
-		}
+		byte[] headerDataBits = readHeaderBits(raw);
 
 		// 4. pack for parsing
 		byte[] header = UnpackedToPacked.pack(headerDataBits);
 
-		LTUFrameHeader ltuHeader;
-		ltuHeader = new LTUFrameHeader(header);
+		LTUFrameHeader ltuHeader = new LTUFrameHeader(header);
 
 		// 5. prepare data bits for crc5 calculation. replace last 7 with hardcoded 1011011
 		headerDataBits[headerDataBits.length - 7] = 1;
@@ -98,6 +82,26 @@ public class Snet extends BeaconSource<SnetBeacon> {
 		SnetBeacon result = new SnetBeacon();
 		result.readExternal(UnpackedToPacked.pack(pdu));
 		return result;
+	}
+
+	public static byte[] readHeaderBits(byte[] raw) throws UncorrectableException {
+		byte[] headerBits = Deinterleave.deinterleaveBitsUnpacked(raw, 0, CHUNK_LENGTH_BITS, NUMBER_OF_HEADER_CHUNKS);
+		// 2. correct errors BCH(15,5,7)
+		for (int i = 0; i < NUMBER_OF_HEADER_CHUNKS; i++) {
+			Bch15.decode(headerBits, i * CHUNK_LENGTH_BITS, 7);
+		}
+		// 3. extract data. last 5 bits of each chunk, LSB
+		// round 70 bits to 9 bytes. last 2 bits are expected to be 0
+		byte[] headerDataBits = new byte[HEADER_LENGTH_BYTES * 8];
+		int dstIndex = 0;
+		for (int i = 0; i < NUMBER_OF_HEADER_CHUNKS; i++) {
+			for (int j = 0; j < 5; j++) {
+				int srcIndex = (i + 1) * CHUNK_LENGTH_BITS - 1 - j;
+				headerDataBits[dstIndex] = headerBits[srcIndex];
+				dstIndex++;
+			}
+		}
+		return headerDataBits;
 	}
 
 	public static byte[] extractPdu(LTUFrameHeader header, byte[] bits) throws UncorrectableException {
