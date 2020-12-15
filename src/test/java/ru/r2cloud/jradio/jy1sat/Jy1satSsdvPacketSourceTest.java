@@ -3,19 +3,16 @@ package ru.r2cloud.jradio.jy1sat;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 
-import java.awt.image.BufferedImage;
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
-
-import javax.imageio.ImageIO;
 
 import org.junit.Test;
 
 import ru.r2cloud.jradio.AssertJson;
 import ru.r2cloud.jradio.BeaconInputStream;
+import ru.r2cloud.jradio.TestUtil;
 import ru.r2cloud.ssdv.SsdvDecoder;
 import ru.r2cloud.ssdv.SsdvImage;
 
@@ -54,14 +51,7 @@ public class Jy1satSsdvPacketSourceTest {
 	}
 
 	public static void assertSsdvImage(String expectedName, SsdvImage cur) throws IOException {
-		try (InputStream is1 = Jy1satSsdvPacketSourceTest.class.getClassLoader().getResourceAsStream("expected/ssdv/" + expectedName + ".png")) {
-			BufferedImage expected = ImageIO.read(is1);
-			for (int i = 0; i < expected.getWidth(); i++) {
-				for (int j = 0; j < expected.getHeight(); j++) {
-					assertEquals("failure in image: " + expectedName, expected.getRGB(i, j), cur.getImage().getRGB(i, j));
-				}
-			}
-		}
+		TestUtil.assertImage("expected/ssdv/" + expectedName + ".png", cur.getImage());
 		AssertJson.assertObjectsEqual("ssdv/" + expectedName + ".json", cur);
 	}
 

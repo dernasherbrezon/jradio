@@ -1,9 +1,14 @@
 package ru.r2cloud.jradio;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
+import java.awt.image.BufferedImage;
 import java.io.EOFException;
 import java.io.IOException;
+import java.io.InputStream;
+
+import javax.imageio.ImageIO;
 
 import ru.r2cloud.jradio.source.InputStreamSource;
 
@@ -46,6 +51,18 @@ public class TestUtil {
 
 	public static void assertFloatInput(String expected, FloatInput actual) {
 		assertFloatInput(0, expected, actual);
+	}
+	
+	public static void assertImage(String expectedName, BufferedImage actual) throws IOException {
+		assertNotNull(actual);
+		try (InputStream is1 = TestUtil.class.getClassLoader().getResourceAsStream(expectedName)) {
+			BufferedImage expected = ImageIO.read(is1);
+			for (int i = 0; i < expected.getWidth(); i++) {
+				for (int j = 0; j < expected.getHeight(); j++) {
+					assertEquals("failure in image: " + expectedName, expected.getRGB(i, j), actual.getRGB(i, j));
+				}
+			}
+		}
 	}
 
 	private TestUtil() {

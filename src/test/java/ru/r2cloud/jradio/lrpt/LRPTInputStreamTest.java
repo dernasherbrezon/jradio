@@ -1,20 +1,17 @@
 package ru.r2cloud.jradio.lrpt;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 import java.awt.image.BufferedImage;
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.imageio.ImageIO;
-
 import org.junit.Test;
 
+import ru.r2cloud.jradio.TestUtil;
 import ru.r2cloud.jradio.meteor.MeteorImage;
-import ru.r2cloud.jradio.meteor.MeteorImageTest;
 import ru.r2cloud.jradio.util.ThrottledInputStream;
 
 public class LRPTInputStreamTest {
@@ -42,14 +39,8 @@ public class LRPTInputStreamTest {
 	private static void assertImage(List<Vcdu> data) throws IOException {
 		MeteorImage image = new MeteorImage(data.iterator());
 		BufferedImage actual = image.toBufferedImage();
-		try (InputStream is1 = MeteorImageTest.class.getClassLoader().getResourceAsStream("expected8bitsoft.png")) {
-			BufferedImage expected = ImageIO.read(is1);
-			for (int i = 0; i < expected.getWidth(); i++) {
-				for (int j = 0; j < expected.getHeight(); j++) {
-					assertEquals(expected.getRGB(i, j), actual.getRGB(i, j));
-				}
-			}
-		}
+		assertNotNull(actual);
+		TestUtil.assertImage("expected8bitsoft.png", actual);
 	}
 
 }
