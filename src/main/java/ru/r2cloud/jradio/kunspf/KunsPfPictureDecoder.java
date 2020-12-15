@@ -59,6 +59,10 @@ public class KunsPfPictureDecoder implements Iterator<BufferedImage> {
 			if (previousImageBlock > curChunk.getImageBlock()) {
 				break;
 			}
+			// skip header. it is fixed and never changing
+			if (curChunk.getImageBlock() < PICTURE_HEADER_BLOCKS) {
+				continue;
+			}
 			currentBatch.add(curChunk);
 			previousImageBlock = curChunk.getImageBlock();
 		}
@@ -76,12 +80,8 @@ public class KunsPfPictureDecoder implements Iterator<BufferedImage> {
 		}
 		ByteArrayOutputStream baos = new ByteArrayOutputStream();
 		try {
-			boolean hasHeader = hasHeader();
-			if (!hasHeader) {
-				baos.write(FIRST_HEADER_BLOCKS);
-			}
-			boolean hasPartialBlock = hasPartialBlock();
-			if (!hasPartialBlock) {
+			baos.write(FIRST_HEADER_BLOCKS);
+			if (currentBatch.get(0).getImageBlock() != PICTURE_HEADER_BLOCKS) {
 				// 15 - empiric maximum number of chunks for small picture
 				boolean smallPicture = currentBatch.get(currentBatch.size() - 1).getImageBlock() < 15;
 				if (smallPicture) {
@@ -91,10 +91,6 @@ public class KunsPfPictureDecoder implements Iterator<BufferedImage> {
 				}
 			}
 			for (KunsPfImageChunk cur : currentBatch) {
-				// skip corrupted header blocks
-				if (!hasHeader && cur.getImageBlock() < PICTURE_HEADER_BLOCKS) {
-					continue;
-				}
 				baos.write(cur.getImageChunk());
 			}
 			baos.close();
@@ -105,24 +101,4 @@ public class KunsPfPictureDecoder implements Iterator<BufferedImage> {
 		}
 	}
 
-	private boolean hasHeader() {
-		for (int i = 0; i < PICTURE_HEADER_BLOCKS && i < currentBatch.size(); i++) {
-			if (currentBatch.get(i).getImageBlock() != i) {
-				return false;
-			}
-		}
-		return true;
-	}
-
-	private boolean hasPartialBlock() {
-		for (int i = 0; i < (PICTURE_HEADER_BLOCKS + 1) && i < currentBatch.size(); i++) {
-			if (currentBatch.get(i).getImageBlock() > PICTURE_HEADER_BLOCKS) {
-				return false;
-			}
-			if (currentBatch.get(i).getImageBlock() == PICTURE_HEADER_BLOCKS) {
-				return true;
-			}
-		}
-		return false;
-	}
 }

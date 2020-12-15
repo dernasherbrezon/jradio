@@ -1,9 +1,12 @@
 package ru.r2cloud.jradio.kunspf;
 
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 import org.junit.Test;
 
@@ -13,14 +16,45 @@ public class KunsPfPictureDecoderTest {
 
 	@Test
 	public void testSmallPicture() throws Exception {
-		KunsPfPictureDecoder decoder = new KunsPfPictureDecoder(createImageBeacons(CHUNK_0, CHUNK_1, CHUNK_2, CHUNK_3, CHUNK_4, CHUNK_5, CHUNK_6, CHUNK_7, CHUNK_8, CHUNK_9, CHUNK_10, CHUNK_11, CHUNK_12, CHUNK_13));
+		List<KunsPfBeacon> data = createImageBeacons(CHUNK_0, CHUNK_1, CHUNK_2, CHUNK_3, CHUNK_4, CHUNK_5, CHUNK_6, CHUNK_7, CHUNK_8, CHUNK_9, CHUNK_10, CHUNK_11, CHUNK_12, CHUNK_13);
+		// de-duplicate
+		data.add(create(13, CHUNK_13));
+		// test this one should be discarded
+		data.add(new KunsPfBeacon());
+		KunsPfPictureDecoder decoder = new KunsPfPictureDecoder(data);
 		assertTrue(decoder.hasNext());
 		TestUtil.assertImage("1kunspf.png", decoder.next());
+		assertFalse(decoder.hasNext());
 	}
 
 	@Test
 	public void testCorruptedHeader() throws Exception {
 		KunsPfPictureDecoder decoder = new KunsPfPictureDecoder(createImageBeacons(CHUNK_0, null, CHUNK_2, null, CHUNK_4, CHUNK_5, CHUNK_6, CHUNK_7, CHUNK_8, CHUNK_9, CHUNK_10, CHUNK_11, CHUNK_12, CHUNK_13));
+		assertTrue(decoder.hasNext());
+		TestUtil.assertImage("1kunspf.png", decoder.next());
+	}
+
+	@Test
+	public void testCorruptedFirstPictureRow() throws Exception {
+		KunsPfPictureDecoder decoder = new KunsPfPictureDecoder(createImageBeacons(CHUNK_0, CHUNK_1, CHUNK_2, CHUNK_3, null, CHUNK_5, CHUNK_6, CHUNK_7, CHUNK_8, CHUNK_9, CHUNK_10, CHUNK_11, CHUNK_12, CHUNK_13));
+		assertTrue(decoder.hasNext());
+		TestUtil.assertImage("1kunspf-corrupted.png", decoder.next());
+	}
+
+	@Test(expected = NoSuchElementException.class)
+	public void testEmpty() {
+		KunsPfPictureDecoder decoder = new KunsPfPictureDecoder(Collections.emptyList());
+		assertFalse(decoder.hasNext());
+		decoder.next();
+	}
+
+	@Test
+	public void testTwoImages() throws Exception {
+		List<KunsPfBeacon> data = new ArrayList<>(createImageBeacons(CHUNK_0, CHUNK_1, null, null, CHUNK_4));
+		data.addAll(createImageBeacons(CHUNK_0, CHUNK_1, CHUNK_2, CHUNK_3, CHUNK_4, CHUNK_5, CHUNK_6, CHUNK_7, CHUNK_8, CHUNK_9, CHUNK_10, CHUNK_11, CHUNK_12, CHUNK_13));
+		KunsPfPictureDecoder decoder = new KunsPfPictureDecoder(data);
+		// first image is not interesting, just make sure it is detected
+		assertTrue(decoder.hasNext());
 		assertTrue(decoder.hasNext());
 		TestUtil.assertImage("1kunspf.png", decoder.next());
 	}
@@ -33,15 +67,19 @@ public class KunsPfPictureDecoderTest {
 			if (cur == null) {
 				continue;
 			}
-			KunsPfImageChunk chunk = new KunsPfImageChunk();
-			chunk.setImageBlock(i);
-			chunk.setImageChunk(cur);
-
-			KunsPfBeacon beacon = new KunsPfBeacon();
-			beacon.setImageChunk(chunk);
-			result.add(beacon);
+			result.add(create(i, cur));
 		}
 		return result;
+	}
+
+	private static final KunsPfBeacon create(int index, byte[] data) {
+		KunsPfImageChunk chunk = new KunsPfImageChunk();
+		chunk.setImageBlock(index);
+		chunk.setImageChunk(data);
+
+		KunsPfBeacon beacon = new KunsPfBeacon();
+		beacon.setImageChunk(chunk);
+		return beacon;
 	}
 
 	private static final byte[] CHUNK_0 = new byte[] { -1, -40, -1, -32, 0, 16, 74, 70, 73, 70, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, -1, -37, 0, 67, 0, 12, 8, 9, 11, 9, 8, 12, 11, 10, 11, 14, 13, 12, 14, 18, 30, 20, 18, 17, 17, 18, 37, 26, 28, 22, 30, 44, 38, 46, 45, 43, 38, 42, 41, 48, 54, 69, 59, 48, 51, 65, 52, 41, 42, 60, 82, 61, 65, 71, 74, 77, 78, 77, 47, 58, 85, 91, 84, 75, 90, 69, 76, 77, 74, -1, -37, 0, 67, 1, 13, 14, 14, 18, 16, 18, 35, 20, 20, 35, 74, 50, 42, 50, 74, 74, 74, 74, 74, 74, 74,
