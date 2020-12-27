@@ -159,7 +159,7 @@ jradio has lots of built-in satellite decoders. Some of them have non standard d
 		<tr>
 			<td>AAUSAT-4</td>
 			<td>41460</td>
-			<td><a href="https://github.com/dernasherbrezon/jradio/blob/master/src/test/java/ru/r2cloud/jradio/aausat4/AAUSAT4Test.java">AAUSAT4Test</a></td>
+			<td><a href="https://github.com/dernasherbrezon/jradio/blob/master/src/test/java/ru/r2cloud/jradio/aausat4/Aausat4Test.java">Aausat4Test</a></td>
 		</tr>
 		<tr>
 			<td>Aistechsat3</td>
@@ -179,7 +179,7 @@ jradio has lots of built-in satellite decoders. Some of them have non standard d
 		<tr>
 			<td>Astrocast 0.1</td>
 			<td>43798</td>
-			<td><a href="https://github.com/dernasherbrezon/jradio/blob/master/src/test/java/ru/r2cloud/jradio/astrocasat/AstrocasatTest.java">AstrocasatTest</a></td>
+			<td><a href="https://github.com/dernasherbrezon/jradio/blob/master/src/test/java/ru/r2cloud/jradio/astrocasat/AstrocastTest.java">AstrocastTest</a></td>
 		</tr>
 		<tr>
 			<td>AT03</td>
@@ -244,7 +244,7 @@ jradio has lots of built-in satellite decoders. Some of them have non standard d
 		<tr>
 			<td>Jy1sat</td>
 			<td>43803</td>
-			<td><a href="https://github.com/dernasherbrezon/jradio/blob/master/src/test/java/ru/r2cloud/jradio/jy1sat/Jy1satTest.java">Nayif1Test</a></td>
+			<td><a href="https://github.com/dernasherbrezon/jradio/blob/master/src/test/java/ru/r2cloud/jradio/jy1sat/Nayif1Test.java">Nayif1Test</a></td>
 		</tr>
 		<tr>
 			<td>Lucky-7</td>
