@@ -7,7 +7,55 @@ Software radio decoding written in Java. The idea of this project is to get bloc
   * No need for tooling. You could use [gnuradio-companion](https://wiki.gnuradio.org/index.php/HowToUse) to build a working pipeline, then use the same blocks to build the pipeline in Java.
   * All Java benefits: run same binaries on multiple platforms without compilation. Single programming language instead of Python and C++. Better tooling like IDE, profilers and memory analyzers.
 
-## Supported blocks
+## Demodulators
+
+jradio supports high-level generic demodulators. They convert [I/Q signal](https://en.wikipedia.org/wiki/In-phase_and_quadrature_components) into the stream of [soft bits](https://dsp.stackexchange.com/a/27482) (0-255).
+
+ * [FSK](https://github.com/dernasherbrezon/jradio/blob/master/src/main/java/ru/r2cloud/jradio/demod/FskDemodulator.java)
+ * [AFSK](https://github.com/dernasherbrezon/jradio/blob/master/src/main/java/ru/r2cloud/jradio/demod/AfskDemodulator.java)
+ * [BPSK](https://github.com/dernasherbrezon/jradio/blob/master/src/main/java/ru/r2cloud/jradio/demod/BpskDemodulator.java)
+ * [QPSK](https://github.com/dernasherbrezon/jradio/blob/master/src/main/java/ru/r2cloud/jradio/demod/QpskDemodulator.java)
+
+## De-framers
+
+De-framer is a component that converts soft stream of bits into the frames of specific protocol.
+
+ * [AX.25](https://en.wikipedia.org/wiki/AX.25) - [Ax25BeaconSource](https://github.com/dernasherbrezon/jradio/blob/master/src/main/java/ru/r2cloud/jradio/Ax25BeaconSource.java)
+ * [AX.25](https://en.wikipedia.org/wiki/AX.25) with G3ruh scrambler - [Ax25G3ruhBeaconSource](https://github.com/dernasherbrezon/jradio/blob/master/src/main/java/ru/r2cloud/jradio/Ax25G3ruhBeaconSource.java)
+ * [AX100](https://gomspace.com/UserFiles/Subsystems/datasheet/gs-ds-nanocom-ax100-33.pdf) - [Ax100BeaconSource](https://github.com/dernasherbrezon/jradio/blob/master/src/main/java/ru/r2cloud/jradio/Ax100BeaconSource.java)
+ * [cc11xx](http://www.ti.com/product/CC1101/description) - [Cc11xxReceiver](https://github.com/dernasherbrezon/jradio/blob/master/src/main/java/ru/r2cloud/jradio/cc11xx/Cc11xxReceiver.java)
+ * Generic [syncword](https://en.wikipedia.org/wiki/Syncword) correlator - [CorrelateSyncword](https://github.com/dernasherbrezon/jradio/blob/master/src/main/java/ru/r2cloud/jradio/blocks/CorrelateSyncword.java)
+
+## Auxiliary tools
+
+Quite often decoding require some additional tooling. jradio has some.
+
+### Forward error correction:
+
+ * [Viterbi](https://en.wikipedia.org/wiki/Viterbi_algorithm) [hard](https://github.com/dernasherbrezon/jradio/blob/master/src/main/java/ru/r2cloud/jradio/fec/Viterbi.java) and [soft](https://github.com/dernasherbrezon/jradio/blob/master/src/main/java/ru/r2cloud/jradio/fec/ViterbiSoft.java) decoders
+ * [CCSDS ReedSolomon](https://github.com/dernasherbrezon/jradio/blob/master/src/main/java/ru/r2cloud/jradio/fec/ccsds/ReedSolomon.java)
+ * [BCH ReedSolomon](https://github.com/dernasherbrezon/jradio/blob/master/src/main/java/ru/r2cloud/jradio/fec/rs/bch/ReedSolomon.java)
+ * [BCH(15,x,x)](https://github.com/dernasherbrezon/jradio/blob/master/src/main/java/ru/r2cloud/jradio/fec/Bch15.java)
+ * [Repeat Accumulate decoder](https://github.com/dernasherbrezon/jradio/blob/master/src/main/java/ru/r2cloud/jradio/fec/ra/RaDecoder.java)
+
+### Randomization
+ 
+ * [xoroshiro128+](https://github.com/dernasherbrezon/jradio/blob/master/src/main/java/ru/r2cloud/jradio/util/Xoroshiro128p.java)
+ * [mt19937](https://github.com/dernasherbrezon/jradio/blob/master/src/main/java/ru/r2cloud/jradio/util/MTRandom.java)
+ * [RayleighRandom](https://github.com/dernasherbrezon/jradio/blob/master/src/main/java/ru/r2cloud/jradio/util/RayleighRandom.java)
+  
+### CRC
+
+Most likely the algorithm name can't say you much, so it is better to check [corresponding test case](https://github.com/dernasherbrezon/jradio/tree/master/src/test/java/ru/r2cloud/jradio/crc). Here is list of supported implementations:
+
+ * [CRC-8](https://github.com/dernasherbrezon/jradio/blob/master/src/main/java/ru/r2cloud/jradio/crc/Crc8.java)
+ * [CRC-16-CCITT](https://github.com/dernasherbrezon/jradio/blob/master/src/main/java/ru/r2cloud/jradio/crc/Crc16Ccitt.java)
+ * [CRC-16-IBM](https://github.com/dernasherbrezon/jradio/blob/master/src/main/java/ru/r2cloud/jradio/crc/Crc16Ibm3740.java)
+ * [CRC-16-ARC](https://github.com/dernasherbrezon/jradio/blob/master/src/main/java/ru/r2cloud/jradio/crc/Crc16Arc.java)
+ * [CRC-16-NAIVE](https://github.com/dernasherbrezon/jradio/blob/master/src/main/java/ru/r2cloud/jradio/crc/Crc16SumOfBytes.java). Just sum of bytes.
+ * [CRC-32C](https://github.com/dernasherbrezon/jradio/blob/master/src/main/java/ru/r2cloud/jradio/crc/Crc32c.java)
+
+## Low-level blocks
 
 All blocks meant to be binary compatible with gnuradio versions. This will ensure you got the same results when moving from gnuradio-companion to Java.
 
@@ -65,7 +113,7 @@ All blocks meant to be binary compatible with gnuradio versions. This will ensur
   * QuadratureDemodulation
   * Rail
   * Rms
-  * RmsAgc and RmsAgcComplex. Out-of-tree block. For more details see [blog post](https://destevez.net/2017/08/agc-for-gr-satellites/)
+  * RmsAgc and RmsAgcComplex. Out-of-tree block. For more details see this [blog post](https://destevez.net/2017/08/agc-for-gr-satellites/)
   * RootRaisedCosineFilter
   * Scrambler
   * SigSource
@@ -73,32 +121,11 @@ All blocks meant to be binary compatible with gnuradio versions. This will ensur
   * UnpackedToPacked
   * WavFileSource
   * WavFileSink
-
-Forward error correction:
-
-  * Viterbi (hard)
-  * ViterbiSoft
-  * CCSDS ReedSolomon
-  * BCH ReedSolomon
-  * BCH(15,x,x)
-  * Repeat Accumulate decoder
   
 Coding:
  
   * NRZI
   * Bit stuffing
-
-Randomization
- 
-  * xoroshiro128+
-  * mt19937 (class MTRandom)
-  * RayleighRandom
-  
-Demodulators
-
-  * BpskDemodulator for BPSK and DBPSK
-  * QpskDemodulator
-  * FskDemodulator for FSK, GFSK and GMSK
 
 ## Supported satellites
 
@@ -392,6 +419,6 @@ Configure maven:
 <dependency>
         <groupId>ru.r2cloud</groupId>
         <artifactId>jradio</artifactId>
-        <version>1.47</version>
+        <version>1.57</version>
 </dependency>
 ```
