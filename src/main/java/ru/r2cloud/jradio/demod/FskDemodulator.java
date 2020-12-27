@@ -9,6 +9,7 @@ import ru.r2cloud.jradio.blocks.ClockRecoveryMM;
 import ru.r2cloud.jradio.blocks.DcBlocker;
 import ru.r2cloud.jradio.blocks.FloatToChar;
 import ru.r2cloud.jradio.blocks.LowPassFilter;
+import ru.r2cloud.jradio.blocks.LowPassFilterComplex;
 import ru.r2cloud.jradio.blocks.QuadratureDemodulation;
 import ru.r2cloud.jradio.blocks.Rail;
 import ru.r2cloud.jradio.blocks.Window;
@@ -28,6 +29,8 @@ public class FskDemodulator implements ByteInput {
 	public FskDemodulator(FloatInput source, int baudRate, float deviation, int decimation, double transitionWidth, boolean useDcBlock) {
 		FloatInput next = source;
 		if (next.getContext().getChannels() == 2) {
+			float carsonCutoff = Math.abs(deviation) + baudRate / 2.0f;
+			next = new LowPassFilterComplex(next, 1.0, carsonCutoff, 0.1 * carsonCutoff, Window.WIN_HAMMING, 6.76);
 			next = new QuadratureDemodulation(next, (float) (next.getContext().getSampleRate() / (2 * Math.PI * deviation)));
 		}
 		next = new LowPassFilter(next, decimation, 1.0, (double) baudRate / 2, transitionWidth, Window.WIN_HAMMING, 6.76);
