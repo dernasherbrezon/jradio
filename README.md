@@ -54,6 +54,12 @@ Most likely the algorithm name can't say you much, so it is better to check [cor
  * [CRC-16-ARC](https://github.com/dernasherbrezon/jradio/blob/master/src/main/java/ru/r2cloud/jradio/crc/Crc16Arc.java)
  * [CRC-16-NAIVE](https://github.com/dernasherbrezon/jradio/blob/master/src/main/java/ru/r2cloud/jradio/crc/Crc16SumOfBytes.java). Just sum of bytes.
  * [CRC-32C](https://github.com/dernasherbrezon/jradio/blob/master/src/main/java/ru/r2cloud/jradio/crc/Crc32c.java)
+ 
+### Satellite protocols
+
+ * [CSP](https://en.wikipedia.org/wiki/Cubesat_Space_Protocol) - Full support
+ * [CCSDS](https://en.wikipedia.org/wiki/Consultative_Committee_for_Space_Data_Systems) - [Basic support](https://github.com/dernasherbrezon/jradio/tree/master/src/main/java/ru/r2cloud/jradio/ccsds)
+ * [PACSAT](https://www.tapr.org/pdf/CNC1990-PacSatBroadcast-NK6K-K8KA.pdf) - [Good support](https://github.com/dernasherbrezon/jradio/tree/master/src/main/java/ru/r2cloud/jradio/falconsat3)
 
 ## Low-level blocks
 
@@ -221,8 +227,8 @@ jradio has lots of built-in satellite decoders. Some of them have non standard d
 			<td><a href="https://github.com/dernasherbrezon/jradio/blob/master/src/test/java/ru/r2cloud/jradio/fmn1/Fmn1Test.java">Fmn1Test</a></td>
 		</tr>
 		<tr>
-			<td>FOX-1A</td>
-			<td>40967</td>
+			<td>FOX-1A, FOX-1B, FOX-1C, FOX-1D</td>
+			<td>40967, 43017, 43770, 43137</td>
 			<td><a href="https://github.com/dernasherbrezon/jradio/blob/master/src/test/java/ru/r2cloud/jradio/fox/FoxTest.java">FoxTest</a></td>
 		</tr>
 		<tr>
@@ -389,6 +395,16 @@ jradio has lots of built-in satellite decoders. Some of them have non standard d
 			<td>MEZNSAT</td>
 			<td>46489</td>
 			<td>FskDemodulator 2400 baud, Ax25G3ruhBeaconSource and MeznsatBeacon</td>
+		</tr>
+		<tr>
+			<td>FALCONSAT-3</td>
+			<td>30776</td>
+			<td>FskDemodulator 9600 baud, Ax25G3ruhBeaconSource and Falconsat3Beacon</td>
+		</tr>
+		<tr>
+			<td>AMICALSAT</td>
+			<td>46287</td>
+			<td>AfskDemodulator 1200 baud, Ax25BeaconSource and Amical1Beacon</td>
 		</tr>
 	</tbody>
 </table>
