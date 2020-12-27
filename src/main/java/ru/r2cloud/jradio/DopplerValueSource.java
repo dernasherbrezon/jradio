@@ -11,7 +11,7 @@ public abstract class DopplerValueSource implements FloatValueSource {
 	private long currentTimeMillis;
 	private float shiftPerSample;
 
-	public DopplerValueSource(float sampleRate, long satelliteFrequency, long correctPeriodMillis, long startTimeMillis) {
+	protected DopplerValueSource(float sampleRate, long satelliteFrequency, long correctPeriodMillis, long startTimeMillis) {
 		this.correctPeriodMillis = correctPeriodMillis;
 		this.correctPeriodSamples = sampleRate * ((float)correctPeriodMillis / 1000);
 		this.currentTimeMillis = startTimeMillis;

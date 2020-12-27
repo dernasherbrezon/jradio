@@ -23,7 +23,7 @@ public abstract class BeaconSource<T> implements Iterator<T>, Closeable {
 		// sometimes checks should be made before instantiating input
 	}
 
-	public BeaconSource(MessageInput input) {
+	protected BeaconSource(MessageInput input) {
 		this.input = input;
 	}
 
