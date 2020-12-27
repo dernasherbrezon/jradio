@@ -425,7 +425,7 @@ SigSource source2 = new SigSource(Waveform.COMPLEX, sampleRate, new DopplerValue
 Multiply mul = new Multiply(source, source2, true);
 ```
 
-Where "getDopplerFrequency" was calculated using [predict4java](https://github.com/badgersoftdotcom/predict4java)
+Where "getDopplerFrequency" can be calculated using [orekit](https://www.orekit.org) or [predict4java](https://github.com/g4dpz/predict4java). 
 
 ## Usage
 
