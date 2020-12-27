@@ -129,7 +129,7 @@ Coding:
 
 ## Supported satellites
 
-Using the blocks above, it is possible to decode the following satellites:
+jradio has lots of built-in satellite decoders. Some of them have non standard de-framers, some beacon decoders, some both:
 
 <table>
 	<thead>
@@ -318,7 +318,7 @@ Using the blocks above, it is possible to decode the following satellites:
 		<tr>
 			<td>Quetzal1</td>
 			<td>45598</td>
-			<td>Use Ax25G3ruhBeaconSource with FskDemodulator 4800</td>
+			<td>FskDemodulator 4800 baud, Ax25G3ruhBeaconSource and Quetzal1Beacon</td>
 		</tr>
 		<tr>
 			<td>Huskysat-1</td>
@@ -328,7 +328,7 @@ Using the blocks above, it is possible to decode the following satellites:
 		<tr>
 			<td>Painani-1</td>
 			<td>44365</td>
-			<td>Use Ax25G3ruhBeaconSource with FskDemodulator 9600</td>
+			<td>FskDemodulator 9600 baud, Ax25G3ruhBeaconSource and Painani1Beacon</td>
 		</tr>
 		<tr>
 			<td>CHOMPTT</td>
@@ -348,32 +348,32 @@ Using the blocks above, it is possible to decode the following satellites:
 		<tr>
 			<td>PolyItan1</td>
 			<td>40042</td>
-			<td>Use Ax25G3ruhBeaconSource with FskDemodulator 9600</td>
+			<td>FskDemodulator 9600 baud, Ax25G3ruhBeaconSource and PolyItan1Beacon</td>
 		</tr>
 		<tr>
 			<td>Unisat6</td>
 			<td>40012</td>
-			<td>Use Ax25G3ruhBeaconSource with FskDemodulator 9600</td>
+			<td>FskDemodulator 9600 baud, Ax25G3ruhBeaconSource and Unisat6Beacon</td>
 		</tr>
 		<tr>
 			<td>Lightsail2</td>
 			<td>44420</td>
-			<td>Use Ax25G3ruhBeaconSource with FskDemodulator 9600</td>
+			<td>FskDemodulator 9600 baud, Ax25G3ruhBeaconSource and Lightsail2Beacon</td>
 		</tr>
 		<tr>
 			<td>CubeBel-1</td>
 			<td>43666</td>
-			<td>Use Ax25G3ruhBeaconSource with FskDemodulator 9600</td>
+			<td>FskDemodulator 9600 baud, Ax25G3ruhBeaconSource and Bsusat1Beacon</td>
 		</tr>
 		<tr>
 			<td>Salsat</td>
 			<td>46495</td>
-			<td>Use AfskDemodulator 1200 baud -600 deviation 1500 offset with Salsat decoder</td>
+			<td>AfskDemodulator 1200 baud, -600 deviation, 1500 offset with Salsat decoder</td>
 		</tr>
 		<tr>
 			<td>Armadillo</td>
 			<td>44352</td>
-			<td>Use Ax25G3ruhBeaconSource with FskDemodulator 19200 and ArmadilloBeacon</td>
+			<td>FskDemodulator 19200 baud, Ax25G3ruhBeaconSource and ArmadilloBeacon</td>
 		</tr>
 		<tr>
 			<td>Spooqy1</td>
@@ -383,12 +383,12 @@ Using the blocks above, it is possible to decode the following satellites:
 		<tr>
 			<td>NORBI</td>
 			<td>46494</td>
-			<td>Use Ax25G3ruhBeaconSource with FskDemodulator 9600 and beacon NorbiBeacon</td>
+			<td>FskDemodulator 9600 baud, Ax25G3ruhBeaconSource and NorbiBeacon</td>
 		</tr>	
 		<tr>
 			<td>MEZNSAT</td>
 			<td>46489</td>
-			<td>Use Ax25G3ruhBeaconSource with BpskDemodulator 2400 and beacon MeznsatBeacon</td>
+			<td>FskDemodulator 2400 baud, Ax25G3ruhBeaconSource and MeznsatBeacon</td>
 		</tr>
 	</tbody>
 </table>
