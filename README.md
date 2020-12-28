@@ -438,3 +438,11 @@ Configure maven:
         <version>1.57</version>
 </dependency>
 ```
+
+## Contributing
+
+Contributing to the project is super easy:
+
+ * Raise an issue with description and use case. Skip this step for small bug fixes or minor features
+ * Raise pull request
+ * Make sure pull request contains unit tests for new functionality or bug fix 
