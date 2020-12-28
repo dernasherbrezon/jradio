@@ -1,14 +1,18 @@
 package ru.r2cloud.jradio.blocks;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.fail;
 
 import java.io.EOFException;
+import java.io.IOException;
+import java.util.Collections;
 import java.util.Random;
 
 import org.junit.Test;
 
 import ru.r2cloud.jradio.ArrayByteInput;
+import ru.r2cloud.jradio.Context;
 import ru.r2cloud.jradio.PhaseAmbiguityResolver;
 import ru.r2cloud.jradio.fec.ViterbiSoftTest;
 import ru.r2cloud.jradio.fec.ViterbiTest;
@@ -71,6 +75,28 @@ public class CorrelateSyncwordTest {
 	}
 
 	@Test
+	public void testSyncInTheMiddleOfBody() throws Exception {
+		String syncword = "1ACFA"; // 00011010110011111010
+		String body1 = "8FF0ACFAAADD";
+		String body2 = "1291BCFA8AFF";
+		StringBuilder data = new StringBuilder();
+		data.append(generateRandom((int) ((syncword.length() + body1.length()) * 1.5))); // ensure buffers are filled up
+		data.append(syncword);
+		data.append(body1);
+		data.append(syncword);
+		data.append(body2);
+		CorrelateSyncword block = new CorrelateSyncword(new ArrayByteInput(ViterbiSoftTest.convertToSoft(ViterbiTest.hexStringToByteArray(data.toString()))), THRESHOLD, Collections.singleton("00011010110011111010"), body1.length() * 4);
+		assertEquals(body1, ViterbiTest.bytesToHex(ViterbiSoftTest.convertToHard(block.readBytes())));
+//		assertSample(block.getContext(), 0L);
+		assertEquals("AADD1ACFA129", ViterbiTest.bytesToHex(ViterbiSoftTest.convertToHard(block.readBytes())));
+//		assertSample(block.getContext(), 7L * 4);
+		assertEquals(body2, ViterbiTest.bytesToHex(ViterbiSoftTest.convertToHard(block.readBytes())));
+//		assertSample(block.getContext(), (syncword.length() + body1.length()) * 4);
+		assertEof(block);
+		block.close();
+	}
+
+	@Test
 	public void testNotEnoughData() throws Exception {
 		String syncword = SYNCWORD;
 		String body = "8FFF9A00AADD";
@@ -80,13 +106,17 @@ public class CorrelateSyncwordTest {
 		data.append(body);
 		PhaseAmbiguityResolver resolver = new PhaseAmbiguityResolver(Long.parseLong(syncword, 16), syncword.length() * 4);
 		CorrelateSyncword block = new CorrelateSyncword(new ArrayByteInput(ViterbiSoftTest.convertToSoft(ViterbiTest.hexStringToByteArray(data.toString()))), THRESHOLD, resolver.getSynchronizationMarkers(), (body.length() + 4) * 4);
+		assertEof(block);
+		block.close();
+	}
+
+	private static void assertEof(CorrelateSyncword block) throws IOException {
 		try {
-			block.readBytes();
-			fail("eof expected");
+			byte[] unexpected = block.readBytes();
+			fail("eof expected, but got: " + ViterbiTest.bytesToHex(ViterbiSoftTest.convertToHard(unexpected)));
 		} catch (EOFException e) {
 			// do nothing
 		}
-		block.close();
 	}
 
 	private static void assertSync(String syncword, long syncwordBinary, String body) throws Exception {
@@ -98,13 +128,14 @@ public class CorrelateSyncwordTest {
 		PhaseAmbiguityResolver resolver = new PhaseAmbiguityResolver(syncwordBinary, syncword.length() * 4);
 		CorrelateSyncword block = new CorrelateSyncword(new ArrayByteInput(ViterbiSoftTest.convertToSoft(ViterbiTest.hexStringToByteArray(data.toString()))), THRESHOLD, resolver.getSynchronizationMarkers(), body.length() * 4);
 		assertEquals(body, ViterbiTest.bytesToHex(ViterbiSoftTest.convertToHard(block.readBytes())));
-		try {
-			block.readBytes();
-			fail("eof expected");
-		} catch (EOFException e) {
-			// do nothing
-		}
+		assertEof(block);
 		block.close();
+	}
+
+	private static void assertSample(Context context, long expected) {
+		Long beginSample = (Long) context.getCurrent().get(CorrelateAccessCodeTag.SOURCE_SAMPLE);
+		assertNotNull(beginSample);
+		assertEquals(expected, beginSample.longValue());
 	}
 
 	private static void assertSync(String syncword, String body) throws Exception {

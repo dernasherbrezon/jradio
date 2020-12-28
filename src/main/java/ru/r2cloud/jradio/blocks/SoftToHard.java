@@ -6,9 +6,9 @@ import ru.r2cloud.jradio.ByteInput;
 import ru.r2cloud.jradio.Context;
 
 public class SoftToHard implements ByteInput {
-	
+
 	private final ByteInput input;
-	
+
 	public SoftToHard(ByteInput input) {
 		this.input = input;
 	}
@@ -31,6 +31,16 @@ public class SoftToHard implements ByteInput {
 	@Override
 	public Context getContext() {
 		return input.getContext();
+	}
+
+	public static void convertToHard(byte[] data) {
+		for (int i = 0; i < data.length; i++) {
+			if (data[i] >= 0) {
+				data[i] = 1;
+			} else {
+				data[i] = 0;
+			}
+		}
 	}
 
 }

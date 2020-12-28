@@ -19,6 +19,7 @@ public class ArrayByteInput implements ByteInput {
 		context = new Context();
 		context.setChannels(1);
 		context.setTotalSamples((long) result.length);
+		context.setCurrentSample(() -> index);
 	}
 
 	public ArrayByteInput(boolean repeat, int... result) {
@@ -27,6 +28,7 @@ public class ArrayByteInput implements ByteInput {
 		context = new Context();
 		context.setChannels(1);
 		context.setTotalSamples((long) result.length);
+		context.setCurrentSample(() -> index);
 	}
 
 	public ArrayByteInput(int... result) {

@@ -14,38 +14,43 @@ import ru.r2cloud.jradio.Tag;
 public class CorrelateSyncword implements MessageInput {
 
 	private final ByteInput input;
+	private final boolean produceSoft;
 
 	private long dataRegister = 0;
 	private long threshold;
 	private final AccessCode[] accessCodes;
 	private int accessCodeIndex;
-	private int softSyncwordLength;
+	private int syncwordLength;
 
 	private int windowIndex = 0;
 	private final byte[] window;
 	private final byte[] packet;
 
-	public CorrelateSyncword(ByteInput input, int threshold, Set<String> syncwords, int softPacketLength) {
+	public CorrelateSyncword(ByteInput input, int threshold, Set<String> syncwords, int lengthBits) {
+		this(input, threshold, syncwords, lengthBits, true);
+	}
+
+	public CorrelateSyncword(ByteInput input, int threshold, Set<String> syncwords, int lengthBits, boolean produceSoft) {
+		if (syncwords.isEmpty()) {
+			throw new IllegalArgumentException("syncword cannot be empty");
+		}
+		this.syncwordLength = validateAndReturnSyncwordLength(syncwords);
+		this.accessCodeIndex = syncwordLength - 1;
+		this.window = new byte[syncwordLength + lengthBits];
+		this.packet = new byte[lengthBits];
 		this.input = input;
 		this.threshold = threshold;
-		accessCodes = new AccessCode[syncwords.size()];
-		int i = 0;
-		// FIXME refactor
-		for (String cur : syncwords) {
-			AccessCode accessCode = new AccessCode(cur);
-			accessCodes[i] = accessCode;
-			i++;
-			accessCodeIndex = cur.length() - 1;
-		}
-		this.softSyncwordLength = (accessCodeIndex + 1);
-		this.window = new byte[softSyncwordLength + softPacketLength];
-		this.packet = new byte[softPacketLength];
+		this.produceSoft = produceSoft;
+		this.accessCodes = convert(syncwords);
 	}
 
 	@Override
 	public byte[] readBytes() throws IOException {
 		while (!Thread.currentThread().isInterrupted()) {
 			if (findSync()) {
+				if (!produceSoft) {
+					SoftToHard.convertToHard(packet);
+				}
 				return packet;
 			}
 		}
@@ -88,7 +93,7 @@ public class CorrelateSyncword implements MessageInput {
 			return false;
 		}
 
-		int dataStartIndex = windowIndex + softSyncwordLength;
+		int dataStartIndex = windowIndex + syncwordLength;
 		if (dataStartIndex < window.length) {
 			System.arraycopy(window, dataStartIndex, packet, 0, window.length - dataStartIndex);
 			System.arraycopy(window, 0, packet, window.length - dataStartIndex, windowIndex);
@@ -97,9 +102,7 @@ public class CorrelateSyncword implements MessageInput {
 			System.arraycopy(window, dataStartIndex, packet, 0, windowIndex - dataStartIndex);
 		}
 
-		Tag tag = null;
-
-		tag = new Tag();
+		Tag tag = new Tag();
 		tag.setId(UUID.randomUUID().toString());
 		tag.put(CorrelateAccessCodeTag.ACCESS_CODE, minAccessCode);
 		LongValueSource currentSample = getContext().getCurrentSample();
@@ -127,6 +130,31 @@ public class CorrelateSyncword implements MessageInput {
 	@Override
 	public Context getContext() {
 		return input.getContext();
+	}
+
+	private static int validateAndReturnSyncwordLength(Set<String> syncwords) {
+		int result = -1;
+		for (String cur : syncwords) {
+			if (result == -1) {
+				result = cur.length();
+				continue;
+			}
+			if (result != cur.length()) {
+				throw new IllegalArgumentException("syncwords should have the same length. found: " + result + " and " + cur.length());
+			}
+		}
+		return result;
+	}
+
+	private static AccessCode[] convert(Set<String> syncwords) {
+		AccessCode[] result = new AccessCode[syncwords.size()];
+		int i = 0;
+		for (String cur : syncwords) {
+			AccessCode accessCode = new AccessCode(cur);
+			result[i] = accessCode;
+			i++;
+		}
+		return result;
 	}
 
 }
