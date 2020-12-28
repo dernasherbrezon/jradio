@@ -80,18 +80,19 @@ public class CorrelateSyncwordTest {
 		String body1 = "8FF0ACFAAADD";
 		String body2 = "1291BCFA8AFF";
 		StringBuilder data = new StringBuilder();
-		data.append(generateRandom((int) ((syncword.length() + body1.length()) * 1.5))); // ensure buffers are filled up
+		int numberOfRandomBytes = (int) ((syncword.length() + body1.length()) * 1.5);
+		data.append(generateRandom(numberOfRandomBytes)); // ensure buffers are filled up
 		data.append(syncword);
 		data.append(body1);
 		data.append(syncword);
 		data.append(body2);
 		CorrelateSyncword block = new CorrelateSyncword(new ArrayByteInput(ViterbiSoftTest.convertToSoft(ViterbiTest.hexStringToByteArray(data.toString()))), THRESHOLD, Collections.singleton("00011010110011111010"), body1.length() * 4);
 		assertEquals(body1, ViterbiTest.bytesToHex(ViterbiSoftTest.convertToHard(block.readBytes())));
-//		assertSample(block.getContext(), 0L);
+		assertSample(block.getContext(), numberOfRandomBytes * 8 + syncword.length() * 4);
 		assertEquals("AADD1ACFA129", ViterbiTest.bytesToHex(ViterbiSoftTest.convertToHard(block.readBytes())));
-//		assertSample(block.getContext(), 7L * 4);
+		assertSample(block.getContext(), numberOfRandomBytes * 8 + 13L * 4);
 		assertEquals(body2, ViterbiTest.bytesToHex(ViterbiSoftTest.convertToHard(block.readBytes())));
-//		assertSample(block.getContext(), (syncword.length() + body1.length()) * 4);
+		assertSample(block.getContext(), numberOfRandomBytes * 8 + (2 * syncword.length() + body1.length()) * 4);
 		assertEof(block);
 		block.close();
 	}
