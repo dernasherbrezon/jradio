@@ -10,6 +10,7 @@ import ru.r2cloud.jradio.Endianness;
 import ru.r2cloud.jradio.blocks.BinarySlicer;
 import ru.r2cloud.jradio.blocks.ClockRecoveryMM;
 import ru.r2cloud.jradio.blocks.CorrelateAccessCodeTag;
+import ru.r2cloud.jradio.blocks.CorrelateSyncword;
 import ru.r2cloud.jradio.blocks.FixedLengthTagger;
 import ru.r2cloud.jradio.blocks.LowPassFilter;
 import ru.r2cloud.jradio.blocks.MultiplyConst;
@@ -17,6 +18,7 @@ import ru.r2cloud.jradio.blocks.NrziDecode;
 import ru.r2cloud.jradio.blocks.TaggedStreamToPdu;
 import ru.r2cloud.jradio.blocks.UnpackedToPacked;
 import ru.r2cloud.jradio.blocks.Window;
+import ru.r2cloud.jradio.demod.FskDemodulator;
 import ru.r2cloud.jradio.source.WavFileSource;
 
 public class AstrocastTest {
@@ -58,15 +60,11 @@ public class AstrocastTest {
 
 	@Test
 	public void testDecode9k6() throws Exception {
-		float gainMu = 0.175f * 5;
 		WavFileSource source = new WavFileSource(AstrocastTest.class.getClassLoader().getResourceAsStream("astrocast_9k6.wav"));
 		MultiplyConst mc = new MultiplyConst(source, -10.0f);
-		LowPassFilter lpf = new LowPassFilter(mc, 1, 1.0, 6000, 1000, Window.WIN_HAMMING, 6.76);
-		ClockRecoveryMM clockRecovery = new ClockRecoveryMM(lpf, lpf.getContext().getSampleRate() / 9600, (float) (0.25 * gainMu * gainMu), 0.5f, gainMu, 0.05f);
-		BinarySlicer bs = new BinarySlicer(clockRecovery);
-		CorrelateAccessCodeTag correlateTag = new CorrelateAccessCodeTag(bs, 4, "00011010110011111111110000011101", false);
-		TaggedStreamToPdu pdu = new TaggedStreamToPdu(new UnpackedToPacked(new FixedLengthTagger(correlateTag, 255 * 8 * 5), 1, Endianness.GR_MSB_FIRST));
-		input9k6 = new Astrocast9k6(pdu);
+		FskDemodulator demod = new FskDemodulator(mc, 9600, 5000.0f, 1, 2000.0f, false);
+		CorrelateSyncword correlate = new CorrelateSyncword(demod, 4, "00011010110011111111110000011101", 255 * 8 * 5, false);
+		input9k6 = new Astrocast9k6(correlate);
 		assertTrue(input9k6.hasNext());
 		AssertJson.assertObjectsEqual("Astrocast9k6Beacon.json", input9k6.next());
 	}
