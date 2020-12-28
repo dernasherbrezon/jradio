@@ -105,7 +105,7 @@ public class CorrelateSyncword implements MessageInput {
 		} else {
 			hardBit = 0;
 		}
-		dataRegister = (dataRegister << 1) | hardBit;
+		dataRegister = (dataRegister << 1) | (hardBit & 0xFF);
 		long minWrong = threshold + 1;
 		long minAccessCode = -1;
 
