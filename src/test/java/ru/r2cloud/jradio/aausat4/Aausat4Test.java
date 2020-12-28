@@ -11,15 +11,13 @@ import org.junit.Test;
 import ru.r2cloud.jradio.AssertJson;
 import ru.r2cloud.jradio.FloatInput;
 import ru.r2cloud.jradio.blocks.ClockRecoveryMM;
-import ru.r2cloud.jradio.blocks.CorrelateAccessCodeTag;
-import ru.r2cloud.jradio.blocks.FixedLengthTagger;
+import ru.r2cloud.jradio.blocks.CorrelateSyncword;
 import ru.r2cloud.jradio.blocks.FloatToChar;
 import ru.r2cloud.jradio.blocks.LowPassFilter;
 import ru.r2cloud.jradio.blocks.Multiply;
 import ru.r2cloud.jradio.blocks.MultiplyConst;
 import ru.r2cloud.jradio.blocks.QuadratureDemodulation;
 import ru.r2cloud.jradio.blocks.Rail;
-import ru.r2cloud.jradio.blocks.TaggedStreamToPdu;
 import ru.r2cloud.jradio.blocks.Window;
 import ru.r2cloud.jradio.demod.FskDemodulator;
 import ru.r2cloud.jradio.detection.GmskFrequencyCorrection;
@@ -41,8 +39,9 @@ public class Aausat4Test {
 		ClockRecoveryMM clockRecovery = new ClockRecoveryMM(throughputStream, 20.0f, (float) (0.25 * 0.175 * 0.175), 0.005f, 0.175f, 0.005f);
 		Rail rail = new Rail(clockRecovery, -1.0f, 1.0f);
 		FloatToChar f2char = new FloatToChar(rail, 127.0f);
-		CorrelateAccessCodeTag correlateTag = new CorrelateAccessCodeTag(f2char, 10, "010011110101101000110100010000110101010101000010", true);
-		Aausat4 input = new Aausat4(new TaggedStreamToPdu(new FixedLengthTagger(correlateTag, Aausat4.VITERBI_TAIL_SIZE + 8))); // 8 for fsm
+		// 8 for fsm
+		CorrelateSyncword correlate = new CorrelateSyncword(f2char, 10, "010011110101101000110100010000110101010101000010", Aausat4.VITERBI_TAIL_SIZE + 8, true);
+		Aausat4 input = new Aausat4(correlate);
 		Thread t = new Thread(new Runnable() {
 
 			@Override
@@ -87,7 +86,6 @@ public class Aausat4Test {
 		MultiplyConst mc = new MultiplyConst(lpf, 1.0f);
 		setupDemodulator(mc);
 		assertTrue(input.hasNext());
-
 	}
 
 	private static InputStream getStream() throws Exception {
@@ -104,8 +102,9 @@ public class Aausat4Test {
 
 	private void setupDemodulator(FloatInput source) {
 		FskDemodulator demod = new FskDemodulator(source, 2400);
-		CorrelateAccessCodeTag correlateTag = new CorrelateAccessCodeTag(demod, 10, "010011110101101000110100010000110101010101000010", true);
-		input = new Aausat4(new TaggedStreamToPdu(new FixedLengthTagger(correlateTag, Aausat4.VITERBI_TAIL_SIZE + 8))); // 8 for fsm
+		// 8 for fsm
+		CorrelateSyncword correlate = new CorrelateSyncword(demod, 10, "010011110101101000110100010000110101010101000010", Aausat4.VITERBI_TAIL_SIZE + 8, true);
+		input = new Aausat4(correlate);
 	}
 
 	@After

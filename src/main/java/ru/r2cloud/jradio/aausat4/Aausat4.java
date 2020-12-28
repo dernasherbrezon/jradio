@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.util.Arrays;
 
 import ru.r2cloud.jradio.BeaconSource;
-import ru.r2cloud.jradio.blocks.TaggedStreamToPdu;
+import ru.r2cloud.jradio.MessageInput;
 import ru.r2cloud.jradio.fec.ViterbiSoft;
 import ru.r2cloud.jradio.fec.ccsds.Randomize;
 import ru.r2cloud.jradio.fec.ccsds.ReedSolomon;
@@ -19,7 +19,7 @@ public class Aausat4 extends BeaconSource<Aausat4Beacon> {
 
 	private final ViterbiSoft viterbiSoft;
 
-	public Aausat4(TaggedStreamToPdu input) {
+	public Aausat4(MessageInput input) {
 		super(input);
 		this.viterbiSoft = new ViterbiSoft((byte) 0x4f, (byte) 0x6d, true, Aausat4.VITERBI_TAIL_SIZE);
 	}

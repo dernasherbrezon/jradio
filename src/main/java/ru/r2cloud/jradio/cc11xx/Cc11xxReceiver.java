@@ -10,6 +10,7 @@ import org.slf4j.LoggerFactory;
 import ru.r2cloud.jradio.Context;
 import ru.r2cloud.jradio.MessageInput;
 import ru.r2cloud.jradio.blocks.AdditiveScrambler;
+import ru.r2cloud.jradio.blocks.UnpackedToPacked;
 import ru.r2cloud.jradio.crc.Crc16Cc11xx;
 
 public class Cc11xxReceiver implements MessageInput {
@@ -32,6 +33,7 @@ public class Cc11xxReceiver implements MessageInput {
 	public byte[] readBytes() throws IOException {
 		while (!Thread.currentThread().isInterrupted()) {
 			byte[] raw = source.readBytes();
+			raw = UnpackedToPacked.pack(raw);
 			if (hasWhitening) {
 				 scrambler.shuffle(raw);
 			}

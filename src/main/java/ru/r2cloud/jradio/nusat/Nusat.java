@@ -7,7 +7,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import ru.r2cloud.jradio.BeaconSource;
-import ru.r2cloud.jradio.blocks.TaggedStreamToPdu;
+import ru.r2cloud.jradio.MessageInput;
+import ru.r2cloud.jradio.blocks.UnpackedToPacked;
 import ru.r2cloud.jradio.crc.Crc8;
 import ru.r2cloud.jradio.fec.ccsds.UncorrectableException;
 import ru.r2cloud.jradio.fec.rs.bch.ReedSolomon;
@@ -18,12 +19,13 @@ public class Nusat extends BeaconSource<NusatBeacon> {
 
 	private ReedSolomon rs = new ReedSolomon(4);
 
-	public Nusat(TaggedStreamToPdu input) {
+	public Nusat(MessageInput input) {
 		super(input);
 	}
 
 	@Override
 	protected NusatBeacon parseBeacon(byte[] raw) throws UncorrectableException, IOException {
+		raw = UnpackedToPacked.pack(raw);
 		byte[] data = rs.decode(raw);
 		int length = data[0] & 0xFF;
 		// length field is not used anywhere. just log it

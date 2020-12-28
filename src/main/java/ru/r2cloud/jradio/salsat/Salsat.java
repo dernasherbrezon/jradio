@@ -1,16 +1,14 @@
 package ru.r2cloud.jradio.salsat;
 
 import java.io.IOException;
+import java.util.Collections;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import ru.r2cloud.jradio.BeaconSource;
 import ru.r2cloud.jradio.ByteInput;
-import ru.r2cloud.jradio.blocks.CorrelateAccessCodeTag;
-import ru.r2cloud.jradio.blocks.FixedLengthTagger;
-import ru.r2cloud.jradio.blocks.SoftToHard;
-import ru.r2cloud.jradio.blocks.TaggedStreamToPdu;
+import ru.r2cloud.jradio.blocks.CorrelateSyncword;
 import ru.r2cloud.jradio.blocks.UnpackedToPacked;
 import ru.r2cloud.jradio.fec.ccsds.UncorrectableException;
 import ru.r2cloud.jradio.snet.LTUFrameHeader;
@@ -22,7 +20,7 @@ public class Salsat extends BeaconSource<SnetBeacon> {
 	private static final Logger LOG = LoggerFactory.getLogger(Salsat.class);
 
 	public Salsat(ByteInput input) {
-		super(new TaggedStreamToPdu(new FixedLengthTagger(new CorrelateAccessCodeTag(new SoftToHard(input), 6, "00000100110011110101111111001000", false), 512 * 8)));
+		super(new CorrelateSyncword(input, 6, Collections.singleton("00000100110011110101111111001000"), 512 * 8, false));
 	}
 
 	@Override

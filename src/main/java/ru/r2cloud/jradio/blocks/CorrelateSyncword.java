@@ -2,6 +2,7 @@ package ru.r2cloud.jradio.blocks;
 
 import java.io.EOFException;
 import java.io.IOException;
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.Set;
 import java.util.UUID;
@@ -29,6 +30,10 @@ public class CorrelateSyncword implements MessageInput {
 
 	public CorrelateSyncword(ByteInput input, int threshold, Set<String> syncwords, int lengthBits) {
 		this(input, threshold, syncwords, lengthBits, true);
+	}
+
+	public CorrelateSyncword(ByteInput input, int threshold, String syncword, int lengthBits, boolean produceSoft) {
+		this(input, threshold, Collections.singleton(syncword), lengthBits, produceSoft);
 	}
 
 	public CorrelateSyncword(ByteInput input, int threshold, Set<String> syncwords, int lengthBits, boolean produceSoft) {
