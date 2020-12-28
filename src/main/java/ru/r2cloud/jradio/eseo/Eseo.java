@@ -7,7 +7,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import ru.r2cloud.jradio.BeaconSource;
-import ru.r2cloud.jradio.blocks.TaggedStreamToPdu;
+import ru.r2cloud.jradio.MessageInput;
+import ru.r2cloud.jradio.blocks.UnpackedToPacked;
 import ru.r2cloud.jradio.crc.Crc16Ccitt;
 import ru.r2cloud.jradio.fec.ccsds.ReedSolomon;
 import ru.r2cloud.jradio.fec.ccsds.UncorrectableException;
@@ -20,12 +21,13 @@ public class Eseo extends BeaconSource<EseoBeacon> {
 	private static final Logger LOG = LoggerFactory.getLogger(Eseo.class);
 	private static final ReedSolomon RS = new ReedSolomon(8, 0x11d, 1, 1, 16);
 
-	public Eseo(TaggedStreamToPdu input) {
+	public Eseo(MessageInput input) {
 		super(input);
 	}
 
 	@Override
 	protected EseoBeacon parseBeacon(byte[] raw) throws UncorrectableException, IOException {
+		raw = UnpackedToPacked.pack(raw);
 		CorrelateAccessCode code = new CorrelateAccessCode(2, EseoBeacon.FLAG);
 		// start from last index in case of reed-solomon code block is having EseoBeacon.FLAG
 		int endFlag = raw.length - 1;

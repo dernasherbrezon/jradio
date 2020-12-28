@@ -40,6 +40,7 @@ public class NgHam implements MessageInput {
 	public byte[] readBytes() throws IOException {
 		while (!Thread.currentThread().isInterrupted()) {
 			byte[] packet = input.readBytes();
+			packet = UnpackedToPacked.pack(packet);
 			long size = ((packet[0] & 0xFF) << 16) | ((packet[1] & 0xFF) << 8) | (packet[2] & 0xFF);
 			int index = findIndex(size);
 			if (index < 0) {

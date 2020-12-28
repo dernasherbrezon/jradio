@@ -7,7 +7,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import ru.r2cloud.jradio.BeaconSource;
-import ru.r2cloud.jradio.blocks.TaggedStreamToPdu;
+import ru.r2cloud.jradio.MessageInput;
+import ru.r2cloud.jradio.blocks.UnpackedToPacked;
 import ru.r2cloud.jradio.crc.Crc16Arc;
 import ru.r2cloud.jradio.fec.ccsds.UncorrectableException;
 import ru.r2cloud.jradio.fec.rs.bch.ReedSolomon;
@@ -18,12 +19,13 @@ public class At03 extends BeaconSource<At03Beacon> {
 
 	private final ReedSolomon rs = new ReedSolomon(16);
 
-	public At03(TaggedStreamToPdu input) {
+	public At03(MessageInput input) {
 		super(input);
 	}
 
 	@Override
 	protected At03Beacon parseBeacon(byte[] raw) throws UncorrectableException, IOException {
+		raw = UnpackedToPacked.pack(raw);
 		byte[] data = rs.decode(raw);
 		if (data.length != 48) {
 			if (LOG.isDebugEnabled()) {

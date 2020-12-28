@@ -30,7 +30,7 @@ public class SalsatTest {
 		w.close();
 	}
 
-	private static byte[] packedToUnpacked(byte[] input) {
+	public static byte[] packedToUnpacked(byte[] input) {
 		byte[] result = new byte[input.length * 8];
 		for (int i = 0; i < input.length; i++) {
 			int cur = input[i] & 0xFF;

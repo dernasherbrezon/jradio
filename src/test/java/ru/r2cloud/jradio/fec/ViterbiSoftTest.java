@@ -37,24 +37,24 @@ public class ViterbiSoftTest {
 	}
 
 	public static byte[] convertToSoft(byte[] input) {
-		byte[] soft = new byte[input.length * 8];
+		byte[] result = new byte[input.length * 8];
 		// convert to soft
 		for (int i = 0; i < input.length; i++) {
 			for (int j = 0; j < 8; j++) {
 				if ((input[i] & (1 << (7 - j))) > 0) {
-					soft[i * 8 + j] = Byte.MAX_VALUE;
+					result[i * 8 + j] = Byte.MAX_VALUE;
 				} else {
-					soft[i * 8 + j] = Byte.MIN_VALUE;
+					result[i * 8 + j] = Byte.MIN_VALUE;
 				}
 			}
 		}
-		return soft;
+		return result;
 	}
 
 	public static byte[] convertToHard(byte[] input) {
-		byte[] soft = new byte[input.length / 8];
+		byte[] result = new byte[input.length / 8];
 		// convert to soft
-		for (int i = 0; i < soft.length; i++) {
+		for (int i = 0; i < result.length; i++) {
 			int cur = 0;
 			for (int j = 0; j < 8; j++) {
 				cur = cur << 1;
@@ -63,9 +63,9 @@ public class ViterbiSoftTest {
 					cur = (cur | 0x1);
 				}
 			}
-			soft[i] = (byte) cur;
+			result[i] = (byte) cur;
 		}
-		return soft;
+		return result;
 	}
 
 }
