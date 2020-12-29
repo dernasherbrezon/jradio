@@ -6,7 +6,6 @@ import java.io.IOException;
 import ru.r2cloud.jradio.ByteInput;
 import ru.r2cloud.jradio.Context;
 import ru.r2cloud.jradio.Endianness;
-import ru.r2cloud.jradio.Tag;
 
 public class UnpackedToPacked implements ByteInput {
 
@@ -60,16 +59,12 @@ public class UnpackedToPacked implements ByteInput {
 		}
 		int indexTmp = index;
 		byte result = 0;
-		Tag tag = null;
 		switch (endianness) {
 		case GR_MSB_FIRST:
 			byte tmp = 0;
 			for (int j = 0; j < 8; j++) {
 				tmp = (byte) ((tmp << 1) | getBitBe1(indexTmp, bitsPerChunk));
 				indexTmp++;
-				if (j == 0) {
-					tag = readLengthTag();
-				}
 			}
 			result = tmp;
 			break;
@@ -78,36 +73,14 @@ public class UnpackedToPacked implements ByteInput {
 			for (int j = 0; j < 8; j++) {
 				tmp2 = (tmp2 >> 1) | (getBitBe1(indexTmp, bitsPerChunk) << (8 - 1));
 				indexTmp++;
-				if (j == 0) {
-					tag = readLengthTag();
-				}
 			}
 			result = (byte) tmp2;
 			break;
 		default:
 			throw new IllegalArgumentException("unsupported endianness: " + endianness);
 		}
-		if (tag != null) {
-			context.put(tag.getId(), tag);
-		}
-		context.setCurrent(tag);
-
 		index = indexTmp;
 		return result;
-	}
-
-	private Tag readLengthTag() {
-		Tag tag = input.getContext().getCurrent();
-		if (tag == null) {
-			return null;
-		}
-		Integer length = (Integer) tag.get(FixedLengthTagger.LENGTH);
-		if (length == null) {
-			return null;
-		}
-		// reduce length of message
-		tag.put(FixedLengthTagger.LENGTH, length / 8);
-		return tag;
 	}
 
 	@Override

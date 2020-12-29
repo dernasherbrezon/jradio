@@ -5,7 +5,7 @@ import java.io.IOException;
 import ru.r2cloud.jradio.ByteInput;
 import ru.r2cloud.jradio.Context;
 import ru.r2cloud.jradio.MessageInput;
-import ru.r2cloud.jradio.blocks.CorrelateAccessCodeTag;
+import ru.r2cloud.jradio.blocks.CorrelateSyncword;
 
 public class Ao40CorrelateAccessCodeTag implements MessageInput {
 
@@ -46,7 +46,7 @@ public class Ao40CorrelateAccessCodeTag implements MessageInput {
 					result[i] = (byte) (result[i] ^ 0xFF);
 				}
 			}
-			CorrelateAccessCodeTag.markStartOfPacket(getContext());
+			CorrelateSyncword.markStartOfPacket(getContext());
 			return result;
 		}
 	}

@@ -2,13 +2,13 @@ package ru.r2cloud.jradio.beesat4;
 
 import java.io.IOException;
 
-import ru.r2cloud.jradio.blocks.TaggedStreamToPdu;
+import ru.r2cloud.jradio.MessageInput;
 import ru.r2cloud.jradio.fec.ccsds.UncorrectableException;
 import ru.r2cloud.jradio.tubix20.TUBiX20;
 
 public class Beesat4 extends TUBiX20<Beesat4Beacon> {
 
-	public Beesat4(TaggedStreamToPdu input) {
+	public Beesat4(MessageInput input) {
 		super(input);
 	}
 

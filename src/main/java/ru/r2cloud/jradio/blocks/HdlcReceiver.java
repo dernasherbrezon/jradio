@@ -80,7 +80,7 @@ public class HdlcReceiver implements MessageInput {
 							}
 						}
 						byte[] frame = unpackedToPacked(payloadLength);
-						CorrelateAccessCodeTag.markStartOfPacket(getContext());
+						CorrelateSyncword.markStartOfPacket(getContext());
 						return frame;
 					}
 

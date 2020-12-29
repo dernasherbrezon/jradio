@@ -15,6 +15,9 @@ import ru.r2cloud.jradio.Tag;
 
 public class CorrelateSyncword implements MessageInput {
 
+	public static final String ACCESS_CODE = "accessCode";
+	public static final String SOURCE_SAMPLE = "sourceSample";
+
 	private final ByteInput input;
 	private final boolean softBitsInput;
 	private final LinkedList<CorrelateIndex> currentIndexes = new LinkedList<>();
@@ -89,8 +92,8 @@ public class CorrelateSyncword implements MessageInput {
 
 		Tag tag = new Tag();
 		tag.setId(UUID.randomUUID().toString());
-		tag.put(CorrelateAccessCodeTag.ACCESS_CODE, first.getAccessCode());
-		tag.put(CorrelateAccessCodeTag.SOURCE_SAMPLE, first.getSourceSample());
+		tag.put(ACCESS_CODE, first.getAccessCode());
+		tag.put(SOURCE_SAMPLE, first.getSourceSample());
 		getContext().setCurrent(tag);
 		return packet;
 	}
@@ -158,6 +161,16 @@ public class CorrelateSyncword implements MessageInput {
 		return input.getContext();
 	}
 
+	public static void markStartOfPacket(Context context) {
+		LongValueSource currentSample = context.getCurrentSample();
+		if (currentSample != null) {
+			Tag tag = new Tag();
+			tag.setId(UUID.randomUUID().toString());
+			tag.put(CorrelateSyncword.SOURCE_SAMPLE, currentSample.getValue());
+			context.put(tag.getId(), tag);
+		}
+	}
+	
 	private static int validateAndReturnSyncwordLength(Set<String> syncwords) {
 		int result = -1;
 		for (String cur : syncwords) {

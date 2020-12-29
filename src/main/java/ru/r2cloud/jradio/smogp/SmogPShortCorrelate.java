@@ -5,7 +5,7 @@ import java.io.IOException;
 import ru.r2cloud.jradio.ByteInput;
 import ru.r2cloud.jradio.Context;
 import ru.r2cloud.jradio.MessageInput;
-import ru.r2cloud.jradio.blocks.CorrelateAccessCodeTag;
+import ru.r2cloud.jradio.blocks.CorrelateSyncword;
 
 public class SmogPShortCorrelate implements MessageInput {
 
@@ -37,7 +37,7 @@ public class SmogPShortCorrelate implements MessageInput {
 			byte[] result = new byte[window.length];
 			System.arraycopy(window, currentIndex, result, 0, window.length - currentIndex);
 			System.arraycopy(window, 0, result, window.length - currentIndex, currentIndex);
-			CorrelateAccessCodeTag.markStartOfPacket(getContext());
+			CorrelateSyncword.markStartOfPacket(getContext());
 			return result;
 		}
 	}

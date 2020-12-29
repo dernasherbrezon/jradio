@@ -134,7 +134,7 @@ public class CorrelateSyncwordTest {
 	}
 
 	private static void assertSample(Context context, long expected) {
-		Long beginSample = (Long) context.getCurrent().get(CorrelateAccessCodeTag.SOURCE_SAMPLE);
+		Long beginSample = (Long) context.getCurrent().get(CorrelateSyncword.SOURCE_SAMPLE);
 		assertNotNull(beginSample);
 		assertEquals(expected, beginSample.longValue());
 	}

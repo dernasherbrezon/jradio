@@ -80,9 +80,8 @@ All blocks meant to be binary compatible with gnuradio versions. This will ensur
   * ConstellationModulator
   * ConstellationSoftDecoder
   * [ConvolutionalDeinterleaver](https://en.wikipedia.org/wiki/Burst_error-correcting_code#Convolutional_interleaver)
-  * CorrelateAccessCodeTag
   * CorrelateSynchronizationMarker. Extract data from continuous stream of synchronization markers. Work with soft stream. 
-  * CorrelateSyncword. Group CorrelateAccessCodeTag, FixedLengthTagger, TaggedStreamToPdu together for better performance.
+  * CorrelateSyncword
   * CostasLoop
   * DcBlocker
   * DelayOne. jradio doesn't support split and merge of streams. This block incapsulates delay 1 for imag complex stream
@@ -94,7 +93,6 @@ All blocks meant to be binary compatible with gnuradio versions. This will ensur
   * FIRFilterBlock
   * File Source (InputStreamSource)
   * File Sink (OutputStreamSink)
-  * FixedLengthTagger
   * FLL Band Edge
   * FloatToChar
   * FloatToComplex
@@ -124,7 +122,6 @@ All blocks meant to be binary compatible with gnuradio versions. This will ensur
   * RootRaisedCosineFilter
   * Scrambler
   * SigSource
-  * TaggedStreamToPdu
   * UnpackedToPacked
   * WavFileSource
   * WavFileSink

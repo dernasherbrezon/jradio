@@ -9,7 +9,7 @@ import java.util.NoSuchElementException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import ru.r2cloud.jradio.blocks.CorrelateAccessCodeTag;
+import ru.r2cloud.jradio.blocks.CorrelateSyncword;
 import ru.r2cloud.jradio.fec.ccsds.UncorrectableException;
 
 public abstract class BeaconSource<T> implements Iterator<T>, Closeable {
@@ -67,7 +67,7 @@ public abstract class BeaconSource<T> implements Iterator<T>, Closeable {
 
 			if (beacon instanceof Beacon) {
 				Beacon realBeacon = (Beacon) beacon;
-				Long beginSample = (Long) input.getContext().getCurrent().get(CorrelateAccessCodeTag.SOURCE_SAMPLE);
+				Long beginSample = (Long) input.getContext().getCurrent().get(CorrelateSyncword.SOURCE_SAMPLE);
 				if (beginSample != null) {
 					realBeacon.setBeginSample(beginSample.longValue());
 				}

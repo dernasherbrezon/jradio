@@ -12,7 +12,6 @@ import ru.r2cloud.jradio.MessageInput;
 import ru.r2cloud.jradio.PhaseAmbiguityResolver;
 import ru.r2cloud.jradio.Tag;
 import ru.r2cloud.jradio.blocks.ConvolutionalDeinterleaver;
-import ru.r2cloud.jradio.blocks.CorrelateAccessCodeTag;
 import ru.r2cloud.jradio.blocks.CorrelateSynchronizationMarker;
 import ru.r2cloud.jradio.blocks.CorrelateSyncword;
 import ru.r2cloud.jradio.blocks.DifferentialSoftDecoder;
@@ -60,7 +59,7 @@ public class LRPT implements MessageInput {
 
 	private byte[] decode(byte[] rawBytes) throws UncorrectableException {
 		Tag currentTag = messageInput.getContext().getCurrent();
-		phaseAmbiguityResolver.rotateSoft(rawBytes, (Long) currentTag.get(CorrelateAccessCodeTag.ACCESS_CODE));
+		phaseAmbiguityResolver.rotateSoft(rawBytes, (Long) currentTag.get(CorrelateSyncword.ACCESS_CODE));
 		byte[] viterbi = viterbiSoft.decode(rawBytes);
 		Randomize.shuffle(viterbi);
 		return ReedSolomon.CCSDS.decodeData(viterbi, 4);
