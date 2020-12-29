@@ -16,7 +16,7 @@ import ru.r2cloud.jradio.Tag;
 public class CorrelateSyncword implements MessageInput {
 
 	private final ByteInput input;
-	private final boolean produceSoft;
+	private final boolean softBitsInput;
 	private final LinkedList<CorrelateIndex> currentIndexes = new LinkedList<>();
 	private long dataRegister = 0;
 	private long threshold;
@@ -32,11 +32,15 @@ public class CorrelateSyncword implements MessageInput {
 		this(input, threshold, syncwords, lengthBits, true);
 	}
 
-	public CorrelateSyncword(ByteInput input, int threshold, String syncword, int lengthBits, boolean produceSoft) {
-		this(input, threshold, Collections.singleton(syncword), lengthBits, produceSoft);
+	public CorrelateSyncword(ByteInput input, int threshold, String syncword, int lengthBits) {
+		this(input, threshold, Collections.singleton(syncword), lengthBits);
 	}
 
-	public CorrelateSyncword(ByteInput input, int threshold, Set<String> syncwords, int lengthBits, boolean produceSoft) {
+	public CorrelateSyncword(ByteInput input, int threshold, String syncword, int lengthBits, boolean softBitsInput) {
+		this(input, threshold, Collections.singleton(syncword), lengthBits, softBitsInput);
+	}
+	
+	public CorrelateSyncword(ByteInput input, int threshold, Set<String> syncwords, int lengthBits, boolean softBitsInput) {
 		if (syncwords.isEmpty()) {
 			throw new IllegalArgumentException("syncword cannot be empty");
 		}
@@ -45,7 +49,7 @@ public class CorrelateSyncword implements MessageInput {
 		this.packet = new byte[lengthBits];
 		this.input = input;
 		this.threshold = threshold;
-		this.produceSoft = produceSoft;
+		this.softBitsInput = softBitsInput;
 		this.accessCodes = convert(syncwords);
 	}
 
@@ -56,9 +60,6 @@ public class CorrelateSyncword implements MessageInput {
 			byte[] packet = checkPacket();
 			if (packet == null) {
 				continue;
-			}
-			if (!produceSoft) {
-				SoftToHard.convertToHard(packet);
 			}
 			return packet;
 		}
@@ -95,15 +96,19 @@ public class CorrelateSyncword implements MessageInput {
 	}
 
 	private void checkSync() throws IOException {
-		byte softBit = input.readByte();
-		addSoftBit(softBit);
+		byte inputBit = input.readByte();
+		addInputBit(inputBit);
 		totalBitsRead++;
 
 		byte hardBit;
-		if (softBit >= 0) {
-			hardBit = 1;
+		if (softBitsInput) {
+			if (inputBit >= 0) {
+				hardBit = 1;
+			} else {
+				hardBit = 0;
+			}
 		} else {
-			hardBit = 0;
+			hardBit = inputBit;
 		}
 		dataRegister = (dataRegister << 1) | (hardBit & 0xFF);
 		long minWrong = threshold + 1;
@@ -135,7 +140,7 @@ public class CorrelateSyncword implements MessageInput {
 		currentIndexes.add(index);
 	}
 
-	private void addSoftBit(byte nextSoftBit) {
+	private void addInputBit(byte nextSoftBit) {
 		window[windowIndex] = nextSoftBit;
 		windowIndex++;
 		if (windowIndex >= window.length) {

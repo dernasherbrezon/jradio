@@ -10,6 +10,7 @@ import org.junit.Test;
 
 import ru.r2cloud.jradio.AssertJson;
 import ru.r2cloud.jradio.blocks.CorrelateSyncword;
+import ru.r2cloud.jradio.blocks.SoftToHard;
 import ru.r2cloud.jradio.demod.FskDemodulator;
 import ru.r2cloud.jradio.source.WavFileSource;
 
@@ -24,7 +25,8 @@ public class FoxTest {
 		Set<String> codes = new HashSet<>();
 		codes.add("0011111010");
 		codes.add("1100000101");
-		CorrelateSyncword pdu = new CorrelateSyncword(demod, 0, codes, Fox.SLOW_FRAME_SIZE * 10, false);
+		SoftToHard s2h = new SoftToHard(demod);
+		CorrelateSyncword pdu = new CorrelateSyncword(s2h, 0, codes, Fox.SLOW_FRAME_SIZE * 10, false);
 		input = new Fox<>(pdu, Fox1ABeacon.class);
 		assertTrue(input.hasNext());
 		AssertJson.assertObjectsEqual("Fox1ABeacon.json", input.next());
@@ -37,7 +39,8 @@ public class FoxTest {
 		Set<String> codes = new HashSet<>();
 		codes.add("0011111010");
 		codes.add("1100000101");
-		CorrelateSyncword pdu = new CorrelateSyncword(demod, 0, codes, HighSpeedFox.HIGH_SPEED_FRAME_SIZE * 10, false);
+		SoftToHard s2h = new SoftToHard(demod);
+		CorrelateSyncword pdu = new CorrelateSyncword(s2h, 0, codes, HighSpeedFox.HIGH_SPEED_FRAME_SIZE * 10, false);
 		HighSpeedFox<Fox1DBeacon> input = new HighSpeedFox<>(pdu, Fox1DBeacon.class);
 		assertTrue(input.hasNext());
 		AssertJson.assertObjectsEqual("Fox1DBeacon-highspeed.json", input.next());

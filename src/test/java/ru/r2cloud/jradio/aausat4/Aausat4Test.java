@@ -40,7 +40,7 @@ public class Aausat4Test {
 		Rail rail = new Rail(clockRecovery, -1.0f, 1.0f);
 		FloatToChar f2char = new FloatToChar(rail, 127.0f);
 		// 8 for fsm
-		CorrelateSyncword correlate = new CorrelateSyncword(f2char, 10, "010011110101101000110100010000110101010101000010", Aausat4.VITERBI_TAIL_SIZE + 8, true);
+		CorrelateSyncword correlate = new CorrelateSyncword(f2char, 10, "010011110101101000110100010000110101010101000010", Aausat4.VITERBI_TAIL_SIZE + 8);
 		Aausat4 input = new Aausat4(correlate);
 		Thread t = new Thread(new Runnable() {
 
@@ -103,7 +103,7 @@ public class Aausat4Test {
 	private void setupDemodulator(FloatInput source) {
 		FskDemodulator demod = new FskDemodulator(source, 2400);
 		// 8 for fsm
-		CorrelateSyncword correlate = new CorrelateSyncword(demod, 10, "010011110101101000110100010000110101010101000010", Aausat4.VITERBI_TAIL_SIZE + 8, true);
+		CorrelateSyncword correlate = new CorrelateSyncword(demod, 10, "010011110101101000110100010000110101010101000010", Aausat4.VITERBI_TAIL_SIZE + 8);
 		input = new Aausat4(correlate);
 	}
 

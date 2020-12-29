@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory;
 
 import ru.r2cloud.jradio.BeaconSource;
 import ru.r2cloud.jradio.MessageInput;
+import ru.r2cloud.jradio.blocks.UnpackedToPacked;
 import ru.r2cloud.jradio.crc.Crc16Ccitt;
 import ru.r2cloud.jradio.fec.ccsds.ReedSolomon;
 import ru.r2cloud.jradio.fec.ccsds.UncorrectableException;
@@ -23,6 +24,7 @@ public class Astrocast extends BeaconSource<AstrocastBeacon> {
 
 	@Override
 	protected AstrocastBeacon parseBeacon(byte[] raw) throws UncorrectableException, IOException {
+		raw = UnpackedToPacked.pack(raw);
 		for (int i = 0; i < raw.length; i++) {
 			raw[i] = (byte) MathUtils.reverseBitsInByte(raw[i] & 0xFF);
 		}

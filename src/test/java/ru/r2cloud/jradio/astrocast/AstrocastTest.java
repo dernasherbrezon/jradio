@@ -2,21 +2,19 @@ package ru.r2cloud.jradio.astrocast;
 
 import static org.junit.Assert.assertTrue;
 
+import java.util.Collections;
+
 import org.junit.After;
 import org.junit.Test;
 
 import ru.r2cloud.jradio.AssertJson;
-import ru.r2cloud.jradio.Endianness;
 import ru.r2cloud.jradio.blocks.BinarySlicer;
 import ru.r2cloud.jradio.blocks.ClockRecoveryMM;
-import ru.r2cloud.jradio.blocks.CorrelateAccessCodeTag;
 import ru.r2cloud.jradio.blocks.CorrelateSyncword;
-import ru.r2cloud.jradio.blocks.FixedLengthTagger;
 import ru.r2cloud.jradio.blocks.LowPassFilter;
 import ru.r2cloud.jradio.blocks.MultiplyConst;
 import ru.r2cloud.jradio.blocks.NrziDecode;
-import ru.r2cloud.jradio.blocks.TaggedStreamToPdu;
-import ru.r2cloud.jradio.blocks.UnpackedToPacked;
+import ru.r2cloud.jradio.blocks.SoftToHard;
 import ru.r2cloud.jradio.blocks.Window;
 import ru.r2cloud.jradio.demod.FskDemodulator;
 import ru.r2cloud.jradio.source.WavFileSource;
@@ -34,9 +32,8 @@ public class AstrocastTest {
 		LowPassFilter lpf = new LowPassFilter(mc, 5, 1.0, 1000, 600, Window.WIN_HAMMING, 6.76);
 		ClockRecoveryMM clockRecovery = new ClockRecoveryMM(lpf, lpf.getContext().getSampleRate() / 1200, (float) (0.25 * gainMu * gainMu), 0.5f, gainMu, 0.05f);
 		BinarySlicer bs = new BinarySlicer(clockRecovery);
-		CorrelateAccessCodeTag correlateTag = new CorrelateAccessCodeTag(bs, 8, "0111010111111010110000011010001101011000110100000110010001110110", false);
-		TaggedStreamToPdu pdu = new TaggedStreamToPdu(new UnpackedToPacked(new FixedLengthTagger(correlateTag, 255 * 8), 1, Endianness.GR_MSB_FIRST));
-		input = new Astrocast(pdu);
+		CorrelateSyncword correlate = new CorrelateSyncword(bs, 8, Collections.singleton("0111010111111010110000011010001101011000110100000110010001110110"), 255 * 8, false);
+		input = new Astrocast(correlate);
 		assertTrue(input.hasNext());
 		AssertJson.assertObjectsEqual("AstrocastBeacon.json", input.next());
 	}
@@ -46,14 +43,18 @@ public class AstrocastTest {
 		float gainMu = 0.175f * 5;
 		WavFileSource source = new WavFileSource(AstrocastTest.class.getClassLoader().getResourceAsStream("astrocast_nrzi.wav"));
 		MultiplyConst mc = new MultiplyConst(source, 10.0f);
+		// FskDemodulator demod = new FskDemodulator(mc, 1200);
 		LowPassFilter lpf = new LowPassFilter(mc, 5, 1.0, 1000, 600, Window.WIN_HAMMING, 6.76);
 		ClockRecoveryMM clockRecovery = new ClockRecoveryMM(lpf, lpf.getContext().getSampleRate() / 1200, (float) (0.25 * gainMu * gainMu), 0.5f, gainMu, 0.05f);
 		BinarySlicer bs = new BinarySlicer(clockRecovery);
+		// Rail next = new Rail(clockRecovery, -1.0f, 1.0f);
+		// FloatToChar f2c = new FloatToChar(next, 127.0f);
 		NrziDecode nrzi = new NrziDecode(bs);
-		CorrelateAccessCodeTag correlateTag = new CorrelateAccessCodeTag(nrzi, 8, "0111010111111010110000011010001101011000110100000110010001110110", false);
-		UnpackedToPacked packed = new UnpackedToPacked(new FixedLengthTagger(correlateTag, 255 * 8), 1, Endianness.GR_MSB_FIRST);
-		TaggedStreamToPdu pdu = new TaggedStreamToPdu(packed);
-		input = new Astrocast(pdu);
+		// CorrelateAccessCodeTag correlateTag = new CorrelateAccessCodeTag(nrzi, 8, "0111010111111010110000011010001101011000110100000110010001110110", false);
+		// UnpackedToPacked packed = new UnpackedToPacked(new FixedLengthTagger(correlateTag, 255 * 8), 1, Endianness.GR_MSB_FIRST);
+		// TaggedStreamToPdu pdu = new TaggedStreamToPdu(packed);
+		CorrelateSyncword correlate = new CorrelateSyncword(nrzi, 8, Collections.singleton("0111010111111010110000011010001101011000110100000110010001110110"), 255 * 8, false);
+		input = new Astrocast(correlate);
 		assertTrue(input.hasNext());
 		AssertJson.assertObjectsEqual("AstrocastNrziBeacon.json", input.next());
 	}
@@ -63,7 +64,8 @@ public class AstrocastTest {
 		WavFileSource source = new WavFileSource(AstrocastTest.class.getClassLoader().getResourceAsStream("astrocast_9k6.wav"));
 		MultiplyConst mc = new MultiplyConst(source, -10.0f);
 		FskDemodulator demod = new FskDemodulator(mc, 9600, 5000.0f, 1, 2000.0f, false);
-		CorrelateSyncword correlate = new CorrelateSyncword(demod, 4, "00011010110011111111110000011101", 255 * 8 * 5, false);
+		SoftToHard s2h = new SoftToHard(demod);
+		CorrelateSyncword correlate = new CorrelateSyncword(s2h, 4, Collections.singleton("00011010110011111111110000011101"), 255 * 8 * 5, false);
 		input9k6 = new Astrocast9k6(correlate);
 		assertTrue(input9k6.hasNext());
 		AssertJson.assertObjectsEqual("Astrocast9k6Beacon.json", input9k6.next());

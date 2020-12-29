@@ -7,6 +7,7 @@ import org.junit.Test;
 
 import ru.r2cloud.jradio.AssertJson;
 import ru.r2cloud.jradio.blocks.CorrelateSyncword;
+import ru.r2cloud.jradio.blocks.SoftToHard;
 import ru.r2cloud.jradio.demod.AfskDemodulator;
 import ru.r2cloud.jradio.source.WavFileSource;
 
@@ -18,7 +19,8 @@ public class SnetTest {
 	public void testDecodeTelemetry() throws Exception {
 		WavFileSource source = new WavFileSource(SnetTest.class.getClassLoader().getResourceAsStream("snet_a.wav"));
 		AfskDemodulator demod = new AfskDemodulator(source, 1200, -600, 1500, 8);
-		CorrelateSyncword correlate = new CorrelateSyncword(demod, 4, "00000100110011110101111111001000", 512 * 8, false);
+		SoftToHard s2h = new SoftToHard(demod);
+		CorrelateSyncword correlate = new CorrelateSyncword(s2h, 4, "00000100110011110101111111001000", 512 * 8, false);
 		input = new Snet(correlate);
 		assertTrue(input.hasNext());
 		AssertJson.assertObjectsEqual("SnetBeacon.json", input.next());
