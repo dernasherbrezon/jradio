@@ -25,7 +25,7 @@ public class Ax100BeaconSource<T extends Beacon> extends BeaconSource<T> {
 	}
 
 	public Ax100BeaconSource(ByteInput input, int beaconSizeBytes, String accessCode, Class<T> clazz, boolean forceViterbi, boolean forceScrambler, boolean forceReedSolomon) {
-		super(new AX100Decoder(new CorrelateSyncword(input, 4, Collections.singleton(accessCode), (beaconSizeBytes + 3) * 8, true), forceViterbi, forceScrambler, forceReedSolomon));
+		super(new AX100Decoder(new CorrelateSyncword(input, 4, Collections.singleton(accessCode), (beaconSizeBytes + 3) * 8), forceViterbi, forceScrambler, forceReedSolomon));
 		this.clazz = clazz;
 	}
 

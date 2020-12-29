@@ -17,6 +17,7 @@ import ru.r2cloud.jradio.blocks.Window;
 public class FskDemodulator implements ByteInput {
 
 	private final ByteInput source;
+	private final Context context;
 
 	public FskDemodulator(FloatInput source, int baudRate) {
 		this(source, baudRate, 5000.0f, 1, 2000, true);
@@ -41,6 +42,8 @@ public class FskDemodulator implements ByteInput {
 		next = new ClockRecoveryMM(next, samplesPerSymbol, (float) ((samplesPerSymbol * Math.PI) / 100), 0.5f, 0.5f / 8.0f, 0.01f);
 		next = new Rail(next, -1.0f, 1.0f);
 		this.source = new FloatToChar(next, 127.0f);
+		this.context = new Context(this.source.getContext());
+		this.context.setSoftBits(true);
 	}
 
 	@Override
@@ -50,7 +53,7 @@ public class FskDemodulator implements ByteInput {
 
 	@Override
 	public Context getContext() {
-		return source.getContext();
+		return context;
 	}
 
 	@Override

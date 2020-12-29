@@ -22,7 +22,7 @@ public class Ca03Test {
 		FskDemodulator demod = new FskDemodulator(source, 9600);
 		SoftToHard s2h = new SoftToHard(demod);
 		Descrambler des = new Descrambler(s2h, 0x21, 0x00, 16);
-		CorrelateSyncword correlate = new CorrelateSyncword(des, 6, "10010011000010110101000111011110", 180 * 8, false);
+		CorrelateSyncword correlate = new CorrelateSyncword(des, 6, "10010011000010110101000111011110", 180 * 8);
 		input = new Ca03(correlate);
 		assertTrue(input.hasNext());
 		AssertJson.assertObjectsEqual("Ca03Beacon.json", input.next());
@@ -34,7 +34,7 @@ public class Ca03Test {
 		FskDemodulator demod = new FskDemodulator(source, 4800, 5000.0f, 2, 2000);
 		SoftToHard s2h = new SoftToHard(demod);
 		Descrambler des = new Descrambler(s2h, 0x21, 0x00, 16);
-		CorrelateSyncword correlate = new CorrelateSyncword(des, 6, "10010011000010110101000111011110", 180 * 8, false);
+		CorrelateSyncword correlate = new CorrelateSyncword(des, 6, "10010011000010110101000111011110", 180 * 8);
 		input = new Ca03(correlate);
 		assertTrue(input.hasNext());
 		AssertJson.assertObjectsEqual("Ca03Beacon-4800.json", input.next());

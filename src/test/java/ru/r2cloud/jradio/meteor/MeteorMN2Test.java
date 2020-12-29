@@ -8,6 +8,7 @@ import org.junit.After;
 import org.junit.Test;
 
 import ru.r2cloud.jradio.AssertJson;
+import ru.r2cloud.jradio.Context;
 import ru.r2cloud.jradio.source.InputStreamSource;
 
 public class MeteorMN2Test {
@@ -16,7 +17,9 @@ public class MeteorMN2Test {
 
 	@Test
 	public void success() throws Exception {
-		InputStreamSource float2char = new InputStreamSource(MeteorMN2Test.class.getClassLoader().getResourceAsStream("8bitsoft.s"));
+		Context ctx = new Context();
+		ctx.setSoftBits(true);
+		InputStreamSource float2char = new InputStreamSource(MeteorMN2Test.class.getClassLoader().getResourceAsStream("8bitsoft.s"), ctx);
 		meteor = new MeteorMN2(float2char);
 		assertTrue(meteor.hasNext());
 		AssertJson.assertObjectsEqual("Vcdu.json", meteor.next());

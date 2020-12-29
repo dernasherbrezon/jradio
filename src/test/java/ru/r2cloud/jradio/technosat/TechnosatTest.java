@@ -21,7 +21,7 @@ public class TechnosatTest {
 		WavFileSource source = new WavFileSource(TechnosatTest.class.getClassLoader().getResourceAsStream("technosat.wav"));
 		FskDemodulator demod = new FskDemodulator(source, 4800, 5000.0f, 2, 2000, false);
 		SoftToHard s2h = new SoftToHard(demod);
-		CorrelateSyncword correlate = new CorrelateSyncword(s2h, 4, "111011110000111011110000", CMX909bBeacon.MAX_SIZE * 8, false);
+		CorrelateSyncword correlate = new CorrelateSyncword(s2h, 4, "111011110000111011110000", CMX909bBeacon.MAX_SIZE * 8);
 		input = new Technosat(correlate);
 		assertTrue(input.hasNext());
 		AssertJson.assertObjectsEqual("TechnosatBeacon.json", input.next());

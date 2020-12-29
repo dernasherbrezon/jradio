@@ -1,7 +1,6 @@
 package ru.r2cloud.jradio.salsat;
 
 import java.io.IOException;
-import java.util.Collections;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -20,7 +19,7 @@ public class Salsat extends BeaconSource<SnetBeacon> {
 	private static final Logger LOG = LoggerFactory.getLogger(Salsat.class);
 
 	public Salsat(ByteInput input) {
-		super(new CorrelateSyncword(input, 6, Collections.singleton("00000100110011110101111111001000"), 512 * 8, false));
+		super(new CorrelateSyncword(input, 6, "00000100110011110101111111001000", 512 * 8));
 	}
 
 	@Override

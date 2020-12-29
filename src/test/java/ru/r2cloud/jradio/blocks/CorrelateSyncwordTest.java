@@ -68,7 +68,7 @@ public class CorrelateSyncwordTest {
 		data.append(body2);
 		data.append(generateRandom(body1.length())); // add some trailling bytes
 		PhaseAmbiguityResolver resolver = new PhaseAmbiguityResolver(Long.parseLong(syncword, 16), syncword.length() * 4);
-		CorrelateSyncword block = new CorrelateSyncword(new ArrayByteInput(ViterbiSoftTest.convertToSoft(ViterbiTest.hexStringToByteArray(data.toString()))), THRESHOLD, resolver.getSynchronizationMarkers(), body1.length() * 4);
+		CorrelateSyncword block = new CorrelateSyncword(new ArrayByteInput(false, true, ViterbiSoftTest.convertToSoft(ViterbiTest.hexStringToByteArray(data.toString()))), THRESHOLD, resolver.getSynchronizationMarkers(), body1.length() * 4);
 		assertEquals(body1, ViterbiTest.bytesToHex(ViterbiSoftTest.convertToHard(block.readBytes())));
 		assertEquals(body2, ViterbiTest.bytesToHex(ViterbiSoftTest.convertToHard(block.readBytes())));
 		block.close();
@@ -86,7 +86,7 @@ public class CorrelateSyncwordTest {
 		data.append(body1);
 		data.append(syncword);
 		data.append(body2);
-		CorrelateSyncword block = new CorrelateSyncword(new ArrayByteInput(ViterbiSoftTest.convertToSoft(ViterbiTest.hexStringToByteArray(data.toString()))), THRESHOLD, Collections.singleton("00011010110011111010"), body1.length() * 4);
+		CorrelateSyncword block = new CorrelateSyncword(new ArrayByteInput(false, true, ViterbiSoftTest.convertToSoft(ViterbiTest.hexStringToByteArray(data.toString()))), THRESHOLD, Collections.singleton("00011010110011111010"), body1.length() * 4);
 		assertEquals(body1, ViterbiTest.bytesToHex(ViterbiSoftTest.convertToHard(block.readBytes())));
 		assertSample(block.getContext(), numberOfRandomBytes * 8 + syncword.length() * 4);
 		assertEquals("AADD1ACFA129", ViterbiTest.bytesToHex(ViterbiSoftTest.convertToHard(block.readBytes())));
@@ -106,7 +106,7 @@ public class CorrelateSyncwordTest {
 		data.append(syncword);
 		data.append(body);
 		PhaseAmbiguityResolver resolver = new PhaseAmbiguityResolver(Long.parseLong(syncword, 16), syncword.length() * 4);
-		CorrelateSyncword block = new CorrelateSyncword(new ArrayByteInput(ViterbiSoftTest.convertToSoft(ViterbiTest.hexStringToByteArray(data.toString()))), THRESHOLD, resolver.getSynchronizationMarkers(), (body.length() + 4) * 4);
+		CorrelateSyncword block = new CorrelateSyncword(new ArrayByteInput(false, true, ViterbiSoftTest.convertToSoft(ViterbiTest.hexStringToByteArray(data.toString()))), THRESHOLD, resolver.getSynchronizationMarkers(), (body.length() + 4) * 4);
 		assertEof(block);
 		block.close();
 	}
@@ -127,7 +127,7 @@ public class CorrelateSyncwordTest {
 		data.append(body);
 		data.append(generateRandom(body.length())); // add some trailling bytes
 		PhaseAmbiguityResolver resolver = new PhaseAmbiguityResolver(syncwordBinary, syncword.length() * 4);
-		CorrelateSyncword block = new CorrelateSyncword(new ArrayByteInput(ViterbiSoftTest.convertToSoft(ViterbiTest.hexStringToByteArray(data.toString()))), THRESHOLD, resolver.getSynchronizationMarkers(), body.length() * 4);
+		CorrelateSyncword block = new CorrelateSyncword(new ArrayByteInput(false, true, ViterbiSoftTest.convertToSoft(ViterbiTest.hexStringToByteArray(data.toString()))), THRESHOLD, resolver.getSynchronizationMarkers(), body.length() * 4);
 		assertEquals(body, ViterbiTest.bytesToHex(ViterbiSoftTest.convertToHard(block.readBytes())));
 		assertEof(block);
 		block.close();

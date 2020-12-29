@@ -20,7 +20,7 @@ public class Sat3Cat1Test {
 		WavFileSource source = new WavFileSource(Sat3Cat1Test.class.getClassLoader().getResourceAsStream("sat_3cat_1.wav"));
 		FskDemodulator demod = new FskDemodulator(source, 9600);
 		SoftToHard s2h = new SoftToHard(demod);
-		CorrelateSyncword correlate = new CorrelateSyncword(s2h, 4, "11010011100100011101001110010001", 255 * 8, false);
+		CorrelateSyncword correlate = new CorrelateSyncword(s2h, 4, "11010011100100011101001110010001", 255 * 8);
 		input = new Sat3Cat1(correlate);
 		assertTrue(input.hasNext());
 		AssertJson.assertObjectsEqual("Sat3Cat1Beacon.json", input.next());

@@ -15,6 +15,9 @@ public class NrziDecode implements ByteInput {
 	private int previous;
 
 	public NrziDecode(ByteInput source) {
+		if (source.getContext().getSoftBits()) {
+			throw new IllegalArgumentException("expected hard bits");
+		}
 		this.source = source;
 	}
 

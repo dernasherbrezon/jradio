@@ -20,7 +20,7 @@ public class SnetTest {
 		WavFileSource source = new WavFileSource(SnetTest.class.getClassLoader().getResourceAsStream("snet_a.wav"));
 		AfskDemodulator demod = new AfskDemodulator(source, 1200, -600, 1500, 8);
 		SoftToHard s2h = new SoftToHard(demod);
-		CorrelateSyncword correlate = new CorrelateSyncword(s2h, 4, "00000100110011110101111111001000", 512 * 8, false);
+		CorrelateSyncword correlate = new CorrelateSyncword(s2h, 4, "00000100110011110101111111001000", 512 * 8);
 		input = new Snet(correlate);
 		assertTrue(input.hasNext());
 		AssertJson.assertObjectsEqual("SnetBeacon.json", input.next());

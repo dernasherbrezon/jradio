@@ -24,7 +24,7 @@ public class NusatTest {
 		FrequencyXlatingFIRFilter xlating = new FrequencyXlatingFIRFilter(source, taps, 1, 5760);
 		FskDemodulator demod = new FskDemodulator(xlating, 40_000);
 		SoftToHard s2h = new SoftToHard(demod);
-		CorrelateSyncword correlate = new CorrelateSyncword(s2h, 4, "00000001111001011010101011001100", 64 * 8, false);
+		CorrelateSyncword correlate = new CorrelateSyncword(s2h, 4, "00000001111001011010101011001100", 64 * 8);
 		input = new Nusat(correlate);
 		assertTrue(input.hasNext());
 	}

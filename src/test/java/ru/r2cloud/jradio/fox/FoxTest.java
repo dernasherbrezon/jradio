@@ -26,7 +26,7 @@ public class FoxTest {
 		codes.add("0011111010");
 		codes.add("1100000101");
 		SoftToHard s2h = new SoftToHard(demod);
-		CorrelateSyncword pdu = new CorrelateSyncword(s2h, 0, codes, Fox.SLOW_FRAME_SIZE * 10, false);
+		CorrelateSyncword pdu = new CorrelateSyncword(s2h, 0, codes, Fox.SLOW_FRAME_SIZE * 10);
 		input = new Fox<>(pdu, Fox1ABeacon.class);
 		assertTrue(input.hasNext());
 		AssertJson.assertObjectsEqual("Fox1ABeacon.json", input.next());
@@ -40,7 +40,7 @@ public class FoxTest {
 		codes.add("0011111010");
 		codes.add("1100000101");
 		SoftToHard s2h = new SoftToHard(demod);
-		CorrelateSyncword pdu = new CorrelateSyncword(s2h, 0, codes, HighSpeedFox.HIGH_SPEED_FRAME_SIZE * 10, false);
+		CorrelateSyncword pdu = new CorrelateSyncword(s2h, 0, codes, HighSpeedFox.HIGH_SPEED_FRAME_SIZE * 10);
 		HighSpeedFox<Fox1DBeacon> input = new HighSpeedFox<>(pdu, Fox1DBeacon.class);
 		assertTrue(input.hasNext());
 		AssertJson.assertObjectsEqual("Fox1DBeacon-highspeed.json", input.next());

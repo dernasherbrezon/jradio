@@ -25,6 +25,9 @@ public class AX100Decoder implements MessageInput {
 	private final boolean forceReedSolomon;
 
 	public AX100Decoder(MessageInput input, boolean forceViterbi, boolean forceScrambler, boolean forceReedSolomon) {
+		if (!input.getContext().getSoftBits()) {
+			throw new IllegalArgumentException("expected soft bits");
+		}
 		this.input = input;
 		this.forceViterbi = forceViterbi;
 		this.forceScrambler = forceScrambler;

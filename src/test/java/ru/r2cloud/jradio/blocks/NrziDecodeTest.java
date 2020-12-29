@@ -14,7 +14,7 @@ public class NrziDecodeTest {
 	@Test
 	public void testSuccess() throws Exception {
 		// 0b1111_1000
-		source = new NrziDecode(new ArrayByteInput(1, 1, 1, 1, 1, 0, 0, 0));
+		source = new NrziDecode(new ArrayByteInput(false, false, 1, 1, 1, 1, 1, 0, 0, 0));
 		// 0b01111011
 		assertEquals(0, source.readByte());
 		assertEquals(1, source.readByte());

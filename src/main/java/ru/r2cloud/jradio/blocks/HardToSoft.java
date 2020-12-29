@@ -8,11 +8,14 @@ import ru.r2cloud.jradio.Context;
 public class HardToSoft implements ByteInput {
 
 	private final ByteInput input;
+	private final Context context;
 	private int curByte = 0;
 	private int index = 8;
 
 	public HardToSoft(ByteInput input) {
 		this.input = input;
+		context = new Context(input.getContext());
+		context.setSoftBits(true);
 	}
 
 	@Override
@@ -37,7 +40,7 @@ public class HardToSoft implements ByteInput {
 
 	@Override
 	public Context getContext() {
-		return input.getContext();
+		return context;
 	}
 
 }

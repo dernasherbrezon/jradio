@@ -20,7 +20,8 @@ import ru.r2cloud.jradio.blocks.Window;
 public class BpskDemodulator implements ByteInput {
 
 	private final FloatToChar f2char;
-
+	private final Context context;
+	
 	// produces soft stream of bytes
 	public BpskDemodulator(FloatInput source, int baudRate, int decimation, double centerFrequency, boolean differential) {
 		FloatInput next = source;
@@ -41,6 +42,8 @@ public class BpskDemodulator implements ByteInput {
 		}
 		next = new ComplexToReal(next);
 		f2char = new FloatToChar(next, 127.0f);
+		this.context = new Context(this.f2char.getContext());
+		this.context.setSoftBits(true);
 	}
 
 	@Override
@@ -50,7 +53,7 @@ public class BpskDemodulator implements ByteInput {
 
 	@Override
 	public Context getContext() {
-		return f2char.getContext();
+		return context;
 	}
 
 	@Override

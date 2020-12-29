@@ -20,7 +20,7 @@ public class Lucky7Test {
 		WavFileSource source = new WavFileSource(Lucky7Test.class.getClassLoader().getResourceAsStream("lucky_7.wav"));
 		FskDemodulator demod = new FskDemodulator(source, 4800);
 		SoftToHard s2h = new SoftToHard(demod);
-		CorrelateSyncword correlate = new CorrelateSyncword(s2h, 3, "0010110111010100", 37 * 8, false);
+		CorrelateSyncword correlate = new CorrelateSyncword(s2h, 3, "0010110111010100", 37 * 8);
 		input = new Lucky7(correlate);
 		assertTrue(input.hasNext());
 		AssertJson.assertObjectsEqual("Lucky7Beacon.json", input.next());

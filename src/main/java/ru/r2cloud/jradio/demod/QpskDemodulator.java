@@ -17,6 +17,7 @@ import ru.r2cloud.jradio.blocks.RmsAgcComplex;
 public class QpskDemodulator implements ByteInput {
 
 	private final FloatToChar f2char;
+	private final Context context;
 
 	public QpskDemodulator(FloatInput source, int baudRate, Constellation constel) {
 		FloatInput next = source;
@@ -29,6 +30,8 @@ public class QpskDemodulator implements ByteInput {
 		next = new ConstellationSoftDecoder(next, constel);
 		next = new Rail(next, -1.0f, 1.0f);
 		f2char = new FloatToChar(next, 127.0f);
+		this.context = new Context(this.f2char.getContext());
+		this.context.setSoftBits(true);
 	}
 
 	@Override
@@ -38,7 +41,7 @@ public class QpskDemodulator implements ByteInput {
 
 	@Override
 	public Context getContext() {
-		return f2char.getContext();
+		return context;
 	}
 
 	@Override

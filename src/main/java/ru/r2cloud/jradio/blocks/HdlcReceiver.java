@@ -29,6 +29,9 @@ public class HdlcReceiver implements MessageInput {
 	}
 
 	public HdlcReceiver(ByteInput input, int maxLengthBytes, int minBytes, boolean checksum) {
+		if (input.getContext().getSoftBits()) {
+			throw new IllegalArgumentException("expected hard bits");
+		}
 		this.input = input;
 		this.window = new byte[((maxLengthBytes + FCS_LENGTH) * 8) + FLAG_LENGTH];
 		this.checksum = checksum;

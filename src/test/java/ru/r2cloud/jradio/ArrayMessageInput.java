@@ -6,10 +6,16 @@ import java.io.IOException;
 public class ArrayMessageInput implements MessageInput {
 
 	private final byte[] input;
+	private final Context context;
 	private boolean read = false;
 
 	public ArrayMessageInput(byte[] input) {
+		this(new Context(), input);
+	}
+
+	public ArrayMessageInput(Context context, byte[] input) {
 		this.input = input;
+		this.context = context;
 	}
 
 	@Override
@@ -28,6 +34,6 @@ public class ArrayMessageInput implements MessageInput {
 
 	@Override
 	public Context getContext() {
-		return null;
+		return context;
 	}
 }

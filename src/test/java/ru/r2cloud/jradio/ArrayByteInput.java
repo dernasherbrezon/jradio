@@ -11,24 +11,33 @@ public class ArrayByteInput implements ByteInput {
 	private int index;
 
 	public ArrayByteInput(byte... arr) {
+		this(false, false, arr);
+	}
+	public ArrayByteInput(boolean repeat, boolean softBits, byte... arr) {
 		this.result = new int[arr.length];
 		for (int i = 0; i < arr.length; i++) {
 			result[i] = arr[i];
 		}
-		this.repeat = false;
+		this.repeat = repeat;
 		context = new Context();
 		context.setChannels(1);
 		context.setTotalSamples((long) result.length);
 		context.setCurrentSample(() -> index);
+		context.setSoftBits(softBits);
 	}
 
 	public ArrayByteInput(boolean repeat, int... result) {
+		this(repeat, false, result);
+	}
+
+	public ArrayByteInput(boolean repeat, boolean softBits, int... result) {
 		this.result = result;
 		this.repeat = repeat;
 		context = new Context();
 		context.setChannels(1);
 		context.setTotalSamples((long) result.length);
 		context.setCurrentSample(() -> index);
+		context.setSoftBits(softBits);
 	}
 
 	public ArrayByteInput(int... result) {
@@ -58,7 +67,7 @@ public class ArrayByteInput implements ByteInput {
 	public Context getContext() {
 		return context;
 	}
-	
+
 	public int getIndex() {
 		return index;
 	}

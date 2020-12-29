@@ -20,7 +20,7 @@ public class SmogPSignallingTest {
 		WavFileSource source = new WavFileSource(SmogPSignallingTest.class.getClassLoader().getResourceAsStream("smog_p_signalling.wav"));
 		FskDemodulator demod = new FskDemodulator(source, 1250);
 		SoftToHard s2h = new SoftToHard(demod);
-		CorrelateSyncword correlate = new CorrelateSyncword(s2h, 8, "0010110111010100100101111111110111010011011110110000111100011111", 64 * 8, false);
+		CorrelateSyncword correlate = new CorrelateSyncword(s2h, 8, "0010110111010100100101111111110111010011011110110000111100011111", 64 * 8);
 		input = new SmogPSignalling(correlate);
 		assertTrue(input.hasNext());
 		AssertJson.assertObjectsEqual("SmogPSignallingBeacon.json", input.next());

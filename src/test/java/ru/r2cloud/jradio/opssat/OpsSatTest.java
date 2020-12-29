@@ -28,7 +28,7 @@ public class OpsSatTest {
 
 	@Test
 	public void testMaxMessageSize() throws Exception {
-		input = new OpsSat(new ArrayByteInput(0x01));
+		input = new OpsSat(new ArrayByteInput(false, false, 0x01));
 		assertNull(input.parseBeacon(new byte[] { 0x01, 0x02 }));
 	}
 

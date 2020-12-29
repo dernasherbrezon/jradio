@@ -24,7 +24,7 @@ public class Floripasat1Test {
 		FskDemodulator demod = new FskDemodulator(mc, 1200, 5000.0f, 8, 2000.0f, false);
 		SoftToHard s2h = new SoftToHard(demod);
 		// 80 is for test packet only. in prod should be 255
-		CorrelateSyncword correlate = new CorrelateSyncword(s2h, 5, "01011101111001100010101001111110", (80 + 3) * 8, false);
+		CorrelateSyncword correlate = new CorrelateSyncword(s2h, 5, "01011101111001100010101001111110", (80 + 3) * 8);
 		input = new Floripasat1(correlate);
 		assertTrue(input.hasNext());
 		AssertJson.assertObjectsEqual("Floripasat1Beacon.json", input.next());
@@ -35,7 +35,7 @@ public class Floripasat1Test {
 		WavFileSource source = new WavFileSource(Floripasat1Test.class.getClassLoader().getResourceAsStream("floripasatDownlink.wav"));
 		FskDemodulator demod = new FskDemodulator(source, 2400, 5000.0f, 4, 2000.0f, false);
 		SoftToHard s2h = new SoftToHard(demod);
-		CorrelateSyncword correlate = new CorrelateSyncword(s2h, 5, "01011101111001100010101001111110", (255 + 3) * 8, false);
+		CorrelateSyncword correlate = new CorrelateSyncword(s2h, 5, "01011101111001100010101001111110", (255 + 3) * 8);
 		downlink = new Floripasat1Downlink(correlate);
 		assertTrue(downlink.hasNext());
 		AssertJson.assertObjectsEqual("Floripasat1DownlinkBeacon.json", downlink.next());

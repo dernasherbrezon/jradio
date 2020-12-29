@@ -19,7 +19,7 @@ public class Suomi100Test {
 	public void testDecodeTelemetry() throws Exception {
 		WavFileSource source = new WavFileSource(Suomi100Test.class.getClassLoader().getResourceAsStream("suomi_100.wav"));
 		FskDemodulator demod = new FskDemodulator(source, 9600);
-		CorrelateSyncword correlate = new CorrelateSyncword(demod, 4, "10010011000010110101000111011110", 255 * 8, true);
+		CorrelateSyncword correlate = new CorrelateSyncword(demod, 4, "10010011000010110101000111011110", 255 * 8);
 		AX100Decoder ax100 = new AX100Decoder(correlate, false, true, true);
 		input = new Suomi100(ax100);
 		assertTrue(input.hasNext());

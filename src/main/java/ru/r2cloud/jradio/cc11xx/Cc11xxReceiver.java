@@ -23,6 +23,9 @@ public class Cc11xxReceiver implements MessageInput {
 	private final boolean hasCrc;
 
 	public Cc11xxReceiver(MessageInput source, boolean hasWhitening, boolean hasCrc) {
+		if (source.getContext().getSoftBits()) {
+			throw new IllegalArgumentException("expected hard bits");
+		}
 		this.source = source;
 		scrambler = new AdditiveScrambler(0x21, 0x1ff, 8, 8);
 		this.hasWhitening = hasWhitening;
@@ -35,7 +38,7 @@ public class Cc11xxReceiver implements MessageInput {
 			byte[] raw = source.readBytes();
 			raw = UnpackedToPacked.pack(raw);
 			if (hasWhitening) {
-				 scrambler.shuffle(raw);
+				scrambler.shuffle(raw);
 			}
 			int frameLength = raw[0] & 0xFF;
 			int endIndex = frameLength + 1;
@@ -52,7 +55,7 @@ public class Cc11xxReceiver implements MessageInput {
 				return result;
 			}
 
-			//crc should include everything from 0 byte + frame + 2 crc bytes
+			// crc should include everything from 0 byte + frame + 2 crc bytes
 			if (Crc16Cc11xx.calculate(raw, 0, endIndex + 2) != 0) {
 				if (LOG.isDebugEnabled()) {
 					LOG.debug("crc mismatch");

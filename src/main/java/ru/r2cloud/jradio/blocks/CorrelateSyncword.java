@@ -19,7 +19,6 @@ public class CorrelateSyncword implements MessageInput {
 	public static final String SOURCE_SAMPLE = "sourceSample";
 
 	private final ByteInput input;
-	private final boolean softBitsInput;
 	private final LinkedList<CorrelateIndex> currentIndexes = new LinkedList<>();
 	private long dataRegister = 0;
 	private long threshold;
@@ -31,19 +30,11 @@ public class CorrelateSyncword implements MessageInput {
 	private final byte[] window;
 	private final byte[] packet;
 
-	public CorrelateSyncword(ByteInput input, int threshold, Set<String> syncwords, int lengthBits) {
-		this(input, threshold, syncwords, lengthBits, true);
-	}
-
 	public CorrelateSyncword(ByteInput input, int threshold, String syncword, int lengthBits) {
 		this(input, threshold, Collections.singleton(syncword), lengthBits);
 	}
 
-	public CorrelateSyncword(ByteInput input, int threshold, String syncword, int lengthBits, boolean softBitsInput) {
-		this(input, threshold, Collections.singleton(syncword), lengthBits, softBitsInput);
-	}
-	
-	public CorrelateSyncword(ByteInput input, int threshold, Set<String> syncwords, int lengthBits, boolean softBitsInput) {
+	public CorrelateSyncword(ByteInput input, int threshold, Set<String> syncwords, int lengthBits) {
 		if (syncwords.isEmpty()) {
 			throw new IllegalArgumentException("syncword cannot be empty");
 		}
@@ -52,7 +43,6 @@ public class CorrelateSyncword implements MessageInput {
 		this.packet = new byte[lengthBits];
 		this.input = input;
 		this.threshold = threshold;
-		this.softBitsInput = softBitsInput;
 		this.accessCodes = convert(syncwords);
 	}
 
@@ -104,7 +94,7 @@ public class CorrelateSyncword implements MessageInput {
 		totalBitsRead++;
 
 		byte hardBit;
-		if (softBitsInput) {
+		if (getContext().getSoftBits()) {
 			if (inputBit >= 0) {
 				hardBit = 1;
 			} else {
@@ -170,7 +160,7 @@ public class CorrelateSyncword implements MessageInput {
 			context.put(tag.getId(), tag);
 		}
 	}
-	
+
 	private static int validateAndReturnSyncwordLength(Set<String> syncwords) {
 		int result = -1;
 		for (String cur : syncwords) {

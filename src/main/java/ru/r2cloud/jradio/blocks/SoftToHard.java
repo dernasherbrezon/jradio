@@ -8,9 +8,16 @@ import ru.r2cloud.jradio.Context;
 public class SoftToHard implements ByteInput {
 
 	private final ByteInput input;
+	private final Context context;
 
 	public SoftToHard(ByteInput input) {
+		// making hard bits twice will trigger whole stream to be 1 1 1 1 1 1
+		if (input.getContext().getSoftBits() != null && !input.getContext().getSoftBits()) {
+			throw new IllegalArgumentException("bit are already hard");
+		}
 		this.input = input;
+		context = new Context(input.getContext());
+		context.setSoftBits(false);
 	}
 
 	@Override
@@ -30,7 +37,7 @@ public class SoftToHard implements ByteInput {
 
 	@Override
 	public Context getContext() {
-		return input.getContext();
+		return context;
 	}
 
 	public static void convertToHard(byte[] data) {

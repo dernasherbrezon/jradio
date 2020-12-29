@@ -28,6 +28,9 @@ public class LRPT implements MessageInput {
 	private final MessageInput messageInput;
 
 	public LRPT(ByteInput input, boolean interleave, boolean differential) {
+		if (!input.getContext().getSoftBits()) {
+			throw new IllegalArgumentException("expected soft bits");
+		}
 		this.phaseAmbiguityResolver = new PhaseAmbiguityResolver(0x035d49c24ff2686bL);
 		this.viterbiSoft = new ViterbiSoft((byte) 0x4f, (byte) 0x6d, false, Vcdu.VITERBI_TAIL_SIZE);
 		ByteInput next = input;

@@ -19,7 +19,7 @@ public class EseoTest {
 		WavFileSource source = new WavFileSource(EseoTest.class.getClassLoader().getResourceAsStream("eseo.wav"));
 		FskDemodulator demod = new FskDemodulator(source, 9600);
 		SoftToHard s2h = new SoftToHard(demod);
-		CorrelateSyncword correlate = new CorrelateSyncword(s2h, 1, EseoBeacon.FLAG, 257 * 8, false);
+		CorrelateSyncword correlate = new CorrelateSyncword(s2h, 1, EseoBeacon.FLAG, 257 * 8);
 		input = new Eseo(correlate);
 		assertTrue(input.hasNext());
 		AssertJson.assertObjectsEqual("Eseo.json", input.next());

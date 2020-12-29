@@ -16,6 +16,7 @@ public class Context {
 	private int channels = 1;
 	private int sampleSizeInBits;
 	private LongValueSource currentSample;
+	private Boolean softBits;
 
 	public Context() {
 		// do nothing
@@ -29,6 +30,7 @@ public class Context {
 		channels = orig.channels;
 		sampleSizeInBits = orig.sampleSizeInBits;
 		currentSample = orig.currentSample;
+		softBits = orig.softBits;
 	}
 
 	public void put(String id, Tag tag) {
@@ -94,6 +96,14 @@ public class Context {
 
 	public void setCurrentSample(LongValueSource currentSample) {
 		this.currentSample = currentSample;
+	}
+	
+	public void setSoftBits(boolean softBits) {
+		this.softBits = softBits;
+	}
+	
+	public Boolean getSoftBits() {
+		return softBits;
 	}
 
 }

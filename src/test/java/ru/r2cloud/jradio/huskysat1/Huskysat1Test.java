@@ -22,7 +22,7 @@ public class Huskysat1Test {
 		FloatToComplex f2c = new FloatToComplex(source);
 		BpskDemodulator demod = new BpskDemodulator(f2c, 1200, 1, 400, true);
 		SoftToHard s2h = new SoftToHard(demod);
-		CorrelateSyncword correlate = new CorrelateSyncword(s2h, 4, "1000111110011010010000101011101", Huskysat1.FRAME_SIZE * 10, false);
+		CorrelateSyncword correlate = new CorrelateSyncword(s2h, 4, "1000111110011010010000101011101", Huskysat1.FRAME_SIZE * 10);
 		input = new Huskysat1(correlate);
 		assertTrue(input.hasNext());
 		AssertJson.assertObjectsEqual("Huskysat1Beacon.json", input.next());

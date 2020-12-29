@@ -23,7 +23,7 @@ public class Dstar1Test {
 		MultiplyConst mc = new MultiplyConst(source, -1.0f);
 		FskDemodulator demod = new FskDemodulator(mc, 4800);
 		SoftToHard s2h = new SoftToHard(demod);
-		CorrelateSyncword correlate = new CorrelateSyncword(s2h, 6, "11001100110011000101011101100101", CMX909bBeacon.MAX_SIZE * 8, false);
+		CorrelateSyncword correlate = new CorrelateSyncword(s2h, 6, "11001100110011000101011101100101", CMX909bBeacon.MAX_SIZE * 8);
 		input = new Dstar1(correlate);
 		assertTrue(input.hasNext());
 		AssertJson.assertObjectsEqual("Dstar1Beacon.json", input.next());

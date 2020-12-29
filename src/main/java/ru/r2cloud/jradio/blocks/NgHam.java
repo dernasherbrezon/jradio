@@ -26,6 +26,9 @@ public class NgHam implements MessageInput {
 	private final List<AccessCode> codes = new ArrayList<>();
 
 	public NgHam(MessageInput input) {
+		if (input.getContext().getSoftBits()) {
+			throw new IllegalArgumentException("expected hard bits");
+		}
 		this.input = input;
 		codes.add(new AccessCode("001110110100100111001101"));
 		codes.add(new AccessCode("010011011101101001010111"));

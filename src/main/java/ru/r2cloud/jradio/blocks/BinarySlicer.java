@@ -8,10 +8,13 @@ import ru.r2cloud.jradio.FloatInput;
 
 public class BinarySlicer implements ByteInput {
 
-	private FloatInput input;
+	private final FloatInput input;
+	private final Context context;
 
 	public BinarySlicer(FloatInput input) {
 		this.input = input;
+		this.context = new Context(input.getContext());
+		this.context.setSoftBits(false);
 	}
 
 	@Override
@@ -28,10 +31,10 @@ public class BinarySlicer implements ByteInput {
 	public void close() throws IOException {
 		input.close();
 	}
-	
+
 	@Override
 	public Context getContext() {
-		return input.getContext();
+		return context;
 	}
 
 }

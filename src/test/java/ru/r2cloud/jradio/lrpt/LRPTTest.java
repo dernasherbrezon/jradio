@@ -17,7 +17,7 @@ public class LRPTTest {
 
 	@Test
 	public void testGracefulShutdown() throws IOException {
-		lrpt = new LRPT(new ArrayByteInput(1, 2, 3), false, false);
+		lrpt = new LRPT(new ArrayByteInput(false, true, 1, 2, 3), false, false);
 		Thread.currentThread().interrupt();
 		try {
 			lrpt.readBytes();
