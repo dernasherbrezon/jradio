@@ -45,11 +45,11 @@ public class CorrelateSyncword implements MessageInput {
 	public byte[] readBytes() throws IOException {
 		while (!Thread.currentThread().isInterrupted()) {
 			checkSync();
-			byte[] packet = checkPacket();
-			if (packet == null) {
+			byte[] result = checkPacket();
+			if (result == null) {
 				continue;
 			}
-			return packet;
+			return result;
 		}
 		throw new EOFException();
 	}
@@ -85,7 +85,7 @@ public class CorrelateSyncword implements MessageInput {
 		totalBitsRead++;
 
 		byte hardBit;
-		if (getContext().getSoftBits()) {
+		if (Boolean.TRUE.equals(getContext().getSoftBits())) {
 			if (inputBit >= 0) {
 				hardBit = 1;
 			} else {
