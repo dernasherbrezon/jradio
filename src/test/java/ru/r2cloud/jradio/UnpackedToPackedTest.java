@@ -4,9 +4,6 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
 
 import java.io.EOFException;
-import java.util.Iterator;
-import java.util.Map;
-import java.util.Map.Entry;
 
 import org.junit.Test;
 
@@ -28,16 +25,6 @@ public class UnpackedToPackedTest {
 		}
 		assertEquals(2L, u2p.getContext().getTotalSamples().longValue());
 		u2p.close();
-	}
-
-	public static Tag getFirst(Context context) {
-		Map<String, Tag> tags = context.getTags();
-		assertEquals(1, tags.size());
-		Iterator<Entry<String, Tag>> it = tags.entrySet().iterator();
-		if (it.hasNext()) {
-			return it.next().getValue();
-		}
-		return null;
 	}
 
 }

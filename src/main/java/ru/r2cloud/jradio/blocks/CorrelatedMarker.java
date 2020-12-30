@@ -1,6 +1,6 @@
 package ru.r2cloud.jradio.blocks;
 
-class CorrelateIndex {
+public class CorrelatedMarker {
 
 	private long accessCode;
 	private Long sourceSample;

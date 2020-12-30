@@ -5,30 +5,25 @@ import java.io.IOException;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.Set;
-import java.util.UUID;
 
 import ru.r2cloud.jradio.ByteInput;
 import ru.r2cloud.jradio.Context;
 import ru.r2cloud.jradio.LongValueSource;
 import ru.r2cloud.jradio.MessageInput;
-import ru.r2cloud.jradio.Tag;
 
 public class CorrelateSyncword implements MessageInput {
 
-	public static final String ACCESS_CODE = "accessCode";
-	public static final String SOURCE_SAMPLE = "sourceSample";
-
 	private final ByteInput input;
-	private final LinkedList<CorrelateIndex> currentIndexes = new LinkedList<>();
-	private long dataRegister = 0;
-	private long threshold;
+	private final LinkedList<CorrelatedMarker> markers = new LinkedList<>();
+	private final long threshold;
 	private final AccessCode[] accessCodes;
-	private int syncwordLength;
-
-	private int windowIndex = 0;
-	private long totalBitsRead = 0;
+	private final int syncwordLength;
 	private final byte[] window;
 	private final byte[] packet;
+
+	private long dataRegister = 0;
+	private int windowIndex = 0;
+	private long totalBitsRead = 0;
 
 	public CorrelateSyncword(ByteInput input, int threshold, String syncword, int lengthBits) {
 		this(input, threshold, Collections.singleton(syncword), lengthBits);
@@ -60,10 +55,10 @@ public class CorrelateSyncword implements MessageInput {
 	}
 
 	private byte[] checkPacket() {
-		if (currentIndexes.isEmpty()) {
+		if (markers.isEmpty()) {
 			return null;
 		}
-		CorrelateIndex first = currentIndexes.getFirst();
+		CorrelatedMarker first = markers.getFirst();
 		// not enough bytes for the first matched
 		// no need to look correlation further, because they are sorted by CorrelatedBitIndex asc
 		if (first.getCorrelatedBitIndex() + packet.length > totalBitsRead) {
@@ -78,13 +73,9 @@ public class CorrelateSyncword implements MessageInput {
 			dataStartIndex = dataStartIndex - window.length;
 			System.arraycopy(window, dataStartIndex, packet, 0, windowIndex - dataStartIndex);
 		}
-		currentIndexes.removeFirst();
+		markers.removeFirst();
 
-		Tag tag = new Tag();
-		tag.setId(UUID.randomUUID().toString());
-		tag.put(ACCESS_CODE, first.getAccessCode());
-		tag.put(SOURCE_SAMPLE, first.getSourceSample());
-		getContext().setCurrent(tag);
+		getContext().setCurrentMarker(first);
 		return packet;
 	}
 
@@ -119,18 +110,17 @@ public class CorrelateSyncword implements MessageInput {
 		}
 
 		if (minWrong > threshold) {
-			getContext().resetCurrent();
 			return;
 		}
 
-		CorrelateIndex index = new CorrelateIndex();
+		CorrelatedMarker index = new CorrelatedMarker();
 		index.setAccessCode(minAccessCode);
 		index.setCorrelatedBitIndex(totalBitsRead);
 		LongValueSource currentSample = getContext().getCurrentSample();
 		if (currentSample != null) {
 			index.setSourceSample(currentSample.getValue());
 		}
-		currentIndexes.add(index);
+		markers.add(index);
 	}
 
 	private void addInputBit(byte nextSoftBit) {
@@ -154,10 +144,9 @@ public class CorrelateSyncword implements MessageInput {
 	public static void markStartOfPacket(Context context) {
 		LongValueSource currentSample = context.getCurrentSample();
 		if (currentSample != null) {
-			Tag tag = new Tag();
-			tag.setId(UUID.randomUUID().toString());
-			tag.put(CorrelateSyncword.SOURCE_SAMPLE, currentSample.getValue());
-			context.put(tag.getId(), tag);
+			CorrelatedMarker marker = new CorrelatedMarker();
+			marker.setSourceSample(currentSample.getValue());
+			context.setCurrentMarker(marker);
 		}
 	}
 

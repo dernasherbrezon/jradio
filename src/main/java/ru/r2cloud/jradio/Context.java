@@ -1,7 +1,6 @@
 package ru.r2cloud.jradio;
 
-import java.util.HashMap;
-import java.util.Map;
+import ru.r2cloud.jradio.blocks.CorrelatedMarker;
 
 /**
  * Stores stream metadata. Shared object across different blocks
@@ -9,8 +8,7 @@ import java.util.Map;
  */
 public class Context {
 
-	private Tag current = null;
-	private final Map<String, Tag> tagById = new HashMap<>();
+	private CorrelatedMarker currentMarker = null;
 	private Long totalSamples;
 	private float sampleRate;
 	private int channels = 1;
@@ -23,8 +21,7 @@ public class Context {
 	}
 
 	public Context(Context orig) {
-		current = orig.current;
-		tagById.putAll(orig.tagById);
+		currentMarker = orig.currentMarker;
 		totalSamples = orig.totalSamples;
 		sampleRate = orig.sampleRate;
 		channels = orig.channels;
@@ -33,29 +30,12 @@ public class Context {
 		softBits = orig.softBits;
 	}
 
-	public void put(String id, Tag tag) {
-		tagById.put(id, tag);
-		current = tag;
+	public void setCurrentMarker(CorrelatedMarker currentMarker) {
+		this.currentMarker = currentMarker;
 	}
 
-	public Tag getCurrent() {
-		return current;
-	}
-
-	public void setCurrent(Tag current) {
-		this.current = current;
-	}
-
-	public void resetCurrent() {
-		current = null;
-	}
-
-	public Tag getTag(String id) {
-		return tagById.get(id);
-	}
-
-	public Map<String, Tag> getTags() {
-		return tagById;
+	public CorrelatedMarker getCurrentMarker() {
+		return currentMarker;
 	}
 
 	public Long getTotalSamples() {
@@ -97,11 +77,11 @@ public class Context {
 	public void setCurrentSample(LongValueSource currentSample) {
 		this.currentSample = currentSample;
 	}
-	
+
 	public void setSoftBits(boolean softBits) {
 		this.softBits = softBits;
 	}
-	
+
 	public Boolean getSoftBits() {
 		return softBits;
 	}
