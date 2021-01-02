@@ -3,6 +3,7 @@ package ru.r2cloud.jradio.util;
 import java.io.ByteArrayOutputStream;
 import java.io.DataInputStream;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 
 public class StreamUtils {
 
@@ -68,6 +69,12 @@ public class StreamUtils {
 			baos.write(buffer, 0, n);
 		}
 		return baos.toByteArray();
+	}
+	
+	public static String readString(DataInputStream dis, int length) throws IOException {
+		byte[] result = new byte[length];
+		dis.readFully(result);
+		return new String(result, StandardCharsets.US_ASCII).trim();
 	}
 
 	private StreamUtils() {

@@ -1,0 +1,42 @@
+{
+  "leopFrame": {
+    "callsign": "W8PZS",
+    "bobcat1": "BOBCAT-1",
+    "batteryVoltage": 16504,
+    "batteryCurrentOut": 171,
+    "batteryCurrentIn": 238,
+    "bootCountA32": 814,
+    "resetCauseA32": 4,
+    "bootCauseA32": 4,
+    "uptimeA32": 23462,
+    "bootCountAx100": 758,
+    "bootCauseAx100": 256,
+    "currentPwm": 157,
+    "fsMounted": 1,
+    "antennasDeployed": 15,
+    "deployAttempts": [
+      1270,
+      123,
+      122,
+      134
+    ],
+    "gyroX": -343,
+    "gyroY": 130,
+    "gyroZ": -168,
+    "timestamp": 1609588510
+  },
+  "header": {
+    "priority": "CSP_PRIO_CRITICAL",
+    "source": 0,
+    "destination": 0,
+    "sourcePort": 0,
+    "destinationPort": 0,
+    "ffrag": false,
+    "fhmac": false,
+    "fxtea": false,
+    "frdp": false,
+    "fcrc32": false
+  },
+  "beginSample": 0,
+  "beginMillis": 0
+}
