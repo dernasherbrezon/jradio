@@ -21,7 +21,7 @@ public class HdlcReceiver implements MessageInput {
 	private final byte[] window;
 	private final boolean checksum;
 	private final int minBits;
-	
+
 	private boolean foundStartFlag = false;
 
 	public HdlcReceiver(ByteInput input, int maxLengthBytes) {
@@ -29,7 +29,7 @@ public class HdlcReceiver implements MessageInput {
 	}
 
 	public HdlcReceiver(ByteInput input, int maxLengthBytes, int minBytes, boolean checksum) {
-		if (input.getContext().getSoftBits()) {
+		if (input.getContext().getSoftBits() == null || Boolean.TRUE.equals(input.getContext().getSoftBits())) {
 			throw new IllegalArgumentException("expected hard bits");
 		}
 		this.input = input;
