@@ -1,0 +1,30 @@
+{
+  "unknownPayload": [
+    -124,
+    1,
+    0,
+    1,
+    12,
+    0,
+    0,
+    0,
+    0,
+    0,
+    -86,
+    101
+  ],
+  "header": {
+    "priority": "CSP_PRIO_CRITICAL",
+    "source": 5,
+    "destination": 16,
+    "sourcePort": 0,
+    "destinationPort": 0,
+    "ffrag": false,
+    "fhmac": false,
+    "fxtea": false,
+    "frdp": true,
+    "fcrc32": false
+  },
+  "beginSample": 0,
+  "beginMillis": 0
+}
