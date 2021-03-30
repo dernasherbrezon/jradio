@@ -1,6 +1,5 @@
 package ru.r2cloud.jradio.source;
 
-import java.io.BufferedInputStream;
 import java.io.EOFException;
 import java.io.IOException;
 import java.io.InputStream;
@@ -19,7 +18,7 @@ public class PlutoSdr implements FloatInput {
 		if (iqStream == null) {
 			throw new IllegalArgumentException("iqstream cannot be null");
 		}
-		this.iqStream = new BufferedInputStream(iqStream);
+		this.iqStream = iqStream;
 		context = new Context();
 		context.setChannels(2);
 		context.setSampleSizeInBits(16);
