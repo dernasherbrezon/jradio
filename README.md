@@ -409,6 +409,11 @@ jradio has lots of built-in satellite decoders. Some of them have non standard d
 			<td>46922</td>
 			<td>FskDemodulator 1200 baud, Ax100BeaconSource and Bobcat1Beacon</td>
 		</tr>
+		<tr>
+			<td>GRIFEX</td>
+			<td>40379</td>
+			<td>FskDemodulator 9600 baud, Ax25G3ruhBeaconSource and GrifexBeacon</td>
+		</tr>
 	</tbody>
 </table>
   
