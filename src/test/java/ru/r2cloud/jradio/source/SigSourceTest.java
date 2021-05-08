@@ -29,6 +29,23 @@ public class SigSourceTest {
 		assertEquals(0.0, source.readFloat(), 0.000001);
 	}
 	
+	@Test
+	public void testComplex() throws Exception {
+		source = new SigSource(Waveform.COMPLEX, 4, 1.0f, 1.0d);
+		
+		assertEquals(1.0, source.readFloat(), 0.000001);
+		assertEquals(0.0, source.readFloat(), 0.000001);
+		
+		assertEquals(0.0, source.readFloat(), 0.000001);
+		assertEquals(1.0, source.readFloat(), 0.000001);
+		
+		assertEquals(-1.0, source.readFloat(), 0.000001);
+		assertEquals(0.0, source.readFloat(), 0.000001);
+		
+		assertEquals(0.0, source.readFloat(), 0.000001);
+		assertEquals(-1.0, source.readFloat(), 0.000001);
+	}
+	
 	@After
 	public void stop() throws IOException {
 		source.close();
