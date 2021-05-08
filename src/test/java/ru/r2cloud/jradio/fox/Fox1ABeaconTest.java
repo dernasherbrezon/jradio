@@ -1,10 +1,12 @@
 package ru.r2cloud.jradio.fox;
 
-import static pl.pojo.tester.api.assertion.Assertions.assertPojoMethodsFor;
+import static com.google.code.beanmatchers.BeanMatchers.hasValidBeanConstructor;
+import static com.google.code.beanmatchers.BeanMatchers.hasValidGettersAndSetters;
+import static org.hamcrest.CoreMatchers.allOf;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 import org.junit.Test;
 
-import pl.pojo.tester.api.assertion.Method;
 import ru.r2cloud.jradio.AssertJson;
 import ru.r2cloud.jradio.fec.ViterbiTest;
 
@@ -36,13 +38,13 @@ public class Fox1ABeaconTest {
 	
 	@Test
 	public void testPojo() {
-		assertPojoMethodsFor(Fox1ABeacon.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
-		assertPojoMethodsFor(PayloadData.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
-		assertPojoMethodsFor(PayloadRealtime.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
-		assertPojoMethodsFor(PayloadMaxValues.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
-		assertPojoMethodsFor(PayloadMinValues.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
-		assertPojoMethodsFor(PayloadRadExpData.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
-		assertPojoMethodsFor(IhuSoftError1A.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
+		assertThat(Fox1ABeacon.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
+		assertThat(PayloadData.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
+		assertThat(PayloadRealtime.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
+		assertThat(PayloadMaxValues.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
+		assertThat(PayloadMinValues.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
+		assertThat(PayloadRadExpData.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
+		assertThat(IhuSoftError1A.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
 	}
 
 }

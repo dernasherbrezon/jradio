@@ -1,0 +1,22 @@
+{
+  "message": "EMAIL    :tita@satellogic.com \u0000\u0004Upt: 07:11:44 \u0001\u0004\u0002\u0004\u0003\u0004Bat:11.79v \u0004\u0004Temp:37.7C \u0005\u0004Gyr:1.84d/s",
+  "header": {
+    "destinationAddress": {
+      "callsign": "CQ",
+      "ssid": 0,
+      "extensionBit": 0
+    },
+    "sourceAddress": {
+      "callsign": "LU7AA",
+      "ssid": 0,
+      "extensionBit": 1
+    },
+    "frameType": "U",
+    "sendSequenceNumber": 0,
+    "receiveSequenceNumber": 0,
+    "uControlType": "UI",
+    "pid": 240
+  },
+  "beginSample": 0,
+  "beginMillis": 0
+}

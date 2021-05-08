@@ -1,10 +1,12 @@
 package ru.r2cloud.jradio.swampsat2;
 
-import static pl.pojo.tester.api.assertion.Assertions.assertPojoMethodsFor;
+import static com.google.code.beanmatchers.BeanMatchers.hasValidBeanConstructor;
+import static com.google.code.beanmatchers.BeanMatchers.hasValidGettersAndSetters;
+import static org.hamcrest.CoreMatchers.allOf;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 import org.junit.Test;
 
-import pl.pojo.tester.api.assertion.Method;
 import ru.r2cloud.jradio.AssertJson;
 import ru.r2cloud.jradio.fec.ViterbiTest;
 
@@ -36,11 +38,11 @@ public class Swampsat2BeaconTest {
 	
 	@Test
 	public void testPojo() {
-		assertPojoMethodsFor(Swampsat2Beacon.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
-		assertPojoMethodsFor(Eps.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
-		assertPojoMethodsFor(Battery.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
-		assertPojoMethodsFor(Vutrx.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
-		assertPojoMethodsFor(Antennas.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
-		assertPojoMethodsFor(Stx.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
+		assertThat(Swampsat2Beacon.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
+		assertThat(Eps.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
+		assertThat(Battery.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
+		assertThat(Vutrx.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
+		assertThat(Antennas.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
+		assertThat(Stx.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
 	}
 }

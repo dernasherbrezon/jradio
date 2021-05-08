@@ -165,7 +165,7 @@ public class PayloadData {
 		return length;
 	}
 
-	public void setLength(int length) {
+	public void setLength(Integer length) {
 		this.length = length;
 	}
 
@@ -173,7 +173,7 @@ public class PayloadData {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
@@ -181,7 +181,7 @@ public class PayloadData {
 		return time;
 	}
 
-	public void setTime(long time) {
+	public void setTime(Long time) {
 		this.time = time;
 	}
 
@@ -189,7 +189,7 @@ public class PayloadData {
 		return reboots;
 	}
 
-	public void setReboots(long reboots) {
+	public void setReboots(Long reboots) {
 		this.reboots = reboots;
 	}
 
@@ -197,7 +197,7 @@ public class PayloadData {
 		return rtcVal;
 	}
 
-	public void setRtcVal(long rtcVal) {
+	public void setRtcVal(Long rtcVal) {
 		this.rtcVal = rtcVal;
 	}
 
@@ -205,7 +205,7 @@ public class PayloadData {
 		return batteryChargeIn;
 	}
 
-	public void setBatteryChargeIn(float batteryChargeIn) {
+	public void setBatteryChargeIn(Float batteryChargeIn) {
 		this.batteryChargeIn = batteryChargeIn;
 	}
 
@@ -213,7 +213,7 @@ public class PayloadData {
 		return batteryChargeOut;
 	}
 
-	public void setBatteryChargeOut(float batteryChargeOut) {
+	public void setBatteryChargeOut(Float batteryChargeOut) {
 		this.batteryChargeOut = batteryChargeOut;
 	}
 
@@ -221,7 +221,7 @@ public class PayloadData {
 		return batteryVoltage;
 	}
 
-	public void setBatteryVoltage(float batteryVoltage) {
+	public void setBatteryVoltage(Float batteryVoltage) {
 		this.batteryVoltage = batteryVoltage;
 	}
 
@@ -229,7 +229,7 @@ public class PayloadData {
 		return supply5V;
 	}
 
-	public void setSupply5V(float supply5v) {
+	public void setSupply5V(Float supply5v) {
 		supply5V = supply5v;
 	}
 
@@ -237,7 +237,7 @@ public class PayloadData {
 		return supply3v3;
 	}
 
-	public void setSupply3v3(float supply3v3) {
+	public void setSupply3v3(Float supply3v3) {
 		this.supply3v3 = supply3v3;
 	}
 
@@ -245,7 +245,7 @@ public class PayloadData {
 		return pcuTotalCurrent;
 	}
 
-	public void setPcuTotalCurrent(float pcuTotalCurrent) {
+	public void setPcuTotalCurrent(Float pcuTotalCurrent) {
 		this.pcuTotalCurrent = pcuTotalCurrent;
 	}
 
@@ -253,7 +253,7 @@ public class PayloadData {
 		return solarXP;
 	}
 
-	public void setSolarXP(float solarXP) {
+	public void setSolarXP(Float solarXP) {
 		this.solarXP = solarXP;
 	}
 
@@ -261,7 +261,7 @@ public class PayloadData {
 		return solarXM;
 	}
 
-	public void setSolarXM(float solarXM) {
+	public void setSolarXM(Float solarXM) {
 		this.solarXM = solarXM;
 	}
 
@@ -269,7 +269,7 @@ public class PayloadData {
 		return solarYP;
 	}
 
-	public void setSolarYP(float solarYP) {
+	public void setSolarYP(Float solarYP) {
 		this.solarYP = solarYP;
 	}
 
@@ -277,7 +277,7 @@ public class PayloadData {
 		return solarYM;
 	}
 
-	public void setSolarYM(float solarYM) {
+	public void setSolarYM(Float solarYM) {
 		this.solarYM = solarYM;
 	}
 
@@ -285,7 +285,7 @@ public class PayloadData {
 		return solarZP;
 	}
 
-	public void setSolarZP(float solarZP) {
+	public void setSolarZP(Float solarZP) {
 		this.solarZP = solarZP;
 	}
 
@@ -293,7 +293,7 @@ public class PayloadData {
 		return solarZM;
 	}
 
-	public void setSolarZM(float solarZM) {
+	public void setSolarZM(Float solarZM) {
 		this.solarZM = solarZM;
 	}
 
@@ -301,7 +301,7 @@ public class PayloadData {
 		return solarTotal;
 	}
 
-	public void setSolarTotal(float solarTotal) {
+	public void setSolarTotal(Float solarTotal) {
 		this.solarTotal = solarTotal;
 	}
 
@@ -309,7 +309,7 @@ public class PayloadData {
 		return vccOut0;
 	}
 
-	public void setVccOut0(float vccOut0) {
+	public void setVccOut0(Float vccOut0) {
 		this.vccOut0 = vccOut0;
 	}
 
@@ -317,7 +317,7 @@ public class PayloadData {
 		return vccOut1;
 	}
 
-	public void setVccOut1(float vccOut1) {
+	public void setVccOut1(Float vccOut1) {
 		this.vccOut1 = vccOut1;
 	}
 
@@ -325,7 +325,7 @@ public class PayloadData {
 		return vccOut2;
 	}
 
-	public void setVccOut2(float vccOut2) {
+	public void setVccOut2(Float vccOut2) {
 		this.vccOut2 = vccOut2;
 	}
 
@@ -333,7 +333,7 @@ public class PayloadData {
 		return vccOut3;
 	}
 
-	public void setVccOut3(float vccOut3) {
+	public void setVccOut3(Float vccOut3) {
 		this.vccOut3 = vccOut3;
 	}
 
@@ -341,7 +341,7 @@ public class PayloadData {
 		return vccOut4;
 	}
 
-	public void setVccOut4(float vccOut4) {
+	public void setVccOut4(Float vccOut4) {
 		this.vccOut4 = vccOut4;
 	}
 
@@ -349,7 +349,7 @@ public class PayloadData {
 		return vccOut5;
 	}
 
-	public void setVccOut5(float vccOut5) {
+	public void setVccOut5(Float vccOut5) {
 		this.vccOut5 = vccOut5;
 	}
 
@@ -357,7 +357,7 @@ public class PayloadData {
 		return vccOut6;
 	}
 
-	public void setVccOut6(float vccOut6) {
+	public void setVccOut6(Float vccOut6) {
 		this.vccOut6 = vccOut6;
 	}
 
@@ -365,7 +365,7 @@ public class PayloadData {
 		return vccOut7;
 	}
 
-	public void setVccOut7(float vccOut7) {
+	public void setVccOut7(Float vccOut7) {
 		this.vccOut7 = vccOut7;
 	}
 
@@ -373,7 +373,7 @@ public class PayloadData {
 		return ssTotalCurrent;
 	}
 
-	public void setSsTotalCurrent(float ssTotalCurrent) {
+	public void setSsTotalCurrent(Float ssTotalCurrent) {
 		this.ssTotalCurrent = ssTotalCurrent;
 	}
 
@@ -381,7 +381,7 @@ public class PayloadData {
 		return eePROM1Current;
 	}
 
-	public void setEePROM1Current(float eePROM1Current) {
+	public void setEePROM1Current(Float eePROM1Current) {
 		this.eePROM1Current = eePROM1Current;
 	}
 
@@ -389,7 +389,7 @@ public class PayloadData {
 		return eePROM2Current;
 	}
 
-	public void setEePROM2Current(float eePROM2Current) {
+	public void setEePROM2Current(Float eePROM2Current) {
 		this.eePROM2Current = eePROM2Current;
 	}
 
@@ -397,7 +397,7 @@ public class PayloadData {
 		return extADC1;
 	}
 
-	public void setExtADC1(float extADC1) {
+	public void setExtADC1(Float extADC1) {
 		this.extADC1 = extADC1;
 	}
 
@@ -405,7 +405,7 @@ public class PayloadData {
 		return extADC2;
 	}
 
-	public void setExtADC2(float extADC2) {
+	public void setExtADC2(Float extADC2) {
 		this.extADC2 = extADC2;
 	}
 
@@ -413,7 +413,7 @@ public class PayloadData {
 		return extADC3;
 	}
 
-	public void setExtADC3(float extADC3) {
+	public void setExtADC3(Float extADC3) {
 		this.extADC3 = extADC3;
 	}
 
@@ -421,7 +421,7 @@ public class PayloadData {
 		return extADC4;
 	}
 
-	public void setExtADC4(float extADC4) {
+	public void setExtADC4(Float extADC4) {
 		this.extADC4 = extADC4;
 	}
 
@@ -429,7 +429,7 @@ public class PayloadData {
 		return rtcCurrent;
 	}
 
-	public void setRtcCurrent(float rtcCurrent) {
+	public void setRtcCurrent(Float rtcCurrent) {
 		this.rtcCurrent = rtcCurrent;
 	}
 
@@ -437,7 +437,7 @@ public class PayloadData {
 		return chargerDCDC;
 	}
 
-	public void setChargerDCDC(float chargerDCDC) {
+	public void setChargerDCDC(Float chargerDCDC) {
 		this.chargerDCDC = chargerDCDC;
 	}
 
@@ -445,7 +445,7 @@ public class PayloadData {
 		return systemV;
 	}
 
-	public void setSystemV(float systemV) {
+	public void setSystemV(Float systemV) {
 		this.systemV = systemV;
 	}
 
@@ -453,7 +453,7 @@ public class PayloadData {
 		return obcCurrent;
 	}
 
-	public void setObcCurrent(float obcCurrent) {
+	public void setObcCurrent(Float obcCurrent) {
 		this.obcCurrent = obcCurrent;
 	}
 
@@ -461,7 +461,7 @@ public class PayloadData {
 		return switches;
 	}
 
-	public void setSwitches(int switches) {
+	public void setSwitches(Integer switches) {
 		this.switches = switches;
 	}
 
@@ -477,7 +477,7 @@ public class PayloadData {
 		return scheduledCommands;
 	}
 
-	public void setScheduledCommands(int scheduledCommands) {
+	public void setScheduledCommands(Integer scheduledCommands) {
 		this.scheduledCommands = scheduledCommands;
 	}
 

@@ -1,10 +1,12 @@
 package ru.r2cloud.jradio.quetzal1;
 
-import static pl.pojo.tester.api.assertion.Assertions.assertPojoMethodsFor;
+import static com.google.code.beanmatchers.BeanMatchers.hasValidBeanConstructor;
+import static com.google.code.beanmatchers.BeanMatchers.hasValidGettersAndSetters;
+import static org.hamcrest.CoreMatchers.allOf;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 import org.junit.Test;
 
-import pl.pojo.tester.api.assertion.Method;
 import ru.r2cloud.jradio.AssertJson;
 import ru.r2cloud.jradio.fec.ViterbiTest;
 
@@ -20,14 +22,14 @@ public class Quetzal1BeaconTest {
 
 	@Test
 	public void testPojo() {
-		assertPojoMethodsFor(Quetzal1Beacon.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
-		assertPojoMethodsFor(Telemetry.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
-		assertPojoMethodsFor(RamParams.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
-		assertPojoMethodsFor(Cdhs.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
-		assertPojoMethodsFor(Eps.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
-		assertPojoMethodsFor(Adcs.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
-		assertPojoMethodsFor(HeaterStatus.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
-		assertPojoMethodsFor(Ina260.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
-		assertPojoMethodsFor(GeneralFlags.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
+		assertThat(Quetzal1Beacon.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
+		assertThat(Telemetry.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
+		assertThat(RamParams.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
+		assertThat(Cdhs.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
+		assertThat(Eps.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
+		assertThat(Adcs.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
+		assertThat(HeaterStatus.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
+		assertThat(Ina260.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
+		assertThat(GeneralFlags.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
 	}
 }

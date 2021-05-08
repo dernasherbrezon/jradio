@@ -1,10 +1,12 @@
 package ru.r2cloud.jradio.unisat6;
 
-import static pl.pojo.tester.api.assertion.Assertions.assertPojoMethodsFor;
+import static com.google.code.beanmatchers.BeanMatchers.hasValidBeanConstructor;
+import static com.google.code.beanmatchers.BeanMatchers.hasValidGettersAndSetters;
+import static org.hamcrest.CoreMatchers.allOf;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 import org.junit.Test;
 
-import pl.pojo.tester.api.assertion.Method;
 import ru.r2cloud.jradio.AssertJson;
 
 public class Unisat6BeaconTest {
@@ -19,8 +21,8 @@ public class Unisat6BeaconTest {
 	
 	@Test
 	public void testPojo() {
-		assertPojoMethodsFor(Unisat6Beacon.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
-		assertPojoMethodsFor(Beacon2.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
-		assertPojoMethodsFor(Eps.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
+		assertThat(Unisat6Beacon.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
+		assertThat(Beacon2.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
+		assertThat(Eps.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
 	}
 }

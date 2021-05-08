@@ -1,10 +1,12 @@
 package ru.r2cloud.jradio.amical1;
 
-import static pl.pojo.tester.api.assertion.Assertions.assertPojoMethodsFor;
+import static com.google.code.beanmatchers.BeanMatchers.hasValidBeanConstructor;
+import static com.google.code.beanmatchers.BeanMatchers.hasValidGettersAndSetters;
+import static org.hamcrest.CoreMatchers.allOf;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 import org.junit.Test;
 
-import pl.pojo.tester.api.assertion.Method;
 import ru.r2cloud.jradio.AssertJson;
 
 public class Amical1BeaconTest {
@@ -83,15 +85,15 @@ public class Amical1BeaconTest {
 	
 	@Test
 	public void testPojo() {
-		assertPojoMethodsFor(Amical1Beacon.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
-		assertPojoMethodsFor(AocsStatus.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
-		assertPojoMethodsFor(CommunicationFlags.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
-		assertPojoMethodsFor(CommunicationModuleStatus.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
-		assertPojoMethodsFor(ComputingUnitFlags.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
-		assertPojoMethodsFor(ComputingUnitStatus.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
-		assertPojoMethodsFor(M1Flags.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
-		assertPojoMethodsFor(M1Type.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
-		assertPojoMethodsFor(PowerStatus.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
+		assertThat(Amical1Beacon.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
+		assertThat(AocsStatus.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
+		assertThat(CommunicationFlags.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
+		assertThat(CommunicationModuleStatus.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
+		assertThat(ComputingUnitFlags.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
+		assertThat(ComputingUnitStatus.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
+		assertThat(M1Flags.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
+		assertThat(M1Type.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
+		assertThat(PowerStatus.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
 	}
 
 }

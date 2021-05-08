@@ -1,10 +1,12 @@
 package ru.r2cloud.jradio.atl1;
 
-import static pl.pojo.tester.api.assertion.Assertions.assertPojoMethodsFor;
+import static com.google.code.beanmatchers.BeanMatchers.hasValidBeanConstructor;
+import static com.google.code.beanmatchers.BeanMatchers.hasValidGettersAndSetters;
+import static org.hamcrest.CoreMatchers.allOf;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 import org.junit.Test;
 
-import pl.pojo.tester.api.assertion.Method;
 import ru.r2cloud.jradio.AssertJson;
 import ru.r2cloud.jradio.fec.ViterbiTest;
 
@@ -20,8 +22,8 @@ public class Atl1BeaconTest {
 
 	@Test
 	public void testPojo() {
-		assertPojoMethodsFor(Atl1Beacon.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
-		assertPojoMethodsFor(AtlAccuMeasurement.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
-		assertPojoMethodsFor(AtlTelemetry3.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
+		assertThat(Atl1Beacon.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
+		assertThat(AtlAccuMeasurement.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
+		assertThat(AtlTelemetry3.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
 	}
 }

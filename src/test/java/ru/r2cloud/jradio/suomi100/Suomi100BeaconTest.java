@@ -1,10 +1,12 @@
 package ru.r2cloud.jradio.suomi100;
 
-import static pl.pojo.tester.api.assertion.Assertions.assertPojoMethodsFor;
+import static com.google.code.beanmatchers.BeanMatchers.hasValidBeanConstructor;
+import static com.google.code.beanmatchers.BeanMatchers.hasValidGettersAndSetters;
+import static org.hamcrest.CoreMatchers.allOf;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 import org.junit.Test;
 
-import pl.pojo.tester.api.assertion.Method;
 import ru.r2cloud.jradio.AssertJson;
 import ru.r2cloud.jradio.fec.ViterbiTest;
 
@@ -20,14 +22,14 @@ public class Suomi100BeaconTest {
 	
 	@Test
 	public void testPojo() {
-		assertPojoMethodsFor(Suomi100Beacon.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
-		assertPojoMethodsFor(Beacon0.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
-		assertPojoMethodsFor(Beacon1.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
-		assertPojoMethodsFor(Beacon0Eps.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
-		assertPojoMethodsFor(Beacon1Eps.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
-		assertPojoMethodsFor(Beacon0Com.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
-		assertPojoMethodsFor(Beacon1Com.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
-		assertPojoMethodsFor(Beacon0Obc.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
-		assertPojoMethodsFor(Beacon1Obc.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
+		assertThat(Suomi100Beacon.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
+		assertThat(Beacon0.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
+		assertThat(Beacon1.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
+		assertThat(Beacon0Eps.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
+		assertThat(Beacon1Eps.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
+		assertThat(Beacon0Com.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
+		assertThat(Beacon1Com.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
+		assertThat(Beacon0Obc.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
+		assertThat(Beacon1Obc.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
 	}
 }

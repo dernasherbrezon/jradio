@@ -1,10 +1,12 @@
 package ru.r2cloud.jradio.snet;
 
-import static pl.pojo.tester.api.assertion.Assertions.assertPojoMethodsFor;
+import static com.google.code.beanmatchers.BeanMatchers.hasValidBeanConstructor;
+import static com.google.code.beanmatchers.BeanMatchers.hasValidGettersAndSetters;
+import static org.hamcrest.CoreMatchers.allOf;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 import org.junit.Test;
 
-import pl.pojo.tester.api.assertion.Method;
 import ru.r2cloud.jradio.AssertJson;
 import ru.r2cloud.jradio.fec.ViterbiTest;
 
@@ -28,14 +30,14 @@ public class SnetBeaconTest {
 
 	@Test
 	public void testPojo() {
-		assertPojoMethodsFor(SnetBeacon.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
-		assertPojoMethodsFor(LTUFrameHeader.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
-		assertPojoMethodsFor(SnetFrameHeader.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
-		assertPojoMethodsFor(SnetFrameHeaderExtension.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
-		assertPojoMethodsFor(ADCSTelemetry.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
-		assertPojoMethodsFor(EPSTelemetry.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
-		assertPojoMethodsFor(BatteryCurrent.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
-		assertPojoMethodsFor(Battery.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
+		assertThat(SnetBeacon.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
+		assertThat(LTUFrameHeader.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
+		assertThat(SnetFrameHeader.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
+		assertThat(SnetFrameHeaderExtension.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
+		assertThat(ADCSTelemetry.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
+		assertThat(EPSTelemetry.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
+		assertThat(BatteryCurrent.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
+		assertThat(Battery.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
 	}
 
 }

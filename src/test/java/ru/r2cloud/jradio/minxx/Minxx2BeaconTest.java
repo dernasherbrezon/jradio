@@ -1,10 +1,12 @@
 package ru.r2cloud.jradio.minxx;
 
-import static pl.pojo.tester.api.assertion.Assertions.assertPojoMethodsFor;
+import static com.google.code.beanmatchers.BeanMatchers.hasValidBeanConstructor;
+import static com.google.code.beanmatchers.BeanMatchers.hasValidGettersAndSetters;
+import static org.hamcrest.CoreMatchers.allOf;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 import org.junit.Test;
 
-import pl.pojo.tester.api.assertion.Method;
 import ru.r2cloud.jradio.AssertJson;
 import ru.r2cloud.jradio.fec.ViterbiTest;
 
@@ -20,6 +22,6 @@ public class Minxx2BeaconTest {
 	
 	@Test
 	public void testPojo() {
-		assertPojoMethodsFor(Minxx2Beacon.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
+		assertThat(Minxx2Beacon.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
 	}
 }

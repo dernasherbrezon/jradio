@@ -1,10 +1,12 @@
 package ru.r2cloud.jradio.beesat4;
 
-import static pl.pojo.tester.api.assertion.Assertions.assertPojoMethodsFor;
+import static com.google.code.beanmatchers.BeanMatchers.hasValidBeanConstructor;
+import static com.google.code.beanmatchers.BeanMatchers.hasValidGettersAndSetters;
+import static org.hamcrest.CoreMatchers.allOf;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 import org.junit.Test;
 
-import pl.pojo.tester.api.assertion.Method;
 import ru.r2cloud.jradio.AssertJson;
 import ru.r2cloud.jradio.fec.ViterbiTest;
 
@@ -21,9 +23,9 @@ public class Beesat4BeaconTest {
 	
 	@Test
 	public void testPojo() {
-		assertPojoMethodsFor(Apid0.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
-		assertPojoMethodsFor(Apid1.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
-		assertPojoMethodsFor(Apid2.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
+		assertThat(Apid0.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
+		assertThat(Apid1.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
+		assertThat(Apid2.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
 	}
 			
 }

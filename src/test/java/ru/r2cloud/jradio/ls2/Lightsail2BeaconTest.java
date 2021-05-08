@@ -1,10 +1,12 @@
 package ru.r2cloud.jradio.ls2;
 
-import static pl.pojo.tester.api.assertion.Assertions.assertPojoMethodsFor;
+import static com.google.code.beanmatchers.BeanMatchers.hasValidBeanConstructor;
+import static com.google.code.beanmatchers.BeanMatchers.hasValidGettersAndSetters;
+import static org.hamcrest.CoreMatchers.allOf;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 import org.junit.Test;
 
-import pl.pojo.tester.api.assertion.Method;
 import ru.r2cloud.jradio.AssertJson;
 import ru.r2cloud.jradio.fec.ViterbiTest;
 import ru.r2cloud.jradio.ip.Header;
@@ -22,14 +24,14 @@ public class Lightsail2BeaconTest {
 
 	@Test
 	public void testPojo() {
-		assertPojoMethodsFor(Lightsail2Beacon.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
-		assertPojoMethodsFor(Header.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
-		assertPojoMethodsFor(ru.r2cloud.jradio.udp.Header.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
-		assertPojoMethodsFor(BeaconData.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
-		assertPojoMethodsFor(SysmgrData.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
-		assertPojoMethodsFor(CommData.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
-		assertPojoMethodsFor(BatteryData.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
-		assertPojoMethodsFor(CameraInfo.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
+		assertThat(Lightsail2Beacon.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
+		assertThat(Header.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
+		assertThat(ru.r2cloud.jradio.udp.Header.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
+		assertThat(BeaconData.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
+		assertThat(SysmgrData.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
+		assertThat(CommData.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
+		assertThat(BatteryData.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
+		assertThat(CameraInfo.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
 	}
 
 }

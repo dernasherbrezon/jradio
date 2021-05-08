@@ -1,10 +1,12 @@
 package ru.r2cloud.jradio.eseo;
 
-import static pl.pojo.tester.api.assertion.Assertions.assertPojoMethodsFor;
+import static com.google.code.beanmatchers.BeanMatchers.hasValidBeanConstructor;
+import static com.google.code.beanmatchers.BeanMatchers.hasValidGettersAndSetters;
+import static org.hamcrest.CoreMatchers.allOf;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 import org.junit.Test;
 
-import pl.pojo.tester.api.assertion.Method;
 import ru.r2cloud.jradio.AssertJson;
 import ru.r2cloud.jradio.fec.ViterbiTest;
 
@@ -60,40 +62,39 @@ public class EseoBeaconTest {
 
 	@Test
 	public void testPojo() {
-		assertPojoMethodsFor(EquipmentStatus.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
-		assertPojoMethodsFor(CpuError.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
-		assertPojoMethodsFor(TcError1.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
-		assertPojoMethodsFor(TcError2.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
-		assertPojoMethodsFor(Rs422Status.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
-		assertPojoMethodsFor(Rs422Error.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
-		assertPojoMethodsFor(Rs485Status.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
-		assertPojoMethodsFor(Rs485Error.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
-		assertPojoMethodsFor(ObdStatus.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
-		assertPojoMethodsFor(PmmError1.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
-		assertPojoMethodsFor(TtTxStatus.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
-		assertPojoMethodsFor(TtError.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
-		assertPojoMethodsFor(PlatformFdir.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
-		assertPojoMethodsFor(MmError.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
-		assertPojoMethodsFor(MtError.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
-		assertPojoMethodsFor(CanStatus.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
-		assertPojoMethodsFor(PlCanError.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
-		assertPojoMethodsFor(PyCanError.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
-		assertPojoMethodsFor(CanTimeoutError.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
-		assertPojoMethodsFor(HkStatus.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
-		assertPojoMethodsFor(HkError.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
-		assertPojoMethodsFor(ObdError.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
-		assertPojoMethodsFor(ObdTempError.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
-		assertPojoMethodsFor(AcsError.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
-		assertPojoMethodsFor(HSTXStatus.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
-		assertPojoMethodsFor(HSTXCommunicationCondition.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
-		assertPojoMethodsFor(HSTXMemoryCondition.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
-
-		assertPojoMethodsFor(Type1.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
-		assertPojoMethodsFor(Type2.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
-		assertPojoMethodsFor(Type3.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
-		assertPojoMethodsFor(Type4.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
-		assertPojoMethodsFor(Type5.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
-		assertPojoMethodsFor(Type6.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
+		assertThat(EquipmentStatus.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
+		assertThat(CpuError.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
+		assertThat(TcError1.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
+		assertThat(TcError2.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
+		assertThat(Rs422Status.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
+		assertThat(Rs422Error.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
+		assertThat(Rs485Status.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
+		assertThat(Rs485Error.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
+		assertThat(ObdStatus.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
+		assertThat(PmmError1.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
+		assertThat(TtTxStatus.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
+		assertThat(TtError.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
+		assertThat(PlatformFdir.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
+		assertThat(MmError.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
+		assertThat(MtError.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
+		assertThat(CanStatus.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
+		assertThat(PlCanError.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
+		assertThat(PyCanError.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
+		assertThat(CanTimeoutError.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
+		assertThat(HkStatus.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
+		assertThat(HkError.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
+		assertThat(ObdError.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
+		assertThat(ObdTempError.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
+		assertThat(AcsError.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
+		assertThat(HSTXStatus.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
+		assertThat(HSTXCommunicationCondition.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
+		assertThat(HSTXMemoryCondition.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
+		assertThat(Type1.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
+		assertThat(Type2.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
+		assertThat(Type3.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
+		assertThat(Type4.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
+		assertThat(Type5.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
+		assertThat(Type6.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
 	}
 
 }

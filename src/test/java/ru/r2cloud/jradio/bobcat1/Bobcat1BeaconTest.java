@@ -1,6 +1,9 @@
 package ru.r2cloud.jradio.bobcat1;
 
-import static pl.pojo.tester.api.assertion.Assertions.assertPojoMethodsFor;
+import static com.google.code.beanmatchers.BeanMatchers.hasValidBeanConstructor;
+import static com.google.code.beanmatchers.BeanMatchers.hasValidGettersAndSetters;
+import static org.hamcrest.CoreMatchers.allOf;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -10,7 +13,6 @@ import org.junit.Test;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
-import pl.pojo.tester.api.assertion.Method;
 import ru.r2cloud.jradio.AssertJson;
 import ru.r2cloud.jradio.fec.ViterbiTest;
 
@@ -48,9 +50,9 @@ public class Bobcat1BeaconTest {
 
 	@Test
 	public void testPojo() {
-		assertPojoMethodsFor(Bobcat1Beacon.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
-		assertPojoMethodsFor(LeopFrame.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
-		assertPojoMethodsFor(LongFrame.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
-		assertPojoMethodsFor(BeaconElementHeader.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
+		assertThat(Bobcat1Beacon.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
+		assertThat(LeopFrame.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
+		assertThat(LongFrame.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
+		assertThat(BeaconElementHeader.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
 	}
 }

@@ -1,10 +1,12 @@
 package ru.r2cloud.jradio.chomptt;
 
-import static pl.pojo.tester.api.assertion.Assertions.assertPojoMethodsFor;
+import static com.google.code.beanmatchers.BeanMatchers.hasValidBeanConstructor;
+import static com.google.code.beanmatchers.BeanMatchers.hasValidGettersAndSetters;
+import static org.hamcrest.CoreMatchers.allOf;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 import org.junit.Test;
 
-import pl.pojo.tester.api.assertion.Method;
 import ru.r2cloud.jradio.AssertJson;
 import ru.r2cloud.jradio.fec.ViterbiTest;
 
@@ -20,9 +22,9 @@ public class ChompttBeaconTest {
 
 	@Test
 	public void testPojo() {
-		assertPojoMethodsFor(ChompttBeacon.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
-		assertPojoMethodsFor(PayloadTelemetry.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
-		assertPojoMethodsFor(SpacecraftTelemetry.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
-		assertPojoMethodsFor(ChannelStatus.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
+		assertThat(ChompttBeacon.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
+		assertThat(PayloadTelemetry.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
+		assertThat(SpacecraftTelemetry.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
+		assertThat(ChannelStatus.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
 	}
 }

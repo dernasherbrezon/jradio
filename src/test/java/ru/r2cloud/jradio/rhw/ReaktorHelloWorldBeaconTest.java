@@ -1,10 +1,12 @@
 package ru.r2cloud.jradio.rhw;
 
-import static pl.pojo.tester.api.assertion.Assertions.assertPojoMethodsFor;
+import static com.google.code.beanmatchers.BeanMatchers.hasValidBeanConstructor;
+import static com.google.code.beanmatchers.BeanMatchers.hasValidGettersAndSetters;
+import static org.hamcrest.CoreMatchers.allOf;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 import org.junit.Test;
 
-import pl.pojo.tester.api.assertion.Method;
 import ru.r2cloud.jradio.AssertJson;
 import ru.r2cloud.jradio.fec.ViterbiTest;
 import ru.r2cloud.jradio.fec.ccsds.UncorrectableException;
@@ -48,15 +50,15 @@ public class ReaktorHelloWorldBeaconTest {
 
 	@Test
 	public void testPojo() {
-		assertPojoMethodsFor(ReaktorHelloWorldBeacon.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
-		assertPojoMethodsFor(CanStatistics.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
-		assertPojoMethodsFor(EpsStatistics.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
-		assertPojoMethodsFor(ADCData.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
-		assertPojoMethodsFor(MpptStatistics.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
-		assertPojoMethodsFor(PowerStatistics.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
-		assertPojoMethodsFor(UHFStatistics.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
-		assertPojoMethodsFor(PowerLevels.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
-		assertPojoMethodsFor(EpsBeacon.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
+		assertThat(ReaktorHelloWorldBeacon.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
+		assertThat(CanStatistics.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
+		assertThat(EpsStatistics.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
+		assertThat(ADCData.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
+		assertThat(MpptStatistics.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
+		assertThat(PowerStatistics.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
+		assertThat(UHFStatistics.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
+		assertThat(PowerLevels.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
+		assertThat(EpsBeacon.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
 	}
 
 }

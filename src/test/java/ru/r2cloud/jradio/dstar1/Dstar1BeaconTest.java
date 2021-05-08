@@ -1,12 +1,14 @@
 package ru.r2cloud.jradio.dstar1;
 
-import static pl.pojo.tester.api.assertion.Assertions.assertPojoMethodsFor;
+import static com.google.code.beanmatchers.BeanMatchers.hasValidBeanConstructor;
+import static com.google.code.beanmatchers.BeanMatchers.hasValidGettersAndSetters;
+import static org.hamcrest.CoreMatchers.allOf;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 import java.io.IOException;
 
 import org.junit.Test;
 
-import pl.pojo.tester.api.assertion.Method;
 import ru.r2cloud.jradio.AssertJson;
 import ru.r2cloud.jradio.fec.ccsds.UncorrectableException;
 import ru.r2cloud.jradio.tubix20.CMX909bHeader;
@@ -34,9 +36,9 @@ public class Dstar1BeaconTest {
 
 	@Test
 	public void testPojo() {
-		assertPojoMethodsFor(Dstar1Beacon.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
-		assertPojoMethodsFor(PayloadData.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
-		assertPojoMethodsFor(CMX909bHeader.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
+		assertThat(Dstar1Beacon.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
+		assertThat(PayloadData.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
+		assertThat(CMX909bHeader.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
 	}
 
 }

@@ -1,10 +1,12 @@
 package ru.r2cloud.jradio.fox;
 
-import static pl.pojo.tester.api.assertion.Assertions.assertPojoMethodsFor;
+import static com.google.code.beanmatchers.BeanMatchers.hasValidBeanConstructor;
+import static com.google.code.beanmatchers.BeanMatchers.hasValidGettersAndSetters;
+import static org.hamcrest.CoreMatchers.allOf;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 import org.junit.Test;
 
-import pl.pojo.tester.api.assertion.Method;
 import ru.r2cloud.jradio.AssertJson;
 import ru.r2cloud.jradio.fec.ViterbiTest;
 
@@ -52,17 +54,17 @@ public class Fox1DBeaconTest {
 
 	@Test
 	public void testPojo() {
-		assertPojoMethodsFor(Fox1DBeacon.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
-		assertPojoMethodsFor(FoxHeader.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
-		assertPojoMethodsFor(Payload1BData.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
-		assertPojoMethodsFor(Payload1BRealtime.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
-		assertPojoMethodsFor(Payload1BMaxValues.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
-		assertPojoMethodsFor(Payload1BMinValues.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
-		assertPojoMethodsFor(PayloadRadExpData.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
-		assertPojoMethodsFor(PictureScanLine.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
-		assertPojoMethodsFor(HerciPayload.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
-		assertPojoMethodsFor(IhuDiagnostic.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
-		assertPojoMethodsFor(IhuHardError.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
-		assertPojoMethodsFor(IhuSoftError.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
+		assertThat(Fox1DBeacon.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
+		assertThat(FoxHeader.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
+		assertThat(Payload1BData.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
+		assertThat(Payload1BRealtime.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
+		assertThat(Payload1BMaxValues.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
+		assertThat(Payload1BMinValues.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
+		assertThat(PayloadRadExpData.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
+		assertThat(PictureScanLine.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
+		assertThat(HerciPayload.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
+		assertThat(IhuDiagnostic.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
+		assertThat(IhuHardError.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
+		assertThat(IhuSoftError.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
 	}
 }

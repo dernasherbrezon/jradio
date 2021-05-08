@@ -1,10 +1,12 @@
 package ru.r2cloud.jradio.pwsat2;
 
-import static pl.pojo.tester.api.assertion.Assertions.assertPojoMethodsFor;
+import static com.google.code.beanmatchers.BeanMatchers.hasValidBeanConstructor;
+import static com.google.code.beanmatchers.BeanMatchers.hasValidGettersAndSetters;
+import static org.hamcrest.CoreMatchers.allOf;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 import org.junit.Test;
 
-import pl.pojo.tester.api.assertion.Method;
 import ru.r2cloud.jradio.AssertJson;
 import ru.r2cloud.jradio.fec.ViterbiTest;
 
@@ -52,13 +54,13 @@ public class PwSat2BeaconTest {
 
 	@Test
 	public void testPojo() {
-		assertPojoMethodsFor(PwSat2Beacon.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
-		assertPojoMethodsFor(BeaconFrame.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
-		assertPojoMethodsFor(GenericFrame.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
-		assertPojoMethodsFor(ErrorCountersFrame.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
-		assertPojoMethodsFor(BootSlotsInfoFrame.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
-		assertPojoMethodsFor(FileRemoveFrame.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
-		assertPojoMethodsFor(FileSendFrame.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
-		assertPojoMethodsFor(FileListFrame.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
+		assertThat(PwSat2Beacon.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
+		assertThat(BeaconFrame.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
+		assertThat(GenericFrame.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
+		assertThat(ErrorCountersFrame.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
+		assertThat(BootSlotsInfoFrame.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
+		assertThat(FileRemoveFrame.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
+		assertThat(FileSendFrame.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
+		assertThat(FileListFrame.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
 	}
 }

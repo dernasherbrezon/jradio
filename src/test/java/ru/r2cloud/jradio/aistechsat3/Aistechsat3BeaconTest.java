@@ -1,10 +1,12 @@
 package ru.r2cloud.jradio.aistechsat3;
 
-import static pl.pojo.tester.api.assertion.Assertions.assertPojoMethodsFor;
+import static com.google.code.beanmatchers.BeanMatchers.hasValidBeanConstructor;
+import static com.google.code.beanmatchers.BeanMatchers.hasValidGettersAndSetters;
+import static org.hamcrest.CoreMatchers.allOf;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 import org.junit.Test;
 
-import pl.pojo.tester.api.assertion.Method;
 import ru.r2cloud.jradio.AssertJson;
 import ru.r2cloud.jradio.fec.ViterbiTest;
 
@@ -54,13 +56,13 @@ public class Aistechsat3BeaconTest {
 
 	@Test
 	public void testPojo() {
-		assertPojoMethodsFor(Aistechsat3Beacon.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
-		assertPojoMethodsFor(ADCSBeacon0.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
-		assertPojoMethodsFor(ADCSBeacon2.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
-		assertPojoMethodsFor(PlatformBeacon.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
-		assertPojoMethodsFor(UHFAntennaTelemetryBeacon.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
-		assertPojoMethodsFor(ADCSFineSunSensorBeacon.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
-		assertPojoMethodsFor(ADCSBeacon6.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
-		assertPojoMethodsFor(PayloadBeacon.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
+		assertThat(Aistechsat3Beacon.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
+		assertThat(ADCSBeacon0.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
+		assertThat(ADCSBeacon2.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
+		assertThat(PlatformBeacon.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
+		assertThat(UHFAntennaTelemetryBeacon.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
+		assertThat(ADCSFineSunSensorBeacon.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
+		assertThat(ADCSBeacon6.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
+		assertThat(PayloadBeacon.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
 	}
 }

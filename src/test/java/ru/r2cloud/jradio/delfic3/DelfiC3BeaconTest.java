@@ -1,10 +1,12 @@
 package ru.r2cloud.jradio.delfic3;
 
-import static pl.pojo.tester.api.assertion.Assertions.assertPojoMethodsFor;
+import static com.google.code.beanmatchers.BeanMatchers.hasValidBeanConstructor;
+import static com.google.code.beanmatchers.BeanMatchers.hasValidGettersAndSetters;
+import static org.hamcrest.CoreMatchers.allOf;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 import org.junit.Test;
 
-import pl.pojo.tester.api.assertion.Method;
 import ru.r2cloud.jradio.AssertJson;
 import ru.r2cloud.jradio.fec.ViterbiTest;
 
@@ -20,13 +22,13 @@ public class DelfiC3BeaconTest {
 
 	@Test
 	public void testPojo() {
-		assertPojoMethodsFor(DelfiC3Beacon.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
-		assertPojoMethodsFor(Payload.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
-		assertPojoMethodsFor(Housekeeping.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
-		assertPojoMethodsFor(DeployStatus.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
-		assertPojoMethodsFor(AwssFrame.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
-		assertPojoMethodsFor(AwssBlock.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
-		assertPojoMethodsFor(IVPoint.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
-		assertPojoMethodsFor(RdBlock.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
+		assertThat(DelfiC3Beacon.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
+		assertThat(Payload.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
+		assertThat(Housekeeping.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
+		assertThat(DeployStatus.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
+		assertThat(AwssFrame.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
+		assertThat(AwssBlock.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
+		assertThat(IVPoint.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
+		assertThat(RdBlock.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
 	}
 }

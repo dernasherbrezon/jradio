@@ -1,10 +1,12 @@
 package ru.r2cloud.jradio.lume1;
 
-import static pl.pojo.tester.api.assertion.Assertions.assertPojoMethodsFor;
+import static com.google.code.beanmatchers.BeanMatchers.hasValidBeanConstructor;
+import static com.google.code.beanmatchers.BeanMatchers.hasValidGettersAndSetters;
+import static org.hamcrest.CoreMatchers.allOf;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 import org.junit.Test;
 
-import pl.pojo.tester.api.assertion.Method;
 import ru.r2cloud.jradio.AssertJson;
 import ru.r2cloud.jradio.ccsds.PrimaryHeader;
 import ru.r2cloud.jradio.ecss.SecondaryHeader;
@@ -46,17 +48,16 @@ public class Lume1BeaconTest {
 
 	@Test
 	public void testPojo() {
-		assertPojoMethodsFor(Lume1Beacon.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
-		assertPojoMethodsFor(B1Obc.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
-		assertPojoMethodsFor(B2Eps.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
-		assertPojoMethodsFor(B3TtcGssb.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
-		assertPojoMethodsFor(B4Adcs.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
-		assertPojoMethodsFor(B5Temps.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
-
+		assertThat(Lume1Beacon.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
+		assertThat(B1Obc.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
+		assertThat(B2Eps.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
+		assertThat(B3TtcGssb.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
+		assertThat(B4Adcs.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
+		assertThat(B5Temps.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
 		// even if they belong to separate package, they were introduced only here
 		// test them here
-		assertPojoMethodsFor(PrimaryHeader.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
-		assertPojoMethodsFor(SecondaryHeader.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
+		assertThat(PrimaryHeader.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
+		assertThat(SecondaryHeader.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
 	}
 
 }

@@ -1,10 +1,12 @@
 package ru.r2cloud.jradio.astrocast;
 
-import static pl.pojo.tester.api.assertion.Assertions.assertPojoMethodsFor;
+import static com.google.code.beanmatchers.BeanMatchers.hasValidBeanConstructor;
+import static com.google.code.beanmatchers.BeanMatchers.hasValidGettersAndSetters;
+import static org.hamcrest.CoreMatchers.allOf;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 import org.junit.Test;
 
-import pl.pojo.tester.api.assertion.Method;
 import ru.r2cloud.jradio.ccsds.OperationalControlField;
 import ru.r2cloud.jradio.ccsds.TransferFrameDataFieldStatus;
 import ru.r2cloud.jradio.ccsds.TransferFramePrimaryHeader;
@@ -13,9 +15,9 @@ public class Astrocast9k6BeaconTest {
 
 	@Test
 	public void testPojo() {
-		assertPojoMethodsFor(Astrocast9k6Beacon.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
-		assertPojoMethodsFor(TransferFramePrimaryHeader.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
-		assertPojoMethodsFor(OperationalControlField.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
-		assertPojoMethodsFor(TransferFrameDataFieldStatus.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
+		assertThat(Astrocast9k6Beacon.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
+		assertThat(TransferFramePrimaryHeader.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
+		assertThat(OperationalControlField.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
+		assertThat(TransferFrameDataFieldStatus.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
 	}
 }

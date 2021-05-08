@@ -1,10 +1,12 @@
 package ru.r2cloud.jradio.qarman;
 
-import static pl.pojo.tester.api.assertion.Assertions.assertPojoMethodsFor;
+import static com.google.code.beanmatchers.BeanMatchers.hasValidBeanConstructor;
+import static com.google.code.beanmatchers.BeanMatchers.hasValidGettersAndSetters;
+import static org.hamcrest.CoreMatchers.allOf;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 import org.junit.Test;
 
-import pl.pojo.tester.api.assertion.Method;
 import ru.r2cloud.jradio.AssertJson;
 import ru.r2cloud.jradio.fec.ViterbiTest;
 
@@ -28,8 +30,8 @@ public class QarmanBeaconTest {
 
 	@Test
 	public void testPojo() {
-		assertPojoMethodsFor(QarmanBeacon.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
-		assertPojoMethodsFor(ShortFrame.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
-		assertPojoMethodsFor(LongFrame.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
+		assertThat(QarmanBeacon.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
+		assertThat(ShortFrame.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
+		assertThat(LongFrame.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
 	}
 }

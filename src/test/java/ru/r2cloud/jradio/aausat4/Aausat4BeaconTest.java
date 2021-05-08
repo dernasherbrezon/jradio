@@ -1,20 +1,21 @@
 package ru.r2cloud.jradio.aausat4;
 
-import static pl.pojo.tester.api.assertion.Assertions.assertPojoMethodsFor;
+import static com.google.code.beanmatchers.BeanMatchers.hasValidBeanConstructor;
+import static com.google.code.beanmatchers.BeanMatchers.hasValidGettersAndSetters;
+import static org.hamcrest.CoreMatchers.allOf;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 import org.junit.Test;
-
-import pl.pojo.tester.api.assertion.Method;
 
 public class Aausat4BeaconTest {
 
 	@Test
 	public void testPojo() {
-		assertPojoMethodsFor(Aausat4Beacon.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
-		assertPojoMethodsFor(Eps.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
-		assertPojoMethodsFor(Com.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
-		assertPojoMethodsFor(Adcs1.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
-		assertPojoMethodsFor(Adcs2.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
-		assertPojoMethodsFor(Ais.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
+		assertThat(Aausat4Beacon.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
+		assertThat(Eps.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
+		assertThat(Com.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
+		assertThat(Adcs1.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
+		assertThat(Adcs2.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
+		assertThat(Ais.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
 	}
 }

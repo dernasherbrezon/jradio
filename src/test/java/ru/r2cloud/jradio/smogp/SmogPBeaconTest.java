@@ -1,10 +1,12 @@
 package ru.r2cloud.jradio.smogp;
 
-import static pl.pojo.tester.api.assertion.Assertions.assertPojoMethodsFor;
+import static com.google.code.beanmatchers.BeanMatchers.hasValidBeanConstructor;
+import static com.google.code.beanmatchers.BeanMatchers.hasValidGettersAndSetters;
+import static org.hamcrest.CoreMatchers.allOf;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 import org.junit.Test;
 
-import pl.pojo.tester.api.assertion.Method;
 import ru.r2cloud.jradio.AssertJson;
 import ru.r2cloud.jradio.fec.ViterbiTest;
 
@@ -69,23 +71,23 @@ public class SmogPBeaconTest {
 
 	@Test
 	public void testPojo() {
-		assertPojoMethodsFor(SmogPBeacon.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
-		assertPojoMethodsFor(Telemetry1.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
-		assertPojoMethodsFor(Telemetry2.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
-		assertPojoMethodsFor(Telemetry3.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
-		assertPojoMethodsFor(AtlTelemetry1.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
-		assertPojoMethodsFor(AtlTelemetry2.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
-		assertPojoMethodsFor(Mppt.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
-		assertPojoMethodsFor(AckInfo.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
-		assertPojoMethodsFor(PcuDep.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
-		assertPojoMethodsFor(PcuSdc.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
-		assertPojoMethodsFor(PcuBat.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
-		assertPojoMethodsFor(PcuBus.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
-		assertPojoMethodsFor(Msen.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
-		assertPojoMethodsFor(Com.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
-		assertPojoMethodsFor(Tid.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
-		assertPojoMethodsFor(File.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
-		assertPojoMethodsFor(FileFragment.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
-		assertPojoMethodsFor(Beacon.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
+		assertThat(SmogPBeacon.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
+		assertThat(Telemetry1.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
+		assertThat(Telemetry2.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
+		assertThat(Telemetry3.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
+		assertThat(AtlTelemetry1.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
+		assertThat(AtlTelemetry2.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
+		assertThat(Mppt.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
+		assertThat(AckInfo.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
+		assertThat(PcuDep.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
+		assertThat(PcuSdc.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
+		assertThat(PcuBat.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
+		assertThat(PcuBus.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
+		assertThat(Msen.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
+		assertThat(Com.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
+		assertThat(Tid.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
+		assertThat(File.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
+		assertThat(FileFragment.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
+		assertThat(Beacon.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
 	}
 }

@@ -1,10 +1,12 @@
 package ru.r2cloud.jradio.skcube;
 
-import static pl.pojo.tester.api.assertion.Assertions.assertPojoMethodsFor;
+import static com.google.code.beanmatchers.BeanMatchers.hasValidBeanConstructor;
+import static com.google.code.beanmatchers.BeanMatchers.hasValidGettersAndSetters;
+import static org.hamcrest.CoreMatchers.allOf;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 import org.junit.Test;
 
-import pl.pojo.tester.api.assertion.Method;
 import ru.r2cloud.jradio.AssertJson;
 import ru.r2cloud.jradio.fec.ViterbiTest;
 
@@ -47,10 +49,10 @@ public class SkcubeBeaconTest {
 
 	@Test
 	public void testPojo() {
-		assertPojoMethodsFor(SkcubeBeacon.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
-		assertPojoMethodsFor(Cdhs.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
-		assertPojoMethodsFor(Adcs.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
-		assertPojoMethodsFor(Com.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
-		assertPojoMethodsFor(Pwr.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
+		assertThat(SkcubeBeacon.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
+		assertThat(Cdhs.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
+		assertThat(Adcs.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
+		assertThat(Com.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
+		assertThat(Pwr.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
 	}
 }

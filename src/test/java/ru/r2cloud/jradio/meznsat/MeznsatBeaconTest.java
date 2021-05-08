@@ -1,10 +1,12 @@
 package ru.r2cloud.jradio.meznsat;
 
-import static pl.pojo.tester.api.assertion.Assertions.assertPojoMethodsFor;
+import static com.google.code.beanmatchers.BeanMatchers.hasValidBeanConstructor;
+import static com.google.code.beanmatchers.BeanMatchers.hasValidGettersAndSetters;
+import static org.hamcrest.CoreMatchers.allOf;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 import org.junit.Test;
 
-import pl.pojo.tester.api.assertion.Method;
 import ru.r2cloud.jradio.AssertJson;
 import ru.r2cloud.jradio.fec.ViterbiTest;
 
@@ -28,7 +30,7 @@ public class MeznsatBeaconTest {
 
 	@Test
 	public void testPojo() {
-		assertPojoMethodsFor(MeznsatBeacon.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
-		assertPojoMethodsFor(MeznsatTelemetry.class).testing(Method.GETTER, Method.SETTER).areWellImplemented();
+		assertThat(MeznsatBeacon.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
+		assertThat(MeznsatTelemetry.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
 	}
 }
