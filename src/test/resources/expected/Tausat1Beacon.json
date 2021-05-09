@@ -1,0 +1,48 @@
+{
+  "commandType": 3,
+  "commandSubType": 25,
+  "length": 50,
+  "satelliteTime": 1620530572,
+  "telemetry": {
+    "batteryVoltage": 8261,
+    "batteryCurrent": 356,
+    "current3v3": 79,
+    "current5v": 279,
+    "loTrxvuTemperature": -5.4008026,
+    "paTrxvuTemperature": -4.787277,
+    "eps0Temperature": 0,
+    "eps1Temperature": 0,
+    "eps2Temperature": 65535,
+    "eps3Temperature": 65534,
+    "battery0Temperature": 2,
+    "battery1Temperature": 2,
+    "rxDoppler": 5632.385,
+    "rxRssi": -108.14,
+    "txRefl": 0.3581651,
+    "txFlow": 0.4153867,
+    "fileSystemLastError": 0,
+    "numberOfDelayedCommands": 0,
+    "numberOfResets": 4,
+    "lastResetTime": 1620364000,
+    "state": 112
+  },
+  "header": {
+    "destinationAddress": {
+      "callsign": "TAUGS",
+      "ssid": 0,
+      "extensionBit": 0
+    },
+    "sourceAddress": {
+      "callsign": "TAUSAT",
+      "ssid": 1,
+      "extensionBit": 1
+    },
+    "frameType": "U",
+    "sendSequenceNumber": 0,
+    "receiveSequenceNumber": 0,
+    "uControlType": "UI",
+    "pid": 240
+  },
+  "beginSample": 0,
+  "beginMillis": 0
+}
