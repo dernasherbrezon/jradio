@@ -289,8 +289,8 @@
 
 	<scm>
 		<url>https://github.com/dernasherbrezon/jradio</url>
-		<connection>scm:git:git@github.com/dernasherbrezon/jradio.git</connection>
-		<developerConnection>scm:git:git@github.com/dernasherbrezon/jradio.git</developerConnection>
+		<connection>scm:git:git@github.com:dernasherbrezon/jradio.git</connection>
+		<developerConnection>scm:git:git@github.com:dernasherbrezon/jradio.git</developerConnection>
 		<tag>jradio-1.60</tag>
 	</scm>
 
