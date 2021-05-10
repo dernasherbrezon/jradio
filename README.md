@@ -424,6 +424,11 @@ jradio has lots of built-in satellite decoders. Some of them have non standard d
 			<td>47926</td>
 			<td>BpskDemodulator 9600 baud, Ax25G3ruhDecoder and Tausat1Beacon</td>
 		</tr>
+		<tr>
+			<td>UVSQ-SAT</td>
+			<td>47438</td>
+			<td>BpskDemodulator 9600 baud, Ax25G3ruhDecoder and UvsqsatBeacon</td>
+		</tr>
 	</tbody>
 </table>
   
