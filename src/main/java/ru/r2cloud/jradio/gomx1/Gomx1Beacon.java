@@ -6,6 +6,7 @@ import java.io.IOException;
 
 import ru.r2cloud.jradio.Beacon;
 import ru.r2cloud.jradio.csp.Header;
+import ru.r2cloud.jradio.fec.ccsds.UncorrectableException;
 
 public class Gomx1Beacon extends Beacon {
 
@@ -16,7 +17,10 @@ public class Gomx1Beacon extends Beacon {
 	private byte[] unknownPayload;
 
 	@Override
-	public void readBeacon(byte[] data) throws IOException {
+	public void readBeacon(byte[] data) throws IOException, UncorrectableException {
+		if (data.length <= Header.LENGTH) {
+			throw new UncorrectableException("not enough data");
+		}
 		DataInputStream dis = new DataInputStream(new ByteArrayInputStream(data));
 		header = new Header(dis);
 		switch (data.length) {
