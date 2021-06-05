@@ -1,0 +1,52 @@
+{
+  "ax25Header": {
+    "destinationAddress": {
+      "callsign": "CQ",
+      "ssid": 0,
+      "extensionBit": 0
+    },
+    "sourceAddress": {
+      "callsign": "OM9GRB",
+      "ssid": 0,
+      "extensionBit": 1
+    },
+    "frameType": "U",
+    "sendSequenceNumber": 0,
+    "receiveSequenceNumber": 0,
+    "uControlType": "UI",
+    "pid": 240
+  },
+  "comTelemetry": {
+    "totalUptimeSeconds": 6454011,
+    "uptimeSinceLastResetSeconds": 150266,
+    "resetCounter": 5288,
+    "microcontrollerSupplyVoltage": 3330,
+    "auxVoltage": 2406,
+    "cpuCoreTemperature": 23.850006,
+    "powerAmplifierTemperature": 25.248869,
+    "sigRxImmediate": 1751,
+    "sigiRxAvg": 1685,
+    "sigRxMax": 1706,
+    "sigBackgroundImmediate": 1490,
+    "sigBackgroundAvg": 1548,
+    "sigBackgroundMax": 0,
+    "rxPacketsReceived": 4350,
+    "rxPacketsTransmitted": 378025,
+    "ax25PacketsReceived": 507,
+    "ax25PacketsTransmitted": 183136,
+    "digipeaterRxCount": 507,
+    "digipeaterTxCount": 64811,
+    "cspPacketsReceived": 3741,
+    "cspPacketsTransmitted": 194901,
+    "i2c1PacketsReceived": 4152207,
+    "i2c1PacketsTransmitted": 66056,
+    "i2c2PacketsReceived": 65672,
+    "i2c2PacketsTransmitted": 699,
+    "rs485PacketsReceived": 78,
+    "rs485PacketsTransmitted": 3959774,
+    "mcuPacketsReceived": 4030979,
+    "mcuPacketsTransmitted": 4030980
+  },
+  "beginSample": 0,
+  "beginMillis": 0
+}
