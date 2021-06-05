@@ -15,6 +15,7 @@ public class GRBAlphaBeacon extends Beacon {
 	private Header cspHeader;
 	private ComTelemetry comTelemetry;
 	private byte[] unknownPayload;
+	private String unknownMessage;
 
 	@Override
 	public void readBeacon(byte[] data) throws IOException, UncorrectableException {
@@ -23,13 +24,26 @@ public class GRBAlphaBeacon extends Beacon {
 			ax25Header = new ru.r2cloud.jradio.ax25.Header(dis);
 			byte[] bodyBytes = new byte[dis.available()];
 			dis.readFully(bodyBytes);
-			comTelemetry = new ComTelemetry(new String(bodyBytes, StandardCharsets.US_ASCII));
+			String body = new String(bodyBytes, StandardCharsets.US_ASCII);
+			if (body.startsWith(",COMd")) {
+				comTelemetry = new ComTelemetry(body);
+			} else {
+				unknownMessage = body;
+			}
 		} catch (Exception e) {
 			DataInputStream dis = new DataInputStream(new ByteArrayInputStream(data));
 			cspHeader = new Header(dis);
 			unknownPayload = new byte[dis.available()];
 			dis.readFully(unknownPayload);
 		}
+	}
+	
+	public String getUnknownMessage() {
+		return unknownMessage;
+	}
+	
+	public void setUnknownMessage(String unknownMessage) {
+		this.unknownMessage = unknownMessage;
 	}
 
 	public ru.r2cloud.jradio.ax25.Header getAx25Header() {
