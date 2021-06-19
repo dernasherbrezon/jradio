@@ -136,10 +136,13 @@ public class GrifexBeacon extends Ax25Beacon {
 	private int variable10;
 
 	private byte[] unknownPayload;
-	
+
 	@Override
 	public void readBeacon(DataInputStream dis) throws IOException, UncorrectableException {
 		mxlHeader = new MxlHeader(dis);
+		if (mxlHeader.getPacketLength() != dis.available() + MxlHeader.LENGTH_BYTES) {
+			throw new UncorrectableException("not enough bytes in the input");
+		}
 		if (mxlHeader.getSecondaryId() != 0x42) {
 			throw new UncorrectableException("unknown spacecraft: " + mxlHeader.getSecondaryId());
 		}

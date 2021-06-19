@@ -3,7 +3,11 @@ package ru.r2cloud.jradio.grifex;
 import java.io.DataInputStream;
 import java.io.IOException;
 
+import ru.r2cloud.jradio.fec.ccsds.UncorrectableException;
+
 public class MxlHeader {
+
+	public static final int LENGTH_BYTES = 11;
 
 	private short sync;
 	private int primaryId;
@@ -16,12 +20,15 @@ public class MxlHeader {
 		// do nothing
 	}
 
-	public MxlHeader(DataInputStream dis) throws IOException {
+	public MxlHeader(DataInputStream dis) throws IOException, UncorrectableException {
+		if (dis.available() < LENGTH_BYTES) {
+			throw new UncorrectableException("not enough bytes in the input");
+		}
 		sync = dis.readShort();
 		primaryId = dis.readUnsignedShort();
 		secondaryId = dis.readUnsignedShort();
 		flags = dis.readUnsignedByte();
-		packetLength = dis.readUnsignedShort();
+		packetLength = dis.readUnsignedByte() | (dis.readUnsignedByte() << 8);
 		headerChecksum = dis.readUnsignedShort();
 	}
 

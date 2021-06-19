@@ -4,7 +4,7 @@
     "primaryId": 0,
     "secondaryId": 66,
     "flags": 3,
-    "packetLength": 62720,
+    "packetLength": 245,
     "headerChecksum": 46197
   },
   "rtcUnixTime": 1617369160,
