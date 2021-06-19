@@ -133,11 +133,18 @@ public class ComTelemetry {
 			first = cur;
 		}
 
-		if (first == null) {
+		// just for completeness
+		// lookup_table cannot be empty so
+		// this check never happen
+		if (first == null && last == null) {
+			return 0.0f;
+		}
+
+		if (first == null && last != null) {
 			return last.getValue();
 		}
 
-		if (last == null) {
+		if (last == null && first != null) {
 			return first.getValue();
 		}
 
