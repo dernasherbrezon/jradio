@@ -110,7 +110,7 @@ All blocks meant to be binary compatible with gnuradio versions. This will ensur
   * MapBlock
   * Multiply
   * MultiplyConst
-  * NrziDecode. Out-of-tree block. Performs nrzi decoding over unpacked stream of bytes
+  * NrziDecode/NrziEncode. Performs nrzi decoding/encoding over unpacked stream of bytes
   * osmocom source (RtlTcp)
   * PackedToUnpacked
   * PolyphaseArbResamplerComplex
