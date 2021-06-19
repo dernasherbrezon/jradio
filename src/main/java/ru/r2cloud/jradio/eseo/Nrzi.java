@@ -11,6 +11,21 @@ public class Nrzi {
 		}
 	}
 
+	public static void encode(byte[] data) {
+		int previous = 0;
+		for (int i = 0; i < data.length; i++) {
+			int curByte = 0;
+			for (int j = 0; j < 8; j++) {
+				int curBit = ((data[i] & 0xFF) >> (7 - j)) & 0x1;
+				int outputBit = ~(curBit ^ previous) & 0x1;
+				previous = outputBit;
+				curByte = curByte << 1;
+				curByte = curByte | outputBit;
+			}
+			data[i] = (byte) curByte;
+		}
+	}
+
 	private Nrzi() {
 		// do nothing
 	}
