@@ -58,18 +58,17 @@ public class HdlcTransmitter implements ByteInput {
 		for (int i = 0; i < BITS_IN_BYTES; i++) {
 			byte curBit = (byte) ((curByte >> i) & 0x1);
 			if (curBit == 1) {
-				if (successiveOnes == 5) {
-					bitsToSend[bitsToSendLength] = 0;
-					bitsToSendLength++;
-					successiveOnes = 0;
-				} else {
-					successiveOnes++;
-				}
+				successiveOnes++;
 			} else {
 				successiveOnes = 0;
 			}
 			bitsToSend[bitsToSendLength] = curBit;
 			bitsToSendLength++;
+			if (successiveOnes == 5) {
+				bitsToSend[bitsToSendLength] = 0;
+				bitsToSendLength++;
+				successiveOnes = 0;
+			}
 		}
 	}
 
