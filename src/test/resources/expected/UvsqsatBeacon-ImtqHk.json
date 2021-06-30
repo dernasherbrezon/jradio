@@ -1,0 +1,57 @@
+{
+  "primaryHeader": {
+    "packetVersion": 0,
+    "packetType": 0,
+    "secondaryHeader": true,
+    "applicationProcessId": 1,
+    "sequenceFlag": 3,
+    "packetName": 0,
+    "packetDataLength": 45
+  },
+  "secondaryHeader": {
+    "tmPacketPusVersionNumber": 2,
+    "spacecraftTimeReferenceStatus": 0,
+    "serviceTypeId": 3,
+    "messageSubtypeId": 25,
+    "messageTypeCounter": 0,
+    "destinationId": 2,
+    "time": 946716606,
+    "sid": 23
+  },
+  "imtqHk": {
+    "digitaleVoltage": 80.01832,
+    "analogVoltage": 80.01832,
+    "digitalCurrent": 65535,
+    "analogCurrent": 65535,
+    "measureCoilXCurrent": 19489.58,
+    "measureCoilYCurrent": 19489.58,
+    "measureCoilZCurrent": 81206.586,
+    "measureCoilXTemperature": -4745.9453,
+    "measureCoilYTemperature": -4745.9453,
+    "measureCoilZTemperature": -4745.9453,
+    "mcuTemperature": -17479.627,
+    "imtqSystemStateMode": 255,
+    "imtqSystemStateError": 255,
+    "imtqSystemStateConfiguration": 255,
+    "imtqSystemStateUptime": 4294967295
+  },
+  "header": {
+    "destinationAddress": {
+      "callsign": "LATMOS",
+      "ssid": 0,
+      "extensionBit": 0
+    },
+    "sourceAddress": {
+      "callsign": "LATMOS",
+      "ssid": 1,
+      "extensionBit": 1
+    },
+    "frameType": "U",
+    "sendSequenceNumber": 0,
+    "receiveSequenceNumber": 0,
+    "uControlType": "UI",
+    "pid": 240
+  },
+  "beginSample": 0,
+  "beginMillis": 0
+}

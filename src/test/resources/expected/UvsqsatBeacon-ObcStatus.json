@@ -1,0 +1,87 @@
+{
+  "primaryHeader": {
+    "packetVersion": 0,
+    "packetType": 0,
+    "secondaryHeader": true,
+    "applicationProcessId": 1,
+    "sequenceFlag": 3,
+    "packetName": 0,
+    "packetDataLength": 95
+  },
+  "secondaryHeader": {
+    "tmPacketPusVersionNumber": 2,
+    "spacecraftTimeReferenceStatus": 0,
+    "serviceTypeId": 3,
+    "messageSubtypeId": 25,
+    "messageTypeCounter": 0,
+    "destinationId": 2,
+    "time": 946716717,
+    "sid": 17
+  },
+  "obcStatus": {
+    "spiCommandStatus": 7,
+    "supervisorIndexOfSubsystem": 28,
+    "supervisorMajorVersion": 53,
+    "supervisorMinorVersion": 53,
+    "supervisorPatchVersion": 48,
+    "supervisorGitHeadVersion": 1234,
+    "supervisorSerialNumber": 1,
+    "compilationInformation": [
+      83,
+      101,
+      112,
+      32,
+      50,
+      50,
+      32,
+      50,
+      48,
+      49,
+      53,
+      49,
+      49,
+      58,
+      53,
+      55,
+      58,
+      48,
+      55
+    ],
+    "clockSpeed": 16,
+    "codeType": 80,
+    "crc8": 54,
+    "swMmode": 4,
+    "lastResetReason": 254,
+    "reserved": 0,
+    "nbReset": 50,
+    "reserved2": 173,
+    "deployAntennasSystem": 17,
+    "nbTmSinceFirstStart": 2060851,
+    "nbTcSinceFirstStart": 1734,
+    "nbBadTcSinceFirstStart": 21,
+    "nbTmInSdcard": 973,
+    "sdcardStatus": 0,
+    "sdcardLastError": 22809344,
+    "oldTimeTMInSdcard": 3699305,
+    "newTimeTMInSdcard": 20547673303576000
+  },
+  "header": {
+    "destinationAddress": {
+      "callsign": "LATMOS",
+      "ssid": 0,
+      "extensionBit": 0
+    },
+    "sourceAddress": {
+      "callsign": "LATMOS",
+      "ssid": 1,
+      "extensionBit": 1
+    },
+    "frameType": "U",
+    "sendSequenceNumber": 0,
+    "receiveSequenceNumber": 0,
+    "uControlType": "UI",
+    "pid": 240
+  },
+  "beginSample": 0,
+  "beginMillis": 0
+}

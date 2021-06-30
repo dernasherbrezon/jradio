@@ -1,0 +1,71 @@
+{
+  "primaryHeader": {
+    "packetVersion": 0,
+    "packetType": 0,
+    "secondaryHeader": true,
+    "applicationProcessId": 1,
+    "sequenceFlag": 3,
+    "packetName": 0,
+    "packetDataLength": 89
+  },
+  "secondaryHeader": {
+    "tmPacketPusVersionNumber": 2,
+    "spacecraftTimeReferenceStatus": 0,
+    "serviceTypeId": 3,
+    "messageSubtypeId": 25,
+    "messageTypeCounter": 0,
+    "destinationId": 2,
+    "time": 946716797,
+    "sid": 18
+  },
+  "obcHk": {
+    "spiCommandStatus": 7,
+    "supervisorEnableStatus": 7,
+    "supervisorUptime": 31997,
+    "iobcUptime": 31997,
+    "iobcResetCount": 0,
+    "iobcMeasureTemperature": 597,
+    "iobcMeasure3v3In": 683,
+    "iobcMeasure3v3": 681,
+    "iobcMeasure2vReference": 1023,
+    "iobcMeasure1v8": 739,
+    "iobcMeasure1v0": 411,
+    "iobcMeasureCurrent3v3": 171,
+    "iobcMeasureCurrent1v8": 279,
+    "iobcMeasureCurrent1v0": 315,
+    "iobcMeasureVoltRtc": 683,
+    "iobcAdcUpdateFlag": 255,
+    "iobcCrc8": 148,
+    "photodiode1": 5,
+    "photodiode2": 4,
+    "photodiode3": 5,
+    "photodiode4": 6,
+    "photodiode5": 5,
+    "photodiode6": 6,
+    "panelTemperature1": 1.9453125,
+    "panelTemperature2": 1.5019531,
+    "panelTemperature3": 4.8125,
+    "panelTemperature4": 1.2949219,
+    "panelTemperature5": 25.887695,
+    "panelTemperature6": -3.211914
+  },
+  "header": {
+    "destinationAddress": {
+      "callsign": "LATMOS",
+      "ssid": 0,
+      "extensionBit": 0
+    },
+    "sourceAddress": {
+      "callsign": "LATMOS",
+      "ssid": 1,
+      "extensionBit": 1
+    },
+    "frameType": "U",
+    "sendSequenceNumber": 0,
+    "receiveSequenceNumber": 0,
+    "uControlType": "UI",
+    "pid": 240
+  },
+  "beginSample": 0,
+  "beginMillis": 0
+}

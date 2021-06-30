@@ -1,0 +1,54 @@
+{
+  "primaryHeader": {
+    "packetVersion": 0,
+    "packetType": 0,
+    "secondaryHeader": true,
+    "applicationProcessId": 1,
+    "sequenceFlag": 3,
+    "packetName": 0,
+    "packetDataLength": 35
+  },
+  "secondaryHeader": {
+    "tmPacketPusVersionNumber": 2,
+    "spacecraftTimeReferenceStatus": 0,
+    "serviceTypeId": 3,
+    "messageSubtypeId": 25,
+    "messageTypeCounter": 0,
+    "destinationId": 2,
+    "time": 946717298,
+    "sid": 24
+  },
+  "trxvutxHk": {
+    "trxvutxInstantaneousRfReflectedPowerFromTransmitterPort": 0.94192,
+    "trxvutxInstantaneousRfForwardPowerFromTransmitterPort": 130.04382,
+    "trxvutxSupplyVoltage": 7.91536,
+    "trxvutxTotalSupplyCurrent": 50.09833,
+    "trxvutxTransmitterCurrent": 10.319258,
+    "trxvutxReceiverCurrent": 96.53499,
+    "trxvutxPowerAmplifierCurrent": 332.87927,
+    "trxvutxPowerAmplifierTemperature": 11.394318,
+    "trxvutxLocalOscillatorTemperature": 11.317627,
+    "trxvutxZeroPadding": 0,
+    "trxvuTxUptime": 520240,
+    "trxvuTxState": 32
+  },
+  "header": {
+    "destinationAddress": {
+      "callsign": "LATMOS",
+      "ssid": 0,
+      "extensionBit": 0
+    },
+    "sourceAddress": {
+      "callsign": "LATMOS",
+      "ssid": 1,
+      "extensionBit": 1
+    },
+    "frameType": "U",
+    "sendSequenceNumber": 0,
+    "receiveSequenceNumber": 0,
+    "uControlType": "UI",
+    "pid": 240
+  },
+  "beginSample": 0,
+  "beginMillis": 0
+}

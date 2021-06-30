@@ -1,0 +1,64 @@
+{
+  "primaryHeader": {
+    "packetVersion": 0,
+    "packetType": 0,
+    "secondaryHeader": true,
+    "applicationProcessId": 1,
+    "sequenceFlag": 3,
+    "packetName": 0,
+    "packetDataLength": 56
+  },
+  "secondaryHeader": {
+    "tmPacketPusVersionNumber": 2,
+    "spacecraftTimeReferenceStatus": 0,
+    "serviceTypeId": 3,
+    "messageSubtypeId": 25,
+    "messageTypeCounter": 0,
+    "destinationId": 2,
+    "time": 946716717,
+    "sid": 16
+  },
+  "antsHk": {
+    "sideAAntsTemperature": 540,
+    "sideAAntsDeploymentStatus": 0,
+    "sideAAntsUptime": 31926,
+    "sideADeploymentCountAntenna1": 0,
+    "sideADeploymentCountAntenna2": 0,
+    "sideADeploymentCountAntenna3": 0,
+    "sideADeploymentCountAntenna4": 0,
+    "sideADeploymentTimeAntenna1": 0,
+    "sideADeploymentTimeAntenna2": 0,
+    "sideADeploymentTimeAntenna3": 0,
+    "sideADeploymentTimeAntenna4": 0,
+    "sideBAntsTemperature": 546,
+    "sideBAntsDeploymentStatus": 0,
+    "sideBAntsUptime": 0,
+    "sideBDeploymentCountAntenna1": 124,
+    "sideBDeploymentCountAntenna2": 2,
+    "sideBDeploymentCountAntenna3": 0,
+    "sideBDeploymentCountAntenna4": 0,
+    "sideBDeploymentTimeAntenna1": 0,
+    "sideBDeploymentTimeAntenna2": 0,
+    "sideBDeploymentTimeAntenna3": 0,
+    "sideBDeploymentTimeAntenna4": 0
+  },
+  "header": {
+    "destinationAddress": {
+      "callsign": "LATMOS",
+      "ssid": 0,
+      "extensionBit": 0
+    },
+    "sourceAddress": {
+      "callsign": "LATMOS",
+      "ssid": 1,
+      "extensionBit": 1
+    },
+    "frameType": "U",
+    "sendSequenceNumber": 0,
+    "receiveSequenceNumber": 0,
+    "uControlType": "UI",
+    "pid": 240
+  },
+  "beginSample": 0,
+  "beginMillis": 0
+}

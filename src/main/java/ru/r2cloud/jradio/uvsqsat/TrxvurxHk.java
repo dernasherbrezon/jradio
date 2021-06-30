@@ -33,7 +33,7 @@ public class TrxvurxHk {
 		trxvurxPowerAmplifierTemperature = dis.readUnsignedInt(12) * -0.07669F + 195.6037F;
 		trxvurxLocalOscillatorTemperature = dis.readUnsignedInt(12) * -0.07669F + 195.6037F;
 		trxvurxZeroPadding = dis.readUnsignedInt(4);
-		trxvuRxUptime = dis.readUnsignedInt(32);
+		trxvuRxUptime = dis.readUnsignedLong(32);
 	}
 
 	public float getTrxvurxInstantaneousReceivedSignalDopplerOffsetAtTheReceiverPort() {
