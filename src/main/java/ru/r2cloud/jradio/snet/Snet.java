@@ -37,7 +37,8 @@ public class Snet extends BeaconSource<SnetBeacon> {
 
 		LTUFrameHeader ltuHeader = new LTUFrameHeader(header);
 
-		// 5. prepare data bits for crc5 calculation. replace last 7 with hardcoded 1011011
+		// 5. prepare data bits for crc5 calculation. replace last 7 with hardcoded
+		// 1011011
 		headerDataBits[headerDataBits.length - 7] = 1;
 		headerDataBits[headerDataBits.length - 6] = 0;
 		headerDataBits[headerDataBits.length - 5] = 1;
@@ -49,7 +50,8 @@ public class Snet extends BeaconSource<SnetBeacon> {
 		// 6. check header CRC5
 		int actualCrc = Crc5Snet.calculateCrc5(headerDataBits);
 		if (actualCrc != ltuHeader.getCrc5()) {
-			// force CRC5 bugs. replace 4th byte from the end with the contents of 3rd byte from the end
+			// force CRC5 bugs. replace 4th byte from the end with the contents of 3rd byte
+			// from the end
 			for (int i = 0; i < 8; i++) {
 				headerDataBits[(HEADER_LENGTH_BYTES - 1 - 4) * 8 + i] = headerDataBits[(HEADER_LENGTH_BYTES - 1 - 3) * 8 + i];
 			}
@@ -133,6 +135,11 @@ public class Snet extends BeaconSource<SnetBeacon> {
 		if (pdu == null && dataBitsPerCodeword != 0) {
 			int dataBytesPerBlock = CODEWORDS_PER_BLOCK * dataBitsPerCodeword / 8;
 			int numBlocks = (int) Math.ceil((float) header.getPduLength() / dataBytesPerBlock);
+			int requiredBits = HEADER_LENGTH_WITH_FEC_BITS + CODEWORDS_PER_BLOCK * CHUNK_LENGTH_BITS * numBlocks;
+			if (requiredBits > bits.length) {
+				LOG.error("not enough bits. expected: {} got {}", requiredBits, bits.length);
+				throw new UncorrectableException("not enough bits in the message");
+			}
 			// correct errors BCH
 			pdu = new byte[numBlocks * dataBytesPerBlock * 8];
 			int dstIndex = 0;
@@ -159,7 +166,7 @@ public class Snet extends BeaconSource<SnetBeacon> {
 		if (pdu == null) {
 			return null;
 		}
-		
+
 		// convert LSB to MSB
 		for (int i = 0; i < pdu.length; i += 8) {
 			for (int j = 0; j < 4; j++) {
