@@ -17,10 +17,9 @@
           "tmmhsHist": "BUS",
           "tmmhsStat": "OFF"
         },
-        "length": 13,
         "virtualChannelIdentifier": 0,
         "recordingTimeFraction": 7,
-        "recordingTimeSeconds": 573993161,
+        "recordingTimeSeconds": 1520677961,
         "nodeOfOrigin": 4,
         "sourcePacketIdentifier": 11,
         "crc": 106
@@ -38,19 +37,17 @@
           "tmmhsHist": "BUS",
           "tmmhsStat": "OFF"
         },
-        "length": 13,
         "virtualChannelIdentifier": 1,
         "recordingTimeFraction": 8,
-        "recordingTimeSeconds": 573984786,
+        "recordingTimeSeconds": 1520669586,
         "nodeOfOrigin": 4,
         "sourcePacketIdentifier": 11,
         "crc": 41233
       },
       {
-        "length": 42,
         "virtualChannelIdentifier": 1,
         "recordingTimeFraction": 7,
-        "recordingTimeSeconds": 573985085,
+        "recordingTimeSeconds": 1520669885,
         "nodeOfOrigin": 1,
         "sourcePacketIdentifier": 170,
         "crc": 14594,
@@ -113,10 +110,9 @@
           "batTmpA": 20,
           "batTmpB": 20
         },
-        "length": 20,
         "virtualChannelIdentifier": 1,
         "recordingTimeFraction": 7,
-        "recordingTimeSeconds": 573985085,
+        "recordingTimeSeconds": 1520669885,
         "nodeOfOrigin": 1,
         "sourcePacketIdentifier": 171,
         "crc": 6727
@@ -150,10 +146,9 @@
           "pcuTempA": 0.0,
           "pcuTempB": 0.0
         },
-        "length": 34,
         "virtualChannelIdentifier": 1,
         "recordingTimeFraction": 7,
-        "recordingTimeSeconds": 573985085,
+        "recordingTimeSeconds": 1520669885,
         "nodeOfOrigin": 1,
         "sourcePacketIdentifier": 172,
         "crc": 38929
@@ -233,19 +228,17 @@
           "rws20C": 0,
           "rws30C": 0
         },
-        "length": 72,
         "virtualChannelIdentifier": 1,
         "recordingTimeFraction": 7,
-        "recordingTimeSeconds": 573985085,
+        "recordingTimeSeconds": 1520669885,
         "nodeOfOrigin": 1,
         "sourcePacketIdentifier": 173,
         "crc": 36475
       },
       {
-        "length": 42,
         "virtualChannelIdentifier": 1,
         "recordingTimeFraction": 7,
-        "recordingTimeSeconds": 573985385,
+        "recordingTimeSeconds": 1520670185,
         "nodeOfOrigin": 1,
         "sourcePacketIdentifier": 170,
         "crc": 20750,
@@ -306,10 +299,9 @@
           "tmpC3": 11.023622,
           "tmpC4": 16.535433
         },
-        "length": 9,
         "virtualChannelIdentifier": 1,
         "recordingTimeFraction": 8,
-        "recordingTimeSeconds": 573985385,
+        "recordingTimeSeconds": 1520670185,
         "nodeOfOrigin": 4,
         "sourcePacketIdentifier": 103,
         "crc": 29761
@@ -327,19 +319,17 @@
           "tmmhsHist": "BUS",
           "tmmhsStat": "OFF"
         },
-        "length": 13,
         "virtualChannelIdentifier": 1,
         "recordingTimeFraction": 7,
-        "recordingTimeSeconds": 573985386,
+        "recordingTimeSeconds": 1520670186,
         "nodeOfOrigin": 4,
         "sourcePacketIdentifier": 11,
         "crc": 19910
       },
       {
-        "length": 42,
         "virtualChannelIdentifier": 1,
         "recordingTimeFraction": 7,
-        "recordingTimeSeconds": 573985685,
+        "recordingTimeSeconds": 1520670485,
         "nodeOfOrigin": 1,
         "sourcePacketIdentifier": 170,
         "crc": 26837,
@@ -389,10 +379,9 @@
         ]
       },
       {
-        "length": 42,
         "virtualChannelIdentifier": 1,
         "recordingTimeFraction": 7,
-        "recordingTimeSeconds": 573985985,
+        "recordingTimeSeconds": 1520670785,
         "nodeOfOrigin": 1,
         "sourcePacketIdentifier": 170,
         "crc": 54496,
@@ -455,10 +444,9 @@
           "batTmpA": 19,
           "batTmpB": 19
         },
-        "length": 20,
         "virtualChannelIdentifier": 1,
         "recordingTimeFraction": 7,
-        "recordingTimeSeconds": 573985985,
+        "recordingTimeSeconds": 1520670785,
         "nodeOfOrigin": 1,
         "sourcePacketIdentifier": 171,
         "crc": 37986
@@ -492,10 +480,9 @@
           "pcuTempA": 0.0,
           "pcuTempB": 0.0
         },
-        "length": 34,
         "virtualChannelIdentifier": 1,
         "recordingTimeFraction": 7,
-        "recordingTimeSeconds": 573985985,
+        "recordingTimeSeconds": 1520670785,
         "nodeOfOrigin": 1,
         "sourcePacketIdentifier": 172,
         "crc": 15206
