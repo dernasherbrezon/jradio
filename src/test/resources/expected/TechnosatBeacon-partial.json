@@ -17,10 +17,9 @@
           "tmmhsHist": "BUS",
           "tmmhsStat": "OFF"
         },
-        "length": 13,
         "virtualChannelIdentifier": 0,
         "recordingTimeFraction": 7,
-        "recordingTimeSeconds": 573993161,
+        "recordingTimeSeconds": 1520677961,
         "nodeOfOrigin": 4,
         "sourcePacketIdentifier": 11,
         "crc": 106
@@ -38,10 +37,9 @@
           "tmmhsHist": "BUS",
           "tmmhsStat": "OFF"
         },
-        "length": 13,
         "virtualChannelIdentifier": 1,
         "recordingTimeFraction": 8,
-        "recordingTimeSeconds": 573984786,
+        "recordingTimeSeconds": 1520669586,
         "nodeOfOrigin": 4,
         "sourcePacketIdentifier": 11,
         "crc": 41233

@@ -34,21 +34,19 @@ public class SourcePacket {
 	private TmCameraPicture2 tmCameraPicture2;
 	private TmCameraStatus2 tmCameraStatus2;
 
-	private int length;
 	private byte virtualChannelIdentifier;
 	private byte recordingTimeFraction;
-	private long recordingTimeSeconds; // since 01.01.2000
+	private long recordingTimeSeconds;
 	private int nodeOfOrigin;
 	private int sourcePacketIdentifier;
 	private int crc;
 	private byte[] unknownPayload;
 
-	public void readExternal(DataInputStream dis) throws IOException {
-		length = dis.readUnsignedShort();
+	public void readExternal(int length, DataInputStream dis) throws IOException {
 		int raw = dis.readUnsignedByte();
 		virtualChannelIdentifier = (byte) (raw >> 4);
 		recordingTimeFraction = (byte) (raw & 0xF);
-		recordingTimeSeconds = StreamUtils.readUnsignedInt(dis);
+		recordingTimeSeconds = 946684800L + StreamUtils.readUnsignedInt(dis);
 		nodeOfOrigin = dis.readUnsignedByte();
 		sourcePacketIdentifier = dis.readUnsignedByte();
 		switch (sourcePacketIdentifier) {
@@ -137,11 +135,11 @@ public class SourcePacket {
 		}
 		crc = dis.readUnsignedShort();
 	}
-	
+
 	public byte[] getUnknownPayload() {
 		return unknownPayload;
 	}
-	
+
 	public void setUnknownPayload(byte[] unknownPayload) {
 		this.unknownPayload = unknownPayload;
 	}
@@ -352,14 +350,6 @@ public class SourcePacket {
 
 	public void setTmCameraStatus2(TmCameraStatus2 tmCameraStatus2) {
 		this.tmCameraStatus2 = tmCameraStatus2;
-	}
-
-	public int getLength() {
-		return length;
-	}
-
-	public void setLength(int length) {
-		this.length = length;
 	}
 
 	public byte getVirtualChannelIdentifier() {

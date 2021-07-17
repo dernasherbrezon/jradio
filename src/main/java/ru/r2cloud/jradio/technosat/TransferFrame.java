@@ -23,8 +23,13 @@ public class TransferFrame {
 		tfCounter = dis.readUnsignedShort();
 		while (true) {
 			try {
+				int length = dis.readUnsignedShort();
+				if (length == 0xFFFF) {
+					// filler to the x18 bytes of Mobitex
+					break;
+				}
 				SourcePacket cur = new SourcePacket();
-				cur.readExternal(dis);
+				cur.readExternal(length, dis);
 				packets.add(cur);
 			} catch (EOFException e) {
 				break;
