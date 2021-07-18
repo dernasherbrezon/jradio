@@ -7,9 +7,6 @@ import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import ru.r2cloud.jradio.Beacon;
 import ru.r2cloud.jradio.crc.Crc16Ccitt;
 import ru.r2cloud.jradio.fec.Crc16CcittFec;
@@ -19,8 +16,6 @@ import ru.r2cloud.jradio.util.Deinterleave;
 import ru.r2cloud.jradio.util.GapData;
 
 public abstract class CMX909bBeacon extends Beacon {
-
-	private static final Logger LOG = LoggerFactory.getLogger(CMX909bBeacon.class);
 
 	public static final int MAX_SIZE = 1 + 1 + 1 + 6 + 2 + 32 * 30;
 	public static final int BLOCK_SIZE_BYTES = 18;
@@ -42,12 +37,16 @@ public abstract class CMX909bBeacon extends Beacon {
 		dis.readFully(callsignBytes);
 		int expectedCallsignCrc = (dis.readUnsignedByte() << 8) | dis.readUnsignedByte();
 		int crc16 = Crc16Ccitt.calculate(callsignBytes);
-		if (crc16 != expectedCallsignCrc) {
-			if (!Crc16CcittFec.fix1bitUsingCrc(callsignBytes, expectedCallsignCrc)) {
-				LOG.info("bad call sign. crc mismatch");
-			}
+		boolean crcMatched = (crc16 == expectedCallsignCrc);
+		if (!crcMatched) {
+			crcMatched = Crc16CcittFec.fix1bitUsingCrc(callsignBytes, expectedCallsignCrc);
 		}
-		callsign = new String(callsignBytes, StandardCharsets.ISO_8859_1);
+		// callsign is not covered by FEC blocks and most likely would be corrupted
+		// continue further as callsign is not that important
+		// set it up only if CRC matched
+		if (crcMatched) {
+			callsign = new String(callsignBytes, StandardCharsets.ISO_8859_1);
+		}
 
 		MobitexRandomizer randomizer = new MobitexRandomizer();
 		switch (header.getControl1().getType()) {
