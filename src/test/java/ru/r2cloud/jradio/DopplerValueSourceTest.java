@@ -25,10 +25,10 @@ public class DopplerValueSourceTest {
 		assertEquals(137.0, source.getValue(), 0.0);
 		assertEquals(136.5, source.getValue(), 0.0);
 		assertEquals(136.0, source.getValue(), 0.0);
+		assertEquals(136.0, source.getValue(), 0.0);
 		assertEquals(135.5, source.getValue(), 0.0);
 		assertEquals(135.0, source.getValue(), 0.0);
-		assertEquals(136.0, source.getValue(), 0.0);
-		assertEquals(137.0, source.getValue(), 0.0);
+		assertEquals(135.0, source.getValue(), 0.0);
 	}
 
 }
