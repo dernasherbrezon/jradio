@@ -12,7 +12,7 @@ public abstract class TelemetryFrame {
 	private int channelNumber;
 	private long timestamp;
 
-	public TelemetryFrame() {
+	protected TelemetryFrame() {
 		// do nothing
 	}
 
