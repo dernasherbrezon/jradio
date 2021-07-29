@@ -4,7 +4,6 @@ import java.io.IOException;
 
 import ru.r2cloud.jradio.ByteInput;
 import ru.r2cloud.jradio.Context;
-import ru.r2cloud.jradio.Endianness;
 import ru.r2cloud.jradio.FloatInput;
 
 public class ConstellationModulator implements FloatInput {
@@ -16,7 +15,7 @@ public class ConstellationModulator implements FloatInput {
 			throw new IllegalArgumentException("samples per symbol should be >= 2. Got: " + samplesPerSymbol);
 		}
 
-		ByteInput next = new PackedToUnpacked(input, constellation.getBitsPerSymbol(), Endianness.GR_MSB_FIRST);
+		ByteInput next = new UnpackedToChunks(input, constellation.getBitsPerSymbol());
 		if (preDifferentialMapping && constellation.isApplyPreDiffCode()) {
 			next = new MapBlock(next, constellation.getPreDiffCode());
 		}

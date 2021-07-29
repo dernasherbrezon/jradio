@@ -6,9 +6,7 @@ import org.jtransforms.fft.FloatFFT_1D;
 
 import ru.r2cloud.jradio.ArrayByteInput;
 import ru.r2cloud.jradio.ByteInput;
-import ru.r2cloud.jradio.Endianness;
 import ru.r2cloud.jradio.blocks.SoftToHard;
-import ru.r2cloud.jradio.blocks.UnpackedToPacked;
 import ru.r2cloud.jradio.util.MathUtils;
 import ru.r2cloud.jradio.util.MaximumLengthSequence;
 
@@ -37,8 +35,7 @@ public abstract class AbstractBer {
 	public double calculateBer(float ebno) throws IOException {
 		ArrayByteInput input = new ArrayByteInput(true, inputData);
 		input.getContext().setSampleRate(sampleRate / sps);
-		UnpackedToPacked pack = new UnpackedToPacked(input, 1, Endianness.GR_MSB_FIRST);
-		ByteInput demod = createModulatorDemodulator(pack, ebno);
+		ByteInput demod = createModulatorDemodulator(input, ebno);
 		SoftToHard s2h = new SoftToHard(demod);
 		int drop = 2;
 		float sum = 0.0f;

@@ -5,7 +5,6 @@ import java.util.Arrays;
 
 import ru.r2cloud.jradio.ByteInput;
 import ru.r2cloud.jradio.Context;
-import ru.r2cloud.jradio.Endianness;
 import ru.r2cloud.jradio.FloatInput;
 import ru.r2cloud.jradio.util.MathUtils;
 
@@ -18,7 +17,7 @@ public class GfskModulator implements FloatInput {
 			throw new IllegalArgumentException("samples per symbol should be >= 2. Got: " + samplesPerSymbol);
 		}
 		int ntaps = (int) (4 * samplesPerSymbol);
-		ByteInput next = new PackedToUnpacked(source, 1, Endianness.GR_MSB_FIRST);
+		ByteInput next = source;
 		FloatInput fnext = new ChunksToSymbols(next, new float[] { -1, 1 });
 		float[] gaussianTaps = Firdes.gaussian(1.0f, samplesPerSymbol, bt, ntaps);
 		float[] sqwave = new float[(int) samplesPerSymbol];

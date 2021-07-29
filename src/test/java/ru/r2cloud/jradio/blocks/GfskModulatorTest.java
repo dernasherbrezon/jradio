@@ -10,7 +10,7 @@ public class GfskModulatorTest {
 
 	@Test
 	public void test() throws Exception {
-		ByteInput input = new ArrayByteInput(new int[] { 1, 0, 1 });
+		ByteInput input = new ArrayByteInput(new int[] { 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1 });
 		try (GfskModulator source = new GfskModulator(input, 2, 1.2f, 0.35f)) {
 			// this is not gnuradio-generated file
 			// it is not possible to make binary compatible due to
