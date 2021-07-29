@@ -46,7 +46,7 @@ public class Fox<T extends Beacon> extends BeaconSource<T> {
 		for (int i = 0; i < buffer.length; i++) {
 			int cur = 0;
 			for (int j = 0; j < 10; j++) {
-				cur += ((raw[i * 10 + j] << (10 - j - 1)));
+				cur += (raw[i * 10 + j] << (10 - j - 1));
 			}
 			buffer[i] = Code8b10b.decode(cur);
 		}
