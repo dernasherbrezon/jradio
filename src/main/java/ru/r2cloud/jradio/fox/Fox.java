@@ -26,8 +26,26 @@ public class Fox<T extends Beacon> extends BeaconSource<T> {
 
 	@Override
 	protected T parseBeacon(byte[] raw) throws UncorrectableException, IOException {
-		byte[] decoded = decode10b(buffer, raw);
-		byte[] message = ReedSolomon.CCSDS.decodeData(decoded);
+		int[] erasurePositions = new int[255];
+		int numberOfErasures = 0;
+		for (int i = 0; i < buffer.length; i++) {
+			int cur = 0;
+			for (int j = 0; j < 10; j++) {
+				cur += (raw[i * 10 + j] << (10 - j - 1));
+			}
+			try {
+				buffer[i] = Code8b10b.decode(cur);
+			} catch (UncorrectableException e) {
+				if (numberOfErasures < 15) {
+					erasurePositions[numberOfErasures] = i;
+					numberOfErasures++;
+					buffer[i] = -1;
+				} else {
+					throw e;
+				}
+			}
+		}
+		byte[] message = ReedSolomon.CCSDS.decodeData(buffer, erasurePositions, numberOfErasures);
 		T result;
 		try {
 			result = clazz.newInstance();
@@ -40,17 +58,6 @@ public class Fox<T extends Beacon> extends BeaconSource<T> {
 		}
 		result.readExternal(message);
 		return result;
-	}
-
-	static byte[] decode10b(byte[] buffer, byte[] raw) throws UncorrectableException {
-		for (int i = 0; i < buffer.length; i++) {
-			int cur = 0;
-			for (int j = 0; j < 10; j++) {
-				cur += (raw[i * 10 + j] << (10 - j - 1));
-			}
-			buffer[i] = Code8b10b.decode(cur);
-		}
-		return buffer;
 	}
 
 }
