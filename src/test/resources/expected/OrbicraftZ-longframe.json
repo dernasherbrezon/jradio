@@ -16,6 +16,7 @@
     "receiveSequenceNumber": 0,
     "pid": 240
   },
+  "ax25Length": 90,
   "rawData": [
     8,
     -1,
