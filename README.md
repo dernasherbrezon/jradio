@@ -26,6 +26,7 @@ De-framer is a component that converts soft stream of bits into the frames of sp
  * [cc11xx](http://www.ti.com/product/CC1101/description) - [Cc11xxReceiver](https://github.com/dernasherbrezon/jradio/blob/master/src/main/java/ru/r2cloud/jradio/cc11xx/Cc11xxReceiver.java)
  * [NGHam](https://github.com/skagmo/ngham) - Support for [NGHam radio protocol](https://github.com/dernasherbrezon/jradio/blob/master/src/main/java/ru/r2cloud/jradio/blocks/NgHam.java)
  * Generic [syncword](https://en.wikipedia.org/wiki/Syncword) correlator - [CorrelateSyncword](https://github.com/dernasherbrezon/jradio/blob/master/src/main/java/ru/r2cloud/jradio/blocks/CorrelateSyncword.java)
+ * [USP](https://github.com/sputnixru/SX-USP) - [UspDecoder](https://github.com/dernasherbrezon/jradio/blob/master/src/main/java/ru/r2cloud/jradio/usp/UspDecoder.java)
 
 ## Auxiliary tools
 
