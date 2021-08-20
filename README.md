@@ -38,6 +38,8 @@ Quite often decoding require some additional tooling. jradio has some.
  * [BCH ReedSolomon](https://github.com/dernasherbrezon/jradio/blob/master/src/main/java/ru/r2cloud/jradio/fec/rs/bch/ReedSolomon.java)
  * [BCH(15,x,x)](https://github.com/dernasherbrezon/jradio/blob/master/src/main/java/ru/r2cloud/jradio/fec/Bch15.java)
  * [Repeat Accumulate decoder](https://github.com/dernasherbrezon/jradio/blob/master/src/main/java/ru/r2cloud/jradio/fec/ra/RaDecoder.java)
+ * [Golay](https://github.com/dernasherbrezon/jradio/blob/master/src/main/java/ru/r2cloud/jradio/fec/Golay.java)
+ * [PLS](https://github.com/dernasherbrezon/jradio/blob/master/src/main/java/ru/r2cloud/jradio/fec/PlsDecoder.java)
 
 ### Randomization
  
