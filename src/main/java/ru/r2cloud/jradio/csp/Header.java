@@ -33,8 +33,8 @@ public class Header {
 		priority = Priority.valufOfCode((int) (packed >> 30 & 0x3));
 		source = (int) ((packed >> 25) & 0x1f);
 		destination = (int) ((packed >> 20) & 0x1f);
-		sourcePort = (int) ((packed >> 14) & 0x3f);
-		destinationPort = (int) ((packed >> 8) & 0x3f);
+		destinationPort = (int) ((packed >> 14) & 0x3f);
+		sourcePort = (int) ((packed >> 8) & 0x3f);
 		ffrag = ((packed >> 4) & 0x1) > 0;
 		fhmac = ((packed >> 3) & 0x1) > 0;
 		fxtea = ((packed >> 2) & 0x1) > 0;

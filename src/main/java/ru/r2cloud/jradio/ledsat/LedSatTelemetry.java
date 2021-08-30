@@ -28,7 +28,7 @@ public class LedSatTelemetry {
 	private int panelTotalCurrent;
 	private int systemConsumedCurrent;
 	private int batteryVoltage;
-	private int gpsCurrent;
+	private float gpsCurrent;
 	private int epsBootCount;
 	private float paTransceiverTemperature;
 	private long transceiverTxCount;
@@ -88,36 +88,37 @@ public class LedSatTelemetry {
 		panelZCurrent = dis.readUnsignedShort();
 		epsBootCause = dis.readUnsignedByte();
 		epsBatteryMode = dis.readUnsignedByte();
-		mpttXTemperature = dis.readUnsignedShort();
-		mpttYTemperature = dis.readUnsignedShort();
-		epsTemperature = dis.readUnsignedShort();
-		batter1Temperature = dis.readUnsignedShort();
-		batter2Temperature = dis.readUnsignedShort();
-		batter3Temperature = dis.readUnsignedShort();
+		mpttXTemperature = dis.readShort();
+		mpttYTemperature = dis.readShort();
+		epsTemperature = dis.readShort();
+		batter1Temperature = dis.readShort();
+		batter2Temperature = dis.readShort();
+		batter3Temperature = dis.readShort();
 		panelTotalCurrent = dis.readUnsignedShort();
 		systemConsumedCurrent = dis.readUnsignedShort();
 		batteryVoltage = dis.readUnsignedShort();
-		gpsCurrent = dis.readUnsignedByte();
+		gpsCurrent = dis.readUnsignedByte() / 0.15f;
+		dis.skipBytes(1);
 		epsBootCount = dis.readUnsignedShort();
-		paTransceiverTemperature = dis.readUnsignedShort() / 10.0f;
+		paTransceiverTemperature = dis.readShort() / 10.0f;
 		transceiverTxCount = StreamUtils.readUnsignedInt(dis);
 		transceiverRxCount = StreamUtils.readUnsignedInt(dis);
 		lastRssi = dis.readUnsignedShort();
 		radioBootCounter = dis.readUnsignedShort();
-		obc1Temperature = dis.readUnsignedShort() / 10.0f;
-		obc2Temperature = dis.readUnsignedShort() / 10.0f;
-		gyroX = dis.readUnsignedShort() / 100.0f;
-		gyroY = dis.readUnsignedShort() / 100.0f;
-		gyroZ = dis.readUnsignedShort() / 100.0f;
-		magnetometerX = dis.readUnsignedShort();
-		magnetometerY = dis.readUnsignedShort();
-		magnetometerZ = dis.readUnsignedShort();
-		panelXpTemperature = dis.readUnsignedShort() / 100.0f;
-		panelYpTemperature = dis.readUnsignedShort() / 100.0f;
-		panelXmTemperature = dis.readUnsignedShort() / 100.0f;
-		panelYmTemperature = dis.readUnsignedShort() / 100.0f;
-		panelZpTemperature = dis.readUnsignedShort() / 100.0f;
-		panelZmTemperature = dis.readUnsignedShort() / 100.0f;
+		obc1Temperature = dis.readShort() / 10.0f;
+		obc2Temperature = dis.readShort() / 10.0f;
+		gyroX = dis.readShort() / 100.0f;
+		gyroY = dis.readShort() / 100.0f;
+		gyroZ = dis.readShort() / 100.0f;
+		magnetometerX = dis.readShort();
+		magnetometerY = dis.readShort();
+		magnetometerZ = dis.readShort();
+		panelXpTemperature = dis.readShort() / 100.0f;
+		panelYpTemperature = dis.readShort() / 100.0f;
+		panelXmTemperature = dis.readShort() / 100.0f;
+		panelYmTemperature = dis.readShort() / 100.0f;
+		panelZpTemperature = dis.readShort() / 100.0f;
+		panelZmTemperature = dis.readShort() / 100.0f;
 		sunSensorXp = dis.readUnsignedShort();
 		sunSensorYp = dis.readUnsignedShort();
 		sunSensorZp = dis.readUnsignedShort();
@@ -125,20 +126,25 @@ public class LedSatTelemetry {
 		sunSensorYm = dis.readUnsignedShort();
 		sunSensorZm = dis.readUnsignedShort();
 		epsOutputsStatus = dis.readUnsignedByte();
+		dis.skipBytes(1);
 		obcBootCounter = dis.readUnsignedShort();
 		ledStatus = dis.readUnsignedByte();
+		dis.skipBytes(1);
 		gpsStatus = dis.readUnsignedByte();
+		dis.skipBytes(1);
 		gpsFixTime = StreamUtils.readUnsignedInt(dis);
-		gpsLatitude = StreamUtils.readUnsignedInt(dis) / 1000000.0f;
-		gpsLongitude = StreamUtils.readUnsignedInt(dis) / 1000000.0f;
-		gpsAltitude = StreamUtils.readUnsignedInt(dis);
+		gpsLatitude = dis.readInt() / 1000000.0f;
+		gpsLongitude = dis.readInt() / 1000000.0f;
+		gpsAltitude = dis.readInt();
 		softwareStatus = dis.readUnsignedByte();
-		externalGyroX = dis.readUnsignedShort() / 100.0f;
-		externalGyroY = dis.readUnsignedShort() / 100.0f;
-		externalGyroZ = dis.readUnsignedShort() / 100.0f;
-		externalMagnetometerX = dis.readUnsignedShort();
-		externalMagnetometerY = dis.readUnsignedShort();
-		externalMagnetometerZ = dis.readUnsignedShort();
+		dis.skipBytes(1);
+		externalGyroX = dis.readShort() / 100.0f;
+		externalGyroY = dis.readShort() / 100.0f;
+		externalGyroZ = dis.readShort() / 100.0f;
+		externalMagnetometerX = dis.readShort();
+		externalMagnetometerY = dis.readShort();
+		externalMagnetometerZ = dis.readShort();
+		dis.skipBytes(2);
 	}
 
 	public int getTelemetryId() {
@@ -309,11 +315,11 @@ public class LedSatTelemetry {
 		this.batteryVoltage = batteryVoltage;
 	}
 
-	public int getGpsCurrent() {
+	public float getGpsCurrent() {
 		return gpsCurrent;
 	}
 
-	public void setGpsCurrent(int gpsCurrent) {
+	public void setGpsCurrent(float gpsCurrent) {
 		this.gpsCurrent = gpsCurrent;
 	}
 

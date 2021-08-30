@@ -19,7 +19,7 @@ public class Delphini1Test {
 	public void testDecodeTelemetry() throws Exception {
 		WavFileSource source = new WavFileSource(Delphini1Test.class.getClassLoader().getResourceAsStream("delphini1.wav"));
 		FskDemodulator demod = new FskDemodulator(source, 9600);
-		input = new Ax100BeaconSource<CspBeacon>(demod, 255, CspBeacon.class);
+		input = new Ax100BeaconSource<>(demod, 255, CspBeacon.class);
 		assertTrue(input.hasNext());
 		AssertJson.assertObjectsEqual("Delphini1Beacon.json", input.next());
 	}
