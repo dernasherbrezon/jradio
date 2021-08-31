@@ -1,0 +1,49 @@
+{
+  "telemetry": {
+    "type": 64,
+    "time": {
+      "month": 1,
+      "day": 1,
+      "year": 11,
+      "weekday": 6,
+      "hours": 0,
+      "minutes": 32,
+      "seconds": 20
+    },
+    "reboots": 2047,
+    "rebootCause": 7,
+    "deviceIsBusy": false,
+    "deviceIsWriteEnabled": false,
+    "allSectorsSoftwareProtected": false,
+    "wpIsDeasserted": false,
+    "lastOpErrorDetected": false,
+    "sectorProtectionRegistersLocked": false,
+    "tlmPointer": 30192,
+    "plyPointer": 1224741744,
+    "miscWritePointer": 1073919488
+  },
+  "header": {
+    "destinationAddress": {
+      "callsign": "CQ",
+      "ssid": 0,
+      "extensionBit": 0
+    },
+    "sourceAddress": {
+      "callsign": "KE6YFA",
+      "ssid": 1,
+      "extensionBit": 0
+    },
+    "repeaterAddress": {
+      "callsign": "TELEM",
+      "ssid": 0,
+      "extensionBit": 1
+    },
+    "frameType": "U",
+    "sendSequenceNumber": 0,
+    "receiveSequenceNumber": 0,
+    "uControlType": "UI",
+    "pid": 240
+  },
+  "beginSample": 0,
+  "beginMillis": 0
+}
