@@ -5,7 +5,6 @@ import java.io.IOException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import ru.r2cloud.jradio.Ax25BeaconSource;
 import ru.r2cloud.jradio.Beacon;
 import ru.r2cloud.jradio.BeaconSource;
 import ru.r2cloud.jradio.ByteInput;
@@ -13,7 +12,7 @@ import ru.r2cloud.jradio.fec.ccsds.UncorrectableException;
 
 public class UspBeaconSource<T extends Beacon> extends BeaconSource<T> {
 
-	private static final Logger LOG = LoggerFactory.getLogger(Ax25BeaconSource.class);
+	private static final Logger LOG = LoggerFactory.getLogger(UspBeaconSource.class);
 
 	private final Class<T> clazz;
 

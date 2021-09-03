@@ -22,7 +22,7 @@ public class UspBeacon extends Beacon {
 			int lengthByte1 = dis.readUnsignedByte();
 			int lengthByte2 = dis.readUnsignedByte();
 			// little-endian length
-			ax25Length = (lengthByte2 << 8) + (lengthByte1 << 0);
+			ax25Length = (lengthByte2 << 8) + lengthByte1;
 			header = new Header(dis);
 		}
 		readBeacon(etherType, dis);

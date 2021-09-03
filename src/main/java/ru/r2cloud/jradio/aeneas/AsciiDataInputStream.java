@@ -14,13 +14,13 @@ public class AsciiDataInputStream {
 	public int readUnsignedShortLittleEndian() throws IOException {
 		int ch1 = readUnsignedByte();
 		int ch2 = readUnsignedByte();
-		return ((ch2 << 8) + (ch1 << 0));
+		return ((ch2 << 8) + ch1);
 	}
 
 	public int readUnsignedShort() throws IOException {
 		int ch1 = readUnsignedByte();
 		int ch2 = readUnsignedByte();
-		return ((ch1 << 8) + (ch2 << 0));
+		return ((ch1 << 8) + ch2);
 	}
 
 	public int readUnsignedByte() throws IOException {
