@@ -15,6 +15,14 @@ jradio supports high-level generic demodulators. They convert [I/Q signal](https
  * [AFSK](https://github.com/dernasherbrezon/jradio/blob/master/src/main/java/ru/r2cloud/jradio/demod/AfskDemodulator.java)
  * [BPSK](https://github.com/dernasherbrezon/jradio/blob/master/src/main/java/ru/r2cloud/jradio/demod/BpskDemodulator.java)
  * [QPSK](https://github.com/dernasherbrezon/jradio/blob/master/src/main/java/ru/r2cloud/jradio/demod/QpskDemodulator.java)
+ 
+## Modulators
+
+Some generic modulators. They take hard bits and produce I/Q signal.
+
+ * [GFSK](https://github.com/dernasherbrezon/jradio/blob/master/src/main/java/ru/r2cloud/jradio/blocks/GfskModulator.java)
+ * [BPSK/QPSK](https://github.com/dernasherbrezon/jradio/blob/master/src/main/java/ru/r2cloud/jradio/blocks/ConstellationModulator.java)
+ * [RTTY](https://github.com/dernasherbrezon/jradio/blob/master/src/main/java/ru/r2cloud/jradio/blocks/RttyModulator.java)
 
 ## De-framers
 
@@ -80,7 +88,6 @@ All blocks meant to be binary compatible with gnuradio versions. This will ensur
   * [ClockRecoveryMM](https://www.tablix.org/~avian/blog/archives/2015/03/notes_on_m_m_clock_recovery/) and [ClockRecoveryMMComplex](https://www.tablix.org/~avian/blog/archives/2015/03/notes_on_m_m_clock_recovery/)
   * ComplexConjugate
   * ComplexToReal
-  * ConstellationModulator
   * ConstellationSoftDecoder
   * [ConvolutionalDeinterleaver](https://en.wikipedia.org/wiki/Burst_error-correcting_code#Convolutional_interleaver)
   * CorrelateSynchronizationMarker. Extract data from continuous stream of synchronization markers. Work with soft stream. 
@@ -102,7 +109,6 @@ All blocks meant to be binary compatible with gnuradio versions. This will ensur
   * FractionalResampler
   * FrequencyModulator
   * [FrequencyXlatingFIRFilter](http://blog.sdr.hu/grblocks/xlating-fir.html)
-  * GfskModulator
   * GUI Histogram Sink (Spectogram) 
   * HardToSoft. Convert hard decision stream to soft stream.
   * HdlcReceiver. Out-of-tree block. Extracts HDLC frame from the unpacked stream of bytes
