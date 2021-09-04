@@ -2,6 +2,45 @@ package ru.r2cloud.jradio.blocks;
 
 public class Firdes {
 
+	// based on
+	// http://w7ay.net/site/Technical/Extended%20Nyquist%20Filters/index.html
+	public static float[] extendedRaisedCosine(double gain, double samplingFrequency, double symbolRate, double alpha, int ntaps, int order) {
+		ntaps |= 1; // ensure that ntaps is odd
+		double spb = samplingFrequency / symbolRate; // samples per bit/symbol
+		float[] taps = new float[ntaps];
+		double scale = 0;
+		for (int i = (-ntaps / 2), j = 0; i <= (ntaps / 2 + 1) && j < taps.length; i++, j++) {
+			taps[j] = calculateExtendedRaisedCosineTap(i, spb, alpha, order);
+			scale += taps[j];
+		}
+
+		// normalize
+		if (scale != 0.0f) {
+			for (int i = 0; i < ntaps; i++) {
+				taps[i] = (float) (taps[i] * gain / scale);
+			}
+		}
+		return taps;
+	}
+
+	private static float calculateExtendedRaisedCosineTap(double index, double spb, double alpha, int order) {
+		if (order > 1) {
+			return calculateExtendedRaisedCosineTap(index - spb / 4, spb / 2, alpha, order - 1) + calculateExtendedRaisedCosineTap(index + spb / 4, spb / 2, alpha, order - 1);
+		}
+		if (Math.abs(index) == (spb / (2 * alpha))) {
+			return (float) (Math.PI / (4 * spb) * normalizedSinc(1 / (2 * alpha)));
+		}
+		return (float) (1 / spb * normalizedSinc(index / spb) * Math.cos(Math.PI * alpha * index / spb) / (1 - Math.pow(2 * alpha * index / spb, 2)));
+	}
+
+	private static double normalizedSinc(double x) {
+		x *= Math.PI;
+		if (x == 0) {
+			return 1.0;
+		}
+		return Math.sin(x) / x;
+	}
+
 	public static float[] gaussian(double gain, double spb, double bt, int ntaps) {
 		float[] result = new float[ntaps];
 		double scale = 0;
