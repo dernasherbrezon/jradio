@@ -11,7 +11,7 @@ import ru.r2cloud.jradio.fec.ccsds.UncorrectableException;
 public class AeneasBeacon extends Ax25Beacon {
 
 	private static final byte[] CAERUS_HEADER = new byte[] { 52, 51, 52, 49, 52, 53, 53, 50, 53, 53, 53, 51 };
-	private static int BEACONLENGTH = 29;
+	private static final int BEACONLENGTH = 29;
 
 	private AeneasTelemetry telemetry;
 	private byte[] unknownPayload;
