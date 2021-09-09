@@ -12,23 +12,23 @@ public class PlsDecoder {
 	private int[][] encoded;
 
 	public PlsDecoder() {
-		long[] G = new long[] { 0b0011001100110011001100110011001100110011001100110011001100110011L, 0b0000111100001111000011110000111100001111000011110000111100001111L, 0b0000000011111111000000001111111100000000111111110000000011111111L,
+		long[] g = new long[] { 0b0011001100110011001100110011001100110011001100110011001100110011L, 0b0000111100001111000011110000111100001111000011110000111100001111L, 0b0000000011111111000000001111111100000000111111110000000011111111L,
 				0b0000000000000000111111111111111100000000000000001111111111111111L, 0b0000000000000000000000000000000011111111111111111111111111111111L, 0b1111111111111111111111111111111111111111111111111111111111111111L, 0b0101010101010101010101010101010101010101010101010101010101010101L };
 		// hardcoded codes
 		codes = new int[] { 0, 1 };
 		long scrambleSequence = 0b0111000110011101100000111100100101010011010000100010110111111010L;
 
-		int[][] g_matrix = new int[CODE_LENGTH][CODE_WIDTH];
+		int[][] gMatrix = new int[CODE_LENGTH][CODE_WIDTH];
 		// bits to matrix and transpose it
 		for (int i = 0; i < CODE_LENGTH; i++) {
 			for (int j = 0; j < CODE_WIDTH; j++) {
-				g_matrix[i][j] = (int) (G[j] >> (CODE_LENGTH - 1 - i)) & 0x1;
+				gMatrix[i][j] = (int) (g[j] >> (CODE_LENGTH - 1 - i)) & 0x1;
 			}
 		}
-		int[][] codes_matrix = new int[CODE_WIDTH][codes.length];
+		int[][] codesMatrix = new int[CODE_WIDTH][codes.length];
 		for (int i = 0; i < CODE_WIDTH; i++) {
 			for (int j = 0; j < codes.length; j++) {
-				codes_matrix[i][j] = codes[j] >> (CODE_WIDTH - 1 - i) & 0x1;
+				codesMatrix[i][j] = codes[j] >> (CODE_WIDTH - 1 - i) & 0x1;
 			}
 		}
 
@@ -36,7 +36,7 @@ public class PlsDecoder {
 		// multiple 2 matrixes
 		for (int i = 0; i < CODE_LENGTH; i++) {
 			for (int j = 0; j < codes.length; j++) {
-				encoded[i][j] = multiply(g_matrix, codes_matrix, j, i);
+				encoded[i][j] = multiply(gMatrix, codesMatrix, j, i);
 			}
 		}
 
