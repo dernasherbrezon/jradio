@@ -53,11 +53,11 @@ public class PlsDecoder {
 		sum = new int[codes.length];
 	}
 
-	private static int multiply(int[][] g_matrix, int[][] codes_matrix, int col, int row) {
+	private static int multiply(int[][] gMatrix, int[][] codesMatrix, int col, int row) {
 		int result = 0;
-		int[] rowVector = g_matrix[row];
+		int[] rowVector = gMatrix[row];
 		for (int i = 0; i < rowVector.length; i++) {
-			result += (rowVector[i] * codes_matrix[i][col]) % 2;
+			result += (rowVector[i] * codesMatrix[i][col]) % 2;
 		}
 		return result;
 	}
