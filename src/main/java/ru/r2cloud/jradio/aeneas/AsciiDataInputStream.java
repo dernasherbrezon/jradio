@@ -17,12 +17,6 @@ public class AsciiDataInputStream {
 		return ((ch2 << 8) + ch1);
 	}
 
-	public int readUnsignedShort() throws IOException {
-		int ch1 = readUnsignedByte();
-		int ch2 = readUnsignedByte();
-		return ((ch1 << 8) + ch2);
-	}
-
 	public int readUnsignedByte() throws IOException {
 		char firstDigit = (char) (dis.readUnsignedByte() & 0xFF);
 		char secondDigit = (char) (dis.readUnsignedByte() & 0xFF);
@@ -34,7 +28,7 @@ public class AsciiDataInputStream {
 		return dis.skipBytes(n * 2);
 	}
 
-	public final void readFully(byte b[]) throws IOException {
+	public final void readFully(byte[] b) throws IOException {
 		for (int i = 0; i < b.length; i++) {
 			b[i] = (byte) readUnsignedByte();
 		}
