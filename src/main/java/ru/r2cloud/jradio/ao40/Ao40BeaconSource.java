@@ -17,7 +17,7 @@ public abstract class Ao40BeaconSource<T> extends BeaconSource<T> {
 
 	private final ViterbiSoft viterbi;
 
-	public Ao40BeaconSource(MessageInput input) {
+	protected Ao40BeaconSource(MessageInput input) {
 		super(input);
 		this.viterbi = new ViterbiSoft((byte) 0x4f, (byte) 0x6d, true, 5200);
 	}
