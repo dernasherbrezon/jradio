@@ -16,7 +16,7 @@ public abstract class TelemetryFrame {
 		// do nothing
 	}
 
-	public TelemetryFrame(DataInputStream dis) throws IOException {
+	protected TelemetryFrame(DataInputStream dis) throws IOException {
 		LittleEndianDataInputStream ldis = new LittleEndianDataInputStream(dis);
 		timestamp = ldis.readUnsignedInt();
 		channelNumber = ldis.readUnsignedByte();

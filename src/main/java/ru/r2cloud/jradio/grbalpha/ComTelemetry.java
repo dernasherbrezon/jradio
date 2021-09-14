@@ -6,8 +6,8 @@ import java.util.regex.Pattern;
 
 public class ComTelemetry {
 
-	private final static Pattern COMMA = Pattern.compile(",");
-	private final static TreeMap<Integer, Integer> LOOKUP_TABLE = new TreeMap<>();
+	private static final Pattern COMMA = Pattern.compile(",");
+	private static final TreeMap<Integer, Integer> LOOKUP_TABLE = new TreeMap<>();
 
 	private long totalUptimeSeconds;
 	private long uptimeSinceLastResetSeconds;
