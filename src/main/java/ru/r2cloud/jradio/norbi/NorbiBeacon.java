@@ -1,5 +1,6 @@
 package ru.r2cloud.jradio.norbi;
 
+import java.io.ByteArrayInputStream;
 import java.io.DataInputStream;
 import java.io.IOException;
 import java.nio.charset.Charset;
@@ -66,6 +67,15 @@ public class NorbiBeacon extends Ax25Beacon {
 	private byte sesMedianPamTemp;
 	private byte sesMedianPdmTemp;
 	private long sesModuleState;
+
+	@Override
+	public void readBeacon(byte[] data) throws IOException, UncorrectableException {
+		try {
+			super.readBeacon(data);
+		} catch (Exception e) {
+			readBeacon(new DataInputStream(new ByteArrayInputStream(data)));
+		}
+	}
 
 	@Override
 	public void readBeacon(DataInputStream dis) throws IOException, UncorrectableException {
