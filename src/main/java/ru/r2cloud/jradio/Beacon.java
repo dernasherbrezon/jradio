@@ -9,13 +9,14 @@ public abstract class Beacon implements Externalizable {
 	private byte[] rawData;
 	private long beginSample;
 	private long beginMillis;
-	
+	private RxMetadata rxMeta;
+
 	@Override
 	public void readExternal(byte[] data) throws IOException, UncorrectableException {
 		this.rawData = data;
 		readBeacon(data);
 	}
-	
+
 	public abstract void readBeacon(byte[] data) throws IOException, UncorrectableException;
 
 	public byte[] getRawData() {
@@ -33,12 +34,20 @@ public abstract class Beacon implements Externalizable {
 	public void setBeginMillis(long beginMillis) {
 		this.beginMillis = beginMillis;
 	}
-	
+
 	public long getBeginSample() {
 		return beginSample;
 	}
-	
+
 	public void setBeginSample(long beginSample) {
 		this.beginSample = beginSample;
+	}
+
+	public RxMetadata getRxMeta() {
+		return rxMeta;
+	}
+
+	public void setRxMeta(RxMetadata rxMeta) {
+		this.rxMeta = rxMeta;
 	}
 }

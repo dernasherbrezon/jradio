@@ -4,7 +4,7 @@ import java.io.IOException;
 
 import ru.r2cloud.jradio.fec.ccsds.UncorrectableException;
 
-public class LoraBeacon extends Beacon {
+public class RawBeacon extends Beacon {
 
 	@Override
 	public void readBeacon(byte[] data) throws IOException, UncorrectableException {

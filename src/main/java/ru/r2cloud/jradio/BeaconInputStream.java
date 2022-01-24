@@ -23,18 +23,47 @@ public class BeaconInputStream<T extends Beacon> implements Iterator<T>, Closeab
 	public boolean hasNext() {
 		try {
 			int length = is.readInt();
-			byte[] raw = new byte[length];
-			is.readFully(raw);
-			T result = clazz.getDeclaredConstructor().newInstance();
-			result.readExternal(raw);
-			result.setBeginMillis(is.readLong());
-			result.setBeginSample(is.readLong());
-			current = result;
+			if (length != 0) {
+				current = readProtocolv1(length);
+			} else {
+				int protocolVersion = is.readInt();
+				if (protocolVersion == BeaconOutputStream.PROTOCOL_V2) {
+					current = readProtocolv2();
+				} else {
+					return false;
+				}
+			}
 			return true;
 		} catch (Exception e) {
 			current = null;
 			return false;
 		}
+	}
+
+	private T readProtocolv1(int length) throws Exception {
+		byte[] raw = new byte[length];
+		is.readFully(raw);
+		T result = clazz.getDeclaredConstructor().newInstance();
+		result.readExternal(raw);
+		result.setBeginMillis(is.readLong());
+		result.setBeginSample(is.readLong());
+		return result;
+	}
+
+	private T readProtocolv2() throws Exception {
+		int length = is.readInt();
+		byte[] raw = new byte[length];
+		is.readFully(raw);
+		T result = clazz.getDeclaredConstructor().newInstance();
+		result.readExternal(raw);
+		result.setBeginMillis(is.readLong());
+		result.setBeginSample(is.readLong());
+		RxMetadata meta = new RxMetadata();
+		meta.setRssi(is.readFloat());
+		meta.setSnr(is.readFloat());
+		meta.setFrequencyError(is.readLong());
+		result.setRxMeta(meta);
+		return result;
 	}
 
 	@Override
