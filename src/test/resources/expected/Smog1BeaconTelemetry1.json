@@ -1,0 +1,89 @@
+{
+  "telemetry1": {
+    "time": 1642496411,
+    "mppt": [
+      {
+        "timestamp": 1642496392,
+        "temperature": 29.8,
+        "lightSensor": 0.948,
+        "inputCurrent": 6,
+        "inputVoltage": 0.828,
+        "outputCurrent": 7,
+        "outputVoltage": 3.028,
+        "panelNumber": 1,
+        "panelStatus": "NOT_MONITORED"
+      },
+      {
+        "timestamp": 1642496395,
+        "temperature": 39.6,
+        "lightSensor": 2.238,
+        "inputCurrent": 83,
+        "inputVoltage": 1.116,
+        "outputCurrent": 20,
+        "outputVoltage": 3.836,
+        "panelNumber": 2,
+        "panelStatus": "NOT_MONITORED"
+      },
+      {
+        "timestamp": 1642496394,
+        "temperature": 20.9,
+        "lightSensor": 1.119,
+        "inputCurrent": 21,
+        "inputVoltage": 1.189,
+        "outputCurrent": 7,
+        "outputVoltage": 3.612,
+        "panelNumber": 3,
+        "panelStatus": "OPEN"
+      },
+      {
+        "timestamp": 1642496393,
+        "temperature": 45.2,
+        "lightSensor": 2.258,
+        "inputCurrent": 121,
+        "inputVoltage": 1.284,
+        "outputCurrent": 34,
+        "outputVoltage": 3.766,
+        "panelNumber": 4,
+        "panelStatus": "OPEN"
+      },
+      {
+        "timestamp": 1642496396,
+        "temperature": -276.4,
+        "lightSensor": 0.0,
+        "inputCurrent": 0,
+        "inputVoltage": 0.0,
+        "outputCurrent": 0,
+        "outputVoltage": 0.0,
+        "panelNumber": 5,
+        "panelStatus": "NOT_MONITORED"
+      },
+      {
+        "timestamp": 1642496391,
+        "temperature": 30.0,
+        "lightSensor": 1.988,
+        "inputCurrent": 77,
+        "inputVoltage": 1.146,
+        "outputCurrent": 20,
+        "outputVoltage": 3.812,
+        "panelNumber": 6,
+        "panelStatus": "NOT_MONITORED"
+      }
+    ],
+    "ackInfo": [
+      {
+        "serial": 1600,
+        "rssi": -84.0
+      },
+      {
+        "serial": 1601,
+        "rssi": -84.0
+      },
+      {
+        "serial": 1602,
+        "rssi": -84.0
+      }
+    ]
+  },
+  "beginSample": 0,
+  "beginMillis": 0
+}

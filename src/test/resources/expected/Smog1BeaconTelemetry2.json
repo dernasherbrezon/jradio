@@ -1,0 +1,137 @@
+{
+  "telemetry2": {
+    "time": 1642496411,
+    "pcuDep": [
+      {
+        "timestamp": 1642496411,
+        "deploymentSwitch": 3,
+        "removeBeforeFlight": true,
+        "pcuDeployment": true,
+        "antennaDeployment": true,
+        "pcuBootCounter": 3569,
+        "pcuUptimeMinutes": 43
+      },
+      {
+        "timestamp": 1642496395,
+        "deploymentSwitch": 3,
+        "removeBeforeFlight": true,
+        "pcuDeployment": true,
+        "antennaDeployment": true,
+        "pcuBootCounter": 3651,
+        "pcuUptimeMinutes": 42
+      }
+    ],
+    "pcuSdc": [
+      {
+        "timestamp": 1642496411,
+        "sdc": [
+          {
+            "inputCurrent": 0,
+            "outputCurrent": 1,
+            "outputVoltage": 1.796
+          },
+          {
+            "inputCurrent": 127,
+            "outputCurrent": 131,
+            "outputVoltage": 3.456
+          }
+        ],
+        "sdc1OvercurrentStatus": false,
+        "sdc1OvervoltageStatus": false,
+        "sdc2OvercurrentStatus": false,
+        "sdc2OvervoltageStatus": false
+      },
+      {
+        "timestamp": 1642496395,
+        "sdc": [
+          {
+            "inputCurrent": 0,
+            "outputCurrent": 1,
+            "outputVoltage": 1.789
+          },
+          {
+            "inputCurrent": 25,
+            "outputCurrent": 25,
+            "outputVoltage": 3.463
+          }
+        ],
+        "sdc1OvercurrentStatus": false,
+        "sdc1OvervoltageStatus": false,
+        "sdc2OvercurrentStatus": false,
+        "sdc2OvervoltageStatus": false
+      }
+    ],
+    "pcuBat": [
+      {
+        "timestamp": 1642496411,
+        "batteryVoltage": 3.624,
+        "batteryChargeCurrent": 0,
+        "batteryDischargeCurrent": 79,
+        "batteryChargeOvercurrent": false,
+        "batteryChargeOvervoltage": false,
+        "batteryDischargeOvercurrent": false,
+        "batteryDischargeOvervoltage": false,
+        "batteryChargeEnabled": true,
+        "batteryDischargeEnabled": true
+      },
+      {
+        "timestamp": 1642496395,
+        "batteryVoltage": 3.651,
+        "batteryChargeCurrent": 38,
+        "batteryDischargeCurrent": 0,
+        "batteryChargeOvercurrent": false,
+        "batteryChargeOvervoltage": false,
+        "batteryDischargeOvercurrent": false,
+        "batteryDischargeOvervoltage": false,
+        "batteryChargeEnabled": true,
+        "batteryDischargeEnabled": true
+      }
+    ],
+    "pcuBus": [
+      {
+        "timestamp": 1642496411,
+        "unregulatedBusVoltage": 3.621,
+        "regulatedBusVoltage": 3.239,
+        "obcCurrentConsumption": [
+          0,
+          7
+        ],
+        "obcOvercurrent": [
+          false,
+          false
+        ]
+      },
+      {
+        "timestamp": 1642496395,
+        "unregulatedBusVoltage": 3.665,
+        "regulatedBusVoltage": 3.312,
+        "obcCurrentConsumption": [
+          0,
+          7
+        ],
+        "obcOvercurrent": [
+          false,
+          false
+        ]
+      }
+    ],
+    "ackInfo": [
+      {
+        "serial": 1597,
+        "rssi": -83.5
+      },
+      {
+        "serial": 1598,
+        "rssi": -83.5
+      },
+      {
+        "serial": 1599,
+        "rssi": -83.5
+      }
+    ],
+    "pcuVoltage1": 3.306,
+    "pcuVoltage2": 3.288
+  },
+  "beginSample": 0,
+  "beginMillis": 0
+}

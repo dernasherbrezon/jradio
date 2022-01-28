@@ -1,0 +1,123 @@
+{
+  "telemetry3": {
+    "timestamp": 1642496462,
+    "obcSupplyVoltage": 3.267,
+    "rtccTemperature": [
+      340,
+      340
+    ],
+    "obcTemperature": 32.5,
+    "eps2PanelATemperature": [
+      32.5,
+      31.5
+    ],
+    "comDataRate": 3,
+    "txPowerLevel": 3,
+    "comTxCurrent": 119,
+    "comRxCurrent": 33,
+    "com1Overcurrent": false,
+    "com2Overcurrent": false,
+    "com1LimiterSwitch": false,
+    "com2LimiterSwitch": true,
+    "com1LimiterSwitchOverride": false,
+    "com2LimiterSwitchOverride": false,
+    "msen": [
+      {
+        "msenGyroscope": [
+          650,
+          2704,
+          -707
+        ],
+        "msenMagneto": [
+          19,
+          5292,
+          1973
+        ],
+        "msenAcceleration": [
+          -8,
+          8,
+          -9
+        ],
+        "msenTemperature": 33.0
+      },
+      {
+        "msenGyroscope": [
+          677,
+          -2606,
+          838
+        ],
+        "msenMagneto": [
+          -3,
+          19,
+          1
+        ],
+        "msenAcceleration": [
+          8,
+          5,
+          -31
+        ],
+        "msenTemperature": 35.0
+      }
+    ],
+    "msenEnabled": [
+      true,
+      true
+    ],
+    "flash": [
+      true,
+      true
+    ],
+    "rtcc": [
+      true,
+      true
+    ],
+    "currentCom": 1,
+    "com": {
+      "timestamp": 1642496462,
+      "swrBridge": 32,
+      "lastRxRssi": 98,
+      "spectrumAnalyzerStatus": 219,
+      "activeComVoltage": 3.281,
+      "activeComTemperature": 38.1,
+      "activeComSpectrumAnalyzerTemperature": 31.8
+    },
+    "tid": [
+      {
+        "timestamp": 1642496266,
+        "temperature": 21.9,
+        "voltage": 4.968,
+        "radfetVoltage": [
+          2018672,
+          2017950
+        ],
+        "measurementSerial": 5
+      },
+      {
+        "timestamp": 1642496270,
+        "temperature": 22.2,
+        "voltage": 4.965,
+        "radfetVoltage": [
+          2110147,
+          2108648
+        ],
+        "measurementSerial": 5
+      }
+    ],
+    "ackInfo": [
+      {
+        "serial": 1606,
+        "rssi": -81.0
+      },
+      {
+        "serial": 1607,
+        "rssi": -81.0
+      },
+      {
+        "serial": 1608,
+        "rssi": -82.0
+      }
+    ]
+  },
+  "beginSample": 0,
+  "beginMillis": 0
+}

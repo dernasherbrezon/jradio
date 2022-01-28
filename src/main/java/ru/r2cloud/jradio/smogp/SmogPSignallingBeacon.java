@@ -58,4 +58,9 @@ public class SmogPSignallingBeacon extends ru.r2cloud.jradio.Beacon {
 		this.coding = coding;
 	}
 
+	@Override
+	public String toString() {
+		return "SmogPSignallingBeacon [downlinkSpeed=" + downlinkSpeed + ", coding=" + coding + "]";
+	}
+
 }

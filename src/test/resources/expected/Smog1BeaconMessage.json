@@ -1,0 +1,35 @@
+{
+  "beacon": {
+    "timestamp": 1642496463,
+    "beaconMessage": "Hello world, this is SMOG1 HA5BME",
+    "numReceivePktGarbage": 0,
+    "numReceivePktBadSerial": 0,
+    "numReceivePktInvalid": 0,
+    "lastUplinkTimestamp": 1642496445,
+    "obcUptimeMin": 43,
+    "comUptimeMin": 0,
+    "txVoltageDrop10mv": 0,
+    "timedTaskCount": 3,
+    "energyMode": 1,
+    "tcxoWorks": true,
+    "filesystemWorks": true,
+    "filesystemUsesFlash2": false,
+    "version": "492471a",
+    "ackInfo": [
+      {
+        "serial": 1603,
+        "rssi": -81.5
+      },
+      {
+        "serial": 1604,
+        "rssi": -81.5
+      },
+      {
+        "serial": 1605,
+        "rssi": -81.0
+      }
+    ]
+  },
+  "beginSample": 0,
+  "beginMillis": 0
+}
