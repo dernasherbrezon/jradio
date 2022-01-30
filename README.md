@@ -447,7 +447,12 @@ jradio has lots of built-in satellite decoders. Some of them have non standard d
 		<tr>
 			<td>SMOG-1</td>
 			<td>47964</td>
-			<td></td>
+			<td>ru.r2cloud.jradio.smog1.Smog1Beacon</td>
+		</tr>
+		<tr>
+			<td>DELFI-PQ</td>
+			<td>47964</td>
+			<td>ru.r2cloud.jradio.delfipq.DelfiPqBeacon</td>
 		</tr>
 	</tbody>
 </table>
