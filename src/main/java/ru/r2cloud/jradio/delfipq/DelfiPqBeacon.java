@@ -12,7 +12,6 @@ public class DelfiPqBeacon extends Ax25Beacon {
 	private DelfiPqBeaconMessage beacon;
 	private DirectCommand directCommand;
 	private BusOverride busOverride;
-	private BufferedCommand bufferedCommand;
 	private byte[] unknownPayload;
 
 	@Override
@@ -27,9 +26,6 @@ public class DelfiPqBeacon extends Ax25Beacon {
 			break;
 		case 2:
 			busOverride = new BusOverride(dis);
-			break;
-		case 3:
-			bufferedCommand = new BufferedCommand(dis);
 			break;
 		default:
 			unknownPayload = new byte[dis.available()];
@@ -68,14 +64,6 @@ public class DelfiPqBeacon extends Ax25Beacon {
 
 	public void setBusOverride(BusOverride busOverride) {
 		this.busOverride = busOverride;
-	}
-
-	public BufferedCommand getBufferedCommand() {
-		return bufferedCommand;
-	}
-
-	public void setBufferedCommand(BufferedCommand bufferedCommand) {
-		this.bufferedCommand = bufferedCommand;
 	}
 
 	public byte[] getUnknownPayload() {
