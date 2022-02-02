@@ -18,10 +18,14 @@ import ru.r2cloud.jradio.source.InputStreamSource;
 
 public class GaspacsBeacon extends Beacon {
 
+	private static final byte[] TELEMETRY_HEADER = new byte[] { 71, 65, 83, 80, 65, 67, 83 };
 	private Header header;
 	private String message;
 	private byte[] unknownPayload;
 	private byte[] ssdvImage;
+	private TtncData ttncData;
+	private AttitudeTelemetry telemetry;
+	private DeploymentData deploymentData;
 
 	@Override
 	public void readBeacon(byte[] data) throws IOException, UncorrectableException {
@@ -29,7 +33,26 @@ public class GaspacsBeacon extends Beacon {
 			ssdvImage = data;
 			return;
 		}
-		// FIXME check other beacons
+		if (isTelemetryBeacon(data)) {
+			DataInputStream dis = new DataInputStream(new ByteArrayInputStream(data));
+			dis.skip(TELEMETRY_HEADER.length);
+			int packetType = dis.readUnsignedByte();
+			switch (packetType) {
+			case 0:
+				telemetry = new AttitudeTelemetry(dis);
+				break;
+			case 1:
+				ttncData = new TtncData(dis);
+				break;
+			case 2:
+				deploymentData = new DeploymentData(dis);
+				break;
+			default:
+				unknownPayload = data;
+				break;
+			}
+			return;
+		}
 		Context ctx = new Context();
 		ctx.setSoftBits(false);
 		InputStreamSource is = new InputStreamSource(new ByteArrayInputStream(data), ctx);
@@ -44,13 +67,25 @@ public class GaspacsBeacon extends Beacon {
 			header = new Header(dis);
 			byte[] messageBytes = new byte[dis.available()];
 			dis.readFully(messageBytes);
-			message = new String(messageBytes, StandardCharsets.ISO_8859_1);
+			message = new String(messageBytes, StandardCharsets.ISO_8859_1).trim();
 		} catch (UncorrectableException e) {
 			unknownPayload = data;
 		} catch (IOException e) {
 			unknownPayload = data;
 		}
 
+	}
+
+	private static boolean isTelemetryBeacon(byte[] data) {
+		if (data.length < TELEMETRY_HEADER.length) {
+			return false;
+		}
+		for (int i = 0; i < TELEMETRY_HEADER.length; i++) {
+			if (TELEMETRY_HEADER[i] != data[i]) {
+				return false;
+			}
+		}
+		return true;
 	}
 
 	public Header getHeader() {
@@ -83,6 +118,30 @@ public class GaspacsBeacon extends Beacon {
 
 	public void setSsdvImage(byte[] ssdvImage) {
 		this.ssdvImage = ssdvImage;
+	}
+
+	public TtncData getTtncData() {
+		return ttncData;
+	}
+
+	public void setTtncData(TtncData ttncData) {
+		this.ttncData = ttncData;
+	}
+
+	public AttitudeTelemetry getTelemetry() {
+		return telemetry;
+	}
+
+	public void setTelemetry(AttitudeTelemetry telemetry) {
+		this.telemetry = telemetry;
+	}
+
+	public DeploymentData getDeploymentData() {
+		return deploymentData;
+	}
+
+	public void setDeploymentData(DeploymentData deploymentData) {
+		this.deploymentData = deploymentData;
 	}
 
 	@Override

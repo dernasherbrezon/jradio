@@ -455,6 +455,11 @@ jradio has lots of built-in satellite decoders. Some of them have non standard d
 			<td>47964</td>
 			<td>ru.r2cloud.jradio.delfipq.DelfiPqBeacon</td>
 		</tr>
+		<tr>
+			<td>GASPACS</td>
+			<td>	51439</td>
+			<td>ru.r2cloud.jradio.gaspacs.Gaspacs</td>
+		</tr>
 	</tbody>
 </table>
   

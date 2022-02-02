@@ -1,0 +1,30 @@
+{
+  "ttncData": {
+    "timestamp": 1635986896,
+    "missionMode": 2,
+    "rebootCount": 23,
+    "boomboxUv": 0.0,
+    "spxPlusTemp1": 0.0,
+    "spzPlusTemp2": 0.0,
+    "raspberryPiTemp": 49.8,
+    "epsMcuTemp": 156.0,
+    "cell1BatteryTemp": 156.0,
+    "cell2BatteryTemp": 156.0,
+    "batteryVoltage": 6.1,
+    "batteryCurrent": 10.0,
+    "bcrVoltage": 6.1,
+    "bcrCurrent": 1.875,
+    "eps3v3Current": 4.0,
+    "eps5vCurrent": 4.0,
+    "spxVoltage": 6.5,
+    "spxPlusCurrent": 2.8,
+    "spxMinusCurrent": 2.8,
+    "spyVoltage": 6.5,
+    "spyPlusCurrent": 2.8,
+    "spyMinusCurrent": 2.8,
+    "spzVoltage": 6.5,
+    "spzPlusCurrent": 2.8
+  },
+  "beginSample": 0,
+  "beginMillis": 0
+}

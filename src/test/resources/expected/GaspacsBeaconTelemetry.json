@@ -1,0 +1,15 @@
+{
+  "telemetry": {
+    "timestamp": 1635810580,
+    "solarSensor1": 0.0,
+    "solarSensor2": 0.0,
+    "solarSensor3": 0.0,
+    "solarSensor4": 0.0,
+    "solarSensor5": 0.0,
+    "magneticFieldX": 101.0,
+    "magneticFieldY": 101.0,
+    "magneticFieldZ": 101.0
+  },
+  "beginSample": 0,
+  "beginMillis": 0
+}
