@@ -21,6 +21,7 @@ public class Crc16Ccitt {
 		return crc & 0xFFFF;
 	}
 
+	// crc-16/x-25
 	public static int calculateReverse(byte[] data) {
 		return calculateReverse(data, 0, data.length);
 	}
