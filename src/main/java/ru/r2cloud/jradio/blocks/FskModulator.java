@@ -8,7 +8,7 @@ import ru.r2cloud.jradio.Context;
 import ru.r2cloud.jradio.FloatValueSource;
 import ru.r2cloud.jradio.util.NumericallyControlledOscillator;
 
-public class RttyModulator extends ComplexFloatInput implements FloatValueSource { // extends ComplexFloatInput
+public class FskModulator extends ComplexFloatInput implements FloatValueSource {
 
 	private final ByteInput source;
 	private final int sps;
@@ -22,7 +22,7 @@ public class RttyModulator extends ComplexFloatInput implements FloatValueSource
 	private float currentFreq;
 	private int currentSymbol = 0;
 
-	public RttyModulator(ByteInput source, float samplesPerSymbol, float centerFreq, float shift) {
+	public FskModulator(ByteInput source, float samplesPerSymbol, float centerFreq, float shift) {
 		this.source = source;
 		this.nco = new NumericallyControlledOscillator(this, 1.0);
 		this.sps = (int) (samplesPerSymbol + 0.5f);

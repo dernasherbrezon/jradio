@@ -6,9 +6,9 @@ import org.junit.Test;
 import ru.r2cloud.jradio.ArrayByteInput;
 import ru.r2cloud.jradio.TestUtil;
 
-public class RttyModulatorTest {
+public class FskModulatorTest {
 
-	private RttyModulator modulator;
+	private FskModulator modulator;
 
 	@Test
 	public void test() throws Exception {
@@ -25,7 +25,7 @@ public class RttyModulatorTest {
 		float sps = sampleRate / baudRate;
 		ArrayByteInput input = new ArrayByteInput(false, data);
 		input.getContext().setSampleRate(sampleRate / sps);
-		modulator = new RttyModulator(input, sps, 1000, 170);
+		modulator = new FskModulator(input, sps, 1000, 170);
 		TestUtil.assertFloatInput("rtty.cf32", modulator);
 	}
 

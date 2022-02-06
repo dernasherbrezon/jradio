@@ -22,7 +22,7 @@ Some generic modulators. They take hard bits and produce I/Q signal.
 
  * [GFSK](https://github.com/dernasherbrezon/jradio/blob/master/src/main/java/ru/r2cloud/jradio/blocks/GfskModulator.java)
  * [BPSK/QPSK](https://github.com/dernasherbrezon/jradio/blob/master/src/main/java/ru/r2cloud/jradio/blocks/ConstellationModulator.java)
- * [RTTY](https://github.com/dernasherbrezon/jradio/blob/master/src/main/java/ru/r2cloud/jradio/blocks/RttyModulator.java)
+ * [FSK](https://github.com/dernasherbrezon/jradio/blob/master/src/main/java/ru/r2cloud/jradio/blocks/FskModulator.java)
 
 ## De-framers
 
