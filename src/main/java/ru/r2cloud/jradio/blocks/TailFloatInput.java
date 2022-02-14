@@ -17,10 +17,10 @@ public class TailFloatInput implements FloatInput {
 
 	public TailFloatInput(FloatInput input, int tailSamples) {
 		this.input = input;
-		this.tailSize = tailSamples;
+		this.tailSize = input.getContext().getChannels() * tailSamples;
 		this.ctx = new Context(input.getContext());
 		if (this.ctx.getTotalSamples() != null) {
-			this.ctx.setTotalSamples(this.ctx.getTotalSamples() + this.ctx.getChannels() * tailSamples);
+			this.ctx.setTotalSamples(this.ctx.getTotalSamples() + tailSamples);
 		}
 	}
 
