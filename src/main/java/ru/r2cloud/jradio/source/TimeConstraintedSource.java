@@ -1,4 +1,4 @@
-package ru.r2cloud.jradio.blocks;
+package ru.r2cloud.jradio.source;
 
 import java.io.EOFException;
 import java.io.IOException;

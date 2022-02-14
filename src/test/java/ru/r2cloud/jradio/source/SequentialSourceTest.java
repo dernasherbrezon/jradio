@@ -15,7 +15,6 @@ import ru.r2cloud.jradio.FloatInput;
 import ru.r2cloud.jradio.blocks.ChannelModel;
 import ru.r2cloud.jradio.blocks.FastNoiseSourceComplex;
 import ru.r2cloud.jradio.blocks.GfskModulator;
-import ru.r2cloud.jradio.blocks.TimeConstraintedSource;
 
 public class SequentialSourceTest {
 
