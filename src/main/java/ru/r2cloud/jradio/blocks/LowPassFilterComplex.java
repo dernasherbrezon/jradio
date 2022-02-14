@@ -29,10 +29,10 @@ public class LowPassFilterComplex implements FloatInput {
 		if (!Double.isFinite(gain)) {
 			throw new IllegalArgumentException("invalid gain");
 		}
-		this.source = source;
 		float[] taps = Firdes.lowPass(gain, source.getContext().getSampleRate(), cutoffFrequency, transitionWidth, windowType, beta);
 		this.filter = new FIRFilter(taps);
 		array = new CircularComplexArray(taps.length);
+		this.source = new TailFloatInput(source, taps.length - 1);
 		if (registry != null) {
 			samples = registry.meter(LowPassFilterComplex.class.getName());
 		} else {
