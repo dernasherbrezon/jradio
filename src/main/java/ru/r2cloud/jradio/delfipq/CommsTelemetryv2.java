@@ -27,7 +27,7 @@ public class CommsTelemetryv2 {
 		voltage = dis.readUnsignedShort() / 1000.0f;
 		current = dis.readShort() / 1000.0f;
 		temperature = dis.readShort() / 10.0f;
-		receiverRSSI = dis.readShort() - 21;
+		receiverRSSI = dis.readShort() - 21.0f;
 		transmitVoltage = dis.readUnsignedShort() / 1000.0f;
 		transmitCurrent = dis.readShort() / 1000.0f;
 		amplifierVoltage = dis.readUnsignedShort() / 1000.0f;

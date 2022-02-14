@@ -35,7 +35,9 @@ public class GaspacsBeacon extends Beacon {
 		}
 		if (isTelemetryBeacon(data)) {
 			DataInputStream dis = new DataInputStream(new ByteArrayInputStream(data));
-			dis.skip(TELEMETRY_HEADER.length);
+			if (dis.skip(TELEMETRY_HEADER.length) != TELEMETRY_HEADER.length) {
+				throw new IOException("can't skip required bytes");
+			}
 			int packetType = dis.readUnsignedByte();
 			switch (packetType) {
 			case 0:

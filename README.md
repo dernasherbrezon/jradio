@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.com/dernasherbrezon/jradio.svg?branch=master)](https://travis-ci.com/dernasherbrezon/jradio) [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=ru.r2cloud%3Ajradio&metric=alert_status)](https://sonarcloud.io/dashboard?id=ru.r2cloud%3Ajradio)
+[![Build Status](https://app.travis-ci.com/dernasherbrezon/jradio.svg?branch=master)](https://app.travis-ci.com/github/dernasherbrezon/jradio) [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=ru.r2cloud%3Ajradio&metric=alert_status)](https://sonarcloud.io/dashboard?id=ru.r2cloud%3Ajradio)
 
 ## About 
 
