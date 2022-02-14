@@ -133,6 +133,8 @@ All blocks meant to be binary compatible with gnuradio versions. This will ensur
   * RootRaisedCosineFilter
   * Scrambler
   * SigSource
+  * SequentialSource. Produce time-multiplexed outputs from several sources. Useful in simulations.
+  * TimeConstraintedSource. Can be used in simulations to time-limit noise source.
   * UnpackedToPacked
   * WavFileSource
   * WavFileSink
