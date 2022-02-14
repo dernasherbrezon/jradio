@@ -22,10 +22,10 @@ public class FskModulator extends ComplexFloatInput implements FloatValueSource 
 	private float currentFreq;
 	private int currentSymbol = 0;
 
-	public FskModulator(ByteInput source, float samplesPerSymbol, float centerFreq, float shift) {
+	public FskModulator(ByteInput source, int samplesPerSymbol, float centerFreq, float shift) {
 		this.source = source;
 		this.nco = new NumericallyControlledOscillator(this, 1.0);
-		this.sps = (int) (samplesPerSymbol + 0.5f);
+		this.sps = samplesPerSymbol;
 		this.currentSymbol = sps;
 		this.context = new Context(source.getContext());
 		context.setSampleRate(context.getSampleRate() * sps);

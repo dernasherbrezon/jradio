@@ -25,7 +25,7 @@ public class FskModulatorTest {
 		float sps = sampleRate / baudRate;
 		ArrayByteInput input = new ArrayByteInput(false, data);
 		input.getContext().setSampleRate(sampleRate / sps);
-		modulator = new FskModulator(input, sps, 1000, 170);
+		modulator = new FskModulator(input, (int) (sps + 0.5f), 1000, 170);
 		TestUtil.assertFloatInput("rtty.cf32", modulator);
 	}
 
