@@ -31,17 +31,17 @@ public class LowPassFilter implements FloatInput {
 		if (!Double.isFinite(gain)) {
 			throw new IllegalArgumentException("invalid gain");
 		}
-		this.source = source;
 		this.decimation = decimation;
 		float[] taps = Firdes.lowPass(gain, source.getContext().getSampleRate(), cutoffFrequency, transitionWidth, windowType, beta);
 		this.filter = new FIRFilter(taps);
+		this.source = new TailFloatInput(source, taps.length + decimation - 1);
 		array = new CircularArray(taps.length);
 		if (registry != null) {
 			samples = registry.meter(LowPassFilter.class.getName());
 		} else {
 			samples = null;
 		}
-		context = new Context(source.getContext());
+		context = new Context(this.source.getContext());
 		context.setSampleRate(context.getSampleRate() / decimation);
 		if (context.getTotalSamples() != null) {
 			context.setTotalSamples(context.getTotalSamples() / decimation);

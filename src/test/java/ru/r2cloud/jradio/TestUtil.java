@@ -2,6 +2,7 @@ package ru.r2cloud.jradio;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.fail;
 
 import java.awt.image.BufferedImage;
 import java.io.EOFException;
@@ -48,7 +49,7 @@ public class TestUtil {
 			throw new RuntimeException(e);
 		}
 	}
-	
+
 	public static void assertTail(float[] tail, FloatInput actual) {
 		for (int i = 0; i < tail.length; i++) {
 			float expectedValue = tail[i];
@@ -60,12 +61,20 @@ public class TestUtil {
 			}
 			assertEquals("failure at index: " + i, expectedValue, actualValue, 0.0001f);
 		}
+		try {
+			actual.readFloat();
+			fail("EOF expected");
+		} catch (EOFException e) {
+			// ignore
+		} catch (IOException e) {
+			fail("failing: " + e.getMessage());
+		}
 	}
-	
+
 	public static void assertFloatInput(String expected, FloatInput actual) {
 		assertFloatInput(0, expected, actual);
 	}
-	
+
 	public static void assertImage(String expectedName, BufferedImage actual) throws IOException {
 		assertNotNull(actual);
 		try (InputStream is1 = TestUtil.class.getClassLoader().getResourceAsStream(expectedName)) {
