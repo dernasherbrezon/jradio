@@ -22,7 +22,6 @@ public class InterpFIRFilter implements FloatInput {
 		if (taps == null || taps.length == 0) {
 			throw new IllegalArgumentException("empty taps");
 		}
-		this.input = input;
 		int n = taps.length % interpolation;
 		float[] newTaps;
 		if (n > 0) {
@@ -33,7 +32,8 @@ public class InterpFIRFilter implements FloatInput {
 			newTaps = taps;
 		}
 
-		float[][] xtaps = new float[interpolation][newTaps.length / interpolation];
+		int bufferSize = newTaps.length / interpolation;
+		float[][] xtaps = new float[interpolation][bufferSize];
 		for (int i = 0; i < taps.length; i++) {
 			xtaps[i % interpolation][i / interpolation] = taps[i];
 		}
@@ -41,15 +41,16 @@ public class InterpFIRFilter implements FloatInput {
 		for (int i = 0; i < filters.length; i++) {
 			filters[i] = new FIRFilter(xtaps[i]);
 		}
-		buffer = new CircularArray(newTaps.length / interpolation);
+		this.input = new TailFloatInput(input, bufferSize - 1);
+		buffer = new CircularArray(bufferSize);
 		currentFilter = filters.length;
-		context = new Context(input.getContext());
+		context = new Context(this.input.getContext());
 		context.setSampleRate(context.getSampleRate() * interpolation);
 		if (context.getTotalSamples() != null) {
 			context.setTotalSamples(context.getTotalSamples() * interpolation);
 		}
 	}
-
+	
 	@Override
 	public float readFloat() throws IOException {
 		if (currentFilter >= filters.length) {

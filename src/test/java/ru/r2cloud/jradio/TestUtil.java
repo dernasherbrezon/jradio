@@ -48,7 +48,20 @@ public class TestUtil {
 			throw new RuntimeException(e);
 		}
 	}
-
+	
+	public static void assertTail(float[] tail, FloatInput actual) {
+		for (int i = 0; i < tail.length; i++) {
+			float expectedValue = tail[i];
+			float actualValue;
+			try {
+				actualValue = actual.readFloat();
+			} catch (IOException e) {
+				throw new RuntimeException(e);
+			}
+			assertEquals("failure at index: " + i, expectedValue, actualValue, 0.0001f);
+		}
+	}
+	
 	public static void assertFloatInput(String expected, FloatInput actual) {
 		assertFloatInput(0, expected, actual);
 	}
