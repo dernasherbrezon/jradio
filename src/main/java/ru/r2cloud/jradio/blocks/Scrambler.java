@@ -12,7 +12,7 @@ public class Scrambler implements ByteInput {
 	private final Lfsr lfsr;
 
 	public Scrambler(ByteInput source, int mask, int seed, int length) {
-		this.source = source;
+		this.source = new TailByteInput(source, length + 1);
 		this.lfsr = new Lfsr(mask, seed, length);
 	}
 
