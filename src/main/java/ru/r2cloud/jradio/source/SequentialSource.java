@@ -15,7 +15,8 @@ public class SequentialSource implements FloatInput {
 
 	public SequentialSource(List<FloatInput> packets, Context ctx) {
 		this.packets = packets;
-		this.ctx = ctx;
+		this.ctx = new Context(ctx);
+		this.ctx.setTotalSamples(calculateTotalSamples());
 	}
 
 	@Override
@@ -42,6 +43,18 @@ public class SequentialSource implements FloatInput {
 	@Override
 	public Context getContext() {
 		return ctx;
+	}
+
+	private Long calculateTotalSamples() {
+		long totalSamples = 0;
+		for (FloatInput cur : packets) {
+			Long curTotal = cur.getContext().getTotalSamples();
+			if (curTotal == null) {
+				return null;
+			}
+			totalSamples += curTotal;
+		}
+		return totalSamples;
 	}
 
 }

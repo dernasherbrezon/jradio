@@ -1,6 +1,7 @@
 package ru.r2cloud.jradio.source;
 
 import static org.junit.Assert.assertArrayEquals;
+import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 
 import java.util.ArrayList;
@@ -45,6 +46,16 @@ public class SequentialSourceTest {
 		RawBeacon beacon = source.next();
 		assertArrayEquals(inputData, beacon.getRawData());
 		source.close();
+	}
+
+	@Test
+	public void testCalculateTotalSamples() {
+		FloatInput input = new InputStreamSource(SequentialSourceTest.class.getClassLoader().getResourceAsStream("LowPassFilter.bin"));
+		List<FloatInput> inputs = new ArrayList<>();
+		inputs.add(input);
+		sim = new SequentialSource(inputs, new Context());
+		// input stream doesn't have total number of samples
+		assertNull(sim.getContext().getTotalSamples());
 	}
 
 	private static SequentialSource createSequentialSource(float sampleRate, float sps, float devitation, byte[] inputData) {
