@@ -19,7 +19,7 @@ public class DcBlocker implements FloatInput {
 		if (!longForm) {
 			throw new IllegalArgumentException("short form unsupported");
 		}
-		this.source = source;
+		this.source = new TailFloatInput(source, (length - 1) * 4);
 		ma0 = new MovingAverage(length);
 		ma1 = new MovingAverage(length);
 		ma2 = new MovingAverage(length);

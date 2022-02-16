@@ -33,8 +33,8 @@ public class ClockRecoveryMM implements FloatInput {
 		this.mu = mu;
 		this.gainMu = gainMu;
 		this.omegaRelativeLimit = omegaRelativeLimit;
-		this.source = source;
 		interp = new MMSEFIRInterpolator();
+		this.source = new TailFloatInput(source, interp.getNumberOfTaps() - 1);
 		setOmega(omega);
 
 		curBuf = new CircularArray(interp.getNumberOfTaps());
