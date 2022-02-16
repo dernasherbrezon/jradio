@@ -9,29 +9,29 @@ import ru.r2cloud.jradio.FloatInput;
 
 public class SequentialSource implements FloatInput {
 
-	private final List<FloatInput> packets;
+	private final List<FloatInput> inputs;
 	private int current = 0;
 	private final Context ctx;
 
-	public SequentialSource(List<FloatInput> packets, Context ctx) {
-		this.packets = packets;
+	public SequentialSource(List<FloatInput> inputs, Context ctx) {
+		this.inputs = inputs;
 		this.ctx = new Context(ctx);
 		this.ctx.setTotalSamples(calculateTotalSamples());
 	}
 
 	@Override
 	public void close() throws IOException {
-		for (FloatInput cur : packets) {
+		for (FloatInput cur : inputs) {
 			cur.close();
 		}
 	}
 
 	@Override
 	public float readFloat() throws IOException {
-		if (current >= packets.size()) {
+		if (current >= inputs.size()) {
 			throw new EOFException();
 		}
-		FloatInput cur = packets.get(current);
+		FloatInput cur = inputs.get(current);
 		try {
 			return cur.readFloat();
 		} catch (EOFException e) {
@@ -47,7 +47,7 @@ public class SequentialSource implements FloatInput {
 
 	private Long calculateTotalSamples() {
 		long totalSamples = 0;
-		for (FloatInput cur : packets) {
+		for (FloatInput cur : inputs) {
 			Long curTotal = cur.getContext().getTotalSamples();
 			if (curTotal == null) {
 				return null;
