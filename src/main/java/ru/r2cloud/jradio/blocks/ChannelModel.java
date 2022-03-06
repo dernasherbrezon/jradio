@@ -20,7 +20,7 @@ public class ChannelModel implements FloatInput {
 			next = new FIRFilterBlockComplex(next, taps);
 		}
 		if (frequencyOffsetValue != 0.0) {
-			SigSource frequencyOffset = new SigSource(Waveform.COMPLEX, 1, frequencyOffsetValue, 1.0);
+			SigSource frequencyOffset = new SigSource(Waveform.COMPLEX, (long) next.getContext().getSampleRate(), frequencyOffsetValue, 1.0);
 			next = new Multiply(next, frequencyOffset);
 		}
 		if (noiseVoltage != 0.0) {
