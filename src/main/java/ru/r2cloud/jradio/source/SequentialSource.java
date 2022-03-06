@@ -12,11 +12,13 @@ public class SequentialSource implements FloatInput {
 	private final List<FloatInput> inputs;
 	private int current = 0;
 	private final Context ctx;
+	private long totalOutputProduced = 0;
 
 	public SequentialSource(List<FloatInput> inputs, Context ctx) {
 		this.inputs = inputs;
 		this.ctx = new Context(ctx);
 		this.ctx.setTotalSamples(calculateTotalSamples());
+		this.ctx.setCurrentSample(() -> totalOutputProduced / this.ctx.getChannels());
 	}
 
 	@Override
@@ -33,7 +35,9 @@ public class SequentialSource implements FloatInput {
 		}
 		FloatInput cur = inputs.get(current);
 		try {
-			return cur.readFloat();
+			float result = cur.readFloat();
+			totalOutputProduced++;
+			return result;
 		} catch (EOFException e) {
 			current++;
 			return readFloat();

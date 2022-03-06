@@ -1,6 +1,7 @@
 package ru.r2cloud.jradio.source;
 
 import static org.junit.Assert.assertArrayEquals;
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 
@@ -27,6 +28,20 @@ import ru.r2cloud.jradio.demod.FskDemodulator;
 public class SequentialSourceTest {
 
 	private SequentialSource sim;
+	
+	@Test
+	public void testCurrentSample() throws Exception {
+		byte[] inputData = new byte[20];
+		for (int i = 0; i < inputData.length; i++) {
+			inputData[i] = (byte) (i % 2);
+		}
+		sim = createSequentialSource(48000.0f, 5.0f, 5000.0f, inputData);
+		assertEquals(0, sim.getContext().getCurrentSample().getValue());
+		sim.readFloat();
+		assertEquals(0, sim.getContext().getCurrentSample().getValue());
+		sim.readFloat();
+		assertEquals(1, sim.getContext().getCurrentSample().getValue());
+	}
 
 	@Test
 	public void testSuccess() throws Exception {
