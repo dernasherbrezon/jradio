@@ -27,7 +27,7 @@ public class HdlcTransmitter {
 	public byte[] encode(byte[] messageToSend) {
 		bitsToSendLength = 0;
 		int crc16 = Crc16Ccitt.calculateReverse(messageToSend);
-		int requiredBitsToSendLength = (messageToSend.length + CRC16_LEN_BYTES) * BITS_IN_BYTE * BIT_STUFFING_PESSIMISTIC_EXCESS_MULTIPLIER + 2 * FRAMING_BITS_LEN;
+		int requiredBitsToSendLength = prepend * BITS_IN_BYTE + append * BITS_IN_BYTE + (messageToSend.length + CRC16_LEN_BYTES) * BITS_IN_BYTE * BIT_STUFFING_PESSIMISTIC_EXCESS_MULTIPLIER + 2 * FRAMING_BITS_LEN;
 		// init new buffer only if previous was smaller
 		if (bitsToSend == null || requiredBitsToSendLength > bitsToSend.length) {
 			bitsToSend = new byte[requiredBitsToSendLength];
