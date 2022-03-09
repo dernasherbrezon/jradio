@@ -2,6 +2,7 @@ package ru.r2cloud.jradio.blocks;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.fail;
 
 import java.io.EOFException;
 import java.util.ArrayList;
@@ -9,10 +10,14 @@ import java.util.List;
 import java.util.Random;
 
 import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
 
 import ru.r2cloud.jradio.ArrayByteInput;
 import ru.r2cloud.jradio.crc.Crc16Ccitt;
+import ru.r2cloud.jradio.trace.HdlcFrameStats;
+import ru.r2cloud.jradio.trace.HdlcReceiverTrace;
+import ru.r2cloud.jradio.trace.TraceContext;
 
 public class HdlcReceiverTest {
 
@@ -27,6 +32,12 @@ public class HdlcReceiverTest {
 		byte[] result = hdlc.readBytes();
 		assertNotNull(result);
 		assertByteArrayEquals(data, result);
+		try {
+			hdlc.readBytes();
+			fail("no more messages expected");
+		} catch (EOFException e) {
+			assertHdlcFrameStats(0, 0, data.length, 0);
+		}
 	}
 
 	@Test
@@ -41,6 +52,13 @@ public class HdlcReceiverTest {
 		result = hdlc.readBytes();
 		assertNotNull(result);
 		assertByteArrayEquals(data, result);
+		try {
+			hdlc.readBytes();
+			fail("no more messages expected");
+		} catch (EOFException e) {
+			assertHdlcFrameStats(0, 0, data.length, 1);
+			assertHdlcFrameStats(1, 1, data.length, 0);
+		}
 	}
 
 	@Test
@@ -51,7 +69,7 @@ public class HdlcReceiverTest {
 		assertNotNull(result);
 		assertByteArrayEquals(data, result);
 	}
-	
+
 	@Test
 	public void testOneByOne() throws Exception {
 		int[] data = new int[] { 0xF1, 0xA7 };
@@ -89,6 +107,27 @@ public class HdlcReceiverTest {
 		byte[] result = hdlc.readBytes();
 		assertNotNull(result);
 		assertByteArrayEquals(data, result);
+		try {
+			hdlc.readBytes();
+			fail("no more messages expected");
+		} catch (EOFException e) {
+			assertHdlcFrameStats(0, 1, data.length, 0);
+		}
+	}
+
+	@Test
+	public void testMultipleStartAndEndTags() throws Exception {
+		int[] data = new int[] { 0xF1, 0xA7 };
+		hdlc = new HdlcReceiver(new ArrayByteInput(createMessage(randomBytes(2), FLAG, FLAG, FLAG, FLAG, FLAG, packedToUnpacked(createMessage(data, calculateCrc(data))), FLAG, FLAG, FLAG, FLAG, randomBytes(5), FLAG, FLAG, FLAG, packedToUnpacked(createMessage(data, calculateCrc(data))), FLAG, FLAG, randomBytes(5))), 2);
+		hdlc.readBytes();
+		hdlc.readBytes();
+		try {
+			hdlc.readBytes();
+			fail("no more messages expected");
+		} catch (EOFException e) {
+			assertHdlcFrameStats(0, 4, data.length, 3);
+			assertHdlcFrameStats(1, 2, data.length, 1);
+		}
 	}
 
 	@Test(expected = EOFException.class)
@@ -105,11 +144,23 @@ public class HdlcReceiverTest {
 		hdlc.readBytes();
 	}
 
+	@Before
+	public void start() {
+		TraceContext.instance.setHdlcReceiverTrace(new HdlcReceiverTrace());
+	}
+
 	@After
 	public void stop() throws Exception {
 		if (hdlc != null) {
 			hdlc.close();
 		}
+	}
+
+	private static void assertHdlcFrameStats(int index, int before, int frameLength, int after) {
+		HdlcFrameStats actual = TraceContext.instance.getHdlcReceiverTrace().getBeaconStats().get(index);
+		assertEquals(before, actual.getBeforeFlagsCount());
+		assertEquals(frameLength, actual.getFrame().length);
+		assertEquals(after, actual.getAfterFlagsCount());
 	}
 
 	private static void assertByteArrayEquals(int[] expected, byte[] actual) {

@@ -1,5 +1,6 @@
 package ru.r2cloud.jradio.blocks;
 
+import java.io.EOFException;
 import java.io.IOException;
 
 import org.slf4j.Logger;
@@ -9,6 +10,8 @@ import ru.r2cloud.jradio.ByteInput;
 import ru.r2cloud.jradio.Context;
 import ru.r2cloud.jradio.MessageInput;
 import ru.r2cloud.jradio.crc.Crc16Ccitt;
+import ru.r2cloud.jradio.trace.HdlcFrameStats;
+import ru.r2cloud.jradio.trace.TraceContext;
 
 public class HdlcReceiver implements MessageInput {
 
@@ -22,6 +25,7 @@ public class HdlcReceiver implements MessageInput {
 	private final boolean checksum;
 	private final int minBits;
 
+	private HdlcFrameStats curBeaconStat;
 	private boolean foundStartFlag = false;
 
 	public HdlcReceiver(ByteInput input, int maxLengthBytes) {
@@ -42,8 +46,15 @@ public class HdlcReceiver implements MessageInput {
 	public byte[] readBytes() throws IOException {
 		int ones = 0;
 		int packetLength = 0;
+		int emptyFlagCount = 0;
 		while (true) {
-			byte curBit = input.readByte();
+			byte curBit;
+			try {
+				curBit = input.readByte();
+			} catch (EOFException e) {
+				snapBeaconStats(emptyFlagCount);
+				throw new EOFException();
+			}
 			if (curBit == 1) {
 				ones++;
 				if (foundStartFlag) {
@@ -56,6 +67,8 @@ public class HdlcReceiver implements MessageInput {
 						}
 						foundStartFlag = false;
 						packetLength = 0;
+						snapBeaconStats(emptyFlagCount);
+						emptyFlagCount = 0;
 					}
 				}
 			} else {
@@ -68,6 +81,12 @@ public class HdlcReceiver implements MessageInput {
 						// pop back 7bits of the last flag
 						packetLength = packetLength - FLAG_LENGTH;
 						if (packetLength % 8 != 0 || packetLength < minBits) {
+							if (packetLength == 0) {
+								emptyFlagCount++;
+							} else {
+								snapBeaconStats(emptyFlagCount);
+								emptyFlagCount = 0;
+							}
 							packetLength = 0;
 							ones = 0;
 							continue;
@@ -77,6 +96,8 @@ public class HdlcReceiver implements MessageInput {
 							int expected = Crc16Ccitt.calculateReverseLsbBits(window, 0, payloadLength);
 							int crc = extractFcs(packetLength);
 							if (expected != crc) {
+								snapBeaconStats(emptyFlagCount);
+								emptyFlagCount = 0;
 								packetLength = 0;
 								ones = 0;
 								continue;
@@ -84,6 +105,13 @@ public class HdlcReceiver implements MessageInput {
 						}
 						byte[] frame = unpackedToPacked(payloadLength);
 						CorrelateSyncword.markStartOfPacket(getContext());
+						if (TraceContext.instance.getHdlcReceiverTrace() != null) {
+							snapBeaconStats(emptyFlagCount);
+							curBeaconStat = new HdlcFrameStats();
+							curBeaconStat.setFrame(frame);
+							curBeaconStat.setBeforeFlagsCount(emptyFlagCount);
+							emptyFlagCount = 0;
+						}
 						return frame;
 					}
 
@@ -98,12 +126,23 @@ public class HdlcReceiver implements MessageInput {
 							}
 							foundStartFlag = false;
 							packetLength = 0;
+							snapBeaconStats(emptyFlagCount);
+							emptyFlagCount = 0;
 						}
 					}
 				}
 				ones = 0;
 			}
 		}
+	}
+
+	private void snapBeaconStats(int emptyFlagCount) {
+		if (curBeaconStat == null) {
+			return;
+		}
+		curBeaconStat.setAfterFlagsCount(emptyFlagCount);
+		TraceContext.instance.getHdlcReceiverTrace().getBeaconStats().add(curBeaconStat);
+		curBeaconStat = null;
 	}
 
 	private int extractFcs(int packetLength) {
