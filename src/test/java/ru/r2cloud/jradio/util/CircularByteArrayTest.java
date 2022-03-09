@@ -22,6 +22,19 @@ public class CircularByteArrayTest {
 		assertEquals(2, array.get(1));
 		assertEquals(3, array.get(2));
 	}
+	
+	@Test
+	public void testCopy() {
+		CircularByteArray array = new CircularByteArray(3);
+		array.add((byte) 1);
+		array.add((byte) 2);
+		array.add((byte) 3);
+		array.add((byte) 4);
+		byte[] copy = array.getCopy();
+		assertEquals(2, copy[0]);
+		assertEquals(3, copy[1]);
+		assertEquals(4, copy[2]);
+	}
 
 	@Test(expected = ArrayIndexOutOfBoundsException.class)
 	public void testArrayIndexOutOfBounds() {

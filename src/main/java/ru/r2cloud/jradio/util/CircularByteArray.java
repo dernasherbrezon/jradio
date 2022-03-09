@@ -33,4 +33,16 @@ public class CircularByteArray {
 		return array.length;
 	}
 
+	public byte[] getCopy() {
+		byte[] result = new byte[array.length];
+		int j = 0;
+		for (int i = currentPos - 1; i >= 0; i--, j++) {
+			result[j] = array[i];
+		}
+		for (int i = array.length - 1; i >= currentPos; i--, j++) {
+			result[j] = array[i];
+		}
+		return result;
+	}
+
 }
