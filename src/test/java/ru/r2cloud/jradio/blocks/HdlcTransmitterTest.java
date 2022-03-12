@@ -16,7 +16,7 @@ public class HdlcTransmitterTest {
 	@Test
 	public void testSendReceive() throws Exception {
 		byte[] data = new byte[] { (byte) 0xF1, (byte) 0xA7, (byte) 0x7C, 0x56 };
-		transmitter = new HdlcTransmitter();
+		transmitter = new HdlcTransmitter(2, 2);
 		byte[] encoded = transmitter.encode(data);
 		receiver = new HdlcReceiver(new ArrayByteInput(encoded), 10);
 		byte[] actual = receiver.readBytes();
