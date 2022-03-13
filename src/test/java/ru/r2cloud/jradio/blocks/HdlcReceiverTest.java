@@ -2,6 +2,7 @@ package ru.r2cloud.jradio.blocks;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
 import java.io.EOFException;
@@ -118,7 +119,9 @@ public class HdlcReceiverTest {
 	@Test
 	public void testMultipleStartAndEndTags() throws Exception {
 		int[] data = new int[] { 0xF1, 0xA7 };
-		hdlc = new HdlcReceiver(new ArrayByteInput(createMessage(randomBytes(2), FLAG, FLAG, FLAG, FLAG, FLAG, packedToUnpacked(createMessage(data, calculateCrc(data))), FLAG, FLAG, FLAG, FLAG, randomBytes(5), FLAG, FLAG, FLAG, packedToUnpacked(createMessage(data, calculateCrc(data))), FLAG, FLAG, randomBytes(5))), 2);
+		hdlc = new HdlcReceiver(
+				new ArrayByteInput(createMessage(randomBytes(2), FLAG, FLAG, FLAG, FLAG, FLAG, packedToUnpacked(createMessage(data, calculateCrc(data))), FLAG, FLAG, FLAG, FLAG, randomBytes(5), FLAG, FLAG, FLAG, packedToUnpacked(createMessage(data, calculateCrc(data))), FLAG, FLAG, randomBytes(5))),
+				2);
 		hdlc.readBytes();
 		hdlc.readBytes();
 		try {
@@ -142,6 +145,25 @@ public class HdlcReceiverTest {
 		int[] data = new int[] { 0xF1, 0xA7 };
 		hdlc = new HdlcReceiver(new ArrayByteInput(createMessage(randomBytes(2), FLAG, new int[] { 1 }, packedToUnpacked(createMessage(data, calculateCrc(data))), FLAG, randomBytes(5))), 1000);
 		hdlc.readBytes();
+	}
+
+	@Test
+	public void testAssistedHeader() throws Exception {
+		int[] txData = new int[] { 0xF1, 0xA7 };
+		int[] rxData = new int[] { 0xF0, 0xA7 };
+		// 0xF1 LSB
+		byte[] assistedHeader = new byte[] { 1, 0, 0, 0, 1, 1, 1, 1 };
+		hdlc = new HdlcReceiver(new ArrayByteInput(createMessage(randomBytes(2), FLAG, packedToUnpacked(createMessage(rxData, calculateCrc(txData))), FLAG, randomBytes(5))), 2, 0, true, false, assistedHeader);
+		byte[] result = hdlc.readBytes();
+		assertNotNull(result);
+		assertByteArrayEquals(txData, result);
+		try {
+			hdlc.readBytes();
+			fail("no more messages expected");
+		} catch (EOFException e) {
+			HdlcFrameStats actual = TraceContext.instance.getHdlcReceiverTrace().getBeaconStats().get(0);
+			assertTrue(actual.isAssistedHeaderWorked());
+		}
 	}
 
 	@Before

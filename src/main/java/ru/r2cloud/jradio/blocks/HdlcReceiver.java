@@ -24,6 +24,8 @@ public class HdlcReceiver implements MessageInput {
 	private final byte[] window;
 	private final boolean checksum;
 	private final int minBits;
+	private final byte[] assistedHeader;
+	private boolean skipOnFirst;
 
 	private HdlcFrameStats curBeaconStat;
 	private boolean foundStartFlag = false;
@@ -33,9 +35,15 @@ public class HdlcReceiver implements MessageInput {
 	}
 
 	public HdlcReceiver(ByteInput input, int maxLengthBytes, int minBytes, boolean checksum) {
+		this(input, maxLengthBytes, minBytes, checksum, false, null);
+	}
+
+	public HdlcReceiver(ByteInput input, int maxLengthBytes, int minBytes, boolean checksum, boolean skipOnFirst, byte[] assistedHeader) {
 		if (input.getContext().getSoftBits() == null || Boolean.TRUE.equals(input.getContext().getSoftBits())) {
 			throw new IllegalArgumentException("expected hard bits");
 		}
+		this.assistedHeader = assistedHeader;
+		this.skipOnFirst = skipOnFirst;
 		this.input = input;
 		this.window = new byte[((maxLengthBytes + FCS_LENGTH) * 8) + FLAG_LENGTH];
 		this.checksum = checksum;
@@ -89,17 +97,32 @@ public class HdlcReceiver implements MessageInput {
 							}
 							packetLength = 0;
 							ones = 0;
+							if (packetLength != 0 && skipOnFirst) {
+								return null;
+							}
 							continue;
 						}
 						int payloadLength = packetLength - FCS_LENGTH * 8;
+						boolean assistedHeaderWorked = false;
 						if (checksum) {
 							int expected = Crc16Ccitt.calculateReverseLsbBits(window, 0, payloadLength);
 							int crc = extractFcs(packetLength);
+							if (expected != crc && assistedHeader != null) {
+								System.arraycopy(assistedHeader, 0, window, 0, assistedHeader.length);
+								expected = Crc16Ccitt.calculateReverseLsbBits(window, 0, payloadLength);
+								crc = extractFcs(packetLength);
+								if (expected == crc) {
+									assistedHeaderWorked = true;
+								}
+							}
 							if (expected != crc) {
 								snapBeaconStats(emptyFlagCount);
 								emptyFlagCount = 0;
 								packetLength = 0;
 								ones = 0;
+								if (skipOnFirst) {
+									return null;
+								}
 								continue;
 							}
 						}
@@ -109,8 +132,11 @@ public class HdlcReceiver implements MessageInput {
 							snapBeaconStats(emptyFlagCount);
 							curBeaconStat = new HdlcFrameStats();
 							curBeaconStat.setFrame(frame);
+							byte[] unpackedBits = new byte[payloadLength];
+							System.arraycopy(window, 0, unpackedBits, 0, unpackedBits.length);
+							curBeaconStat.setUnpackedBits(unpackedBits);
 							curBeaconStat.setBeforeFlagsCount(emptyFlagCount);
-							emptyFlagCount = 0;
+							curBeaconStat.setAssistedHeaderWorked(assistedHeaderWorked);
 						}
 						return frame;
 					}
@@ -128,6 +154,7 @@ public class HdlcReceiver implements MessageInput {
 							packetLength = 0;
 							snapBeaconStats(emptyFlagCount);
 							emptyFlagCount = 0;
+
 						}
 					}
 				}

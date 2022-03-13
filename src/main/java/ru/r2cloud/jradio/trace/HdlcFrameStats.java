@@ -4,8 +4,25 @@ public class HdlcFrameStats {
 
 	private int beforeFlagsCount;
 	private int afterFlagsCount;
-
+	private boolean assistedHeaderWorked;
 	private byte[] frame;
+	private byte[] unpackedBits;
+	
+	public boolean isAssistedHeaderWorked() {
+		return assistedHeaderWorked;
+	}
+	
+	public void setAssistedHeaderWorked(boolean assistedHeaderWorked) {
+		this.assistedHeaderWorked = assistedHeaderWorked;
+	}
+	
+	public byte[] getUnpackedBits() {
+		return unpackedBits;
+	}
+	
+	public void setUnpackedBits(byte[] unpackedBits) {
+		this.unpackedBits = unpackedBits;
+	}
 
 	public int getBeforeFlagsCount() {
 		return beforeFlagsCount;
