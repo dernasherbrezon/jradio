@@ -42,6 +42,10 @@ public class Lfsr {
 	public void reset() {
 		shiftRegister = seed;
 	}
+	
+	public int getShiftRegister() {
+		return shiftRegister;
+	}
 
 	private static long popCount(long x) {
 		long r = x - ((x >> 1) & 033333333333) - ((x >> 2) & 011111111111);

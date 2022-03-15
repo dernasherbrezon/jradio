@@ -2,6 +2,10 @@ package ru.r2cloud.jradio.blocks;
 
 import java.io.EOFException;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Map;
+import java.util.Queue;
+import java.util.concurrent.ArrayBlockingQueue;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -10,12 +14,15 @@ import ru.r2cloud.jradio.ByteInput;
 import ru.r2cloud.jradio.Context;
 import ru.r2cloud.jradio.MessageInput;
 import ru.r2cloud.jradio.crc.Crc16Ccitt;
+import ru.r2cloud.jradio.trace.DemodulatorTrace;
 import ru.r2cloud.jradio.trace.HdlcFrameStats;
+import ru.r2cloud.jradio.trace.HdlcPresync;
 import ru.r2cloud.jradio.trace.TraceContext;
 
 public class HdlcReceiver implements MessageInput {
 
 	private static final Logger LOG = LoggerFactory.getLogger(HdlcReceiver.class);
+	private static final int PRESYNC_STATS_SIZE = 4;
 
 	// flag is 01111110. last bit is always discarded
 	private static final int FLAG_LENGTH = 7;
@@ -48,6 +55,9 @@ public class HdlcReceiver implements MessageInput {
 		this.window = new byte[((maxLengthBytes + FCS_LENGTH) * 8) + FLAG_LENGTH];
 		this.checksum = checksum;
 		this.minBits = 8 * (minBytes + FCS_LENGTH);
+		if (TraceContext.instance.getHdlcReceiverTrace() != null && TraceContext.instance.getDemodTrace() == null) {
+			TraceContext.instance.setDemodTrace(new DemodulatorTrace(PRESYNC_STATS_SIZE * 8));
+		}
 	}
 
 	@Override
@@ -55,6 +65,10 @@ public class HdlcReceiver implements MessageInput {
 		int ones = 0;
 		int packetLength = 0;
 		int emptyFlagCount = 0;
+		Queue<HdlcPresync> presyncStats = null;
+		if (TraceContext.instance.getHdlcReceiverTrace() != null) {
+			presyncStats = new ArrayBlockingQueue<>(PRESYNC_STATS_SIZE);
+		}
 		while (true) {
 			byte curBit;
 			try {
@@ -91,6 +105,17 @@ public class HdlcReceiver implements MessageInput {
 						if (packetLength % 8 != 0 || packetLength < minBits) {
 							if (packetLength == 0) {
 								emptyFlagCount++;
+								if (presyncStats != null) {
+									if (presyncStats.size() >= PRESYNC_STATS_SIZE) {
+										presyncStats.remove();
+									}
+									Map<String, String> state = getContext().snapState();
+									HdlcPresync curPresync = new HdlcPresync();
+									curPresync.setShiftRegister(Integer.valueOf(state.get("shiftRegister")));
+									curPresync.setRawModulatorInput(state.get("demod"));
+									presyncStats.add(curPresync);
+								}
+
 							} else {
 								snapBeaconStats(emptyFlagCount);
 								emptyFlagCount = 0;
@@ -98,6 +123,7 @@ public class HdlcReceiver implements MessageInput {
 							packetLength = 0;
 							ones = 0;
 							if (packetLength != 0 && skipOnFirst) {
+								snapBeaconStats(emptyFlagCount);
 								return null;
 							}
 							continue;
@@ -121,6 +147,7 @@ public class HdlcReceiver implements MessageInput {
 								packetLength = 0;
 								ones = 0;
 								if (skipOnFirst) {
+									snapBeaconStats(emptyFlagCount);
 									return null;
 								}
 								continue;
@@ -137,6 +164,12 @@ public class HdlcReceiver implements MessageInput {
 							curBeaconStat.setUnpackedBits(unpackedBits);
 							curBeaconStat.setBeforeFlagsCount(emptyFlagCount);
 							curBeaconStat.setAssistedHeaderWorked(assistedHeaderWorked);
+							if (presyncStats != null) {
+								curBeaconStat.setPresyncStats(new ArrayList<>(presyncStats));
+							}
+							if (skipOnFirst) {
+								snapBeaconStats(emptyFlagCount);
+							}
 						}
 						return frame;
 					}

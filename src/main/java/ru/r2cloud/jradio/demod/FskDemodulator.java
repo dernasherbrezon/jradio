@@ -1,6 +1,8 @@
 package ru.r2cloud.jradio.demod;
 
 import java.io.IOException;
+import java.util.Arrays;
+import java.util.Map;
 
 import ru.r2cloud.jradio.ByteInput;
 import ru.r2cloud.jradio.Context;
@@ -13,11 +15,16 @@ import ru.r2cloud.jradio.blocks.LowPassFilterComplex;
 import ru.r2cloud.jradio.blocks.QuadratureDemodulation;
 import ru.r2cloud.jradio.blocks.Rail;
 import ru.r2cloud.jradio.blocks.Window;
+import ru.r2cloud.jradio.trace.StateProvider;
+import ru.r2cloud.jradio.trace.TraceContext;
+import ru.r2cloud.jradio.util.CircularByteArray;
 
-public class FskDemodulator implements ByteInput {
+public class FskDemodulator implements ByteInput, StateProvider {
 
 	private final ByteInput source;
 	private final Context context;
+
+	private CircularByteArray buffer;
 
 	public FskDemodulator(FloatInput source, int baudRate) {
 		this(source, baudRate, 5000.0f, 1, 2000, true);
@@ -44,11 +51,19 @@ public class FskDemodulator implements ByteInput {
 		this.source = new FloatToChar(next, 127.0f);
 		this.context = new Context(this.source.getContext());
 		this.context.setSoftBits(true);
+		if (TraceContext.instance.getDemodTrace() != null) {
+			buffer = new CircularByteArray(TraceContext.instance.getDemodTrace().getWindowSize());
+			this.context.addStateProvider(this);
+		}
 	}
 
 	@Override
 	public byte readByte() throws IOException {
-		return source.readByte();
+		byte result = source.readByte();
+		if (buffer != null) {
+			buffer.add(result >= 0 ? (byte) 1 : 0);
+		}
+		return result;
 	}
 
 	@Override
@@ -61,4 +76,8 @@ public class FskDemodulator implements ByteInput {
 		source.close();
 	}
 
+	@Override
+	public void snapState(Map<String, String> state) {
+		state.put("demod", Arrays.toString(buffer.getCopy()));
+	}
 }

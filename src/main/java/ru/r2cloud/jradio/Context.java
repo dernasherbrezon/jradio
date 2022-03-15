@@ -1,6 +1,12 @@
 package ru.r2cloud.jradio;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import ru.r2cloud.jradio.blocks.CorrelatedMarker;
+import ru.r2cloud.jradio.trace.StateProvider;
 
 /**
  * Stores stream metadata. Shared object across different blocks
@@ -15,6 +21,7 @@ public class Context {
 	private int sampleSizeInBits;
 	private LongValueSource currentSample;
 	private Boolean softBits;
+	private List<StateProvider> providers = new ArrayList<>();
 
 	public Context() {
 		// do nothing
@@ -28,6 +35,7 @@ public class Context {
 		sampleSizeInBits = orig.sampleSizeInBits;
 		currentSample = orig.currentSample;
 		softBits = orig.softBits;
+		providers.addAll(orig.providers);
 	}
 
 	public void setCurrentMarker(CorrelatedMarker currentMarker) {
@@ -84,6 +92,18 @@ public class Context {
 
 	public Boolean getSoftBits() {
 		return softBits;
+	}
+
+	public void addStateProvider(StateProvider provider) {
+		this.providers.add(provider);
+	}
+
+	public Map<String, String> snapState() {
+		Map<String, String> state = new HashMap<>();
+		for (StateProvider cur : providers) {
+			cur.snapState(state);
+		}
+		return state;
 	}
 
 }
