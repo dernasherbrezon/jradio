@@ -23,7 +23,11 @@ public class Ax25G3ruhBeaconSource<T extends Beacon> extends BeaconSource<T> {
 	}
 
 	public Ax25G3ruhBeaconSource(ByteInput input, Class<T> clazz, boolean checksum) {
-		super(new HdlcReceiver(new Descrambler(new NrziDecode(new SoftToHard(input)), 0x21, 0, 16), 10000, Header.LENGTH_BYTES, checksum));
+		this(input, clazz, checksum, null);
+	}
+
+	public Ax25G3ruhBeaconSource(ByteInput input, Class<T> clazz, boolean checksum, byte[] assistedHeader) {
+		super(new HdlcReceiver(new Descrambler(new NrziDecode(new SoftToHard(input)), 0x21, 0, 16), 10000, Header.LENGTH_BYTES, checksum, false, assistedHeader));
 		this.clazz = clazz;
 	}
 

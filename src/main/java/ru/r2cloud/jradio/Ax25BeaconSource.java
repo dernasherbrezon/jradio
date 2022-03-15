@@ -18,7 +18,15 @@ public class Ax25BeaconSource<T extends Beacon> extends BeaconSource<T> {
 	private final Class<T> clazz;
 
 	public Ax25BeaconSource(ByteInput input, Class<T> clazz) {
-		super(new HdlcReceiver(new NrziDecode(new SoftToHard(input)), 10000, Header.LENGTH_BYTES, true));
+		this(input, clazz, true);
+	}
+
+	public Ax25BeaconSource(ByteInput input, Class<T> clazz, boolean checksum) {
+		this(input, clazz, checksum, null);
+	}
+
+	public Ax25BeaconSource(ByteInput input, Class<T> clazz, boolean checksum, byte[] assistedHeader) {
+		super(new HdlcReceiver(new NrziDecode(new SoftToHard(input)), 10000, Header.LENGTH_BYTES, checksum, false, assistedHeader));
 		this.clazz = clazz;
 	}
 
