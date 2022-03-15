@@ -111,7 +111,10 @@ public class HdlcReceiver implements MessageInput {
 									}
 									Map<String, String> state = getContext().snapState();
 									HdlcPresync curPresync = new HdlcPresync();
-									curPresync.setShiftRegister(Integer.valueOf(state.get("shiftRegister")));
+									String shiftRegister = state.get("shiftRegister");
+									if (shiftRegister != null) {
+										curPresync.setShiftRegister(Integer.valueOf(shiftRegister));
+									}
 									curPresync.setRawModulatorInput(state.get("demod"));
 									presyncStats.add(curPresync);
 								}
