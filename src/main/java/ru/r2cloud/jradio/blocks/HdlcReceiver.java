@@ -32,7 +32,7 @@ public class HdlcReceiver implements MessageInput {
 	private final boolean checksum;
 	private final int minBits;
 	private final byte[] assistedHeader;
-	private boolean skipOnFirst;
+	private boolean findLastTag;
 
 	private HdlcFrameStats curBeaconStat;
 	private boolean foundStartFlag = false;
@@ -45,12 +45,12 @@ public class HdlcReceiver implements MessageInput {
 		this(input, maxLengthBytes, minBytes, checksum, false, null);
 	}
 
-	public HdlcReceiver(ByteInput input, int maxLengthBytes, int minBytes, boolean checksum, boolean skipOnFirst, byte[] assistedHeader) {
+	public HdlcReceiver(ByteInput input, int maxLengthBytes, int minBytes, boolean checksum, boolean findLastTag, byte[] assistedHeader) {
 		if (input.getContext().getSoftBits() == null || Boolean.TRUE.equals(input.getContext().getSoftBits())) {
 			throw new IllegalArgumentException("expected hard bits");
 		}
 		this.assistedHeader = assistedHeader;
-		this.skipOnFirst = skipOnFirst;
+		this.findLastTag = findLastTag;
 		this.input = input;
 		this.window = new byte[((maxLengthBytes + FCS_LENGTH) * 8) + FLAG_LENGTH];
 		this.checksum = checksum;
@@ -65,6 +65,9 @@ public class HdlcReceiver implements MessageInput {
 		int ones = 0;
 		int packetLength = 0;
 		int emptyFlagCount = 0;
+		if (findLastTag) {
+			foundStartFlag = true;
+		}
 		Queue<HdlcPresync> presyncStats = null;
 		if (TraceContext.instance.getHdlcReceiverTrace() != null) {
 			presyncStats = new ArrayBlockingQueue<>(PRESYNC_STATS_SIZE);
@@ -123,12 +126,12 @@ public class HdlcReceiver implements MessageInput {
 								snapBeaconStats(emptyFlagCount);
 								emptyFlagCount = 0;
 							}
-							packetLength = 0;
-							ones = 0;
-							if (packetLength != 0 && skipOnFirst) {
+							if (findLastTag) {
 								snapBeaconStats(emptyFlagCount);
 								return null;
 							}
+							packetLength = 0;
+							ones = 0;
 							continue;
 						}
 						int payloadLength = packetLength - FCS_LENGTH * 8;
@@ -149,7 +152,7 @@ public class HdlcReceiver implements MessageInput {
 								emptyFlagCount = 0;
 								packetLength = 0;
 								ones = 0;
-								if (skipOnFirst) {
+								if (findLastTag) {
 									snapBeaconStats(emptyFlagCount);
 									return null;
 								}
@@ -170,7 +173,7 @@ public class HdlcReceiver implements MessageInput {
 							if (presyncStats != null) {
 								curBeaconStat.setPresyncStats(new ArrayList<>(presyncStats));
 							}
-							if (skipOnFirst) {
+							if (findLastTag) {
 								snapBeaconStats(emptyFlagCount);
 							}
 						}

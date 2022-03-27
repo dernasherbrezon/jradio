@@ -2,6 +2,7 @@ package ru.r2cloud.jradio.blocks;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
@@ -164,6 +165,20 @@ public class HdlcReceiverTest {
 			HdlcFrameStats actual = TraceContext.instance.getHdlcReceiverTrace().getBeaconStats().get(0);
 			assertTrue(actual.isAssistedHeaderWorked());
 		}
+	}
+
+	@Test
+	public void testFindLastTag() throws Exception {
+		int[] data = new int[] { 0xF1, 0xA7 };
+		hdlc = new HdlcReceiver(new ArrayByteInput(createMessage(FLAG, packedToUnpacked(createMessage(data, calculateCrc(data))), FLAG, randomBytes(5))), 2, 0, true, true, null);
+		byte[] result = hdlc.readBytes();
+		assertNull(result);
+		hdlc = new HdlcReceiver(new ArrayByteInput(createMessage(packedToUnpacked(createMessage(data, new int[2])), FLAG, randomBytes(5))), 2, 0, true, true, null);
+		result = hdlc.readBytes();
+		assertNull(result);
+		hdlc = new HdlcReceiver(new ArrayByteInput(createMessage(packedToUnpacked(createMessage(data, calculateCrc(data))), FLAG, randomBytes(5))), 2, 0, true, true, null);
+		result = hdlc.readBytes();
+		assertNotNull(result);
 	}
 
 	@Before
