@@ -22,15 +22,39 @@ import ru.r2cloud.jradio.source.TimeConstraintedSource;
 
 public class Ax25G3ruhBer {
 
-	private static int numberOfFrames = 100;
+	private static int numberOfFrames = 1000;
 	private static float sampleRate = 48000.0f;
 	private static float devitation = 5000.0f;
 	private static float baudRate = 9600.0f;
-	private static long silenceLengthSamples = (long) sampleRate / 4;
+	private static long silenceLengthSamples = (long) sampleRate * 2;
 
 	public static void main(String[] args) throws Exception {
 		calculateForPreamble();
 		calculateForDifferentLengths();
+		calculateForAssistedHeader();
+	}
+
+	private static void calculateForAssistedHeader() throws IOException {
+		Gson gson = new Gson();
+		// ax.25 header
+		byte[] header = new byte[] { 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+				1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0 };
+		List<Ax25G3ruhBerStatHeader> stats = new ArrayList<>();
+		for (float ebno = 0.0f; ebno < 17.01f; ebno += 0.5f) {
+			Ax25G3ruhBerStatHeader cur = new Ax25G3ruhBerStatHeader();
+			cur.setEbno(ebno);
+			if (ebno > 13.5f) {
+				cur.setFskBer(0.0);
+			} else {
+				cur.setFskBer(0.5 * Erf.erfc(Math.sqrt(Math.pow(10.0, ebno / 10) / 2)));
+			}
+			cur.setNoHeader(calculateBer(ebno, 10, 131, true, null, false));
+			cur.setHeader(calculateBer(ebno, 10, 131, true, header, false));
+			cur.setSyncword(calculateBer(ebno, 10, 131, true, header, true));
+			stats.add(cur);
+		}
+		Ax25G3ruhBerStatHeader[] array = stats.toArray(new Ax25G3ruhBerStatHeader[0]);
+		System.out.println(gson.toJson(array));
 	}
 
 	private static void calculateForPreamble() throws IOException {
@@ -44,10 +68,10 @@ public class Ax25G3ruhBer {
 			} else {
 				cur.setFskBer(0.5 * Erf.erfc(Math.sqrt(Math.pow(10.0, ebno / 10) / 2)));
 			}
-			cur.setPrepend0(calculateBer(ebno, 0, 20, true));
-			cur.setPrepend3(calculateBer(ebno, 3, 20, true));
-			cur.setPrepend6(calculateBer(ebno, 6, 20, true));
-			cur.setPrepend9(calculateBer(ebno, 9, 20, true));
+			cur.setPrepend0(calculateBer(ebno, 0, 20, true, null, false));
+			cur.setPrepend3(calculateBer(ebno, 3, 20, true, null, false));
+			cur.setPrepend6(calculateBer(ebno, 6, 20, true, null, false));
+			cur.setPrepend9(calculateBer(ebno, 9, 20, true, null, false));
 			stats.add(cur);
 		}
 		Ax25G3ruhBerStat[] array = stats.toArray(new Ax25G3ruhBerStat[0]);
@@ -65,17 +89,17 @@ public class Ax25G3ruhBer {
 			} else {
 				cur.setFskBer(0.5 * Erf.erfc(Math.sqrt(Math.pow(10.0, ebno / 10) / 2)));
 			}
-			cur.setAx25Byte20Checksum(calculateBer(ebno, 0, 20, true));
-			cur.setAx25Byte20NoChecksum(calculateBer(ebno, 0, 20, false));
-			cur.setAx25Byte131Checksum(calculateBer(ebno, 0, 131, true));
-			cur.setAx25Byte131NoChecksum(calculateBer(ebno, 0, 131, false));
+			cur.setAx25Byte20Checksum(calculateBer(ebno, 0, 20, true, null, false));
+			cur.setAx25Byte20NoChecksum(calculateBer(ebno, 0, 20, false, null, false));
+			cur.setAx25Byte131Checksum(calculateBer(ebno, 0, 131, true, null, false));
+			cur.setAx25Byte131NoChecksum(calculateBer(ebno, 0, 131, false, null, false));
 			stats.add(cur);
 		}
 		Ax25G3ruhBerStatLength[] array = stats.toArray(new Ax25G3ruhBerStatLength[0]);
 		System.out.println(gson.toJson(array));
 	}
 
-	private static double calculateBer(float ebno, int prepend, int frameLength, boolean checksum) throws IOException {
+	private static double calculateBer(float ebno, int prepend, int frameLength, boolean checksum, byte[] assistedHeader, boolean useSyncword) throws IOException {
 		float noiseVoltage = (float) (Math.sqrt(sampleRate / baudRate) / Math.pow(10, (ebno / 20)));
 
 		Context silenceCtx = new Context();
@@ -104,7 +128,13 @@ public class Ax25G3ruhBer {
 		FloatInput next = new SequentialSource(inputs, ssCtx);
 
 		FskDemodulator demod = new FskDemodulator(next, (int) baudRate, devitation, 1, 2000, false);
-		Ax25G3ruhBeaconSource<RawBeacon> source = new Ax25G3ruhBeaconSource<>(demod, RawBeacon.class, checksum);
+		Ax25G3ruhBeaconSource<RawBeacon> source;
+		if (useSyncword) {
+			// syncword and seed was calculated manually
+			source = new Ax25G3ruhBeaconSource<>(demod, RawBeacon.class, checksum, assistedHeader, "11110111", 53792);
+		} else {
+			source = new Ax25G3ruhBeaconSource<>(demod, RawBeacon.class, checksum, assistedHeader);
+		}
 
 		int totalBits = numberOfFrames * inputData.length * 8;
 		int correctBits = 0;
