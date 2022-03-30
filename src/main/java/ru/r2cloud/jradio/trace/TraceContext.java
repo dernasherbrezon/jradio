@@ -2,7 +2,7 @@ package ru.r2cloud.jradio.trace;
 
 public class TraceContext {
 
-	public static TraceContext instance = new TraceContext();
+	public static final TraceContext instance = new TraceContext();
 
 	private HdlcReceiverTrace hdlcReceiverTrace;
 	private DemodulatorTrace demodTrace;
