@@ -19,7 +19,7 @@ public class Ax25G3ruhBeaconSource<T extends Beacon> extends BeaconSource<T> {
 	private static final Logger LOG = LoggerFactory.getLogger(Ax25G3ruhBeaconSource.class);
 	// flag is 01111110. last bit is always discarded
 	private static final int FLAG_LENGTH = 7;
-	private static final int MAXLENGTHBYTES = 500;
+	private static final int MAXLENGTHBYTES = 512;
 	private static final int FCS_LENGTH = 2;
 
 	private final Class<T> clazz;
@@ -56,8 +56,9 @@ public class Ax25G3ruhBeaconSource<T extends Beacon> extends BeaconSource<T> {
 		if (seed == null) {
 			return parseBeaconFromFinalBytes(raw);
 		}
-		HdlcReceiver receiver = new HdlcReceiver(new Descrambler(new NrziDecode(new ArrayByteInput(raw)), 0x21, seed, 16), MAXLENGTHBYTES, Header.LENGTH_BYTES, checksum, true, assistedHeader);
-		return parseBeaconFromFinalBytes(receiver.readBytes());
+		try (HdlcReceiver receiver = new HdlcReceiver(new Descrambler(new NrziDecode(new ArrayByteInput(raw)), 0x21, seed, 16), MAXLENGTHBYTES, Header.LENGTH_BYTES, checksum, true, assistedHeader)) {
+			return parseBeaconFromFinalBytes(receiver.readBytes());
+		}
 	}
 
 	private T parseBeaconFromFinalBytes(byte[] raw) throws UncorrectableException, IOException {
