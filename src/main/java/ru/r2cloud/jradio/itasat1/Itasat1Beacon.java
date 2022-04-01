@@ -79,7 +79,7 @@ public class Itasat1Beacon extends Beacon {
 	@Override
 	public void readBeacon(byte[] data) throws IOException, UncorrectableException {
 		DataInputStream dis = new DataInputStream(new ByteArrayInputStream(data));
-		header = new Header(dis, false);	
+		header = new Header(dis, false);
 		sync = dis.readUnsignedShort();
 		type = dis.readUnsignedByte();
 		if (type != 1) {
@@ -563,8 +563,17 @@ public class Itasat1Beacon extends Beacon {
 	public Header getHeader() {
 		return header;
 	}
-	
+
 	public void setHeader(Header header) {
 		this.header = header;
+	}
+
+	@Override
+	public String toString() {
+		if (header == null) {
+			return "null";
+		} else {
+			return header.toString();
+		}
 	}
 }
