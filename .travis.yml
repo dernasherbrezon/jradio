@@ -17,4 +17,5 @@ cache:
 
 before_cache:
   - rm -rf $HOME/.m2/repository/ru/r2cloud/
+  - rm -rf $HOME/.m2/repository/org/sonarsource
 
