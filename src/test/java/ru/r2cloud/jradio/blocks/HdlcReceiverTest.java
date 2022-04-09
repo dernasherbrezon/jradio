@@ -268,7 +268,7 @@ public class HdlcReceiverTest {
 		Random r = new Random();
 		int ones = 0;
 		for (int i = 0; i < result.length; i++) {
-			if (ones == 6) {
+			if (ones == 5) {
 				result[i] = 0;
 				ones = 0;
 				continue;
