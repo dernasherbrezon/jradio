@@ -9,7 +9,7 @@ import ru.r2cloud.jradio.fec.ccsds.UncorrectableException;
 
 public class AddressSubfield {
 
-	private static final Pattern PATTERN = Pattern.compile("^[A-Za-z0-9]*$");
+	private static final Pattern PATTERN = Pattern.compile("^[\\-A-Za-z0-9]*$");
 	private String callsign;
 	private int ssid;
 	private int extensionBit;
