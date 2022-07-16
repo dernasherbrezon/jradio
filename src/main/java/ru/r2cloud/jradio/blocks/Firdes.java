@@ -100,13 +100,13 @@ public class Firdes {
 		return taps;
 	}
 
-	private static void sanityCheck1f(double samplingFrequency, double fa, double transitionWidth) {
+	private static void sanityCheck1f(double samplingFrequency, double cutoffFrequency, double transitionWidth) {
 		if (samplingFrequency <= 0.0) {
 			throw new IllegalArgumentException("firdes check failed: sampling_freq > 0");
 		}
 
-		if (fa <= 0.0 || fa > samplingFrequency / 2) {
-			throw new IllegalArgumentException("firdes check failed: 0 < fa <= sampling_freq / 2");
+		if (cutoffFrequency <= 0.0 || cutoffFrequency > samplingFrequency / 2) {
+			throw new IllegalArgumentException("firdes check failed: 0 < " + cutoffFrequency + " <= " + samplingFrequency + " / 2");
 		}
 
 		if (transitionWidth <= 0) {
