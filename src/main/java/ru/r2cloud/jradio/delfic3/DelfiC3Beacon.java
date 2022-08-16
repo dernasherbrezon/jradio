@@ -11,7 +11,7 @@ public class DelfiC3Beacon extends Ax25Beacon {
 
 	private int bootCounter;
 	private int sequenceCounter;
-	private Payload payload;
+	private Payload payloadData;
 	private Housekeeping housekeeping;
 	private String auxiliaryData;
 
@@ -24,7 +24,7 @@ public class DelfiC3Beacon extends Ax25Beacon {
 		int type = bis.readBitsAsInt(2);
 		switch (type) {
 		case 1:
-			payload = new Payload(bis);
+			payloadData = new Payload(bis);
 			break;
 		case 2:
 			housekeeping = new Housekeeping(bis);
@@ -54,14 +54,14 @@ public class DelfiC3Beacon extends Ax25Beacon {
 		this.sequenceCounter = sequenceCounter;
 	}
 
-	public Payload getPayload() {
-		return payload;
+	public Payload getPayloadData() {
+		return payloadData;
 	}
-
-	public void setPayload(Payload payload) {
-		this.payload = payload;
+	
+	public void setPayloadData(Payload payloadData) {
+		this.payloadData = payloadData;
 	}
-
+	
 	public Housekeeping getHousekeeping() {
 		return housekeeping;
 	}

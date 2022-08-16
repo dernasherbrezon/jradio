@@ -11,6 +11,7 @@ import ru.r2cloud.jradio.fec.ccsds.UncorrectableException;
 public class CspBeacon extends Beacon {
 
 	protected Header header;
+	private byte[] payload;
 
 	@Override
 	public void readBeacon(byte[] data) throws IOException, UncorrectableException {
@@ -41,7 +42,16 @@ public class CspBeacon extends Beacon {
 
 	@SuppressWarnings("unused")
 	public void readBeacon(DataInputStream dis) throws IOException, UncorrectableException {
-		// do nothing
+		payload = new byte[dis.available()];
+		dis.readFully(payload);
+	}
+
+	public byte[] getPayload() {
+		return payload;
+	}
+
+	public void setPayload(byte[] payload) {
+		this.payload = payload;
 	}
 
 	public Header getHeader() {

@@ -13,6 +13,7 @@ public class UspBeacon extends Beacon {
 	private int etherType;
 	private Header header;
 	private Integer ax25Length;
+	private byte[] payload;
 
 	@Override
 	public void readBeacon(byte[] data) throws IOException, UncorrectableException {
@@ -30,9 +31,18 @@ public class UspBeacon extends Beacon {
 
 	@SuppressWarnings("unused")
 	public void readBeacon(int etherType, DataInputStream dis) throws IOException, UncorrectableException {
-		// do nothing
+		payload = new byte[dis.available()];
+		dis.readFully(payload);
 	}
 
+	public byte[] getPayload() {
+		return payload;
+	}
+	
+	public void setPayload(byte[] payload) {
+		this.payload = payload;
+	}
+	
 	public Integer getAx25Length() {
 		return ax25Length;
 	}
