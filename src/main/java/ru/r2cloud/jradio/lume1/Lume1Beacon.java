@@ -18,6 +18,7 @@ public class Lume1Beacon extends CspBeacon {
 	private B3TtcGssb b3TtcGssb;
 	private B4Adcs b4Adcs;
 	private B5Temps b5Temps;
+	private byte[] unknownPayload;
 
 	@Override
 	public void readBeacon(DataInputStream dis) throws IOException, UncorrectableException {
@@ -44,6 +45,8 @@ public class Lume1Beacon extends CspBeacon {
 			b5Temps = new B5Temps(dis);
 			break;
 		default:
+			unknownPayload = new byte[dis.available()];
+			dis.readFully(unknownPayload);
 			break;
 		}
 
@@ -103,5 +106,13 @@ public class Lume1Beacon extends CspBeacon {
 
 	public void setB1obc(B1Obc b1obc) {
 		this.b1obc = b1obc;
+	}
+	
+	public byte[] getUnknownPayload() {
+		return unknownPayload;
+	}
+	
+	public void setUnknownPayload(byte[] unknownPayload) {
+		this.unknownPayload = unknownPayload;
 	}
 }

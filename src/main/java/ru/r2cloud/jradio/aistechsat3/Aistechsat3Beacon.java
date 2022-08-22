@@ -31,6 +31,8 @@ public class Aistechsat3Beacon extends Beacon {
 	private ADCSBeacon6 adcsBeacon6;
 	private PayloadBeacon payloadBeacon;
 
+	private byte[] unknownPayload;
+
 	@Override
 	public void readBeacon(byte[] data) throws IOException, UncorrectableException {
 		DataInputStream dis = new DataInputStream(new ByteArrayInputStream(data));
@@ -75,6 +77,8 @@ public class Aistechsat3Beacon extends Beacon {
 			if (LOG.isDebugEnabled()) {
 				LOG.debug("Unknown beacon type: {}", beaconType);
 			}
+			unknownPayload = new byte[dis.available()];
+			dis.readFully(unknownPayload);
 		}
 	}
 
@@ -182,4 +186,11 @@ public class Aistechsat3Beacon extends Beacon {
 		this.payloadBeacon = payloadBeacon;
 	}
 
+	public byte[] getUnknownPayload() {
+		return unknownPayload;
+	}
+	
+	public void setUnknownPayload(byte[] unknownPayload) {
+		this.unknownPayload = unknownPayload;
+	}
 }
