@@ -5,7 +5,7 @@ import java.io.IOException;
 
 public class SohGeneral {
 
-	private int scrubStatusOverall;
+	private boolean scrubStatusOverall;
 	private int imageBooted;
 	private int imageAutoFailover;
 
@@ -14,16 +14,16 @@ public class SohGeneral {
 	}
 
 	public SohGeneral(DataInputStream dis) throws IOException {
-		scrubStatusOverall = dis.readByte();
+		scrubStatusOverall = (dis.readUnsignedByte() == 0);
 		imageBooted = dis.readUnsignedByte();
 		imageAutoFailover = dis.readUnsignedByte();
 	}
 
-	public int getScrubStatusOverall() {
+	public boolean getScrubStatusOverall() {
 		return scrubStatusOverall;
 	}
 
-	public void setScrubStatusOverall(int scrubStatusOverall) {
+	public void setScrubStatusOverall(boolean scrubStatusOverall) {
 		this.scrubStatusOverall = scrubStatusOverall;
 	}
 
