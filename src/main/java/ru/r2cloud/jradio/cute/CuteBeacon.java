@@ -28,7 +28,7 @@ public class CuteBeacon extends Ax25Beacon {
 		switch (primary.getApplicationProcessId()) {
 		case 0x55:
 			if (primary.getPacketDataLength() > dis.available()) {
-				throw new IOException("not enought bytes: " + primary.getPacketDataLength() + " got: " + dis.available());
+				throw new IOException("not enough bytes: " + primary.getPacketDataLength() + " got: " + dis.available());
 			}
 			// Flight SoftWare beacons
 			// span across several AX.25 frames

@@ -20,7 +20,7 @@ public class SohAttDet {
 	private boolean attitudeValid;
 	private boolean measAttValid;
 	private boolean measRateValid;
-	private int trackerUsed;;
+	private int trackerUsed;
 
 	public SohAttDet() {
 		// do nothing
