@@ -16,7 +16,7 @@ public class SohAnalogs {
 
 	public SohAnalogs(DataInputStream dis) throws IOException {
 		box1Temp = dis.readShort() * 0.005f;
-		busVoltage = dis.readShort() * 0.001f;
+		busVoltage = dis.readUnsignedShort() * 0.001f;
 		batteryVoltage = dis.readUnsignedShort() * 0.002f;
 		batteryCurrent = dis.readShort() * 0.002f;
 	}
