@@ -39,7 +39,7 @@
       "macrosExecutingPack2": 8
     },
     "general": {
-      "scrubStatusOverall": 0,
+      "scrubStatusOverall": true,
       "imageBooted": 0,
       "imageAutoFailover": 0
     },
