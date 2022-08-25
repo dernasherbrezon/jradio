@@ -22,18 +22,19 @@ public class CuteBeacon extends Ax25Beacon {
 	public void readBeacon(DataInputStream dis) throws IOException, UncorrectableException {
 		BitInputStream bis = new BitInputStream(dis);
 		primary = new PrimaryHeader(bis);
+		int actualAvailable = dis.available() + 1;
 		if (primary.isSecondaryHeader()) {
 			secondary = new SecondaryHeader(dis);
 		}
 		switch (primary.getApplicationProcessId()) {
 		case 0x55:
-			if (primary.getPacketDataLength() > dis.available()) {
+			if (primary.getPacketDataLength() > actualAvailable) {
 				throw new IOException("not enough bytes: " + primary.getPacketDataLength() + " got: " + dis.available());
 			}
 			// Flight SoftWare beacons
 			// span across several AX.25 frames
 			// Re-assembled using FswAssembler
-			fswPayload = new byte[primary.getPacketDataLength()];
+			fswPayload = new byte[dis.available()];
 			dis.readFully(fswPayload);
 			break;
 		case 0x56:

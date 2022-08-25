@@ -43,9 +43,9 @@ public class FswAttDet {
 		residual1 = dis.readInt() * 5e-10f;
 		residual2 = dis.readInt() * 5e-10f;
 		residual3 = dis.readInt() * 5e-10f;
-		bodyRate1 = dis.readInt() * 5e-09f;
-		bodyRate2 = dis.readInt() * 5e-09f;
-		bodyRate3 = dis.readInt() * 5e-09f;
+		bodyRate1 = dis.readInt() / 20943951.0f;
+		bodyRate2 = dis.readInt() / 20943951.0f;
+		bodyRate3 = dis.readInt() / 20943951.0f;
 		gyroBiasEst1 = dis.readShort() / 209439.5f;
 		gyroBiasEst2 = dis.readShort() / 209439.5f;
 		gyroBiasEst3 = dis.readShort() / 209439.5f;

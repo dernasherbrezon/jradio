@@ -29,10 +29,10 @@ public class FswAnalogs {
 	}
 
 	public FswAnalogs(DataInputStream dis) throws IOException {
-		voltage12p0 = dis.readByte() / 10.0f;
-		voltage8p0 = dis.readByte() / 10.0f;
-		voltage5p0 = dis.readByte() / 40.0f;
-		voltage3p3 = dis.readByte() / 66.66666f;
+		voltage12p0 = dis.readUnsignedByte() / 10.0f;
+		voltage8p0 = dis.readUnsignedByte() / 10.0f;
+		voltage5p0 = dis.readUnsignedByte() / 40.0f;
+		voltage3p3 = dis.readUnsignedByte() / 66.66666f;
 		detTemp = dis.readByte() / 1.25f;
 		det2Temp = dis.readByte() / 1.25f;
 		box1Temp = dis.readShort() * 0.005f;
