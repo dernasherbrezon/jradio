@@ -15,6 +15,7 @@ public class CuteBeacon extends Ax25Beacon {
 	private BctSoh bctSoh;
 	private PrimaryHeader payloadPrimary;
 	private CutePayloadSwStat payloadSwStat;
+	private byte[] fswPayload;
 	private byte[] unknownPayload;
 
 	@Override
@@ -25,11 +26,18 @@ public class CuteBeacon extends Ax25Beacon {
 			secondary = new SecondaryHeader(dis);
 		}
 		switch (primary.getApplicationProcessId()) {
+		case 0x55:
+			// Flight SoftWare beacons
+			// span across several AX.25 frames
+			// Re-assembled using FswAssembler
+			fswPayload = new byte[dis.available()];
+			dis.readFully(fswPayload);
+			break;
 		case 0x56:
+			// State Of Health
 			bctSoh = new BctSoh(dis);
 			break;
 		case 0x1ff:
-			System.out.println(Integer.toHexString(primary.getApplicationProcessId()));
 			payloadPrimary = new PrimaryHeader(bis);
 			switch (payloadPrimary.getApplicationProcessId()) {
 			case 1:
@@ -46,6 +54,14 @@ public class CuteBeacon extends Ax25Beacon {
 			dis.readFully(unknownPayload);
 			break;
 		}
+	}
+
+	public byte[] getFswPayload() {
+		return fswPayload;
+	}
+
+	public void setFswPayload(byte[] fswPayload) {
+		this.fswPayload = fswPayload;
 	}
 
 	public PrimaryHeader getPrimary() {

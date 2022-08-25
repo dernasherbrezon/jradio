@@ -3,224 +3,245 @@ package ru.r2cloud.jradio.cute;
 import java.io.DataInputStream;
 import java.io.IOException;
 
+import ru.r2cloud.jradio.cute.soh.SohAnalogs;
+import ru.r2cloud.jradio.cute.soh.SohAttCmd;
+import ru.r2cloud.jradio.cute.soh.SohAttCtrl;
+import ru.r2cloud.jradio.cute.soh.SohAttDet;
+import ru.r2cloud.jradio.cute.soh.SohClockSync;
+import ru.r2cloud.jradio.cute.soh.SohCommandTlm;
+import ru.r2cloud.jradio.cute.soh.SohCss;
+import ru.r2cloud.jradio.cute.soh.SohEventCheck;
+import ru.r2cloud.jradio.cute.soh.SohGeneral;
+import ru.r2cloud.jradio.cute.soh.SohGps;
+import ru.r2cloud.jradio.cute.soh.SohImu;
+import ru.r2cloud.jradio.cute.soh.SohL0;
+import ru.r2cloud.jradio.cute.soh.SohMag;
+import ru.r2cloud.jradio.cute.soh.SohMomentum;
+import ru.r2cloud.jradio.cute.soh.SohRadio;
+import ru.r2cloud.jradio.cute.soh.SohRefs;
+import ru.r2cloud.jradio.cute.soh.SohRwDrive;
+import ru.r2cloud.jradio.cute.soh.SohTime;
+import ru.r2cloud.jradio.cute.soh.SohTracker;
+import ru.r2cloud.jradio.cute.soh.SohTrackerCtrl;
+
 public class BctSoh {
 
-	private SohL0 sohl0;
-	private SohCommandTlm sohCommandTlm;
-	private SohGeneral sohGeneral;
-	private SohTime sohTime;
-	private SohRefs sohRefs;
-	private SohAttDet sohAttDet;
-	private SohAttCmd sohAttCmd;
-	private SohRwDrive sohRwDrive;
-	private SohTracker sohTracker;
-	private SohAttCtrl sohAttCtrl;
-	private SohMomentum sohMomentum;
-	private SohCss sohCss;
-	private SohMag sohMag;
-	private SohImu sohImu;
-	private SohClockSync sohClockSync;
-	private SohAnalogs sohAnalogs;
-	private SohTracker sohTracker2;
-	private SohGps sohGps;
-	private SohEventCheck sohEventCheck;
-	private SohRadio sohRadio;
-	private SohTrackerCtrl sohTrackerCtrl;
+	private SohL0 l0;
+	private SohCommandTlm commandTlm;
+	private SohGeneral general;
+	private SohTime time;
+	private SohRefs refs;
+	private SohAttDet attDet;
+	private SohAttCmd attCmd;
+	private SohRwDrive rwDrive;
+	private SohTracker tracker;
+	private SohAttCtrl attCtrl;
+	private SohMomentum momentum;
+	private SohCss css;
+	private SohMag mag;
+	private SohImu imu;
+	private SohClockSync clockSync;
+	private SohAnalogs analogs;
+	private SohTracker tracker2;
+	private SohGps gps;
+	private SohEventCheck eventCheck;
+	private SohRadio radio;
+	private SohTrackerCtrl trackerCtrl;
 
 	public BctSoh() {
 		// do nothing
 	}
 
 	public BctSoh(DataInputStream dis) throws IOException {
-		sohl0 = new SohL0(dis);
-		sohCommandTlm = new SohCommandTlm(dis);
-		sohGeneral = new SohGeneral(dis);
-		sohTime = new SohTime(dis);
-		sohRefs = new SohRefs(dis);
-		sohAttDet = new SohAttDet(dis);
-		sohAttCmd = new SohAttCmd(dis);
-		sohRwDrive = new SohRwDrive(dis);
-		sohTracker = new SohTracker(dis);
-		sohAttCtrl = new SohAttCtrl(dis);
-		sohMomentum = new SohMomentum(dis);
-		sohCss = new SohCss(dis);
-		sohMag = new SohMag(dis);
-		sohImu = new SohImu(dis);
-		sohClockSync = new SohClockSync(dis);
-		sohAnalogs = new SohAnalogs(dis);
-		sohTracker2 = new SohTracker(dis);
-		sohGps = new SohGps(dis);
-		sohEventCheck = new SohEventCheck(dis);
-		sohRadio = new SohRadio(dis);
-		sohTrackerCtrl = new SohTrackerCtrl(dis);
+		l0 = new SohL0(dis);
+		commandTlm = new SohCommandTlm(dis);
+		general = new SohGeneral(dis);
+		time = new SohTime(dis);
+		refs = new SohRefs(dis);
+		attDet = new SohAttDet(dis);
+		attCmd = new SohAttCmd(dis);
+		rwDrive = new SohRwDrive(dis);
+		tracker = new SohTracker(dis);
+		attCtrl = new SohAttCtrl(dis);
+		momentum = new SohMomentum(dis);
+		css = new SohCss(dis);
+		mag = new SohMag(dis);
+		imu = new SohImu(dis);
+		clockSync = new SohClockSync(dis);
+		analogs = new SohAnalogs(dis);
+		tracker2 = new SohTracker(dis);
+		gps = new SohGps(dis);
+		eventCheck = new SohEventCheck(dis);
+		radio = new SohRadio(dis);
+		trackerCtrl = new SohTrackerCtrl(dis);
 	}
 
-	public SohL0 getSohl0() {
-		return sohl0;
+	public SohL0 getL0() {
+		return l0;
 	}
 
-	public void setSohl0(SohL0 sohl0) {
-		this.sohl0 = sohl0;
+	public void setL0(SohL0 l0) {
+		this.l0 = l0;
 	}
 
-	public SohCommandTlm getSohCommandTlm() {
-		return sohCommandTlm;
+	public SohCommandTlm getCommandTlm() {
+		return commandTlm;
 	}
 
-	public void setSohCommandTlm(SohCommandTlm sohCommandTlm) {
-		this.sohCommandTlm = sohCommandTlm;
+	public void setCommandTlm(SohCommandTlm commandTlm) {
+		this.commandTlm = commandTlm;
 	}
 
-	public SohGeneral getSohGeneral() {
-		return sohGeneral;
+	public SohGeneral getGeneral() {
+		return general;
 	}
 
-	public void setSohGeneral(SohGeneral sohGeneral) {
-		this.sohGeneral = sohGeneral;
+	public void setGeneral(SohGeneral general) {
+		this.general = general;
 	}
 
-	public SohTime getSohTime() {
-		return sohTime;
+	public SohTime getTime() {
+		return time;
 	}
 
-	public void setSohTime(SohTime sohTime) {
-		this.sohTime = sohTime;
+	public void setTime(SohTime time) {
+		this.time = time;
 	}
 
-	public SohRefs getSohRefs() {
-		return sohRefs;
+	public SohRefs getRefs() {
+		return refs;
 	}
 
-	public void setSohRefs(SohRefs sohRefs) {
-		this.sohRefs = sohRefs;
+	public void setRefs(SohRefs refs) {
+		this.refs = refs;
 	}
 
-	public SohAttDet getSohAttDet() {
-		return sohAttDet;
+	public SohAttDet getAttDet() {
+		return attDet;
 	}
 
-	public void setSohAttDet(SohAttDet sohAttDet) {
-		this.sohAttDet = sohAttDet;
+	public void setAttDet(SohAttDet attDet) {
+		this.attDet = attDet;
 	}
 
-	public SohAttCmd getSohAttCmd() {
-		return sohAttCmd;
+	public SohAttCmd getAttCmd() {
+		return attCmd;
 	}
 
-	public void setSohAttCmd(SohAttCmd sohAttCmd) {
-		this.sohAttCmd = sohAttCmd;
+	public void setAttCmd(SohAttCmd attCmd) {
+		this.attCmd = attCmd;
 	}
 
-	public SohRwDrive getSohRwDrive() {
-		return sohRwDrive;
+	public SohRwDrive getRwDrive() {
+		return rwDrive;
 	}
 
-	public void setSohRwDrive(SohRwDrive sohRwDrive) {
-		this.sohRwDrive = sohRwDrive;
+	public void setRwDrive(SohRwDrive rwDrive) {
+		this.rwDrive = rwDrive;
 	}
 
-	public SohTracker getSohTracker() {
-		return sohTracker;
+	public SohTracker getTracker() {
+		return tracker;
 	}
 
-	public void setSohTracker(SohTracker sohTracker) {
-		this.sohTracker = sohTracker;
+	public void setTracker(SohTracker tracker) {
+		this.tracker = tracker;
 	}
 
-	public SohAttCtrl getSohAttCtrl() {
-		return sohAttCtrl;
+	public SohAttCtrl getAttCtrl() {
+		return attCtrl;
 	}
 
-	public void setSohAttCtrl(SohAttCtrl sohAttCtrl) {
-		this.sohAttCtrl = sohAttCtrl;
+	public void setAttCtrl(SohAttCtrl attCtrl) {
+		this.attCtrl = attCtrl;
 	}
 
-	public SohMomentum getSohMomentum() {
-		return sohMomentum;
+	public SohMomentum getMomentum() {
+		return momentum;
 	}
 
-	public void setSohMomentum(SohMomentum sohMomentum) {
-		this.sohMomentum = sohMomentum;
+	public void setMomentum(SohMomentum momentum) {
+		this.momentum = momentum;
 	}
 
-	public SohCss getSohCss() {
-		return sohCss;
+	public SohCss getCss() {
+		return css;
 	}
 
-	public void setSohCss(SohCss sohCss) {
-		this.sohCss = sohCss;
+	public void setCss(SohCss css) {
+		this.css = css;
 	}
 
-	public SohMag getSohMag() {
-		return sohMag;
+	public SohMag getMag() {
+		return mag;
 	}
 
-	public void setSohMag(SohMag sohMag) {
-		this.sohMag = sohMag;
+	public void setMag(SohMag mag) {
+		this.mag = mag;
 	}
 
-	public SohImu getSohImu() {
-		return sohImu;
+	public SohImu getImu() {
+		return imu;
 	}
 
-	public void setSohImu(SohImu sohImu) {
-		this.sohImu = sohImu;
+	public void setImu(SohImu imu) {
+		this.imu = imu;
 	}
 
-	public SohClockSync getSohClockSync() {
-		return sohClockSync;
+	public SohClockSync getClockSync() {
+		return clockSync;
 	}
 
-	public void setSohClockSync(SohClockSync sohClockSync) {
-		this.sohClockSync = sohClockSync;
+	public void setClockSync(SohClockSync clockSync) {
+		this.clockSync = clockSync;
 	}
 
-	public SohAnalogs getSohAnalogs() {
-		return sohAnalogs;
+	public SohAnalogs getAnalogs() {
+		return analogs;
 	}
 
-	public void setSohAnalogs(SohAnalogs sohAnalogs) {
-		this.sohAnalogs = sohAnalogs;
+	public void setAnalogs(SohAnalogs analogs) {
+		this.analogs = analogs;
 	}
 
-	public SohTracker getSohTracker2() {
-		return sohTracker2;
-	}
-	
-	public void setSohTracker2(SohTracker sohTracker2) {
-		this.sohTracker2 = sohTracker2;
+	public SohTracker getTracker2() {
+		return tracker2;
 	}
 
-	public SohGps getSohGps() {
-		return sohGps;
+	public void setTracker2(SohTracker tracker2) {
+		this.tracker2 = tracker2;
 	}
 
-	public void setSohGps(SohGps sohGps) {
-		this.sohGps = sohGps;
+	public SohGps getGps() {
+		return gps;
 	}
 
-	public SohEventCheck getSohEventCheck() {
-		return sohEventCheck;
+	public void setGps(SohGps gps) {
+		this.gps = gps;
 	}
 
-	public void setSohEventCheck(SohEventCheck sohEventCheck) {
-		this.sohEventCheck = sohEventCheck;
+	public SohEventCheck getEventCheck() {
+		return eventCheck;
 	}
 
-	public SohRadio getSohRadio() {
-		return sohRadio;
+	public void setEventCheck(SohEventCheck eventCheck) {
+		this.eventCheck = eventCheck;
 	}
 
-	public void setSohRadio(SohRadio sohRadio) {
-		this.sohRadio = sohRadio;
+	public SohRadio getRadio() {
+		return radio;
 	}
 
-	public SohTrackerCtrl getSohTrackerCtrl() {
-		return sohTrackerCtrl;
+	public void setRadio(SohRadio radio) {
+		this.radio = radio;
 	}
 
-	public void setSohTrackerCtrl(SohTrackerCtrl sohTrackerCtrl) {
-		this.sohTrackerCtrl = sohTrackerCtrl;
+	public SohTrackerCtrl getTrackerCtrl() {
+		return trackerCtrl;
+	}
+
+	public void setTrackerCtrl(SohTrackerCtrl trackerCtrl) {
+		this.trackerCtrl = trackerCtrl;
 	}
 
 }
