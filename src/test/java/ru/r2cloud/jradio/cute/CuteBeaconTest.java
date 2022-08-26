@@ -1,8 +1,33 @@
 package ru.r2cloud.jradio.cute;
 
+import static com.google.code.beanmatchers.BeanMatchers.hasValidBeanConstructor;
+import static com.google.code.beanmatchers.BeanMatchers.hasValidGettersAndSetters;
+import static org.hamcrest.CoreMatchers.allOf;
+import static org.hamcrest.MatcherAssert.assertThat;
+
 import org.junit.Test;
 
 import ru.r2cloud.jradio.AssertJson;
+import ru.r2cloud.jradio.cute.soh.SohAnalogs;
+import ru.r2cloud.jradio.cute.soh.SohAttCmd;
+import ru.r2cloud.jradio.cute.soh.SohAttCtrl;
+import ru.r2cloud.jradio.cute.soh.SohAttDet;
+import ru.r2cloud.jradio.cute.soh.SohClockSync;
+import ru.r2cloud.jradio.cute.soh.SohCommandTlm;
+import ru.r2cloud.jradio.cute.soh.SohCss;
+import ru.r2cloud.jradio.cute.soh.SohEventCheck;
+import ru.r2cloud.jradio.cute.soh.SohGeneral;
+import ru.r2cloud.jradio.cute.soh.SohGps;
+import ru.r2cloud.jradio.cute.soh.SohImu;
+import ru.r2cloud.jradio.cute.soh.SohL0;
+import ru.r2cloud.jradio.cute.soh.SohMag;
+import ru.r2cloud.jradio.cute.soh.SohMomentum;
+import ru.r2cloud.jradio.cute.soh.SohRadio;
+import ru.r2cloud.jradio.cute.soh.SohRefs;
+import ru.r2cloud.jradio.cute.soh.SohRwDrive;
+import ru.r2cloud.jradio.cute.soh.SohTime;
+import ru.r2cloud.jradio.cute.soh.SohTracker;
+import ru.r2cloud.jradio.cute.soh.SohTrackerCtrl;
 import ru.r2cloud.jradio.fec.ViterbiTest;
 
 public class CuteBeaconTest {
@@ -42,4 +67,31 @@ public class CuteBeaconTest {
 		AssertJson.assertObjectsEqual("CuteBeaconBctFsw.json", result);
 	}
 
+	@Test
+	public void testPojo() {
+		assertThat(CuteBeacon.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
+		assertThat(BctSoh.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
+		assertThat(CutePayloadSwStat.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
+		assertThat(SohL0.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
+		assertThat(SohCommandTlm.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
+		assertThat(SohGeneral.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
+		assertThat(SohTime.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
+		assertThat(SohRefs.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
+		assertThat(SohAttDet.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
+		assertThat(SohAttCmd.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
+		assertThat(SohRwDrive.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
+		assertThat(SohTracker.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
+		assertThat(SohAttCtrl.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
+		assertThat(SohMomentum.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
+		assertThat(SohCss.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
+		assertThat(SohMag.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
+		assertThat(SohImu.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
+		assertThat(SohClockSync.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
+		assertThat(SohAnalogs.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
+		assertThat(SohTracker.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
+		assertThat(SohGps.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
+		assertThat(SohEventCheck.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
+		assertThat(SohRadio.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
+		assertThat(SohTrackerCtrl.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
+	}
 }
