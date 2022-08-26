@@ -1,0 +1,50 @@
+{
+  "primaryHeader": {
+    "packetVersion": 0,
+    "packetType": false,
+    "secondaryHeader": true,
+    "applicationProcessId": 4,
+    "levelFlag": true,
+    "payloadFlag": true,
+    "packetCategory": 29,
+    "sequenceFlag": 3,
+    "packetId": 2,
+    "packetDataLength": 17
+  },
+  "headerTelemetry": {
+    "daysSinceRef": 19186,
+    "msSinceToday": 39060112
+  },
+  "unknownPayload": [
+    0,
+    -56,
+    40,
+    -121,
+    80,
+    65,
+    65,
+    118,
+    51,
+    54,
+    48
+  ],
+  "header": {
+    "destinationAddress": {
+      "callsign": "PICSAT",
+      "ssid": 0,
+      "extensionBit": 0
+    },
+    "sourceAddress": {
+      "callsign": "PICSAT",
+      "ssid": 2,
+      "extensionBit": 1
+    },
+    "frameType": "U",
+    "sendSequenceNumber": 0,
+    "receiveSequenceNumber": 0,
+    "uControlType": "UI",
+    "pid": 240
+  },
+  "beginSample": 0,
+  "beginMillis": 0
+}

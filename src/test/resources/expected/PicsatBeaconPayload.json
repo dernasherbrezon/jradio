@@ -1,0 +1,68 @@
+{
+  "primaryHeader": {
+    "packetVersion": 0,
+    "packetType": false,
+    "secondaryHeader": true,
+    "applicationProcessId": 6,
+    "levelFlag": true,
+    "payloadFlag": true,
+    "packetCategory": 7,
+    "sequenceFlag": 3,
+    "packetId": 837,
+    "packetDataLength": 73
+  },
+  "headerTelemetry": {
+    "daysSinceRef": 19186,
+    "msSinceToday": 52051680
+  },
+  "payloadBeacon": {
+    "message": "All things are made of ato",
+    "phot": 0,
+    "mode": 0,
+    "acqmode": 4,
+    "procFreq": 16,
+    "hkFlag": false,
+    "cheatmodeFlag": false,
+    "tecFlag": true,
+    "sensorsFlag": false,
+    "hvFlag": true,
+    "dacFlag": false,
+    "interruptFlag": false,
+    "diodeFlag": false,
+    "volt5": 0.0,
+    "amp5": 0.0,
+    "amp3": 0.0,
+    "volthv": 0.0,
+    "amphv": 0.0,
+    "temp1": 0.0,
+    "temp2": 0.0,
+    "temp3": 0.0,
+    "temp4": 0.0,
+    "vitec": 0,
+    "temp0": 0,
+    "errorTherm": 0,
+    "vref": 0.0,
+    "pitch": 0,
+    "roll": 0,
+    "yaw": 0
+  },
+  "header": {
+    "destinationAddress": {
+      "callsign": "PICSAT",
+      "ssid": 0,
+      "extensionBit": 0
+    },
+    "sourceAddress": {
+      "callsign": "PICSAT",
+      "ssid": 2,
+      "extensionBit": 1
+    },
+    "frameType": "U",
+    "sendSequenceNumber": 0,
+    "receiveSequenceNumber": 0,
+    "uControlType": "UI",
+    "pid": 240
+  },
+  "beginSample": 0,
+  "beginMillis": 0
+}
