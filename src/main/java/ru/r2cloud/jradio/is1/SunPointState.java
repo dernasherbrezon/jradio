@@ -1,8 +1,8 @@
-package ru.r2cloud.jradio.ctim;
+package ru.r2cloud.jradio.is1;
 
 public enum SunPointState {
 
-	SEARCHING(3), WAITING(4), CONVERGING(5), NOT_ACTIVE(7), ON_SUN(6), SEARCH_INIT(2), UNKNOWN(255);
+	UNDEF_0(0), UNDEF_1(1), SEARCH_INIT(2), SEARCHING(3), WAITING(4), CONVERGING(5), ON_SUN(6), NOT_ACTIVE(7), UNKNOWN(255);
 
 	private final int code;
 
