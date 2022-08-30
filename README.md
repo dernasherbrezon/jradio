@@ -462,6 +462,37 @@ jradio has lots of built-in satellite decoders. Some of them have non standard d
 			<td>	51439</td>
 			<td>ru.r2cloud.jradio.gaspacs.Gaspacs</td>
 		</tr>
+		<tr>
+			<td>CUTE</td>
+			<td>	49263</td>
+			<td>ru.r2cloud.jradio.cute.CuteBeacon</td>
+		</tr>
+		<tr>
+			<td>PICSAT</td>
+			<td>43132</td>
+			<td>ru.r2cloud.jradio.picsat.PicsatBeacon</td>
+		</tr>
+		<tr>
+			<td>INSPIRESAT-1</td>
+			<td>51657</td>
+			<td>ru.r2cloud.jradio.is1.InspireSat1Beacon</td>
+		</tr>
+		<tr>
+			<td>CTIM</td>
+			<td>52950</td>
+			<td>ru.r2cloud.jradio.ctim.CtimBeacon</td>
+		</tr>
+		<tr>
+			<td>CSIM-FD</td>
+			<td>43793</td>
+			<td>ru.r2cloud.jradio.csim.CsimBeacon</td>
+		</tr>
+		<tr>
+			<td>IRIS-A</td>
+			<td>51044</td>
+			<td>ru.r2cloud.jradio.iris.IrisABeacon</td>
+		</tr>
+		
 	</tbody>
 </table>
   
