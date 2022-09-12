@@ -492,6 +492,16 @@ jradio has lots of built-in satellite decoders. Some of them have non standard d
 			<td>51044</td>
 			<td>ru.r2cloud.jradio.iris.IrisABeacon</td>
 		</tr>
+		<tr>
+			<td>FEES</td>
+			<td>48082</td>
+			<td>ru.r2cloud.jradio.fees.FeesBeacon</td>
+		</tr>
+		<tr>
+			<td>SelfieSat</td>
+			<td></td>
+			<td>ru.r2cloud.jradio.selfiesat.SelfieSatBeacon</td>
+		</tr>
 		
 	</tbody>
 </table>
