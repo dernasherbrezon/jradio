@@ -1,0 +1,18 @@
+{
+  "header": {
+    "msgTypeId0": 0,
+    "msgTypeId1": 254,
+    "msgTypeId2": 229
+  },
+  "tmi254": {
+    "frameId": 45103,
+    "timestamp": 8066517,
+    "vacd2v5": 3041,
+    "vbat": 2264,
+    "vsol": 82,
+    "iload": 207,
+    "icharger": 315
+  },
+  "beginSample": 0,
+  "beginMillis": 0
+}
