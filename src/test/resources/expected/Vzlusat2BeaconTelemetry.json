@@ -1,0 +1,29 @@
+{
+  "telemetry": {
+    "callsign": "ZLUSAT-2",
+    "obcTimestamp": 1663086315,
+    "obcBootCount": 195,
+    "obcResetCause": 256,
+    "epsVbatt": 8285,
+    "epsCursun": 520,
+    "epsCursys": 348,
+    "epsTempBat": 2,
+    "radioTempPa": 3.3,
+    "radioTotTxCount": 2536462,
+    "radioTotRxCount": 200456
+  },
+  "header": {
+    "priority": "CSP_PRIO_NORM",
+    "source": 1,
+    "destination": 26,
+    "sourcePort": 18,
+    "destinationPort": 18,
+    "ffrag": false,
+    "fhmac": false,
+    "fxtea": false,
+    "frdp": false,
+    "fcrc32": false
+  },
+  "beginSample": 0,
+  "beginMillis": 0
+}
