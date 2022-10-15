@@ -499,7 +499,7 @@ jradio has lots of built-in satellite decoders. Some of them have non standard d
 		</tr>
 		<tr>
 			<td>SelfieSat</td>
-			<td></td>
+			<td>53951</td>
 			<td>ru.r2cloud.jradio.selfiesat.SelfieSatBeacon</td>
 		</tr>
 		<tr>
