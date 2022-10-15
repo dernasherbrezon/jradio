@@ -11,7 +11,7 @@ import org.junit.Test;
 
 import ru.r2cloud.jradio.AssertJson;
 import ru.r2cloud.jradio.fec.ccsds.UncorrectableException;
-import ru.r2cloud.jradio.tubix20.CMX909bHeader;
+import ru.r2cloud.jradio.mobitex.Header;
 
 public class Dstar1BeaconTest {
 
@@ -38,7 +38,7 @@ public class Dstar1BeaconTest {
 	public void testPojo() {
 		assertThat(Dstar1Beacon.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
 		assertThat(PayloadData.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
-		assertThat(CMX909bHeader.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
+		assertThat(Header.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
 	}
 
 }

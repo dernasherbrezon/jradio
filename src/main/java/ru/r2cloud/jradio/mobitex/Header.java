@@ -1,4 +1,4 @@
-package ru.r2cloud.jradio.tubix20;
+package ru.r2cloud.jradio.mobitex;
 
 import java.io.DataInputStream;
 import java.io.IOException;
@@ -8,19 +8,22 @@ import org.slf4j.LoggerFactory;
 
 import ru.r2cloud.jradio.fec.Hamming;
 import ru.r2cloud.jradio.fec.ccsds.UncorrectableException;
+import ru.r2cloud.jradio.tubix20.Control1;
+import ru.r2cloud.jradio.tubix20.Control2;
+import ru.r2cloud.jradio.tubix20.MessageType;
 
-public class CMX909bHeader {
+public class Header {
 
-	private static final Logger LOG = LoggerFactory.getLogger(CMX909bHeader.class);
+	private static final Logger LOG = LoggerFactory.getLogger(Header.class);
 
 	private Control1 control1;
 	private Control2 control2;
 
-	public CMX909bHeader() {
+	public Header() {
 		// do nothing
 	}
 
-	public CMX909bHeader(DataInputStream dis) throws UncorrectableException, IOException {
+	public Header(DataInputStream dis) throws UncorrectableException, IOException {
 		int control1Byte = dis.readUnsignedByte();
 		int control2Byte = dis.readUnsignedByte();
 		int fec = dis.readUnsignedByte();

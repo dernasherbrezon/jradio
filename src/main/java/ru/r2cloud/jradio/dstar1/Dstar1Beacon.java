@@ -1,47 +1,33 @@
 package ru.r2cloud.jradio.dstar1;
 
-import java.io.ByteArrayInputStream;
-import java.io.DataInputStream;
 import java.io.IOException;
 
-import ru.r2cloud.jradio.Beacon;
 import ru.r2cloud.jradio.fec.ccsds.UncorrectableException;
-import ru.r2cloud.jradio.tubix20.CMX909bBeacon;
-import ru.r2cloud.jradio.tubix20.CMX909bHeader;
-import ru.r2cloud.jradio.tubix20.MobitexRandomizer;
+import ru.r2cloud.jradio.mobitex.MobitexBeacon;
 import ru.r2cloud.jradio.util.GapData;
 import ru.r2cloud.jradio.util.GapDataInputStream;
 
-public class Dstar1Beacon extends Beacon {
+public class Dstar1Beacon extends MobitexBeacon {
 
 	// always 6
 	private static final int NUMBER_OF_BLOCKS = 6;
-	private CMX909bHeader header;
-	private PayloadData payload;
+	private PayloadData telemetry;
+
+	public Dstar1Beacon() {
+		super(NUMBER_OF_BLOCKS);
+	}
 
 	@Override
-	public void readBeacon(byte[] data) throws IOException, UncorrectableException {
-		DataInputStream dis = new DataInputStream(new ByteArrayInputStream(data));
-		header = new CMX909bHeader(dis);
-		MobitexRandomizer randomizer = new MobitexRandomizer();
-		GapData gapData = CMX909bBeacon.readGapDataBlocks(NUMBER_OF_BLOCKS, randomizer, dis);
-		payload = new PayloadData(new GapDataInputStream(gapData));
+	public void readBeacon(GapData data) throws IOException, UncorrectableException {
+		telemetry = new PayloadData(new GapDataInputStream(data));
 	}
 
-	public PayloadData getPayload() {
-		return payload;
+	public PayloadData getTelemetry() {
+		return telemetry;
 	}
 
-	public void setPayload(PayloadData payload) {
-		this.payload = payload;
-	}
-
-	public CMX909bHeader getHeader() {
-		return header;
-	}
-
-	public void setHeader(CMX909bHeader header) {
-		this.header = header;
+	public void setTelemetry(PayloadData telemetry) {
+		this.telemetry = telemetry;
 	}
 
 }

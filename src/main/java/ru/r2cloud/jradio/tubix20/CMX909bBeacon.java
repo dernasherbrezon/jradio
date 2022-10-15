@@ -12,6 +12,7 @@ import ru.r2cloud.jradio.crc.Crc16Ccitt;
 import ru.r2cloud.jradio.fec.Crc16CcittFec;
 import ru.r2cloud.jradio.fec.Hamming;
 import ru.r2cloud.jradio.fec.ccsds.UncorrectableException;
+import ru.r2cloud.jradio.mobitex.Header;
 import ru.r2cloud.jradio.util.Deinterleave;
 import ru.r2cloud.jradio.util.GapData;
 
@@ -20,7 +21,7 @@ public abstract class CMX909bBeacon extends Beacon {
 	public static final int MAX_SIZE = 1 + 1 + 1 + 6 + 2 + 32 * 30;
 	public static final int BLOCK_SIZE_BYTES = 18;
 
-	private CMX909bHeader header;
+	private Header header;
 
 	// unable to decode
 	private byte[] shortDataBlock;
@@ -29,7 +30,7 @@ public abstract class CMX909bBeacon extends Beacon {
 	@Override
 	public void readBeacon(byte[] data) throws IOException, UncorrectableException {
 		DataInputStream dis = new DataInputStream(new ByteArrayInputStream(data));
-		header = new CMX909bHeader(dis);
+		header = new Header(dis);
 		if (header.getControl1().getType() == null) {
 			throw new UncorrectableException("unknown message type");
 		}
@@ -135,11 +136,11 @@ public abstract class CMX909bBeacon extends Beacon {
 		return Arrays.copyOfRange(deinterleaved, 0, length);
 	}
 
-	public CMX909bHeader getHeader() {
+	public Header getHeader() {
 		return header;
 	}
 
-	public void setHeader(CMX909bHeader header) {
+	public void setHeader(Header header) {
 		this.header = header;
 	}
 
