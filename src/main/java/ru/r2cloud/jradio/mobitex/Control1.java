@@ -1,4 +1,4 @@
-package ru.r2cloud.jradio.tubix20;
+package ru.r2cloud.jradio.mobitex;
 
 public class Control1 {
 

@@ -1,6 +1,5 @@
 package ru.r2cloud.jradio.technosat;
 
-import java.io.ByteArrayInputStream;
 import java.io.DataInputStream;
 import java.io.EOFException;
 import java.io.IOException;
@@ -15,8 +14,7 @@ public class TransferFrame {
 
 	private List<SourcePacket> packets = new ArrayList<>();
 
-	public void readExternal(byte[] data) throws IOException {
-		DataInputStream dis = new DataInputStream(new ByteArrayInputStream(data));
+	public void readExternal(DataInputStream dis) throws IOException {
 		int rawId = dis.readUnsignedShort();
 		spacecraftIdentifier = rawId >> 4;
 		tfVersionNumber = (byte) (rawId & 0xF);

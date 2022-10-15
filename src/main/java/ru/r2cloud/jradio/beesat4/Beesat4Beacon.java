@@ -1,21 +1,20 @@
 package ru.r2cloud.jradio.beesat4;
 
-import java.io.ByteArrayInputStream;
 import java.io.DataInputStream;
 import java.io.EOFException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import ru.r2cloud.jradio.tubix20.CMX909bBeacon;
+import ru.r2cloud.jradio.fec.ccsds.UncorrectableException;
+import ru.r2cloud.jradio.tubix20.TUBiX20Beacon;
 
-public class Beesat4Beacon extends CMX909bBeacon {
+public class Beesat4Beacon extends TUBiX20Beacon {
 
 	private List<TransferFrame> frames = new ArrayList<>();
 
 	@Override
-	protected void readFrameData(byte[] data) throws IOException {
-		DataInputStream dis = new DataInputStream(new ByteArrayInputStream(data));
+	public void readBeacon(DataInputStream dis) throws IOException, UncorrectableException {
 		while (true) {
 			try {
 				TransferFrame cur = new TransferFrame();

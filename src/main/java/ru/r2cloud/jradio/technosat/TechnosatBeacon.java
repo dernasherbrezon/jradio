@@ -1,17 +1,19 @@
 package ru.r2cloud.jradio.technosat;
 
+import java.io.DataInputStream;
 import java.io.IOException;
 
-import ru.r2cloud.jradio.tubix20.CMX909bBeacon;
+import ru.r2cloud.jradio.fec.ccsds.UncorrectableException;
+import ru.r2cloud.jradio.tubix20.TUBiX20Beacon;
 
-public class TechnosatBeacon extends CMX909bBeacon {
+public class TechnosatBeacon extends TUBiX20Beacon {
 
 	private TransferFrame frame;
 
 	@Override
-	protected void readFrameData(byte[] data) throws IOException {
+	public void readBeacon(DataInputStream dis) throws IOException, UncorrectableException {
 		frame = new TransferFrame();
-		frame.readExternal(data);
+		frame.readExternal(dis);
 	}
 
 	public TransferFrame getFrame() {

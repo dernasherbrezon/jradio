@@ -3,18 +3,10 @@ package ru.r2cloud.jradio.mobitex;
 import java.io.DataInputStream;
 import java.io.IOException;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import ru.r2cloud.jradio.fec.Hamming;
 import ru.r2cloud.jradio.fec.ccsds.UncorrectableException;
-import ru.r2cloud.jradio.tubix20.Control1;
-import ru.r2cloud.jradio.tubix20.Control2;
-import ru.r2cloud.jradio.tubix20.MessageType;
 
 public class Header {
-
-	private static final Logger LOG = LoggerFactory.getLogger(Header.class);
 
 	private Control1 control1;
 	private Control2 control2;
@@ -32,26 +24,13 @@ public class Header {
 		control1 = new Control1();
 		control1.setNumberOfBlocks((control1Byte & 0x1F) + 1);
 		control1.setNumberOfErrors((control1Byte & 0x1F));
+		control1.setType(MessageType.valueOfCode(control1Byte >> 5));
 		control2Byte = Hamming.decode12b8((control2Byte << 4) | (fec & 0xF));
 		control2 = new Control2();
 		control2.setBaud9600((control2Byte & 0x1) > 0);
 		control2.setAck((control2Byte & 0x2) > 0);
 		control2.setSubaddress((byte) ((control2Byte >> 2) & 0x3));
 		control2.setAddress((byte) (control2Byte >> 4));
-
-		// set the type later to reduce noise in the logs
-		// if incoming data is corrupted, then it most likely fail on first Hamming decoding
-		// or second Hamming decoding
-		int messageTypeCode = control1Byte >> 5;
-		MessageType type = MessageType.valueOfCode(messageTypeCode);
-		if (type != null) {
-			control1.setType(type);
-		} else {
-			if (LOG.isDebugEnabled()) {
-				LOG.debug("unknown message type: {}", messageTypeCode);
-			}
-		}
-
 	}
 
 	public Control1 getControl1() {
@@ -68,5 +47,17 @@ public class Header {
 
 	public void setControl2(Control2 control2) {
 		this.control2 = control2;
+	}
+
+	@Override
+	public String toString() {
+		StringBuilder result = new StringBuilder();
+		if (control2 != null) {
+			result.append(control2.getAddress()).append(':').append(control2.getSubaddress()).append(' ').append(control2.isAck()).append(':').append(control2.isBaud9600()).append(" ");
+		}
+		if (control1 != null) {
+			result.append(control1.getNumberOfBlocks()).append('-').append(control1.getNumberOfErrors()).append(' ').append(control1.getType());
+		}
+		return result.toString();
 	}
 }
