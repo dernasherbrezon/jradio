@@ -35,6 +35,8 @@ De-framer is a component that converts soft stream of bits into the frames of sp
  * [NGHam](https://github.com/skagmo/ngham) - Support for [NGHam radio protocol](https://github.com/dernasherbrezon/jradio/blob/master/src/main/java/ru/r2cloud/jradio/blocks/NgHam.java)
  * Generic [syncword](https://en.wikipedia.org/wiki/Syncword) correlator - [CorrelateSyncword](https://github.com/dernasherbrezon/jradio/blob/master/src/main/java/ru/r2cloud/jradio/blocks/CorrelateSyncword.java)
  * [USP](https://github.com/sputnixru/SX-USP) - [UspDecoder](https://github.com/dernasherbrezon/jradio/blob/master/src/main/java/ru/r2cloud/jradio/usp/UspDecoder.java)
+ * Mobitex - [MobitexBeaconSource](https://github.com/dernasherbrezon/jradio/blob/master/src/main/java/ru/r2cloud/jradio/mobitex/MobitexBeaconSource.java)
+   * TUBiX20 - Generic de-framer for TUB-based satellites. [TUBiX20BeaconSource](https://github.com/dernasherbrezon/jradio/blob/master/src/main/java/ru/r2cloud/jradio/tubix20/TUBiX20BeaconSource.java)
 
 ## Auxiliary tools
 
