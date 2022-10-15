@@ -21,7 +21,11 @@ public class MobitexBeaconSource<T extends Beacon> extends BeaconSource<T> {
 	private final Class<T> clazz;
 
 	public MobitexBeaconSource(ByteInput input, Class<T> clazz) {
-		super(new CorrelateSyncword(new InvertBits(new SoftToHard(input)), 4, "0101011101100101", MobitexBeacon.MAX_SIZE * 8));
+		this(input, clazz, MobitexBeacon.MAX_SIZE);
+	}
+
+	public MobitexBeaconSource(ByteInput input, Class<T> clazz, int maxLengthBytes) {
+		super(new CorrelateSyncword(new InvertBits(new SoftToHard(input)), 4, "0101011101100101", maxLengthBytes * 8));
 		this.clazz = clazz;
 	}
 

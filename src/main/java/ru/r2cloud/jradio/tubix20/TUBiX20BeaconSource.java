@@ -8,19 +8,20 @@ import org.slf4j.LoggerFactory;
 import ru.r2cloud.jradio.BeaconSource;
 import ru.r2cloud.jradio.ByteInput;
 import ru.r2cloud.jradio.blocks.CorrelateSyncword;
+import ru.r2cloud.jradio.blocks.InvertBits;
 import ru.r2cloud.jradio.blocks.SoftToHard;
 import ru.r2cloud.jradio.blocks.UnpackedToPacked;
 import ru.r2cloud.jradio.fec.ccsds.UncorrectableException;
 import ru.r2cloud.jradio.mobitex.MobitexBeaconSource;
 
 public class TUBiX20BeaconSource<T extends TUBiX20Beacon> extends BeaconSource<T> {
-	
+
 	private static final Logger LOG = LoggerFactory.getLogger(MobitexBeaconSource.class);
 
 	private final Class<T> clazz;
 
 	public TUBiX20BeaconSource(ByteInput input, Class<T> clazz) {
-		super(new CorrelateSyncword(new SoftToHard(input), 4, "111011110000111011110000", TUBiX20Beacon.MAX_SIZE * 8));
+		super(new CorrelateSyncword(new InvertBits(new SoftToHard(input)), 6, "111011110000111011110000", TUBiX20Beacon.MAX_SIZE * 8));
 		this.clazz = clazz;
 	}
 
