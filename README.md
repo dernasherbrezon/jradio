@@ -217,7 +217,7 @@ jradio has lots of built-in satellite decoders. Some of them have non standard d
 		<tr>
 			<td>D-Star ONE</td>
 			<td>43881</td>
-			<td><a href="https://github.com/dernasherbrezon/jradio/blob/master/src/test/java/ru/r2cloud/jradio/dstar1/Dstar1Test.java">Dstar1Test</a></td>
+			<td><a href="https://github.com/dernasherbrezon/jradio/blob/master/src/test/java/ru/r2cloud/jradio/mobitex/MobitexBeaconSource.java">Dstar1Test</a></td>
 		</tr>
 		<tr>
 			<td>DELPHINI</td>
