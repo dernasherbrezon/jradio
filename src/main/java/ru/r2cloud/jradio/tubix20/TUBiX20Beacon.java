@@ -1,5 +1,7 @@
 package ru.r2cloud.jradio.tubix20;
 
+import java.io.ByteArrayInputStream;
+import java.io.DataInputStream;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 
@@ -7,6 +9,7 @@ import ru.r2cloud.jradio.crc.Crc16Ccitt;
 import ru.r2cloud.jradio.fec.Crc16CcittFec;
 import ru.r2cloud.jradio.fec.ccsds.UncorrectableException;
 import ru.r2cloud.jradio.mobitex.MobitexBeacon;
+import ru.r2cloud.jradio.util.GapData;
 
 public class TUBiX20Beacon extends MobitexBeacon {
 
@@ -24,6 +27,29 @@ public class TUBiX20Beacon extends MobitexBeacon {
 		System.arraycopy(data, 0, mobitexData, 0, 3);
 		System.arraycopy(data, 3 + TOTAL_CALLSIGN_BYTES, mobitexData, 3, mobitexData.length - 3);
 		super.readBeacon(mobitexData);
+	}
+
+	@Override
+	public void readBeacon(GapData data) throws IOException, UncorrectableException {
+		// read until first gap
+		// Technosat can recover some SourcePacket from the begining of frames
+		int total = 0;
+		for (byte[] cur : data.getChunks()) {
+			if (cur == null) {
+				break;
+			}
+			total += cur.length;
+		}
+		byte[] payload = new byte[total];
+		int totalWritten = 0;
+		for (byte[] cur : data.getChunks()) {
+			if (cur == null) {
+				break;
+			}
+			System.arraycopy(cur, 0, payload, totalWritten, cur.length);
+			totalWritten += cur.length;
+		}
+		readBeacon(new DataInputStream(new ByteArrayInputStream(payload)));
 	}
 
 	private static String readCallsign(byte[] data) {
