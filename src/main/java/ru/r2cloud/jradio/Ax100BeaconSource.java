@@ -16,6 +16,10 @@ public class Ax100BeaconSource<T extends Beacon> extends BeaconSource<T> {
 
 	private final Class<T> clazz;
 
+	public Ax100BeaconSource(ByteInput input, Class<T> clazz) {
+		this(input, 1024, "10010011000010110101000111011110", clazz, true, true, true);
+	}
+
 	public Ax100BeaconSource(ByteInput input, int beaconSizeBytes, Class<T> clazz) {
 		this(input, beaconSizeBytes, "10010011000010110101000111011110", clazz, false, true, true);
 	}
@@ -25,7 +29,7 @@ public class Ax100BeaconSource<T extends Beacon> extends BeaconSource<T> {
 	}
 
 	public Ax100BeaconSource(ByteInput input, int beaconSizeBytes, String accessCode, Class<T> clazz, boolean forceViterbi, boolean forceScrambler, boolean forceReedSolomon) {
-		super(new AX100Decoder(new CorrelateSyncword(input, 4, Collections.singleton(accessCode), (beaconSizeBytes + 3) * 8), forceViterbi, forceScrambler, forceReedSolomon));
+		super(new AX100Decoder(new CorrelateSyncword(input, 6, Collections.singleton(accessCode), (beaconSizeBytes + 3) * 8), forceViterbi, forceScrambler, forceReedSolomon));
 		this.clazz = clazz;
 	}
 
