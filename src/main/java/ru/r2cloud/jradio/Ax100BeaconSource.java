@@ -17,7 +17,7 @@ public class Ax100BeaconSource<T extends Beacon> extends BeaconSource<T> {
 	private final Class<T> clazz;
 
 	public Ax100BeaconSource(ByteInput input, Class<T> clazz) {
-		this(input, 1024, "10010011000010110101000111011110", clazz, true, true, true);
+		this(input, 512, "10010011000010110101000111011110", clazz, false, true, true);
 	}
 
 	public Ax100BeaconSource(ByteInput input, int beaconSizeBytes, Class<T> clazz) {
