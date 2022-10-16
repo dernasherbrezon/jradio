@@ -78,4 +78,12 @@ public class TUBiX20Beacon extends MobitexBeacon {
 		this.callsign = callsign;
 	}
 
+	@Override
+	public String toString() {
+		if (callsign != null) {
+			return callsign + " " + super.toString();
+		}
+		return super.toString();
+	}
+
 }
