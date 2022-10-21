@@ -2,6 +2,7 @@ package ru.r2cloud.jradio.ax25;
 
 import java.io.ByteArrayInputStream;
 import java.io.DataInputStream;
+import java.io.EOFException;
 import java.io.IOException;
 
 import ru.r2cloud.jradio.Beacon;
@@ -18,7 +19,12 @@ public class Ax25NoRepeaterBeacon extends Beacon {
 	public void readBeacon(byte[] data) throws IOException, UncorrectableException {
 		DataInputStream dis = new DataInputStream(new ByteArrayInputStream(data));
 		header = new Header(dis, false);
-		readBeacon(dis);
+		try {
+			readBeacon(dis);
+		} catch (EOFException e) {
+			payload = new byte[data.length - Header.LENGTH_BYTES];
+			System.arraycopy(data, Header.LENGTH_BYTES, payload, 0, payload.length);
+		}
 	}
 
 	@SuppressWarnings("unused")

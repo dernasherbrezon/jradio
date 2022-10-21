@@ -21,6 +21,14 @@ public class SelfieSatBeaconTest {
 	}
 	
 	@Test
+	public void testNotEnoughData() throws Exception {
+		byte[] data = { 5, 0, -123, 1, 0, 16, 0, 0, 0, 0, 0, -61, 32, 6, 0, 57, 90, -109, -2, -94, 95, -5 };
+		SelfieSatBeacon result = new SelfieSatBeacon();
+		result.readBeacon(data);
+		AssertJson.assertObjectsEqual("SelfieSatBeacon-corrupted.json", result);
+	}
+	
+	@Test
 	public void testPojo() {
 		assertThat(SelfieSatBeacon.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
 		assertThat(Telemetry.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));

@@ -2,6 +2,7 @@ package ru.r2cloud.jradio.usp;
 
 import java.io.ByteArrayInputStream;
 import java.io.DataInputStream;
+import java.io.EOFException;
 import java.io.IOException;
 
 import ru.r2cloud.jradio.Beacon;
@@ -26,7 +27,14 @@ public class UspBeacon extends Beacon {
 			ax25Length = (lengthByte2 << 8) + lengthByte1;
 			header = new Header(dis);
 		}
-		readBeacon(etherType, dis);
+		int available = dis.available();
+		try {
+			readBeacon(etherType, dis);
+		} catch (EOFException e) {
+			payload = new byte[available];
+			System.arraycopy(data, data.length - available, payload, 0, payload.length);
+		}
+
 	}
 
 	@SuppressWarnings("unused")
@@ -38,11 +46,11 @@ public class UspBeacon extends Beacon {
 	public byte[] getPayload() {
 		return payload;
 	}
-	
+
 	public void setPayload(byte[] payload) {
 		this.payload = payload;
 	}
-	
+
 	public Integer getAx25Length() {
 		return ax25Length;
 	}

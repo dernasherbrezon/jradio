@@ -2,6 +2,7 @@ package ru.r2cloud.jradio.mobitex;
 
 import java.io.ByteArrayInputStream;
 import java.io.DataInputStream;
+import java.io.EOFException;
 import java.io.IOException;
 import java.util.Arrays;
 
@@ -68,7 +69,12 @@ public class MobitexBeacon extends Beacon {
 			System.arraycopy(cur, 0, payload, totalWritten, cur.length);
 			totalWritten += cur.length;
 		}
-		readBeacon(new DataInputStream(new ByteArrayInputStream(payload)));
+		try {
+			readBeacon(new DataInputStream(new ByteArrayInputStream(payload)));
+		} catch (EOFException e) {
+			this.payload = payload;
+		}
+
 	}
 
 	@SuppressWarnings("unused")

@@ -2,6 +2,7 @@ package ru.r2cloud.jradio.csp;
 
 import java.io.ByteArrayInputStream;
 import java.io.DataInputStream;
+import java.io.EOFException;
 import java.io.IOException;
 
 import ru.r2cloud.jradio.Beacon;
@@ -20,7 +21,7 @@ public class CspBeacon extends Beacon {
 		if (header.isFcrc32()) {
 			readBeaconWithCrc32Check(data, dis);
 		} else {
-			readBeacon(dis);
+			readBeaconInternal(data, dis);
 		}
 	}
 
@@ -37,7 +38,16 @@ public class CspBeacon extends Beacon {
 		byte[] body = new byte[dis.available() - 4];
 		dis.readFully(body);
 		dis = new DataInputStream(new ByteArrayInputStream(body));
-		readBeacon(dis);
+		readBeaconInternal(data, dis);
+	}
+	
+	private void readBeaconInternal(byte[] data, DataInputStream dis) throws IOException, UncorrectableException {
+		try {
+			readBeacon(dis);
+		} catch (EOFException e) {
+			payload = new byte[data.length - Header.LENGTH];
+			System.arraycopy(data, Header.LENGTH, payload, 0, payload.length);
+		}
 	}
 
 	@SuppressWarnings("unused")

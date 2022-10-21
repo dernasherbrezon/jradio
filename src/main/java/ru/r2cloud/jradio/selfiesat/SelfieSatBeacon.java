@@ -2,6 +2,7 @@ package ru.r2cloud.jradio.selfiesat;
 
 import java.io.ByteArrayInputStream;
 import java.io.DataInputStream;
+import java.io.EOFException;
 import java.io.IOException;
 
 import ru.r2cloud.jradio.Beacon;
@@ -21,7 +22,7 @@ public class SelfieSatBeacon extends Beacon {
 		header = new Header(dis);
 		// it seems they use CSP 2.0 or CSP 2.1 version
 		// that contains length field
-		int length = dis.readUnsignedShort();
+		dis.skipBytes(2);
 		if (header.isFcrc32()) {
 			long actualCrc32 = Crc32c.calculate(data, Header.LENGTH + 2, data.length - Header.LENGTH - 2 - 4);
 			long expectedCrc32 = ((data[data.length - 4] & 0xFFL) << 24) | ((data[data.length - 3] & 0xFFL) << 16) | ((data[data.length - 2] & 0xFFL) << 8) | (data[data.length - 1] & 0xFFL);
@@ -30,13 +31,18 @@ public class SelfieSatBeacon extends Beacon {
 			}
 		}
 
+		int remaining = dis.available();
 		if (header.getSource() == 2 && header.getSourcePort() == 5) {
-			dis.skipBytes(8);
-			telemetry = new Telemetry(dis);
-		} else {
-			unknownPayload = new byte[length];
-			dis.readFully(unknownPayload);
+			try {
+				dis.skipBytes(8);
+				telemetry = new Telemetry(dis);
+				return;
+			} catch (EOFException e) {
+				// ignore EOF
+			}
 		}
+		unknownPayload = new byte[remaining];
+		System.arraycopy(data, data.length - remaining, unknownPayload, 0, unknownPayload.length);
 	}
 
 	public Header getHeader() {
