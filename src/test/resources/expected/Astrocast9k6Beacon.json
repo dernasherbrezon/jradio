@@ -14,7 +14,7 @@
       "firstHeaderPointer": 2046
     }
   },
-  "operationalControl": {
+  "ocf": {
     "type": 0
   },
   "payload": [

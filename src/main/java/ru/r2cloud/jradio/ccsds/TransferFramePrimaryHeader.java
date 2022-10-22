@@ -84,4 +84,11 @@ public class TransferFramePrimaryHeader {
 		this.fieldStatus = fieldStatus;
 	}
 
+	@Override
+	public String toString() {
+		StringBuilder result = new StringBuilder();
+		result.append(spacecraftId).append(" -> ").append(virtualChannelId).append(':').append(virtualChannelFrameCount);
+		return result.toString();
+	}
+
 }

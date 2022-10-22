@@ -64,8 +64,7 @@ Most likely the algorithm name can't say you much, so it is better to check [cor
 
  * [CRC-8](https://github.com/dernasherbrezon/jradio/blob/master/src/main/java/ru/r2cloud/jradio/crc/Crc8.java)
  * [CRC-16/XMODEM & CRC-16/X-25](https://github.com/dernasherbrezon/jradio/blob/master/src/main/java/ru/r2cloud/jradio/crc/Crc16Ccitt.java)
- * [CRC-16/CCITT-FALSE](https://github.com/dernasherbrezon/jradio/blob/master/src/main/java/ru/r2cloud/jradio/crc/Crc16CcittFalse.java)
- * [CRC-16-IBM](https://github.com/dernasherbrezon/jradio/blob/master/src/main/java/ru/r2cloud/jradio/crc/Crc16Ibm3740.java)
+ * [CRC-16/CCITT-FALSE/CRC-16-IBM](https://github.com/dernasherbrezon/jradio/blob/master/src/main/java/ru/r2cloud/jradio/crc/Crc16CcittFalse.java)
  * [CRC-16/ARC](https://github.com/dernasherbrezon/jradio/blob/master/src/main/java/ru/r2cloud/jradio/crc/Crc16Arc.java)
  * [CRC-16-NAIVE](https://github.com/dernasherbrezon/jradio/blob/master/src/main/java/ru/r2cloud/jradio/crc/Crc16SumOfBytes.java). Just sum of bytes.
  * [CRC-32C](https://github.com/dernasherbrezon/jradio/blob/master/src/main/java/ru/r2cloud/jradio/crc/Crc32c.java)
