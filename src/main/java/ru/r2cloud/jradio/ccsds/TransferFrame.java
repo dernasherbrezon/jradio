@@ -10,20 +10,22 @@ import ru.r2cloud.jradio.crc.Crc16CcittFalse;
 import ru.r2cloud.jradio.fec.ccsds.UncorrectableException;
 import ru.r2cloud.jradio.util.BitInputStream;
 
-public class CcsdsTelemetryBeacon extends Beacon {
+//as defined at CCSDS 132.0-B-3
+public class TransferFrame extends Beacon {
 
 	private TransferFramePrimaryHeader header;
+	private TransferFrameSecondaryHeader secondaryHeader;
 	private byte[] payload;
 	private OperationalControlField ocf;
 
 	private transient final boolean hasCrc;
 
-	public CcsdsTelemetryBeacon() {
+	public TransferFrame() {
 		this(false);
 	}
 
 	// crc defined statically for each spacecraft
-	public CcsdsTelemetryBeacon(boolean hasCrc) {
+	public TransferFrame(boolean hasCrc) {
 		this.hasCrc = hasCrc;
 	}
 
@@ -32,6 +34,9 @@ public class CcsdsTelemetryBeacon extends Beacon {
 		DataInputStream dis = new DataInputStream(new ByteArrayInputStream(data));
 		BitInputStream bis = new BitInputStream(dis);
 		header = new TransferFramePrimaryHeader(bis);
+		if (header.getFieldStatus().isSecondaryHeader()) {
+			secondaryHeader = new TransferFrameSecondaryHeader(bis);
+		}
 		int payloadLength;
 		if (header.isOcf()) {
 			payloadLength = dis.available() - OperationalControlField.LENGTH;
@@ -73,6 +78,14 @@ public class CcsdsTelemetryBeacon extends Beacon {
 
 	public void setHeader(TransferFramePrimaryHeader header) {
 		this.header = header;
+	}
+	
+	public TransferFrameSecondaryHeader getSecondaryHeader() {
+		return secondaryHeader;
+	}
+	
+	public void setSecondaryHeader(TransferFrameSecondaryHeader secondaryHeader) {
+		this.secondaryHeader = secondaryHeader;
 	}
 
 	public OperationalControlField getOcf() {

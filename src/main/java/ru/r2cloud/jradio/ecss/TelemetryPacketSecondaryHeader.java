@@ -1,10 +1,13 @@
-package ru.r2cloud.jradio.ccsds;
+package ru.r2cloud.jradio.ecss;
 
 import java.io.IOException;
 
+import ru.r2cloud.jradio.ccsds.PField;
+import ru.r2cloud.jradio.ccsds.TimeCode;
 import ru.r2cloud.jradio.util.BitInputStream;
 
-public class SecondaryHeader {
+// as defined in ECSS-E-ST-70-41C Section 7.4.3.1
+public class TelemetryPacketSecondaryHeader {
 
 	private int tmPacketPusVersionNumber;
 	private int spacecraftTimeReferenceStatus;
@@ -12,23 +15,20 @@ public class SecondaryHeader {
 	private int messageSubtypeId;
 	private int messageTypeCounter;
 	private int destinationId;
-	private long time;
-	private int sid;
+	private TimeCode time;
 
-	public SecondaryHeader() {
+	public TelemetryPacketSecondaryHeader() {
 		// do nothing
 	}
 
-	public SecondaryHeader(BitInputStream bis) throws IOException {
+	public TelemetryPacketSecondaryHeader(BitInputStream bis, PField pfield) throws IOException {
 		tmPacketPusVersionNumber = bis.readUnsignedInt(4);
 		spacecraftTimeReferenceStatus = bis.readUnsignedInt(4);
 		serviceTypeId = bis.readUnsignedByte();
 		messageSubtypeId = bis.readUnsignedByte();
 		messageTypeCounter = bis.readUnsignedShort();
 		destinationId = bis.readUnsignedShort();
-		time = bis.readUnsignedLong(32);
-		bis.skipBits(16 + 8);
-		sid = bis.readUnsignedByte();
+		time = new TimeCode(bis, pfield);
 	}
 
 	public int getTmPacketPusVersionNumber() {
@@ -79,20 +79,12 @@ public class SecondaryHeader {
 		this.destinationId = destinationId;
 	}
 
-	public long getTime() {
+	public TimeCode getTime() {
 		return time;
 	}
 
-	public void setTime(long time) {
+	public void setTime(TimeCode time) {
 		this.time = time;
-	}
-
-	public int getSid() {
-		return sid;
-	}
-
-	public void setSid(int sid) {
-		this.sid = sid;
 	}
 
 }

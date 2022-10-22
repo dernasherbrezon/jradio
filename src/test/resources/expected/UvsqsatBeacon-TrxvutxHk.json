@@ -15,8 +15,10 @@
     "messageSubtypeId": 25,
     "messageTypeCounter": 0,
     "destinationId": 2,
-    "time": 946717298,
-    "sid": 24
+    "time": {
+    	"time": 946717298,
+    	"fractionalTime": 0
+    }    
   },
   "trxvutxHk": {
     "trxvutxInstantaneousRfReflectedPowerFromTransmitterPort": 0.94192,

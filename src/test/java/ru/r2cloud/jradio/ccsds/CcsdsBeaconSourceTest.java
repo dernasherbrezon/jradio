@@ -17,7 +17,7 @@ public class CcsdsBeaconSourceTest {
 	public void testDecodeTelemetry() throws Exception {
 		WavFileSource source = new WavFileSource(CcsdsBeaconSourceTest.class.getClassLoader().getResourceAsStream("trisat.wav"));
 		FskDemodulator demod = new FskDemodulator(source, 9766);
-		input = new CcsdsBeaconSource<>(demod, CcsdsTelemetryBeacon.class);
+		input = new CcsdsBeaconSource<>(demod, TransferFrame.class);
 		assertTrue(input.hasNext());
 		AssertJson.assertObjectsEqual("CcsdsTelemetryBeacon.json", input.next());
 	}

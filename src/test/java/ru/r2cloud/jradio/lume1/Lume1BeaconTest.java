@@ -8,8 +8,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import org.junit.Test;
 
 import ru.r2cloud.jradio.AssertJson;
-import ru.r2cloud.jradio.ccsds.PrimaryHeader;
-import ru.r2cloud.jradio.ecss.SecondaryHeader;
+import ru.r2cloud.jradio.ccsds.PacketPrimaryHeader;
 import ru.r2cloud.jradio.fec.ViterbiTest;
 
 public class Lume1BeaconTest {
@@ -56,8 +55,7 @@ public class Lume1BeaconTest {
 		assertThat(B5Temps.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
 		// even if they belong to separate package, they were introduced only here
 		// test them here
-		assertThat(PrimaryHeader.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
-		assertThat(SecondaryHeader.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
+		assertThat(PacketPrimaryHeader.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
 	}
 
 }

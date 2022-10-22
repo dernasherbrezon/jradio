@@ -15,8 +15,10 @@
     "messageSubtypeId": 25,
     "messageTypeCounter": 0,
     "destinationId": 2,
-    "time": 946717178,
-    "sid": 22
+    "time": {
+    	"time": 946717178,
+    	"fractionalTime": 0
+    }    
   },
   "trxvurxHk": {
     "trxvurxInstantaneousReceivedSignalDopplerOffsetAtTheReceiverPort": 10875.297,

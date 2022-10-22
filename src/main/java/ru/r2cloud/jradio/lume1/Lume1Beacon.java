@@ -22,7 +22,7 @@ public class Lume1Beacon extends CspBeacon {
 	@Override
 	public void readBeacon(DataInputStream dis) throws IOException, UncorrectableException {
 		transferFrame = new TmTransferFrame(dis);
-		if (transferFrame.getSecondaryHeader() == null || transferFrame.getSecondaryHeader().getServiceType() != 0x3 || transferFrame.getSecondaryHeader().getMessageSubtype() != 0x19) {
+		if (transferFrame.getSecondaryHeader() == null || transferFrame.getSecondaryHeader().getServiceTypeId() != 0x3 || transferFrame.getSecondaryHeader().getMessageSubtypeId() != 0x19) {
 			return;
 		}
 		dis = new DataInputStream(new ByteArrayInputStream(transferFrame.getPayload()));

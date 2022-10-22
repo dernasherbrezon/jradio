@@ -4,7 +4,7 @@ import java.io.DataInputStream;
 import java.io.IOException;
 
 import ru.r2cloud.jradio.ax25.Ax25Beacon;
-import ru.r2cloud.jradio.ccsds.PrimaryHeader;
+import ru.r2cloud.jradio.ccsds.PacketPrimaryHeader;
 import ru.r2cloud.jradio.fec.ccsds.UncorrectableException;
 import ru.r2cloud.jradio.util.BitInputStream;
 import ru.r2cloud.jradio.util.StreamUtils;
@@ -12,7 +12,7 @@ import ru.r2cloud.jradio.util.StreamUtils;
 public class IrisABeacon extends Ax25Beacon {
 
 	private SecondaryHeader secondaryHeader;
-	private PrimaryHeader primaryHeader;
+	private PacketPrimaryHeader primaryHeader;
 
 	private int tmPacketPusVersionNumber;
 	private int serviceTypeId;
@@ -24,7 +24,7 @@ public class IrisABeacon extends Ax25Beacon {
 	@Override
 	public void readBeacon(DataInputStream dis) throws IOException, UncorrectableException {
 		secondaryHeader = new SecondaryHeader(dis);
-		primaryHeader = new PrimaryHeader(new BitInputStream(dis));
+		primaryHeader = new PacketPrimaryHeader(new BitInputStream(dis));
 
 		tmPacketPusVersionNumber = dis.readUnsignedByte();
 		serviceTypeId = dis.readUnsignedByte();
@@ -46,11 +46,11 @@ public class IrisABeacon extends Ax25Beacon {
 		this.secondaryHeader = secondaryHeader;
 	}
 
-	public PrimaryHeader getPrimaryHeader() {
+	public PacketPrimaryHeader getPrimaryHeader() {
 		return primaryHeader;
 	}
 
-	public void setPrimaryHeader(PrimaryHeader primaryHeader) {
+	public void setPrimaryHeader(PacketPrimaryHeader primaryHeader) {
 		this.primaryHeader = primaryHeader;
 	}
 

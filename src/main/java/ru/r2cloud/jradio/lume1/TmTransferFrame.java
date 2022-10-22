@@ -3,8 +3,9 @@ package ru.r2cloud.jradio.lume1;
 import java.io.DataInputStream;
 import java.io.IOException;
 
+import ru.r2cloud.jradio.ccsds.PField;
 import ru.r2cloud.jradio.ccsds.PacketPrimaryHeader;
-import ru.r2cloud.jradio.ecss.SecondaryHeader;
+import ru.r2cloud.jradio.ecss.TelemetryPacketSecondaryHeader;
 import ru.r2cloud.jradio.util.BitInputStream;
 
 public class TmTransferFrame {
@@ -20,7 +21,7 @@ public class TmTransferFrame {
 	private boolean fixedLengthFrame;
 
 	private PacketPrimaryHeader primaryHeader;
-	private SecondaryHeader secondaryHeader;
+	private TelemetryPacketSecondaryHeader secondaryHeader;
 
 	private byte[] payload;
 
@@ -48,7 +49,7 @@ public class TmTransferFrame {
 
 		primaryHeader = new PacketPrimaryHeader(bis);
 		if (primaryHeader.isSecondaryHeader()) {
-			secondaryHeader = new SecondaryHeader(bis);
+			secondaryHeader = new TelemetryPacketSecondaryHeader(bis, new PField(0, 0, 0));
 		}
 
 		payload = new byte[dis.available() - 8];
@@ -140,11 +141,11 @@ public class TmTransferFrame {
 		this.primaryHeader = primaryHeader;
 	}
 
-	public SecondaryHeader getSecondaryHeader() {
+	public TelemetryPacketSecondaryHeader getSecondaryHeader() {
 		return secondaryHeader;
 	}
-
-	public void setSecondaryHeader(SecondaryHeader secondaryHeader) {
+	
+	public void setSecondaryHeader(TelemetryPacketSecondaryHeader secondaryHeader) {
 		this.secondaryHeader = secondaryHeader;
 	}
 

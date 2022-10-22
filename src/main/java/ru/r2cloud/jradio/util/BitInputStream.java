@@ -8,7 +8,7 @@ import java.io.IOException;
 public class BitInputStream {
 
 	private static final int MAX_UNSIGNED_LONG = 63;
-	
+
 	private final DataInputStream dis;
 	private int spareBitsInCurrentByte;
 	private int current;
@@ -68,6 +68,10 @@ public class BitInputStream {
 			readUnsignedLong(toSkip);
 			remaining = remaining - toSkip;
 		}
+	}
+
+	public int available() throws IOException {
+		return dis.available();
 	}
 
 	public int readUnsignedInt(int numberOfBits) throws IOException {

@@ -4,16 +4,16 @@ import java.io.DataInputStream;
 import java.io.IOException;
 
 import ru.r2cloud.jradio.ax25.Ax25Beacon;
-import ru.r2cloud.jradio.ccsds.PrimaryHeader;
+import ru.r2cloud.jradio.ccsds.PacketPrimaryHeader;
 import ru.r2cloud.jradio.fec.ccsds.UncorrectableException;
 import ru.r2cloud.jradio.util.BitInputStream;
 
 public class CuteBeacon extends Ax25Beacon {
 
-	private PrimaryHeader primary;
+	private PacketPrimaryHeader primary;
 	private SecondaryHeader secondary;
 	private BctSoh bctSoh;
-	private PrimaryHeader payloadPrimary;
+	private PacketPrimaryHeader payloadPrimary;
 	private CutePayloadSwStat payloadSwStat;
 	private byte[] fswPayload;
 	private byte[] unknownPayload;
@@ -21,7 +21,7 @@ public class CuteBeacon extends Ax25Beacon {
 	@Override
 	public void readBeacon(DataInputStream dis) throws IOException, UncorrectableException {
 		BitInputStream bis = new BitInputStream(dis);
-		primary = new PrimaryHeader(bis);
+		primary = new PacketPrimaryHeader(bis);
 		int actualAvailable = dis.available() + 1;
 		if (primary.isSecondaryHeader()) {
 			secondary = new SecondaryHeader(dis);
@@ -42,7 +42,7 @@ public class CuteBeacon extends Ax25Beacon {
 			bctSoh = new BctSoh(dis);
 			break;
 		case 0x1ff:
-			payloadPrimary = new PrimaryHeader(bis);
+			payloadPrimary = new PacketPrimaryHeader(bis);
 			switch (payloadPrimary.getApplicationProcessId()) {
 			case 1:
 				payloadSwStat = new CutePayloadSwStat(dis);
@@ -68,11 +68,11 @@ public class CuteBeacon extends Ax25Beacon {
 		this.fswPayload = fswPayload;
 	}
 
-	public PrimaryHeader getPrimary() {
+	public PacketPrimaryHeader getPrimary() {
 		return primary;
 	}
 
-	public void setPrimary(PrimaryHeader primary) {
+	public void setPrimary(PacketPrimaryHeader primary) {
 		this.primary = primary;
 	}
 
@@ -92,11 +92,11 @@ public class CuteBeacon extends Ax25Beacon {
 		this.bctSoh = bctSoh;
 	}
 
-	public PrimaryHeader getPayloadPrimary() {
+	public PacketPrimaryHeader getPayloadPrimary() {
 		return payloadPrimary;
 	}
 
-	public void setPayloadPrimary(PrimaryHeader payloadPrimary) {
+	public void setPayloadPrimary(PacketPrimaryHeader payloadPrimary) {
 		this.payloadPrimary = payloadPrimary;
 	}
 

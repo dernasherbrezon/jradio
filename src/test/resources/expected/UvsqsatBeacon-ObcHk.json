@@ -15,8 +15,10 @@
     "messageSubtypeId": 25,
     "messageTypeCounter": 0,
     "destinationId": 2,
-    "time": 946716797,
-    "sid": 18
+    "time": {
+    	"time": 946716797,
+    	"fractionalTime": 0
+    }    
   },
   "obcHk": {
     "spiCommandStatus": 7,

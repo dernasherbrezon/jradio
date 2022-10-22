@@ -15,8 +15,10 @@
     "messageSubtypeId": 25,
     "messageTypeCounter": 0,
     "destinationId": 2,
-    "time": 946716606,
-    "sid": 23
+    "time": {
+    	"time": 946716606,
+    	"fractionalTime": 0
+    }
   },
   "imtqHk": {
     "digitaleVoltage": 80.01832,

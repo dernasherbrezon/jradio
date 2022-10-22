@@ -15,8 +15,10 @@
     "messageSubtypeId": 25,
     "messageTypeCounter": 0,
     "destinationId": 2,
-    "time": 946716717,
-    "sid": 16
+    "time": {
+    	"time": 946716717,
+    	"fractionalTime": 0
+    }    
   },
   "antsHk": {
     "sideAAntsTemperature": 540,

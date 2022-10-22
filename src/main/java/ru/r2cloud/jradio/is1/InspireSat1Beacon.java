@@ -4,7 +4,7 @@ import java.io.DataInputStream;
 import java.io.IOException;
 
 import ru.r2cloud.jradio.ax25.Ax25Beacon;
-import ru.r2cloud.jradio.ccsds.PrimaryHeader;
+import ru.r2cloud.jradio.ccsds.PacketPrimaryHeader;
 import ru.r2cloud.jradio.ctim.SecondaryHeader;
 import ru.r2cloud.jradio.fec.ccsds.UncorrectableException;
 import ru.r2cloud.jradio.util.BitInputStream;
@@ -12,7 +12,7 @@ import ru.r2cloud.jradio.util.LittleEndianDataInputStream;
 
 public class InspireSat1Beacon extends Ax25Beacon {
 
-	private PrimaryHeader primary;
+	private PacketPrimaryHeader primary;
 	private SecondaryHeader secondary;
 	private InspireSat1Telemetry telemetry;
 	private byte[] unknownPayload;
@@ -20,7 +20,7 @@ public class InspireSat1Beacon extends Ax25Beacon {
 	@Override
 	public void readBeacon(DataInputStream dis) throws IOException, UncorrectableException {
 		BitInputStream bis = new BitInputStream(dis);
-		primary = new PrimaryHeader(bis);
+		primary = new PacketPrimaryHeader(bis);
 		if (primary.isSecondaryHeader()) {
 			secondary = new SecondaryHeader(dis);
 		}
@@ -32,11 +32,11 @@ public class InspireSat1Beacon extends Ax25Beacon {
 		}
 	}
 
-	public PrimaryHeader getPrimary() {
+	public PacketPrimaryHeader getPrimary() {
 		return primary;
 	}
 
-	public void setPrimary(PrimaryHeader primary) {
+	public void setPrimary(PacketPrimaryHeader primary) {
 		this.primary = primary;
 	}
 

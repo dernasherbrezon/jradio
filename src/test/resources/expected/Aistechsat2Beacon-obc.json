@@ -30,16 +30,18 @@
       "packetName": 16383,
       "packetDataLength": 135
     },
-    "secondaryHeader": {
-      "pusVersion": 1,
-      "timeReference": 0,
-      "serviceType": 3,
-      "messageSubtype": 25,
-      "typeCounter": 40736,
-      "destinationId": 1000,
-      "day": 18537,
-      "millisecondsOfTheDay": 68631773
-    },
+	"secondaryHeader": {
+		"tmPacketPusVersionNumber": 1,
+		"spacecraftTimeReferenceStatus": 0,
+		"serviceTypeId": 3,
+		"messageSubtypeId": 25,
+		"messageTypeCounter": 40736,
+		"destinationId": 1000,
+		"time": {
+			"day": 18537,
+			"millisecondsOfTheDay": 68631773
+		}
+	},    
     "payload": [
       0,
       1,

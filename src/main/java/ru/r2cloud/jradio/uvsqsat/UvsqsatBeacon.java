@@ -4,15 +4,16 @@ import java.io.DataInputStream;
 import java.io.IOException;
 
 import ru.r2cloud.jradio.ax25.Ax25Beacon;
-import ru.r2cloud.jradio.ccsds.PrimaryHeader;
-import ru.r2cloud.jradio.ccsds.SecondaryHeader;
+import ru.r2cloud.jradio.ccsds.PField;
+import ru.r2cloud.jradio.ccsds.PacketPrimaryHeader;
+import ru.r2cloud.jradio.ecss.TelemetryPacketSecondaryHeader;
 import ru.r2cloud.jradio.fec.ccsds.UncorrectableException;
 import ru.r2cloud.jradio.util.BitInputStream;
 
 public class UvsqsatBeacon extends Ax25Beacon {
 
-	private PrimaryHeader primaryHeader;
-	private SecondaryHeader secondaryHeader;
+	private PacketPrimaryHeader primaryHeader;
+	private TelemetryPacketSecondaryHeader secondaryHeader;
 
 	private AmsatAscii amsatAscii;
 	private Beacon beacon;
@@ -31,9 +32,10 @@ public class UvsqsatBeacon extends Ax25Beacon {
 	@Override
 	public void readBeacon(DataInputStream dis) throws IOException, UncorrectableException {
 		BitInputStream bis = new BitInputStream(dis);
-		primaryHeader = new PrimaryHeader(bis);
-		secondaryHeader = new SecondaryHeader(bis);
-		switch (secondaryHeader.getSid()) {
+		primaryHeader = new PacketPrimaryHeader(bis);
+		secondaryHeader = new TelemetryPacketSecondaryHeader(bis, new PField(4, 3));
+		int sid = bis.readUnsignedByte();
+		switch (sid) {
 		case 0x0E:
 			amsatAscii = new AmsatAscii(dis);
 			break;
@@ -73,19 +75,19 @@ public class UvsqsatBeacon extends Ax25Beacon {
 		}
 	}
 
-	public PrimaryHeader getPrimaryHeader() {
+	public PacketPrimaryHeader getPrimaryHeader() {
 		return primaryHeader;
 	}
 
-	public void setPrimaryHeader(PrimaryHeader primaryHeader) {
+	public void setPrimaryHeader(PacketPrimaryHeader primaryHeader) {
 		this.primaryHeader = primaryHeader;
 	}
 
-	public SecondaryHeader getSecondaryHeader() {
+	public TelemetryPacketSecondaryHeader getSecondaryHeader() {
 		return secondaryHeader;
 	}
 
-	public void setSecondaryHeader(SecondaryHeader secondaryHeader) {
+	public void setSecondaryHeader(TelemetryPacketSecondaryHeader secondaryHeader) {
 		this.secondaryHeader = secondaryHeader;
 	}
 

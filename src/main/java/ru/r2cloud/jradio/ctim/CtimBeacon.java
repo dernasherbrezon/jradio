@@ -5,14 +5,14 @@ import java.io.DataInputStream;
 import java.io.IOException;
 
 import ru.r2cloud.jradio.Beacon;
-import ru.r2cloud.jradio.ccsds.PrimaryHeader;
+import ru.r2cloud.jradio.ccsds.PacketPrimaryHeader;
 import ru.r2cloud.jradio.fec.ccsds.UncorrectableException;
 import ru.r2cloud.jradio.util.BitInputStream;
 
 public class CtimBeacon extends Beacon {
 
 	private Header header;
-	private PrimaryHeader primary;
+	private PacketPrimaryHeader primary;
 	private SecondaryHeader secondary;
 	private Telemetry telemetry;
 	private byte[] unknownPayload;
@@ -22,7 +22,7 @@ public class CtimBeacon extends Beacon {
 		DataInputStream dis = new DataInputStream(new ByteArrayInputStream(data));
 		header = new Header(dis);
 		BitInputStream bis = new BitInputStream(dis);
-		primary = new PrimaryHeader(bis);
+		primary = new PacketPrimaryHeader(bis);
 		if (primary.isSecondaryHeader()) {
 			secondary = new SecondaryHeader(dis);
 		}
@@ -42,11 +42,11 @@ public class CtimBeacon extends Beacon {
 		this.header = header;
 	}
 
-	public PrimaryHeader getPrimary() {
+	public PacketPrimaryHeader getPrimary() {
 		return primary;
 	}
 
-	public void setPrimary(PrimaryHeader primary) {
+	public void setPrimary(PacketPrimaryHeader primary) {
 		this.primary = primary;
 	}
 

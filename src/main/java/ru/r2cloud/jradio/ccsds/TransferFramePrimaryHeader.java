@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import ru.r2cloud.jradio.util.BitInputStream;
 
+// as defined at CCSDS 132.0-B-3 Section 4.1.2
 public class TransferFramePrimaryHeader {
 
 	private int version;

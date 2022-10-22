@@ -15,8 +15,10 @@
     "messageSubtypeId": 25,
     "messageTypeCounter": 0,
     "destinationId": 2,
-    "time": 946699398,
-    "sid": 15
+    "time": {
+    	"time": 946699398,
+    	"fractionalTime": 0
+    }
   },
   "beacon": {
     "swMode": "MODE_OPERATIONAL",

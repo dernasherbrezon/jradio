@@ -4,7 +4,8 @@ import java.io.IOException;
 
 import ru.r2cloud.jradio.util.BitInputStream;
 
-public class PrimaryHeader {
+//as defined CCSDS 133.0-B-2 Section 4.1.3 or ECSS-E-ST-70-41C 7.4.1
+public class PacketPrimaryHeader {
 
 	public static final int LENGTH_BYTES = 6;
 
@@ -16,11 +17,11 @@ public class PrimaryHeader {
 	private int packetName;
 	private int packetDataLength;
 	
-	public PrimaryHeader() {
+	public PacketPrimaryHeader() {
 		//do nothing
 	}
 
-	public PrimaryHeader(BitInputStream bis) throws IOException {
+	public PacketPrimaryHeader(BitInputStream bis) throws IOException {
 		packetVersion = bis.readUnsignedInt(3);
 		packetType = bis.readUnsignedInt(1);
 		secondaryHeader = bis.readBoolean();
