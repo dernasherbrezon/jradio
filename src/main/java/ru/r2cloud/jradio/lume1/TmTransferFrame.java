@@ -1,8 +1,9 @@
-package ru.r2cloud.jradio.ccsds;
+package ru.r2cloud.jradio.lume1;
 
 import java.io.DataInputStream;
 import java.io.IOException;
 
+import ru.r2cloud.jradio.ccsds.PacketPrimaryHeader;
 import ru.r2cloud.jradio.ecss.SecondaryHeader;
 import ru.r2cloud.jradio.util.BitInputStream;
 
@@ -18,7 +19,7 @@ public class TmTransferFrame {
 	private int sequenceFlags;
 	private boolean fixedLengthFrame;
 
-	private PrimaryHeader primaryHeader;
+	private PacketPrimaryHeader primaryHeader;
 	private SecondaryHeader secondaryHeader;
 
 	private byte[] payload;
@@ -45,7 +46,7 @@ public class TmTransferFrame {
 		sequenceFlags = bis.readUnsignedInt(2);
 		fixedLengthFrame = bis.readBoolean();
 
-		primaryHeader = new PrimaryHeader(bis);
+		primaryHeader = new PacketPrimaryHeader(bis);
 		if (primaryHeader.isSecondaryHeader()) {
 			secondaryHeader = new SecondaryHeader(bis);
 		}
@@ -131,11 +132,11 @@ public class TmTransferFrame {
 		this.fixedLengthFrame = fixedLengthFrame;
 	}
 
-	public PrimaryHeader getPrimaryHeader() {
+	public PacketPrimaryHeader getPrimaryHeader() {
 		return primaryHeader;
 	}
 
-	public void setPrimaryHeader(PrimaryHeader primaryHeader) {
+	public void setPrimaryHeader(PacketPrimaryHeader primaryHeader) {
 		this.primaryHeader = primaryHeader;
 	}
 

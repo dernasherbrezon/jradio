@@ -4,7 +4,6 @@ import java.io.ByteArrayInputStream;
 import java.io.DataInputStream;
 import java.io.IOException;
 
-import ru.r2cloud.jradio.ccsds.TmTransferFrame;
 import ru.r2cloud.jradio.csp.CspBeacon;
 import ru.r2cloud.jradio.fec.ccsds.UncorrectableException;
 
