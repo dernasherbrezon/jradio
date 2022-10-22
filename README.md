@@ -37,6 +37,7 @@ De-framer is a component that converts soft stream of bits into the frames of sp
  * [USP](https://github.com/sputnixru/SX-USP) - [UspDecoder](https://github.com/dernasherbrezon/jradio/blob/master/src/main/java/ru/r2cloud/jradio/usp/UspDecoder.java)
  * Mobitex - [MobitexBeaconSource](https://github.com/dernasherbrezon/jradio/blob/master/src/main/java/ru/r2cloud/jradio/mobitex/MobitexBeaconSource.java)
    * TUBiX20 - Generic de-framer for TUB-based satellites. [TUBiX20BeaconSource](https://github.com/dernasherbrezon/jradio/blob/master/src/main/java/ru/r2cloud/jradio/tubix20/TUBiX20BeaconSource.java)
+ * CCSDS Concatenated - CCSDS 131.0-B-4 implementation for concatenated framing (Convolutional + Reed-Solomon). [CcsdsBeaconSource](https://github.com/dernasherbrezon/jradio/blob/master/src/main/java/ru/r2cloud/jradio/ccsds/CcsdsBeaconSource.java)
 
 ## Auxiliary tools
 
