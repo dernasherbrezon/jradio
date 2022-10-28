@@ -7,7 +7,6 @@ import org.junit.Test;
 
 import ru.r2cloud.jradio.AssertJson;
 import ru.r2cloud.jradio.demod.FskDemodulator;
-import ru.r2cloud.jradio.rhw.ReaktorHelloWorldTest;
 import ru.r2cloud.jradio.source.WavFileSource;
 
 public class GeoscanTest {
@@ -17,7 +16,7 @@ public class GeoscanTest {
 
 	@Test
 	public void testDecodeTelemetry() throws Exception {
-		WavFileSource source = new WavFileSource(ReaktorHelloWorldTest.class.getClassLoader().getResourceAsStream("geoscan.wav"));
+		WavFileSource source = new WavFileSource(GeoscanTest.class.getClassLoader().getResourceAsStream("geoscan.wav"));
 		FskDemodulator demod = new FskDemodulator(source, 9600, 5000.0f, 1, 2000.0f, true);
 		input = new Geoscan(demod);
 		assertTrue(input.hasNext());
