@@ -31,25 +31,7 @@ public class TUBiX20Beacon extends MobitexBeacon {
 
 	@Override
 	public void readBeacon(GapData data) throws IOException, UncorrectableException {
-		// read until first gap
-		// Technosat can recover some SourcePacket from the begining of frames
-		int total = 0;
-		for (byte[] cur : data.getChunks()) {
-			if (cur == null) {
-				break;
-			}
-			total += cur.length;
-		}
-		byte[] payload = new byte[total];
-		int totalWritten = 0;
-		for (byte[] cur : data.getChunks()) {
-			if (cur == null) {
-				break;
-			}
-			System.arraycopy(cur, 0, payload, totalWritten, cur.length);
-			totalWritten += cur.length;
-		}
-		readBeacon(new DataInputStream(new ByteArrayInputStream(payload)));
+		readBeacon(new DataInputStream(new ByteArrayInputStream(data.toByteArray())));
 	}
 
 	private static String readCallsign(byte[] data) {

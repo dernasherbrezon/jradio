@@ -34,13 +34,13 @@ public class MobitexBeacon extends Beacon {
 	public void readBeacon(byte[] data) throws IOException, UncorrectableException {
 		DataInputStream dis = new DataInputStream(new ByteArrayInputStream(data));
 		header = new Header(dis);
+		GapData gap;
 		MobitexRandomizer randomizer = new MobitexRandomizer();
 		switch (header.getControl1().getType()) {
 		case ACK:
 		case ERROR_CORRECTION:
-			GapData gap = new GapData(1);
+			gap = new GapData(1);
 			gap.write(readShortDataBlock(randomizer, dis));
-			readBeacon(gap);
 			break;
 		default:
 			int numberOfBlocks;
@@ -49,8 +49,13 @@ public class MobitexBeacon extends Beacon {
 			} else {
 				numberOfBlocks = header.getControl1().getNumberOfBlocks();
 			}
-			readBeacon(readGapDataBlocks(numberOfBlocks, randomizer, dis));
+			gap = readGapDataBlocks(numberOfBlocks, randomizer, dis);
 			break;
+		}
+		try {
+			readBeacon(gap);
+		} catch (EOFException e) {
+			this.payload = gap.toByteArray();
 		}
 	}
 
@@ -59,22 +64,7 @@ public class MobitexBeacon extends Beacon {
 		if (data.getNonEmptyBlocks() != header.getControl1().getNumberOfBlocks()) {
 			throw new UncorrectableException("not all blocks recovered");
 		}
-		int total = 0;
-		for (int cur : data.getLengths()) {
-			total += cur;
-		}
-		byte[] payload = new byte[total];
-		int totalWritten = 0;
-		for (byte[] cur : data.getChunks()) {
-			System.arraycopy(cur, 0, payload, totalWritten, cur.length);
-			totalWritten += cur.length;
-		}
-		try {
-			readBeacon(new DataInputStream(new ByteArrayInputStream(payload)));
-		} catch (EOFException e) {
-			this.payload = payload;
-		}
-
+		readBeacon(new DataInputStream(new ByteArrayInputStream(data.toByteArray())));
 	}
 
 	@SuppressWarnings("unused")
