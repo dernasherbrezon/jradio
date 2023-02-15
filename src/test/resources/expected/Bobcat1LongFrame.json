@@ -81,5 +81,6 @@
     "fcrc32": false
   },
   "beginSample": 0,
-  "beginMillis": 0
+  "beginMillis": 0,
+  "endSample": 0
 }

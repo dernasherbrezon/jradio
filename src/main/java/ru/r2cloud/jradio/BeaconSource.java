@@ -70,6 +70,7 @@ public abstract class BeaconSource<T> implements Iterator<T>, Closeable {
 				CorrelatedMarker currentMarker = input.getContext().getCurrentMarker();
 				if (currentMarker != null && currentMarker.getSourceSample() != null) {
 					realBeacon.setBeginSample(currentMarker.getSourceSample());
+					realBeacon.setEndSample(input.getContext().getCurrentSample().getValue());
 				}
 			}
 			current = beacon;

@@ -26,7 +26,7 @@ public class BeaconInputStreamTest {
 		RxMetadata meta = new RxMetadata();
 		meta.setRssi(1.23f);
 		meta.setSnr(1.22f);
-		meta.setFrequencyError(1001);
+		meta.setFrequencyError(1001l);
 		data.setRxMeta(meta);
 
 		bos.write(data);

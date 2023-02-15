@@ -15,6 +15,7 @@ public class Ao40CorrelateAccessCodeTag implements MessageInput {
 
 	private final ByteInput input;
 	private final byte[] window;
+	private final long[] sampleIndexes;
 	private int currentIndex = 0;
 	private final int threshold;
 
@@ -22,12 +23,14 @@ public class Ao40CorrelateAccessCodeTag implements MessageInput {
 		this.input = input;
 		this.threshold = threshold;
 		window = new byte[STEP * 65];
+		sampleIndexes = new long[window.length];
 	}
 
 	@Override
 	public byte[] readBytes() throws IOException {
 		while (true) {
 			window[currentIndex] = input.readByte();
+			sampleIndexes[currentIndex] = input.getContext().getCurrentSample().getValue();
 			currentIndex++;
 			if (currentIndex >= window.length) {
 				currentIndex = 0;
@@ -46,7 +49,7 @@ public class Ao40CorrelateAccessCodeTag implements MessageInput {
 					result[i] = (byte) (result[i] ^ 0xFF);
 				}
 			}
-			CorrelateSyncword.markStartOfPacket(getContext());
+			CorrelateSyncword.markStartOfPacket(getContext(), sampleIndexes[currentIndex]);
 			return result;
 		}
 	}

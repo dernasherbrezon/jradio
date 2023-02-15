@@ -66,10 +66,14 @@ public class HdlcReceiverTest {
 	@Test
 	public void testSuccess() throws Exception {
 		int[] data = new int[] { 0xF1, 0xA7 };
-		hdlc = new HdlcReceiver(new ArrayByteInput(createMessage(randomBytes(2), FLAG, packedToUnpacked(createMessage(data, calculateCrc(data))), FLAG, randomBytes(5))), 2);
+		// First 2 bytes are random
+		// They just made fixed to make beginSample assert stable
+		hdlc = new HdlcReceiver(new ArrayByteInput(createMessage(new int[] { 0, 1, 0, 0, 0, 1, 1, 0, 1, 1, 0, 1, 1, 0, 1, 1 }, FLAG, packedToUnpacked(createMessage(data, calculateCrc(data))), FLAG, randomBytes(5))), 2);
 		byte[] result = hdlc.readBytes();
 		assertNotNull(result);
 		assertByteArrayEquals(data, result);
+		assertEquals(24, hdlc.getContext().getCurrentMarker().getSourceSample().longValue());
+		assertEquals(65, hdlc.getContext().getCurrentSample().getValue());
 	}
 
 	@Test

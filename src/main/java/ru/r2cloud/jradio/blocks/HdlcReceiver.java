@@ -65,8 +65,12 @@ public class HdlcReceiver implements MessageInput {
 		int ones = 0;
 		int packetLength = 0;
 		int emptyFlagCount = 0;
+		long startFrameSample = 0;
 		if (findLastTag) {
 			foundStartFlag = true;
+		}
+		if (foundStartFlag) {
+			startFrameSample = getContext().getCurrentSample().getValue();
 		}
 		Queue<HdlcPresync> presyncStats = null;
 		if (TraceContext.instance.getHdlcReceiverTrace() != null) {
@@ -102,6 +106,7 @@ public class HdlcReceiver implements MessageInput {
 				} else if (ones > 5) { // i.e 6
 					if (!foundStartFlag) {
 						foundStartFlag = true;
+						startFrameSample = getContext().getCurrentSample().getValue();
 					} else {
 						// pop back 7bits of the last flag
 						packetLength = packetLength - FLAG_LENGTH;
@@ -132,6 +137,7 @@ public class HdlcReceiver implements MessageInput {
 							}
 							packetLength = 0;
 							ones = 0;
+							startFrameSample = getContext().getCurrentSample().getValue();
 							continue;
 						}
 						int payloadLength = packetLength - FCS_LENGTH * 8;
@@ -152,6 +158,7 @@ public class HdlcReceiver implements MessageInput {
 								emptyFlagCount = 0;
 								packetLength = 0;
 								ones = 0;
+								startFrameSample = getContext().getCurrentSample().getValue();
 								if (findLastTag) {
 									snapBeaconStats(emptyFlagCount);
 									return null;
@@ -160,7 +167,12 @@ public class HdlcReceiver implements MessageInput {
 							}
 						}
 						byte[] frame = unpackedToPacked(payloadLength);
-						CorrelateSyncword.markStartOfPacket(getContext());
+						// shouldn't be 0. just a safe check
+						if (startFrameSample != 0) {
+							CorrelateSyncword.markStartOfPacket(getContext(), startFrameSample);
+						} else {
+							CorrelateSyncword.markStartOfPacket(getContext());
+						}
 						if (TraceContext.instance.getHdlcReceiverTrace() != null) {
 							snapBeaconStats(emptyFlagCount);
 							curBeaconStat = new HdlcFrameStats();

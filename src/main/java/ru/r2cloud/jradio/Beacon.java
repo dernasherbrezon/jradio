@@ -9,6 +9,7 @@ public abstract class Beacon implements Externalizable {
 	private byte[] rawData;
 	private long beginSample;
 	private long beginMillis;
+	private long endSample;
 	private RxMetadata rxMeta;
 
 	@Override
@@ -38,11 +39,19 @@ public abstract class Beacon implements Externalizable {
 	public long getBeginSample() {
 		return beginSample;
 	}
-
+	
 	public void setBeginSample(long beginSample) {
 		this.beginSample = beginSample;
 	}
 
+	public long getEndSample() {
+		return endSample;
+	}
+	
+	public void setEndSample(long endSample) {
+		this.endSample = endSample;
+	}
+	
 	public RxMetadata getRxMeta() {
 		return rxMeta;
 	}

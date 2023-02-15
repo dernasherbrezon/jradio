@@ -25,7 +25,7 @@ import ru.r2cloud.jradio.RtlSdrSettings;
 public class RtlTcpTest {
 
 	private static final Logger LOG = LoggerFactory.getLogger(RtlTcpTest.class);
-	private static final int DEFAULT_PORT = 8080;
+	private static final int DEFAULT_PORT = 8040;
 
 	private int port;
 	private ServerSocket socket;

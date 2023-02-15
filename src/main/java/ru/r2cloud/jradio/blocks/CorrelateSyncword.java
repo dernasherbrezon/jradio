@@ -60,7 +60,8 @@ public class CorrelateSyncword implements MessageInput {
 		}
 		CorrelatedMarker first = markers.getFirst();
 		// not enough bytes for the first matched
-		// no need to look correlation further, because they are sorted by CorrelatedBitIndex asc
+		// no need to look correlation further, because they are sorted by
+		// CorrelatedBitIndex asc
 		if (first.getCorrelatedBitIndex() + packet.length > totalBitsRead) {
 			return null;
 		}
@@ -148,6 +149,12 @@ public class CorrelateSyncword implements MessageInput {
 			marker.setSourceSample(currentSample.getValue());
 			context.setCurrentMarker(marker);
 		}
+	}
+
+	public static void markStartOfPacket(Context context, long sample) {
+		CorrelatedMarker marker = new CorrelatedMarker();
+		marker.setSourceSample(sample);
+		context.setCurrentMarker(marker);
 	}
 
 	private static int validateAndReturnSyncwordLength(Set<String> syncwords) {

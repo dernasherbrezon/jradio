@@ -14,6 +14,7 @@ public class SmogPShortCorrelate implements MessageInput {
 
 	private final ByteInput input;
 	private final byte[] window;
+	private final long[] sampleIndexes;
 	private int currentIndex = 0;
 	private final int threshold;
 
@@ -21,12 +22,14 @@ public class SmogPShortCorrelate implements MessageInput {
 		this.input = input;
 		this.threshold = threshold;
 		window = new byte[STEP * 52];
+		sampleIndexes = new long[window.length];
 	}
 
 	@Override
 	public byte[] readBytes() throws IOException {
 		while (true) {
 			window[currentIndex] = input.readByte();
+			sampleIndexes[currentIndex] = input.getContext().getCurrentSample().getValue();
 			currentIndex++;
 			if (currentIndex >= window.length) {
 				currentIndex = 0;
@@ -37,7 +40,7 @@ public class SmogPShortCorrelate implements MessageInput {
 			byte[] result = new byte[window.length];
 			System.arraycopy(window, currentIndex, result, 0, window.length - currentIndex);
 			System.arraycopy(window, 0, result, window.length - currentIndex, currentIndex);
-			CorrelateSyncword.markStartOfPacket(getContext());
+			CorrelateSyncword.markStartOfPacket(getContext(), sampleIndexes[currentIndex]);
 			return result;
 		}
 	}

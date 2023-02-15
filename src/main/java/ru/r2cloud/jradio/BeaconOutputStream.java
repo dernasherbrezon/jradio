@@ -24,10 +24,23 @@ public class BeaconOutputStream implements Closeable {
 		dos.write(beacon.getRawData());
 		dos.writeLong(beacon.getBeginMillis());
 		dos.writeLong(beacon.getBeginSample());
-		if (beacon.getRxMeta() != null) {
-			dos.writeFloat(beacon.getRxMeta().getRssi());
-			dos.writeFloat(beacon.getRxMeta().getSnr());
-			dos.writeLong(beacon.getRxMeta().getFrequencyError());
+		RxMetadata meta = beacon.getRxMeta();
+		if (meta != null) {
+			if (meta.getRssi() != null) {
+				dos.writeFloat(meta.getRssi());
+			} else {
+				dos.writeFloat(0.0f);
+			}
+			if (meta.getSnr() != null) {
+				dos.writeFloat(meta.getSnr());
+			} else {
+				dos.writeFloat(0.0f);
+			}
+			if (meta.getFrequencyError() != null) {
+				dos.writeLong(meta.getFrequencyError());
+			} else {
+				dos.writeLong(0);
+			}
 		} else {
 			dos.writeFloat(0.0f);
 			dos.writeFloat(0.0f);

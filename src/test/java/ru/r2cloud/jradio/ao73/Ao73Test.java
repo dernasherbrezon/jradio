@@ -13,7 +13,7 @@ import ru.r2cloud.jradio.source.WavFileSource;
 public class Ao73Test {
 
 	private Ao73 input;
-
+	
 	@Test
 	public void testDecodeTelemetry() throws Exception {
 		WavFileSource source = new WavFileSource(Ao73Test.class.getClassLoader().getResourceAsStream("ao73.wav"));
