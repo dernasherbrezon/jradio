@@ -4,6 +4,7 @@ public class CorrelatedMarker {
 
 	private long accessCode;
 	private Long sourceSample;
+	private Long endSample;
 	private long correlatedBitIndex;
 
 	public long getAccessCode() {
@@ -22,6 +23,14 @@ public class CorrelatedMarker {
 		this.sourceSample = sourceSample;
 	}
 
+	public Long getEndSample() {
+		return endSample;
+	}
+	
+	public void setEndSample(Long endSample) {
+		this.endSample = endSample;
+	}
+	
 	public long getCorrelatedBitIndex() {
 		return correlatedBitIndex;
 	}

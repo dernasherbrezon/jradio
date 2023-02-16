@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory;
 
 import ru.r2cloud.jradio.Context;
 import ru.r2cloud.jradio.MessageInput;
+import ru.r2cloud.jradio.blocks.CorrelatedMarker;
 import ru.r2cloud.jradio.blocks.UnpackedToPacked;
 import ru.r2cloud.jradio.fec.Golay;
 import ru.r2cloud.jradio.fec.ccsds.Randomize;
@@ -89,6 +90,12 @@ public class AX100Decoder implements MessageInput {
 		}
 		if (rsFlag > 0 || forceReedSolomon) {
 			data = ReedSolomon.decode(data);
+		}
+		CorrelatedMarker marker = getContext().getCurrentMarker();
+		if (marker != null) {
+			float samplesPerBit = (((float) getContext().getCurrentSample().getValue() - marker.getSourceSample()) / raw.length);
+			int actualBitsCount = 3 * 8 + frameLength * 8;
+			marker.setEndSample(marker.getSourceSample() + (long) (samplesPerBit * actualBitsCount));
 		}
 		return data;
 	}

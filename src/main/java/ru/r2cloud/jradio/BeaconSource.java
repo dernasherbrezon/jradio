@@ -68,9 +68,15 @@ public abstract class BeaconSource<T> implements Iterator<T>, Closeable {
 			if (beacon instanceof Beacon) {
 				Beacon realBeacon = (Beacon) beacon;
 				CorrelatedMarker currentMarker = input.getContext().getCurrentMarker();
-				if (currentMarker != null && currentMarker.getSourceSample() != null) {
-					realBeacon.setBeginSample(currentMarker.getSourceSample());
-					realBeacon.setEndSample(input.getContext().getCurrentSample().getValue());
+				if (currentMarker != null) {
+					if (currentMarker.getSourceSample() != null) {
+						realBeacon.setBeginSample(currentMarker.getSourceSample());
+					}
+					if (currentMarker.getEndSample() != null) {
+						realBeacon.setEndSample(currentMarker.getEndSample());
+					} else {
+						realBeacon.setEndSample(input.getContext().getCurrentSample().getValue());
+					}
 				}
 			}
 			current = beacon;
