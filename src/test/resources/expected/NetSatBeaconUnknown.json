@@ -1,0 +1,69 @@
+{
+  "header": {
+    "priority": "CSP_PRIO_HIGH",
+    "source": 5,
+    "destination": 5,
+    "sourcePort": 48,
+    "destinationPort": 48,
+    "ffrag": false,
+    "fhmac": false,
+    "fxtea": false,
+    "frdp": false,
+    "fcrc32": false
+  },
+  "compassHeader": {
+    "pid": 2378,
+    "payloadSizeType": "SMALL",
+    "source": {
+      "systemId": 5,
+      "subsystemId": 1
+    },
+    "target": {
+      "systemId": 1,
+      "subsystemId": 0
+    },
+    "payloadSize": 29,
+    "useAdtn": false,
+    "useDtn": false,
+    "crc": true,
+    "sgn": false,
+    "error": false,
+    "urgent": false,
+    "encrypted": false,
+    "zipped": false
+  },
+  "unknownPayload": [
+    0,
+    104,
+    0,
+    21,
+    41,
+    13,
+    23,
+    49,
+    -1,
+    94,
+    1,
+    -1,
+    5,
+    16,
+    113,
+    4,
+    87,
+    113,
+    4,
+    88,
+    49,
+    -1,
+    89,
+    113,
+    3,
+    90,
+    113,
+    4,
+    92
+  ],
+  "beginSample": 0,
+  "beginMillis": 0,
+  "endSample": 0
+}

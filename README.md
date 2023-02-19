@@ -509,6 +509,11 @@ jradio has lots of built-in satellite decoders. Some of them have non standard d
 			<td>51085</td>
 			<td>ru.r2cloud.jradio.vzlusat.Vzlusat2Beacon</td>
 		</tr>
+		<tr>
+			<td>NETSAT-*</td>
+			<td>46507</td>
+			<td>ru.r2cloud.jradio.netsat.NetSatBeacon</td>
+		</tr>
 		
 	</tbody>
 </table>

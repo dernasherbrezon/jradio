@@ -1,0 +1,70 @@
+{
+  "header": {
+    "priority": "CSP_PRIO_HIGH",
+    "source": 5,
+    "destination": 5,
+    "sourcePort": 48,
+    "destinationPort": 48,
+    "ffrag": false,
+    "fhmac": false,
+    "fxtea": false,
+    "frdp": false,
+    "fcrc32": false
+  },
+  "compassHeader": {
+    "pid": 4472,
+    "payloadSizeType": "SMALL",
+    "source": {
+      "systemId": 5,
+      "subsystemId": 1
+    },
+    "target": {
+      "systemId": 1,
+      "subsystemId": 0
+    },
+    "api": 14,
+    "payloadSize": 53,
+    "useAdtn": false,
+    "useDtn": false,
+    "crc": true,
+    "sgn": false,
+    "error": false,
+    "urgent": false,
+    "encrypted": false,
+    "zipped": false
+  },
+  "modelPacket": {
+    "telemetry": {
+      "beaconRate": 61440,
+      "uptime": 23874,
+      "statusFlags": 20500,
+      "tempA": 3,
+      "percentageA": 96,
+      "tempB": 3,
+      "percentageB": 95,
+      "currentA": -1,
+      "voltageA": 4092,
+      "powerA": -3,
+      "currentB": 83,
+      "voltageB": 4088,
+      "powerB": 339,
+      "powerTotal": 336,
+      "obcTemperature": 10,
+      "temperatureXp": 0,
+      "temperatureXm": 15,
+      "temperatureYp": 14,
+      "temperatureYm": 14,
+      "temperatureZm": 0,
+      "frequency": 435600000,
+      "seuRam": 0,
+      "sueRom": 0
+    },
+    "packetType": 31,
+    "uid": 1280,
+    "type": 175,
+    "time": 1591303375379
+  },
+  "beginSample": 0,
+  "beginMillis": 0,
+  "endSample": 0
+}
