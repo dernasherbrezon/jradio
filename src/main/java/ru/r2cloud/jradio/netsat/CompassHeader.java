@@ -68,7 +68,7 @@ public class CompassHeader {
 			int sysSize = ((raw >> 6) & 0b11);
 			hopCounter = ((raw >> 3) & 0b111);
 			int numberOfHops = raw & 0b111;
-			hops = new Address[numberOfHops];
+			hops = new Address[numberOfHops - 1];
 			source = readAddress(sysSize, dis);
 			for (int i = 0; i < hops.length; i++) {
 				hops[i] = readAddress(sysSize, dis);

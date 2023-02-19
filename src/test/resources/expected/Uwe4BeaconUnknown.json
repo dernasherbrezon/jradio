@@ -1,42 +1,43 @@
 {
-  "routeSet": true,
-  "size1": true,
-  "abuf": false,
-  "buf": false,
-  "apiSet": true,
-  "refSet": true,
-  "pidSet": true,
-  "api16b": false,
-  "size2": false,
-  "time1": true,
-  "time2": true,
-  "metaSet": false,
-  "crcSet": true,
-  "sgnSet": false,
-  "packetId": 48151,
-  "fromSystemId": 75,
-  "fromSubSystemId": 2,
-  "toSystemId": 1,
-  "toSubSystemId": 1,
-  "api": 1,
-  "payloadSize": 1,
+  "compassHeader": {
+    "pid": 48151,
+    "payloadSizeType": "SMALL",
+    "source": {
+      "systemId": 2,
+      "subsystemId": 1
+    },
+    "hopCounter": 1,
+    "hops": [
+      {
+        "systemId": 1,
+        "subsystemId": 1
+      },
+      {
+        "systemId": 1,
+        "subsystemId": 6
+      }
+    ],
+    "target": {
+      "systemId": 2,
+      "subsystemId": 66
+    },
+    "api": 189,
+    "refPid": 39801,
+    "time": 24279495,
+    "payloadSize": 3,
+    "useAdtn": false,
+    "useDtn": false,
+    "crc": true,
+    "sgn": false,
+    "error": false,
+    "urgent": false,
+    "encrypted": false,
+    "zipped": false
+  },
   "unknownPayload": [
-    6,
-    2,
-    66,
-    121,
-    -101,
-    -67,
-    -57,
-    121,
-    114,
-    1,
-    3,
     57,
     53,
-    48,
-    -108,
-    3
+    48
   ],
   "header": {
     "destinationAddress": {
@@ -56,5 +57,6 @@
     "pid": 240
   },
   "beginSample": 0,
-  "beginMillis": 0
+  "beginMillis": 0,
+  "endSample": 0
 }
