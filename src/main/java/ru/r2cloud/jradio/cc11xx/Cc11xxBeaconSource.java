@@ -11,6 +11,7 @@ import ru.r2cloud.jradio.BeaconSource;
 import ru.r2cloud.jradio.ByteInput;
 import ru.r2cloud.jradio.blocks.AdditiveScrambler;
 import ru.r2cloud.jradio.blocks.CorrelateSyncword;
+import ru.r2cloud.jradio.blocks.CorrelatedMarker;
 import ru.r2cloud.jradio.blocks.SoftToHard;
 import ru.r2cloud.jradio.blocks.UnpackedToPacked;
 import ru.r2cloud.jradio.crc.Crc16Cc11xx;
@@ -71,6 +72,13 @@ public class Cc11xxBeaconSource<T extends Beacon> extends BeaconSource<T> {
 		if (dataEndIndex > raw.length) {
 			return null;
 		}
+		
+		CorrelatedMarker marker = input.getContext().getCurrentMarker();
+		if (marker != null) {
+			float samplesPerByte = (((float) input.getContext().getCurrentSample().getValue() - marker.getSourceSample()) / raw.length);
+			marker.setEndSample(marker.getSourceSample() + (long) (samplesPerByte * dataEndIndex));
+		}
+		
 		// 1 - skip first byte which is frameLength
 		byte[] result = Arrays.copyOfRange(raw, 1, endIndex);
 		if (!hasCrc) {
