@@ -56,6 +56,7 @@ public class Lume1BeaconTest {
 		// even if they belong to separate package, they were introduced only here
 		// test them here
 		assertThat(PacketPrimaryHeader.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
+		assertThat(TmTransferFrame.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
 	}
 
 }
