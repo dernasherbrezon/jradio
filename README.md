@@ -362,7 +362,7 @@ jradio has lots of built-in satellite decoders. Some of them have non standard d
 		<tr>
 			<td>STRAND-1</td>
 			<td>39090</td>
-			<td><a href="https://github.com/dernasherbrezon/jradio/blob/master/src/main/java/ru/r2cloud/jradio/strand1/Strand1.java">Strand1</a></td>
+			<td><a href="https://github.com/dernasherbrezon/jradio/blob/master/src/main/java/ru/r2cloud/jradio/strand1/Strand1Beacon.java">Strand1</a></td>
 		</tr>		
 		<tr>
 			<td>PolyItan1</td>
