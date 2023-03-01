@@ -12,9 +12,9 @@ import ru.r2cloud.jradio.RxMetadata;
 
 public class SnrCalculator {
 
-	public static void enrichSnr(FloatInput source, List<Beacon> beacons, int bandwidth) throws IOException {
+	public static void enrichSnr(FloatInput source, List<Beacon> beacons, long bandwidth, int decimation) throws IOException {
 
-		int fftBinHz = bandwidth / 50;
+		int fftBinHz = (int) (bandwidth / 20);
 		int numberOfBins = (int) (source.getContext().getSampleRate() / fftBinHz);
 		int halfOfNumberOfBins = numberOfBins / 2;
 
@@ -24,7 +24,7 @@ public class SnrCalculator {
 		float[] row = new float[numberOfBins];
 		float iNormalizationFactor = (float) 1 / numberOfBins;
 
-		int numberOfBinsInTheSignal = bandwidth / fftBinHz;
+		int numberOfBinsInTheSignal = (int) (bandwidth / fftBinHz);
 		int half = numberOfBinsInTheSignal / 2;
 		int signalStartBinIndex = numberOfBins / 2 - half;
 		int signalEndBinIndex = signalStartBinIndex + numberOfBinsInTheSignal;
@@ -33,11 +33,14 @@ public class SnrCalculator {
 
 		long processed = 0;
 		for (Beacon cur : beacons) {
-			skipSamples(source, cur.getBeginSample() - processed);
+			long begin = cur.getBeginSample() / decimation;
+			long end = cur.getEndSample() / decimation;
 
-			long beaconLengthInSamples = cur.getEndSample() - cur.getBeginSample();
+			skipSamples(source, begin - processed);
+			long beaconLengthInSamples = end - begin;
 			// Can be non zero
-			// Currently each fft bin accumulate max of all the power from duration of a signal
+			// Currently each fft bin accumulate max of all the power from duration of a
+			// signal
 			// Then signal power calculated as an average of all fft bins, i.e.:
 			// avg (max)
 			// With snrCalculations > 1 the formula will be: avg ( avg ( max ) )
@@ -45,6 +48,7 @@ public class SnrCalculator {
 			int accumulateTimes = (int) ((float) beaconLengthInSamples / numberOfBins / snrCalculations);
 
 			float sumSnr = 0.0f;
+			int snrTotal = 0;
 
 			for (int calcs = 0; calcs < snrCalculations; calcs++) {
 				Arrays.fill(row, Float.NEGATIVE_INFINITY);
@@ -61,7 +65,7 @@ public class SnrCalculator {
 					for (int i = 0, j = 0; i < complexBuf.length; i += 2, j++) {
 						float real = complexBuf[i] * iNormalizationFactor;
 						float img = complexBuf[i + 1] * iNormalizationFactor;
-						row[j] = Math.max(row[j], (float) (10.0 * Math.log10((real * real) + (img * img) + 1e-20)));
+						row[j] = Math.max(row[j], (float) ((real * real) + (img * img)));
 					}
 				}
 
@@ -72,41 +76,47 @@ public class SnrCalculator {
 					row[halfOfNumberOfBins + i] = temp;
 				}
 
-				sumSnr += calculateSnr(row, noiseStartBinIndex, noiseEndBinIndex, signalStartBinIndex, signalEndBinIndex);
+				// can happen when spurious signal happened outside of the signal bandwidth
+				// while no signal present. I.e. Pnoise > Psignal
+				float curDelta = calculateSnr(row, noiseStartBinIndex, noiseEndBinIndex, signalStartBinIndex, signalEndBinIndex);
+				if (Float.isNaN(curDelta)) {
+					continue;
+				}
+				sumSnr += curDelta;
+				snrTotal++;
 			}
 
-			RxMetadata meta = new RxMetadata();
-			meta.setSnr(sumSnr / snrCalculations);
-			cur.setRxMeta(meta);
+			if (snrTotal > 0) {
+				RxMetadata meta = new RxMetadata();
+				meta.setSnr(sumSnr / snrTotal);
+				cur.setRxMeta(meta);
+			}
 
 			// skip remaining
 			skipSamples(source, beaconLengthInSamples);
-			processed = cur.getEndSample();
+			processed = end;
 		}
 
 		source.close();
 	}
 
-	// Algorithm assumes noise is half bandwidth to the left and to the right of the signal
+	// Algorithm assumes noise is half bandwidth to the left and to the right of the
+	// signal
 	private static float calculateSnr(float[] row, int noiseStart, int noiseEnd, int signalStart, int signalEnd) {
 		float noise = 0.0f;
-		int totalNoise = 0;
 		float signal = 0.0f;
-		int totalSignal = 0;
 		for (int i = Math.max(0, noiseStart); i < Math.min(row.length, noiseEnd); i++) {
 			if (i >= signalStart && i <= signalEnd) {
 				signal += row[i];
-				totalSignal++;
 			} else if (i >= noiseStart && i <= noiseEnd) {
 				noise += row[i];
-				totalNoise++;
 			}
 		}
-		return (signal / totalSignal) - (noise / totalNoise);
+		return (float) (10 * Math.log10((signal - noise) / noise));
 	}
 
 	private static void skipSamples(FloatInput input, long samples) throws IOException {
-		for (int i = 0; i < samples * 2; i++) {
+		for (int i = 0; i < samples * input.getContext().getChannels(); i++) {
 			input.readFloat();
 		}
 	}
