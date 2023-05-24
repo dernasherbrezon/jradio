@@ -17,7 +17,7 @@ public class WavFileSource implements FloatInput {
 	private final byte[] buf;
 	private int currentBufIndex = 0;
 	private final Context context;
-	private long framePos = 0;
+	private long currentSample = 0;
 
 	public WavFileSource(InputStream is) throws UnsupportedAudioFileException, IOException {
 		ais = AudioSystem.getAudioInputStream(is);
@@ -30,14 +30,14 @@ public class WavFileSource implements FloatInput {
 		context.setSampleRate(ais.getFormat().getSampleRate());
 		context.setChannels(ais.getFormat().getChannels());
 		context.setSampleSizeInBits(ais.getFormat().getSampleSizeInBits());
-		context.setCurrentSample(() -> framePos);
+		context.setCurrentSample(() -> currentSample);
 	}
 
 	@Override
 	public float readFloat() throws IOException {
 		if (currentBufIndex == 0 || currentBufIndex >= buf.length) {
 			currentBufIndex = 0;
-			framePos++;
+			currentSample++;
 			int bytesRead = ais.read(buf, 0, buf.length);
 			if (bytesRead == -1) {
 				throw new EOFException();

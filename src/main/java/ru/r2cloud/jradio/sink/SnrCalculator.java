@@ -116,6 +116,7 @@ public class SnrCalculator {
 	}
 
 	private static void skipSamples(FloatInput input, long samples) throws IOException {
+		// I/Q signal
 		for (int i = 0; i < samples * input.getContext().getChannels(); i++) {
 			input.readFloat();
 		}
