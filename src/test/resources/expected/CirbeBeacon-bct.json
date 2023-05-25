@@ -1,0 +1,222 @@
+{
+  "primaryHeader": {
+    "packetVersion": 0,
+    "packetType": 0,
+    "secondaryHeader": true,
+    "applicationProcessId": 80,
+    "sequenceFlag": 3,
+    "packetName": 15286,
+    "packetDataLength": 210
+  },
+  "secondary": {
+    "timestampSeconds": 738144363,
+    "subSeconds": 0
+  },
+  "bctSoh": {
+    "l0": {
+      "wdt2secCounter": 0,
+      "resetArmed": false,
+      "wdtStatus": false,
+      "wdtEnableStatus": true,
+      "tableSelect": false,
+      "bootRelay": true,
+      "l0AcceptCounter": 0,
+      "l0RejectCounter": 0,
+      "hardwareSecondCounter": 236,
+      "timeTag": 2709413185
+    },
+    "commandTlm": {
+      "commandStatus": "OK",
+      "realtimeCmdAcceptCounter": 25,
+      "realtimeCmdRejectCounter": 0,
+      "storedCmdAcceptCounter": 231,
+      "storedCmdRejectCounter": 0
+    },
+    "general": {
+      "scrubStatusOverall": "OK",
+      "imageBooted": 0,
+      "imageAutoFailover": 0,
+      "inertiaIndex": 1
+    },
+    "time": {
+      "taiSeconds": 7.3814436299507E8,
+      "timeValid": true,
+      "rtc_osc_rst_count": 0,
+      "rtc_init_time_at_boot": true,
+      "rtc_sync_stat": true,
+      "rtc_alive": true,
+      "rtc_power": true
+    },
+    "refs": {
+      "positionWrtEci1": 2810.0178,
+      "positionWrtEci2": 1189.3301,
+      "positionWrtEci3": 6149.028,
+      "velocityWrtEci1": -5.1449137,
+      "velocityWrtEci2": -4.6047134,
+      "velocityWrtEci3": 3.2273476,
+      "modeledSunVectorBody1": -0.73752,
+      "modeledSunVectorBody2": -0.67531997,
+      "modeledSunVectorBody3": 4.0E-5,
+      "magModelVectorBody1": 4.283E-5,
+      "magModelVectorBody2": 4.5E-8,
+      "magModelVectorBody3": 0.0,
+      "refsValid": true,
+      "runLowRateTask": false
+    },
+    "attDet": {
+      "qBodyWrtEci1": 0.4349828,
+      "qBodyWrtEci2": -0.14641002,
+      "qBodyWrtEci3": -0.8867925,
+      "qBodyWrtEci4": 0.05434282,
+      "trackerSolMixed": false,
+      "tracker2DataValid": false,
+      "tracker1DataValid": false,
+      "imuDataValid": true,
+      "measRateValid": true,
+      "measAttValid": false,
+      "attitudeValid": true
+    },
+    "attCmd": {
+      "hrCycleSafeMode": 6033523,
+      "sunPointReason": "ATTITUDE_INVALID",
+      "recommendSunPoint": false,
+      "adcsMode": 1
+    },
+    "rwDrive": {
+      "filteredSpeedRpm1": 783.60004,
+      "filteredSpeedRpm2": 308.4,
+      "filteredSpeedRpm3": 2.0
+    },
+    "tracker": {
+      "mode": "STARID",
+      "starIdStep": "WAITING_FOR_IMAGE1",
+      "attStatus": "BAD",
+      "numAttitudeStars": 0
+    },
+    "attCtrl": {
+      "eigenError": 9.2407584E-4,
+      "sunPointAngleError": 2.7419999,
+      "sunSourceFailover": false,
+      "sunAvoidFlag": false,
+      "onSunFlag": false,
+      "momentumTooHigh": false,
+      "attCtrlActive": true
+    },
+    "momentum": {
+      "totalMomentumMag": 0.0015000001,
+      "dutyCycle1": 0,
+      "dutyCycle2": 5,
+      "dutyCycle3": 16,
+      "torqueRodMode1": "AUTO",
+      "torqueRodMode2": "AUTO",
+      "torqueRodMode3": "AUTO",
+      "torqueRodDirection3": 1,
+      "torqueRodDirection2": 1,
+      "torqueRodDirection1": 1,
+      "torqueRodEnable3": true,
+      "torqueRodEnable2": true,
+      "torqueRodEnable1": true,
+      "magSourceFailover": false,
+      "trFault": true,
+      "momentumVectorEnabled": true,
+      "momentumVectorValid": true,
+      "trDrivePowerState": true
+    },
+    "css": {
+      "sunVectorBody1": -0.7209,
+      "sunVectorBody2": -0.6917,
+      "sunVectorBody3": 0.043199997,
+      "sunVectorStatus": "GOOD",
+      "cssInvalidCount": 0,
+      "sunSensorUsed": 1,
+      "cssTestMode": false,
+      "sunVectorEnabled": true,
+      "measSunValid": true,
+      "cssPowerState": true
+    },
+    "mag": {
+      "magVectorBody1": 5.4515E-5,
+      "magVectorBody2": 1.7475E-5,
+      "magVectorBody3": 9.2E-7,
+      "magInvalidCount": 407,
+      "magSensorUsed": 2,
+      "magTestMode": false,
+      "magVectorEnabled": true,
+      "magVectorValid": true,
+      "magPowerState": true
+    },
+    "imu": {
+      "imuAvgVectorBody1": 0.00146,
+      "imuAvgVectorBody2": 0.00292,
+      "imuAvgVectorBody3": -0.00512,
+      "imuInvalidCount": 11,
+      "imuValidPackets": true,
+      "imuTestMode": false,
+      "imuVectorEnabled": true,
+      "imuVectorValid": true,
+      "imuPowerState": true
+    },
+    "clockSync": {
+      "hrRunCount": 6791962,
+      "hrExecTimeMs1": 6,
+      "hrExecTimeMs2": 6,
+      "hrExecTimeMs3": 6,
+      "hrExecTimeMs4": 6,
+      "hrExecTimeMs5": 7
+    },
+    "analogs": {
+      "batteryVoltage": 12.300001
+    },
+    "gps": {
+      "gpsCyclesSinceCrcData": 4935,
+      "gpsLockCount": 503,
+      "msgUsedSatellites": 15,
+      "gpsPosLock": true,
+      "gpsTimeLock": true,
+      "msgDataValid": false,
+      "gpsNewDataReceived": false,
+      "gpsEnable": true,
+      "gpsValid": false
+    },
+    "eventCheck": {
+      "latchedRespFirePack1": 0,
+      "latchedRespFirePack2": 8
+    },
+    "radio": {
+      "sdMinuteCur": 99331,
+      "sdPercentUsedTotal": 48,
+      "sdOk": true,
+      "sdFaultCount": 0,
+      "sqChannel": 65,
+      "sqTrapCount": 0,
+      "sqTemp": 5,
+      "sdrTxTxFrames": 17173,
+      "sdrTxTxPower": 33,
+      "sdrTxTemp": 33,
+      "sdrTxCommError": true
+    },
+    "trackerCtrl": {
+      "trackerAttValid": false
+    }
+  },
+  "header": {
+    "destinationAddress": {
+      "callsign": "BCT",
+      "ssid": 0,
+      "extensionBit": 0
+    },
+    "sourceAddress": {
+      "callsign": "CIRBE",
+      "ssid": 0,
+      "extensionBit": 1
+    },
+    "frameType": "U",
+    "sendSequenceNumber": 0,
+    "receiveSequenceNumber": 0,
+    "uControlType": "UI",
+    "pid": 240
+  },
+  "beginSample": 0,
+  "beginMillis": 0,
+  "endSample": 0
+}
