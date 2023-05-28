@@ -1,0 +1,35 @@
+{
+  "payloadSize": 49,
+  "payloadTo": 1,
+  "packetId": 65535,
+  "message": {
+    "message": "Une Ecole pour la Vie",
+    "time": 2334487396,
+    "batteryVoltage": 0,
+    "batteryCurrent": 0,
+    "temperature": 28926,
+    "mode": 3,
+    "epsBootCounter": 51456,
+    "commandCounter": 0
+  },
+  "header": {
+    "destinationAddress": {
+      "callsign": "ROSEY1",
+      "ssid": 0,
+      "extensionBit": 0
+    },
+    "sourceAddress": {
+      "callsign": "ROSEY1",
+      "ssid": 1,
+      "extensionBit": 1
+    },
+    "frameType": "U",
+    "sendSequenceNumber": 0,
+    "receiveSequenceNumber": 0,
+    "uControlType": "UI",
+    "pid": 240
+  },
+  "beginSample": 0,
+  "beginMillis": 0,
+  "endSample": 0
+}
