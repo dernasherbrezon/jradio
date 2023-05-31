@@ -137,7 +137,6 @@ public class Snet extends BeaconSource<SnetBeacon> {
 			int numBlocks = (int) Math.ceil((float) header.getPduLength() / dataBytesPerBlock);
 			int requiredBits = HEADER_LENGTH_WITH_FEC_BITS + CODEWORDS_PER_BLOCK * CHUNK_LENGTH_BITS * numBlocks;
 			if (requiredBits > bits.length) {
-				LOG.error("not enough bits. expected: {} got {}", requiredBits, bits.length);
 				throw new UncorrectableException("not enough bits in the message");
 			}
 			// correct errors BCH
