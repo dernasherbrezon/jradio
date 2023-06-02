@@ -23,7 +23,9 @@ public class SelfieSatBeacon extends Beacon {
 		// it seems they use CSP 2.0 or CSP 2.1 version
 		// that contains length field
 		dis.skipBytes(2);
+		int remaining = dis.available();
 		if (header.isFcrc32()) {
+			remaining -= 2;
 			long actualCrc32 = Crc32c.calculate(data, Header.LENGTH + 2, data.length - Header.LENGTH - 2 - 4);
 			long expectedCrc32 = ((data[data.length - 4] & 0xFFL) << 24) | ((data[data.length - 3] & 0xFFL) << 16) | ((data[data.length - 2] & 0xFFL) << 8) | (data[data.length - 1] & 0xFFL);
 			if (expectedCrc32 != actualCrc32) {
@@ -31,7 +33,6 @@ public class SelfieSatBeacon extends Beacon {
 			}
 		}
 
-		int remaining = dis.available();
 		if (header.getSource() == 2 && header.getSourcePort() == 5) {
 			try {
 				dis.skipBytes(8);
