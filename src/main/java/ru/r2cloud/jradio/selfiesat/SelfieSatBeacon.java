@@ -13,7 +13,7 @@ import ru.r2cloud.jradio.fec.ccsds.UncorrectableException;
 public class SelfieSatBeacon extends Beacon {
 
 	private Header header;
-	private Housekeeping housekeeping;
+	private Housekeeping telemetry;
 	private byte[] unknownPayload;
 
 	@Override
@@ -23,9 +23,7 @@ public class SelfieSatBeacon extends Beacon {
 		// it seems they use CSP 2.0 or CSP 2.1 version
 		// that contains length field
 		dis.skipBytes(2);
-		int remaining = dis.available();
 		if (header.isFcrc32()) {
-			remaining -= 2;
 			long actualCrc32 = Crc32c.calculate(data, Header.LENGTH + 2, data.length - Header.LENGTH - 2 - 4);
 			long expectedCrc32 = ((data[data.length - 4] & 0xFFL) << 24) | ((data[data.length - 3] & 0xFFL) << 16) | ((data[data.length - 2] & 0xFFL) << 8) | (data[data.length - 1] & 0xFFL);
 			if (expectedCrc32 != actualCrc32) {
@@ -33,10 +31,11 @@ public class SelfieSatBeacon extends Beacon {
 			}
 		}
 
+		int remaining = dis.available();
 		if (header.getSource() == 2 && header.getSourcePort() == 5) {
 			try {
 				dis.skipBytes(8);
-				housekeeping = new Housekeeping(dis);
+				telemetry = new Housekeeping(dis);
 				return;
 			} catch (EOFException e) {
 				// ignore EOF
@@ -54,12 +53,12 @@ public class SelfieSatBeacon extends Beacon {
 		this.header = header;
 	}
 
-	public Housekeeping getHousekeeping() {
-		return housekeeping;
+	public Housekeeping getTelemetry() {
+		return telemetry;
 	}
 	
-	public void setHousekeeping(Housekeeping housekeeping) {
-		this.housekeeping = housekeeping;
+	public void setTelemetry(Housekeeping telemetry) {
+		this.telemetry = telemetry;
 	}
 
 	public byte[] getUnknownPayload() {
