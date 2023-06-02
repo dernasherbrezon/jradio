@@ -5,7 +5,7 @@ import java.io.IOException;
 
 import ru.r2cloud.jradio.util.BitInputStream;
 
-public class Telemetry {
+public class Housekeeping {
 
 	private boolean[] adt7410;
 	private boolean[] ina3221;
@@ -26,11 +26,11 @@ public class Telemetry {
 	private AdcsState adcsState;
 	private PayloadState payloadState;
 
-	public Telemetry() {
+	public Housekeeping() {
 		// do nothing
 	}
 
-	public Telemetry(DataInputStream dis) throws IOException {
+	public Housekeeping(DataInputStream dis) throws IOException {
 		BitInputStream bis = new BitInputStream(dis);
 		adt7410 = new boolean[2];
 		for (int i = 0; i < adt7410.length; i++) {

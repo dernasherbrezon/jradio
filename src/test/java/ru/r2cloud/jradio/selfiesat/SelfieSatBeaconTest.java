@@ -14,7 +14,7 @@ public class SelfieSatBeaconTest {
 
 	@Test
 	public void testSuccess() throws Exception {
-		byte[] data = ViterbiTest.hexStringToByteArray("0500850100E00000000000000000000000000031207300A0000053656C6669655361740053656C6669655361740053656C6669655361740053656C6669655361740053656C6669655361740053656C6669655361740053656C6669655361740053656C6669655361740053656C6669655361740053656C6669655361740053656C6669655361740053656C6669655361740053656C6669655361740053656C6669655361740053656C6669655361740053656C6669655361740053656C6669655361740053656C6669655361740053656C6669655361740053656C66696553617400175A9244");
+		byte[] data = ViterbiTest.hexStringToByteArray("0500850100100000000001EA206A019B52B4341A474D");
 		SelfieSatBeacon result = new SelfieSatBeacon();
 		result.readBeacon(data);
 		AssertJson.assertObjectsEqual("SelfieSatBeacon.json", result);
@@ -31,6 +31,6 @@ public class SelfieSatBeaconTest {
 	@Test
 	public void testPojo() {
 		assertThat(SelfieSatBeacon.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
-		assertThat(Telemetry.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
+		assertThat(Housekeeping.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
 	}
 }

@@ -13,7 +13,7 @@ import ru.r2cloud.jradio.fec.ccsds.UncorrectableException;
 public class SelfieSatBeacon extends Beacon {
 
 	private Header header;
-	private Telemetry telemetry;
+	private Housekeeping housekeeping;
 	private byte[] unknownPayload;
 
 	@Override
@@ -35,7 +35,7 @@ public class SelfieSatBeacon extends Beacon {
 		if (header.getSource() == 2 && header.getSourcePort() == 5) {
 			try {
 				dis.skipBytes(8);
-				telemetry = new Telemetry(dis);
+				housekeeping = new Housekeeping(dis);
 				return;
 			} catch (EOFException e) {
 				// ignore EOF
@@ -53,12 +53,12 @@ public class SelfieSatBeacon extends Beacon {
 		this.header = header;
 	}
 
-	public Telemetry getTelemetry() {
-		return telemetry;
+	public Housekeeping getHousekeeping() {
+		return housekeeping;
 	}
-
-	public void setTelemetry(Telemetry telemetry) {
-		this.telemetry = telemetry;
+	
+	public void setHousekeeping(Housekeeping housekeeping) {
+		this.housekeeping = housekeeping;
 	}
 
 	public byte[] getUnknownPayload() {
