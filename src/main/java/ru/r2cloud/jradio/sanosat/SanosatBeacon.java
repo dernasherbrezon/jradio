@@ -13,7 +13,7 @@ public class SanosatBeacon extends Beacon {
 
 	private String callsign;
 	private int type;
-	private SanotsatTelemetry telemetry;
+	private SanosatTelemetry telemetry;
 	private byte[] unknownPayload;
 
 	@Override
@@ -25,7 +25,7 @@ public class SanosatBeacon extends Beacon {
 		callsign = new String(callsignBytes, StandardCharsets.US_ASCII).trim();
 		type = dis.readUnsignedShort();
 		if (type == 0x0001) {
-			telemetry = new SanotsatTelemetry(dis);
+			telemetry = new SanosatTelemetry(dis);
 		} else {
 			unknownPayload = new byte[dis.available()];
 			dis.readFully(unknownPayload);
@@ -48,11 +48,11 @@ public class SanosatBeacon extends Beacon {
 		this.type = type;
 	}
 
-	public SanotsatTelemetry getTelemetry() {
+	public SanosatTelemetry getTelemetry() {
 		return telemetry;
 	}
 
-	public void setTelemetry(SanotsatTelemetry telemetry) {
+	public void setTelemetry(SanosatTelemetry telemetry) {
 		this.telemetry = telemetry;
 	}
 

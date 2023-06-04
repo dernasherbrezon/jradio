@@ -4,7 +4,7 @@ import java.io.IOException;
 
 import ru.r2cloud.jradio.util.LittleEndianDataInputStream;
 
-public class SanotsatTelemetry {
+public class SanosatTelemetry {
 
 	private int comTemperature;
 	private int chargingVoltage;
@@ -14,11 +14,11 @@ public class SanotsatTelemetry {
 	private int numberOfResets;
 	private boolean antennaDeploymentStatus;
 
-	public SanotsatTelemetry() {
+	public SanosatTelemetry() {
 		// do nothing
 	}
 
-	public SanotsatTelemetry(LittleEndianDataInputStream dis) throws IOException {
+	public SanosatTelemetry(LittleEndianDataInputStream dis) throws IOException {
 		comTemperature = dis.readUnsignedShort();
 		chargingVoltage = dis.readUnsignedShort();
 		chargingCurrent = dis.readUnsignedShort();
