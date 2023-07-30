@@ -68,16 +68,16 @@ public class RaDecoder {
 	}
 
 	public byte[] decode(byte[] raw) {
-		for (int i = 0; i < raCodeLength * RA_BITCOUNT / 8; i++) {
+		for (int i = 0; i < raCodeLength * RA_BITCOUNT; i += 8) {
 			for (int j = 0; j < 8; j++) {
-				bits[8 * i + j] = -convert(raw[8 * i + 7 - j]);
+				bits[i + j] = -convert(raw[i + 7 - j]);
 			}
 		}
 
 		Arrays.fill(raDatawordGen, 0.0f);
 		Arrays.fill(raCodewordGen, 0.0f);
 		System.arraycopy(bits, 0, raCodewordGen, 0, bits.length);
-		int passes = 20;
+		int passes = 40;
 
 		float[] codeword;
 
