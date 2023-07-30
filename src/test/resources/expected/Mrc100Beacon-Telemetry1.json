@@ -1,0 +1,333 @@
+{
+  "telemetry1": {
+    "timestamp": 1690287407,
+    "uptime": 520420,
+    "obcId": 2,
+    "oscStatus": true,
+    "pcu1Active": {
+      "value": true,
+      "timeAgo": 0
+    },
+    "pcu2Active": {
+      "value": true,
+      "timeAgo": 0
+    },
+    "pcuDsw1Status": {
+      "value": true,
+      "timeAgo": 0
+    },
+    "pcuDsw2Status": {
+      "value": true,
+      "timeAgo": 0
+    },
+    "pcuRbfStatus": {
+      "value": true,
+      "timeAgo": 0
+    },
+    "pcuAntennaDeploymentFlag": {
+      "value": true,
+      "timeAgo": 0
+    },
+    "pcuAntennaDeploymentStatus": {
+      "value": true,
+      "timeAgo": 0
+    },
+    "antennaOpenedCondition": {
+      "value": 2530,
+      "timeAgo": 4
+    },
+    "pcu1BootCounter": {
+      "value": 2,
+      "timeAgo": 0
+    },
+    "pcu2BootCounter": {
+      "value": 2,
+      "timeAgo": 0
+    },
+    "pcu1Uptime": {
+      "value": 12367,
+      "timeAgo": 0
+    },
+    "pcu2Uptime": {
+      "value": 12333,
+      "timeAgo": 0
+    },
+    "pcuUnregulatedBusVoltage": {
+      "value": 0,
+      "timeAgo": 0
+    },
+    "pcuRegulatedBusVoltage": {
+      "value": 0,
+      "timeAgo": 0
+    },
+    "pcuTemperature": {
+      "value": 0.0,
+      "timeAgo": 0
+    },
+    "pcuSupplyVoltage": {
+      "value": 0,
+      "timeAgo": 0
+    },
+    "sdc1InputCurrent": {
+      "value": 0,
+      "timeAgo": 0
+    },
+    "sdc1OutputCurrent": {
+      "value": 0,
+      "timeAgo": 0
+    },
+    "sdc1OutputVoltage": {
+      "value": 0,
+      "timeAgo": 0
+    },
+    "sdc2InputCurrent": {
+      "value": 0,
+      "timeAgo": 0
+    },
+    "sdc2OutputCurrent": {
+      "value": 0,
+      "timeAgo": 0
+    },
+    "sdc2OutputVoltage": {
+      "value": 0,
+      "timeAgo": 0
+    },
+    "sdc1OvercurrentStatus": {
+      "value": false,
+      "timeAgo": 0
+    },
+    "sdc2OvercurrentStatus": {
+      "value": false,
+      "timeAgo": 0
+    },
+    "sdc1OvervoltageStatus": {
+      "value": false,
+      "timeAgo": 0
+    },
+    "sdc2OvervoltageStatus": {
+      "value": false,
+      "timeAgo": 0
+    },
+    "lsw": [
+      {
+        "name": "PCU1",
+        "timestamp": 2,
+        "flag": "ON"
+      },
+      {
+        "name": "PCU2",
+        "timestamp": 2,
+        "flag": "ON"
+      },
+      {
+        "name": "SDC1",
+        "timestamp": 2,
+        "flag": "OFF"
+      },
+      {
+        "name": "SDC2",
+        "timestamp": 2,
+        "flag": "ON"
+      },
+      {
+        "name": "OBC1",
+        "timestamp": 2,
+        "flag": "ON"
+      },
+      {
+        "name": "OBC2",
+        "timestamp": 2,
+        "flag": "OFF"
+      },
+      {
+        "name": "SPA1",
+        "timestamp": 2,
+        "flag": "OFF"
+      },
+      {
+        "name": "SPA2",
+        "timestamp": 2,
+        "flag": "OFF"
+      },
+      {
+        "name": "COM1",
+        "timestamp": 2,
+        "flag": "OFF"
+      },
+      {
+        "name": "COM2",
+        "timestamp": 2,
+        "flag": "ON"
+      },
+      {
+        "name": "ADC1",
+        "timestamp": 2,
+        "flag": "OFF"
+      },
+      {
+        "name": "ADC2",
+        "timestamp": 2,
+        "flag": "OFF"
+      },
+      {
+        "name": "ACCU1",
+        "timestamp": 2,
+        "flag": "ON"
+      },
+      {
+        "name": "ACCU2",
+        "timestamp": 2,
+        "flag": "OFF"
+      },
+      {
+        "name": "SUN1",
+        "timestamp": 2,
+        "flag": "OFF"
+      },
+      {
+        "name": "SUN2",
+        "timestamp": 2,
+        "flag": "OFF"
+      },
+      {
+        "name": "STX1",
+        "timestamp": 2,
+        "flag": "OFF"
+      },
+      {
+        "name": "STX2",
+        "timestamp": 2,
+        "flag": "OFF"
+      },
+      {
+        "name": "TID1",
+        "timestamp": 2,
+        "flag": "ON"
+      },
+      {
+        "name": "TID2",
+        "timestamp": 2,
+        "flag": "ON"
+      },
+      {
+        "name": "AIS1",
+        "timestamp": 2,
+        "flag": "OFF"
+      },
+      {
+        "name": "AIS2",
+        "timestamp": 2,
+        "flag": "OFF"
+      },
+      {
+        "name": "GPSCAM1",
+        "timestamp": 2,
+        "flag": "OFF"
+      },
+      {
+        "name": "GPSCAM2",
+        "timestamp": 2,
+        "flag": "OFF"
+      },
+      {
+        "name": "PASSIVE1",
+        "timestamp": 1,
+        "flag": "OFF"
+      },
+      {
+        "name": "PASSIVE2",
+        "timestamp": 1,
+        "flag": "OFF"
+      },
+      {
+        "name": "UNIDEB",
+        "timestamp": 1,
+        "flag": "OFF"
+      },
+      {
+        "name": "UNIGYR",
+        "timestamp": 2,
+        "flag": "OFF"
+      },
+      {
+        "name": "UNKNOWN",
+        "timestamp": 60,
+        "flag": "FAIL"
+      },
+      {
+        "name": "UNISZ2",
+        "timestamp": 2,
+        "flag": "OFF"
+      },
+      {
+        "name": "UNISZ1",
+        "timestamp": 2,
+        "flag": "OFF"
+      },
+      {
+        "name": "MPPT12",
+        "timestamp": 2,
+        "flag": "ON"
+      },
+      {
+        "name": "MPPT34",
+        "timestamp": 2,
+        "flag": "ON"
+      }
+    ],
+    "uart2Error": {
+      "value": 0
+    },
+    "uart3Error": {
+      "value": 0,
+      "timeAgo": 0
+    },
+    "uart4Error": {
+      "value": 0,
+      "timeAgo": 0
+    },
+    "uart6Error": {
+      "value": 0,
+      "timeAgo": 0
+    },
+    "comStxErrorRate": {
+      "value": 0.0,
+      "timeAgo": 15
+    },
+    "pcu1ErrorRate": {
+      "value": 0.0,
+      "timeAgo": 23
+    },
+    "pcu2ErrorRate": {
+      "value": 0.0,
+      "timeAgo": 31
+    },
+    "mpptErrorRate": {
+      "value": 12.54902,
+      "timeAgo": 42
+    },
+    "hibusErrorRate": {
+      "value": 5.098039
+    },
+    "spa1ErrorRate": {
+      "value": 2.745098
+    },
+    "spa2ErrorRate": {
+      "value": 100.0
+    },
+    "lobusErrorRate": {
+      "value": 100.0
+    },
+    "adcsErrorRate": {
+      "value": 100.0,
+      "timeAgo": 106
+    },
+    "accuErrorRate": {
+      "value": 49.80392,
+      "timeAgo": 12
+    }
+  },
+  "beginSample": 0,
+  "beginMillis": 0,
+  "endSample": 0
+}

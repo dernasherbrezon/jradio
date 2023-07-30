@@ -1,0 +1,206 @@
+{
+  "telemetry2": {
+    "timestamp": 1690287223,
+    "lsw": [
+      {
+        "name": "PCU1",
+        "timestamp": 3,
+        "on": true,
+        "voltage": 3746,
+        "current": 4
+      },
+      {
+        "name": "PCU2",
+        "timestamp": 3,
+        "on": true,
+        "voltage": 3746,
+        "current": 2
+      },
+      {
+        "name": "SDC1",
+        "timestamp": 2,
+        "on": false,
+        "voltage": 730,
+        "current": 618
+      },
+      {
+        "name": "SDC2",
+        "timestamp": 60,
+        "on": true,
+        "voltage": 3716,
+        "current": 192
+      },
+      {
+        "name": "OBC1",
+        "timestamp": 0,
+        "on": true,
+        "voltage": 3333,
+        "current": 21
+      },
+      {
+        "name": "OBC2",
+        "timestamp": 60,
+        "on": false,
+        "voltage": 0,
+        "current": 0
+      },
+      {
+        "name": "SPA1",
+        "timestamp": 60,
+        "on": false,
+        "voltage": 0,
+        "current": 0
+      },
+      {
+        "name": "SPA2",
+        "timestamp": 60,
+        "on": false,
+        "voltage": 0,
+        "current": 0
+      },
+      {
+        "name": "COM1",
+        "timestamp": 60,
+        "on": false,
+        "voltage": 25,
+        "current": 10
+      },
+      {
+        "name": "COM2",
+        "timestamp": 1,
+        "on": true,
+        "voltage": 3370,
+        "current": 10
+      },
+      {
+        "name": "ADC1",
+        "timestamp": 60,
+        "on": false,
+        "voltage": 11,
+        "current": 9
+      },
+      {
+        "name": "ADC2",
+        "timestamp": 60,
+        "on": false,
+        "voltage": 384,
+        "current": 302
+      },
+      {
+        "name": "ACCU1",
+        "timestamp": 40,
+        "on": true,
+        "voltage": 3325,
+        "current": 27
+      },
+      {
+        "name": "ACCU2",
+        "timestamp": 40,
+        "on": false,
+        "voltage": 1042,
+        "current": 510
+      },
+      {
+        "name": "SUN1",
+        "timestamp": 40,
+        "on": false,
+        "voltage": 0,
+        "current": 0
+      },
+      {
+        "name": "SUN2",
+        "timestamp": 40,
+        "on": false,
+        "voltage": 3,
+        "current": 2
+      },
+      {
+        "name": "STX1",
+        "timestamp": 40,
+        "on": false,
+        "voltage": 3,
+        "current": 5
+      },
+      {
+        "name": "STX2",
+        "timestamp": 40,
+        "on": false,
+        "voltage": 11,
+        "current": 7
+      },
+      {
+        "name": "TID1",
+        "timestamp": 30,
+        "on": true,
+        "voltage": 3322,
+        "current": 2
+      },
+      {
+        "name": "TID2",
+        "timestamp": 30,
+        "on": true,
+        "voltage": 3333,
+        "current": 0
+      },
+      {
+        "name": "AIS1",
+        "timestamp": 30,
+        "on": false,
+        "voltage": 0,
+        "current": 0
+      },
+      {
+        "name": "AIS2",
+        "timestamp": 23,
+        "on": false,
+        "voltage": 11,
+        "current": 4
+      },
+      {
+        "name": "GPSCAM1",
+        "timestamp": 22,
+        "on": false,
+        "voltage": 73,
+        "current": 29
+      },
+      {
+        "name": "GPSCAM2",
+        "timestamp": 22,
+        "on": false,
+        "voltage": 77,
+        "current": 30
+      },
+      {
+        "name": "PASSIVE1",
+        "timestamp": 18,
+        "on": false,
+        "voltage": 36,
+        "current": 12
+      },
+      {
+        "name": "PASSIVE2",
+        "timestamp": 17,
+        "on": false,
+        "voltage": 11,
+        "current": 3
+      },
+      {
+        "name": "MPPT12",
+        "timestamp": 7,
+        "on": true,
+        "voltage": 3760,
+        "current": 0
+      },
+      {
+        "name": "MPPT34",
+        "timestamp": 7,
+        "on": true,
+        "voltage": 3738,
+        "current": 0
+      }
+    ]
+  },
+  "beginSample": 0,
+  "beginMillis": 0,
+  "endSample": 0
+}

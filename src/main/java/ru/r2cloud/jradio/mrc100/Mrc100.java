@@ -29,11 +29,9 @@ public class Mrc100 extends BeaconSource<Mrc100Beacon> {
 		temp[temp.length - 1] = data[1];
 		temp[temp.length - 2] = data[2];
 		if (Crc16CcittFalse.calculate(temp, 0, temp.length) != 0) {
-			System.out.println("fail");
 			throw new UncorrectableException("crc mismatch");
 		}
 		if ((data[0] & 0xFF) == 0xc5) {
-			System.out.println("sync");
 			// skip sync packets
 			return null;
 		}

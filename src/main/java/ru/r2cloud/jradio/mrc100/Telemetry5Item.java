@@ -20,7 +20,7 @@ public class Telemetry5Item {
 		index = dis.readUnsignedByte();
 		if (timestamp < 0 || index > 4) {
 			// invalid
-			dis.skipBytes(16);
+			dis.skipBytes(19);
 			return;
 		}
 		byte[] telemetryBytes = new byte[19];

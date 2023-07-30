@@ -28,19 +28,19 @@ public class Telemetry1 {
 	private UshortValue pcu1Uptime; // in minutes
 	private UshortValue pcu2Uptime;
 
-	private UshortValue pcuUnregulatedBusVoltage;
-	private UshortValue pcuRegulatedBusVoltage;
+	private UshortCvtValue pcuUnregulatedBusVoltage;
+	private UshortCvtValue pcuRegulatedBusVoltage;
 
 	private FloatValue pcuTemperature;
-	private UshortValue pcuSupplyVoltage;
+	private UshortCvtValue pcuSupplyVoltage;
 
-	private UshortValue sdc1InputCurrent;
-	private UshortValue sdc1OutputCurrent;
-	private UshortValue sdc1OutputVoltage;
+	private UshortCvtValue sdc1InputCurrent;
+	private UshortCvtValue sdc1OutputCurrent;
+	private UshortCvtValue sdc1OutputVoltage;
 
-	private UshortValue sdc2InputCurrent;
-	private UshortValue sdc2OutputCurrent;
-	private UshortValue sdc2OutputVoltage;
+	private UshortCvtValue sdc2InputCurrent;
+	private UshortCvtValue sdc2OutputCurrent;
+	private UshortCvtValue sdc2OutputVoltage;
 
 	private BooleanValue sdc1OvercurrentStatus;
 	private BooleanValue sdc2OvercurrentStatus;
@@ -100,22 +100,22 @@ public class Telemetry1 {
 		pcu1Uptime = new UshortValue(dis);
 		pcu2Uptime = new UshortValue(dis);
 
-		pcuUnregulatedBusVoltage = new UshortValue(dis);
-		pcuRegulatedBusVoltage = new UshortValue(dis);
+		pcuUnregulatedBusVoltage = new UshortCvtValue(dis);
+		pcuRegulatedBusVoltage = new UshortCvtValue(dis);
 
-		ShortValue rawShort = new ShortValue(dis);
+		ShortCvtValue rawShort = new ShortCvtValue(dis);
 		pcuTemperature = new FloatValue();
 		pcuTemperature.setTimeAgo(rawShort.getTimeAgo());
 		pcuTemperature.setValue(rawShort.getValue() / 10.0f);
-		pcuSupplyVoltage = new UshortValue(dis);
+		pcuSupplyVoltage = new UshortCvtValue(dis);
 
-		sdc1InputCurrent = new UshortValue(dis);
-		sdc1OutputCurrent = new UshortValue(dis);
-		sdc1OutputVoltage = new UshortValue(dis);
+		sdc1InputCurrent = new UshortCvtValue(dis);
+		sdc1OutputCurrent = new UshortCvtValue(dis);
+		sdc1OutputVoltage = new UshortCvtValue(dis);
 
-		sdc2InputCurrent = new UshortValue(dis);
-		sdc2OutputCurrent = new UshortValue(dis);
-		sdc2OutputVoltage = new UshortValue(dis);
+		sdc2InputCurrent = new UshortCvtValue(dis);
+		sdc2OutputCurrent = new UshortCvtValue(dis);
+		sdc2OutputVoltage = new UshortCvtValue(dis);
 
 		sdc1OvercurrentStatus = new BooleanValue(dis);
 		sdc2OvercurrentStatus = new BooleanValue(dis);
@@ -311,19 +311,19 @@ public class Telemetry1 {
 		this.pcu2Uptime = pcu2Uptime;
 	}
 
-	public UshortValue getPcuUnregulatedBusVoltage() {
+	public UshortCvtValue getPcuUnregulatedBusVoltage() {
 		return pcuUnregulatedBusVoltage;
 	}
 
-	public void setPcuUnregulatedBusVoltage(UshortValue pcuUnregulatedBusVoltage) {
+	public void setPcuUnregulatedBusVoltage(UshortCvtValue pcuUnregulatedBusVoltage) {
 		this.pcuUnregulatedBusVoltage = pcuUnregulatedBusVoltage;
 	}
 
-	public UshortValue getPcuRegulatedBusVoltage() {
+	public UshortCvtValue getPcuRegulatedBusVoltage() {
 		return pcuRegulatedBusVoltage;
 	}
 
-	public void setPcuRegulatedBusVoltage(UshortValue pcuRegulatedBusVoltage) {
+	public void setPcuRegulatedBusVoltage(UshortCvtValue pcuRegulatedBusVoltage) {
 		this.pcuRegulatedBusVoltage = pcuRegulatedBusVoltage;
 	}
 
@@ -335,59 +335,59 @@ public class Telemetry1 {
 		this.pcuTemperature = pcuTemperature;
 	}
 
-	public UshortValue getPcuSupplyVoltage() {
+	public UshortCvtValue getPcuSupplyVoltage() {
 		return pcuSupplyVoltage;
 	}
 
-	public void setPcuSupplyVoltage(UshortValue pcuSupplyVoltage) {
+	public void setPcuSupplyVoltage(UshortCvtValue pcuSupplyVoltage) {
 		this.pcuSupplyVoltage = pcuSupplyVoltage;
 	}
 
-	public UshortValue getSdc1InputCurrent() {
+	public UshortCvtValue getSdc1InputCurrent() {
 		return sdc1InputCurrent;
 	}
 
-	public void setSdc1InputCurrent(UshortValue sdc1InputCurrent) {
+	public void setSdc1InputCurrent(UshortCvtValue sdc1InputCurrent) {
 		this.sdc1InputCurrent = sdc1InputCurrent;
 	}
 
-	public UshortValue getSdc1OutputCurrent() {
+	public UshortCvtValue getSdc1OutputCurrent() {
 		return sdc1OutputCurrent;
 	}
 
-	public void setSdc1OutputCurrent(UshortValue sdc1OutputCurrent) {
+	public void setSdc1OutputCurrent(UshortCvtValue sdc1OutputCurrent) {
 		this.sdc1OutputCurrent = sdc1OutputCurrent;
 	}
 
-	public UshortValue getSdc1OutputVoltage() {
+	public UshortCvtValue getSdc1OutputVoltage() {
 		return sdc1OutputVoltage;
 	}
 
-	public void setSdc1OutputVoltage(UshortValue sdc1OutputVoltage) {
+	public void setSdc1OutputVoltage(UshortCvtValue sdc1OutputVoltage) {
 		this.sdc1OutputVoltage = sdc1OutputVoltage;
 	}
 
-	public UshortValue getSdc2InputCurrent() {
+	public UshortCvtValue getSdc2InputCurrent() {
 		return sdc2InputCurrent;
 	}
 
-	public void setSdc2InputCurrent(UshortValue sdc2InputCurrent) {
+	public void setSdc2InputCurrent(UshortCvtValue sdc2InputCurrent) {
 		this.sdc2InputCurrent = sdc2InputCurrent;
 	}
 
-	public UshortValue getSdc2OutputCurrent() {
+	public UshortCvtValue getSdc2OutputCurrent() {
 		return sdc2OutputCurrent;
 	}
 
-	public void setSdc2OutputCurrent(UshortValue sdc2OutputCurrent) {
+	public void setSdc2OutputCurrent(UshortCvtValue sdc2OutputCurrent) {
 		this.sdc2OutputCurrent = sdc2OutputCurrent;
 	}
 
-	public UshortValue getSdc2OutputVoltage() {
+	public UshortCvtValue getSdc2OutputVoltage() {
 		return sdc2OutputVoltage;
 	}
 
-	public void setSdc2OutputVoltage(UshortValue sdc2OutputVoltage) {
+	public void setSdc2OutputVoltage(UshortCvtValue sdc2OutputVoltage) {
 		this.sdc2OutputVoltage = sdc2OutputVoltage;
 	}
 

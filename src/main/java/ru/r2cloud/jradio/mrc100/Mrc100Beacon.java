@@ -34,6 +34,7 @@ public class Mrc100Beacon extends Beacon {
 	public void readBeacon(byte[] data) throws IOException, UncorrectableException {
 		DataInputStream dis = new DataInputStream(new ByteArrayInputStream(data));
 		PacketType type = PacketType.values()[dis.readUnsignedByte() - 1];
+		// skip crc
 		dis.skipBytes(2);
 		LittleEndianDataInputStream ldis = new LittleEndianDataInputStream(dis);
 		switch (type) {

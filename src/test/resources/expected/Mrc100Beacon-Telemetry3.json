@@ -1,0 +1,209 @@
+{
+  "telemetry3": {
+    "timestamp": 1690287224,
+    "lsw": [
+      {
+        "name": "UNIDEB",
+        "timestamp": 18,
+        "on": false,
+        "voltage": 7,
+        "current": 4
+      },
+      {
+        "name": "UNIGYR",
+        "timestamp": 14,
+        "on": false,
+        "voltage": 14,
+        "current": 6
+      },
+      {
+        "name": "UNISZ2",
+        "timestamp": 13,
+        "on": false,
+        "voltage": 0,
+        "current": 0
+      },
+      {
+        "name": "UNISZ1",
+        "timestamp": 9,
+        "on": false,
+        "voltage": 0,
+        "current": 0
+      }
+    ],
+    "pcu1LswStatus": 101269471,
+    "pcu2LswStatus": 101269471,
+    "debStatus": {
+      "value": false
+    },
+    "gyrStatus": {
+      "value": false
+    },
+    "sz2Status": {
+      "value": false
+    },
+    "sz1Status": {
+      "value": false
+    },
+    "mpptInputCurrent": [
+      {
+        "value": 0,
+        "timeAgo": 1
+      },
+      {
+        "value": 0,
+        "timeAgo": 1
+      },
+      {
+        "value": 0,
+        "timeAgo": 1
+      },
+      {
+        "value": 0,
+        "timeAgo": 1
+      }
+    ],
+    "mpptInputVoltage": [
+      {
+        "value": 0,
+        "timeAgo": 1
+      },
+      {
+        "value": 0,
+        "timeAgo": 1
+      },
+      {
+        "value": 0,
+        "timeAgo": 1
+      },
+      {
+        "value": 0,
+        "timeAgo": 1
+      }
+    ],
+    "mpptOutputCurrent": [
+      {
+        "value": 0,
+        "timeAgo": 1
+      },
+      {
+        "value": 0,
+        "timeAgo": 1
+      },
+      {
+        "value": 0,
+        "timeAgo": 1
+      },
+      {
+        "value": 0,
+        "timeAgo": 1
+      }
+    ],
+    "mpptOutputVoltage": [
+      {
+        "value": 0,
+        "timeAgo": 1
+      },
+      {
+        "value": 0,
+        "timeAgo": 1
+      },
+      {
+        "value": 0,
+        "timeAgo": 1
+      },
+      {
+        "value": 0,
+        "timeAgo": 1
+      }
+    ],
+    "solarTemperature": [
+      {
+        "value": 0.0,
+        "timeAgo": 1
+      },
+      {
+        "value": 0.0,
+        "timeAgo": 1
+      },
+      {
+        "value": 0.0,
+        "timeAgo": 1
+      },
+      {
+        "value": 0.0,
+        "timeAgo": 1
+      },
+      {
+        "value": 0.0,
+        "timeAgo": 1
+      },
+      {
+        "value": 0.0,
+        "timeAgo": 1
+      }
+    ],
+    "accuLightSensors": [
+      {
+        "timeAgo": 1,
+        "lux": 12906.343,
+        "dark": false
+      },
+      {
+        "timeAgo": 1,
+        "lux": 82984.35,
+        "dark": false
+      },
+      {
+        "timeAgo": 1,
+        "lux": 26299.3,
+        "dark": false
+      },
+      {
+        "timeAgo": 1,
+        "lux": 24341.783,
+        "dark": false
+      },
+      {
+        "timeAgo": 1,
+        "lux": 7868.777,
+        "dark": false
+      },
+      {
+        "timeAgo": 1,
+        "lux": 59958.645,
+        "dark": false
+      }
+    ],
+    "accuInfraSensor": [
+      {
+        "value": 953,
+        "timeAgo": 1
+      },
+      {
+        "value": 8060,
+        "timeAgo": 1
+      },
+      {
+        "value": 2330,
+        "timeAgo": 1
+      },
+      {
+        "value": 2597,
+        "timeAgo": 1
+      },
+      {
+        "value": 852,
+        "timeAgo": 1
+      },
+      {
+        "value": 4236,
+        "timeAgo": 1
+      }
+    ],
+    "lastFileId": 136
+  },
+  "beginSample": 0,
+  "beginMillis": 0,
+  "endSample": 0
+}

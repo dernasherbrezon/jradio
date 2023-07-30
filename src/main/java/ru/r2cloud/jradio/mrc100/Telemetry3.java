@@ -8,16 +8,16 @@ public class Telemetry3 {
 
 	private long timestamp;
 	private LswCv[] lsw;
-	private UintValue pcu1LswStatus;
-	private UintValue pcu2LswStatus;
+	private long pcu1LswStatus;
+	private long pcu2LswStatus;
 	private BooleanValue debStatus;
 	private BooleanValue gyrStatus;
 	private BooleanValue sz2Status;
 	private BooleanValue sz1Status;
-	private UshortValue[] mpptInputCurrent;
-	private UshortValue[] mpptInputVoltage;
-	private UshortValue[] mpptOutputCurrent;
-	private UshortValue[] mpptOutputVoltage;
+	private UshortCvtValue[] mpptInputCurrent;
+	private UshortCvtValue[] mpptInputVoltage;
+	private UshortCvtValue[] mpptOutputCurrent;
+	private UshortCvtValue[] mpptOutputVoltage;
 	private FloatValue[] solarTemperature;
 	private LightSensor[] accuLightSensors;
 	private UshortValue[] accuInfraSensor;
@@ -34,6 +34,8 @@ public class Telemetry3 {
 		lsw[1] = new LswCv("UNIGYR", dis);
 		lsw[2] = new LswCv("UNISZ2", dis);
 		lsw[3] = new LswCv("UNISZ1", dis);
+		pcu1LswStatus = dis.readUnsignedInt();
+		pcu2LswStatus = dis.readUnsignedInt();
 		debStatus = new BooleanValue(dis);
 		gyrStatus = new BooleanValue(dis);
 		sz2Status = new BooleanValue(dis);
@@ -44,7 +46,7 @@ public class Telemetry3 {
 		mpptOutputVoltage = readUShortArray(dis, 4);
 		solarTemperature = new FloatValue[6];
 		for (int i = 0; i < solarTemperature.length; i++) {
-			ShortValue cur = new ShortValue(dis);
+			ShortCvtValue cur = new ShortCvtValue(dis);
 			solarTemperature[i] = new FloatValue();
 			solarTemperature[i].setTimeAgo(cur.getTimeAgo());
 			solarTemperature[i].setValue(cur.getValue() / 10.0f);
@@ -60,10 +62,10 @@ public class Telemetry3 {
 		lastFileId = dis.readUnsignedInt();
 	}
 
-	private static UshortValue[] readUShortArray(LittleEndianDataInputStream dis, int length) throws IOException {
-		UshortValue[] result = new UshortValue[length];
+	private static UshortCvtValue[] readUShortArray(LittleEndianDataInputStream dis, int length) throws IOException {
+		UshortCvtValue[] result = new UshortCvtValue[length];
 		for (int i = 0; i < result.length; i++) {
-			result[i] = new UshortValue(dis);
+			result[i] = new UshortCvtValue(dis);
 		}
 		return result;
 	}
@@ -84,19 +86,19 @@ public class Telemetry3 {
 		this.lsw = lsw;
 	}
 
-	public UintValue getPcu1LswStatus() {
+	public long getPcu1LswStatus() {
 		return pcu1LswStatus;
 	}
 
-	public void setPcu1LswStatus(UintValue pcu1LswStatus) {
+	public void setPcu1LswStatus(long pcu1LswStatus) {
 		this.pcu1LswStatus = pcu1LswStatus;
 	}
 
-	public UintValue getPcu2LswStatus() {
+	public long getPcu2LswStatus() {
 		return pcu2LswStatus;
 	}
 
-	public void setPcu2LswStatus(UintValue pcu2LswStatus) {
+	public void setPcu2LswStatus(long pcu2LswStatus) {
 		this.pcu2LswStatus = pcu2LswStatus;
 	}
 
@@ -132,35 +134,35 @@ public class Telemetry3 {
 		this.sz1Status = sz1Status;
 	}
 
-	public UshortValue[] getMpptInputCurrent() {
+	public UshortCvtValue[] getMpptInputCurrent() {
 		return mpptInputCurrent;
 	}
 
-	public void setMpptInputCurrent(UshortValue[] mpptInputCurrent) {
+	public void setMpptInputCurrent(UshortCvtValue[] mpptInputCurrent) {
 		this.mpptInputCurrent = mpptInputCurrent;
 	}
 
-	public UshortValue[] getMpptInputVoltage() {
+	public UshortCvtValue[] getMpptInputVoltage() {
 		return mpptInputVoltage;
 	}
 
-	public void setMpptInputVoltage(UshortValue[] mpptInputVoltage) {
+	public void setMpptInputVoltage(UshortCvtValue[] mpptInputVoltage) {
 		this.mpptInputVoltage = mpptInputVoltage;
 	}
 
-	public UshortValue[] getMpptOutputCurrent() {
+	public UshortCvtValue[] getMpptOutputCurrent() {
 		return mpptOutputCurrent;
 	}
 
-	public void setMpptOutputCurrent(UshortValue[] mpptOutputCurrent) {
+	public void setMpptOutputCurrent(UshortCvtValue[] mpptOutputCurrent) {
 		this.mpptOutputCurrent = mpptOutputCurrent;
 	}
 
-	public UshortValue[] getMpptOutputVoltage() {
+	public UshortCvtValue[] getMpptOutputVoltage() {
 		return mpptOutputVoltage;
 	}
 
-	public void setMpptOutputVoltage(UshortValue[] mpptOutputVoltage) {
+	public void setMpptOutputVoltage(UshortCvtValue[] mpptOutputVoltage) {
 		this.mpptOutputVoltage = mpptOutputVoltage;
 	}
 

@@ -1,0 +1,82 @@
+{
+  "beacon": {
+    "timestamp": 1690287224,
+    "infos": [
+      {
+        "serialNumber": {
+          "value": 1690207339
+        },
+        "rssi": 156
+      },
+      {
+        "serialNumber": {
+          "value": 1690207415
+        },
+        "rssi": 172
+      },
+      {
+        "serialNumber": {
+          "value": 1690281368
+        },
+        "rssi": 158
+      },
+      {
+        "serialNumber": {
+          "value": 1690281425
+        },
+        "rssi": 170
+      },
+      {
+        "serialNumber": {
+          "value": 1690281466
+        },
+        "rssi": 190
+      },
+      {
+        "serialNumber": {
+          "value": 1690281472
+        },
+        "rssi": 179
+      },
+      {
+        "serialNumber": {
+          "value": 1690281656
+        },
+        "rssi": 164
+      },
+      {
+        "serialNumber": {
+          "value": 1690287046
+        },
+        "rssi": 152
+      }
+    ],
+    "txMaxCurrent": {
+      "value": 0
+    },
+    "txMinVoltage": {
+      "value": 0
+    },
+    "com2Active": {
+      "value": true
+    },
+    "txMcsTimeAgo": 0,
+    "txMcs": "G012",
+    "txPowerLevel": {
+      "value": 15,
+      "timeAgo": 0
+    },
+    "comCycleSleep": {
+      "value": 0,
+      "timeAgo": 0
+    },
+    "emergencyMode": {
+      "value": false,
+      "timeAgo": 0
+    },
+    "message": "🚀 http://152.66.80.46/mrc100dec/rx/ 🛰️"
+  },
+  "beginSample": 0,
+  "beginMillis": 0,
+  "endSample": 0
+}

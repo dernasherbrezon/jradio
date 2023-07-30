@@ -9,13 +9,13 @@ public class Telemetry4 {
 	private long timestamp;
 	private BooleanValue accu1Active;
 	private BooleanValue accu2Active;
-	private ShortValue accu1Current;
-	private ShortValue accu2Current;
+	private ShortCvtValue accu1Current;
+	private ShortCvtValue accu2Current;
 
 	private FloatValue[] accu1Temperature;
-	private ShortValue accu1TemeratureRef;
+	private ShortCvtValue accu1TemeratureRef;
 	private FloatValue[] accu2Temperature;
-	private ShortValue accu2TemeratureRef;
+	private ShortCvtValue accu2TemeratureRef;
 
 	private Integer gpsDateTimeAgo;
 	private int gpsYear;
@@ -58,26 +58,26 @@ public class Telemetry4 {
 		timestamp = dis.readUnsignedInt();
 		accu1Active = new BooleanValue(dis);
 		accu2Active = new BooleanValue(dis);
-		accu1Current = new ShortValue(dis);
-		accu2Current = new ShortValue(dis);
+		accu1Current = new ShortCvtValue(dis);
+		accu2Current = new ShortCvtValue(dis);
 
 		accu1Temperature = new FloatValue[6];
 		for (int i = 0; i < accu1Temperature.length; i++) {
-			ShortValue cur = new ShortValue(dis);
+			ShortCvtValue cur = new ShortCvtValue(dis);
 			accu1Temperature[i] = new FloatValue();
 			accu1Temperature[i].setTimeAgo(cur.getTimeAgo());
 			accu1Temperature[i].setValue(cur.getValue() / 10.0f);
 		}
-		accu1TemeratureRef = new ShortValue(dis);
+		accu1TemeratureRef = new ShortCvtValue(dis);
 
 		accu2Temperature = new FloatValue[6];
 		for (int i = 0; i < accu2Temperature.length; i++) {
-			ShortValue cur = new ShortValue(dis);
+			ShortCvtValue cur = new ShortCvtValue(dis);
 			accu2Temperature[i] = new FloatValue();
 			accu2Temperature[i].setTimeAgo(cur.getTimeAgo());
 			accu2Temperature[i].setValue(cur.getValue() / 10.0f);
 		}
-		accu2TemeratureRef = new ShortValue(dis);
+		accu2TemeratureRef = new ShortCvtValue(dis);
 		gpsDateTimeAgo = BeaconInfo.convertByteSecondsAgo(dis.readUnsignedByte());
 		long value = dis.readUnsignedInt();
 		gpsYear = (int) (value % 100) + 2000;
@@ -113,18 +113,17 @@ public class Telemetry4 {
 		magnetometerY = new ShortValue(dis);
 		magnetometerZ = new ShortValue(dis);
 
-		ShortValue rawShort = new ShortValue(dis);
-		comTemperature = new FloatValue();
-		comTemperature.setTimeAgo(rawShort.getTimeAgo());
-		comTemperature.setValue(rawShort.getValue() / 10.0f);
-		rawShort = new ShortValue(dis);
-		stxTemperature = new FloatValue();
-		stxTemperature.setTimeAgo(rawShort.getTimeAgo());
-		stxTemperature.setValue(rawShort.getValue() / 10.0f);
-		rawShort = new ShortValue(dis);
-		rtccTemperature = new FloatValue();
-		rtccTemperature.setTimeAgo(rawShort.getTimeAgo());
-		rtccTemperature.setValue(rawShort.getValue() / 10.0f);
+		comTemperature = readFloatValue(dis);
+		stxTemperature = readFloatValue(dis);
+		rtccTemperature = readFloatValue(dis);
+	}
+
+	private static FloatValue readFloatValue(LittleEndianDataInputStream dis) throws IOException {
+		ShortCvtValue rawShort = new ShortCvtValue(dis);
+		FloatValue result = new FloatValue();
+		result.setTimeAgo(rawShort.getTimeAgo());
+		result.setValue(rawShort.getValue() / 10.0f);
+		return result;
 	}
 
 	public long getTimestamp() {
@@ -151,19 +150,19 @@ public class Telemetry4 {
 		this.accu2Active = accu2Active;
 	}
 
-	public ShortValue getAccu1Current() {
+	public ShortCvtValue getAccu1Current() {
 		return accu1Current;
 	}
 
-	public void setAccu1Current(ShortValue accu1Current) {
+	public void setAccu1Current(ShortCvtValue accu1Current) {
 		this.accu1Current = accu1Current;
 	}
 
-	public ShortValue getAccu2Current() {
+	public ShortCvtValue getAccu2Current() {
 		return accu2Current;
 	}
 
-	public void setAccu2Current(ShortValue accu2Current) {
+	public void setAccu2Current(ShortCvtValue accu2Current) {
 		this.accu2Current = accu2Current;
 	}
 
@@ -175,11 +174,11 @@ public class Telemetry4 {
 		this.accu1Temperature = accu1Temperature;
 	}
 
-	public ShortValue getAccu1TemeratureRef() {
+	public ShortCvtValue getAccu1TemeratureRef() {
 		return accu1TemeratureRef;
 	}
 
-	public void setAccu1TemeratureRef(ShortValue accu1TemeratureRef) {
+	public void setAccu1TemeratureRef(ShortCvtValue accu1TemeratureRef) {
 		this.accu1TemeratureRef = accu1TemeratureRef;
 	}
 
@@ -191,11 +190,11 @@ public class Telemetry4 {
 		this.accu2Temperature = accu2Temperature;
 	}
 
-	public ShortValue getAccu2TemeratureRef() {
+	public ShortCvtValue getAccu2TemeratureRef() {
 		return accu2TemeratureRef;
 	}
 
-	public void setAccu2TemeratureRef(ShortValue accu2TemeratureRef) {
+	public void setAccu2TemeratureRef(ShortCvtValue accu2TemeratureRef) {
 		this.accu2TemeratureRef = accu2TemeratureRef;
 	}
 

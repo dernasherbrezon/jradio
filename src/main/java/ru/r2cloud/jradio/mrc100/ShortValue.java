@@ -10,9 +10,8 @@ public class ShortValue {
 	private Integer timeAgo;
 
 	public ShortValue(LittleEndianDataInputStream dis) throws IOException {
-		short value = dis.readShort();
-		timeAgo = BeaconInfo.convertTimeAgo(value);
-		value = (short) (value >> 3);
+		timeAgo = BeaconInfo.convertByteSecondsAgo(dis.readUnsignedByte());
+		value = dis.readShort();
 	}
 
 	public short getValue() {

@@ -11,11 +11,11 @@ public class Telemetry6 {
 	private BooleanValue tid1Active;
 	private BooleanValue tid2Active;
 
-	private ShortValue tid1Temperature;
-	private ShortValue tid2Temperature;
+	private ShortCvtValue tid1Temperature;
+	private ShortCvtValue tid2Temperature;
 
-	private UshortValue tid1Voltage;
-	private UshortValue tid2Voltage;
+	private UshortCvtValue tid1Voltage;
+	private UshortCvtValue tid2Voltage;
 
 	private UintValue tid1SerialNumber;
 	private Integer tid1RadFET1TimeAgo;
@@ -29,8 +29,8 @@ public class Telemetry6 {
 	private Integer tid2RadFET2TimeAgo;
 	private float tid2RadFET2;
 
-	private UshortValue rxCurrent;
-	private UshortValue idleCurrent;
+	private UshortCvtValue rxCurrent;
+	private UshortCvtValue idleCurrent;
 
 	private UbyteValue ais1BufferedMessages;
 	private UbyteValue ais2BufferedMessages;
@@ -53,10 +53,10 @@ public class Telemetry6 {
 		timestamp = dis.readUnsignedInt();
 		tid1Active = new BooleanValue(dis);
 		tid2Active = new BooleanValue(dis);
-		tid1Temperature = new ShortValue(dis);
-		tid2Temperature = new ShortValue(dis);
-		tid1Voltage = new UshortValue(dis);
-		tid2Voltage = new UshortValue(dis);
+		tid1Temperature = new ShortCvtValue(dis);
+		tid2Temperature = new ShortCvtValue(dis);
+		tid1Voltage = new UshortCvtValue(dis);
+		tid2Voltage = new UshortCvtValue(dis);
 
 		tid1SerialNumber = new UintValue(dis);
 		tid1RadFET1TimeAgo = BeaconInfo.convertByteSecondsAgo(dis.readUnsignedByte());
@@ -70,8 +70,8 @@ public class Telemetry6 {
 		tid2RadFET2TimeAgo = BeaconInfo.convertByteSecondsAgo(dis.readUnsignedByte());
 		tid2RadFET2 = dis.readFloat() / 10.0f;
 
-		rxCurrent = new UshortValue(dis);
-		idleCurrent = new UshortValue(dis);
+		rxCurrent = new UshortCvtValue(dis);
+		idleCurrent = new UshortCvtValue(dis);
 
 		ais1BufferedMessages = new UbyteValue(dis);
 		ais2BufferedMessages = new UbyteValue(dis);
@@ -111,35 +111,35 @@ public class Telemetry6 {
 		this.tid2Active = tid2Active;
 	}
 
-	public ShortValue getTid1Temperature() {
+	public ShortCvtValue getTid1Temperature() {
 		return tid1Temperature;
 	}
 
-	public void setTid1Temperature(ShortValue tid1Temperature) {
+	public void setTid1Temperature(ShortCvtValue tid1Temperature) {
 		this.tid1Temperature = tid1Temperature;
 	}
 
-	public ShortValue getTid2Temperature() {
+	public ShortCvtValue getTid2Temperature() {
 		return tid2Temperature;
 	}
 
-	public void setTid2Temperature(ShortValue tid2Temperature) {
+	public void setTid2Temperature(ShortCvtValue tid2Temperature) {
 		this.tid2Temperature = tid2Temperature;
 	}
 
-	public UshortValue getTid1Voltage() {
+	public UshortCvtValue getTid1Voltage() {
 		return tid1Voltage;
 	}
 
-	public void setTid1Voltage(UshortValue tid1Voltage) {
+	public void setTid1Voltage(UshortCvtValue tid1Voltage) {
 		this.tid1Voltage = tid1Voltage;
 	}
 
-	public UshortValue getTid2Voltage() {
+	public UshortCvtValue getTid2Voltage() {
 		return tid2Voltage;
 	}
 
-	public void setTid2Voltage(UshortValue tid2Voltage) {
+	public void setTid2Voltage(UshortCvtValue tid2Voltage) {
 		this.tid2Voltage = tid2Voltage;
 	}
 
@@ -223,19 +223,19 @@ public class Telemetry6 {
 		this.tid2RadFET2 = tid2RadFET2;
 	}
 
-	public UshortValue getRxCurrent() {
+	public UshortCvtValue getRxCurrent() {
 		return rxCurrent;
 	}
 
-	public void setRxCurrent(UshortValue rxCurrent) {
+	public void setRxCurrent(UshortCvtValue rxCurrent) {
 		this.rxCurrent = rxCurrent;
 	}
 
-	public UshortValue getIdleCurrent() {
+	public UshortCvtValue getIdleCurrent() {
 		return idleCurrent;
 	}
 
-	public void setIdleCurrent(UshortValue idleCurrent) {
+	public void setIdleCurrent(UshortCvtValue idleCurrent) {
 		this.idleCurrent = idleCurrent;
 	}
 

@@ -10,8 +10,8 @@ public class Beacon {
 	private long timestamp;
 	private BeaconInfo[] infos;
 
-	private UshortValue txMaxCurrent;
-	private UshortValue txMinVoltage;
+	private UshortCvtValue txMaxCurrent;
+	private UshortCvtValue txMinVoltage;
 	private BooleanValue com2Active;
 
 	private Integer txMcsTimeAgo;
@@ -28,14 +28,19 @@ public class Beacon {
 	}
 
 	public Beacon(LittleEndianDataInputStream dis) throws IOException {
-		txMaxCurrent = new UshortValue(dis);
-		txMinVoltage = new UshortValue(dis);
+		timestamp = dis.readUnsignedInt();
+		infos = new BeaconInfo[8];
+		for (int i = 0; i < infos.length; i++) {
+			infos[i] = new BeaconInfo(dis);
+		}
+		txMaxCurrent = new UshortCvtValue(dis);
+		txMinVoltage = new UshortCvtValue(dis);
 		com2Active = new BooleanValue(dis);
 
 		txMcsTimeAgo = BeaconInfo.convertByteSecondsAgo(dis.readUnsignedByte());
 		byte[] txMcsBytes = new byte[4];
 		dis.readFully(txMcsBytes);
-		txMcs = new String(txMcsBytes, StandardCharsets.US_ASCII).trim();
+		txMcs = new String(txMcsBytes, StandardCharsets.UTF_8).trim();
 
 		txPowerLevel = new UbyteValue(dis);
 
@@ -45,7 +50,7 @@ public class Beacon {
 
 		byte[] messageBytes = new byte[48];
 		dis.readFully(messageBytes);
-		message = new String(messageBytes, StandardCharsets.US_ASCII).trim();
+		message = new String(messageBytes, StandardCharsets.UTF_8).trim();
 	}
 
 	public long getTimestamp() {
@@ -64,19 +69,19 @@ public class Beacon {
 		this.infos = infos;
 	}
 
-	public UshortValue getTxMaxCurrent() {
+	public UshortCvtValue getTxMaxCurrent() {
 		return txMaxCurrent;
 	}
 
-	public void setTxMaxCurrent(UshortValue txMaxCurrent) {
+	public void setTxMaxCurrent(UshortCvtValue txMaxCurrent) {
 		this.txMaxCurrent = txMaxCurrent;
 	}
 
-	public UshortValue getTxMinVoltage() {
+	public UshortCvtValue getTxMinVoltage() {
 		return txMinVoltage;
 	}
 
-	public void setTxMinVoltage(UshortValue txMinVoltage) {
+	public void setTxMinVoltage(UshortCvtValue txMinVoltage) {
 		this.txMinVoltage = txMinVoltage;
 	}
 

@@ -1,0 +1,128 @@
+{
+  "telemetry4": {
+    "timestamp": 1690287224,
+    "accu1Active": {
+      "value": true,
+      "timeAgo": 0
+    },
+    "accu2Active": {
+      "value": true
+    },
+    "accu1Current": {
+      "value": 0,
+      "timeAgo": 5
+    },
+    "accu2Current": {
+      "value": 0
+    },
+    "accu1Temperature": [
+      {
+        "value": 0.0,
+        "timeAgo": 1
+      },
+      {
+        "value": 0.0,
+        "timeAgo": 1
+      },
+      {
+        "value": 0.0,
+        "timeAgo": 1
+      },
+      {
+        "value": 0.0,
+        "timeAgo": 1
+      },
+      {
+        "value": 0.0,
+        "timeAgo": 1
+      },
+      {
+        "value": 0.0,
+        "timeAgo": 1
+      }
+    ],
+    "accu1TemeratureRef": {
+      "value": 0,
+      "timeAgo": 1
+    },
+    "accu2Temperature": [
+      {
+        "value": 0.0
+      },
+      {
+        "value": 0.0
+      },
+      {
+        "value": 0.0
+      },
+      {
+        "value": 0.0
+      },
+      {
+        "value": 0.0
+      },
+      {
+        "value": 0.0
+      }
+    ],
+    "accu2TemeratureRef": {
+      "value": 0
+    },
+    "gpsYear": 2095,
+    "gpsMonth": 72,
+    "gpsDay": 67,
+    "gpsHour": 29,
+    "gpsMinute": 49,
+    "gpsSecond": 67,
+    "gpsMillisecond": 295,
+    "gpsLatitude": -8.381903E-8,
+    "gpsLongitude": -8.381903E-8,
+    "gpsAltitude": {
+      "value": 4294967295
+    },
+    "gpsVelocity": {
+      "value": 65535
+    },
+    "gpsCourse": {
+      "value": 6553.5
+    },
+    "gyroOmegaP": {
+      "value": 0,
+      "timeAgo": 0
+    },
+    "gyroOmegaR": {
+      "value": 0,
+      "timeAgo": 0
+    },
+    "gyroOmegaY": {
+      "value": 0,
+      "timeAgo": 0
+    },
+    "magnetometerX": {
+      "value": -14655,
+      "timeAgo": 0
+    },
+    "magnetometerY": {
+      "value": -30936,
+      "timeAgo": 0
+    },
+    "magnetometerZ": {
+      "value": 18957,
+      "timeAgo": 0
+    },
+    "comTemperature": {
+      "value": 0.0,
+      "timeAgo": 0
+    },
+    "stxTemperature": {
+      "value": 0.0
+    },
+    "rtccTemperature": {
+      "value": 0.0,
+      "timeAgo": 1
+    }
+  },
+  "beginSample": 0,
+  "beginMillis": 0,
+  "endSample": 0
+}

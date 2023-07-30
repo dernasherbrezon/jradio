@@ -1,0 +1,81 @@
+{
+  "telemetry6": {
+    "timestamp": 1690287224,
+    "tid1Active": {
+      "value": true
+    },
+    "tid2Active": {
+      "value": true,
+      "timeAgo": 49
+    },
+    "tid1Temperature": {
+      "value": 0
+    },
+    "tid2Temperature": {
+      "value": 0,
+      "timeAgo": 60
+    },
+    "tid1Voltage": {
+      "value": 0
+    },
+    "tid2Voltage": {
+      "value": 0,
+      "timeAgo": 60
+    },
+    "tid1SerialNumber": {
+      "value": 17331
+    },
+    "tid1RadFET1": 3.8579917,
+    "tid1RadFET2": 3.755787,
+    "tid2SerialNumber": {
+      "value": 17335,
+      "timeAgo": 49
+    },
+    "tid2RadFET1TimeAgo": 49,
+    "tid2RadFET1": 0.7021917,
+    "tid2RadFET2TimeAgo": 49,
+    "tid2RadFET2": 0.9209878,
+    "rxCurrent": {
+      "value": 0
+    },
+    "idleCurrent": {
+      "value": 0
+    },
+    "ais1BufferedMessages": {
+      "value": 255
+    },
+    "ais2BufferedMessages": {
+      "value": 255
+    },
+    "hamEnabled": {
+      "value": false
+    },
+    "adcsProgrammingEnabled": {
+      "value": false
+    },
+    "adcsActive": {
+      "value": true
+    },
+    "adcsExec": {
+      "value": true
+    },
+    "adcsErased": {
+      "value": true
+    },
+    "adcsValidCode": {
+      "value": true
+    },
+    "adcsCrc16": {
+      "value": 3964
+    },
+    "adcsSun1": {
+      "value": true
+    },
+    "adcsSun2": {
+      "value": true
+    }
+  },
+  "beginSample": 0,
+  "beginMillis": 0,
+  "endSample": 0
+}

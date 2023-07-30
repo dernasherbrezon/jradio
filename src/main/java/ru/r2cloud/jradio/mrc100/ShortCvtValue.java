@@ -4,21 +4,22 @@ import java.io.IOException;
 
 import ru.r2cloud.jradio.util.LittleEndianDataInputStream;
 
-public class UshortValue {
+public class ShortCvtValue {
 
-	private int value;
+	private short value;
 	private Integer timeAgo;
 
-	public UshortValue(LittleEndianDataInputStream dis) throws IOException {
-		timeAgo = BeaconInfo.convertByteSecondsAgo(dis.readUnsignedByte());
-		value = dis.readUnsignedShort();
+	public ShortCvtValue(LittleEndianDataInputStream dis) throws IOException {
+		short value = dis.readShort();
+		timeAgo = BeaconInfo.convertTimeAgo(value);
+		value = (short) (value >> 3);
 	}
 
-	public int getValue() {
+	public short getValue() {
 		return value;
 	}
 
-	public void setValue(int value) {
+	public void setValue(short value) {
 		this.value = value;
 	}
 
