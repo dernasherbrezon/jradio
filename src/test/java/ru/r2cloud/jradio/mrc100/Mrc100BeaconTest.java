@@ -1,5 +1,10 @@
 package ru.r2cloud.jradio.mrc100;
 
+import static com.google.code.beanmatchers.BeanMatchers.hasValidBeanConstructor;
+import static com.google.code.beanmatchers.BeanMatchers.hasValidGettersAndSetters;
+import static org.hamcrest.CoreMatchers.allOf;
+import static org.hamcrest.MatcherAssert.assertThat;
+
 import org.junit.Test;
 
 import ru.r2cloud.jradio.AssertJson;
@@ -79,6 +84,27 @@ public class Mrc100BeaconTest {
 		Mrc100Beacon result = new Mrc100Beacon();
 		result.readBeacon(data);
 		AssertJson.assertObjectsEqual("Mrc100Beacon-FileStart.json", result);
+	}
+
+	@Test
+	public void testPojo() {
+		assertThat(Mrc100Beacon.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
+		assertThat(FileDl.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
+		assertThat(FileDlStartBlock.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
+		assertThat(FileInfo.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
+		assertThat(SpaTruncated.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
+		assertThat(Spa.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
+		assertThat(ProgMap.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
+		assertThat(ru.r2cloud.jradio.mrc100.Beacon.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
+		assertThat(AdcsTelemetry.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
+		assertThat(TelemetryCustom.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
+		assertThat(Telemetry6.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
+		assertThat(Telemetry5.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
+		assertThat(Telemetry4.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
+		assertThat(Telemetry3.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
+		assertThat(Telemetry2.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
+		assertThat(Telemetry1.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
+		assertThat(UplinkFeedback.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
 	}
 
 }
