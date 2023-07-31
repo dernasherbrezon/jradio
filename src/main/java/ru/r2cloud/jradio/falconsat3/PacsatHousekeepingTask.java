@@ -3,6 +3,7 @@ package ru.r2cloud.jradio.falconsat3;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Locale;
 import java.util.TimeZone;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -33,7 +34,7 @@ public class PacsatHousekeepingTask {
 		minutes = Integer.valueOf(m.group(3));
 		seconds = Integer.valueOf(m.group(4));
 
-		SimpleDateFormat sdf = new SimpleDateFormat("EEE MMM dd HH:mm:ss yyyy");
+		SimpleDateFormat sdf = new SimpleDateFormat("EEE MMM dd HH:mm:ss yyyy", Locale.ENGLISH);
 		sdf.setTimeZone(TimeZone.getTimeZone("GMT"));
 		try {
 			currentTime = sdf.parse(m.group(5)).getTime();
