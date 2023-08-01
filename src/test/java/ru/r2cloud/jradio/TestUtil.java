@@ -75,16 +75,20 @@ public class TestUtil {
 		assertFloatInput(0, expected, actual);
 	}
 
-	public static void assertImage(String expectedName, BufferedImage actual) throws IOException {
+	public static void assertImage(String expectedName, BufferedImage actual, int skipWidth, int skipHeight) throws IOException {
 		assertNotNull(actual);
 		try (InputStream is1 = TestUtil.class.getClassLoader().getResourceAsStream(expectedName)) {
 			BufferedImage expected = ImageIO.read(is1);
-			for (int i = 0; i < expected.getWidth(); i++) {
-				for (int j = 0; j < expected.getHeight(); j++) {
+			for (int i = skipWidth; i < expected.getWidth(); i++) {
+				for (int j = skipHeight; j < expected.getHeight(); j++) {
 					assertEquals("failure in image: " + expectedName, expected.getRGB(i, j), actual.getRGB(i, j));
 				}
 			}
 		}
+	}
+
+	public static void assertImage(String expectedName, BufferedImage actual) throws IOException {
+		assertImage(expectedName, actual, 0, 0);
 	}
 
 	private TestUtil() {
