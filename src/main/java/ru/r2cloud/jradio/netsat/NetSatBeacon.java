@@ -27,7 +27,9 @@ public class NetSatBeacon extends Beacon {
 		}
 		DataInputStream dis = new DataInputStream(new ByteArrayInputStream(data));
 		// First 16 bytes are not valid AX.25 header
-		dis.skip(ru.r2cloud.jradio.ax25.Header.LENGTH_BYTES);
+		if (dis.skip(ru.r2cloud.jradio.ax25.Header.LENGTH_BYTES) != ru.r2cloud.jradio.ax25.Header.LENGTH_BYTES) {
+			throw new IOException("not enough data");
+		}
 		header = new Header(dis);
 		LittleEndianDataInputStream ldis = new LittleEndianDataInputStream(dis);
 		compassHeader = new CompassHeader(ldis);

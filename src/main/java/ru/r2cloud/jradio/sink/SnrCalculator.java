@@ -112,6 +112,9 @@ public class SnrCalculator {
 				noise += row[i];
 			}
 		}
+		if (noise == 0.0f) {
+			return 0.0f;
+		}
 		return (float) (10 * Math.log10((signal - noise) / noise));
 	}
 
