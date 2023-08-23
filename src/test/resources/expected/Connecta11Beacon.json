@@ -1,0 +1,56 @@
+{
+  "connecta11Header": {
+    "beaconPreamble": 7144583,
+    "beaconPreamble1": 1,
+    "beaconId": 3
+  },
+  "beaconData": {
+    "rxPacketCnt": 69,
+    "tmtcTemperature1": 7,
+    "tmtcTemperature2": 8,
+    "mpptConverterVoltage1": 366,
+    "mpptConverterVoltage2": 344,
+    "mpptConverterVoltage3": 362,
+    "mpptConverterVoltage4": 389,
+    "panel1Current": 0,
+    "panel3Current": 0,
+    "panel2Current": 0,
+    "panel5Current": 0,
+    "panel6Current": 0,
+    "panel4Current": 0,
+    "vbat": 8177,
+    "epsTemperature1": 8,
+    "epsTemperature2": 8,
+    "epsTemperature3": 8,
+    "epsTemperature4": 8,
+    "obcUnixTime": 1692769452,
+    "obcBootTime": 1692482786,
+    "obcBootCount": 2,
+    "panel1Temperature": -11,
+    "panel2Temperature": -8,
+    "panel3Temperature": -7,
+    "panel4Temperature": -18,
+    "panel5Temperature": -8,
+    "panel6Temperature": -13
+  },
+  "header": {
+    "destinationAddress": {
+      "callsign": "PLANS1",
+      "ssid": 0,
+      "extensionBit": 0
+    },
+    "sourceAddress": {
+      "callsign": "CONT11",
+      "ssid": 0,
+      "extensionBit": 1
+    },
+    "frameType": "U",
+    "sendSequenceNumber": 0,
+    "receiveSequenceNumber": 0,
+    "uControlType": "UI",
+    "pid": 240
+  },
+  "beginSample": 0,
+  "beginMillis": 0,
+  "endSample": 0
+}

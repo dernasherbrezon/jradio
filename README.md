@@ -524,6 +524,12 @@ jradio has lots of built-in satellite decoders. Some of them have non standard d
 			<td>49016</td>
 			<td>ru.r2cloud.jradio.dhabi.DhabisatBeacon</td>
 		</tr>
+		<tr>
+			<td>CONNECTA T1.1</td>
+			<td>52739</td>
+			<td>ru.r2cloud.jradio.connecta.Connecta11Beacon</td>
+		</tr>
+
 	</tbody>
 </table>
   
