@@ -1,0 +1,31 @@
+{
+  "dhabisatHeader": {
+    "dataType": 202,
+    "timestamp": 0,
+    "fileIndex": 0,
+    "interval": 0,
+    "totalPackets": 1,
+    "currentPacket": 1
+  },
+  "genericPacket": "Yo! This is DHABISAT from YahSat Space Lab at Khalifa University, Abu Dhabi, UAE.",
+  "header": {
+    "destinationAddress": {
+      "callsign": "A68KU",
+      "ssid": 0,
+      "extensionBit": 0
+    },
+    "sourceAddress": {
+      "callsign": "A68MX",
+      "ssid": 0,
+      "extensionBit": 1
+    },
+    "frameType": "U",
+    "sendSequenceNumber": 0,
+    "receiveSequenceNumber": 0,
+    "uControlType": "UI",
+    "pid": 240
+  },
+  "beginSample": 0,
+  "beginMillis": 0,
+  "endSample": 0
+}
