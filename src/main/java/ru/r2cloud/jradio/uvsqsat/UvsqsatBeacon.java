@@ -28,6 +28,7 @@ public class UvsqsatBeacon extends Ax25Beacon {
 	private TrxvutxHk trxvutxHk;
 
 	private byte[] unknownPayload;
+	private byte[] ax25Info;
 
 	@Override
 	public void readBeacon(DataInputStream dis) throws IOException, UncorrectableException {
@@ -73,6 +74,18 @@ public class UvsqsatBeacon extends Ax25Beacon {
 			unknownPayload = new byte[dis.available()];
 			dis.readFully(unknownPayload);
 		}
+		if (dis.available() > 0) {
+			ax25Info = new byte[dis.available()];
+			dis.readFully(ax25Info);
+		}
+	}
+
+	public byte[] getAx25Info() {
+		return ax25Info;
+	}
+
+	public void setAx25Info(byte[] ax25Info) {
+		this.ax25Info = ax25Info;
 	}
 
 	public PacketPrimaryHeader getPrimaryHeader() {

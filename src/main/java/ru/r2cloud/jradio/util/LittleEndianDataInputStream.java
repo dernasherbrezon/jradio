@@ -4,6 +4,7 @@ import java.io.DataInput;
 import java.io.DataInputStream;
 import java.io.EOFException;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 
 public class LittleEndianDataInputStream implements DataInput {
 
@@ -44,9 +45,9 @@ public class LittleEndianDataInputStream implements DataInput {
 		int b5 = dis.readUnsignedByte();
 		if ((b1 | b2 | b3 | b4 | b5) < 0)
 			throw new EOFException();
-		return ((long)b5 << 32) | ((long)b4 << 24) | (b3 << 16) | (b2 << 8) | b1;
+		return ((long) b5 << 32) | ((long) b4 << 24) | (b3 << 16) | (b2 << 8) | b1;
 	}
-	
+
 	public long readUnsigned6Bytes() throws IOException {
 		int b1 = dis.readUnsignedByte();
 		int b2 = dis.readUnsignedByte();
@@ -56,9 +57,9 @@ public class LittleEndianDataInputStream implements DataInput {
 		int b6 = dis.readUnsignedByte();
 		if ((b1 | b2 | b3 | b4 | b5 | b6) < 0)
 			throw new EOFException();
-		return ((long)b6 << 40) | ((long)b5 << 32) | ((long)b4 << 24) | (b3 << 16) | (b2 << 8) | b1;
+		return ((long) b6 << 40) | ((long) b5 << 32) | ((long) b4 << 24) | (b3 << 16) | (b2 << 8) | b1;
 	}
-	
+
 	@Override
 	public final int readUnsignedShort() throws IOException {
 		int ch1 = dis.read();
@@ -215,5 +216,15 @@ public class LittleEndianDataInputStream implements DataInput {
 			result += nextByte;
 		}
 		return result;
+	}
+
+	public String readRemainingString() throws IOException {
+		return readString(available());
+	}
+
+	public String readString(int numBytes) throws IOException {
+		byte[] data = new byte[numBytes];
+		readFully(data);
+		return new String(data, StandardCharsets.US_ASCII).trim();
 	}
 }
