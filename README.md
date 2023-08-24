@@ -529,7 +529,11 @@ jradio has lots of built-in satellite decoders. Some of them have non standard d
 			<td>52739</td>
 			<td>ru.r2cloud.jradio.connecta.Connecta11Beacon</td>
 		</tr>
-
+		<tr>
+			<td>CELESTA and MTCUBE 2 (ROBUSTA 1F)</td>
+			<td>53111 and 53109</td>
+			<td>ru.r2cloud.jradio.celesta.CelestaBeacon</td>
+		</tr>
 	</tbody>
 </table>
   
