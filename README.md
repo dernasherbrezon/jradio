@@ -534,6 +534,11 @@ jradio has lots of built-in satellite decoders. Some of them have non standard d
 			<td>53111 and 53109</td>
 			<td>ru.r2cloud.jradio.celesta.CelestaBeacon</td>
 		</tr>
+		<tr>
+			<td>StratoSat TK-1</td>
+			<td>57167</td>
+			<td>ru.r2cloud.jradio.sstk1.StratosatTk1</td>
+		</tr>
 	</tbody>
 </table>
   
