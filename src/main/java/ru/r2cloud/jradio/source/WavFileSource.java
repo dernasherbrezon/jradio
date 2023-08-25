@@ -21,7 +21,7 @@ public class WavFileSource implements FloatInput {
 
 	public WavFileSource(InputStream is) throws UnsupportedAudioFileException, IOException {
 		ais = AudioSystem.getAudioInputStream(is);
-		if (ais.getFormat().getSampleSizeInBits() != 16 && ais.getFormat().getSampleSizeInBits() != 8) {
+		if (ais.getFormat().getSampleSizeInBits() != 32 && ais.getFormat().getSampleSizeInBits() != 16 && ais.getFormat().getSampleSizeInBits() != 8) {
 			throw new UnsupportedAudioFileException("unsupported sample size in bits: " + ais.getFormat().getSampleSizeInBits());
 		}
 		buf = new byte[ais.getFormat().getFrameSize()];
@@ -43,7 +43,12 @@ public class WavFileSource implements FloatInput {
 				throw new EOFException();
 			}
 		}
-		if (context.getSampleSizeInBits() == 16) {
+		if (context.getSampleSizeInBits() == 32) {
+			int bits = ((buf[currentBufIndex + 3] & 0xFF) << 24) | ((buf[currentBufIndex + 2] & 0xFF) << 16) | ((buf[currentBufIndex + 1] & 0xFF) << 8) | ((buf[currentBufIndex] & 0xFF));
+			float result = Float.intBitsToFloat(bits);
+			currentBufIndex += 4;
+			return result;
+		} else if (context.getSampleSizeInBits() == 16) {
 			short s = (short) ((buf[currentBufIndex + 1] << 8) | (buf[currentBufIndex] & 0xff));
 			currentBufIndex += 2;
 			return ((float) s / Short.MAX_VALUE);

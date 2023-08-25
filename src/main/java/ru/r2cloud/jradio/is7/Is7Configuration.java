@@ -19,7 +19,6 @@ public class Is7Configuration {
 	private String srcCallsign;
 	private String destCallsign;
 	private String payloadCallsign;
-	private int crc;
 
 	public Is7Configuration() {
 		// do nothing
@@ -39,7 +38,6 @@ public class Is7Configuration {
 		srcCallsign = dis.readString(6);
 		destCallsign = dis.readString(6);
 		payloadCallsign = dis.readString(6);
-		crc = dis.readUnsignedShort();
 	}
 
 	public long getSpinoTxFrequency() {
@@ -144,14 +142,6 @@ public class Is7Configuration {
 
 	public void setPayloadCallsign(String payloadCallsign) {
 		this.payloadCallsign = payloadCallsign;
-	}
-
-	public int getCrc() {
-		return crc;
-	}
-
-	public void setCrc(int crc) {
-		this.crc = crc;
 	}
 
 }

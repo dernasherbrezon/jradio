@@ -9,7 +9,6 @@ public class ResponseLastDrop {
 	private long timestamp1;
 	private long timestamp2;
 	private int sizeMsg;
-	private int crc;
 
 	public ResponseLastDrop() {
 		// do nothing
@@ -19,7 +18,6 @@ public class ResponseLastDrop {
 		timestamp1 = ldis.readUnsignedInt();
 		timestamp2 = ldis.readUnsignedInt();
 		sizeMsg = ldis.readUnsignedShort();
-		crc = ldis.readUnsignedShort();
 	}
 
 	public long getTimestamp1() {
@@ -44,14 +42,6 @@ public class ResponseLastDrop {
 
 	public void setSizeMsg(int sizeMsg) {
 		this.sizeMsg = sizeMsg;
-	}
-
-	public int getCrc() {
-		return crc;
-	}
-
-	public void setCrc(int crc) {
-		this.crc = crc;
 	}
 
 }

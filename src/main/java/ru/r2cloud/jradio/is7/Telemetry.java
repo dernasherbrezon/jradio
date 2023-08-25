@@ -21,7 +21,6 @@ public class Telemetry {
 	private long timestamp2;
 	private int lastResetCause;
 	private int currentState;
-	private int crc;
 
 	public Telemetry() {
 		// do nothing
@@ -44,7 +43,6 @@ public class Telemetry {
 		lastResetCause = dis.readUnsignedShort();
 		currentState = dis.readUnsignedShort();
 		dis.skipBytes(4);
-		crc = dis.readUnsignedShort();
 	}
 
 	public int getSize() {
@@ -165,14 +163,6 @@ public class Telemetry {
 
 	public void setCurrentState(int currentState) {
 		this.currentState = currentState;
-	}
-
-	public int getCrc() {
-		return crc;
-	}
-
-	public void setCrc(int crc) {
-		this.crc = crc;
 	}
 
 }
