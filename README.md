@@ -540,6 +540,11 @@ jradio has lots of built-in satellite decoders. Some of them have non standard d
 			<td>ru.r2cloud.jradio.sstk1.StratosatTk1</td>
 		</tr>
 		<tr>
+			<td>RS52SB, RS52SV, RS52SG, RS52SD, RS52SE</td>
+			<td>57323, 57324, 57325, 57326, 57167</td>
+			<td>ru.r2cloud.jradio.sstk1.StratosatTk1PicoBeacon</td>
+		</tr>
+		<tr>
 			<td>INSPIRE-SAT 7</td>
 			<td>56211</td>
 			<td>SPINO mode - ru.r2cloud.jradio.is7.InspireSat7Spino, AX25 mode using ru.r2cloud.jradio.is7.InspireSat7Beacon</td>
