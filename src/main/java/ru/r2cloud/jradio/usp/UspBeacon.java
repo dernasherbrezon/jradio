@@ -11,34 +11,33 @@ import ru.r2cloud.jradio.fec.ccsds.UncorrectableException;
 
 public class UspBeacon extends Beacon {
 
-	private int etherType;
 	private Header header;
-	private Integer ax25Length;
 	private byte[] payload;
 
 	@Override
 	public void readBeacon(byte[] data) throws IOException, UncorrectableException {
-		DataInputStream dis = new DataInputStream(new ByteArrayInputStream(data));
-		etherType = dis.readUnsignedShort();
-		if (etherType == 0x08FF) {
-			int lengthByte1 = dis.readUnsignedByte();
-			int lengthByte2 = dis.readUnsignedByte();
-			// little-endian length
-			ax25Length = (lengthByte2 << 8) + lengthByte1;
-			header = new Header(dis);
+		if (data[0] == (byte) 0x08 && data[1] == (byte) 0xFF) {
+			// discard external USP beacon fields
+			int ax25Length = ((data[3] & 0xFF) << 8) + (data[2] & 0xFF);
+			if (ax25Length <= data.length - 4) {
+				byte[] ax25Frame = new byte[ax25Length];
+				System.arraycopy(data, 4, ax25Frame, 0, ax25Frame.length);
+				data = ax25Frame;
+			}
 		}
-		int available = dis.available();
+		DataInputStream dis = new DataInputStream(new ByteArrayInputStream(data));
+		header = new Header(dis);
 		try {
-			readBeacon(etherType, dis);
+			readBeacon(dis);
 		} catch (EOFException e) {
-			payload = new byte[available];
-			System.arraycopy(data, data.length - available, payload, 0, payload.length);
+			payload = new byte[data.length - Header.LENGTH_BYTES];
+			System.arraycopy(data, Header.LENGTH_BYTES, payload, 0, payload.length);
 		}
 
 	}
 
 	@SuppressWarnings("unused")
-	public void readBeacon(int etherType, DataInputStream dis) throws IOException, UncorrectableException {
+	public void readBeacon(DataInputStream dis) throws IOException, UncorrectableException {
 		payload = new byte[dis.available()];
 		dis.readFully(payload);
 	}
@@ -49,22 +48,6 @@ public class UspBeacon extends Beacon {
 
 	public void setPayload(byte[] payload) {
 		this.payload = payload;
-	}
-
-	public Integer getAx25Length() {
-		return ax25Length;
-	}
-
-	public void setAx25Length(Integer ax25Length) {
-		this.ax25Length = ax25Length;
-	}
-
-	public int getEtherType() {
-		return etherType;
-	}
-
-	public void setEtherType(int etherType) {
-		this.etherType = etherType;
 	}
 
 	public Header getHeader() {

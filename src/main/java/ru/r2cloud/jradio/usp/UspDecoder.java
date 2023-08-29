@@ -79,14 +79,25 @@ public class UspDecoder implements MessageInput {
 			decoded = viterbiShort.decode(dataFrame);
 		}
 		Scrambler.shuffle(decoded);
+		byte[] result;
 		if (code == 0) {
-			return ReedSolomon.CCSDS.decodeDualBasis(decoded);
+			result = ReedSolomon.CCSDS.decodeDualBasis(decoded);
 		} else {
 			System.arraycopy(decoded, 0, paddedFrame, paddedFrame.length - decoded.length, decoded.length);
 			byte[] padded = ReedSolomon.CCSDS.decodeDualBasis(paddedFrame);
 			System.arraycopy(padded, padded.length - shortFrame.length, shortFrame, 0, shortFrame.length);
-			return shortFrame;
+			result = shortFrame;
 		}
+		// extract ax25 frame
+		if (result[0] == (byte) 0x08 && result[1] == (byte) 0xFF) {
+			int ax25Length = ((result[3] & 0xFF) << 8) + (result[2] & 0xFF);
+			if (ax25Length <= result.length - 4) {
+				byte[] ax25Frame = new byte[ax25Length];
+				System.arraycopy(result, 4, ax25Frame, 0, ax25Frame.length);
+				result = ax25Frame;
+			}
+		}
+		return result;
 	}
 
 	@Override

@@ -1,5 +1,4 @@
 {
-  "etherType": 2303,
   "header": {
     "destinationAddress": {
       "callsign": "R2ANF",
@@ -16,7 +15,6 @@
     "receiveSequenceNumber": 0,
     "pid": 240
   },
-  "ax25Length": 27,
   "payload": [
     -31,
     -1,
@@ -28,25 +26,9 @@
     0,
     0,
     38,
-    6,
-    61,
-    86,
-    -113,
-    23,
-    -116,
-    104,
-    84,
-    -30,
-    119,
-    -60,
-    -1,
-    -65,
-    0,
-    0,
-    0,
-    0,
-    0
+    6
   ],
   "beginSample": 0,
-  "beginMillis": 0
+  "beginMillis": 0,
+  "endSample": 0
 }
