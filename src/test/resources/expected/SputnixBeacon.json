@@ -1,0 +1,58 @@
+{
+  "telemetry": {
+    "type": 16918,
+    "size": 2,
+    "voltageSb1": 0.007,
+    "voltageSb2": 0.007,
+    "voltageSb3": 0.005,
+    "amperageSb1": 0,
+    "amperageSb2": 2,
+    "amperageSb3": 0,
+    "amperageBattery": 65507,
+    "amperageChannel1": 0,
+    "amperageChannel2": 30,
+    "amperageChannel3": 0,
+    "amperageChannel4": 0,
+    "temperatureBattery1": 4,
+    "temperatureBattery2": 4,
+    "temperatureBattery3": 4,
+    "temperatureBattery4": 5,
+    "flag": 8192,
+    "voltageBattery": 7.912,
+    "telemetryCounter": 53333,
+    "telemetryTime": 1694819832,
+    "bkResetCounter": 211,
+    "bkFlag": 4,
+    "temperatureVhfAmp": 12,
+    "temperatureVhfReceiver": 11,
+    "rssiRx": -1,
+    "rssiIdle": 123,
+    "pf": 33,
+    "pb": 24,
+    "vhfCounter": 244,
+    "vhfFlag": 14,
+    "vhfTime": 1694819833,
+    "uptime": 53280,
+    "amperageVhf": 30,
+    "voltageVhf": 7.932
+  },
+  "header": {
+    "destinationAddress": {
+      "callsign": "R2ANF",
+      "ssid": 0,
+      "extensionBit": 0
+    },
+    "sourceAddress": {
+      "callsign": "RS30S",
+      "ssid": 1,
+      "extensionBit": 1
+    },
+    "frameType": "I",
+    "sendSequenceNumber": 0,
+    "receiveSequenceNumber": 0,
+    "pid": 240
+  },
+  "beginSample": 0,
+  "beginMillis": 0,
+  "endSample": 0
+}
