@@ -1,0 +1,41 @@
+{
+  "header": {
+    "destinationAddress": {
+      "callsign": "BEACON",
+      "ssid": 0,
+      "extensionBit": 0
+    },
+    "sourceAddress": {
+      "callsign": "RS20S",
+      "ssid": 0,
+      "extensionBit": 1
+    },
+    "frameType": "U",
+    "sendSequenceNumber": 0,
+    "receiveSequenceNumber": 0,
+    "uControlType": "UI",
+    "pid": 240
+  },
+  "telemetry": {
+    "obcTimestamp": 1694849619,
+    "epsCellCurrent": 0.0929158,
+    "epsSystemCurrent": 0.06681072,
+    "epsCellVoltageHalf": 4.1763372,
+    "epsCellVoltageFull": 8.32136,
+    "adcTemperaturePosX": 12,
+    "adcTemperatureNegX": 13,
+    "adcTemperaturePosY": 6,
+    "adcTemperatureNegY": 23,
+    "adcTemperaturePosZ": -128,
+    "adcTemperatureNegZ": 8,
+    "adcTemperatureCell1": 2,
+    "adcTemperatureCell2": 4,
+    "obcCpuLoad": 5.859375,
+    "obcBootCount": 69,
+    "commBootCount": 13,
+    "commRssi": -98
+  },
+  "beginSample": 0,
+  "beginMillis": 0,
+  "endSample": 0
+}
