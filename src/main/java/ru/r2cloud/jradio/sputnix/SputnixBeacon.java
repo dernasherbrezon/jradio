@@ -14,17 +14,13 @@ public class SputnixBeacon extends UspBeacon {
 	@Override
 	public void readBeacon(DataInputStream dis) throws IOException, UncorrectableException {
 		LittleEndianDataInputStream ldis = new LittleEndianDataInputStream(dis);
-		try {
-			telemetry = new SputnixTelemetry(ldis);
-		} catch (Exception e) {
-			super.readBeacon(dis);
-		}
+		telemetry = new SputnixTelemetry(ldis);
 	}
 
 	public SputnixTelemetry getTelemetry() {
 		return telemetry;
 	}
-	
+
 	public void setTelemetry(SputnixTelemetry telemetry) {
 		this.telemetry = telemetry;
 	}

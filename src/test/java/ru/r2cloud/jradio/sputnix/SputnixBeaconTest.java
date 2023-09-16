@@ -19,6 +19,15 @@ public class SputnixBeaconTest {
 		result.readBeacon(data);
 		AssertJson.assertObjectsEqual("SputnixBeacon.json", result);
 	}
+	
+	@Test
+	public void testUnknown() throws Exception {
+		byte[] data = ViterbiTest.hexStringToByteArray("A464829C8C4060A4A66472A6406300F0F1FF0F0001003F002A1843184A403A18401840C7D77A3E7D4E456C185818532C79FD1846EB18CAA118C2F01853D4184C18C8DD25FD3122E8C87D58202EAC3C186BE8185E74CD11");
+		SputnixBeacon result = new SputnixBeacon();
+		result.readBeacon(data);
+		AssertJson.assertObjectsEqual("SputnixBeacon-unknown.json", result);
+	}
+	
 	@Test
 	public void testPojo() {
 		assertThat(SputnixBeacon.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
