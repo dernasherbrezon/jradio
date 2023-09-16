@@ -13,6 +13,7 @@ public class Suomi100Beacon extends Beacon {
 	private int beaconType;
 	private Beacon0 beacon0;
 	private Beacon1 beacon1;
+	private byte[] unknownPayload;
 
 	@Override
 	public void readBeacon(byte[] data) throws IOException {
@@ -23,7 +24,18 @@ public class Suomi100Beacon extends Beacon {
 			beacon0 = new Beacon0(dis);
 		} else if (beaconType == 1) {
 			beacon1 = new Beacon1(dis);
+		} else {
+			unknownPayload = new byte[dis.available()];
+			dis.readFully(unknownPayload);
 		}
+	}
+	
+	public byte[] getUnknownPayload() {
+		return unknownPayload;
+	}
+	
+	public void setUnknownPayload(byte[] unknownPayload) {
+		this.unknownPayload = unknownPayload;
 	}
 
 	public Header getHeader() {
