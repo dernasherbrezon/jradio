@@ -549,6 +549,16 @@ jradio has lots of built-in satellite decoders. Some of them have non standard d
 			<td>56211</td>
 			<td>SPINO mode - ru.r2cloud.jradio.is7.InspireSat7Spino, AX25 mode using ru.r2cloud.jradio.is7.InspireSat7Beacon</td>
 		</tr>
+		<tr>
+			<td>RS20S (GEOSCAN-EDELVEIS)</td>
+			<td>53385</td>
+			<td>ru.r2cloud.jradio.geoscan.GeoscanBeacon and images via ru.r2cloud.jradio.geoscan.GeoscanPictureDecoder</td>
+		</tr>
+		<tr>
+			<td>SIREN, UMKA-1, CUBESX-HSE-AIS, CYCLOPS, ISOI, KUZBASS-300, MIET-AIS, MONITOR-1, VIZARD, CUBESX-HSE, CUBESX-SIRIUS-HSE, ORBICRAFT-ZORKIY</td>
+			<td>53384, 57172, 53383, 53373, 53381, 53375, 53377, 53374, 57189, 47952, 47951, 47960</td>
+			<td>ru.r2cloud.jradio.sputnix.SputnixBeacon</td>
+		</tr>
 	</tbody>
 </table>
   
