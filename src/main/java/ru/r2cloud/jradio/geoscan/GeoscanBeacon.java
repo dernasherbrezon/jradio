@@ -17,6 +17,12 @@ public class GeoscanBeacon extends Beacon {
 
 	private Header header;
 	private GeoscanTelemetry telemetry;
+	private GeoscanHeader geoscanHeader;
+	private GeoscanAdc adc;
+	private GeoscanEps eps;
+	private GeoscanFakel fakel;
+	private GeoscanGnss gnss;
+	private GeoscanPhoto photo;
 	private byte[] payload;
 
 	@Override
@@ -32,8 +38,33 @@ public class GeoscanBeacon extends Beacon {
 			header = new Header(dis, false);
 			telemetry = new GeoscanTelemetry(new LittleEndianDataInputStream(dis));
 		} else if (type == GEOSCANHEADER_TYPE1 || type == GEOSCANHEADER_TYPE2) {
-			// geoscan frame
-			// FIXME
+			LittleEndianDataInputStream ldis = new LittleEndianDataInputStream(dis);
+			geoscanHeader = new GeoscanHeader(ldis);
+			int commandType = ldis.readUnsignedByte();
+			switch (commandType) {
+			case 0x01:
+				adc = new GeoscanAdc(ldis);
+				break;
+			case 0x02:
+				eps = new GeoscanEps(ldis);
+				break;
+			case 0x05:
+			case 0x06:
+				fakel = new GeoscanFakel(ldis);
+				break;
+			case 0x07:
+			case 0x08:
+			case 0x09:
+			case 0x0A:
+				gnss = new GeoscanGnss(ldis);
+				break;
+			case 0x0B:
+				photo = new GeoscanPhoto(ldis);
+				break;
+			default:
+				payload = new byte[ldis.available()];
+				ldis.readFully(payload);
+			}
 		} else {
 			// 2 - for checksum
 			payload = new byte[dis.available() - 2];
@@ -67,6 +98,54 @@ public class GeoscanBeacon extends Beacon {
 
 	public void setPayload(byte[] payload) {
 		this.payload = payload;
+	}
+
+	public GeoscanHeader getGeoscanHeader() {
+		return geoscanHeader;
+	}
+
+	public void setGeoscanHeader(GeoscanHeader geoscanHeader) {
+		this.geoscanHeader = geoscanHeader;
+	}
+
+	public GeoscanAdc getAdc() {
+		return adc;
+	}
+
+	public void setAdc(GeoscanAdc adc) {
+		this.adc = adc;
+	}
+
+	public GeoscanEps getEps() {
+		return eps;
+	}
+
+	public void setEps(GeoscanEps eps) {
+		this.eps = eps;
+	}
+
+	public GeoscanFakel getFakel() {
+		return fakel;
+	}
+
+	public void setFakel(GeoscanFakel fakel) {
+		this.fakel = fakel;
+	}
+
+	public GeoscanGnss getGnss() {
+		return gnss;
+	}
+
+	public void setGnss(GeoscanGnss gnss) {
+		this.gnss = gnss;
+	}
+
+	public GeoscanPhoto getPhoto() {
+		return photo;
+	}
+
+	public void setPhoto(GeoscanPhoto photo) {
+		this.photo = photo;
 	}
 
 	@Override
