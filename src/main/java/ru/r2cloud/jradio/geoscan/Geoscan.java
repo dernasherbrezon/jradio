@@ -35,8 +35,11 @@ public class Geoscan extends BeaconSource<GeoscanBeacon> {
 			}
 			return null;
 		}
+		// cutoff crc
+		byte[] payload = new byte[raw.length - 2];
+		System.arraycopy(raw, 0, payload, 0, payload.length);
 		GeoscanBeacon result = new GeoscanBeacon();
-		result.readExternal(raw);
+		result.readExternal(payload);
 		return result;
 	}
 

@@ -1,19 +1,15 @@
 package ru.r2cloud.jradio.lucky7;
 
-import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
-import java.awt.image.BufferedImage;
 import java.io.BufferedInputStream;
-import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
-
-import javax.imageio.ImageIO;
 
 import org.junit.Test;
 
 import ru.r2cloud.jradio.BeaconInputStream;
+import ru.r2cloud.jradio.TestUtil;
 
 public class Lucky7PictureDecoderTest {
 
@@ -28,15 +24,7 @@ public class Lucky7PictureDecoderTest {
 		}
 		Lucky7PictureDecoder decoder = new Lucky7PictureDecoder(beacons);
 		assertTrue(decoder.hasNext());
-		try (InputStream is1 = Lucky7PictureDecoderTest.class.getClassLoader().getResourceAsStream("expected/lucky7/lucky7.png")) {
-			BufferedImage expected = ImageIO.read(is1);
-			BufferedImage actual = decoder.next();
-			for (int i = 0; i < expected.getWidth(); i++) {
-				for (int j = 0; j < expected.getHeight(); j++) {
-					assertEquals("failure in image", expected.getRGB(i, j), actual.getRGB(i, j));
-				}
-			}
-		}
+		TestUtil.assertImage("expected/lucky7/lucky7.png", decoder.next());
 	}
 
 }

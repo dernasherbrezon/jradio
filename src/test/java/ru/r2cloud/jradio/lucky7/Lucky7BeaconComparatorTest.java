@@ -25,8 +25,8 @@ public class Lucky7BeaconComparatorTest {
 	
 	private static Lucky7Beacon create(int chunkNumber, int totalChunks) {
 		Lucky7Beacon result = new Lucky7Beacon();
-		result.setImageChunk(new Integer(chunkNumber));
-		result.setImageTotalChunks(new Integer(totalChunks));
+		result.setImageChunk(Integer.valueOf(chunkNumber));
+		result.setImageTotalChunks(Integer.valueOf(totalChunks));
 		return result;
 	}
 }

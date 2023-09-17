@@ -12,8 +12,7 @@ import ru.r2cloud.jradio.util.LittleEndianDataInputStream;
 public class GeoscanBeacon extends Beacon {
 
 	private static final long AX25HEADER_TYPE = 0x848A8286L;
-	private static final long GEOSCANHEADER_TYPE1 = 0x01003E01L;
-	private static final long GEOSCANHEADER_TYPE2 = 0x01003E05L;
+	private static final long GEOSCANHEADER_TYPE = 0x0100L;
 
 	private Header header;
 	private GeoscanTelemetry telemetry;
@@ -22,14 +21,14 @@ public class GeoscanBeacon extends Beacon {
 	private GeoscanEps eps;
 	private GeoscanFakel fakel;
 	private GeoscanGnss gnss;
-	private GeoscanPhoto photo;
+	private GeoscanFile file;
 	private byte[] payload;
 
 	@Override
 	public void readBeacon(byte[] data) throws IOException, UncorrectableException {
 		DataInputStream dis = new DataInputStream(new ByteArrayInputStream(data));
 		long type = peakIntoUnsignedInt(data, 0);
-		if (type != AX25HEADER_TYPE && type != GEOSCANHEADER_TYPE1 && type != GEOSCANHEADER_TYPE2) {
+		if (type != AX25HEADER_TYPE && peakIntoUnsignedShort(data, 0) != GEOSCANHEADER_TYPE) {
 			dis.skipBytes(5);
 			// peak into next 4 bytes to determine type
 			type = peakIntoUnsignedInt(data, 5);
@@ -37,11 +36,14 @@ public class GeoscanBeacon extends Beacon {
 		if (type == AX25HEADER_TYPE) {
 			header = new Header(dis, false);
 			telemetry = new GeoscanTelemetry(new LittleEndianDataInputStream(dis));
-		} else if (type == GEOSCANHEADER_TYPE1 || type == GEOSCANHEADER_TYPE2) {
+		} else {
 			LittleEndianDataInputStream ldis = new LittleEndianDataInputStream(dis);
 			geoscanHeader = new GeoscanHeader(ldis);
-			int commandType = ldis.readUnsignedByte();
-			switch (commandType) {
+			int payloadLength = geoscanHeader.getFieldSize() - 6;
+			if (payloadLength > dis.available()) {
+				payloadLength = dis.available();
+			}
+			switch (geoscanHeader.getSubsystemNumber()) {
 			case 0x01:
 				adc = new GeoscanAdc(ldis);
 				break;
@@ -59,21 +61,21 @@ public class GeoscanBeacon extends Beacon {
 				gnss = new GeoscanGnss(ldis);
 				break;
 			case 0x0B:
-				photo = new GeoscanPhoto(ldis);
+				file = new GeoscanFile(ldis, payloadLength);
 				break;
 			default:
-				payload = new byte[ldis.available()];
+				payload = new byte[payloadLength];
 				ldis.readFully(payload);
 			}
-		} else {
-			// 2 - for checksum
-			payload = new byte[dis.available() - 2];
-			dis.readFully(payload);
 		}
 	}
 
 	private static long peakIntoUnsignedInt(byte[] data, int offset) {
 		return (((data[offset + 0] & 0xFF) << 24) | ((data[offset + 1] & 0xFF) << 16) | ((data[offset + 2] & 0xFF) << 8) | (data[offset + 3] & 0xFF)) & 0xFFFFFFFFL;
+	}
+
+	private static long peakIntoUnsignedShort(byte[] data, int offset) {
+		return (((data[offset + 0] & 0xFF) << 8) | (data[offset + 1] & 0xFF)) & 0xFFFFFFFFL;
 	}
 
 	public Header getHeader() {
@@ -140,12 +142,12 @@ public class GeoscanBeacon extends Beacon {
 		this.gnss = gnss;
 	}
 
-	public GeoscanPhoto getPhoto() {
-		return photo;
+	public GeoscanFile getFile() {
+		return file;
 	}
-
-	public void setPhoto(GeoscanPhoto photo) {
-		this.photo = photo;
+	
+	public void setFile(GeoscanFile file) {
+		this.file = file;
 	}
 
 	@Override

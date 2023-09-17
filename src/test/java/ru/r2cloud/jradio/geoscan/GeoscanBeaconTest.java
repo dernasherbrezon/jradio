@@ -37,7 +37,7 @@ public class GeoscanBeaconTest {
 		assertThat(GeoscanEps.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
 		assertThat(GeoscanFakel.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
 		assertThat(GeoscanGnss.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
-		assertThat(GeoscanPhoto.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
+		assertThat(GeoscanFile.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
 	}
 
 }

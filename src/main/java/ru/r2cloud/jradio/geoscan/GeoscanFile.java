@@ -4,16 +4,16 @@ import java.io.IOException;
 
 import ru.r2cloud.jradio.util.LittleEndianDataInputStream;
 
-public class GeoscanPhoto {
+public class GeoscanFile {
 
 	private byte[] data;
 
-	public GeoscanPhoto() {
+	public GeoscanFile() {
 		// do nothing
 	}
 
-	public GeoscanPhoto(LittleEndianDataInputStream dis) throws IOException {
-		data = new byte[dis.available()];
+	public GeoscanFile(LittleEndianDataInputStream dis, int length) throws IOException {
+		data = new byte[length];
 		dis.readFully(data);
 	}
 

@@ -7,8 +7,10 @@ import ru.r2cloud.jradio.util.LittleEndianDataInputStream;
 public class GeoscanHeader {
 
 	private int satId;
-	private long info;
-	private int offset;
+	private int fieldSize;
+	private int messageType;
+	private int packetOffset;
+	private int subsystemNumber;
 
 	public GeoscanHeader() {
 		// do nothing
@@ -16,8 +18,11 @@ public class GeoscanHeader {
 
 	public GeoscanHeader(LittleEndianDataInputStream dis) throws IOException {
 		satId = dis.readUnsignedByte();
-		info = dis.readUnsignedInt();
-		offset = dis.readUnsignedShort();
+		dis.skipBytes(1);
+		fieldSize = dis.readUnsignedByte();
+		messageType = dis.readUnsignedShort();
+		packetOffset = dis.readUnsignedShort();
+		subsystemNumber = dis.readUnsignedByte();
 	}
 
 	public int getSatId() {
@@ -28,20 +33,36 @@ public class GeoscanHeader {
 		this.satId = satId;
 	}
 
-	public long getInfo() {
-		return info;
+	public int getFieldSize() {
+		return fieldSize;
 	}
 
-	public void setInfo(long info) {
-		this.info = info;
+	public void setFieldSize(int fieldSize) {
+		this.fieldSize = fieldSize;
 	}
 
-	public int getOffset() {
-		return offset;
+	public int getMessageType() {
+		return messageType;
 	}
 
-	public void setOffset(int offset) {
-		this.offset = offset;
+	public void setMessageType(int messageType) {
+		this.messageType = messageType;
+	}
+
+	public int getPacketOffset() {
+		return packetOffset;
+	}
+
+	public void setPacketOffset(int packetOffset) {
+		this.packetOffset = packetOffset;
+	}
+
+	public int getSubsystemNumber() {
+		return subsystemNumber;
+	}
+
+	public void setSubsystemNumber(int subsystemNumber) {
+		this.subsystemNumber = subsystemNumber;
 	}
 
 }
