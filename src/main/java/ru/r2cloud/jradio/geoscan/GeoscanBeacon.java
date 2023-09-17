@@ -12,7 +12,6 @@ import ru.r2cloud.jradio.util.LittleEndianDataInputStream;
 public class GeoscanBeacon extends Beacon {
 
 	private static final long AX25HEADER_TYPE = 0x848A8286L;
-	private static final long GEOSCANHEADER_TYPE = 0x0100L;
 
 	private Header header;
 	private GeoscanTelemetry telemetry;
@@ -27,11 +26,11 @@ public class GeoscanBeacon extends Beacon {
 	@Override
 	public void readBeacon(byte[] data) throws IOException, UncorrectableException {
 		DataInputStream dis = new DataInputStream(new ByteArrayInputStream(data));
-		long type = peakIntoUnsignedInt(data, 0);
-		if (type != AX25HEADER_TYPE && peakIntoUnsignedShort(data, 0) != GEOSCANHEADER_TYPE) {
+		long type = peakIntoUnsignedInt(data, 5);
+		if (type == AX25HEADER_TYPE) {
 			dis.skipBytes(5);
-			// peak into next 4 bytes to determine type
-			type = peakIntoUnsignedInt(data, 5);
+		} else {
+			type = peakIntoUnsignedInt(data, 0);
 		}
 		if (type == AX25HEADER_TYPE) {
 			header = new Header(dis, false);
@@ -72,10 +71,6 @@ public class GeoscanBeacon extends Beacon {
 
 	private static long peakIntoUnsignedInt(byte[] data, int offset) {
 		return (((data[offset + 0] & 0xFF) << 24) | ((data[offset + 1] & 0xFF) << 16) | ((data[offset + 2] & 0xFF) << 8) | (data[offset + 3] & 0xFF)) & 0xFFFFFFFFL;
-	}
-
-	private static long peakIntoUnsignedShort(byte[] data, int offset) {
-		return (((data[offset + 0] & 0xFF) << 8) | (data[offset + 1] & 0xFF)) & 0xFFFFFFFFL;
 	}
 
 	public Header getHeader() {
@@ -145,7 +140,7 @@ public class GeoscanBeacon extends Beacon {
 	public GeoscanFile getFile() {
 		return file;
 	}
-	
+
 	public void setFile(GeoscanFile file) {
 		this.file = file;
 	}

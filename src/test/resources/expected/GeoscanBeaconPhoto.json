@@ -1,10 +1,12 @@
 {
   "geoscanHeader": {
     "satId": 1,
-    "info": 151338496,
-    "offset": 51916
+    "fieldSize": 62,
+    "messageType": 2309,
+    "packetOffset": 51916,
+    "subsystemNumber": 11
   },
-  "photo": {
+  "file": {
     "data": [
       87,
       -124,
