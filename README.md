@@ -559,6 +559,11 @@ jradio has lots of built-in satellite decoders. Some of them have non standard d
 			<td>53384, 57172, 53383, 53373, 53381, 53375, 53377, 53374, 57189, 47952, 47951, 47960</td>
 			<td>ru.r2cloud.jradio.sputnix.SputnixBeacon</td>
 		</tr>
+		<tr>
+			<td>Sharjahsat-1</td>
+			<td>55104</td>
+			<td>ru.r2cloud.jradio.sharjahsat.Sharjahsat1Beacon</td>
+		</tr>
 	</tbody>
 </table>
   
