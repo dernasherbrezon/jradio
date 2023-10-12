@@ -562,7 +562,7 @@ jradio has lots of built-in satellite decoders. Some of them have non standard d
 		<tr>
 			<td>Sharjahsat-1</td>
 			<td>55104</td>
-			<td>ru.r2cloud.jradio.sharjahsat.Sharjahsat1Beacon</td>
+			<td>ru.r2cloud.jradio.sharjahsat.Sharjahsat1Beacon and images via ru.r2cloud.jradio.sharjahsat.Sharjahsat1PictureDecoder</td>
 		</tr>
 	</tbody>
 </table>
