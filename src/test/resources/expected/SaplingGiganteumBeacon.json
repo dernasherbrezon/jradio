@@ -1,0 +1,50 @@
+{
+  "toAddress": 255,
+  "fromAddress": 253,
+  "id": 0,
+  "flags": 0,
+  "callsign": "KN6HCC",
+  "state": "IDLE",
+  "txPower": 20,
+  "solarCharging": true,
+  "enableRf": true,
+  "memFree": 142000,
+  "boot": 23,
+  "gsResp": 6,
+  "crcErr": 0,
+  "stateErr": 1,
+  "vbatt": 7.88,
+  "vsys": 7.9333334,
+  "isys": 2.1960785,
+  "tbatt": -4,
+  "rssi": -137,
+  "snr": 0.0,
+  "lux": [
+    608,
+    1392,
+    464,
+    768,
+    2696,
+    2344,
+    0,
+    0,
+    0
+  ],
+  "mag": [
+    11.0625,
+    -18.4375,
+    -30.6875
+  ],
+  "gyro": [
+    -0.7636719,
+    0.5488281,
+    -1.0537109
+  ],
+  "imuTemp": 9,
+  "lat": 180.04121,
+  "lon": 180.08243,
+  "alt": 599972.94,
+  "beginSample": 0,
+  "beginMillis": 0,
+  "endSample": 0
+}
