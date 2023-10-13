@@ -48,6 +48,11 @@ public class SaplingGiganteumBeacon extends Beacon {
 		id = dis.readUnsignedByte();
 		flags = dis.readUnsignedByte();
 		callsign = StreamUtils.readString(dis, 6);
+		// no way to tell if packet valid telemetry or unsupported communication type
+		// use known callsign to filter out all false-positive reception packets
+		if (!callsign.equalsIgnoreCase("KN6HCC")) {
+			throw new UncorrectableException("invalid callsign: " + callsign);
+		}
 
 		int raw = dis.readUnsignedByte();
 		if ((raw & 1) == 1) {
@@ -330,7 +335,7 @@ public class SaplingGiganteumBeacon extends Beacon {
 	public Double getDatetime() {
 		return datetime;
 	}
-	
+
 	public void setDatetime(Double datetime) {
 		this.datetime = datetime;
 	}
