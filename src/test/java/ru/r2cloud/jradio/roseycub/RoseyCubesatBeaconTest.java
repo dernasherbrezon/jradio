@@ -19,7 +19,15 @@ public class RoseyCubesatBeaconTest {
 		result.readBeacon(data);
 		AssertJson.assertObjectsEqual("RoseyCubesatBeacon-message.json", result);
 	}
-	
+
+	@Test
+	public void testImageChunk() throws Exception {
+		byte[] data = ViterbiTest.hexStringToByteArray("A49EA68AB262E0A49EA68AB2626303F05701A40C00000006620A0A0A0A0A0A0A0A0A0A0A0A0A0A0A0A0A0A0A0A0A0A0A0A0A0A0A0A0A0A0A0A0A0A0A0A0A0A0A0A0A0A0A0A0A0A0A0A0A0A0A0A0A0A0A0A0A0A0A0A0A0A0A0A0A0A0A0A0A0A0A0A0A0A0A0A0A0A0A0A");
+		RoseyCubesatBeacon result = new RoseyCubesatBeacon();
+		result.readBeacon(data);
+		AssertJson.assertObjectsEqual("RoseyCubesatBeacon-image.json", result);
+	}
+
 	@Test
 	public void testUnknown() throws Exception {
 		byte[] data = ViterbiTest.hexStringToByteArray("A49EA68AB262E0A49EA68AB2626303F00601FA02004F000E");
@@ -27,10 +35,11 @@ public class RoseyCubesatBeaconTest {
 		result.readBeacon(data);
 		AssertJson.assertObjectsEqual("RoseyCubesatBeacon-unknown.json", result);
 	}
-	
+
 	@Test
 	public void testPojo() {
 		assertThat(RoseyCubesatBeacon.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
 		assertThat(PeriodicMessage.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
 	}
+
 }

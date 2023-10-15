@@ -12,6 +12,7 @@ public class RoseyCubesatBeacon extends Ax25Beacon {
 	private int payloadTo;
 	private int packetId;
 	private PeriodicMessage message;
+	private ImageChunk imageChunk;
 	private byte[] unknownPayload;
 
 	@Override
@@ -21,10 +22,20 @@ public class RoseyCubesatBeacon extends Ax25Beacon {
 		packetId = dis.readUnsignedShort();
 		if (packetId == 0xFFFF) {
 			message = new PeriodicMessage(dis);
+		} else if (packetId == 0xA40C) {
+			imageChunk = new ImageChunk(dis);
 		} else {
 			unknownPayload = new byte[dis.available()];
 			dis.readFully(unknownPayload);
 		}
+	}
+
+	public ImageChunk getImageChunk() {
+		return imageChunk;
+	}
+
+	public void setImageChunk(ImageChunk imageChunk) {
+		this.imageChunk = imageChunk;
 	}
 
 	public int getPayloadSize() {
