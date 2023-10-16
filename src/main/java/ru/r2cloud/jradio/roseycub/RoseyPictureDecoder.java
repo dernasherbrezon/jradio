@@ -11,11 +11,9 @@ import java.util.NoSuchElementException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import ru.r2cloud.jradio.sharjahsat.Sharjahsat1PictureDecoder;
-
 public class RoseyPictureDecoder implements Iterator<BufferedImage> {
 
-	private static final Logger LOG = LoggerFactory.getLogger(Sharjahsat1PictureDecoder.class);
+	private static final Logger LOG = LoggerFactory.getLogger(RoseyPictureDecoder.class);
 	private static final int[][] ADJ_INDEXES = new int[][] { { -1, 0 }, { 0, -1 }, { 0, 1 }, { 1, 0 } };
 	private static final int[][] LEFT_RIGHT_INDEXES = new int[][] { { -1, 0 }, { 1, 0 } };
 	private static final int[][] TOP_BOTTOM_INDEXES = new int[][] { { 0, -1 }, { 0, 1 } };

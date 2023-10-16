@@ -31,10 +31,8 @@ public class GeoscanGnss {
 		// do nothing
 	}
 
-//	public GeoscanGnss(DataInputStream dis) throws IOException {
 	public GeoscanGnss(LittleEndianDataInputStream dis) throws IOException {
 		gnssTimestamp = dis.readUnsignedInt();
-//		gnssTimestamp = StreamUtils.readUnsignedInt(dis);
 		valid = dis.readUnsignedByte();
 		year = dis.readUnsignedShort();
 		month = dis.readUnsignedByte();
