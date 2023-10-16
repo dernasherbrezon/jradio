@@ -164,6 +164,9 @@ public class RoseyPictureDecoder implements Iterator<BufferedImage> {
 			sum += (image.getRGB(expectedX, expectedY) & 0xFF);
 			total++;
 		}
+		if (total == 0) {
+			return 0;
+		}
 		return (int) (sum / total);
 	}
 

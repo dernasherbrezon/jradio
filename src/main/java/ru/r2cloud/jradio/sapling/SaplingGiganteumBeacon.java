@@ -112,7 +112,7 @@ public class SaplingGiganteumBeacon extends Beacon {
 		int b3 = dis.readUnsignedByte();
 		int b4 = dis.readUnsignedByte();
 		if (b1 != 255 && b2 != 255 && b3 != 255 && b4 != 255) {
-			datetime = epoch + (double) Float.intBitsToFloat(((b1 << 24) + (b2 << 16) + (b3 << 8) + (b4 << 0)));
+			datetime = epoch + (double) Float.intBitsToFloat(((b1 << 24) + (b2 << 16) + (b3 << 8) + b4));
 		}
 	}
 
