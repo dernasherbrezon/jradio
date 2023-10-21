@@ -28,7 +28,12 @@ public class Sharjahsat1PictureDecoder implements Iterator<BufferedImage> {
 		Collections.sort(beacons, new Comparator<Sharjahsat1Beacon>() {
 			@Override
 			public int compare(Sharjahsat1Beacon o1, Sharjahsat1Beacon o2) {
-				return Long.compare(o2.getSharjahsat1Header().getPacketCounter(), o1.getSharjahsat1Header().getPacketCounter());
+				Sharjahsat1Header o2Header = o2.getSharjahsat1Header();
+				Sharjahsat1Header o1Header = o1.getSharjahsat1Header();
+				if (o2Header == null || o1Header == null) {
+					return 0;
+				}
+				return Long.compare(o2Header.getPacketCounter(), o1Header.getPacketCounter());
 			}
 		});
 	}
