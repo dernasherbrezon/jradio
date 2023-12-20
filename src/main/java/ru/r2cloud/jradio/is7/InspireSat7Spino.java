@@ -27,10 +27,13 @@ public class InspireSat7Spino extends BeaconSource<InspireSat7Beacon> {
 	protected InspireSat7Beacon parseBeacon(byte[] raw) throws UncorrectableException, IOException {
 		byte[] data = UnpackedToPacked.pack(raw);
 		int length = ((data[HEADER_LENGTH_BYTES + 1] & 0xFF) << 8) | (data[HEADER_LENGTH_BYTES] & 0xFF);
-		if (length < 0 || length > data.length) {
+		if (length < 0) {
 			return null;
 		}
 		length += 16;
+		if (length > data.length) {
+			return null;
+		}
 		int expected = Crc16Ccitt.calculate(data, 0, length - 2);
 		int actual = ((data[length - 1] & 0xFF) << 8) | (data[length - 2] & 0xFF);
 		if (actual != expected) {
