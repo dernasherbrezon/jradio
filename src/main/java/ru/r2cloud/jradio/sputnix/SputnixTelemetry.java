@@ -6,9 +6,6 @@ import ru.r2cloud.jradio.util.LittleEndianDataInputStream;
 
 public class SputnixTelemetry {
 
-	private int type;
-	private int size;
-
 	private float voltageSb1;
 	private float voltageSb2;
 	private float voltageSb3;
@@ -48,9 +45,6 @@ public class SputnixTelemetry {
 	}
 
 	public SputnixTelemetry(LittleEndianDataInputStream dis) throws IOException {
-		type = dis.readUnsignedShort();
-		size = dis.readShort();
-		dis.skipBytes(4);
 		voltageSb1 = dis.readUnsignedShort() / 1000.0f;
 		voltageSb2 = dis.readUnsignedShort() / 1000.0f;
 		voltageSb3 = dis.readUnsignedShort() / 1000.0f;
@@ -84,22 +78,6 @@ public class SputnixTelemetry {
 		uptime = dis.readUnsignedInt();
 		amperageVhf = dis.readUnsignedShort();
 		voltageVhf = dis.readUnsignedShort() / 1000.0f;
-	}
-
-	public int getType() {
-		return type;
-	}
-
-	public void setType(int type) {
-		this.type = type;
-	}
-
-	public int getSize() {
-		return size;
-	}
-
-	public void setSize(int size) {
-		this.size = size;
 	}
 
 	public float getVoltageSb1() {

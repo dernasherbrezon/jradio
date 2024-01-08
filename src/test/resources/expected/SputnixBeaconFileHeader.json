@@ -1,0 +1,30 @@
+{
+  "type": 3104,
+  "size": 15,
+  "fileHeader": {
+    "mode": 1,
+    "sesId": 7,
+    "bs": 187,
+    "offset": 0,
+    "filename": "52-corr.jpg"
+  },
+  "header": {
+    "destinationAddress": {
+      "callsign": "R2ANF",
+      "ssid": 0,
+      "extensionBit": 0
+    },
+    "sourceAddress": {
+      "callsign": "RS30S",
+      "ssid": 1,
+      "extensionBit": 1
+    },
+    "frameType": "I",
+    "sendSequenceNumber": 0,
+    "receiveSequenceNumber": 0,
+    "pid": 240
+  },
+  "beginSample": 0,
+  "beginMillis": 0,
+  "endSample": 0
+}

@@ -1,7 +1,7 @@
 {
+  "type": 16918,
+  "size": 2,
   "telemetry": {
-    "type": 16918,
-    "size": 2,
     "voltageSb1": 0.007,
     "voltageSb2": 0.007,
     "voltageSb3": 0.005,

@@ -1,0 +1,26 @@
+{
+  "type": 3115,
+  "size": 15,
+  "fileSize": {
+    "size": 28773
+  },
+  "header": {
+    "destinationAddress": {
+      "callsign": "R2ANF",
+      "ssid": 0,
+      "extensionBit": 0
+    },
+    "sourceAddress": {
+      "callsign": "RS30S",
+      "ssid": 1,
+      "extensionBit": 1
+    },
+    "frameType": "I",
+    "sendSequenceNumber": 0,
+    "receiveSequenceNumber": 0,
+    "pid": 240
+  },
+  "beginSample": 0,
+  "beginMillis": 0,
+  "endSample": 0
+}
