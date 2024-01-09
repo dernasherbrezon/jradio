@@ -537,7 +537,7 @@ jradio has lots of built-in satellite decoders. Some of them have non standard d
 		<tr>
 			<td>StratoSat TK-1</td>
 			<td>57167</td>
-			<td>ru.r2cloud.jradio.sstk1.StratosatTk1</td>
+			<td>ru.r2cloud.jradio.sstk1.StratosatTk1 and images via ru.r2cloud.jradio.sstk1.StratosatTk1PictureDecoder</td>
 		</tr>
 		<tr>
 			<td>RS52SB, RS52SV, RS52SG, RS52SD, RS52SE</td>
