@@ -110,7 +110,7 @@ public class FoxPictureDecoder implements Iterator<BufferedImage> {
 			baos.close();
 			return ImageIO.read(new ByteArrayInputStream(baos.toByteArray()));
 		} catch (Exception e) {
-			LOG.error("unable to create image", e);
+			LOG.info("unable to create image: {}", e.getMessage());
 			return null;
 		}
 	}

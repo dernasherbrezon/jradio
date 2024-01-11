@@ -141,7 +141,7 @@ public class RoseyPictureDecoder implements Iterator<BufferedImage> {
 			}
 			return result;
 		} catch (Exception e) {
-			LOG.error("unable to create image", e);
+			LOG.info("unable to create image: {}", e.getMessage());
 			return null;
 		}
 	}
