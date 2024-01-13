@@ -1,0 +1,42 @@
+{
+  "bds": {
+    "state": "4",
+    "progId": "8",
+    "hwState": 11,
+    "cron": "1",
+    "tempC0": 16.68,
+    "tempC1": 16.81,
+    "tempE10": 14.37,
+    "tempE11": 14.059999,
+    "tempE12": 14.12,
+    "tempE13": 13.929999,
+    "tempE20": 12.559999,
+    "tempE21": 12.5,
+    "tempE22": 12.309999,
+    "tempE23": 12.179999,
+    "tempEi0": 6.41,
+    "tempEi1": 6.75,
+    "pressureEi0": 0.875,
+    "pressureEi1": 0.901
+  },
+  "header": {
+    "destinationAddress": {
+      "callsign": "CQ",
+      "ssid": 0,
+      "extensionBit": 0
+    },
+    "sourceAddress": {
+      "callsign": "OK0BDT",
+      "ssid": 0,
+      "extensionBit": 1
+    },
+    "frameType": "U",
+    "sendSequenceNumber": 0,
+    "receiveSequenceNumber": 0,
+    "uControlType": "UI",
+    "pid": 240
+  },
+  "beginSample": 0,
+  "beginMillis": 0,
+  "endSample": 0
+}

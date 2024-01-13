@@ -1,0 +1,36 @@
+{
+  "obc": {
+    "resetCount": 40,
+    "uptime": 17621374,
+    "uptimeTotal": 32365804,
+    "batteryLevel": 8.387,
+    "tempMcu": 17.18,
+    "tempBoard": 17.75,
+    "tempZn": 13.37,
+    "tempXp": 10.309999,
+    "tempYp": 20.869999,
+    "tempYn": 13.179999,
+    "tempXn": 9.62,
+    "freeMemory": 1905
+  },
+  "header": {
+    "destinationAddress": {
+      "callsign": "CQ",
+      "ssid": 0,
+      "extensionBit": 0
+    },
+    "sourceAddress": {
+      "callsign": "OK0BDT",
+      "ssid": 0,
+      "extensionBit": 1
+    },
+    "frameType": "U",
+    "sendSequenceNumber": 0,
+    "receiveSequenceNumber": 0,
+    "uControlType": "UI",
+    "pid": 240
+  },
+  "beginSample": 0,
+  "beginMillis": 0,
+  "endSample": 0
+}

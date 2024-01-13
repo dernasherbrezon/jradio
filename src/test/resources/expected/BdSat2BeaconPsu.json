@@ -1,0 +1,35 @@
+{
+  "psu": {
+    "resetCounter": 3,
+    "uptime": 17636755,
+    "totalUptime": 32392055,
+    "batteryLevel": 8.2890005,
+    "tempSys": 17.9,
+    "tempBat": 17.9,
+    "curIn": 0.143,
+    "curOut": 0.14500001,
+    "chStat": 127,
+    "sysState": "OK",
+    "gndWdt": 95
+  },
+  "header": {
+    "destinationAddress": {
+      "callsign": "CQ",
+      "ssid": 0,
+      "extensionBit": 0
+    },
+    "sourceAddress": {
+      "callsign": "OK0BDT",
+      "ssid": 0,
+      "extensionBit": 1
+    },
+    "frameType": "U",
+    "sendSequenceNumber": 0,
+    "receiveSequenceNumber": 0,
+    "uControlType": "UI",
+    "pid": 240
+  },
+  "beginSample": 0,
+  "beginMillis": 0,
+  "endSample": 0
+}

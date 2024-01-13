@@ -574,6 +574,11 @@ jradio has lots of built-in satellite decoders. Some of them have non standard d
 			<td>56212</td>
 			<td>ru.r2cloud.jradio.roseycub.RoseyCubesatBeacon and images via ru.r2cloud.jradio.roseycub.RoseyPictureDecoder</td>
 		</tr>
+		<tr>
+			<td>BDSAT-2</td>
+			<td>55098</td>
+			<td>ru.r2cloud.jradio.bdsat.BdSat2Beacon</td>
+		</tr>
 	</tbody>
 </table>
   
