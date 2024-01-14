@@ -1,0 +1,37 @@
+{
+  "uhf": {
+    "uptime": 5501037,
+    "totalUptime": 5501060,
+    "bootCount": 1,
+    "rfSegmentResetCount": 0,
+    "radioMcuTemp": -0.72999996,
+    "rfChipTemp": -1.52,
+    "rfPowerAmplifierTemp": -1.68,
+    "digipeaterMessageCount": 42,
+    "lastSenderCallsign": "KE4AZZ",
+    "rxDataPackets": 296,
+    "txDataPackets": 756998,
+    "rssi": -89.5,
+    "rssiAferPreamble": -86.5
+  },
+  "header": {
+    "destinationAddress": {
+      "callsign": "CQ",
+      "ssid": 0,
+      "extensionBit": 0
+    },
+    "sourceAddress": {
+      "callsign": "OM9VER",
+      "ssid": 0,
+      "extensionBit": 1
+    },
+    "frameType": "U",
+    "sendSequenceNumber": 0,
+    "receiveSequenceNumber": 0,
+    "uControlType": "UI",
+    "pid": 240
+  },
+  "beginSample": 0,
+  "beginMillis": 0,
+  "endSample": 0
+}

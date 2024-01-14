@@ -1,0 +1,30 @@
+{
+  "obc": {
+    "resetCount": 55,
+    "uptime": 353706,
+    "uptimeTotal": 5499686,
+    "batteryLevel": 8.173,
+    "tempMcu": -0.69,
+    "freeMemory": 2815
+  },
+  "header": {
+    "destinationAddress": {
+      "callsign": "CQ",
+      "ssid": 0,
+      "extensionBit": 0
+    },
+    "sourceAddress": {
+      "callsign": "OM9VER",
+      "ssid": 0,
+      "extensionBit": 1
+    },
+    "frameType": "U",
+    "sendSequenceNumber": 0,
+    "receiveSequenceNumber": 0,
+    "uControlType": "UI",
+    "pid": 240
+  },
+  "beginSample": 0,
+  "beginMillis": 0,
+  "endSample": 0
+}

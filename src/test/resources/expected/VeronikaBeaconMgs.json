@@ -1,0 +1,40 @@
+{
+  "mgs": {
+    "tempIntMag": 1540,
+    "tempIntGyr": 2284,
+    "intMagX": 8946,
+    "intMagY": -4055,
+    "intMagZ": 3068,
+    "intGyrX": -100,
+    "intGyrY": -35,
+    "intGyrZ": -129,
+    "tempExtMag": 0,
+    "tempExtGyr": 0,
+    "extMagX": 0,
+    "extMagY": 0,
+    "extMagZ": 0,
+    "extGyrX": 0,
+    "extGyrY": 0,
+    "extGyrZa": 0
+  },
+  "header": {
+    "destinationAddress": {
+      "callsign": "CQ",
+      "ssid": 0,
+      "extensionBit": 0
+    },
+    "sourceAddress": {
+      "callsign": "OM9VER",
+      "ssid": 0,
+      "extensionBit": 1
+    },
+    "frameType": "U",
+    "sendSequenceNumber": 0,
+    "receiveSequenceNumber": 0,
+    "uControlType": "UI",
+    "pid": 240
+  },
+  "beginSample": 0,
+  "beginMillis": 0,
+  "endSample": 0
+}
