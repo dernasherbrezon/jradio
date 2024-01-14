@@ -584,6 +584,11 @@ jradio has lots of built-in satellite decoders. Some of them have non standard d
 			<td>58317</td>
 			<td>ru.r2cloud.jradio.kafasat.KafasatBeacon</td>
 		</tr>
+		<tr>
+			<td>RANDEV</td>
+			<td>52898</td>
+			<td>ru.r2cloud.jradio.randev.RandevBeacon</td>
+		</tr>
 	</tbody>
 </table>
   
