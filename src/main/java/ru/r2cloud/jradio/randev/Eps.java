@@ -81,7 +81,7 @@ public class Eps {
 		epsBcr5VoltageVolts = dis.readUnsignedShort() * 0.0322581f;
 		batVoltageVolts = dis.readUnsignedShort() * 0.008993f;
 		int raw = dis.readUnsignedShort();
-		batCurrentAmpere = raw < 512 ? raw * 0.014662757f : raw * 0.014662757f;
+		batCurrentAmpere = raw < 512 ? -raw * 0.014662757f : raw * 0.014662757f;
 		dis.skipBytes(2);
 		batTempCelcius = dis.readUnsignedShort() * 0.3976f - 238.57f;
 		batHeaterOn = dis.readUnsignedShort() < 512 ? false : true;
