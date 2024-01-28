@@ -29,6 +29,8 @@ public class BeaconInputStream<T extends Beacon> implements Iterator<T>, Closeab
 				int protocolVersion = is.readInt();
 				if (protocolVersion == BeaconOutputStream.PROTOCOL_V2) {
 					current = readProtocolv2();
+				} else if (protocolVersion == BeaconOutputStream.PROTOCOL_V3) {
+					current = readProtocolv3();
 				} else {
 					return false;
 				}
@@ -63,6 +65,12 @@ public class BeaconInputStream<T extends Beacon> implements Iterator<T>, Closeab
 		meta.setSnr(is.readFloat());
 		meta.setFrequencyError(is.readLong());
 		result.setRxMeta(meta);
+		return result;
+	}
+
+	private T readProtocolv3() throws Exception {
+		T result = readProtocolv2();
+		result.setEndSample(is.readLong());
 		return result;
 	}
 

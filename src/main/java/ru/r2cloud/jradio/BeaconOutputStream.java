@@ -8,6 +8,7 @@ import java.io.OutputStream;
 public class BeaconOutputStream implements Closeable {
 
 	public static final int PROTOCOL_V2 = 1;
+	public static final int PROTOCOL_V3 = 2;
 	private final DataOutputStream dos;
 
 	public BeaconOutputStream(OutputStream os) {
@@ -19,7 +20,7 @@ public class BeaconOutputStream implements Closeable {
 			return;
 		}
 		dos.writeInt(0);
-		dos.writeInt(PROTOCOL_V2);
+		dos.writeInt(PROTOCOL_V3);
 		dos.writeInt(beacon.getRawData().length);
 		dos.write(beacon.getRawData());
 		dos.writeLong(beacon.getBeginMillis());
@@ -46,6 +47,7 @@ public class BeaconOutputStream implements Closeable {
 			dos.writeFloat(0.0f);
 			dos.writeLong(0);
 		}
+		dos.writeLong(beacon.getEndSample());
 	}
 
 	@Override

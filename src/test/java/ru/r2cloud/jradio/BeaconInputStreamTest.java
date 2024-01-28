@@ -28,6 +28,7 @@ public class BeaconInputStreamTest {
 		meta.setSnr(1.22f);
 		meta.setFrequencyError(1001l);
 		data.setRxMeta(meta);
+		data.setEndSample(2L);
 
 		bos.write(data);
 		bos.close();
@@ -42,13 +43,33 @@ public class BeaconInputStreamTest {
 		assertEquals(data.getRxMeta().getRssi(), actual.getRxMeta().getRssi(), 0.0001);
 		assertEquals(data.getRxMeta().getSnr(), actual.getRxMeta().getSnr(), 0.0001);
 		assertEquals(data.getRxMeta().getFrequencyError(), actual.getRxMeta().getFrequencyError());
+		assertEquals(data.getEndSample(), actual.getEndSample());
 		assertArrayEquals(data.getRawData(), actual.getRawData());
 		assertFalse(bis.hasNext());
 		bis.close();
 	}
 
 	@Test
-	public void testOldFormat() throws Exception {
+	public void testv2Format() throws Exception {
+		byte[] data = new byte[] { 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 2, 1, 2, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 63, -99, 112, -92, 63, -100, 40, -10, 0, 0, 0, 0, 0, 0, 3, -23, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+		ByteArrayInputStream bais = new ByteArrayInputStream(data);
+		BeaconInputStream<RawBeacon> bis = new BeaconInputStream<>(bais, RawBeacon.class);
+		assertTrue(bis.hasNext());
+		Beacon actual = bis.next();
+		assertNotNull(actual);
+		assertEquals(1L, actual.getBeginMillis());
+		assertEquals(1L, actual.getBeginSample());
+		assertArrayEquals(new byte[] { 0x01, 0x02 }, actual.getRawData());
+		assertNotNull(actual.getRxMeta());
+		assertEquals(1.23f, actual.getRxMeta().getRssi(), 0.0f);
+		assertEquals(1.22f, actual.getRxMeta().getSnr(), 0.0f);
+		assertEquals(1001L, actual.getRxMeta().getFrequencyError().longValue());
+		assertFalse(bis.hasNext());
+		bis.close();
+	}
+
+	@Test
+	public void testv1Format() throws Exception {
 		byte[] data = new byte[] { 0, 0, 0, 2, 1, 2, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1 };
 		ByteArrayInputStream bais = new ByteArrayInputStream(data);
 		BeaconInputStream<RawBeacon> bis = new BeaconInputStream<>(bais, RawBeacon.class);
