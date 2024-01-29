@@ -42,10 +42,16 @@ public class BeaconOutputStream implements Closeable {
 			} else {
 				dos.writeLong(0);
 			}
+			if (meta.getBaud() != null) {
+				dos.writeInt(meta.getBaud());
+			} else {
+				dos.writeInt(0);
+			}
 		} else {
 			dos.writeFloat(0.0f);
 			dos.writeFloat(0.0f);
 			dos.writeLong(0);
+			dos.writeInt(0);
 		}
 		dos.writeLong(beacon.getEndSample());
 	}

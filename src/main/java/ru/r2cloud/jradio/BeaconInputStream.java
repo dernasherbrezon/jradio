@@ -69,7 +69,19 @@ public class BeaconInputStream<T extends Beacon> implements Iterator<T>, Closeab
 	}
 
 	private T readProtocolv3() throws Exception {
-		T result = readProtocolv2();
+		int length = is.readInt();
+		byte[] raw = new byte[length];
+		is.readFully(raw);
+		T result = clazz.getDeclaredConstructor().newInstance();
+		result.readExternal(raw);
+		result.setBeginMillis(is.readLong());
+		result.setBeginSample(is.readLong());
+		RxMetadata meta = new RxMetadata();
+		meta.setRssi(is.readFloat());
+		meta.setSnr(is.readFloat());
+		meta.setFrequencyError(is.readLong());
+		meta.setBaud(is.readInt());
+		result.setRxMeta(meta);
 		result.setEndSample(is.readLong());
 		return result;
 	}

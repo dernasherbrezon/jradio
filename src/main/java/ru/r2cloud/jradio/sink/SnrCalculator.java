@@ -87,7 +87,10 @@ public class SnrCalculator {
 			}
 
 			if (snrTotal > 0) {
-				RxMetadata meta = new RxMetadata();
+				RxMetadata meta = cur.getRxMeta();
+				if (meta == null) {
+					meta = new RxMetadata();
+				}
 				meta.setSnr(sumSnr / snrTotal);
 				cur.setRxMeta(meta);
 			}

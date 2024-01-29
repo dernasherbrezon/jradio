@@ -5,6 +5,15 @@ public class RxMetadata {
 	private Float rssi;
 	private Float snr;
 	private Long frequencyError;
+	private Integer baud;
+	
+	public Integer getBaud() {
+		return baud;
+	}
+	
+	public void setBaud(Integer baud) {
+		this.baud = baud;
+	}
 
 	public Float getRssi() {
 		return rssi;
@@ -41,7 +50,10 @@ public class RxMetadata {
 			result.append(" snr=").append(snr);
 		}
 		if (frequencyError != null) {
-			result.append("frequencyError=").append(frequencyError);
+			result.append(" frequencyError=").append(frequencyError);
+		}
+		if (baud != null) {
+			result.append("baud=").append(baud);
 		}
 		result.append(" ]");
 		return result.toString();

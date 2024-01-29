@@ -27,6 +27,7 @@ public class BeaconInputStreamTest {
 		meta.setRssi(1.23f);
 		meta.setSnr(1.22f);
 		meta.setFrequencyError(1001l);
+		meta.setBaud(9600);
 		data.setRxMeta(meta);
 		data.setEndSample(2L);
 
@@ -43,6 +44,7 @@ public class BeaconInputStreamTest {
 		assertEquals(data.getRxMeta().getRssi(), actual.getRxMeta().getRssi(), 0.0001);
 		assertEquals(data.getRxMeta().getSnr(), actual.getRxMeta().getSnr(), 0.0001);
 		assertEquals(data.getRxMeta().getFrequencyError(), actual.getRxMeta().getFrequencyError());
+		assertEquals(data.getRxMeta().getBaud(), actual.getRxMeta().getBaud());
 		assertEquals(data.getEndSample(), actual.getEndSample());
 		assertArrayEquals(data.getRawData(), actual.getRawData());
 		assertFalse(bis.hasNext());
