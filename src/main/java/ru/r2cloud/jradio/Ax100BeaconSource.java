@@ -12,24 +12,26 @@ import ru.r2cloud.jradio.gomx1.AX100Decoder;
 
 public class Ax100BeaconSource<T extends Beacon> extends BeaconSource<T> {
 
+	private static final String DEFAULT_SYNCWORD = "10010011000010110101000111011110";
+
 	private static final Logger LOG = LoggerFactory.getLogger(Ax100BeaconSource.class);
 
 	private final Class<T> clazz;
 
 	public Ax100BeaconSource(ByteInput input, Class<T> clazz) {
-		this(input, 512, "10010011000010110101000111011110", clazz, false, true, true);
+		this(input, 512, DEFAULT_SYNCWORD, clazz, false, true, true);
 	}
 
 	public Ax100BeaconSource(ByteInput input, int beaconSizeBytes, Class<T> clazz) {
-		this(input, beaconSizeBytes, "10010011000010110101000111011110", clazz, false, true, true);
+		this(input, beaconSizeBytes, DEFAULT_SYNCWORD, clazz, false, true, true);
 	}
 
 	public Ax100BeaconSource(ByteInput input, int beaconSizeBytes, Class<T> clazz, boolean forceViterbi, boolean forceScrambler, boolean forceReedSolomon) {
-		this(input, beaconSizeBytes, "10010011000010110101000111011110", clazz, forceViterbi, forceScrambler, forceReedSolomon);
+		this(input, beaconSizeBytes, DEFAULT_SYNCWORD, clazz, forceViterbi, forceScrambler, forceReedSolomon);
 	}
 
-	public Ax100BeaconSource(ByteInput input, int beaconSizeBytes, String accessCode, Class<T> clazz, boolean forceViterbi, boolean forceScrambler, boolean forceReedSolomon) {
-		super(new AX100Decoder(new CorrelateSyncword(input, 6, Collections.singleton(accessCode), (beaconSizeBytes + 3) * 8), forceViterbi, forceScrambler, forceReedSolomon));
+	public Ax100BeaconSource(ByteInput input, int beaconSizeBytes, String syncword, Class<T> clazz, boolean forceViterbi, boolean forceScrambler, boolean forceReedSolomon) {
+		super(new AX100Decoder(new CorrelateSyncword(input, 6, Collections.singleton(syncword), (beaconSizeBytes + 3) * 8), forceViterbi, forceScrambler, forceReedSolomon));
 		this.clazz = clazz;
 	}
 

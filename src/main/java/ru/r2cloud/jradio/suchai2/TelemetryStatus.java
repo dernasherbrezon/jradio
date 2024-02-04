@@ -31,7 +31,7 @@ public class TelemetryStatus {
 	private long drpMachAction;
 	private long drpMachState;
 	private long drpMachPayloads;
-	private long drpMachStep;;
+	private long drpMachStep;
 
 	public TelemetryStatus() {
 		// do nothing
