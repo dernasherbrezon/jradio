@@ -30,6 +30,9 @@ public class StratosatTk1Beacon extends Ax25Beacon {
 			if (payloadLength > dis.available()) {
 				payloadLength = dis.available();
 			}
+			if (payloadLength < 0) {
+				throw new UncorrectableException("invalid field size");
+			}
 			switch (tk1Header.getMessageType()) {
 			case 0x0905:
 			case 0x9820:
