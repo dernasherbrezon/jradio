@@ -599,6 +599,11 @@ jradio has lots of built-in satellite decoders. Some of them have non standard d
 			<td>52191, 52192, 52188</td>
 			<td>ru.r2cloud.jradio.suchai2.Suchai2Beacon</td>
 		</tr>
+		<tr>
+			<td>GRBBETA</td>
+			<td>60237</td>
+			<td>ru.r2cloud.jradio.grbbeta.GRBBetaBeacon</td>
+		</tr>
 	</tbody>
 </table>
   

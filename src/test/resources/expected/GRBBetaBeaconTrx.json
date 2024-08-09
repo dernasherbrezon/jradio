@@ -1,0 +1,36 @@
+{
+  "ax25Header": {
+    "destinationAddress": {
+      "callsign": "CQ",
+      "ssid": 0,
+      "extensionBit": 0
+    },
+    "sourceAddress": {
+      "callsign": "HA2GRB",
+      "ssid": 0,
+      "extensionBit": 1
+    },
+    "frameType": "U",
+    "sendSequenceNumber": 0,
+    "receiveSequenceNumber": 0,
+    "uControlType": "UI",
+    "pid": 240
+  },
+  "trx": {
+    "uptimeSinceReset": 2637231,
+    "uptime": 2659007,
+    "radioBootCount": 2,
+    "rfSegmentResetCount": 0,
+    "radioMcuTemperature": 12.75,
+    "rfChipTemperature": 12.74,
+    "rfPowerAmplifierTemperature": 12.179999,
+    "digipeaterMessageCount": 0,
+    "rxDataPackets": 1808,
+    "txDataPackets": 279832,
+    "actualRssi": -96.5,
+    "rssiPreamble": -88.0
+  },
+  "beginSample": 0,
+  "beginMillis": 0,
+  "endSample": 0
+}

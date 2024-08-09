@@ -1,0 +1,36 @@
+{
+  "cspHeader": {
+    "priority": "CSP_PRIO_HIGH",
+    "source": 0,
+    "destination": 5,
+    "sourcePort": 42,
+    "destinationPort": 3,
+    "ffrag": true,
+    "fhmac": true,
+    "fxtea": true,
+    "frdp": true,
+    "fcrc32": false
+  },
+  "unknownPayload": [
+    -71,
+    114,
+    -105,
+    -76,
+    -22,
+    -20,
+    25,
+    11,
+    54,
+    33,
+    -18,
+    100,
+    71,
+    -58,
+    -99,
+    83,
+    45
+  ],
+  "beginSample": 0,
+  "beginMillis": 0,
+  "endSample": 0
+}
