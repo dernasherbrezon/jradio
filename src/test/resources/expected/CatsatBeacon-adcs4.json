@@ -1,0 +1,83 @@
+{
+  "beaconHeader": {
+    "protocolVersion": 1,
+    "type": 14,
+    "version": 1,
+    "satid": 666
+  },
+  "adcs4": {
+    "hk415214": {
+      "checksum": 60819,
+      "timestamp": 1723321440,
+      "source": 4
+    },
+    "ukfZ": [
+      0.0,
+      1.094,
+      0.0,
+      -127.44671,
+      89.92681,
+      381.6525,
+      -0.035299435,
+      0.99784243,
+      -0.055355757,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "ukfEnable": [
+      0,
+      1,
+      0,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      0,
+      0,
+      0
+    ],
+    "ukfSunmax": [
+      500.0,
+      500.0,
+      500.0,
+      500.0,
+      500.0,
+      500.0
+    ],
+    "ukfInEclipse": 0,
+    "ukfChoice": 0,
+    "ukfCtrlT": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "ukfCtrlM": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "ukfRate": [
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  "header": {
+    "priority": "CSP_PRIO_NORM",
+    "source": 4,
+    "destination": 30,
+    "sourcePort": 0,
+    "destinationPort": 30,
+    "ffrag": false,
+    "fhmac": false,
+    "fxtea": false,
+    "frdp": false,
+    "fcrc32": true
+  },
+  "beginSample": 0,
+  "beginMillis": 0,
+  "endSample": 0
+}

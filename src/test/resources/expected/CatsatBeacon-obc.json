@@ -1,0 +1,93 @@
+{
+  "beaconHeader": {
+    "protocolVersion": 1,
+    "type": 3,
+    "version": 1,
+    "satid": 666
+  },
+  "obc": {
+    "hk143": {
+      "checksum": 30446,
+      "timestamp": 1723321500,
+      "source": 1
+    },
+    "obcFsMnted": 1,
+    "obcTempRam": 427,
+    "obcResetcause": 0,
+    "obcBootcause": 2,
+    "obcUptime": 4341,
+    "hk1913": {
+      "checksum": 43627,
+      "timestamp": 1723321500,
+      "source": 1
+    },
+    "battCharge": 0,
+    "battDcharge": 0,
+    "battHeater": 0,
+    "battTemp2": 24,
+    "battTemp3": 23,
+    "battTemp4": 24,
+    "battBootcause": 5,
+    "hk1943": {
+      "checksum": 33479,
+      "timestamp": 1723321500,
+      "source": 1
+    },
+    "satTemps": [
+      29.0,
+      16.75,
+      14.75,
+      17.25,
+      15.25,
+      12.875
+    ],
+    "hk503": {
+      "checksum": 32445,
+      "timestamp": 1723321500,
+      "source": 5
+    },
+    "ax100RebootIn": 0,
+    "ax100TxInhibit": 0,
+    "hk513": {
+      "checksum": 57481,
+      "timestamp": 1723321500,
+      "source": 5
+    },
+    "ax100RxFreq": 437185000,
+    "ax100RxBaud": 9600,
+    "hk543": {
+      "checksum": 61959,
+      "timestamp": 1723321500,
+      "source": 5
+    },
+    "ax100TempPa": 436,
+    "ax100LastRssi": 0,
+    "ax100LastRferr": 0,
+    "ax100ActiveConf": 2,
+    "ax100Bootcause": 1,
+    "ax100BgndRssi": -122,
+    "ax100TxDuty": 11,
+    "hk553": {
+      "checksum": 56172,
+      "timestamp": 1723321500,
+      "source": 5
+    },
+    "ax100TxFreq": 437185000,
+    "ax100TxBaud": 2400
+  },
+  "header": {
+    "priority": "CSP_PRIO_NORM",
+    "source": 1,
+    "destination": 30,
+    "sourcePort": 0,
+    "destinationPort": 30,
+    "ffrag": false,
+    "fhmac": false,
+    "fxtea": false,
+    "frdp": false,
+    "fcrc32": true
+  },
+  "beginSample": 0,
+  "beginMillis": 0,
+  "endSample": 0
+}

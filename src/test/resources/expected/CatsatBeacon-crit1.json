@@ -1,0 +1,74 @@
+{
+  "beaconHeader": {
+    "protocolVersion": 1,
+    "type": 1,
+    "version": 2,
+    "satid": 666
+  },
+  "crit1": {
+    "hk141": {
+      "checksum": 30446,
+      "timestamp": 1723321470,
+      "source": 1
+    },
+    "obcTempMcu": 423,
+    "obcBootCnt": 1463,
+    "obcClock": 1723321469,
+    "hk191": {
+      "checksum": 43627,
+      "timestamp": 1723321470,
+      "source": 1
+    },
+    "bpxVbatt": 16321,
+    "bpxTemp": 24,
+    "bpxBootCnt": 4911,
+    "hk541": {
+      "checksum": 61959,
+      "timestamp": 1723321470,
+      "source": 5
+    },
+    "ax100TempBrd": 439,
+    "ax100BootCnt": 1,
+    "ax100LastContact": 0,
+    "hk841": {
+      "checksum": 64451,
+      "timestamp": 1723321470,
+      "source": 8
+    },
+    "p60BootCnt": 15694,
+    "p60BattMode": 3,
+    "p60BattVoltage": 16318,
+    "p60BattCurrent": 69,
+    "hk94": {
+      "checksum": 20229,
+      "timestamp": 1723321470,
+      "source": 9
+    },
+    "pduX2Cout": [
+      113,
+      10,
+      4,
+      3,
+      5,
+      3,
+      14,
+      82,
+      3
+    ]
+  },
+  "header": {
+    "priority": "CSP_PRIO_NORM",
+    "source": 1,
+    "destination": 30,
+    "sourcePort": 0,
+    "destinationPort": 30,
+    "ffrag": false,
+    "fhmac": false,
+    "fxtea": false,
+    "frdp": false,
+    "fcrc32": true
+  },
+  "beginSample": 0,
+  "beginMillis": 0,
+  "endSample": 0
+}

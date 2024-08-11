@@ -1,0 +1,44 @@
+{
+  "beaconHeader": {
+    "protocolVersion": 1,
+    "type": 16,
+    "version": 1,
+    "satid": 666
+  },
+  "adcs6": {
+    "hk4116": {
+      "checksum": 14252,
+      "timestamp": 1723321440,
+      "source": 4
+    },
+    "adcsSwloadCnt1": 97,
+    "hk4416": {
+      "checksum": 30446,
+      "timestamp": 1723321440,
+      "source": 4
+    },
+    "adcsFsMounted": 1,
+    "adcsTempMcu": 413,
+    "adcsTempRam": 418,
+    "adcsResetcause": 0,
+    "adcsBootcause": 2,
+    "adcsBootCnt": 2222,
+    "adcsClock": 1723321440,
+    "adcsUptime": 4304
+  },
+  "header": {
+    "priority": "CSP_PRIO_NORM",
+    "source": 4,
+    "destination": 30,
+    "sourcePort": 0,
+    "destinationPort": 30,
+    "ffrag": false,
+    "fhmac": false,
+    "fxtea": false,
+    "frdp": false,
+    "fcrc32": true
+  },
+  "beginSample": 0,
+  "beginMillis": 0,
+  "endSample": 0
+}

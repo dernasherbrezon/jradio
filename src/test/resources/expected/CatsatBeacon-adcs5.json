@@ -1,0 +1,84 @@
+{
+  "beaconHeader": {
+    "protocolVersion": 1,
+    "type": 15,
+    "version": 1,
+    "satid": 666
+  },
+  "adcs5": {
+    "hk415315": {
+      "checksum": 15130,
+      "timestamp": 1723321440,
+      "source": 4
+    },
+    "ephemJdat": 2460533.3499947735,
+    "ephemReci": [
+      329549.56,
+      -2237906.2,
+      6459180.0
+    ],
+    "ephemVeci": [
+      -2102.1572,
+      -7051.2764,
+      -2313.9114
+    ],
+    "ephemSunEci": [
+      -1.10641234E11,
+      8.9203466E10,
+      3.8668521E10
+    ],
+    "ephemQuatIe": [
+      0.0,
+      0.0,
+      -0.7325294,
+      0.6807354
+    ],
+    "ephemQuatIo": [
+      -0.597764,
+      0.7842069,
+      0.14590867,
+      0.08005223
+    ],
+    "ephemQuatIl": [
+      -0.59756815,
+      0.784099,
+      0.14670892,
+      0.08110218
+    ],
+    "ephemRateIo": [
+      0.0,
+      -0.0011057836,
+      0.0
+    ],
+    "ephemRateIl": [
+      0.0,
+      -0.0011057836,
+      0.0
+    ],
+    "ephemTEclipse": 10000,
+    "hk415615": {
+      "checksum": 12512,
+      "timestamp": 1723321440,
+      "source": 4
+    },
+    "ephemTime": 58,
+    "adsTime": 64,
+    "acsTime": 4,
+    "sensTime": 66
+  },
+  "header": {
+    "priority": "CSP_PRIO_NORM",
+    "source": 4,
+    "destination": 30,
+    "sourcePort": 0,
+    "destinationPort": 30,
+    "ffrag": false,
+    "fhmac": false,
+    "fxtea": false,
+    "frdp": false,
+    "fcrc32": true
+  },
+  "beginSample": 0,
+  "beginMillis": 0,
+  "endSample": 0
+}

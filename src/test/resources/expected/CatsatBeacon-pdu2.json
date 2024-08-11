@@ -1,0 +1,108 @@
+{
+  "beaconHeader": {
+    "protocolVersion": 1,
+    "type": 5,
+    "version": 1,
+    "satid": 666
+  },
+  "pdu2": {
+    "hk1045": {
+      "checksum": 20229,
+      "timestamp": 1723321381,
+      "source": 10
+    },
+    "pduX3Vout": [
+      0,
+      0,
+      3353,
+      5027,
+      5036,
+      0,
+      368,
+      0,
+      0
+    ],
+    "pduX3Temp": 417,
+    "pduX3OutEn": [
+      0,
+      0,
+      1,
+      1,
+      1,
+      0,
+      0,
+      0,
+      0
+    ],
+    "pduX3Bootcause": 1,
+    "pduX3BootCnt": 1345,
+    "pduX3Uptime": 4278,
+    "pduX3Resetcause": 1,
+    "pduX3Latchup": [
+      0,
+      0,
+      0,
+      1,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "hk1145": {
+      "checksum": 38647,
+      "timestamp": 1723321381,
+      "source": 11
+    },
+    "acuCin": [
+      537,
+      1075,
+      27,
+      544,
+      1070,
+      548
+    ],
+    "acuVin": [
+      2112,
+      2091,
+      2092,
+      2133,
+      2165,
+      2121
+    ],
+    "acuVbatt": 16297,
+    "acuTemp": [
+      442,
+      436,
+      441
+    ],
+    "acuMpptMode": "FIXED",
+    "acuVboost": [
+      2231,
+      2231,
+      2231,
+      2231,
+      2231,
+      2231
+    ],
+    "acuBootcause": 1,
+    "acuBootCnt": 3051,
+    "acuUptime": 4278,
+    "acuResetcause": 1
+  },
+  "header": {
+    "priority": "CSP_PRIO_NORM",
+    "source": 1,
+    "destination": 30,
+    "sourcePort": 0,
+    "destinationPort": 30,
+    "ffrag": false,
+    "fhmac": false,
+    "fxtea": false,
+    "frdp": false,
+    "fcrc32": true
+  },
+  "beginSample": 0,
+  "beginMillis": 0,
+  "endSample": 0
+}

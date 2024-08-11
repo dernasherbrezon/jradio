@@ -1,0 +1,90 @@
+{
+  "beaconHeader": {
+    "protocolVersion": 1,
+    "type": 17,
+    "version": 1,
+    "satid": 666
+  },
+  "adcs7": {
+    "hk415417": {
+      "checksum": 39813,
+      "timestamp": 1723321440,
+      "source": 4
+    },
+    "ctrlRefq": [
+      0.42767426,
+      -0.89418226,
+      -0.119452074,
+      0.057132334
+    ],
+    "ctrlErrq": [
+      0.055137128,
+      -0.027776409,
+      -0.0050964756,
+      0.9980795
+    ],
+    "ctrlErrrate": [
+      -1.3413187E-4,
+      -2.1882076E-4,
+      4.3859053E-4
+    ],
+    "ctrlM": [
+      -8.467839,
+      -23.575855,
+      2.518798
+    ],
+    "ctrlMwtorque": [
+      2.3996145E-6,
+      8.123008E-6,
+      -1.0634337E-5,
+      -7.899007E-6
+    ],
+    "ctrlMwspeed": [
+      -502.2,
+      771.6,
+      -682.6,
+      688.2
+    ],
+    "ctrlMwmoment": [
+      -0.0015777078,
+      0.0024240527,
+      -0.002144451,
+      0.0021620442
+    ],
+    "ctrlRefrate": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "ctrlEuleroff": [
+      1.570796,
+      0.0,
+      -1.570796
+    ],
+    "ctrlBtorque": [
+      -1.1287402E-5,
+      1.3875065E-5,
+      -4.0053606E-6
+    ],
+    "ctrlBmoment": [
+      -5.02087E-4,
+      2.4077453E-4,
+      4.2796368E-4
+    ]
+  },
+  "header": {
+    "priority": "CSP_PRIO_NORM",
+    "source": 4,
+    "destination": 30,
+    "sourcePort": 0,
+    "destinationPort": 30,
+    "ffrag": false,
+    "fhmac": false,
+    "fxtea": false,
+    "frdp": false,
+    "fcrc32": true
+  },
+  "beginSample": 0,
+  "beginMillis": 0,
+  "endSample": 0
+}

@@ -1,0 +1,135 @@
+{
+  "beaconHeader": {
+    "protocolVersion": 1,
+    "type": 4,
+    "version": 1,
+    "satid": 666
+  },
+  "pdu1": {
+    "hk844": {
+      "checksum": 64451,
+      "timestamp": 1723321500,
+      "source": 8
+    },
+    "p60Cout": [
+      41,
+      49,
+      49,
+      -18,
+      15,
+      178,
+      251,
+      3,
+      -8,
+      5,
+      7,
+      4,
+      7
+    ],
+    "p60OutEn": [
+      1,
+      1,
+      1,
+      0,
+      1,
+      1,
+      1,
+      0,
+      0,
+      0,
+      0,
+      1,
+      1
+    ],
+    "p60Temp": [
+      422,
+      416
+    ],
+    "p60Bootcause": 1,
+    "p60Uptime": 4399,
+    "p60Resetcause": 1,
+    "p60Latchup": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "p60VccC": -12,
+    "p60BattV": 16310,
+    "p60DearmStatus": 1,
+    "p60WdtCntGnd": 6,
+    "p60WdtCntCan": 0,
+    "p60WdtCntLeft": 154761,
+    "p60BattChrg": 428,
+    "p60BattDchrg": 505,
+    "ant6Depl": 2,
+    "ar6Depl": 2,
+    "hk944": {
+      "checksum": 20229,
+      "timestamp": 1723321500,
+      "source": 9
+    },
+    "pduX2Vout": [
+      3379,
+      366,
+      0,
+      552,
+      0,
+      0,
+      138,
+      3362,
+      0
+    ],
+    "pduX2Temp": 427,
+    "pduX2OutEn": [
+      1,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1,
+      0
+    ],
+    "pduX2Bootcause": 1,
+    "pduX2BootCnt": 1429,
+    "pduX2Uptime": 4397,
+    "pduX2Resetcause": 1,
+    "pduX2Latchup": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ]
+  },
+  "header": {
+    "priority": "CSP_PRIO_NORM",
+    "source": 1,
+    "destination": 30,
+    "sourcePort": 0,
+    "destinationPort": 30,
+    "ffrag": false,
+    "fhmac": false,
+    "fxtea": false,
+    "frdp": false,
+    "fcrc32": true
+  },
+  "beginSample": 0,
+  "beginMillis": 0,
+  "endSample": 0
+}

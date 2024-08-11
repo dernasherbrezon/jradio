@@ -1,0 +1,97 @@
+{
+  "beaconHeader": {
+    "protocolVersion": 1,
+    "type": 2,
+    "version": 2,
+    "satid": 666
+  },
+  "crit2": {
+    "hk1042": {
+      "checksum": 20229,
+      "timestamp": 1723321470,
+      "source": 10
+    },
+    "pduX3Cout": [
+      4,
+      3,
+      436,
+      160,
+      260,
+      12,
+      3,
+      7,
+      6
+    ],
+    "hk1142": {
+      "checksum": 38647,
+      "timestamp": 1723321470,
+      "source": 11
+    },
+    "acuPower": [
+      1059,
+      2113,
+      41,
+      1086,
+      2151,
+      1085
+    ],
+    "hk442": {
+      "checksum": 30446,
+      "timestamp": 1723321470,
+      "source": 4
+    },
+    "adcsBootCnt": 2222,
+    "adcsClock": 1723321470,
+    "hk41502": {
+      "checksum": 24684,
+      "timestamp": 1723321470,
+      "source": 4
+    },
+    "extgyro": [
+      0.5258789,
+      0.41778564,
+      0.52697754
+    ],
+    "gpsPos": [
+      2415598.2,
+      445920.97,
+      6388449.0
+    ],
+    "gpsVel": [
+      7096.42,
+      -1627.9048,
+      -2545.4326
+    ],
+    "hk41512": {
+      "checksum": 37750,
+      "timestamp": 1723321470,
+      "source": 4
+    },
+    "acsMode": 6,
+    "statusExtmag": 0,
+    "statusFss": [
+      253,
+      253,
+      1,
+      253,
+      253
+    ],
+    "statusExtgyro": 0,
+    "statusGps": 1
+  },
+  "header": {
+    "priority": "CSP_PRIO_NORM",
+    "source": 1,
+    "destination": 30,
+    "sourcePort": 0,
+    "destinationPort": 30,
+    "ffrag": false,
+    "fhmac": false,
+    "fxtea": false,
+    "frdp": false,
+    "fcrc32": true
+  },
+  "beginSample": 0,
+  "beginMillis": 0,
+  "endSample": 0
+}

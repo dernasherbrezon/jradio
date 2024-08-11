@@ -1,0 +1,102 @@
+{
+  "beaconHeader": {
+    "protocolVersion": 1,
+    "type": 11,
+    "version": 1,
+    "satid": 666
+  },
+  "adcs1": {
+    "hk415011": {
+      "checksum": 24684,
+      "timestamp": 1723321440,
+      "source": 4
+    },
+    "extmag": [
+      -133.34138,
+      95.78014,
+      387.7136
+    ],
+    "extmagTemp": 19.0625,
+    "extmagValid": 1,
+    "suns": [
+      0.0,
+      546.0,
+      0.0,
+      25.0,
+      0.0,
+      559.0
+    ],
+    "sunsValid": 59,
+    "sunsTemp": [
+      -2,
+      51,
+      0,
+      10,
+      -1,
+      44
+    ],
+    "extgyro": [
+      0.48876953,
+      0.41101074,
+      0.5075073
+    ],
+    "extgyroTemp": 27.652344,
+    "extgyroValid": 1,
+    "fss": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      -0.03469649,
+      0.99784994,
+      -0.055602998,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "fssTemp": 25.4375,
+    "fssValid": [
+      0,
+      0,
+      1,
+      0,
+      0
+    ],
+    "gpsPos": [
+      2201290.8,
+      494040.94,
+      6461255.0
+    ],
+    "gpsVel": [
+      7188.8013,
+      -1579.3517,
+      -2306.6946
+    ],
+    "gpsEpoch": 1723321438,
+    "gpsValid": 1,
+    "gpsSat": 10,
+    "gpsSatsol": 10,
+    "ppsUnix": 1723321440
+  },
+  "header": {
+    "priority": "CSP_PRIO_NORM",
+    "source": 4,
+    "destination": 30,
+    "sourcePort": 0,
+    "destinationPort": 30,
+    "ffrag": false,
+    "fhmac": false,
+    "fxtea": false,
+    "frdp": false,
+    "fcrc32": true
+  },
+  "beginSample": 0,
+  "beginMillis": 0,
+  "endSample": 0
+}

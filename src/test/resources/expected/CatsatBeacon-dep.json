@@ -1,0 +1,50 @@
+{
+  "beaconHeader": {
+    "protocolVersion": 1,
+    "type": 6,
+    "version": 1,
+    "satid": 666
+  },
+  "dep": {
+    "hk1966": {
+      "checksum": 64383,
+      "timestamp": 1723321381,
+      "source": 1
+    },
+    "antBrn": [
+      -5,
+      -5,
+      85,
+      104
+    ],
+    "antRel": [
+      -5,
+      -5,
+      1,
+      0
+    ],
+    "dspBrn": [
+      5,
+      3
+    ],
+    "dspRel": [
+      1,
+      1
+    ]
+  },
+  "header": {
+    "priority": "CSP_PRIO_NORM",
+    "source": 1,
+    "destination": 30,
+    "sourcePort": 0,
+    "destinationPort": 30,
+    "ffrag": false,
+    "fhmac": false,
+    "fxtea": false,
+    "frdp": false,
+    "fcrc32": true
+  },
+  "beginSample": 0,
+  "beginMillis": 0,
+  "endSample": 0
+}

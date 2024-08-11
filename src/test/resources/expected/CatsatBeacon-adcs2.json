@@ -1,0 +1,123 @@
+{
+  "beaconHeader": {
+    "protocolVersion": 1,
+    "type": 12,
+    "version": 1,
+    "satid": 666
+  },
+  "adcs2": {
+    "hk415012": {
+      "checksum": 24684,
+      "timestamp": 1723354921,
+      "source": 4
+    },
+    "wheelTorque": [
+      1.1E-5,
+      7.9E-6,
+      3.9999998E-7,
+      4.5E-6
+    ],
+    "wheelMomentum": [
+      -0.002175553,
+      0.002781566,
+      -0.0021950307,
+      0.0026596722
+    ],
+    "wheelSpeed": [
+      -692.5,
+      885.4,
+      -698.4,
+      846.6
+    ],
+    "wheelEnable": [
+      1,
+      1,
+      1,
+      1
+    ],
+    "wheelCurrent": [
+      4,
+      37,
+      25,
+      17
+    ],
+    "wheelTemp": [
+      248,
+      265,
+      321,
+      313
+    ],
+    "torquerDuty": [
+      -13.178136,
+      -26.969337,
+      4.4738455
+    ],
+    "torquerCalib": [
+      1.0,
+      1.0,
+      1.0
+    ],
+    "hk415112": {
+      "checksum": 37750,
+      "timestamp": 1723354921,
+      "source": 4
+    },
+    "acsMode": 6,
+    "acsDmode": 6,
+    "adsMode": 3,
+    "adsDmode": 3,
+    "ephemMode": 1,
+    "ephemDmode": 2,
+    "spinMode": 0,
+    "statusMag": 0,
+    "statusExtmag": 0,
+    "statusCss": 0,
+    "statusFss": [
+      -3,
+      -3,
+      1,
+      -3,
+      -3
+    ],
+    "statusGyro": 0,
+    "statusExtgyro": 0,
+    "statusGps": 1,
+    "statusBdot": 0,
+    "statusUkf": 0,
+    "statusEtime": 0,
+    "statusEphem": 0,
+    "statusRun": 2,
+    "looptime": 181,
+    "maxLooptime": 233,
+    "bdotRate": [
+      0.64170223,
+      0.8187447
+    ],
+    "bdotDmag": [
+      0.31093293,
+      -0.07833392,
+      -0.031123476
+    ],
+    "bdotTorquer": [
+      -80.0,
+      0.0,
+      80.0
+    ],
+    "bdotDetumble": 1
+  },
+  "header": {
+    "priority": "CSP_PRIO_NORM",
+    "source": 4,
+    "destination": 30,
+    "sourcePort": 0,
+    "destinationPort": 30,
+    "ffrag": false,
+    "fhmac": false,
+    "fxtea": false,
+    "frdp": false,
+    "fcrc32": true
+  },
+  "beginSample": 0,
+  "beginMillis": 0,
+  "endSample": 0
+}
