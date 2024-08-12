@@ -609,6 +609,11 @@ jradio has lots of built-in satellite decoders. Some of them have non standard d
 			<td>60246</td>
 			<td>ru.r2cloud.jradio.catsat.CatsatBeacon</td>
 		</tr>
+		<tr>
+			<td>ENSO</td>
+			<td>58470</td>
+			<td>ru.r2cloud.jradio.enso.EnsoBeacon</td>
+		</tr>
 	</tbody>
 </table>
   
