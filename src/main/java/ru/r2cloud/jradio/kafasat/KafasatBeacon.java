@@ -21,7 +21,7 @@ public class KafasatBeacon extends Ax25Beacon {
 		BitInputStream bis = new BitInputStream(dis);
 		primary = new PacketPrimaryHeader(bis);
 		if (primary.isSecondaryHeader()) {
-			secondary = new PacketSecondaryHeader(bis);
+			secondary = new PacketSecondaryHeader(bis, true);
 		}
 		if (secondary != null && secondary.getServiceType() == 3 && secondary.getServiceSubType() == 25) {
 			LittleEndianDataInputStream ldis = new LittleEndianDataInputStream(dis);

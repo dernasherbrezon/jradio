@@ -6,7 +6,11 @@ import ru.r2cloud.jradio.util.BitInputStream;
 
 public class PacketSecondaryHeader {
 
-	private int pusHeader;
+	public static final int SIZE_BYTES = 3;
+
+	private Boolean ccsdsSecondaryHeader;
+	private int pusVersion;
+	private Integer ack;
 	private int serviceType;
 	private int serviceSubType;
 
@@ -14,18 +18,44 @@ public class PacketSecondaryHeader {
 		// do nothing
 	}
 
-	public PacketSecondaryHeader(BitInputStream bis) throws IOException {
-		pusHeader = bis.readUnsignedByte();
+	public PacketSecondaryHeader(BitInputStream bis, boolean telemetry) throws IOException {
+		if (telemetry) {
+			bis.skipBits(1);
+		} else {
+			ccsdsSecondaryHeader = bis.readBoolean();
+		}
+		pusVersion = bis.readUnsignedInt(3);
+		if (telemetry) {
+			bis.skipBits(4);
+		} else {
+			ack = bis.readUnsignedInt(4);
+		}
 		serviceType = bis.readUnsignedByte();
 		serviceSubType = bis.readUnsignedByte();
 	}
 
-	public int getPusHeader() {
-		return pusHeader;
+	public Boolean getCcsdsSecondaryHeader() {
+		return ccsdsSecondaryHeader;
 	}
 
-	public void setPusHeader(int pusHeader) {
-		this.pusHeader = pusHeader;
+	public void setCcsdsSecondaryHeader(Boolean ccsdsSecondaryHeader) {
+		this.ccsdsSecondaryHeader = ccsdsSecondaryHeader;
+	}
+
+	public int getPusVersion() {
+		return pusVersion;
+	}
+
+	public void setPusVersion(int pusVersion) {
+		this.pusVersion = pusVersion;
+	}
+
+	public Integer getAck() {
+		return ack;
+	}
+
+	public void setAck(Integer ack) {
+		this.ack = ack;
 	}
 
 	public int getServiceType() {

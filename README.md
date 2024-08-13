@@ -614,6 +614,11 @@ jradio has lots of built-in satellite decoders. Some of them have non standard d
 			<td>58470</td>
 			<td>ru.r2cloud.jradio.enso.EnsoBeacon</td>
 		</tr>
+		<tr>
+			<td>EIRSAT-1</td>
+			<td>58472</td>
+			<td>ru.r2cloud.jradio.eirsat.EirsatBeacon</td>
+		</tr>
 	</tbody>
 </table>
   
