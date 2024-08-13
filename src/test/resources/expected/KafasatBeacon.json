@@ -10,7 +10,6 @@
   },
   "secondary": {
     "pusVersion": 1,
-    "ack": 0,
     "serviceType": 3,
     "serviceSubType": 25
   },
