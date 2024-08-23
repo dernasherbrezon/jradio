@@ -43,6 +43,9 @@ public class NetSatBeacon extends Beacon {
 		if (compassHeader.getPayloadSize() == 53) {
 			modelPacket = new ModelPacket(ldis);
 		} else {
+			if (compassHeader.getPayloadSize() > ldis.available()) {
+				throw new UncorrectableException("invalid header size: " + compassHeader.getPayloadSize());
+			}
 			unknownPayload = new byte[compassHeader.getPayloadSize()];
 			ldis.readFully(unknownPayload);
 		}

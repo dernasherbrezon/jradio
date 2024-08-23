@@ -18,6 +18,9 @@ public class TransferFrameSecondaryHeader {
 	public TransferFrameSecondaryHeader(BitInputStream bis) throws IOException {
 		version = bis.readUnsignedInt(2);
 		length = bis.readUnsignedInt(6);
+		if (length > bis.available()) {
+			throw new IOException("invalid length: " + length);
+		}
 		payload = new byte[length];
 		bis.readFully(payload);
 	}

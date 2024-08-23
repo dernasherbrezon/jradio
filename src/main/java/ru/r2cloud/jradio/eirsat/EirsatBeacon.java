@@ -16,6 +16,9 @@ public class EirsatBeacon extends TransferFrame {
 	@Override
 	public void readBeacon(DataInputStream dis) throws IOException, UncorrectableException {
 		if (getHeader().getFieldStatus().getFirstHeaderPointer() != 0) {
+			if (getHeader().getFieldStatus().getFirstHeaderPointer() > dis.available()) {
+				throw new UncorrectableException("invalid header offset: " + getHeader().getFieldStatus().getFirstHeaderPointer());
+			}
 			byte[] payload = new byte[getHeader().getFieldStatus().getFirstHeaderPointer()];
 			dis.readFully(payload);
 			Packet partial = new Packet();
