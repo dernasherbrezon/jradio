@@ -15,12 +15,16 @@ import ru.r2cloud.jradio.crc.Crc16Cc11xx;
 import ru.r2cloud.jradio.fec.ccsds.UncorrectableException;
 
 public class StratosatTk1 extends BeaconSource<StratosatTk1Beacon> {
-	
+
 	private static final Logger LOG = LoggerFactory.getLogger(StratosatTk1.class);
 	private final AdditiveScrambler scrambler;
 
 	public StratosatTk1(ByteInput demod) {
-		super(new CorrelateSyncword(new SoftToHard(demod), 4, "10010011000010110101000111011110", 66 * 8));
+		this(demod, 66);
+	}
+
+	public StratosatTk1(ByteInput demod, int beaconSizeBytes) {
+		super(new CorrelateSyncword(new SoftToHard(demod), 4, "10010011000010110101000111011110", beaconSizeBytes * 8));
 		scrambler = new AdditiveScrambler(0x21, 0x1ff, 8, 8);
 	}
 

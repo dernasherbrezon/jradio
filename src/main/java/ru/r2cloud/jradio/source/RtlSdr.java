@@ -37,7 +37,7 @@ public class RtlSdr implements FloatInput {
 		buffer = new byte[BUFFER_SIZE];
 		maxBytes = buffer.length;
 		lookupTable = new float[0x100];
-		for (int i = 0; i < 256; ++i) {
+		for (int i = 0; i < lookupTable.length; ++i) {
 			lookupTable[i] = (i - 127.5f) / 128.0f;
 		}
 		context = new Context();
