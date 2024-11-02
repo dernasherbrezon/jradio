@@ -25,7 +25,7 @@ public class EirsatBeacon extends TransferFrame {
 			partial.setPayload(payload);
 			packets.add(partial);
 		}
-		while (!Thread.currentThread().isInterrupted()) {
+		while (!Thread.currentThread().isInterrupted() && dis.available() > 0) {
 			try {
 				packets.add(new Packet(dis));
 			} catch (UncorrectableException e) {
