@@ -1,0 +1,39 @@
+{
+  "callsign": "KE7DHQ",
+  "header": {
+    "packetVersion": 0,
+    "packetType": 0,
+    "secondaryHeader": false,
+    "applicationProcessId": 3,
+    "sequenceFlag": 2,
+    "packetName": 1,
+    "packetDataLength": 27
+  },
+  "second": {
+    "payload2": {
+      "filterBankPowerCh3": 255,
+      "filterBankPowerCh4": 255,
+      "filterBankPowerCh5": 255,
+      "filterBankPowerCh6": 255,
+      "filterBankPowerCh7": 255,
+      "filterBankPowerCh8": 255,
+      "sdrPower": 65535,
+      "sdrBright1": 65535,
+      "sdrBright2": 65535,
+      "sdrBright3": 65535,
+      "sdrBright4": 65535,
+      "sdrBright5": 65535,
+      "sdrBright6": 65535,
+      "sdrBright7": 65535,
+      "sdrBright8": 65535,
+      "sdrBright9": 65535,
+      "sdrBright10": 65535
+    }
+  },
+  "flags": 64,
+  "seqnum": 0,
+  "hwid": 3328,
+  "beginSample": 0,
+  "beginMillis": 0,
+  "endSample": 0
+}
