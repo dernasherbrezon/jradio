@@ -2,7 +2,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>ru.r2cloud</groupId>
 	<artifactId>jradio</artifactId>
-	<version>1.104-SNAPSHOT</version>
+	<version>1.104</version>
 	<url>https://github.com/dernasherbrezon/jradio</url>
 	<name>jradio</name>
 	<description>Software radio decoding written in Java.</description>
@@ -287,7 +287,7 @@
 		<url>https://github.com/dernasherbrezon/jradio</url>
 		<connection>scm:git:git@github.com:dernasherbrezon/jradio.git</connection>
 		<developerConnection>scm:git:git@github.com:dernasherbrezon/jradio.git</developerConnection>
-		<tag>jradio-1.88</tag>
+		<tag>jradio-1.104</tag>
 	</scm>
 
 	<issueManagement>
