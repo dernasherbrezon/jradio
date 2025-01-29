@@ -1,0 +1,36 @@
+{
+  "sol": {
+    "tempZp": 5.31,
+    "tempXp": 1.81,
+    "tempYp": -11.69,
+    "tempZn": -7.8199997,
+    "tempXn": -9.5,
+    "tempYn": 4.0,
+    "diodeZp": 887,
+    "diodeXp": 360,
+    "diodeYp": 312,
+    "diodeZn": 155,
+    "diodeXn": 155,
+    "diodeYn": 135
+  },
+  "header": {
+    "destinationAddress": {
+      "callsign": "CQ",
+      "ssid": 0,
+      "extensionBit": 0
+    },
+    "sourceAddress": {
+      "callsign": "9A0CC",
+      "ssid": 0,
+      "extensionBit": 1
+    },
+    "frameType": "U",
+    "sendSequenceNumber": 0,
+    "receiveSequenceNumber": 0,
+    "uControlType": "UI",
+    "pid": 240
+  },
+  "beginSample": 0,
+  "beginMillis": 0,
+  "endSample": 0
+}

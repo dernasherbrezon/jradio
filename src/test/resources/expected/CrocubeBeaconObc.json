@@ -1,0 +1,30 @@
+{
+  "obc": {
+    "bootCount": 11,
+    "uptime": 1694642,
+    "totalUptime": 3257296,
+    "batteryLevel": 8.192,
+    "tempMcu": 11.17,
+    "freemem": 4919
+  },
+  "header": {
+    "destinationAddress": {
+      "callsign": "CQ",
+      "ssid": 0,
+      "extensionBit": 0
+    },
+    "sourceAddress": {
+      "callsign": "9A0CC",
+      "ssid": 0,
+      "extensionBit": 1
+    },
+    "frameType": "U",
+    "sendSequenceNumber": 0,
+    "receiveSequenceNumber": 0,
+    "uControlType": "UI",
+    "pid": 240
+  },
+  "beginSample": 0,
+  "beginMillis": 0,
+  "endSample": 0
+}

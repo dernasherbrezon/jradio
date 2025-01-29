@@ -625,6 +625,11 @@ jradio has lots of built-in satellite decoders. Some of them have non standard d
 			<td>61502</td>
 			<td>ru.r2cloud.jradio.dora.DoraBeacon</td>
 		</tr>
+		<tr>
+			<td>Crocube</td>
+			<td>62394</td>
+			<td>ru.r2cloud.jradio.crocube.CrocubeBeacon</td>
+		</tr>
 	</tbody>
 </table>
   
