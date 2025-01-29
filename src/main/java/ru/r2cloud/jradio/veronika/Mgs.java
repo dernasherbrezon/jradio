@@ -2,16 +2,16 @@ package ru.r2cloud.jradio.veronika;
 
 public class Mgs {
 
-	private int tempIntMag;
-	private int tempIntGyr;
+	private float tempIntMag;
+	private float tempIntGyr;
 	private int intMagX;
 	private int intMagY;
 	private int intMagZ;
 	private int intGyrX;
 	private int intGyrY;
 	private int intGyrZ;
-	private int tempExtMag;
-	private int tempExtGyr;
+	private float tempExtMag;
+	private float tempExtGyr;
 	private int extMagX;
 	private int extMagY;
 	private int extMagZ;
@@ -25,38 +25,22 @@ public class Mgs {
 
 	public Mgs(String[] parts) {
 		int i = 1;
-		tempIntMag = Integer.parseInt(parts[i++]);
-		tempIntGyr = Integer.parseInt(parts[i++]);
+		tempIntMag = Integer.parseInt(parts[i++]) * 0.01f;
+		tempIntGyr = Integer.parseInt(parts[i++]) * 0.01f;
 		intMagX = Integer.parseInt(parts[i++]);
 		intMagY = Integer.parseInt(parts[i++]);
 		intMagZ = Integer.parseInt(parts[i++]);
 		intGyrX = Integer.parseInt(parts[i++]);
 		intGyrY = Integer.parseInt(parts[i++]);
 		intGyrZ = Integer.parseInt(parts[i++]);
-		tempExtMag = Integer.parseInt(parts[i++]);
-		tempExtGyr = Integer.parseInt(parts[i++]);
+		tempExtMag = Integer.parseInt(parts[i++]) * 0.01f;
+		tempExtGyr = Integer.parseInt(parts[i++]) * 0.01f;
 		extMagX = Integer.parseInt(parts[i++]);
 		extMagY = Integer.parseInt(parts[i++]);
 		extMagZ = Integer.parseInt(parts[i++]);
 		extGyrX = Integer.parseInt(parts[i++]);
 		extGyrY = Integer.parseInt(parts[i++]);
 		extGyrZa = Integer.parseInt(parts[i++]);
-	}
-
-	public int getTempIntMag() {
-		return tempIntMag;
-	}
-
-	public void setTempIntMag(int tempIntMag) {
-		this.tempIntMag = tempIntMag;
-	}
-
-	public int getTempIntGyr() {
-		return tempIntGyr;
-	}
-
-	public void setTempIntGyr(int tempIntGyr) {
-		this.tempIntGyr = tempIntGyr;
 	}
 
 	public int getIntMagX() {
@@ -107,19 +91,35 @@ public class Mgs {
 		this.intGyrZ = intGyrZ;
 	}
 
-	public int getTempExtMag() {
+	public float getTempIntMag() {
+		return tempIntMag;
+	}
+
+	public void setTempIntMag(float tempIntMag) {
+		this.tempIntMag = tempIntMag;
+	}
+
+	public float getTempIntGyr() {
+		return tempIntGyr;
+	}
+
+	public void setTempIntGyr(float tempIntGyr) {
+		this.tempIntGyr = tempIntGyr;
+	}
+
+	public float getTempExtMag() {
 		return tempExtMag;
 	}
 
-	public void setTempExtMag(int tempExtMag) {
+	public void setTempExtMag(float tempExtMag) {
 		this.tempExtMag = tempExtMag;
 	}
 
-	public int getTempExtGyr() {
+	public float getTempExtGyr() {
 		return tempExtGyr;
 	}
 
-	public void setTempExtGyr(int tempExtGyr) {
+	public void setTempExtGyr(float tempExtGyr) {
 		this.tempExtGyr = tempExtGyr;
 	}
 

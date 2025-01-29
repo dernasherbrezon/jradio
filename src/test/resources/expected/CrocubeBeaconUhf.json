@@ -1,18 +1,18 @@
 {
   "uhf": {
-    "uptimeSinceReset": 784630,
-    "uptimeTotal": 3279301,
-    "radioBootCount": 12,
+    "uptime": 784630,
+    "totalUptime": 3279301,
+    "bootCount": 12,
     "rfSegmentResetCount": 0,
-    "radioMcuTemperature": 9.08,
-    "frChipTemperature": 10.54,
-    "rfPowerAmplifierTemperature": 7.68,
-    "forwardedMessageCount": 53,
-    "lastCallsign": "DL7NDR",
-    "rxPackets": 86,
-    "txPackets": 204253,
-    "actualRssi": -89.5,
-    "valueRssi": -85.5
+    "radioMcuTemp": 9.08,
+    "rfChipTemp": 10.54,
+    "rfPowerAmplifierTemp": 7.68,
+    "digipeaterMessageCount": 53,
+    "lastSenderCallsign": "DL7NDR",
+    "rxDataPackets": 86,
+    "txDataPackets": 204253,
+    "rssi": -89.5,
+    "rssiAferPreamble": -85.5
   },
   "header": {
     "destinationAddress": {

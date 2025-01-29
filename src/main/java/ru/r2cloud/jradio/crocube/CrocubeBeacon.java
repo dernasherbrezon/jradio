@@ -6,14 +6,19 @@ import java.nio.charset.StandardCharsets;
 import java.util.regex.Pattern;
 
 import ru.r2cloud.jradio.ax25.Ax25Beacon;
+import ru.r2cloud.jradio.bdsat.Psu;
+import ru.r2cloud.jradio.bdsat.Radio;
 import ru.r2cloud.jradio.fec.ccsds.UncorrectableException;
+import ru.r2cloud.jradio.veronika.Mgs;
+import ru.r2cloud.jradio.veronika.Obc;
+import ru.r2cloud.jradio.veronika.Sol;
 
 public class CrocubeBeacon extends Ax25Beacon {
 
 	private static final Pattern COMMA = Pattern.compile(",");
 
-	private Trx uhf;
-	private Trx vhf;
+	private Radio uhf;
+	private Radio vhf;
 	private Obc obc;
 	private Psu psu;
 	private Mgs mgs;
@@ -32,9 +37,9 @@ public class CrocubeBeacon extends Ax25Beacon {
 			return;
 		}
 		if (parts[0].equalsIgnoreCase("U")) {
-			uhf = new Trx(parts);
+			uhf = new Radio(parts);
 		} else if (parts[0].equalsIgnoreCase("V")) {
-			vhf = new Trx(parts);
+			vhf = new Radio(parts);
 		} else if (parts[0].equalsIgnoreCase("OBC")) {
 			obc = new Obc(parts);
 		} else if (parts[0].equalsIgnoreCase("PSU")) {
@@ -50,19 +55,19 @@ public class CrocubeBeacon extends Ax25Beacon {
 		}
 	}
 
-	public Trx getUhf() {
+	public Radio getUhf() {
 		return uhf;
 	}
 
-	public void setUhf(Trx uhf) {
+	public void setUhf(Radio uhf) {
 		this.uhf = uhf;
 	}
 
-	public Trx getVhf() {
+	public Radio getVhf() {
 		return vhf;
 	}
 
-	public void setVhf(Trx vhf) {
+	public void setVhf(Radio vhf) {
 		this.vhf = vhf;
 	}
 

@@ -1,11 +1,11 @@
 {
   "obc": {
-    "bootCount": 11,
+    "resetCount": 11,
     "uptime": 1694642,
-    "totalUptime": 3257296,
+    "uptimeTotal": 3257296,
     "batteryLevel": 8.192,
     "tempMcu": 11.17,
-    "freemem": 4919
+    "freeMemory": 4919
   },
   "header": {
     "destinationAddress": {

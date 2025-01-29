@@ -2,12 +2,12 @@ package ru.r2cloud.jradio.veronika;
 
 public class Sol {
 
-	private int tempZp;
-	private int tempXp;
-	private int tempYp;
-	private int tempZn;
-	private int tempXn;
-	private int tempYn;
+	private float tempZp;
+	private float tempXp;
+	private float tempYp;
+	private float tempZn;
+	private float tempXn;
+	private float tempYn;
 	private int diodeZp;
 	private int diodeXp;
 	private int diodeYp;
@@ -21,12 +21,12 @@ public class Sol {
 
 	public Sol(String[] parts) {
 		int i = 1;
-		tempZp = Integer.parseInt(parts[i++]);
-		tempXp = Integer.parseInt(parts[i++]);
-		tempYp = Integer.parseInt(parts[i++]);
-		tempZn = Integer.parseInt(parts[i++]);
-		tempXn = Integer.parseInt(parts[i++]);
-		tempYn = Integer.parseInt(parts[i++]);
+		tempZp = Integer.parseInt(parts[i++]) * 0.01f;
+		tempXp = Integer.parseInt(parts[i++]) * 0.01f;
+		tempYp = Integer.parseInt(parts[i++]) * 0.01f;
+		tempZn = Integer.parseInt(parts[i++]) * 0.01f;
+		tempXn = Integer.parseInt(parts[i++]) * 0.01f;
+		tempYn = Integer.parseInt(parts[i++]) * 0.01f;
 		diodeZp = Integer.parseInt(parts[i++]);
 		diodeXp = Integer.parseInt(parts[i++]);
 		diodeYp = Integer.parseInt(parts[i++]);
@@ -35,48 +35,52 @@ public class Sol {
 		diodeYn = Integer.parseInt(parts[i++]);
 	}
 
-	public int getTempZp() {
+	public float getTempZp() {
 		return tempZp;
 	}
 
-	public void setTempZp(int tempZp) {
+	public void setTempZp(float tempZp) {
 		this.tempZp = tempZp;
 	}
 
-	public int getTempXp() {
+	public float getTempXp() {
 		return tempXp;
 	}
 
-	public void setTempXp(int tempXp) {
+	public void setTempXp(float tempXp) {
 		this.tempXp = tempXp;
 	}
 
-	public int getTempYp() {
+	public float getTempYp() {
 		return tempYp;
 	}
 
-	public void setTempYp(int tempYp) {
+	public void setTempYp(float tempYp) {
 		this.tempYp = tempYp;
 	}
 
-	public int getTempZn() {
+	public float getTempZn() {
 		return tempZn;
 	}
 
-	public void setTempZn(int tempZn) {
+	public void setTempZn(float tempZn) {
 		this.tempZn = tempZn;
 	}
 
-	public int getTempXn() {
+	public float getTempXn() {
 		return tempXn;
 	}
 
-	public void setTempXn(int tempXn) {
+	public void setTempXn(float tempXn) {
 		this.tempXn = tempXn;
 	}
 
-	public int getTempYn() {
+	public float getTempYn() {
 		return tempYn;
+	}
+
+	public void setTempYn(float tempYn) {
+		this.tempYn = tempYn;
 	}
 
 	public void setTempYn(int tempYn) {

@@ -64,10 +64,5 @@ public class CrocubeBeaconTest {
 	public void testPojo() {
 		assertThat(CrocubeBeacon.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
 		assertThat(Atr.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
-		assertThat(Mgs.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
-		assertThat(Obc.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
-		assertThat(Psu.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
-		assertThat(Sol.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
-		assertThat(Trx.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
 	}
 }
