@@ -1,0 +1,32 @@
+{
+  "mgs": {
+    "tempIntMag": 11.4,
+    "tempIntGyr": 25.22,
+    "intMagX": 11447,
+    "intMagY": -6972,
+    "intMagZ": 2527,
+    "intGyrX": -32768,
+    "intGyrY": -32768,
+    "intGyrZ": -32768
+  },
+  "header": {
+    "destinationAddress": {
+      "callsign": "CQ",
+      "ssid": 0,
+      "extensionBit": 0
+    },
+    "sourceAddress": {
+      "callsign": "OK0LSR",
+      "ssid": 0,
+      "extensionBit": 1
+    },
+    "frameType": "U",
+    "sendSequenceNumber": 0,
+    "receiveSequenceNumber": 0,
+    "uControlType": "UI",
+    "pid": 240
+  },
+  "beginSample": 0,
+  "beginMillis": 0,
+  "endSample": 0
+}

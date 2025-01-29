@@ -1,0 +1,37 @@
+{
+  "nav": {
+    "week": 15,
+    "time": 15766759,
+    "posX": 4294967295,
+    "posY": 4294967295,
+    "posZ": 4294967295,
+    "velX": -1,
+    "velY": -1,
+    "velZ": 5962,
+    "sats": 0,
+    "dop": 0,
+    "antCur": 18,
+    "volt": 168,
+    "maxSnr": 0
+  },
+  "header": {
+    "destinationAddress": {
+      "callsign": "CQ",
+      "ssid": 0,
+      "extensionBit": 0
+    },
+    "sourceAddress": {
+      "callsign": "OK0LSR",
+      "ssid": 0,
+      "extensionBit": 1
+    },
+    "frameType": "U",
+    "sendSequenceNumber": 0,
+    "receiveSequenceNumber": 0,
+    "uControlType": "UI",
+    "pid": 240
+  },
+  "beginSample": 0,
+  "beginMillis": 0,
+  "endSample": 0
+}
