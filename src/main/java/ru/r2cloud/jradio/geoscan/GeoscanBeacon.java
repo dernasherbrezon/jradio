@@ -39,6 +39,9 @@ public class GeoscanBeacon extends Beacon {
 			LittleEndianDataInputStream ldis = new LittleEndianDataInputStream(dis);
 			geoscanHeader = new GeoscanHeader(ldis);
 			int payloadLength = geoscanHeader.getFieldSize() - 6;
+			if (payloadLength < 0) {
+				throw new IOException("invalid message");
+			}
 			if (payloadLength > dis.available()) {
 				payloadLength = dis.available();
 			}
