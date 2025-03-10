@@ -46,6 +46,9 @@ public class TransferFrame extends Beacon {
 		if (hasCrc) {
 			payloadLength -= 2;
 		}
+		if (payloadLength < 0) {
+			throw new IOException();
+		}
 		byte[] payload = new byte[payloadLength];
 		dis.readFully(payload);
 		if (header.isOcf()) {
@@ -79,11 +82,11 @@ public class TransferFrame extends Beacon {
 	public void setHeader(TransferFramePrimaryHeader header) {
 		this.header = header;
 	}
-	
+
 	public TransferFrameSecondaryHeader getSecondaryHeader() {
 		return secondaryHeader;
 	}
-	
+
 	public void setSecondaryHeader(TransferFrameSecondaryHeader secondaryHeader) {
 		this.secondaryHeader = secondaryHeader;
 	}

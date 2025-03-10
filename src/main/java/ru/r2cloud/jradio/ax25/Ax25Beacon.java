@@ -20,8 +20,8 @@ public class Ax25Beacon extends Beacon {
 		try {
 			readBeacon(dis);
 		} catch (EOFException e) {
-			payload = new byte[data.length - Header.LENGTH_BYTES];
-			System.arraycopy(data, Header.LENGTH_BYTES, payload, 0, payload.length);
+			payload = new byte[dis.available()];
+			dis.readFully(payload);
 		}
 	}
 

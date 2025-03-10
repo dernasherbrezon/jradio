@@ -145,8 +145,11 @@ public class FileExtractor {
 				// falconsat-3 doesn't correctly send eof flag for file frames
 				continue;
 			}
-
-			byte[] payload = new byte[header.getFileSize().intValue() - header.getBodyOffset()];
+			int payloadLength = header.getFileSize().intValue() - header.getBodyOffset();
+			if (payloadLength < 0) {
+				continue;
+			}
+			byte[] payload = new byte[payloadLength];
 			System.arraycopy(body, header.getBodyOffset(), payload, 0, payload.length);
 
 			if (Crc16SumOfBytes.calculate(payload) != header.getBodyChecksum()) {
