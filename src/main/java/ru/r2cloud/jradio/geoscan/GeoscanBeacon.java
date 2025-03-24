@@ -40,7 +40,7 @@ public class GeoscanBeacon extends Beacon {
 			geoscanHeader = new GeoscanHeader(ldis);
 			int payloadLength = geoscanHeader.getFieldSize() - 6;
 			if (payloadLength < 0) {
-				throw new IOException("invalid message");
+				throw new UncorrectableException("invalid field size");
 			}
 			if (payloadLength > dis.available()) {
 				payloadLength = dis.available();
