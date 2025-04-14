@@ -130,7 +130,6 @@
 						<version>3.0.1</version>
 						<configuration>
 							<autoVersionSubmodules>true</autoVersionSubmodules>
-							<useReleaseProfile>false</useReleaseProfile>
 							<releaseProfiles>release</releaseProfiles>
 							<goals>deploy</goals>
 						</configuration>
@@ -287,7 +286,7 @@
 		<url>https://github.com/dernasherbrezon/jradio</url>
 		<connection>scm:git:git@github.com:dernasherbrezon/jradio.git</connection>
 		<developerConnection>scm:git:git@github.com:dernasherbrezon/jradio.git</developerConnection>
-		<tag>jradio-1.88</tag>
+		<tag>jradio-1.108</tag>
 	</scm>
 
 	<issueManagement>
