@@ -1,0 +1,55 @@
+{
+  "header": {
+    "destinationAddress": {
+      "callsign": "BEACON",
+      "ssid": 0,
+      "extensionBit": 0
+    },
+    "sourceAddress": {
+      "callsign": "RS51S",
+      "ssid": 0,
+      "extensionBit": 1
+    },
+    "frameType": "U",
+    "sendSequenceNumber": 0,
+    "receiveSequenceNumber": 0,
+    "uControlType": "UI",
+    "pid": 240
+  },
+  "eps": {
+    "epsTimestamp": 1744347934,
+    "epsMode": 3,
+    "epsSystemCurrent": 111,
+    "epsCellCurrent": 383,
+    "epsCellVoltageHalf": 4126,
+    "epsCellVoltageFull": 8272,
+    "temperature1": 10,
+    "temperature2": 10
+  },
+  "obc": {
+    "flyweel": false,
+    "coil": false,
+    "ins": false,
+    "cam": false,
+    "xPlus": false,
+    "xMinus": false,
+    "yPlus": false,
+    "yMinus": false,
+    "txPlus": 0,
+    "txMinus": 0,
+    "tyPlus": 0,
+    "tyMinus": 0,
+    "gnssNum": 0,
+    "cameraFiles": 0
+  },
+  "comm": {
+    "uvbus": 8295,
+    "rssiLast": -102,
+    "rssiMin": 127,
+    "txNum": 69,
+    "qsoNum": 0
+  },
+  "beginSample": 0,
+  "beginMillis": 0,
+  "endSample": 0
+}

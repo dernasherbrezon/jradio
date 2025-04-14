@@ -11,7 +11,7 @@ import ru.r2cloud.jradio.util.LittleEndianDataInputStream;
 
 public class GeoscanBeacon extends Beacon {
 
-	private static final long AX25HEADER_TYPE = 0x848A8286L;
+	public static final long AX25HEADER_TYPE = 0x848A8286L;
 
 	private Header header;
 	private GeoscanTelemetry telemetry;
@@ -72,7 +72,7 @@ public class GeoscanBeacon extends Beacon {
 		}
 	}
 
-	private static long peakIntoUnsignedInt(byte[] data, int offset) {
+	public static long peakIntoUnsignedInt(byte[] data, int offset) {
 		return (((data[offset + 0] & 0xFF) << 24) | ((data[offset + 1] & 0xFF) << 16) | ((data[offset + 2] & 0xFF) << 8) | (data[offset + 3] & 0xFF)) & 0xFFFFFFFFL;
 	}
 
