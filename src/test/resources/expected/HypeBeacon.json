@@ -1,0 +1,22 @@
+{
+  "telemetry": {
+    "callsign": "HYPE",
+    "commandCounter": 28330,
+    "mode": "UNKNOWN",
+    "vbus": 641.0,
+    "balance": 12.821,
+    "charge": 92520.0,
+    "satTemperature": 0.0,
+    "swVersion": 1281,
+    "restartCounter": 55,
+    "uptime": 1293876,
+    "xrate": 0,
+    "yrate": 0,
+    "zrate": 0,
+    "softwareSlotb": false,
+    "txPower": 0
+  },
+  "beginSample": 0,
+  "beginMillis": 0,
+  "endSample": 0
+}

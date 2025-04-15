@@ -635,6 +635,11 @@ jradio has lots of built-in satellite decoders. Some of them have non standard d
 			<td>62391</td>
 			<td>ru.r2cloud.jradio.lasarsat.LasarsatBeacon</td>
 		</tr>
+		<tr>
+			<td>HYPE</td>
+			<td>62687</td>
+			<td>ru.r2cloud.jradio.hype.HypeBeacon</td>
+		</tr>
 	</tbody>
 </table>
   
