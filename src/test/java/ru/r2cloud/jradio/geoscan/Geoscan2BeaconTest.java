@@ -1,5 +1,10 @@
 package ru.r2cloud.jradio.geoscan;
 
+import static com.google.code.beanmatchers.BeanMatchers.hasValidBeanConstructor;
+import static com.google.code.beanmatchers.BeanMatchers.hasValidGettersAndSetters;
+import static org.hamcrest.CoreMatchers.allOf;
+import static org.hamcrest.MatcherAssert.assertThat;
+
 import org.junit.Test;
 
 import ru.r2cloud.jradio.AssertJson;
@@ -23,5 +28,15 @@ public class Geoscan2BeaconTest {
 		result.readBeacon(data);
 		AssertJson.assertObjectsEqual("Geoscan2BeaconFile.json", result);
 	}
-	
+
+	@Test
+	public void testPojo() {
+		assertThat(Geoscan2Beacon.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
+		assertThat(Geoscan2Eps.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
+		assertThat(Geoscan2Obc.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
+		assertThat(Geoscan2Comm.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
+		assertThat(Geoscan2Header.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
+		assertThat(Geoscan2File.class, allOf(hasValidBeanConstructor(), hasValidGettersAndSetters()));
+	}
+
 }

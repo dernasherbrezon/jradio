@@ -5,7 +5,6 @@ import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -24,25 +23,7 @@ public class Geoscan2PictureDecoder implements Iterator<BufferedImage> {
 
 	public Geoscan2PictureDecoder(List<Geoscan2Beacon> beacons) {
 		this.beacons = beacons;
-		Collections.sort(this.beacons, new Comparator<Geoscan2Beacon>() {
-			@Override
-			public int compare(Geoscan2Beacon o1, Geoscan2Beacon o2) {
-				if (o1.getFile() == null && o2.getFile() == null) {
-					return 0;
-				}
-				int o1file = o1.getFile() == null ? 0 : 1;
-				int o2file = o2.getFile() == null ? 0 : 1;
-				int result = Integer.compare(o1file, o2file);
-				if (result != 0) {
-					return result;
-				}
-				result = Integer.compare(o1.getFile().getFilenum(), o2.getFile().getFilenum());
-				if (result != 0) {
-					return result;
-				}
-				return Long.compare(o1.getFile().getOffset(), o2.getFile().getOffset());
-			}
-		});
+		Collections.sort(this.beacons, Geoscan2BeaconComparator.INSTANCE);
 	}
 
 	@Override

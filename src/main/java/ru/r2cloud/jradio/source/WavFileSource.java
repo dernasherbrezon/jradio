@@ -1,11 +1,6 @@
 package ru.r2cloud.jradio.source;
 
-import java.io.BufferedInputStream;
-import java.io.BufferedOutputStream;
 import java.io.EOFException;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
@@ -15,7 +10,6 @@ import javax.sound.sampled.UnsupportedAudioFileException;
 
 import ru.r2cloud.jradio.Context;
 import ru.r2cloud.jradio.FloatInput;
-import ru.r2cloud.jradio.sink.OutputStreamSink;
 
 public class WavFileSource implements FloatInput {
 
@@ -75,13 +69,4 @@ public class WavFileSource implements FloatInput {
 		return context;
 	}
 
-	public static void main(String[] args) throws Exception {
-		File f = new File("/Users/dernasherbrezon/Downloads/NOAA_HRPT.wav");
-		WavFileSource source = new WavFileSource(new BufferedInputStream(new FileInputStream(f)));
-		OutputStreamSink output = new OutputStreamSink(source);
-		FileOutputStream fos = new FileOutputStream(f.getAbsolutePath() + ".f32");
-		output.process(new BufferedOutputStream(fos));
-		fos.close();
-		output.close();
-	}
 }
