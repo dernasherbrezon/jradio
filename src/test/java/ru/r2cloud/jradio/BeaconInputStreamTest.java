@@ -86,4 +86,13 @@ public class BeaconInputStreamTest {
 		bis.close();
 	}
 
+	@Test
+	public void testCorrupted() throws Exception {
+		byte[] data = new byte[] { 0x7F, (byte) 0xFF, (byte) 0xFF, (byte) 0xFF };
+		ByteArrayInputStream bais = new ByteArrayInputStream(data);
+		BeaconInputStream<RawBeacon> bis = new BeaconInputStream<>(bais, RawBeacon.class);
+		assertFalse(bis.hasNext());
+		bis.close();
+	}
+
 }

@@ -9,6 +9,7 @@ import java.util.NoSuchElementException;
 
 public class BeaconInputStream<T extends Beacon> implements Iterator<T>, Closeable {
 
+	private final static int MAX_BEACON_LENGTH = 10_000;
 	private final DataInputStream is;
 	private final Class<T> clazz;
 
@@ -43,6 +44,9 @@ public class BeaconInputStream<T extends Beacon> implements Iterator<T>, Closeab
 	}
 
 	private T readProtocolv1(int length) throws Exception {
+		if (length > MAX_BEACON_LENGTH) {
+			throw new IOException();
+		}
 		byte[] raw = new byte[length];
 		is.readFully(raw);
 		T result = clazz.getDeclaredConstructor().newInstance();
@@ -54,6 +58,9 @@ public class BeaconInputStream<T extends Beacon> implements Iterator<T>, Closeab
 
 	private T readProtocolv2() throws Exception {
 		int length = is.readInt();
+		if (length > MAX_BEACON_LENGTH) {
+			throw new IOException();
+		}
 		byte[] raw = new byte[length];
 		is.readFully(raw);
 		T result = clazz.getDeclaredConstructor().newInstance();
@@ -70,6 +77,9 @@ public class BeaconInputStream<T extends Beacon> implements Iterator<T>, Closeab
 
 	private T readProtocolv3() throws Exception {
 		int length = is.readInt();
+		if (length > MAX_BEACON_LENGTH) {
+			throw new IOException();
+		}
 		byte[] raw = new byte[length];
 		is.readFully(raw);
 		T result = clazz.getDeclaredConstructor().newInstance();
