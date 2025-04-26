@@ -521,6 +521,7 @@
     "numberOfDays": 0,
     "millisecondOfDay": 47839268,
     "microsecondOfMillisecond": 0,
+    "userDataPartial": true,
     "userData": [
       126,
       0,

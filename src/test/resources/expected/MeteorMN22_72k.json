@@ -873,6 +873,7 @@
     "numberOfDays": -1,
     "millisecondOfDay": 0,
     "microsecondOfMillisecond": 0,
+    "userDataPartial": true,
     "userData": [
       26,
       118
