@@ -101,6 +101,7 @@ public class Vcdu {
 					userData = new byte[data.length - index];
 					System.arraycopy(data, index, userData, 0, userData.length);
 					packet.setUserData(userData);
+					packet.setUserDataPartial(true);
 					partial = packet;
 				} else {
 					userData = new byte[userDataLength];

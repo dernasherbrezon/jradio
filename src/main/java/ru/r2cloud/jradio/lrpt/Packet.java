@@ -12,6 +12,15 @@ public class Packet {
 	private long millisecondOfDay;
 	private int microsecondOfMillisecond;
 	private byte[] userData;
+	private boolean userDataPartial;
+	
+	public boolean isUserDataPartial() {
+		return userDataPartial;
+	}
+	
+	public void setUserDataPartial(boolean userDataPartial) {
+		this.userDataPartial = userDataPartial;
+	}
 
 	public byte[] getUserData() {
 		return userData;

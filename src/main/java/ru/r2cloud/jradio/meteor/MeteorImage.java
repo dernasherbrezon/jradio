@@ -1,9 +1,11 @@
 package ru.r2cloud.jradio.meteor;
 
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 
 import org.slf4j.Logger;
@@ -25,10 +27,22 @@ public class MeteorImage {
 	private final Map<Integer, ImageChannel> channelByApid = new HashMap<>();
 
 	public MeteorImage(Iterator<Vcdu> input) {
+		Packet previousPartial = null;
+		Integer previousCounter = null;
 		while (input.hasNext()) {
 			Vcdu next = input.next();
-			for (Packet cur : next.getPackets()) {
+			List<Packet> packets = new ArrayList<>();
+			if (previousPartial != null && previousPartial.isUserDataPartial() && previousCounter != null && (previousCounter + 1) != next.getCounter()) {
+				packets.add(previousPartial);
+			}
+			packets.addAll(next.getPackets());
+			previousPartial = next.getPartial();
+			previousCounter = next.getCounter();
+			for (Packet cur : packets) {
 				if (cur.getApid() == ADMIN_PACKET_APID) {
+					continue;
+				}
+				if (cur.getUserData().length < 6) {
 					continue;
 				}
 				try {
