@@ -1,0 +1,42 @@
+{
+  "destination": "DS0DH",
+  "destinationSsid": 0,
+  "source": "DS0DH",
+  "sourceSsid": 0,
+  "pid": 768,
+  "header": {
+    "priority": "CSP_PRIO_NORM",
+    "source": 1,
+    "destination": 10,
+    "sourcePort": 53,
+    "destinationPort": 11,
+    "ffrag": false,
+    "fhmac": false,
+    "fxtea": false,
+    "frdp": false,
+    "fcrc32": false
+  },
+  "startId": "SNUGL\u003e",
+  "simpleBeacon": {
+    "firmwareVersion": 7,
+    "timeYear": 25,
+    "timeMonth": 4,
+    "timeDay": 27,
+    "timeHour": 8,
+    "timeMinute": 53,
+    "timeSecond": 25,
+    "positioning": "UNKNOWN",
+    "positionX": -1,
+    "positionY": -1,
+    "positionZ": -1,
+    "velocityX": -1,
+    "velocityY": -1,
+    "velocityZ": -1,
+    "batteryMode": "NOMINAL",
+    "batteryVoltage": 8249
+  },
+  "endId": "\u003cITE",
+  "beginSample": 0,
+  "beginMillis": 0,
+  "endSample": 0
+}
