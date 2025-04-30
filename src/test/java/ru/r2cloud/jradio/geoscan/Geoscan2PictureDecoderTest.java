@@ -29,7 +29,13 @@ public class Geoscan2PictureDecoderTest {
 		}
 		Geoscan2PictureDecoder decoder = new Geoscan2PictureDecoder(beacons);
 		assertTrue(decoder.hasNext());
-		TestUtil.assertImage("expected/geoscan/geoscan2.png", decoder.next());
+		// newer JVMs have slifghtly different jpeg decoder
+		// causing non-binary compatible results
+		if (TestUtil.getMajorVersion() <= 17) {
+			TestUtil.assertImage("expected/geoscan/geoscan2.png", decoder.next());
+		} else {
+			TestUtil.assertImage("expected/geoscan/geoscan2.jvm21.png", decoder.next());
+		}
 		assertFalse(decoder.hasNext());
 	}
 
