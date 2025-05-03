@@ -14,6 +14,7 @@ public class PacketPrimaryHeader {
 	private boolean secondaryHeader;
 	private int applicationProcessId;
 	private int sequenceFlag;
+	//FIXME rename packetName into sequenceCount
 	private int packetName;
 	private int packetDataLength;
 	

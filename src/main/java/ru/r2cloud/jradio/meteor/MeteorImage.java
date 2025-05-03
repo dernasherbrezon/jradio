@@ -1,18 +1,15 @@
 package ru.r2cloud.jradio.meteor;
 
 import java.awt.image.BufferedImage;
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Iterator;
-import java.util.List;
 import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import ru.r2cloud.jradio.lrpt.Packet;
-import ru.r2cloud.jradio.lrpt.Vcdu;
 
 public class MeteorImage {
 
@@ -26,47 +23,36 @@ public class MeteorImage {
 
 	private final Map<Integer, ImageChannel> channelByApid = new HashMap<>();
 
-	public MeteorImage(Iterator<Vcdu> input) {
-		Packet previousPartial = null;
-		Integer previousCounter = null;
+	public MeteorImage(Iterator<Packet> input) {
 		while (input.hasNext()) {
-			Vcdu next = input.next();
-			List<Packet> packets = new ArrayList<>();
-			if (previousPartial != null && previousPartial.isUserDataPartial() && previousCounter != null && (previousCounter + 1) != next.getCounter()) {
-				packets.add(previousPartial);
+			Packet cur = input.next();
+			if (cur.getPrimaryHeader().getApplicationProcessId() == ADMIN_PACKET_APID) {
+				continue;
 			}
-			packets.addAll(next.getPackets());
-			previousPartial = next.getPartial();
-			previousCounter = next.getCounter();
-			for (Packet cur : packets) {
-				if (cur.getApid() == ADMIN_PACKET_APID) {
-					continue;
+			if (cur.getUserData().length < 6) {
+				continue;
+			}
+			try {
+				MeteorImagePacket meteorPacket = new MeteorImagePacket(cur);
+				ImageChannel channel = getOrCreateChannel(cur.getPrimaryHeader().getApplicationProcessId());
+				// explicitly start from the beginning
+				if (channel.getLastPacket() == -1) {
+					channel.setCurrentY(0);
+					channel.setFirstPacket(cur.getPrimaryHeader().getPacketName());
+					channel.setFirstMcu(meteorPacket.getMcuNumber());
+					channel.setMillisecondOfDay(cur.getMillisecondOfDay());
+				} else {
+					channel.appendRows(ImageChannelUtil.calculateMissingRows(channel.getLastMcu(), channel.getLastPacket(), meteorPacket.getMcuNumber(), cur.getPrimaryHeader().getPacketName()));
 				}
-				if (cur.getUserData().length < 6) {
-					continue;
+				channel.setLastPacket(cur.getPrimaryHeader().getPacketName());
+				channel.setLastMcu(meteorPacket.getMcuNumber());
+				channel.setCurrentX(meteorPacket.getMcuNumber() * 8);
+				while (meteorPacket.hasNext()) {
+					channel.fill(meteorPacket.next());
+					channel.setCurrentX(channel.getCurrentX() + 8);
 				}
-				try {
-					MeteorImagePacket meteorPacket = new MeteorImagePacket(cur);
-					ImageChannel channel = getOrCreateChannel(cur.getApid());
-					// explicitly start from the beginning
-					if (channel.getLastPacket() == -1) {
-						channel.setCurrentY(0);
-						channel.setFirstPacket(cur.getSequenceCount());
-						channel.setFirstMcu(meteorPacket.getMcuNumber());
-						channel.setMillisecondOfDay(cur.getMillisecondOfDay());
-					} else {
-						channel.appendRows(ImageChannelUtil.calculateMissingRows(channel.getLastMcu(), channel.getLastPacket(), meteorPacket.getMcuNumber(), cur.getSequenceCount()));
-					}
-					channel.setLastPacket(cur.getSequenceCount());
-					channel.setLastMcu(meteorPacket.getMcuNumber());
-					channel.setCurrentX(meteorPacket.getMcuNumber() * 8);
-					while (meteorPacket.hasNext()) {
-						channel.fill(meteorPacket.next());
-						channel.setCurrentX(channel.getCurrentX() + 8);
-					}
-				} catch (Exception e) {
-					LOG.error("unable to decode packet", e);
-				}
+			} catch (Exception e) {
+				LOG.error("unable to decode packet", e);
 			}
 		}
 

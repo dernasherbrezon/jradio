@@ -37,7 +37,7 @@ public class LRPTInputStreamTest {
 	}
 
 	private static void assertImage(List<Vcdu> data) throws IOException {
-		MeteorImage image = new MeteorImage(data.iterator());
+		MeteorImage image = new MeteorImage(new PacketReassembly(data));
 		BufferedImage actual = image.toBufferedImage();
 		assertNotNull(actual);
 		TestUtil.assertImage("expected8bitsoft.png", actual);

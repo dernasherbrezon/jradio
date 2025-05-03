@@ -1,33 +1,48 @@
 package ru.r2cloud.jradio.lrpt;
 
+import java.io.DataInputStream;
+import java.io.IOException;
+
+import ru.r2cloud.jradio.ccsds.PacketPrimaryHeader;
+import ru.r2cloud.jradio.util.BitInputStream;
+import ru.r2cloud.jradio.util.StreamUtils;
+
 public class Packet {
 
-	private byte version = -1;
-	private int apid;
-	private boolean secondaryHeader;
-	private byte sequence;
-	private int sequenceCount;
-	private int length;
-	private int numberOfDays = -1;
+	private static final int SECONDARY_HEADER_LENGTH = 8;
+
+	private PacketPrimaryHeader primaryHeader;
+	private int numberOfDays;
 	private long millisecondOfDay;
 	private int microsecondOfMillisecond;
+
 	private byte[] userData;
-	private boolean userDataPartial;
-	
-	public boolean isUserDataPartial() {
-		return userDataPartial;
-	}
-	
-	public void setUserDataPartial(boolean userDataPartial) {
-		this.userDataPartial = userDataPartial;
+
+	public Packet() {
+		// do nothing
 	}
 
-	public byte[] getUserData() {
-		return userData;
+	public Packet(DataInputStream dis) throws IOException {
+		primaryHeader = new PacketPrimaryHeader(new BitInputStream(dis));
+		int userDataLength = primaryHeader.getPacketDataLength() + 1;
+		if (primaryHeader.isSecondaryHeader()) {
+			numberOfDays = dis.readUnsignedShort();
+			millisecondOfDay = StreamUtils.readUnsignedInt(dis);
+			microsecondOfMillisecond = dis.readUnsignedShort();
+			userDataLength -= SECONDARY_HEADER_LENGTH;
+		}
+		if (dis.available() >= userDataLength) {
+			userData = new byte[userDataLength];
+			dis.readFully(userData);
+		}
 	}
 
-	public void setUserData(byte[] userData) {
-		this.userData = userData;
+	public PacketPrimaryHeader getPrimaryHeader() {
+		return primaryHeader;
+	}
+
+	public void setPrimaryHeader(PacketPrimaryHeader primaryHeader) {
+		this.primaryHeader = primaryHeader;
 	}
 
 	public int getNumberOfDays() {
@@ -54,52 +69,12 @@ public class Packet {
 		this.microsecondOfMillisecond = microsecondOfMillisecond;
 	}
 
-	public int getLength() {
-		return length;
+	public byte[] getUserData() {
+		return userData;
 	}
 
-	public void setLength(int length) {
-		this.length = length;
-	}
-
-	public int getSequenceCount() {
-		return sequenceCount;
-	}
-
-	public void setSequenceCount(int sequenceCount) {
-		this.sequenceCount = sequenceCount;
-	}
-
-	public byte getSequence() {
-		return sequence;
-	}
-
-	public void setSequence(byte sequence) {
-		this.sequence = sequence;
-	}
-
-	public boolean isSecondaryHeader() {
-		return secondaryHeader;
-	}
-
-	public void setSecondaryHeader(boolean secondaryHeader) {
-		this.secondaryHeader = secondaryHeader;
-	}
-
-	public int getApid() {
-		return apid;
-	}
-
-	public void setApid(int apid) {
-		this.apid = apid;
-	}
-
-	public byte getVersion() {
-		return version;
-	}
-
-	public void setVersion(byte version) {
-		this.version = version;
+	public void setUserData(byte[] userData) {
+		this.userData = userData;
 	}
 
 }

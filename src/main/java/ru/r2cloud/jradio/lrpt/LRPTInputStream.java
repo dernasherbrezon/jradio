@@ -12,8 +12,6 @@ public class LRPTInputStream implements Iterator<Vcdu>, Closeable {
 
 	private final InputStream input;
 	private Vcdu currentVcdu = null;
-	// previous is used for restoring partial packets
-	private Vcdu previous = null;
 
 	public LRPTInputStream(InputStream is) {
 		this.input = is;
@@ -30,10 +28,9 @@ public class LRPTInputStream implements Iterator<Vcdu>, Closeable {
 		try {
 			IOUtils.readFully(input, current);
 			currentVcdu = new Vcdu();
-			currentVcdu.readExternal(previous, current);
-			previous = currentVcdu;
+			currentVcdu.readExternal(current);
 			return true;
-		} catch (IOException e) {
+		} catch (Exception e) {
 			currentVcdu = null;
 			return false;
 		}
