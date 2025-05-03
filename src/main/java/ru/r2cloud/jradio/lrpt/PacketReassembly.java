@@ -37,7 +37,7 @@ public class PacketReassembly implements Iterator<Packet> {
 
 	private boolean hasNextInternal() throws IOException {
 		while (true) {
-			if (dis.available() < (PRIMARY_HEADER_LENGTH + SECONDARY_HEADER_LENGTH)) {
+			if (dis.available() < (PRIMARY_HEADER_LENGTH + SECONDARY_HEADER_LENGTH) || (next != null && next.getUserData() == null)) {
 				if (!frames.hasNext()) {
 					if (next == null) {
 						return false;
@@ -72,7 +72,7 @@ public class PacketReassembly implements Iterator<Packet> {
 					}
 				}
 				previous = current;
-				// make sure dis has enough data for primary and secondary headers
+				// make sure stream has enough data for primary and secondary headers
 				continue;
 			}
 			next = new Packet(dis);
