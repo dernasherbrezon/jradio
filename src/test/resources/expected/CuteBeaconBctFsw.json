@@ -5,7 +5,7 @@
     "secondaryHeader": false,
     "applicationProcessId": 85,
     "sequenceFlag": 2,
-    "packetName": 13574,
+    "sequenceCount": 13574,
     "packetDataLength": 10
   },
   "fswPayload": [
@@ -39,5 +39,6 @@
     "pid": 240
   },
   "beginSample": 0,
-  "beginMillis": 0
+  "beginMillis": 0,
+  "endSample": 0
 }

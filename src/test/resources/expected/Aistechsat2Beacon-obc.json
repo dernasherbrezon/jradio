@@ -1,16 +1,4 @@
 {
-  "header": {
-    "priority": "CSP_PRIO_NORM",
-    "source": 1,
-    "destination": 15,
-    "sourcePort": 29,
-    "destinationPort": 14,
-    "ffrag": false,
-    "fhmac": false,
-    "fxtea": false,
-    "frdp": false,
-    "fcrc32": false
-  },
   "transferFrame": {
     "versionNumber": 0,
     "spacecraftId": 1,
@@ -27,21 +15,21 @@
       "secondaryHeader": true,
       "applicationProcessId": 1,
       "sequenceFlag": 3,
-      "packetName": 16383,
+      "sequenceCount": 16383,
       "packetDataLength": 135
     },
-	"secondaryHeader": {
-		"tmPacketPusVersionNumber": 1,
-		"spacecraftTimeReferenceStatus": 0,
-		"serviceTypeId": 3,
-		"messageSubtypeId": 25,
-		"messageTypeCounter": 40736,
-		"destinationId": 1000,
-		"time": {
-			"day": 18537,
-			"millisecondsOfTheDay": 68631773
-		}
-	},    
+    "secondaryHeader": {
+      "tmPacketPusVersionNumber": 1,
+      "spacecraftTimeReferenceStatus": 0,
+      "serviceTypeId": 3,
+      "messageSubtypeId": 25,
+      "messageTypeCounter": 40736,
+      "destinationId": 1000,
+      "time": {
+        "day": 18537,
+        "millisecondsOfTheDay": 68631773
+      }
+    },
     "payload": [
       0,
       1,
@@ -202,6 +190,19 @@
     "trConn": 0,
     "trConnActive": 0
   },
+  "header": {
+    "priority": "CSP_PRIO_NORM",
+    "source": 1,
+    "destination": 15,
+    "sourcePort": 29,
+    "destinationPort": 14,
+    "ffrag": false,
+    "fhmac": false,
+    "fxtea": false,
+    "frdp": false,
+    "fcrc32": false
+  },
   "beginSample": 0,
-  "beginMillis": 0
+  "beginMillis": 0,
+  "endSample": 0
 }

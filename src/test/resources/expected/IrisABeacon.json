@@ -11,7 +11,7 @@
     "secondaryHeader": true,
     "applicationProcessId": 10,
     "sequenceFlag": 3,
-    "packetName": 3216,
+    "sequenceCount": 3216,
     "packetDataLength": 30
   },
   "tmPacketPusVersionNumber": 16,
@@ -109,5 +109,6 @@
     "pid": 240
   },
   "beginSample": 0,
-  "beginMillis": 0
+  "beginMillis": 0,
+  "endSample": 0
 }

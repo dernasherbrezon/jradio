@@ -5,7 +5,7 @@
     "secondaryHeader": true,
     "applicationProcessId": 86,
     "sequenceFlag": 3,
-    "packetName": 14997,
+    "sequenceCount": 14997,
     "packetDataLength": 232
   },
   "secondary": {
@@ -190,5 +190,6 @@
     "pid": 240
   },
   "beginSample": 0,
-  "beginMillis": 0
+  "beginMillis": 0,
+  "endSample": 0
 }

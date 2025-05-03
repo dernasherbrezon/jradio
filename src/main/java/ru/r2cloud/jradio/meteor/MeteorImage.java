@@ -38,13 +38,13 @@ public class MeteorImage {
 				// explicitly start from the beginning
 				if (channel.getLastPacket() == -1) {
 					channel.setCurrentY(0);
-					channel.setFirstPacket(cur.getPrimaryHeader().getPacketName());
+					channel.setFirstPacket(cur.getPrimaryHeader().getSequenceCount());
 					channel.setFirstMcu(meteorPacket.getMcuNumber());
 					channel.setMillisecondOfDay(cur.getMillisecondOfDay());
 				} else {
-					channel.appendRows(ImageChannelUtil.calculateMissingRows(channel.getLastMcu(), channel.getLastPacket(), meteorPacket.getMcuNumber(), cur.getPrimaryHeader().getPacketName()));
+					channel.appendRows(ImageChannelUtil.calculateMissingRows(channel.getLastMcu(), channel.getLastPacket(), meteorPacket.getMcuNumber(), cur.getPrimaryHeader().getSequenceCount()));
 				}
-				channel.setLastPacket(cur.getPrimaryHeader().getPacketName());
+				channel.setLastPacket(cur.getPrimaryHeader().getSequenceCount());
 				channel.setLastMcu(meteorPacket.getMcuNumber());
 				channel.setCurrentX(meteorPacket.getMcuNumber() * 8);
 				while (meteorPacket.hasNext()) {

@@ -19,7 +19,7 @@
     "secondaryHeader": true,
     "applicationProcessId": 1,
     "sequenceFlag": 3,
-    "packetName": 8818,
+    "sequenceCount": 8818,
     "packetDataLength": 249
   },
   "secondary": {
@@ -145,7 +145,7 @@
       "timeValid": true,
       "mode": "SUN_POINT",
       "recommendSunPoint": false,
-      "sunPointState": "UNKNOWN"
+      "sunPointState": "NOT_ACTIVE"
     },
     "swAdcsAnalogsVoltage2p5": 2.5049999,
     "swAdcsAnalogsVoltage1p8": 1.785,
@@ -178,5 +178,6 @@
     "swSpare3": 305441741
   },
   "beginSample": 0,
-  "beginMillis": 0
+  "beginMillis": 0,
+  "endSample": 0
 }

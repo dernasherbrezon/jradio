@@ -22,7 +22,7 @@
         "secondaryHeader": false,
         "applicationProcessId": 1163,
         "sequenceFlag": 2,
-        "packetName": 4890,
+        "sequenceCount": 4890,
         "packetDataLength": 22152
       },
       "payload": [

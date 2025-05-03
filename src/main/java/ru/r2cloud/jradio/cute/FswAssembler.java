@@ -40,14 +40,14 @@ public class FswAssembler {
 				waitingFor = cur.getPrimary().getSequenceFlag();
 				break;
 			}
-			if (previousPacketId != -1 && cur.getPrimary().getPacketName() != (previousPacketId + 1) % (1 << 14)) {
+			if (previousPacketId != -1 && cur.getPrimary().getSequenceCount() != (previousPacketId + 1) % (1 << 14)) {
 				// found gap
 				waitingFor = GROUP_BEGIN;
 				previousPacketId = -1;
 				baos.reset();
 				continue;
 			}
-			previousPacketId = cur.getPrimary().getPacketName();
+			previousPacketId = cur.getPrimary().getSequenceCount();
 			try {
 				baos.write(cur.getFswPayload());
 			} catch (IOException e) {

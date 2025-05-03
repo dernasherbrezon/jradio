@@ -14,12 +14,11 @@ public class PacketPrimaryHeader {
 	private boolean secondaryHeader;
 	private int applicationProcessId;
 	private int sequenceFlag;
-	//FIXME rename packetName into sequenceCount
-	private int packetName;
+	private int sequenceCount;
 	private int packetDataLength;
-	
+
 	public PacketPrimaryHeader() {
-		//do nothing
+		// do nothing
 	}
 
 	public PacketPrimaryHeader(BitInputStream bis) throws IOException {
@@ -28,7 +27,7 @@ public class PacketPrimaryHeader {
 		secondaryHeader = bis.readBoolean();
 		applicationProcessId = bis.readUnsignedInt(11);
 		sequenceFlag = bis.readUnsignedInt(2);
-		packetName = bis.readUnsignedInt(14);
+		sequenceCount = bis.readUnsignedInt(14);
 		packetDataLength = bis.readUnsignedInt(16);
 	}
 
@@ -72,12 +71,12 @@ public class PacketPrimaryHeader {
 		this.sequenceFlag = sequenceFlag;
 	}
 
-	public int getPacketName() {
-		return packetName;
+	public int getSequenceCount() {
+		return sequenceCount;
 	}
 
-	public void setPacketName(int packetName) {
-		this.packetName = packetName;
+	public void setSequenceCount(int sequenceCount) {
+		this.sequenceCount = sequenceCount;
 	}
 
 	public int getPacketDataLength() {

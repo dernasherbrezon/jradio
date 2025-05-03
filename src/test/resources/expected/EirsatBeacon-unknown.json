@@ -31,7 +31,7 @@
         "secondaryHeader": true,
         "applicationProcessId": 2,
         "sequenceFlag": 3,
-        "packetName": 5182,
+        "sequenceCount": 5182,
         "packetDataLength": 8
       },
       "secondaryHeader": {
@@ -56,7 +56,7 @@
         "secondaryHeader": true,
         "applicationProcessId": 2,
         "sequenceFlag": 3,
-        "packetName": 5183,
+        "sequenceCount": 5183,
         "packetDataLength": 12
       },
       "secondaryHeader": {
@@ -85,7 +85,7 @@
         "secondaryHeader": true,
         "applicationProcessId": 2,
         "sequenceFlag": 3,
-        "packetName": 5184,
+        "sequenceCount": 5184,
         "packetDataLength": 249
       },
       "secondaryHeader": {

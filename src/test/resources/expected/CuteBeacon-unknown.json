@@ -5,7 +5,7 @@
     "secondaryHeader": false,
     "applicationProcessId": 63,
     "sequenceFlag": 2,
-    "packetName": 6375,
+    "sequenceCount": 6375,
     "packetDataLength": 108
   },
   "unknownPayload": [
@@ -137,5 +137,6 @@
     "pid": 240
   },
   "beginSample": 0,
-  "beginMillis": 0
+  "beginMillis": 0,
+  "endSample": 0
 }

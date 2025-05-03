@@ -5,7 +5,7 @@
     "secondaryHeader": true,
     "applicationProcessId": 2,
     "sequenceFlag": 3,
-    "packetName": 255,
+    "sequenceCount": 255,
     "packetDataLength": 190
   },
   "secondary": {
