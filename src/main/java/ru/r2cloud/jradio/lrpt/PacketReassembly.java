@@ -47,6 +47,7 @@ public class PacketReassembly implements Iterator<Packet> {
 					next.setUserData(remaining);
 					return true;
 				}
+				previous = current;
 				current = frames.next();
 				if (current.getmPdu().getHeaderFirstPointer() == 0b111_1111_1111) {
 					chunks.addChunk(current.getPayload());
@@ -71,7 +72,6 @@ public class PacketReassembly implements Iterator<Packet> {
 						return true;
 					}
 				}
-				previous = current;
 				// make sure stream has enough data for primary and secondary headers
 				continue;
 			}
