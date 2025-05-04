@@ -9,9 +9,10 @@ public class ChunkedInputStream extends InputStream {
 	private ByteArrayInputStream is = new ByteArrayInputStream(new byte[0]);
 
 	public void addChunk(byte[] data) {
-		byte[] newArray = new byte[is.available() + data.length];
+		int remaining = is.available();
+		byte[] newArray = new byte[remaining + data.length];
 		is.read(newArray, 0, is.available());
-		System.arraycopy(data, 0, newArray, is.available(), data.length);
+		System.arraycopy(data, 0, newArray, remaining, data.length);
 		is = new ByteArrayInputStream(newArray);
 	}
 

@@ -24,17 +24,24 @@ public class Packet {
 
 	public Packet(DataInputStream dis) throws IOException {
 		primaryHeader = new PacketPrimaryHeader(new BitInputStream(dis));
-		int userDataLength = primaryHeader.getPacketDataLength() + 1;
 		if (primaryHeader.isSecondaryHeader()) {
 			numberOfDays = dis.readUnsignedShort();
 			millisecondOfDay = StreamUtils.readUnsignedInt(dis);
 			microsecondOfMillisecond = dis.readUnsignedShort();
-			userDataLength -= SECONDARY_HEADER_LENGTH;
 		}
+		int userDataLength = getUserDataLength();
 		if (dis.available() >= userDataLength) {
 			userData = new byte[userDataLength];
 			dis.readFully(userData);
 		}
+	}
+
+	public int getUserDataLength() {
+		int result = primaryHeader.getPacketDataLength() + 1;
+		if (primaryHeader.isSecondaryHeader()) {
+			result -= SECONDARY_HEADER_LENGTH;
+		}
+		return result;
 	}
 
 	public PacketPrimaryHeader getPrimaryHeader() {

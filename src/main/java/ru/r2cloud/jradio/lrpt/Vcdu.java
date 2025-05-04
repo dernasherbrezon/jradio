@@ -34,6 +34,13 @@ public class Vcdu extends Beacon {
 		mPdu = new Mpdu();
 		mPdu.setSpareBits((byte) (data[8] >> 3));
 		mPdu.setHeaderFirstPointer(((data[8] & 0b0000_0111) << 8) | (data[9] & 0xFF));
+		// Vcdu supposed to be passed through ReedSolomon and Viterbi and valid
+		// However in practice Satdump can mark saves down invalid frame and pass
+		// further
+		// Good Vcdu have spareBits == 0
+		if (mPdu.getSpareBits() != 0) {
+			throw new UncorrectableException("invalid Vcdu");
+		}
 		payload = new byte[data.length - VCDU_HEADER_LENGTH];
 		System.arraycopy(data, VCDU_HEADER_LENGTH, payload, 0, payload.length);
 	}
