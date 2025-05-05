@@ -22,13 +22,13 @@ public class MeteorImageTest {
 
 	@Test
 	public void success() throws Exception {
-		MeteorImage image = new MeteorImage(new PacketReassembly(readVcdu()));
+		MeteorImage image = new MeteorImage(new PacketReassembly(readVcdu().iterator()));
 		TestUtil.assertImage("expected8bitsoft.png", image.toBufferedImage());
 	}
 
 	@Test
 	public void testUnknownAPID() throws Exception {
-		MeteorImage image = new MeteorImage(new PacketReassembly(readVcdu()));
+		MeteorImage image = new MeteorImage(new PacketReassembly(readVcdu().iterator()));
 		assertNull(image.toBufferedImage(1, 2, 3)); // not random. explicitly unknown apid
 	}
 
@@ -69,7 +69,7 @@ public class MeteorImageTest {
 		List<Vcdu> all = new ArrayList<>();
 		all.add(previous);
 		all.add(full);
-		MeteorImage image = new MeteorImage(new PacketReassembly(all));
+		MeteorImage image = new MeteorImage(new PacketReassembly(all.iterator()));
 		TestUtil.assertImage("expectedPartial.png", image.toBufferedImage());
 	}
 
@@ -110,7 +110,7 @@ public class MeteorImageTest {
 		List<Vcdu> all = new ArrayList<>();
 		all.add(first);
 		all.add(second);
-		MeteorImage image = new MeteorImage(new PacketReassembly(all));
+		MeteorImage image = new MeteorImage(new PacketReassembly(all.iterator()));
 		TestUtil.assertImage("expectedPacketCounterOverflow.png", image.toBufferedImage());
 	}
 
@@ -172,7 +172,7 @@ public class MeteorImageTest {
 		all.add(v2);
 		all.add(v3);
 
-		PacketReassembly packets = new PacketReassembly(all);
+		PacketReassembly packets = new PacketReassembly(all.iterator());
 		Packet split = findBySequenceCount(packets, 4835);
 		assertNotNull(split);
 		assertEquals(split.getUserData().length, split.getUserDataLength());
@@ -214,7 +214,7 @@ public class MeteorImageTest {
 
 	@Test
 	public void testNoImage() throws Exception {
-		MeteorImage image = new MeteorImage(new PacketReassembly(new ArrayList<>()));
+		MeteorImage image = new MeteorImage(new PacketReassembly(new ArrayList<Vcdu>().iterator()));
 		assertNull(image.toBufferedImage());
 	}
 

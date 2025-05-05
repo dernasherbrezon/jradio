@@ -21,7 +21,11 @@ public class PacketReassembly implements Iterator<Packet> {
 	private ChunkedInputStream chunks;
 
 	public PacketReassembly(List<Vcdu> frames) {
-		this.frames = frames.iterator();
+		this(frames.iterator());
+	}
+
+	public PacketReassembly(Iterator<Vcdu> frames) {
+		this.frames = frames;
 		this.chunks = new ChunkedInputStream();
 		this.dis = new DataInputStream(chunks);
 	}
