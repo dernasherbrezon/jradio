@@ -41,4 +41,12 @@ public class ChunkedInputStream extends InputStream {
 		return is.skip(n);
 	}
 
+	public void skipFully(long n) throws IOException {
+		long remaining = n;
+		while (remaining > 0) {
+			long skipActual = skip(remaining);
+			remaining -= skipActual;
+		}
+	}
+
 }

@@ -15,7 +15,6 @@ public class PacketReassembly implements Iterator<Packet> {
 	private static final int SECONDARY_HEADER_LENGTH = 8;
 
 	private final Iterator<Vcdu> frames;
-	private Vcdu previous;
 	private Vcdu current;
 	private Packet next;
 	private DataInputStream dis;
@@ -53,7 +52,7 @@ public class PacketReassembly implements Iterator<Packet> {
 					next.setUserData(remaining);
 					return true;
 				}
-				previous = current;
+				Vcdu previous = current;
 				current = frames.next();
 
 				if (current.getmPdu().getHeaderFirstPointer() == 0b111_1111_1111) {
@@ -63,7 +62,7 @@ public class PacketReassembly implements Iterator<Packet> {
 
 				if (previous == null) {
 					chunks.addChunk(current.getPayload());
-					chunks.skip(current.getmPdu().getHeaderFirstPointer());
+					chunks.skipFully(current.getmPdu().getHeaderFirstPointer());
 					continue;
 				}
 
@@ -120,9 +119,9 @@ public class PacketReassembly implements Iterator<Packet> {
 					dis.readFully(remaining);
 					next.setUserData(remaining);
 				}
-				chunks.skip(chunks.available());
+				chunks.skipFully(chunks.available());
 				chunks.addChunk(current.getPayload());
-				chunks.skip(current.getmPdu().getHeaderFirstPointer());
+				chunks.skipFully(current.getmPdu().getHeaderFirstPointer());
 				if (next != null) {
 					return true;
 				}
