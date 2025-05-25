@@ -49,24 +49,48 @@ public class Vcdu extends Beacon {
 		return version;
 	}
 
+	public void setVersion(int version) {
+		this.version = version;
+	}
+
 	public VcduId getId() {
 		return id;
+	}
+
+	public void setId(VcduId id) {
+		this.id = id;
 	}
 
 	public int getCounter() {
 		return counter;
 	}
 
+	public void setCounter(int counter) {
+		this.counter = counter;
+	}
+
 	public byte getSignalling() {
 		return signalling;
+	}
+
+	public void setSignalling(byte signalling) {
+		this.signalling = signalling;
 	}
 
 	public InSdu getInsertZone() {
 		return insertZone;
 	}
 
+	public void setInsertZone(InSdu insertZone) {
+		this.insertZone = insertZone;
+	}
+
 	public Mpdu getmPdu() {
 		return mPdu;
+	}
+
+	public void setmPdu(Mpdu mPdu) {
+		this.mPdu = mPdu;
 	}
 
 	public byte[] getPayload() {

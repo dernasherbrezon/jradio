@@ -1,5 +1,6 @@
 package ru.r2cloud.jradio.lrpt;
 
+import java.io.ByteArrayInputStream;
 import java.io.DataInputStream;
 import java.io.IOException;
 import java.util.Iterator;
@@ -19,6 +20,7 @@ public class PacketReassembly implements Iterator<Packet> {
 	private Packet next;
 	private DataInputStream dis;
 	private ChunkedInputStream chunks;
+	private int duplicates;
 
 	public PacketReassembly(List<Vcdu> frames) {
 		this(frames.iterator());
@@ -53,30 +55,77 @@ public class PacketReassembly implements Iterator<Packet> {
 				}
 				previous = current;
 				current = frames.next();
+
 				if (current.getmPdu().getHeaderFirstPointer() == 0b111_1111_1111) {
 					chunks.addChunk(current.getPayload());
-					previous = current;
 					continue;
 				}
-				if (previous != null && previous.getCounter() + 1 == current.getCounter()) {
-					chunks.addChunk(current.getPayload());
-				} else {
-					// "next" is the partial packet at this point
-					if (next != null) {
-						byte[] remaining = new byte[dis.available()];
-						dis.readFully(remaining);
-						next.setUserData(remaining);
-					}
-					chunks.skip(chunks.available());
+
+				if (previous == null) {
 					chunks.addChunk(current.getPayload());
 					chunks.skip(current.getmPdu().getHeaderFirstPointer());
-					// on gaps process partial packet from the previous Vcdu
-					// and try to recover as much as possible MCUs
+					continue;
+				}
+
+				// restore sequence of counter
+				if (previous.getCounter() + 1 < current.getCounter() && duplicates != 0) {
+					previous.setCounter(previous.getCounter() + duplicates);
+					duplicates = 0;
+				}
+
+				// normal sequence of counters
+				if (previous.getCounter() + 1 == current.getCounter()) {
+					chunks.addChunk(current.getPayload());
+					continue;
+				}
+
+				// sometimes meteor-m stops incrementing counter
+				if (previous.getCounter() == current.getCounter()) {
 					if (next != null) {
-						return true;
+						// offset matches exactly remaining payload. most likely valid
+						if (next.getUserDataLength() == (dis.available() + current.getmPdu().getHeaderFirstPointer())) {
+							chunks.addChunk(current.getPayload());
+							duplicates++;
+							continue;
+						} else {
+							duplicates = 0;
+						}
+					} else {
+						// assume next valid
+						if (dis.available() == 0 && current.getmPdu().getHeaderFirstPointer() == 0) {
+							chunks.addChunk(current.getPayload());
+							duplicates++;
+							continue;
+						}
+						// not enough information. try reading packet from scraps
+						byte[] packet = new byte[dis.available() + current.getmPdu().getHeaderFirstPointer()];
+						chunks.addChunk(current.getPayload());
+						dis.readFully(packet);
+						// at this point dis points to the valid first start of the next packet
+						Packet valid = readIfValid(packet);
+						if (valid != null) {
+							next = valid;
+							duplicates++;
+							return true;
+						} else {
+							duplicates = 0;
+							continue;
+						}
 					}
 				}
-				// make sure stream has enough data for primary and secondary headers
+
+				// "next" is the partial packet at this point
+				if (next != null) {
+					byte[] remaining = new byte[dis.available()];
+					dis.readFully(remaining);
+					next.setUserData(remaining);
+				}
+				chunks.skip(chunks.available());
+				chunks.addChunk(current.getPayload());
+				chunks.skip(current.getmPdu().getHeaderFirstPointer());
+				if (next != null) {
+					return true;
+				}
 				continue;
 			}
 			if ((next != null && next.getUserData() == null)) {
@@ -100,6 +149,19 @@ public class PacketReassembly implements Iterator<Packet> {
 		Packet result = next;
 		next = null;
 		return result;
+	}
+
+	// try to determine if partial packet is valid
+	private static Packet readIfValid(byte[] packet) {
+		try (DataInputStream partialStream = new DataInputStream(new ByteArrayInputStream(packet))) {
+			Packet partial = new Packet(partialStream);
+			if (partial.getUserData() == null || partialStream.available() > 0) {
+				return null;
+			}
+			return partial;
+		} catch (Exception e) {
+			return null;
+		}
 	}
 
 }
