@@ -12,7 +12,7 @@ public class SimpleBeacon {
 	private int timeHour;
 	private int timeMinute;
 	private int timeSecond;
-	private Positioning positioning;;
+	private Positioning positioning;
 	private int positionX;
 	private int positionY;
 	private int positionZ;

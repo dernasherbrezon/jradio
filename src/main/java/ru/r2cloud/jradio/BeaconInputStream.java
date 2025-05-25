@@ -9,7 +9,7 @@ import java.util.NoSuchElementException;
 
 public class BeaconInputStream<T extends Beacon> implements Iterator<T>, Closeable {
 
-	private final static int MAX_BEACON_LENGTH = 10_000;
+	private static final int MAX_BEACON_LENGTH = 10_000;
 	private final DataInputStream is;
 	private final Class<T> clazz;
 
