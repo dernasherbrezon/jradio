@@ -2,6 +2,7 @@ package ru.r2cloud.jradio.netsat;
 
 import java.io.IOException;
 
+import ru.r2cloud.jradio.fec.ccsds.UncorrectableException;
 import ru.r2cloud.jradio.util.LittleEndianDataInputStream;
 
 public class CompassHeader {
@@ -30,7 +31,7 @@ public class CompassHeader {
 		// do nothing
 	}
 
-	public CompassHeader(LittleEndianDataInputStream dis) throws IOException {
+	public CompassHeader(LittleEndianDataInputStream dis) throws IOException, UncorrectableException {
 		int raw = dis.readUnsignedByte();
 		boolean lastHeaderByte = ((raw >> 7) & 0x1) > 0;
 		boolean routingSet = ((raw >> 6) & 0x1) > 0;
@@ -68,6 +69,9 @@ public class CompassHeader {
 			int sysSize = ((raw >> 6) & 0b11);
 			hopCounter = ((raw >> 3) & 0b111);
 			int numberOfHops = raw & 0b111;
+			if (numberOfHops < 1) {
+				throw new UncorrectableException("invalid numberOfHops: " + numberOfHops);
+			}
 			hops = new Address[numberOfHops - 1];
 			source = readAddress(sysSize, dis);
 			for (int i = 0; i < hops.length; i++) {
