@@ -30,8 +30,10 @@ public class RoseyPictureDecoder implements Iterator<BufferedImage> {
 		Collections.sort(beacons, new Comparator<RoseyCubesatBeacon>() {
 			@Override
 			public int compare(RoseyCubesatBeacon o1, RoseyCubesatBeacon o2) {
-				if (o2.getImageChunk() == null || o1.getImageChunk() == null) {
-					return 0;
+				boolean firstNull = o1.getImageChunk() == null;
+				boolean secondNull = o2.getImageChunk() == null;
+				if (firstNull || secondNull) {
+					return Boolean.compare(firstNull, secondNull);
 				}
 				return Long.compare(o1.getImageChunk().getElementId(), o2.getImageChunk().getElementId());
 			}
