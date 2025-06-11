@@ -1,5 +1,6 @@
 package ru.r2cloud.jradio.fox;
 
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
@@ -17,6 +18,7 @@ public class FoxPictureDecoderTest {
 		FoxPictureDecoder decoder = new FoxPictureDecoder(result.getPictureScanLines());
 		assertTrue(decoder.hasNext());
 		TestUtil.assertImage("expected/fox1dPicture.png", decoder.next());
+		assertFalse(decoder.hasNext());
 	}
 
 }
