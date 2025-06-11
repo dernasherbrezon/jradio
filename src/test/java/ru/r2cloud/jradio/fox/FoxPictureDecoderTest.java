@@ -1,15 +1,10 @@
 package ru.r2cloud.jradio.fox;
 
-import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
-
-import java.awt.image.BufferedImage;
-import java.io.InputStream;
-
-import javax.imageio.ImageIO;
 
 import org.junit.Test;
 
+import ru.r2cloud.jradio.TestUtil;
 import ru.r2cloud.jradio.fec.ViterbiTest;
 
 public class FoxPictureDecoderTest {
@@ -21,15 +16,7 @@ public class FoxPictureDecoderTest {
 		result.readExternal(data);
 		FoxPictureDecoder decoder = new FoxPictureDecoder(result.getPictureScanLines());
 		assertTrue(decoder.hasNext());
-		BufferedImage actual = decoder.next();
-		try (InputStream is1 = FoxPictureDecoderTest.class.getClassLoader().getResourceAsStream("expected/fox1dPicture.png")) {
-			BufferedImage expected = ImageIO.read(is1);
-			for (int i = 0; i < expected.getWidth(); i++) {
-				for (int j = 0; j < expected.getHeight(); j++) {
-					assertEquals("failure in image: fox1dPicture", expected.getRGB(i, j), actual.getRGB(i, j));
-				}
-			}
-		}
+		TestUtil.assertImage("expected/fox1dPicture.png", decoder.next());
 	}
 
 }
