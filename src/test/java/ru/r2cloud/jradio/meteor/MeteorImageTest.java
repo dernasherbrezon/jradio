@@ -206,6 +206,14 @@ public class MeteorImageTest {
 	}
 
 	@Test
+	public void testOutputSingleChannel() throws Exception {
+		try (BeaconInputStream<Vcdu> is = new BeaconInputStream<>(new BufferedInputStream(new FileInputStream("src/test/resources/meteorDuplicates.bin")), Vcdu.class)) {
+			MeteorImage image = new MeteorImage(new PacketReassembly(is));
+			TestUtil.assertImage("meteorSingleChannel.png", image.toBufferedImage(65));
+		}
+	}
+
+	@Test
 	public void testDuplicateCountersWithGap() throws Exception {
 		Vcdu first = new Vcdu();
 		first.readExternal(new byte[] { 64, 5, 37, -9, 0, 0, 0, 0, 0, -66, 110, 118, -7, 106, 79, 12, -93, -126, 123, -26, -76, 82, 104, 31, 79, 8, 78, 120, 46, -46, -25, 39, -40, 99, -65, -42, -94, -74, -43, 84, 92, -94, -101, 85, 96, -53, -128, -69, -70, 15, 92, -3, 42, -66, -91, 119, 24, -122,

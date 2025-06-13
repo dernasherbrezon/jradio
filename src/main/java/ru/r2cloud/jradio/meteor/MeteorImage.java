@@ -104,6 +104,21 @@ public class MeteorImage {
 		return result;
 	}
 
+	public BufferedImage toBufferedImage(int apid) {
+		ImageChannel singleChannel = channelByApid.get(apid);
+		if (singleChannel == null) {
+			return null;
+		}
+		BufferedImage result = new BufferedImage(ImageChannel.WIDTH, singleChannel.getCurrentY() + 8, BufferedImage.TYPE_BYTE_GRAY);
+		for (int row = 0; row < result.getHeight(); row++) {
+			for (int col = 0; col < result.getWidth(); col++) {
+				int index = row * result.getWidth() + col;
+				result.setRGB(col, row, getColor(singleChannel, index) << 16);
+			}
+		}
+		return result;
+	}
+
 	private static int getRGB(int r, int g, int b) {
 		return ((r & 0xFF) << 16) | ((g & 0xFF) << 8) | (b & 0xFF);
 	}
