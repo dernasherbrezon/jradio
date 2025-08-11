@@ -101,4 +101,15 @@ public class Geoscan2Beacon extends Beacon {
 		this.payload = payload;
 	}
 
+	@Override
+	public String toString() {
+		if (header != null) {
+			return header.toString();
+		}
+		if (geoscanHeader != null) {
+			return geoscanHeader.toString();
+		}
+		return "null";
+	}
+
 }

@@ -36,4 +36,9 @@ public class Geoscan2Header {
 		this.fieldSize = fieldSize;
 	}
 
+	@Override
+	public String toString() {
+		return "[satId=" + satId + ", fieldSize=" + fieldSize + "]";
+	}
+
 }
