@@ -11,13 +11,13 @@ import ru.r2cloud.jradio.source.WavFileSource;
 
 public class Mrc100Test {
 
-	private Mrc100 input;
+	private Mrc100<Mrc100Beacon> input;
 
 	@Test
 	public void testDecodeTelemetry() throws Exception {
 		WavFileSource source = new WavFileSource(Mrc100Test.class.getClassLoader().getResourceAsStream("mrc100.wav"));
 		FskDemodulator demod = new FskDemodulator(source, 12500, 3125.0f, 1, 2000.0f, true);
-		input = new Mrc100(demod, 126, 260);
+		input = new Mrc100<>(demod, 126, 260, Mrc100Beacon.class);
 		assertTrue(input.hasNext());
 		AssertJson.assertObjectsEqual("Mrc100Beacon.json", input.next());
 	}
