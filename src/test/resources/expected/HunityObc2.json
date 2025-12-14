@@ -1,0 +1,162 @@
+{
+  "srcAddress": 5,
+  "dstAddress": 65,
+  "obc2": {
+    "timestamp": 1765387624,
+    "com0": {
+      "status": "OFF",
+      "current": 0,
+      "voltage": 1
+    },
+    "com1": {
+      "status": "ON",
+      "current": 40,
+      "voltage": 3262
+    },
+    "obc0": {
+      "status": "OFF",
+      "current": 0,
+      "voltage": 3
+    },
+    "obc1": {
+      "status": "ON",
+      "current": 25,
+      "voltage": 3322
+    },
+    "pcu0": {
+      "status": "ON",
+      "current": 24,
+      "voltage": 4126
+    },
+    "pcu1": {
+      "status": "OFF",
+      "current": 0,
+      "voltage": 0
+    },
+    "bat0": {
+      "status": "ON",
+      "current": 20,
+      "voltage": 3315
+    },
+    "bat1": {
+      "status": "ON",
+      "current": 21,
+      "voltage": 3293
+    },
+    "acmag": {
+      "status": "OFF",
+      "current": 0,
+      "voltage": 0
+    },
+    "acmot": {
+      "status": "OFF",
+      "current": 0,
+      "voltage": 0
+    },
+    "grs": {
+      "status": "ON",
+      "current": 36,
+      "voltage": 3262
+    },
+    "stx": {
+      "status": "OFF",
+      "current": 0,
+      "voltage": 0
+    },
+    "pif": {
+      "status": "OFF",
+      "current": 0,
+      "voltage": 0
+    },
+    "sun0": {
+      "status": "OFF",
+      "current": 0,
+      "voltage": 0
+    },
+    "sun1": {
+      "status": "OFF",
+      "current": 0,
+      "voltage": 0
+    },
+    "exp": {
+      "status": "OFF",
+      "current": 0,
+      "voltage": 0
+    },
+    "rtr0": {
+      "status": "OFF",
+      "current": 0,
+      "voltage": 0
+    },
+    "rtr1": {
+      "status": "OFF",
+      "current": 0,
+      "voltage": 0
+    },
+    "i2cExp": [
+      {
+        "time": {
+          "secondsAgo": 8
+        },
+        "status": false
+      },
+      {
+        "time": {
+          "secondsAgo": 7
+        },
+        "status": false
+      },
+      {
+        "time": {
+          "secondsAgo": 6
+        },
+        "status": false
+      },
+      {
+        "time": {
+          "secondsAgo": 5
+        },
+        "status": false
+      },
+      {
+        "time": {
+          "secondsAgo": 4
+        },
+        "status": false
+      },
+      {
+        "time": {
+          "secondsAgo": 3
+        },
+        "status": false
+      },
+      {
+        "time": {
+          "secondsAgo": 2
+        },
+        "status": false
+      },
+      {
+        "time": {
+          "relative": "INVALID"
+        },
+        "status": false
+      },
+      {
+        "time": {
+          "relative": "INVALID"
+        },
+        "status": false
+      },
+      {
+        "time": {
+          "secondsAgo": 1
+        },
+        "status": false
+      }
+    ]
+  },
+  "beginSample": 0,
+  "beginMillis": 0,
+  "endSample": 0
+}

@@ -1,0 +1,128 @@
+{
+  "srcAddress": 5,
+  "dstAddress": 67,
+  "obc4": {
+    "timestamp": 1765387632,
+    "bat": [
+      {
+        "voltageTime": {
+          "secondsAgo": 0
+        },
+        "voltage": 4200,
+        "currentTime": {
+          "secondsAgo": 0
+        },
+        "current": 65,
+        "temperatureTime": {
+          "secondsAgo": 0
+        },
+        "temperature": -5.5,
+        "panelTemperatureTime": {
+          "secondsAgo": 0
+        },
+        "panelTemperature": -6.0,
+        "gyroXTime": {
+          "secondsAgo": 0
+        },
+        "gyroX": 0.5308533,
+        "gyroYTime": {
+          "secondsAgo": 0
+        },
+        "gyroY": -8.531036,
+        "gyroZTime": {
+          "secondsAgo": 0
+        },
+        "gyroZ": -0.62805176,
+        "magnetoXTime": {
+          "secondsAgo": 0
+        },
+        "magnetoX": 28326,
+        "magnetoYTime": {
+          "secondsAgo": 0
+        },
+        "magnetoY": 53112,
+        "magnetoZTime": {
+          "secondsAgo": 0
+        },
+        "magnetoZ": 11212
+      },
+      {
+        "voltageTime": {
+          "secondsAgo": 0
+        },
+        "voltage": 4210,
+        "currentTime": {
+          "secondsAgo": 0
+        },
+        "current": 52,
+        "temperatureTime": {
+          "secondsAgo": 0
+        },
+        "temperature": -6.2,
+        "panelTemperatureTime": {
+          "secondsAgo": 0
+        },
+        "panelTemperature": -6.1,
+        "gyroXTime": {
+          "secondsAgo": 0
+        },
+        "gyroX": -0.94955444,
+        "gyroYTime": {
+          "secondsAgo": 0
+        },
+        "gyroY": -9.839478,
+        "gyroZTime": {
+          "secondsAgo": 0
+        },
+        "gyroZ": -1.1364746,
+        "magnetoXTime": {
+          "secondsAgo": 0
+        },
+        "magnetoX": 10382,
+        "magnetoYTime": {
+          "secondsAgo": 0
+        },
+        "magnetoY": 35943,
+        "magnetoZTime": {
+          "secondsAgo": 0
+        },
+        "magnetoZ": -25415
+      }
+    ],
+    "expTemperatureTime": {
+      "secondsAgo": 0
+    },
+    "expTemperature": -409.5,
+    "wingXmYmTemperatureTime": {
+      "secondsAgo": 0
+    },
+    "wingXmYmTemperature": -409.5,
+    "wingXpYmTemperatureTime": {
+      "secondsAgo": 0
+    },
+    "wingXpYmTemperature": -409.5,
+    "sideXmTemperatureTime": {
+      "secondsAgo": 0
+    },
+    "sideXmTemperature": -409.5,
+    "sideXpTemperatureTime": {
+      "secondsAgo": 0
+    },
+    "sideXpTemperature": -409.5,
+    "sideYmTemperatureTime": {
+      "secondsAgo": 0
+    },
+    "sideYmTemperature": -409.5,
+    "sideYpTemperatureTime": {
+      "secondsAgo": 0
+    },
+    "sideYpTemperature": -409.5,
+    "sideZmTemperatureTime": {
+      "secondsAgo": 0
+    },
+    "sideZmTemperature": -409.5
+  },
+  "beginSample": 0,
+  "beginMillis": 0,
+  "endSample": 0
+}

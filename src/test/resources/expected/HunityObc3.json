@@ -1,0 +1,232 @@
+{
+  "srcAddress": 5,
+  "dstAddress": 66,
+  "obc3": {
+    "timestamp": 1765387628,
+    "mpttWXm02": {
+      "inputCurrentTime": {
+        "secondsAgo": 1
+      },
+      "inputCurrent": 92,
+      "inputVoltageTime": {
+        "secondsAgo": 1
+      },
+      "inputVoltage": 1591,
+      "outputCurrentTime": {
+        "secondsAgo": 1
+      },
+      "outputCurrent": 23,
+      "outputVoltageTime": {
+        "secondsAgo": 1
+      },
+      "outputVoltage": 4154
+    },
+    "mpttWXm01": {
+      "inputCurrentTime": {
+        "secondsAgo": 1
+      },
+      "inputCurrent": 79,
+      "inputVoltageTime": {
+        "secondsAgo": 1
+      },
+      "inputVoltage": 1618,
+      "outputCurrentTime": {
+        "secondsAgo": 1
+      },
+      "outputCurrent": 32,
+      "outputVoltageTime": {
+        "secondsAgo": 1
+      },
+      "outputVoltage": 4154
+    },
+    "mpttWXp02": {
+      "inputCurrentTime": {
+        "secondsAgo": 1
+      },
+      "inputCurrent": 89,
+      "inputVoltageTime": {
+        "secondsAgo": 1
+      },
+      "inputVoltage": 1516,
+      "outputCurrentTime": {
+        "secondsAgo": 1
+      },
+      "outputCurrent": 40,
+      "outputVoltageTime": {
+        "secondsAgo": 1
+      },
+      "outputVoltage": 4154
+    },
+    "mpttWXp01": {
+      "inputCurrentTime": {
+        "secondsAgo": 1
+      },
+      "inputCurrent": 104,
+      "inputVoltageTime": {
+        "secondsAgo": 1
+      },
+      "inputVoltage": 2033,
+      "outputCurrentTime": {
+        "secondsAgo": 1
+      },
+      "outputCurrent": 23,
+      "outputVoltageTime": {
+        "secondsAgo": 1
+      },
+      "outputVoltage": 4161
+    },
+    "mpttYp": {
+      "inputCurrentTime": {
+        "secondsAgo": 1
+      },
+      "inputCurrent": 15,
+      "inputVoltageTime": {
+        "secondsAgo": 1
+      },
+      "inputVoltage": 945,
+      "outputCurrentTime": {
+        "secondsAgo": 1
+      },
+      "outputCurrent": 3,
+      "outputVoltageTime": {
+        "secondsAgo": 1
+      },
+      "outputVoltage": 4154
+    },
+    "mpttXpXm": {
+      "inputCurrentTime": {
+        "secondsAgo": 1
+      },
+      "inputCurrent": 222,
+      "inputVoltageTime": {
+        "secondsAgo": 1
+      },
+      "inputVoltage": 1978,
+      "outputCurrentTime": {
+        "secondsAgo": 1
+      },
+      "outputCurrent": 159,
+      "outputVoltageTime": {
+        "secondsAgo": 1
+      },
+      "outputVoltage": 4134
+    },
+    "mpttCOMYp": {
+      "inputCurrentTime": {
+        "secondsAgo": 1
+      },
+      "inputCurrent": 31,
+      "inputVoltageTime": {
+        "secondsAgo": 1
+      },
+      "inputVoltage": 1040,
+      "outputCurrentTime": {
+        "secondsAgo": 1
+      },
+      "outputCurrent": 47,
+      "outputVoltageTime": {
+        "secondsAgo": 1
+      },
+      "outputVoltage": 1378
+    },
+    "mpttCOMYm": {
+      "inputCurrentTime": {
+        "secondsAgo": 1
+      },
+      "inputCurrent": 31,
+      "inputVoltageTime": {
+        "secondsAgo": 1
+      },
+      "inputVoltage": 1168,
+      "outputCurrentTime": {
+        "secondsAgo": 1
+      },
+      "outputCurrent": 30,
+      "outputVoltageTime": {
+        "secondsAgo": 1
+      },
+      "outputVoltage": 1370
+    },
+    "irEXPXm": {
+      "time": {
+        "secondsAgo": 0
+      },
+      "value": 65280
+    },
+    "irEXPXp": {
+      "time": {
+        "secondsAgo": 0
+      },
+      "value": 65280
+    },
+    "irEXPYm": {
+      "time": {
+        "secondsAgo": 0
+      },
+      "value": 65280
+    },
+    "irEXPYp": {
+      "time": {
+        "secondsAgo": 0
+      },
+      "value": 65280
+    },
+    "irEXPZm": {
+      "time": {
+        "secondsAgo": 0
+      },
+      "value": 65280
+    },
+    "irWXmYm": {
+      "time": {
+        "secondsAgo": 0
+      },
+      "value": 65280
+    },
+    "irWXpYm": {
+      "time": {
+        "secondsAgo": 0
+      },
+      "value": 65280
+    },
+    "irXm": {
+      "time": {
+        "secondsAgo": 0
+      },
+      "value": 65280
+    },
+    "irXp": {
+      "time": {
+        "secondsAgo": 0
+      },
+      "value": 65280
+    },
+    "irYm": {
+      "time": {
+        "secondsAgo": 0
+      },
+      "value": 65280
+    },
+    "irYp": {
+      "time": {
+        "secondsAgo": 0
+      },
+      "value": 65280
+    },
+    "irZm": {
+      "time": {
+        "secondsAgo": 0
+      },
+      "value": 65280
+    },
+    "irYpZpEdge": {
+      "time": {
+        "secondsAgo": 0
+      },
+      "value": 65280
+    }
+  },
+  "beginSample": 0,
+  "beginMillis": 0,
+  "endSample": 0
+}

@@ -645,6 +645,11 @@ jradio has lots of built-in satellite decoders. Some of them have non standard d
 			<td>43784</td>
 			<td>ru.r2cloud.jradio.snuglite.SnugliteBeacon</td>
 		</tr>
+		<tr>
+			<td>HUNITY</td>
+			<td>98537</td>
+			<td>ru.r2cloud.jradio.hunity.HunityBeacon</td>
+		</tr>
 	</tbody>
 </table>
   

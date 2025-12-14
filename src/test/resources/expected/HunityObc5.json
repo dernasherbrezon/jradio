@@ -1,0 +1,50 @@
+{
+  "srcAddress": 5,
+  "dstAddress": 68,
+  "obc5": {
+    "timestamp": 1765387636,
+    "stxTemperatureTime": {
+      "secondsAgo": 0
+    },
+    "stxTemperature": 2.7,
+    "gpsLattitudeTime": {
+      "secondsAgo": 0
+    },
+    "gpsLattitude": 0.0,
+    "gpsLongitudeTime": {
+      "secondsAgo": 0
+    },
+    "gpsLongitude": 0.0,
+    "gpsCourseTime": {
+      "secondsAgo": 0
+    },
+    "gpsCourse": 0,
+    "gpsSpeedTime": {
+      "secondsAgo": 0
+    },
+    "gpsSpeed": 0,
+    "gpsSatellitesTime": {
+      "secondsAgo": 0
+    },
+    "gpsSatellites": 0,
+    "gpsValidTime": {
+      "secondsAgo": 0
+    },
+    "gpsValid": 0,
+    "dosimeterTemperatureTime": {
+      "secondsAgo": 0
+    },
+    "dosimeterTemperature": 3.6,
+    "dosimeter1Time": {
+      "secondsAgo": 0
+    },
+    "dosimeter1": 353885,
+    "dosimeter2Time": {
+      "secondsAgo": 0
+    },
+    "dosimeter2": 351448
+  },
+  "beginSample": 0,
+  "beginMillis": 0,
+  "endSample": 0
+}

@@ -1,0 +1,157 @@
+{
+	"srcAddress": 5,
+	"dstAddress": 64,
+	"obc1": {
+		"timestamp": 1765387457,
+		"telemetryVersion": 17,
+		"uptime": 80928,
+		"lastFileId": 736,
+		"interPacketGap": 4.0,
+		"cycleEndSleep": 10.0,
+		"rttcTemperatureTime": {
+			"relative": "LESS_THAN_20_SECONDS"
+		},
+		"rttcTemperature": -10.0,
+		"obcVoltageTime": {
+			"secondsAgo": 0
+		},
+		"obcVoltage": 3313,
+		"obcTemperatureTime": {
+			"secondsAgo": 0
+		},
+		"obcTemperature": -6.8,
+		"pcu": [
+			{
+				"bootCounterTime": {
+					"secondsAgo": 1
+				},
+				"bootCounter": 66,
+				"uptimeTime": {
+					"secondsAgo": 1
+				},
+				"uptime": 108197,
+				"unRegBusVoltageTime": {
+					"secondsAgo": 1
+				},
+				"unRegBusVoltage": 4361,
+				"regBusVoltageTime": {
+					"secondsAgo": 1
+				},
+				"regBusVoltage": 3290
+			},
+			{
+				"bootCounterTime": {
+					"relative": "OLDER_THAN_125_SECONDS"
+				},
+				"bootCounter": 0,
+				"uptimeTime": {
+					"relative": "OLDER_THAN_125_SECONDS"
+				},
+				"uptime": 40,
+				"unRegBusVoltageTime": {
+					"relative": "OLDER_THAN_60_SECONDS"
+				},
+				"unRegBusVoltage": 0,
+				"regBusVoltageTime": {
+					"relative": "OLDER_THAN_60_SECONDS"
+				},
+				"regBusVoltage": 8191
+			}
+		],
+		"sdc": [
+			{
+				"inputCurrentTime": {
+					"secondsAgo": 1
+				},
+				"inputCurrent": 142,
+				"inputVoltageTime": {
+					"secondsAgo": 1
+				},
+				"inputVoltage": 4360,
+				"outputCurrentTime": {
+					"secondsAgo": 1
+				},
+				"outputCurrent": 164,
+				"outputVoltageTime": {
+					"secondsAgo": 1
+				},
+				"outputVoltage": 3290,
+				"lswFlagTime": {
+					"secondsAgo": 1
+				},
+				"lswFlag": 27
+			},
+			{
+				"inputCurrentTime": {
+					"secondsAgo": 1
+				},
+				"inputCurrent": 2,
+				"inputVoltageTime": {
+					"secondsAgo": 1
+				},
+				"inputVoltage": 4342,
+				"outputCurrentTime": {
+					"secondsAgo": 1
+				},
+				"outputCurrent": 0,
+				"outputVoltageTime": {
+					"secondsAgo": 1
+				},
+				"outputVoltage": 10,
+				"lswFlagTime": {
+					"secondsAgo": 1
+				},
+				"lswFlag": 0
+			}
+		],
+		"com": [
+			{
+				"modeTime": {
+					"secondsAgo": 22
+				},
+				"mode": 255,
+				"txDataRateTime": {
+					"secondsAgo": 22
+				},
+				"txDataRate": "BPS_12500",
+				"txPowerTime": {
+					"secondsAgo": 22
+				},
+				"txPower": 22,
+				"rxDataRateTime": {
+					"secondsAgo": 22
+				},
+				"rxDataRate": "BPS_12500"
+			},
+			{
+				"modeTime": {
+					"secondsAgo": 1
+				},
+				"mode": 255,
+				"txDataRateTime": {
+					"secondsAgo": 1
+				},
+				"txDataRate": "BPS_12500",
+				"txPowerTime": {
+					"secondsAgo": 1
+				},
+				"txPower": 22,
+				"rxDataRateTime": {
+					"secondsAgo": 1
+				},
+				"rxDataRate": "BPS_12500"
+			}
+		],
+		"configTime": {
+			"relative": "OLDER_THAN_125_SECONDS"
+		},
+		"config": 8,
+		"preferredComTime": {
+			"secondsAgo": 0
+		},
+		"preferredCom": 1
+	},
+	"beginSample": 0,
+	"beginMillis": 0,
+	"endSample": 0
+}
