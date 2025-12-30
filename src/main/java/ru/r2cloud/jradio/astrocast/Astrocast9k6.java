@@ -13,11 +13,14 @@ public class Astrocast9k6 extends BeaconSource<Astrocast9k6Beacon> {
 
 	public Astrocast9k6(MessageInput input) {
 		super(input);
+		if (!input.getContext().getSoftBits()) {
+			throw new IllegalArgumentException("expected soft bits");
+		}
 	}
 
 	@Override
 	protected Astrocast9k6Beacon parseBeacon(byte[] raw) throws UncorrectableException, IOException {
-		raw = UnpackedToPacked.pack(raw);
+		raw = UnpackedToPacked.packSoft(raw, 0, raw.length / 8);
 		Scrambler.shuffle(raw);
 		Astrocast9k6Beacon result = new Astrocast9k6Beacon();
 		result.readExternal(ReedSolomon.CCSDS.decodeDualBasis(raw, 5));

@@ -26,6 +26,9 @@ public class NgHam implements MessageInput {
 	private final List<Syncword> codes = new ArrayList<>();
 
 	public NgHam(MessageInput input) {
+		if (!input.getContext().getSoftBits()) {
+			throw new IllegalArgumentException("expected soft bits");
+		}
 		this.input = input;
 		codes.add(new Syncword("001110110100100111001101"));
 		codes.add(new Syncword("010011011101101001010111"));

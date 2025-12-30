@@ -12,7 +12,6 @@ import ru.r2cloud.jradio.blocks.CorrelateSyncword;
 import ru.r2cloud.jradio.blocks.LowPassFilter;
 import ru.r2cloud.jradio.blocks.MultiplyConst;
 import ru.r2cloud.jradio.blocks.NrziDecode;
-import ru.r2cloud.jradio.blocks.SoftToHard;
 import ru.r2cloud.jradio.blocks.Window;
 import ru.r2cloud.jradio.demod.FskDemodulator;
 import ru.r2cloud.jradio.source.WavFileSource;
@@ -56,8 +55,7 @@ public class AstrocastTest {
 		WavFileSource source = new WavFileSource(AstrocastTest.class.getClassLoader().getResourceAsStream("astrocast_9k6.wav"));
 		MultiplyConst mc = new MultiplyConst(source, -10.0f);
 		FskDemodulator demod = new FskDemodulator(mc, 9600, 5000.0f, 1, 2000.0f, false);
-		SoftToHard s2h = new SoftToHard(demod);
-		CorrelateSyncword correlate = new CorrelateSyncword(s2h, 4, "00011010110011111111110000011101", 255 * 8 * 5);
+		CorrelateSyncword correlate = new CorrelateSyncword(demod, 4, "00011010110011111111110000011101", 255 * 8 * 5);
 		input9k6 = new Astrocast9k6(correlate);
 		assertTrue(input9k6.hasNext());
 		AssertJson.assertObjectsEqual("Astrocast9k6Beacon.json", input9k6.next());
