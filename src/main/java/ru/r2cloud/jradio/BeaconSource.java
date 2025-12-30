@@ -77,6 +77,7 @@ public abstract class BeaconSource<T> implements Iterator<T>, Closeable {
 					} else {
 						realBeacon.setEndSample(input.getContext().getCurrentSample().getValue());
 					}
+					realBeacon.setRxMeta(currentMarker.getRxmeta());
 				}
 			}
 			current = beacon;

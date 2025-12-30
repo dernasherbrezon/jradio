@@ -10,16 +10,18 @@ import ru.r2cloud.jradio.ByteInput;
 import ru.r2cloud.jradio.Context;
 import ru.r2cloud.jradio.LongValueSource;
 import ru.r2cloud.jradio.MessageInput;
+import ru.r2cloud.jradio.RxMetadata;
 
 public class CorrelateSyncword implements MessageInput {
 
 	private final ByteInput input;
 	private final LinkedList<CorrelatedMarker> markers = new LinkedList<>();
 	private final long threshold;
-	private final AccessCode[] accessCodes;
+	private final Syncword[] syncwords;
 	private final int syncwordLength;
 	private final byte[] window;
 	private final byte[] packet;
+	private final byte[] syncwordSoftBits;
 
 	private long dataRegister = 0;
 	private int windowIndex = 0;
@@ -36,9 +38,10 @@ public class CorrelateSyncword implements MessageInput {
 		this.syncwordLength = validateAndReturnSyncwordLength(syncwords);
 		this.window = new byte[syncwordLength + lengthBits];
 		this.packet = new byte[lengthBits];
+		this.syncwordSoftBits = new byte[syncwordLength];
 		this.input = input;
 		this.threshold = threshold;
-		this.accessCodes = convert(syncwords);
+		this.syncwords = convert(syncwords);
 	}
 
 	@Override
@@ -97,15 +100,15 @@ public class CorrelateSyncword implements MessageInput {
 		}
 		dataRegister = (dataRegister << 1) | (hardBit & 0xFF);
 		long minWrong = threshold + 1;
-		long minAccessCode = -1;
+		Syncword min = null;
 
-		for (int i = 0; i < accessCodes.length; i++) {
-			AccessCode cur = accessCodes[i];
+		for (int i = 0; i < syncwords.length; i++) {
+			Syncword cur = syncwords[i];
 
 			long nwrong = cur.correlate(dataRegister);
 			if (nwrong < minWrong) {
 				minWrong = nwrong;
-				minAccessCode = cur.getAccessCode();
+				min = cur;
 			}
 
 		}
@@ -115,8 +118,22 @@ public class CorrelateSyncword implements MessageInput {
 		}
 
 		CorrelatedMarker index = new CorrelatedMarker();
-		index.setAccessCode(minAccessCode);
+		index.setAccessCode(min.getSyncword());
 		index.setCorrelatedBitIndex(totalBitsRead);
+		// calculate SNR only for soft bits
+		if (Boolean.TRUE.equals(getContext().getSoftBits())) {
+			int copyFrom = windowIndex - syncwordLength;
+			if (copyFrom > 0) {
+				System.arraycopy(window, copyFrom, syncwordSoftBits, 0, syncwordLength);
+			} else {
+				copyFrom = copyFrom + window.length;
+				System.arraycopy(window, copyFrom, syncwordSoftBits, 0, window.length - copyFrom);
+				System.arraycopy(window, 0, syncwordSoftBits, window.length - copyFrom, windowIndex);
+			}
+			RxMetadata rxMeta = new RxMetadata();
+			rxMeta.setSnr(min.calculateSnr(syncwordSoftBits));
+			index.setRxmeta(rxMeta);
+		}
 		LongValueSource currentSample = getContext().getCurrentSample();
 		if (currentSample != null) {
 			index.setSourceSample(currentSample.getValue());
@@ -171,12 +188,12 @@ public class CorrelateSyncword implements MessageInput {
 		return result;
 	}
 
-	private static AccessCode[] convert(Set<String> syncwords) {
-		AccessCode[] result = new AccessCode[syncwords.size()];
+	private static Syncword[] convert(Set<String> syncwords) {
+		Syncword[] result = new Syncword[syncwords.size()];
 		int i = 0;
 		for (String cur : syncwords) {
-			AccessCode accessCode = new AccessCode(cur);
-			result[i] = accessCode;
+			Syncword curSyncword = new Syncword(cur);
+			result[i] = curSyncword;
 			i++;
 		}
 		return result;

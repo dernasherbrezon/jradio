@@ -8,7 +8,7 @@ import java.util.Set;
 
 import org.junit.Test;
 
-import ru.r2cloud.jradio.blocks.AccessCode;
+import ru.r2cloud.jradio.blocks.Syncword;
 import ru.r2cloud.jradio.fec.ViterbiTest;
 
 public class PhaseAmbiguityResolverTest {
@@ -32,7 +32,7 @@ public class PhaseAmbiguityResolverTest {
 		PhaseAmbiguityResolver resolver = new PhaseAmbiguityResolver(0b00_10_01_11, 8);
 		Set<String> result = resolver.getSynchronizationMarkers();
 		assertTrue(result.contains("11100100"));
-		AccessCode ac = new AccessCode("11100100");
+		Syncword ac = new Syncword("11100100");
 		assertEquals(0, ac.correlate(228L));
 	}
 	

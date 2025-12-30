@@ -23,20 +23,20 @@ public class NgHam implements MessageInput {
 	private static final int[] NGH_PAR_SIZE = new int[] { 16, 16, 16, 32, 32, 32, 32 };
 
 	private final MessageInput input;
-	private final List<AccessCode> codes = new ArrayList<>();
+	private final List<Syncword> codes = new ArrayList<>();
 
 	public NgHam(MessageInput input) {
 		if (input.getContext().getSoftBits()) {
 			throw new IllegalArgumentException("expected hard bits");
 		}
 		this.input = input;
-		codes.add(new AccessCode("001110110100100111001101"));
-		codes.add(new AccessCode("010011011101101001010111"));
-		codes.add(new AccessCode("011101101001001110011010"));
-		codes.add(new AccessCode("100110111011010010101110"));
-		codes.add(new AccessCode("101000001111110101100011"));
-		codes.add(new AccessCode("110101100110111011111001"));
-		codes.add(new AccessCode("111011010010011100110100"));
+		codes.add(new Syncword("001110110100100111001101"));
+		codes.add(new Syncword("010011011101101001010111"));
+		codes.add(new Syncword("011101101001001110011010"));
+		codes.add(new Syncword("100110111011010010101110"));
+		codes.add(new Syncword("101000001111110101100011"));
+		codes.add(new Syncword("110101100110111011111001"));
+		codes.add(new Syncword("111011010010011100110100"));
 	}
 
 	@Override

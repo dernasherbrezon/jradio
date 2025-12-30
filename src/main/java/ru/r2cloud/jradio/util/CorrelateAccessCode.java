@@ -1,15 +1,15 @@
 package ru.r2cloud.jradio.util;
 
-import ru.r2cloud.jradio.blocks.AccessCode;
+import ru.r2cloud.jradio.blocks.Syncword;
 
 public class CorrelateAccessCode {
 
 	private int threshold;
-	private final AccessCode accessCode;
+	private final Syncword accessCode;
 
 	public CorrelateAccessCode(int threshold, String accessCode) {
 		this.threshold = threshold;
-		this.accessCode = new AccessCode(accessCode);
+		this.accessCode = new Syncword(accessCode);
 	}
 
 	public int indexOf(byte[] data) {

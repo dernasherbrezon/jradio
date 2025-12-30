@@ -20,7 +20,7 @@ public class CorrelateSynchronizationMarker implements ByteInput {
 	private final int minimumRightMarkers;
 	private final int minimumWrongMarkers;
 	private final int minimumBitsWrong;
-	private final AccessCode[] accessCodes;
+	private final Syncword[] accessCodes;
 	private final ByteInput input;
 	private final CircularByteArray buffer;
 	private final int totalBlocks;
@@ -30,7 +30,7 @@ public class CorrelateSynchronizationMarker implements ByteInput {
 	private int currentIndex;
 	private Integer untilEof;
 	// used to speed up sync a bit
-	private AccessCode preferable;
+	private Syncword preferable;
 	private boolean inSync = false;
 
 	public CorrelateSynchronizationMarker(ByteInput input, int markerLength, int spaceBetweenMarkers, int minimumRightMarkers, int minimumWrongMarkers, int minimumBitsWrong, Set<String> markersStr) {
@@ -47,10 +47,10 @@ public class CorrelateSynchronizationMarker implements ByteInput {
 		this.minimumRightMarkers = minimumRightMarkers;
 		this.minimumWrongMarkers = minimumWrongMarkers;
 		this.minimumBitsWrong = minimumBitsWrong;
-		accessCodes = new AccessCode[markersStr.size()];
+		accessCodes = new Syncword[markersStr.size()];
 		int i = 0;
 		for (String cur : markersStr) {
-			AccessCode accessCode = new AccessCode(cur);
+			Syncword accessCode = new Syncword(cur);
 			accessCodes[i] = accessCode;
 			i++;
 		}
@@ -125,7 +125,7 @@ public class CorrelateSynchronizationMarker implements ByteInput {
 		int maxIndex = -1;
 		int maxRight = 0;
 		for (int i = 0; i < blockLength; i++) {
-			for (AccessCode cur : accessCodes) {
+			for (Syncword cur : accessCodes) {
 				int currentRight = findRightMarkers(i, cur);
 				if (currentRight > maxRight) {
 					maxRight = currentRight;
@@ -153,7 +153,7 @@ public class CorrelateSynchronizationMarker implements ByteInput {
 		if (preferable != null && correlateAccessCode(preferable)) {
 			return true;
 		}
-		for (AccessCode cur : accessCodes) {
+		for (Syncword cur : accessCodes) {
 			if (cur == preferable) {
 				continue;
 			}
@@ -165,7 +165,7 @@ public class CorrelateSynchronizationMarker implements ByteInput {
 		return false;
 	}
 
-	private int findRightMarkers(int offset, AccessCode cur) {
+	private int findRightMarkers(int offset, Syncword cur) {
 		int currentNumberOfRightMarkers = 0;
 		int currentNumberOfWrongMarkers = 0;
 		for (int i = offset; i < buffer.getSize() - markerLength; i += blockLength) {
@@ -187,7 +187,7 @@ public class CorrelateSynchronizationMarker implements ByteInput {
 		return currentNumberOfRightMarkers;
 	}
 
-	private boolean correlateAccessCode(AccessCode cur) {
+	private boolean correlateAccessCode(Syncword cur) {
 		int currentNumberOfRightMarkers = 0;
 		int currentNumberOfWrongMarkers = 0;
 		for (int i = 0; i < buffer.getSize(); i += blockLength) {
