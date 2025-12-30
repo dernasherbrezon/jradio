@@ -26,9 +26,6 @@ public class NgHam implements MessageInput {
 	private final List<Syncword> codes = new ArrayList<>();
 
 	public NgHam(MessageInput input) {
-		if (input.getContext().getSoftBits()) {
-			throw new IllegalArgumentException("expected hard bits");
-		}
 		this.input = input;
 		codes.add(new Syncword("001110110100100111001101"));
 		codes.add(new Syncword("010011011101101001010111"));
@@ -43,7 +40,7 @@ public class NgHam implements MessageInput {
 	public byte[] readBytes() throws IOException {
 		while (!Thread.currentThread().isInterrupted()) {
 			byte[] packet = input.readBytes();
-			packet = UnpackedToPacked.pack(packet);
+			packet = UnpackedToPacked.packSoft(packet, 0, packet.length / 8);
 			long size = ((packet[0] & 0xFF) << 16) | ((packet[1] & 0xFF) << 8) | (packet[2] & 0xFF);
 			int index = findIndex(size);
 			if (index < 0) {
