@@ -15,7 +15,7 @@ public class ThroughputStream implements FloatInput {
 
 	private final ScheduledExecutorService executor;
 	private final AtomicLong numberOfBytes = new AtomicLong(0);
-	private final List<Long> samples = new ArrayList<Long>();
+	private final List<Long> samples = new ArrayList<>();
 	private long total = 0l;
 
 	private final RepeatedWavSource impl;

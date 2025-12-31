@@ -24,7 +24,12 @@ public class Astrocast extends BeaconSource<AstrocastBeacon> {
 
 	@Override
 	protected AstrocastBeacon parseBeacon(byte[] raw) throws UncorrectableException, IOException {
-		raw = UnpackedToPacked.pack(raw);
+		// nrziencoder doesn't support soft bits yet
+		if (input.getContext().getSoftBits()) {
+			raw = UnpackedToPacked.packSoft(raw, 0, raw.length / 8);
+		} else {
+			raw = UnpackedToPacked.pack(raw);
+		}
 		for (int i = 0; i < raw.length; i++) {
 			raw[i] = (byte) MathUtils.reverseBitsInByte(raw[i] & 0xFF);
 		}

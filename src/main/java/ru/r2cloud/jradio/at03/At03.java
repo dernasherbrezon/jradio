@@ -21,11 +21,14 @@ public class At03 extends BeaconSource<At03Beacon> {
 
 	public At03(MessageInput input) {
 		super(input);
+		if (!input.getContext().getSoftBits()) {
+			throw new IllegalArgumentException("expected soft bits");
+		}
 	}
 
 	@Override
 	protected At03Beacon parseBeacon(byte[] raw) throws UncorrectableException, IOException {
-		raw = UnpackedToPacked.pack(raw);
+		raw = UnpackedToPacked.packSoft(raw, 0, raw.length / 8);
 		byte[] data = rs.decode(raw);
 		if (data.length != 48) {
 			if (LOG.isDebugEnabled()) {

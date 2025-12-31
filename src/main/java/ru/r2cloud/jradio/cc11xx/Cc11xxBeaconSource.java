@@ -12,7 +12,6 @@ import ru.r2cloud.jradio.ByteInput;
 import ru.r2cloud.jradio.blocks.AdditiveScrambler;
 import ru.r2cloud.jradio.blocks.CorrelateSyncword;
 import ru.r2cloud.jradio.blocks.CorrelatedMarker;
-import ru.r2cloud.jradio.blocks.SoftToHard;
 import ru.r2cloud.jradio.blocks.UnpackedToPacked;
 import ru.r2cloud.jradio.crc.Crc16Cc11xx;
 import ru.r2cloud.jradio.fec.ccsds.UncorrectableException;
@@ -34,7 +33,7 @@ public class Cc11xxBeaconSource<T extends Beacon> extends BeaconSource<T> {
 		if (!source.getContext().getSoftBits()) {
 			throw new IllegalArgumentException("expected soft bits");
 		}
-		this.input = new CorrelateSyncword(new SoftToHard(source), 6, syncword, length * 8);
+		this.input = new CorrelateSyncword(source, 6, syncword, length * 8);
 		this.clazz = clazz;
 		scrambler = new AdditiveScrambler(0x21, 0x1ff, 8, 8);
 		this.hasWhitening = hasWhitening;
@@ -59,7 +58,7 @@ public class Cc11xxBeaconSource<T extends Beacon> extends BeaconSource<T> {
 	}
 
 	private byte[] decode(byte[] raw) {
-		raw = UnpackedToPacked.pack(raw);
+		raw = UnpackedToPacked.packSoft(raw, 0, raw.length / 8);
 		if (hasWhitening) {
 			scrambler.shuffle(raw);
 		}
@@ -72,13 +71,13 @@ public class Cc11xxBeaconSource<T extends Beacon> extends BeaconSource<T> {
 		if (dataEndIndex > raw.length) {
 			return null;
 		}
-		
+
 		CorrelatedMarker marker = input.getContext().getCurrentMarker();
 		if (marker != null) {
 			float samplesPerByte = (((float) input.getContext().getCurrentSample().getValue() - marker.getSourceSample()) / raw.length);
 			marker.setEndSample(marker.getSourceSample() + (long) (samplesPerByte * dataEndIndex));
 		}
-		
+
 		// 1 - skip first byte which is frameLength
 		byte[] result = Arrays.copyOfRange(raw, 1, endIndex);
 		if (!hasCrc) {

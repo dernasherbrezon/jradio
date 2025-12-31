@@ -225,5 +225,8 @@
   ],
   "beginSample": 942,
   "endSample": 5581,
-  "beginMillis": 0
+  "beginMillis": 0,
+  "rxMeta": {
+    "snr": 1.49344
+  }
 }

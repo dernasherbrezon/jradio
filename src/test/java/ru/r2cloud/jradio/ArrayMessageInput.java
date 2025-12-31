@@ -1,21 +1,16 @@
 package ru.r2cloud.jradio;
 
+import java.io.ByteArrayOutputStream;
 import java.io.EOFException;
 import java.io.IOException;
 
 public class ArrayMessageInput implements MessageInput {
 
-	private final byte[] input;
-	private final Context context;
+	private final ByteInput input;
 	private boolean read = false;
 
-	public ArrayMessageInput(byte[] input) {
-		this(new Context(), input);
-	}
-
-	public ArrayMessageInput(Context context, byte[] input) {
+	public ArrayMessageInput(ByteInput input) {
 		this.input = input;
-		this.context = context;
 	}
 
 	@Override
@@ -23,8 +18,16 @@ public class ArrayMessageInput implements MessageInput {
 		if (read) {
 			throw new EOFException();
 		}
+		ByteArrayOutputStream baos = new ByteArrayOutputStream();
+		while (true) {
+			try {
+				baos.write(input.readByte());
+			} catch (EOFException e) {
+				break;
+			}
+		}
 		read = true;
-		return input;
+		return baos.toByteArray();
 	}
 
 	@Override
@@ -34,6 +37,6 @@ public class ArrayMessageInput implements MessageInput {
 
 	@Override
 	public Context getContext() {
-		return context;
+		return input.getContext();
 	}
 }
