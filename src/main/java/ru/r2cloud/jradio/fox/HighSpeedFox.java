@@ -9,6 +9,7 @@ import org.slf4j.LoggerFactory;
 import ru.r2cloud.jradio.Beacon;
 import ru.r2cloud.jradio.BeaconSource;
 import ru.r2cloud.jradio.MessageInput;
+import ru.r2cloud.jradio.blocks.SoftToHard;
 import ru.r2cloud.jradio.fec.ccsds.ReedSolomon;
 import ru.r2cloud.jradio.fec.ccsds.UncorrectableException;
 
@@ -37,6 +38,9 @@ public class HighSpeedFox<T extends Beacon> extends BeaconSource<T> {
 
 	public HighSpeedFox(MessageInput input, Class<T> clazz, int[] padding, int interleaving, int payloadSize) {
 		super(input);
+		if (!input.getContext().getSoftBits()) {
+			throw new IllegalArgumentException("expected soft bits");
+		}
 		this.clazz = clazz;
 		this.padding = padding;
 		this.maxPadding = findMax(padding);
@@ -49,6 +53,7 @@ public class HighSpeedFox<T extends Beacon> extends BeaconSource<T> {
 
 	@Override
 	protected T parseBeacon(byte[] raw) throws UncorrectableException, IOException {
+		SoftToHard.convertToHard(raw);
 		int currentRsBuffer = 0;
 		int currentIndex = 0;
 		int totalBytesProcessed = 0;

@@ -23,13 +23,17 @@ public class Eseo extends BeaconSource<EseoBeacon> {
 
 	public Eseo(MessageInput input) {
 		super(input);
+		if (!input.getContext().getSoftBits()) {
+			throw new IllegalArgumentException("expected soft bits");
+		}
 	}
 
 	@Override
 	protected EseoBeacon parseBeacon(byte[] raw) throws UncorrectableException, IOException {
-		raw = UnpackedToPacked.pack(raw);
+		raw = UnpackedToPacked.packSoft(raw, 0, raw.length / 8);
 		CorrelateAccessCode code = new CorrelateAccessCode(2, EseoBeacon.FLAG);
-		// start from last index in case of reed-solomon code block is having EseoBeacon.FLAG
+		// start from last index in case of reed-solomon code block is having
+		// EseoBeacon.FLAG
 		int endFlag = raw.length - 1;
 		while ((endFlag = code.lastIndexOf(raw, endFlag)) != -1) {
 			// 264bit

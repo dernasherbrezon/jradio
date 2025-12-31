@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory;
 import ru.r2cloud.jradio.Beacon;
 import ru.r2cloud.jradio.BeaconSource;
 import ru.r2cloud.jradio.MessageInput;
+import ru.r2cloud.jradio.blocks.SoftToHard;
 import ru.r2cloud.jradio.fec.ccsds.ReedSolomon;
 import ru.r2cloud.jradio.fec.ccsds.UncorrectableException;
 
@@ -21,11 +22,15 @@ public class Fox<T extends Beacon> extends BeaconSource<T> {
 
 	public Fox(MessageInput input, Class<T> clazz) {
 		super(input);
+		if (!input.getContext().getSoftBits()) {
+			throw new IllegalArgumentException("expected soft bits");
+		}
 		this.clazz = clazz;
 	}
 
 	@Override
 	protected T parseBeacon(byte[] raw) throws UncorrectableException, IOException {
+		SoftToHard.convertToHard(raw);
 		int[] erasurePositions = new int[255];
 		int numberOfErasures = 0;
 		for (int i = 0; i < buffer.length; i++) {
