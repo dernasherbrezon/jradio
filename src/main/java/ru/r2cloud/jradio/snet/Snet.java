@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory;
 
 import ru.r2cloud.jradio.BeaconSource;
 import ru.r2cloud.jradio.MessageInput;
+import ru.r2cloud.jradio.blocks.SoftToHard;
 import ru.r2cloud.jradio.blocks.UnpackedToPacked;
 import ru.r2cloud.jradio.fec.Bch15;
 import ru.r2cloud.jradio.fec.ccsds.UncorrectableException;
@@ -25,10 +26,14 @@ public class Snet extends BeaconSource<SnetBeacon> {
 
 	public Snet(MessageInput input) {
 		super(input);
+		if (!input.getContext().getSoftBits()) {
+			throw new IllegalArgumentException("expected soft bits");
+		}
 	}
 
 	@Override
 	protected SnetBeacon parseBeacon(byte[] raw) throws UncorrectableException, IOException {
+		SoftToHard.convertToHard(raw);
 		// 1. de-interleave header
 		byte[] headerDataBits = readHeaderBits(raw);
 

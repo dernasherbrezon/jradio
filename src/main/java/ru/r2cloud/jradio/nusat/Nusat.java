@@ -21,11 +21,14 @@ public class Nusat extends BeaconSource<NusatBeacon> {
 
 	public Nusat(MessageInput input) {
 		super(input);
+		if (!input.getContext().getSoftBits()) {
+			throw new IllegalArgumentException("expected soft bits");
+		}
 	}
 
 	@Override
 	protected NusatBeacon parseBeacon(byte[] raw) throws UncorrectableException, IOException {
-		raw = UnpackedToPacked.pack(raw);
+		raw = UnpackedToPacked.packSoft(raw, 0, raw.length / 8);
 		byte[] data = rs.decode(raw);
 		int length = data[0] & 0xFF;
 		// length field is not used anywhere. just log it

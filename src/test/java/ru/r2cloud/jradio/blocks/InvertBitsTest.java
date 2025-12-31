@@ -10,10 +10,10 @@ public class InvertBitsTest {
 
 	@Test
 	public void testSuccess() throws Exception {
-		InvertBits input = new InvertBits(new ArrayByteInput(0, 1, 0));
-		assertEquals(1, input.readByte());
-		assertEquals(0, input.readByte());
-		assertEquals(1, input.readByte());
+		InvertBits input = new InvertBits(new ArrayByteInput(-128, 127, -128));
+		assertEquals(127, input.readByte());
+		assertEquals(-128, input.readByte());
+		assertEquals(127, input.readByte());
 		input.close();
 	}
 

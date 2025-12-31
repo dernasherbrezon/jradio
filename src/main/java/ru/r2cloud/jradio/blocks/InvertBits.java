@@ -20,12 +20,7 @@ public class InvertBits implements ByteInput {
 
 	@Override
 	public byte readByte() throws IOException {
-		byte b = input.readByte();
-		if (b > 0) {
-			return 0;
-		} else {
-			return 1;
-		}
+		return (byte) (input.readByte() ^ 0xFF);
 	}
 
 	@Override

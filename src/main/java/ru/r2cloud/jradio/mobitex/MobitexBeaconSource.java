@@ -10,7 +10,6 @@ import ru.r2cloud.jradio.BeaconSource;
 import ru.r2cloud.jradio.ByteInput;
 import ru.r2cloud.jradio.blocks.CorrelateSyncword;
 import ru.r2cloud.jradio.blocks.InvertBits;
-import ru.r2cloud.jradio.blocks.SoftToHard;
 import ru.r2cloud.jradio.blocks.UnpackedToPacked;
 import ru.r2cloud.jradio.fec.ccsds.UncorrectableException;
 
@@ -25,7 +24,10 @@ public class MobitexBeaconSource<T extends Beacon> extends BeaconSource<T> {
 	}
 
 	public MobitexBeaconSource(ByteInput input, Class<T> clazz, int maxLengthBytes) {
-		super(new CorrelateSyncword(new InvertBits(new SoftToHard(input)), 4, "0101011101100101", maxLengthBytes * 8));
+		super(new CorrelateSyncword(new InvertBits(input), 4, "0101011101100101", maxLengthBytes * 8));
+		if (!input.getContext().getSoftBits()) {
+			throw new IllegalArgumentException("expected soft bits");
+		}
 		this.clazz = clazz;
 	}
 
@@ -38,7 +40,7 @@ public class MobitexBeaconSource<T extends Beacon> extends BeaconSource<T> {
 			LOG.error("unable to init beacon", e);
 			return null;
 		}
-		result.readExternal(UnpackedToPacked.pack(raw));
+		result.readExternal(UnpackedToPacked.packSoft(raw, 0, raw.length / 8));
 		return result;
 	}
 }

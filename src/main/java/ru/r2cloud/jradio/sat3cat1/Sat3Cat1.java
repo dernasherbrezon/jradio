@@ -21,7 +21,7 @@ public class Sat3Cat1 extends BeaconSource<Sat3Cat1Beacon> {
 
 	@Override
 	protected Sat3Cat1Beacon parseBeacon(byte[] raw) throws UncorrectableException, IOException {
-		raw = UnpackedToPacked.pack(raw);
+		raw = UnpackedToPacked.packSoft(raw, 0, raw.length / 8);
 		scrambler.shuffle(raw);
 		byte[] data = rs.decode(raw);
 		Sat3Cat1Beacon beacon = new Sat3Cat1Beacon();

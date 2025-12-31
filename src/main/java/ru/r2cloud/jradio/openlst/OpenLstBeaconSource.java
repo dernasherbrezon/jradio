@@ -9,7 +9,6 @@ import ru.r2cloud.jradio.BeaconSource;
 import ru.r2cloud.jradio.ByteInput;
 import ru.r2cloud.jradio.blocks.CorrelateSyncword;
 import ru.r2cloud.jradio.blocks.CorrelatedMarker;
-import ru.r2cloud.jradio.blocks.SoftToHard;
 import ru.r2cloud.jradio.blocks.UnpackedToPacked;
 import ru.r2cloud.jradio.fec.ccsds.UncorrectableException;
 
@@ -22,13 +21,16 @@ public class OpenLstBeaconSource<T extends OpenLstBeacon> extends BeaconSource<T
 	private final Class<T> clazz;
 
 	public OpenLstBeaconSource(ByteInput input, Class<T> clazz) {
-		super(new CorrelateSyncword(new SoftToHard(input), 4, "11010011100100011101001110010001", MAX_MESSAGE_SIZE * 8));
+		super(new CorrelateSyncword(input, 4, "11010011100100011101001110010001", MAX_MESSAGE_SIZE * 8));
+		if (!input.getContext().getSoftBits()) {
+			throw new IllegalArgumentException("expected soft bits");
+		}
 		this.clazz = clazz;
 	}
 
 	@Override
 	protected T parseBeacon(byte[] raw) throws UncorrectableException, IOException {
-		byte[] data = fec.decode(UnpackedToPacked.pack(raw));
+		byte[] data = fec.decode(UnpackedToPacked.packSoft(raw, 0, raw.length / 8));
 		T result;
 		try {
 			result = clazz.getDeclaredConstructor().newInstance();
