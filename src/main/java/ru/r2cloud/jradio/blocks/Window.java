@@ -2,9 +2,9 @@ package ru.r2cloud.jradio.blocks;
 
 public enum Window {
 
-	WIN_HAMMING, WIN_HANN, WIN_BLACKMAN, WIN_RECTANGULAR, WIN_KAISER, WIN_BLACKMAN_HARRIS, WIN_BARTLETT, WIN_FLATTOP;
+	WIN_HAMMING, WIN_HANN, WIN_BLACKMAN, WIN_RECTANGULAR, WIN_KAISER, WIN_BLACKMAN_HARRIS, WIN_BARTLETT, WIN_FLATTOP, WIN_GUASSIAN;
 
-	public float[] build(int ntaps, @SuppressWarnings("unused") double beta) {
+	public float[] build(int ntaps, double beta) {
 		float[] taps;
 		switch (this) {
 		case WIN_HAMMING:
@@ -13,6 +13,17 @@ public enum Window {
 
 			for (int n = 0; n < ntaps; n++) {
 				taps[n] = (float) (0.54 - 0.46 * Math.cos((2 * Math.PI * n) / m));
+			}
+			return taps;
+		case WIN_GUASSIAN:
+			taps = new float[ntaps];
+			float c = 0.5f * (ntaps - 1);
+			float d = (float) (2.0f / (beta * ntaps));
+			for (int i = 0; i < (ntaps + 1) / 2; i++) {
+				float a = (i - c) * d;
+				float b = (float) Math.exp(-0.5f * a * a);
+				taps[i] = b;
+				taps[ntaps - 1 - i] = b;
 			}
 			return taps;
 //		case WIN_HANN:
@@ -45,6 +56,8 @@ public enum Window {
 			return 27;
 		case WIN_FLATTOP:
 			return 93;
+		case WIN_GUASSIAN:
+			return 100;
 		default:
 			throw new IllegalArgumentException("unknown window type: " + this);
 		}
