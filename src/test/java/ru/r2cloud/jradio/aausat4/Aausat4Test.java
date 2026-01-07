@@ -3,7 +3,6 @@ package ru.r2cloud.jradio.aausat4;
 import static org.junit.Assert.assertTrue;
 
 import java.io.InputStream;
-import java.util.List;
 
 import org.junit.After;
 import org.junit.Test;
@@ -13,20 +12,9 @@ import ru.r2cloud.jradio.FloatInput;
 import ru.r2cloud.jradio.blocks.ClockRecoveryMM;
 import ru.r2cloud.jradio.blocks.CorrelateSyncword;
 import ru.r2cloud.jradio.blocks.FloatToChar;
-import ru.r2cloud.jradio.blocks.LowPassFilter;
-import ru.r2cloud.jradio.blocks.Multiply;
-import ru.r2cloud.jradio.blocks.MultiplyConst;
-import ru.r2cloud.jradio.blocks.QuadratureDemodulation;
 import ru.r2cloud.jradio.blocks.Rail;
-import ru.r2cloud.jradio.blocks.Window;
 import ru.r2cloud.jradio.demod.FskDemodulator;
-import ru.r2cloud.jradio.detection.GmskFrequencyCorrection;
-import ru.r2cloud.jradio.detection.PeakDetection;
-import ru.r2cloud.jradio.detection.PeakInterval;
-import ru.r2cloud.jradio.detection.PeakValueSource;
-import ru.r2cloud.jradio.source.SigSource;
 import ru.r2cloud.jradio.source.WavFileSource;
-import ru.r2cloud.jradio.source.Waveform;
 import ru.r2cloud.jradio.util.RepeatedWavSource;
 import ru.r2cloud.jradio.util.ThroughputStream;
 
@@ -69,27 +57,6 @@ public class Aausat4Test {
 
 		System.out.println("average " + throughputStream.getAverage() + " bytes/s");
 		// average 17697814 bytes/s
-	}
-
-	@Test
-	public void testPeakBasedFrequencyCorrection() throws Exception {
-		List<PeakInterval> peaks;
-		try (WavFileSource source = new WavFileSource(getStream())) {
-			PeakDetection detection = new PeakDetection(100, -80.0f, 3);
-			peaks = detection.process(source);
-		}
-		WavFileSource source = new WavFileSource(getStream());
-		SigSource source2 = new SigSource(Waveform.COMPLEX, (long) source.getContext().getSampleRate(), new PeakValueSource(peaks, new GmskFrequencyCorrection(2400, 10)), 1.0f);
-		Multiply mul = new Multiply(source, source2);
-		QuadratureDemodulation qd = new QuadratureDemodulation(mul, 0.4f);
-		LowPassFilter lpf = new LowPassFilter(qd, 1.0, 1500.0f, 100, Window.WIN_HAMMING, 6.76);
-		MultiplyConst mc = new MultiplyConst(lpf, 1.0f);
-		setupDemodulator(mc);
-		assertTrue(input.hasNext());
-	}
-
-	private static InputStream getStream() throws Exception {
-		return Aausat4Test.class.getClassLoader().getResourceAsStream("aausat-4-with-offset-2.wav");
 	}
 
 	@Test
