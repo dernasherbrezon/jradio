@@ -9,15 +9,13 @@ public class BufferedFloatInput implements FloatInput {
 
 	private final FloatInput source;
 	private final float[] buffer;
+	private final int strideSize;
+	private int current = 0;
 
-	private int currentPos;
-	private int currentCursorPos;
-
-	public BufferedFloatInput(FloatInput source, int bufferSize) {
+	public BufferedFloatInput(FloatInput source, int strideSize, int bufferSize) {
 		this.source = source;
-		this.buffer = new float[bufferSize];
-		currentPos = buffer.length;
-		currentCursorPos = buffer.length;
+		this.strideSize = strideSize;
+		buffer = new float[bufferSize];
 	}
 
 	@Override
@@ -27,29 +25,19 @@ public class BufferedFloatInput implements FloatInput {
 
 	@Override
 	public float readFloat() throws IOException {
-		if (currentCursorPos == currentPos) {
-			currentPos--;
-			if (currentPos < 0) {
-				currentPos = buffer.length - 1;
+		if (current >= strideSize) {
+			int currentHistoryLength = buffer.length - strideSize;
+			// shift left
+			System.arraycopy(buffer, strideSize, buffer, 0, buffer.length - strideSize);
+			// read new stride into the end of buffer
+			for (int i = 0; i < strideSize; i++) {
+				buffer[i + currentHistoryLength] = source.readFloat();
 			}
-			float result = source.readFloat();
-			buffer[currentPos] = result;
+			current = 0;
 		}
-		currentCursorPos--;
-		if (currentCursorPos < 0) {
-			currentCursorPos = buffer.length - 1;
-		}
-		return buffer[currentCursorPos];
-	}
-
-	public void resetBack(int numPosition) {
-		if (numPosition > buffer.length) {
-			throw new IllegalArgumentException("invalid reset " + numPosition);
-		}
-		currentCursorPos += numPosition;
-		if (currentCursorPos >= buffer.length) {
-			currentCursorPos -= buffer.length;
-		}
+		float result = buffer[current];
+		current++;
+		return result;
 	}
 
 	@Override
@@ -57,4 +45,7 @@ public class BufferedFloatInput implements FloatInput {
 		return source.getContext();
 	}
 
+	public float[] getBuffer() {
+		return buffer;
+	}
 }

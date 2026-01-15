@@ -4,13 +4,13 @@ import java.io.IOException;
 
 import ru.r2cloud.jradio.Context;
 import ru.r2cloud.jradio.FloatInput;
-import ru.r2cloud.jradio.util.BufferedFloatInput;
+import ru.r2cloud.jradio.util.InvertedBufferFloatInput;
 import ru.r2cloud.jradio.util.CircularComplexArray;
 import ru.r2cloud.jradio.util.MathUtils;
 
 public class PolyphaseClockSyncComplex implements FloatInput {
 
-	private final BufferedFloatInput source;
+	private final InvertedBufferFloatInput source;
 	private final Context context;
 
 	private float samplesSymbol;
@@ -69,7 +69,7 @@ public class PolyphaseClockSyncComplex implements FloatInput {
 		this.filterNumber = (int) Math.floor(k);
 		this.tapsPerFilter = (int) Math.ceil((double) taps.length / numberOfFilters);
 		this.skip = 1;
-		this.source = new BufferedFloatInput(source, 2 * (tapsPerFilter + outputSamplesPerSymbol - 1));
+		this.source = new InvertedBufferFloatInput(source, 2 * (tapsPerFilter + outputSamplesPerSymbol - 1));
 		this.array = new CircularComplexArray(tapsPerFilter);
 		this.arrayDiff = new CircularComplexArray(tapsPerFilter); // keep original input for diff filter. do not advance for outputSamplesPerSymbol
 		this.filters = createFilters(taps);

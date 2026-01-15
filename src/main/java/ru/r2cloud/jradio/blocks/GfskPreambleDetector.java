@@ -1,15 +1,12 @@
 package ru.r2cloud.jradio.blocks;
 
-import java.io.BufferedInputStream;
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
 
 import org.jtransforms.fft.FloatFFT_1D;
 
 import ru.r2cloud.jradio.Context;
 import ru.r2cloud.jradio.FloatInput;
-import ru.r2cloud.jradio.source.InputStreamSource;
+import ru.r2cloud.jradio.util.BufferedFloatInput;
 
 public class GfskPreambleDetector implements FloatInput {
 

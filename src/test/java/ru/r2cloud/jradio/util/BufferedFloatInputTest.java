@@ -13,7 +13,7 @@ public class BufferedFloatInputTest {
 
 	@Test
 	public void testSuccess() throws Exception {
-		BufferedFloatInput buf = new BufferedFloatInput(new ArrayFloatInput(1.0f, 2.0f, 3.0f, 4.0f, 5.0f), 6);
+		InvertedBufferFloatInput buf = new InvertedBufferFloatInput(new ArrayFloatInput(1.0f, 2.0f, 3.0f, 4.0f, 5.0f), 6);
 		assertEquals(1.0f, buf.readFloat(), 0.0f);
 		assertEquals(2.0f, buf.readFloat(), 0.0f);
 		assertEquals(3.0f, buf.readFloat(), 0.0f);
