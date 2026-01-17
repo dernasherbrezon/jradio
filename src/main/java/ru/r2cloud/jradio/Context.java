@@ -20,6 +20,7 @@ public class Context {
 	private int channels = 1;
 	private int sampleSizeInBits;
 	private LongValueSource currentSample;
+	private FloatValueSource currentFrequency;
 	private Boolean softBits;
 	private List<StateProvider> providers = new ArrayList<>();
 
@@ -34,6 +35,7 @@ public class Context {
 		channels = orig.channels;
 		sampleSizeInBits = orig.sampleSizeInBits;
 		currentSample = orig.currentSample;
+		currentFrequency = orig.currentFrequency;
 		softBits = orig.softBits;
 		providers.addAll(orig.providers);
 	}
@@ -84,6 +86,14 @@ public class Context {
 
 	public void setCurrentSample(LongValueSource currentSample) {
 		this.currentSample = currentSample;
+	}
+	
+	public void setCurrentFrequency(FloatValueSource currentFrequency) {
+		this.currentFrequency = currentFrequency;
+	}
+	
+	public FloatValueSource getCurrentFrequency() {
+		return currentFrequency;
 	}
 
 	public void setSoftBits(boolean softBits) {

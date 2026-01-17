@@ -8,6 +8,7 @@ import java.util.Set;
 
 import ru.r2cloud.jradio.ByteInput;
 import ru.r2cloud.jradio.Context;
+import ru.r2cloud.jradio.FloatValueSource;
 import ru.r2cloud.jradio.LongValueSource;
 import ru.r2cloud.jradio.MessageInput;
 import ru.r2cloud.jradio.RxMetadata;
@@ -137,6 +138,15 @@ public class CorrelateSyncword implements MessageInput {
 		LongValueSource currentSample = getContext().getCurrentSample();
 		if (currentSample != null) {
 			index.setSourceSample(currentSample.getValue());
+		}
+		FloatValueSource currentFrequency = getContext().getCurrentFrequency();
+		if (currentFrequency != null) {
+			RxMetadata rxMeta = index.getRxmeta();
+			if (rxMeta == null) {
+				rxMeta = new RxMetadata();
+				index.setRxmeta(rxMeta);
+			}
+			rxMeta.setFrequencyError((long) currentFrequency.getValue());
 		}
 		markers.add(index);
 	}

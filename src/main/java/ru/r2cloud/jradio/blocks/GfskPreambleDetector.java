@@ -129,9 +129,7 @@ public class GfskPreambleDetector implements FloatInput {
 		}
 
 		if (toneFound) {
-			float freqOffset = toneFreq * inputSampleRate;
-			// FIXME make freqOffset available for downstream blocks
-			xlating.setCenterFreq(freqOffset);
+			xlating.setCenterFreq(toneFreq * inputSampleRate);
 		}
 	}
 	

@@ -8,11 +8,12 @@ import com.codahale.metrics.MetricRegistry;
 
 import ru.r2cloud.jradio.Context;
 import ru.r2cloud.jradio.FloatInput;
+import ru.r2cloud.jradio.FloatValueSource;
 import ru.r2cloud.jradio.util.CircularComplexArray;
 import ru.r2cloud.jradio.util.MathUtils;
 import ru.r2cloud.jradio.util.Metrics;
 
-public class FrequencyXlatingFIRFilter implements FloatInput {
+public class FrequencyXlatingFIRFilter implements FloatInput, FloatValueSource {
 
 	private final MetricRegistry registry = Metrics.getRegistry();
 	private final Meter samples;
@@ -64,6 +65,7 @@ public class FrequencyXlatingFIRFilter implements FloatInput {
 		if (context.getTotalSamples() != null) {
 			context.setTotalSamples(context.getTotalSamples() / decimation);
 		}
+		context.setCurrentFrequency(this);
 	}
 
 	public void setCenterFreq(double centerFreq) {
@@ -97,9 +99,9 @@ public class FrequencyXlatingFIRFilter implements FloatInput {
 		double exp = Math.exp(realIncrement);
 		phaseIncrement[0] = (float) (exp * Math.cos(imagIncrement));
 		phaseIncrement[1] = (float) (exp * Math.sin(imagIncrement));
-		
+
 		rotator.setPhase(phase, phaseIncrement);
-		
+
 		this.centerFreq = centerFreq;
 	}
 
@@ -139,5 +141,13 @@ public class FrequencyXlatingFIRFilter implements FloatInput {
 	@Override
 	public void close() throws IOException {
 		source.close();
+	}
+
+	@Override
+	public float getValue() {
+		if (centerFreq == null) {
+			return 0.0f;
+		}
+		return centerFreq.floatValue();
 	}
 }
