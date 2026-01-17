@@ -5,8 +5,8 @@ import ru.r2cloud.jradio.util.MathUtils;
 public class Rotator {
 
 	private int counter;
-	private final float[] phase;
-	private final float[] phaseIncrement;
+	private float[] phase;
+	private float[] phaseIncrement;
 
 	private final float[] tempPhase = new float[2];
 
@@ -39,6 +39,19 @@ public class Rotator {
 			phase[1] = phase[1] / abs;
 		}
 
+	}
+	
+	public void setPhase(float[] phase, float[] phaseIncrement) {
+		this.phase = phase;
+		this.phaseIncrement = phaseIncrement;
+
+		float abs = MathUtils.abs(phase[0], phase[1]);
+		this.phase[0] = phase[0] / abs;
+		this.phase[1] = phase[1] / abs;
+
+		abs = MathUtils.abs(phaseIncrement[0], phaseIncrement[1]);
+		this.phaseIncrement[0] = phaseIncrement[0] / abs;
+		this.phaseIncrement[1] = phaseIncrement[1] / abs;
 	}
 
 }

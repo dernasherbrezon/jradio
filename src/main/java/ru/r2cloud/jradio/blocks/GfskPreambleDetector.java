@@ -11,6 +11,7 @@ import ru.r2cloud.jradio.util.BufferedFloatInput;
 public class GfskPreambleDetector implements FloatInput {
 
 	private final int inputSamplesPerBit;
+	private final float inputSampleRate;
 	private final float toneSnrDb;
 
 	private final float[] window;
@@ -25,9 +26,10 @@ public class GfskPreambleDetector implements FloatInput {
 	private final BufferedFloatInput bufferedInput;
 	private final FrequencyXlatingFIRFilter xlating;
 	private int current = 0;
-
+	
 	public GfskPreambleDetector(FloatInput input, int baud, float bt, int decimation, float frequencyLimit, float toneSnrDb) {
-		this.inputSamplesPerBit = (int) (input.getContext().getSampleRate() / baud);
+		this.inputSampleRate = input.getContext().getSampleRate();
+		this.inputSamplesPerBit = (int) (inputSampleRate / baud);
 		int windowSize;
 		if (inputSamplesPerBit < 8) { // 4
 			windowSize = 256;
@@ -126,14 +128,13 @@ public class GfskPreambleDetector implements FloatInput {
 			sum -= a0;
 		}
 
-		// FIXME set new tone freq
 		if (toneFound) {
-//			System.out.println(getContext().getCurrentSample().getValue() + " " + toneFreq * 100_000 + " " + maxToneSnrDb);
-//			System.out.println("\t\t" + toneFreq + " " + maxToneSnrDb);
+			float freqOffset = toneFreq * inputSampleRate;
+			// FIXME make freqOffset available for downstream blocks
+			xlating.setCenterFreq(freqOffset);
 		}
-
 	}
-
+	
 	@Override
 	public void close() throws IOException {
 		xlating.close();
