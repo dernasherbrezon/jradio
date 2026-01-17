@@ -26,29 +26,26 @@ public class GfskPreambleDetector implements FloatInput {
 	private final BufferedFloatInput bufferedInput;
 	private final FrequencyXlatingFIRFilter xlating;
 	private int current = 0;
-	
-	public GfskPreambleDetector(FloatInput input, int baud, float bt, int decimation, float frequencyLimit, float toneSnrDb) {
+
+	// afc stands for: automatic frequency correction
+	public GfskPreambleDetector(FloatInput input, int baud, float bt, int decimation, float afcBandwidth, float toneSnrDb) {
 		this.inputSampleRate = input.getContext().getSampleRate();
 		this.inputSamplesPerBit = (int) (inputSampleRate / baud);
 		int windowSize;
-		if (inputSamplesPerBit < 8) { // 4
+		if (inputSamplesPerBit < 8) {
 			windowSize = 256;
 			strideSize = 100;
-		} else if (inputSamplesPerBit < 16) { // 10
+		} else if (inputSamplesPerBit < 16) {
 			windowSize = 512;
 			strideSize = 200;
-		} else if (inputSamplesPerBit < 32) { // 20
+		} else if (inputSamplesPerBit < 32) {
 			windowSize = 1024;
 			strideSize = 400;
-		} else if (inputSamplesPerBit < 64) { // 40, 50
-			windowSize = 2048;
-			strideSize = 800;
 		} else {
-			// FIXME
 			windowSize = 2048;
 			strideSize = 800;
 		}
-		maxFrequencyBin = (int) Math.ceil(frequencyLimit / (input.getContext().getSampleRate() / windowSize));
+		maxFrequencyBin = (int) Math.ceil(afcBandwidth / (input.getContext().getSampleRate() / windowSize));
 		this.toneSnrDb = (float) (1.0f / Math.pow(10.0f, 0.1f * toneSnrDb));
 		window = Window.WIN_GUASSIAN.build(windowSize, 0.4f);
 		fftIn = new float[windowSize * 2];
@@ -132,7 +129,7 @@ public class GfskPreambleDetector implements FloatInput {
 			xlating.setCenterFreq(toneFreq * inputSampleRate);
 		}
 	}
-	
+
 	@Override
 	public void close() throws IOException {
 		xlating.close();
