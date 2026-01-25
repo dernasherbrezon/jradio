@@ -194,10 +194,6 @@ public class ReedSolomon {
 	public byte[] decodeData(byte[] data, int[] erasurePositions, int noEras) throws UncorrectableException {
 		int pad = nn - nroots - (data.length - nroots);
 
-		if (pad < 0 || pad > 222) {
-			throw new IllegalArgumentException("invalid pad: " + pad);
-		}
-
 		int degLambda;
 		int el;
 		int degOmega;
