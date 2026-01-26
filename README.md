@@ -32,6 +32,7 @@ De-framer is a component that converts soft stream of bits into the frames of sp
  * [AX.25](https://en.wikipedia.org/wiki/AX.25) with G3ruh scrambler - [Ax25G3ruhBeaconSource](https://github.com/dernasherbrezon/jradio/blob/master/src/main/java/ru/r2cloud/jradio/Ax25G3ruhBeaconSource.java)
  * [AX100](https://gomspace.com/UserFiles/Subsystems/datasheet/gs-ds-nanocom-ax100-33.pdf) - [Ax100BeaconSource](https://github.com/dernasherbrezon/jradio/blob/master/src/main/java/ru/r2cloud/jradio/Ax100BeaconSource.java)
  * [cc11xx](http://www.ti.com/product/CC1101/description) - [Cc11xxReceiver](https://github.com/dernasherbrezon/jradio/blob/master/src/main/java/ru/r2cloud/jradio/cc11xx/Cc11xxReceiver.java)
+ * [IL2P](https://tarpn.net/t/il2p/il2p-specification_draft_v0-6.pdf) - [Il2pBeaconSource](https://github.com/dernasherbrezon/jradio/blob/master/src/main/java/ru/r2cloud/jradio/Il2pBeaconSource.java)
  * [NGHam](https://github.com/skagmo/ngham) - Support for [NGHam radio protocol](https://github.com/dernasherbrezon/jradio/blob/master/src/main/java/ru/r2cloud/jradio/blocks/NgHam.java)
  * Generic [syncword](https://en.wikipedia.org/wiki/Syncword) correlator - [CorrelateSyncword](https://github.com/dernasherbrezon/jradio/blob/master/src/main/java/ru/r2cloud/jradio/blocks/CorrelateSyncword.java)
  * [USP](https://github.com/sputnixru/SX-USP) - [UspDecoder](https://github.com/dernasherbrezon/jradio/blob/master/src/main/java/ru/r2cloud/jradio/usp/UspDecoder.java)
@@ -649,6 +650,11 @@ jradio has lots of built-in satellite decoders. Some of them have non standard d
 			<td>HUNITY</td>
 			<td>98537</td>
 			<td>ru.r2cloud.jradio.hunity.HunityBeacon</td>
+		</tr>
+		<tr>
+			<td>SilverSat</td>
+			<td>66909</td>
+			<td>ru.r2cloud.jradio.il2p.Il2pBeacon</td>
 		</tr>
 	</tbody>
 </table>
