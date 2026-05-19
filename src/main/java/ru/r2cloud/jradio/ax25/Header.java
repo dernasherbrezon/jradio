@@ -48,7 +48,7 @@ public class Header {
 		} else if ((controlBits & 0b11) == 0b11) {
 			frameType = FrameType.U;
 			uControlType = UFrameControlType.valueOfCode(controlBits);
-			if (uControlType.equals(UFrameControlType.UI)) {
+			if (UFrameControlType.UI.equals(uControlType)) {
 				pid = dis.readUnsignedByte();
 			}
 		} else {
