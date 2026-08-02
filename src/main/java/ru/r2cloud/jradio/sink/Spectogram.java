@@ -1,6 +1,9 @@
 package ru.r2cloud.jradio.sink;
 
 import java.awt.image.BufferedImage;
+import java.awt.image.DataBuffer;
+import java.awt.image.Raster;
+import java.awt.image.WritableRaster;
 import java.io.EOFException;
 import java.io.IOException;
 
@@ -42,7 +45,6 @@ public class Spectogram {
 		for (int i = 0; i < tempResults.length; i++) {
 			tempResults[i] = Float.NEGATIVE_INFINITY;
 		}
-		float sum = 0.0f;
 		int tempResultsSize = 0;
 
 		int numberOfFftPerRow = (int) (source.getContext().getSampleRate() / (width * numRowsPerSecond));
@@ -79,7 +81,6 @@ public class Spectogram {
 					tempResults[currentRow * width + i] = tempResults[currentRow * width + length + i];
 					tempResults[currentRow * width + length + i] = temp;
 
-					sum += tempResults[currentRow * width + i] + tempResults[currentRow * width + length + i];
 					tempResultsSize += 2;
 				}
 
@@ -98,12 +99,39 @@ public class Spectogram {
 				break;
 			}
 		}
-		if( tempResultsSize == 0 ) {
+		if (tempResultsSize == 0) {
 			throw new IllegalArgumentException("tempResultsSize cannot be 0");
 		}
-		double mean = sum / tempResultsSize;
+		BufferedImage image = new BufferedImage(width, height, BufferedImage.TYPE_BYTE_GRAY);
+		WritableRaster r = image.getRaster();
+		int[] pixelArray = new int[1];
+		for (int i = 0; i < height; i++) {
+			for (int j = 0; j < width; j++) {
+				int pixel = (int) (tempResults[i * width + j] + 255);
+				pixelArray[0] = (pixel & 0xFF);
+				r.setPixel(j, height - i - 1, pixelArray);
+			}
+		}
+		return image;
+	}
+
+	public BufferedImage convertToRgb(BufferedImage grayscale) {
+		Raster raster = grayscale.getRaster();
+		int[] pixel = new int[1];
+
+		long sum = 0;
+		int tempResultsSize = 0;
+
+		DataBuffer buffer = raster.getDataBuffer();
+		for (int i = 0; i < buffer.getSize(); i++) {
+			sum += (buffer.getElem(i) & 0xFF) - 255;
+			tempResultsSize += 1;
+		}
+
+		double mean = (double) sum / tempResultsSize;
 		double standardDeviation = 0.0;
-		for (float curValue : tempResults) {
+		for (int i = 0; i < buffer.getSize(); i++) {
+			int curValue = (buffer.getElem(i) & 0xFF) - 255;
 			standardDeviation += Math.pow(curValue - mean, 2);
 		}
 		standardDeviation = Math.sqrt(standardDeviation / tempResultsSize);
@@ -111,11 +139,12 @@ public class Spectogram {
 		double max = mean + 6 * standardDeviation;
 
 		SpectogramPalette palette = new SpectogramPalette((float) max, (float) min, 0x000000, 0x0000e7, 0x0094ff, 0x00ffb8, 0x2eff00, 0xffff00, 0xff8800, 0xff0000, 0xff007c);
-
-		BufferedImage image = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
-		for (int i = 0; i < height; i++) {
-			for (int j = 0; j < width; j++) {
-				image.setRGB(j, height - i - 1, palette.getRGB(tempResults[i * width + j]));
+		BufferedImage image = new BufferedImage(grayscale.getWidth(), grayscale.getHeight(), BufferedImage.TYPE_INT_RGB);
+		for (int i = 0; i < grayscale.getHeight(); i++) {
+			for (int j = 0; j < grayscale.getWidth(); j++) {
+				raster.getPixel(j, i, pixel);
+				int curValue = (pixel[0] & 0xFF) - 255;
+				image.setRGB(j, i, palette.getRGB(curValue));
 			}
 		}
 		return image;
