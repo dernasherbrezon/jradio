@@ -70,15 +70,15 @@ public class Spectogram {
 					for (int i = 0, j = 0; i < complexBuf.length; i += 2, j++) {
 						float real = complexBuf[i] * iNormalizationFactor;
 						float img = complexBuf[i + 1] * iNormalizationFactor;
-						tempResults[currentRow * width + j] = Math.max(tempResults[currentRow * width + j], (float) (10.0 * Math.log10((real * real) + (img * img) + 1e-20)));
+						tempResults[currentRow * width + j] = Math.max(tempResults[currentRow * width + j], (float) ((real * real) + (img * img) + 1e-20));
 					}
 				}
 
 				int length = width / 2;
 				for (int i = 0; i < length; i++) {
 					// swap 2 halfes
-					float temp = tempResults[currentRow * width + i];
-					tempResults[currentRow * width + i] = tempResults[currentRow * width + length + i];
+					float temp = (float) (10.0 * Math.log10(tempResults[currentRow * width + i]));
+					tempResults[currentRow * width + i] = (float) (10.0 * Math.log10(tempResults[currentRow * width + length + i]));
 					tempResults[currentRow * width + length + i] = temp;
 
 					tempResultsSize += 2;
