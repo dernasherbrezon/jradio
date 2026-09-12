@@ -5,7 +5,7 @@ import java.io.IOException;
 import ru.r2cloud.jradio.BeaconSource;
 import ru.r2cloud.jradio.ByteInput;
 import ru.r2cloud.jradio.fec.ViterbiSoft;
-import ru.r2cloud.jradio.fec.ccsds.Randomize;
+import ru.r2cloud.jradio.fec.ccsds.CcittScrambler;
 import ru.r2cloud.jradio.fec.ccsds.ReedSolomon;
 import ru.r2cloud.jradio.fec.ccsds.UncorrectableException;
 import ru.r2cloud.jradio.util.Deinterleave;
@@ -36,7 +36,7 @@ public class SmogPShort extends BeaconSource<SmogPBeacon> {
 		byte[] skipped = new byte[((RS_LENGTH + 1) * 8) * 2]; // 2592
 		System.arraycopy(symbols, SKIP, skipped, 0, symbols.length - SKIP);
 		byte[] decoded = viterbi.decode(skipped);
-		Randomize.shuffle(decoded);
+		CcittScrambler.shuffle(decoded);
 		return ReedSolomon.decode(decoded);
 	}
 

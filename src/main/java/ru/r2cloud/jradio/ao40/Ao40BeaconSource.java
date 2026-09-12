@@ -5,7 +5,7 @@ import java.io.IOException;
 import ru.r2cloud.jradio.BeaconSource;
 import ru.r2cloud.jradio.MessageInput;
 import ru.r2cloud.jradio.fec.ViterbiSoft;
-import ru.r2cloud.jradio.fec.ccsds.Randomize;
+import ru.r2cloud.jradio.fec.ccsds.CcittScrambler;
 import ru.r2cloud.jradio.fec.ccsds.ReedSolomon;
 import ru.r2cloud.jradio.fec.ccsds.UncorrectableException;
 
@@ -39,7 +39,7 @@ public abstract class Ao40BeaconSource<T> extends BeaconSource<T> {
 			coltop += COLS;
 		}
 		byte[] data = viterbi.decode(symbols);
-		Randomize.shuffle(data);
+		CcittScrambler.shuffle(data);
 		byte[] packet = new byte[256];
 
 		for (int i = 0; i < 2; i++) {

@@ -13,8 +13,8 @@ public class RandomizeTest {
 		byte[] data = ViterbiTest.hexStringToByteArray("eec1d49d7082582c93ada7b746ce5a97");
 		byte[] result = new byte[data.length];
 		System.arraycopy(data, 0, result, 0, data.length);
-		Randomize.shuffle(result);
-		Randomize.shuffle(result);
+		CcittScrambler.shuffle(result);
+		CcittScrambler.shuffle(result);
 		assertArrayEquals(data, result);
 	}
 

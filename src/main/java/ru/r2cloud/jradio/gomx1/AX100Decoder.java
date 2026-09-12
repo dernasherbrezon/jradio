@@ -11,7 +11,7 @@ import ru.r2cloud.jradio.MessageInput;
 import ru.r2cloud.jradio.blocks.CorrelatedMarker;
 import ru.r2cloud.jradio.blocks.UnpackedToPacked;
 import ru.r2cloud.jradio.fec.Golay;
-import ru.r2cloud.jradio.fec.ccsds.Randomize;
+import ru.r2cloud.jradio.fec.ccsds.CcittScrambler;
 import ru.r2cloud.jradio.fec.ccsds.ReedSolomon;
 import ru.r2cloud.jradio.fec.ccsds.UncorrectableException;
 
@@ -86,7 +86,7 @@ public class AX100Decoder implements MessageInput {
 			data = UnpackedToPacked.packSoft(raw, 3 * 8, frameLength);
 		}
 		if (scramblerFlag > 0 || forceScrambler) {
-			Randomize.shuffle(data);
+			CcittScrambler.shuffle(data);
 		}
 		if (rsFlag > 0 || forceReedSolomon) {
 			data = ReedSolomon.decode(data);

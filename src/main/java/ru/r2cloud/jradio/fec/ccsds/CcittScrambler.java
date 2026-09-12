@@ -1,6 +1,6 @@
 package ru.r2cloud.jradio.fec.ccsds;
 
-public class Randomize {
+public class CcittScrambler {
 
 	private static final int[] SEQUENCE = new int[255];
 
@@ -31,7 +31,7 @@ public class Randomize {
 		}
 	}
 
-	private Randomize() {
+	private CcittScrambler() {
 		// do nothing
 	}
 

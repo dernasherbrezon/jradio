@@ -6,7 +6,7 @@ import java.util.Arrays;
 import ru.r2cloud.jradio.BeaconSource;
 import ru.r2cloud.jradio.MessageInput;
 import ru.r2cloud.jradio.fec.ViterbiSoft;
-import ru.r2cloud.jradio.fec.ccsds.Randomize;
+import ru.r2cloud.jradio.fec.ccsds.CcittScrambler;
 import ru.r2cloud.jradio.fec.ccsds.ReedSolomon;
 import ru.r2cloud.jradio.fec.ccsds.UncorrectableException;
 
@@ -28,7 +28,7 @@ public class Aausat4 extends BeaconSource<Aausat4Beacon> {
 	protected Aausat4Beacon parseBeacon(byte[] raw) throws UncorrectableException, IOException {
 		// long frame
 		byte[] viterbi = viterbiSoft.decode(Arrays.copyOfRange(raw, 8, raw.length));
-		Randomize.shuffle(viterbi);
+		CcittScrambler.shuffle(viterbi);
 
 		byte[] data = ReedSolomon.decode(viterbi);
 		Aausat4Beacon current = new Aausat4Beacon();
