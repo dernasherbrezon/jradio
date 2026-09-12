@@ -6,7 +6,7 @@ import org.junit.Test;
 
 import ru.r2cloud.jradio.fec.ViterbiTest;
 
-public class RandomizeTest {
+public class CcittScramblerTest {
 
 	@Test
 	public void shuffle() {
