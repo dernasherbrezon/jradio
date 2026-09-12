@@ -13,4 +13,9 @@ public class SyncwordTest {
 		assertEquals(5.1616545f, syncword.calculateSnr(syncwordSoftBits), 0.0f);
 	}
 
+	@Test
+	public void test8Bit() {
+		Syncword ac = new Syncword("11100100");
+		assertEquals(0, ac.correlate(0b1110_0100));
+	}
 }

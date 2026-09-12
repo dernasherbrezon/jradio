@@ -75,11 +75,14 @@ public class PhaseAmbiguityResolver {
 	public PhaseAmbiguityResolver(long synchronizationMarker) {
 		this(synchronizationMarker, 64);
 	}
-	
+
 	public PhaseAmbiguityResolver(long synchronizationMarker, int sizeInBits) {
 		this.sizeInBits = sizeInBits;
 		for (int i = 0; i < synchronizationMarkers.length; i++) {
 			synchronizationMarkers[i] = rotate(synchronizationMarker, i);
+			if (sizeInBits != 64) {
+				synchronizationMarkers[i] &= ((1L << sizeInBits) - 1);
+			}
 		}
 	}
 
@@ -92,7 +95,7 @@ public class PhaseAmbiguityResolver {
 		}
 		return accessCodes;
 	}
-	
+
 	public int getSizeInBits() {
 		return sizeInBits;
 	}

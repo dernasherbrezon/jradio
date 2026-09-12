@@ -54,6 +54,7 @@ public class CcsdsBeaconSource<T extends Beacon> extends BeaconSource<T> {
 			defaultFrame.setFrameLength(255);
 			defaultFrame.setScrambler(ScramblerType.CCITT);
 			defaultFrame.setCoding(Coding.CONCANTENATED_RS255_239);
+			defaultFrame.setSyncwordThreshold(14);
 			this.framing = defaultFrame;
 		}
 		if (!SUPPORTED_CODING.contains(this.framing.getCoding())) {
@@ -70,9 +71,13 @@ public class CcsdsBeaconSource<T extends Beacon> extends BeaconSource<T> {
 		} else {
 			this.viterbiSoft = null;
 		}
-		// viterbi encoded 0x1acffc1d
-		this.phaseAmbiguityResolver = new PhaseAmbiguityResolver(0x56081C971AA73D3EL);
-		this.input = new CorrelateSyncword(input, 14, phaseAmbiguityResolver.getSynchronizationMarkers(), totalBits);
+		if (this.viterbiSoft != null) {
+			// viterbi encoded 0x1acffc1d
+			this.phaseAmbiguityResolver = new PhaseAmbiguityResolver(0x56081C971AA73D3EL, 64);
+		} else {
+			this.phaseAmbiguityResolver = new PhaseAmbiguityResolver(0x1acffc1d, 32);
+		}
+		this.input = new CorrelateSyncword(input, framing.getSyncwordThreshold(), phaseAmbiguityResolver.getSynchronizationMarkers(), totalBits);
 		this.clazz = clazz;
 	}
 
