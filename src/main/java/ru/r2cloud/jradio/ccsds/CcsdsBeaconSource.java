@@ -63,6 +63,9 @@ public class CcsdsBeaconSource<T extends Beacon> extends BeaconSource<T> {
 		if (!SUPPORTED_SCRAMBLERS.contains(this.framing.getScrambler())) {
 			throw new IllegalArgumentException("unsupported scrambler: " + this.framing.getScrambler());
 		}
+		if (this.framing.getFrameLength() == 0) {
+			throw new IllegalArgumentException("frameLength cannot be empty");
+		}
 		int totalBits = this.framing.getFrameLength() * 8;
 		if (isViterbiEnabled(this.framing.getCoding())) {
 			totalBits += 1 * 8; // TAIL
@@ -71,13 +74,19 @@ public class CcsdsBeaconSource<T extends Beacon> extends BeaconSource<T> {
 		} else {
 			this.viterbiSoft = null;
 		}
+		int syncwordLengthBits;
 		if (this.viterbiSoft != null) {
 			// viterbi encoded 0x1acffc1d
-			this.phaseAmbiguityResolver = new PhaseAmbiguityResolver(0x56081C971AA73D3EL, 64);
+			syncwordLengthBits = 64;
+			this.phaseAmbiguityResolver = new PhaseAmbiguityResolver(0x56081C971AA73D3EL, syncwordLengthBits);
 		} else {
-			this.phaseAmbiguityResolver = new PhaseAmbiguityResolver(0x1acffc1d, 32);
+			syncwordLengthBits = 32;
+			this.phaseAmbiguityResolver = new PhaseAmbiguityResolver(0x1acffc1d, syncwordLengthBits);
 		}
-		this.input = new CorrelateSyncword(input, framing.getSyncwordThreshold(), phaseAmbiguityResolver.getSynchronizationMarkers(), totalBits);
+		if (this.framing.getSyncwordThreshold() > syncwordLengthBits) {
+			throw new IllegalArgumentException("syncword threshold " + this.framing.getSyncwordThreshold() + " cannot be more than the actual syncword: " + syncwordLengthBits);
+		}
+		this.input = new CorrelateSyncword(input, this.framing.getSyncwordThreshold(), phaseAmbiguityResolver.getSynchronizationMarkers(), totalBits);
 		this.clazz = clazz;
 	}
 
@@ -88,7 +97,7 @@ public class CcsdsBeaconSource<T extends Beacon> extends BeaconSource<T> {
 		if (viterbiSoft != null) {
 			data = viterbiSoft.decode(raw);
 		} else {
-			data = UnpackedToPacked.pack(raw);
+			data = UnpackedToPacked.packSoft(raw, 0, raw.length / 8);
 		}
 		if (framing.getScrambler().equals(ScramblerType.CCITT)) {
 			CcittScrambler.shuffle(data);
