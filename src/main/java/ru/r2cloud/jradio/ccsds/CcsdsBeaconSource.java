@@ -84,6 +84,7 @@ public class CcsdsBeaconSource<T extends Beacon> extends BeaconSource<T> {
 		long syncword = Long.valueOf(this.framing.getSyncword(), 16);
 		if (this.viterbiSoft != null) {
 			byte[] encodedSyncword = Viterbi.encode(longToBytes(syncword, syncwordLengthBits), (byte) 0x4f, (byte) 0x6d, true);
+			syncwordLengthBits *= 2;
 			this.phaseAmbiguityResolver = new PhaseAmbiguityResolver(bytesToLong(encodedSyncword, 0, syncwordLengthBits / 8), syncwordLengthBits);
 		} else {
 			this.phaseAmbiguityResolver = new PhaseAmbiguityResolver(syncword, syncwordLengthBits);
