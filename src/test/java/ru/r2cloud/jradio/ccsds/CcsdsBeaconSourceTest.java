@@ -74,7 +74,7 @@ public class CcsdsBeaconSourceTest {
 		CcsdsFraming framing = new CcsdsFraming();
 		framing.setSyncwordThreshold(5);
 		framing.setCoding(Coding.UNCODED);
-		framing.setScrambler(ScramblerType.IESS);
+		framing.setScrambler(ScramblerType.UNKNOWN);
 		framing.setFrameLength(220);
 		CcsdsBeaconSource<RawBeacon> source = createSource(framing);
 		source.close();

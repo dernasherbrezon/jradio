@@ -32,6 +32,7 @@ public class CcsdsBeaconSource<T extends Beacon> extends BeaconSource<T> {
 
 		SUPPORTED_SCRAMBLERS.add(ScramblerType.NONE);
 		SUPPORTED_SCRAMBLERS.add(ScramblerType.CCITT);
+		SUPPORTED_SCRAMBLERS.add(ScramblerType.IESS);
 	}
 
 	private final PhaseAmbiguityResolver phaseAmbiguityResolver;
@@ -106,6 +107,8 @@ public class CcsdsBeaconSource<T extends Beacon> extends BeaconSource<T> {
 		}
 		if (framing.getScrambler().equals(ScramblerType.CCITT)) {
 			CcittScrambler.shuffle(data);
+		} else if (framing.getScrambler().equals(ScramblerType.IESS)) {
+			IessScrambler.shuffle(data);
 		}
 		if (framing.getCoding().equals(Coding.CONCANTENATED_RS255_239)) {
 			return ReedSolomon.CCSDS.decodeDualBasis(data);
