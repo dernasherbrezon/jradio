@@ -6,6 +6,7 @@ public class CcsdsFraming {
 	private Coding coding;
 	private int frameLength;
 	private int syncwordThreshold;
+	private String syncword; // standard is 0x1ACFFC1D, but also can be a 0xFAF320
 
 	public CcsdsFraming() {
 		// do nothing
@@ -16,6 +17,15 @@ public class CcsdsFraming {
 		this.coding = other.coding;
 		this.frameLength = other.frameLength;
 		this.syncwordThreshold = other.syncwordThreshold;
+		this.syncword = other.syncword;
+	}
+	
+	public String getSyncword() {
+		return syncword;
+	}
+	
+	public void setSyncword(String syncword) {
+		this.syncword = syncword;
 	}
 	
 	public int getSyncwordThreshold() {

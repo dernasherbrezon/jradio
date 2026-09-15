@@ -90,6 +90,18 @@ public class CcsdsBeaconSourceTest {
 		CcsdsBeaconSource<RawBeacon> source = createSource(framing);
 		source.close();
 	}
+	
+	@Test
+	public void testLongToBytes() {
+		long value = 0x1acffc1dL;
+		byte[] bytes = CcsdsBeaconSource.longToBytes(value, 4 * 8);
+		assertEquals((byte) 0x1a, bytes[0]);
+		assertEquals((byte) 0xcf, bytes[1]);
+		assertEquals((byte) 0xfc, bytes[2]);
+		assertEquals((byte) 0x1d, bytes[3]);
+		
+		assertEquals(value, CcsdsBeaconSource.bytesToLong(bytes, 0, bytes.length));
+	}
 
 	private static CcsdsBeaconSource<RawBeacon> createSource(CcsdsFraming framing) {
 		Context ctx = new Context();

@@ -13,6 +13,7 @@ import ru.r2cloud.jradio.ByteInput;
 import ru.r2cloud.jradio.PhaseAmbiguityResolver;
 import ru.r2cloud.jradio.blocks.CorrelateSyncword;
 import ru.r2cloud.jradio.blocks.UnpackedToPacked;
+import ru.r2cloud.jradio.fec.Viterbi;
 import ru.r2cloud.jradio.fec.ViterbiSoft;
 import ru.r2cloud.jradio.fec.ccsds.CcittScrambler;
 import ru.r2cloud.jradio.fec.ccsds.ReedSolomon;
@@ -55,6 +56,7 @@ public class CcsdsBeaconSource<T extends Beacon> extends BeaconSource<T> {
 			defaultFrame.setScrambler(ScramblerType.CCITT);
 			defaultFrame.setCoding(Coding.CONCANTENATED_RS255_239);
 			defaultFrame.setSyncwordThreshold(14);
+			defaultFrame.setSyncword("1ACFFC1D");
 			this.framing = defaultFrame;
 		}
 		if (!SUPPORTED_CODING.contains(this.framing.getCoding())) {
@@ -66,6 +68,10 @@ public class CcsdsBeaconSource<T extends Beacon> extends BeaconSource<T> {
 		if (this.framing.getFrameLength() == 0) {
 			throw new IllegalArgumentException("frameLength cannot be empty");
 		}
+		if (this.framing.getSyncword() == null || this.framing.getSyncword().trim().length() == 0) {
+			// this is CCSDS beacon source. Assume default CCSDS syncword
+			this.framing.setSyncword("1ACFFC1D");
+		}
 		int totalBits = this.framing.getFrameLength() * 8;
 		if (isViterbiEnabled(this.framing.getCoding())) {
 			totalBits += 1 * 8; // TAIL
@@ -74,14 +80,13 @@ public class CcsdsBeaconSource<T extends Beacon> extends BeaconSource<T> {
 		} else {
 			this.viterbiSoft = null;
 		}
-		int syncwordLengthBits;
+		int syncwordLengthBits = this.framing.getSyncword().length() * 4;
+		long syncword = Long.valueOf(this.framing.getSyncword(), 16);
 		if (this.viterbiSoft != null) {
-			// viterbi encoded 0x1acffc1d
-			syncwordLengthBits = 64;
-			this.phaseAmbiguityResolver = new PhaseAmbiguityResolver(0x56081C971AA73D3EL, syncwordLengthBits);
+			byte[] encodedSyncword = Viterbi.encode(longToBytes(syncword, syncwordLengthBits), (byte) 0x4f, (byte) 0x6d, true);
+			this.phaseAmbiguityResolver = new PhaseAmbiguityResolver(bytesToLong(encodedSyncword, 0, syncwordLengthBits / 8), syncwordLengthBits);
 		} else {
-			syncwordLengthBits = 32;
-			this.phaseAmbiguityResolver = new PhaseAmbiguityResolver(0x1acffc1d, syncwordLengthBits);
+			this.phaseAmbiguityResolver = new PhaseAmbiguityResolver(syncword, syncwordLengthBits);
 		}
 		if (this.framing.getSyncwordThreshold() > syncwordLengthBits) {
 			throw new IllegalArgumentException("syncword threshold " + this.framing.getSyncwordThreshold() + " cannot be more than the actual syncword: " + syncwordLengthBits);
@@ -129,4 +134,24 @@ public class CcsdsBeaconSource<T extends Beacon> extends BeaconSource<T> {
 		return coding.equals(Coding.CONVOLUTIONAL) || coding.equals(Coding.CONCANTENATED_RS204_188) || coding.equals(Coding.CONCANTENATED_RS255_239);
 	}
 
+	static long bytesToLong(byte[] data, int offset, int length) {
+		if (length > 8 || (offset + length) > data.length) {
+			throw new IllegalArgumentException("invalid length: " + length);
+		}
+		long result = 0L;
+		for (int i = offset; i < (offset + length); i++) {
+			result = result << 8;
+			result |= (data[i] & 0xFF);
+		}
+		return result;
+	}
+
+	static byte[] longToBytes(long data, int totalBits) {
+		// do not support partial bytes
+		byte[] result = new byte[totalBits / 8];
+		for (int i = 0; i < result.length; i++) {
+			result[i] = (byte) ((data >> (totalBits - (i + 1) * 8)) & 0xFF);
+		}
+		return result;
+	}
 }
