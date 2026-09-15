@@ -10,8 +10,8 @@ import ru.r2cloud.jradio.Context;
 import ru.r2cloud.jradio.MessageInput;
 import ru.r2cloud.jradio.blocks.CorrelatedMarker;
 import ru.r2cloud.jradio.blocks.UnpackedToPacked;
+import ru.r2cloud.jradio.ccsds.CcittScrambler;
 import ru.r2cloud.jradio.fec.Golay;
-import ru.r2cloud.jradio.fec.ccsds.CcittScrambler;
 import ru.r2cloud.jradio.fec.ccsds.ReedSolomon;
 import ru.r2cloud.jradio.fec.ccsds.UncorrectableException;
 

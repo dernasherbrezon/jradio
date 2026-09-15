@@ -4,7 +4,6 @@ import java.awt.image.BufferedImage;
 import java.awt.image.DataBuffer;
 import java.awt.image.Raster;
 import java.awt.image.WritableRaster;
-import java.io.EOFException;
 import java.io.IOException;
 
 import org.jtransforms.fft.FloatFFT_1D;
@@ -56,47 +55,43 @@ public class Spectogram {
 		int currentRow = 0;
 		// skip samples which were not fitted into height.
 		while (currentRow < height) {
-			try {
-				for (int k = 0; k < numberOfFftPerRow; k++) {
-					for (int i = 0; i < complexBuf.length; i += 2) {
-						complexBuf[i] = source.readFloat();
-						if (source.getContext().getChannels() == 2) {
-							complexBuf[i + 1] = source.readFloat();
-						} else {
-							complexBuf[i + 1] = 0.0f;
-						}
-					}
-					fft.complexForward(complexBuf);
-					for (int i = 0, j = 0; i < complexBuf.length; i += 2, j++) {
-						float real = complexBuf[i] * iNormalizationFactor;
-						float img = complexBuf[i + 1] * iNormalizationFactor;
-						tempResults[currentRow * width + j] = Math.max(tempResults[currentRow * width + j], (float) ((real * real) + (img * img) + 1e-20));
+			for (int k = 0; k < numberOfFftPerRow; k++) {
+				for (int i = 0; i < complexBuf.length; i += 2) {
+					complexBuf[i] = source.readFloat();
+					if (source.getContext().getChannels() == 2) {
+						complexBuf[i + 1] = source.readFloat();
+					} else {
+						complexBuf[i + 1] = 0.0f;
 					}
 				}
-
-				int length = width / 2;
-				for (int i = 0; i < length; i++) {
-					// swap 2 halfes
-					float temp = (float) (10.0 * Math.log10(tempResults[currentRow * width + i]));
-					tempResults[currentRow * width + i] = (float) (10.0 * Math.log10(tempResults[currentRow * width + length + i]));
-					tempResults[currentRow * width + length + i] = temp;
-
-					tempResultsSize += 2;
+				fft.complexForward(complexBuf);
+				for (int i = 0, j = 0; i < complexBuf.length; i += 2, j++) {
+					float real = complexBuf[i] * iNormalizationFactor;
+					float img = complexBuf[i + 1] * iNormalizationFactor;
+					tempResults[currentRow * width + j] = Math.max(tempResults[currentRow * width + j], (float) ((real * real) + (img * img) + 1e-20));
 				}
+			}
 
-				currentRow++;
+			int length = width / 2;
+			for (int i = 0; i < length; i++) {
+				// swap 2 halfes
+				float temp = (float) (10.0 * Math.log10(tempResults[currentRow * width + i]));
+				tempResults[currentRow * width + i] = (float) (10.0 * Math.log10(tempResults[currentRow * width + length + i]));
+				tempResults[currentRow * width + length + i] = temp;
 
-				// skip at the end of second
-				if (currentRow % numRowsPerSecond == 0) {
-					for (int i = 0; i < skipOnEveryRow; i++) {
+				tempResultsSize += 2;
+			}
+
+			currentRow++;
+
+			// skip at the end of second
+			if (currentRow % numRowsPerSecond == 0) {
+				for (int i = 0; i < skipOnEveryRow; i++) {
+					source.readFloat();
+					if (source.getContext().getChannels() == 2) {
 						source.readFloat();
-						if (source.getContext().getChannels() == 2) {
-							source.readFloat();
-						}
 					}
 				}
-			} catch (EOFException e) {
-				break;
 			}
 		}
 		if (tempResultsSize == 0) {

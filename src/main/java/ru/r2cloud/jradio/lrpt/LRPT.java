@@ -14,8 +14,8 @@ import ru.r2cloud.jradio.blocks.ConvolutionalDeinterleaver;
 import ru.r2cloud.jradio.blocks.CorrelateSynchronizationMarker;
 import ru.r2cloud.jradio.blocks.CorrelateSyncword;
 import ru.r2cloud.jradio.blocks.DifferentialSoftDecoder;
+import ru.r2cloud.jradio.ccsds.CcittScrambler;
 import ru.r2cloud.jradio.fec.ViterbiSoft;
-import ru.r2cloud.jradio.fec.ccsds.CcittScrambler;
 import ru.r2cloud.jradio.fec.ccsds.ReedSolomon;
 import ru.r2cloud.jradio.fec.ccsds.UncorrectableException;
 

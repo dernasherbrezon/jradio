@@ -10,7 +10,7 @@ import org.slf4j.LoggerFactory;
 
 import ru.r2cloud.jradio.Context;
 import ru.r2cloud.jradio.MessageInput;
-import ru.r2cloud.jradio.ccsds.Scrambler;
+import ru.r2cloud.jradio.ccsds.CcittScrambler;
 import ru.r2cloud.jradio.crc.Crc16Ccitt;
 
 public class NgHam implements MessageInput {
@@ -54,7 +54,7 @@ public class NgHam implements MessageInput {
 				continue;
 			}
 
-			Scrambler.shuffle(packet, SIZE_TAG_BYTES, NGH_PL_PAR_SIZE[index]);
+			CcittScrambler.shuffle(packet, SIZE_TAG_BYTES, NGH_PL_PAR_SIZE[index]);
 			// TODO reed solomon
 			int length = NGH_PL_PAR_SIZE[index] - NGH_PAR_SIZE[index] - (packet[SIZE_TAG_BYTES] & 0b11111);
 

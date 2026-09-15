@@ -1,4 +1,4 @@
-package ru.r2cloud.jradio.fec.ccsds;
+package ru.r2cloud.jradio.ccsds;
 
 import static org.junit.Assert.assertArrayEquals;
 

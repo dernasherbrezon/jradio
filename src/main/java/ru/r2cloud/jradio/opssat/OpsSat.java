@@ -10,7 +10,7 @@ import ru.r2cloud.jradio.ax25.Header;
 import ru.r2cloud.jradio.blocks.Descrambler;
 import ru.r2cloud.jradio.blocks.HdlcReceiver;
 import ru.r2cloud.jradio.blocks.NrziDecode;
-import ru.r2cloud.jradio.ccsds.Scrambler;
+import ru.r2cloud.jradio.ccsds.CcittScrambler;
 import ru.r2cloud.jradio.fec.ccsds.ReedSolomon;
 import ru.r2cloud.jradio.fec.ccsds.UncorrectableException;
 
@@ -39,7 +39,7 @@ public class OpsSat extends BeaconSource<OpsSatBeacon> {
 		byte[] dataField = new byte[raw.length - Header.LENGTH_BYTES];
 		dis.readFully(dataField);
 
-		Scrambler.shuffle(dataField);
+		CcittScrambler.shuffle(dataField);
 		byte[] payloadWithCrc = ReedSolomon.CCSDS.decodeData(dataField);
 
 		OpsSatBeacon result = new OpsSatBeacon();

@@ -1,4 +1,4 @@
-package ru.r2cloud.jradio.fec.ccsds;
+package ru.r2cloud.jradio.ccsds;
 
 public class CcittScrambler {
 
@@ -28,6 +28,17 @@ public class CcittScrambler {
 	public static void shuffle(byte[] data) {
 		for (int i = 0; i < data.length; i++) {
 			data[i] = (byte) (data[i] ^ SEQUENCE[i % SEQUENCE.length]);
+		}
+	}
+
+	public static void shuffle(byte[] data, int offset, int length) {
+		int ccsdsPolyPosition = 0;
+		for (int i = offset; i < (offset + length); i++) {
+			data[i] = (byte) ((data[i] & 0xFF) ^ SEQUENCE[ccsdsPolyPosition]);
+			ccsdsPolyPosition++;
+			if (ccsdsPolyPosition >= 0xFF) {
+				ccsdsPolyPosition = 0;
+			}
 		}
 	}
 

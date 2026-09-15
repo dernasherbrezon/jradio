@@ -11,7 +11,7 @@ import ru.r2cloud.jradio.ByteInput;
 import ru.r2cloud.jradio.Context;
 import ru.r2cloud.jradio.MessageInput;
 import ru.r2cloud.jradio.blocks.CorrelateSyncword;
-import ru.r2cloud.jradio.ccsds.Scrambler;
+import ru.r2cloud.jradio.ccsds.CcittScrambler;
 import ru.r2cloud.jradio.fec.PlsDecoder;
 import ru.r2cloud.jradio.fec.ViterbiSoft;
 import ru.r2cloud.jradio.fec.ccsds.ReedSolomon;
@@ -78,7 +78,7 @@ public class UspDecoder implements MessageInput {
 		} else {
 			decoded = viterbiShort.decode(dataFrame);
 		}
-		Scrambler.shuffle(decoded);
+		CcittScrambler.shuffle(decoded);
 		byte[] result;
 		if (code == 0) {
 			result = ReedSolomon.CCSDS.decodeDualBasis(decoded);
