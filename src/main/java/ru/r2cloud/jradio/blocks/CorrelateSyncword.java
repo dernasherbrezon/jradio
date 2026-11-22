@@ -132,6 +132,7 @@ public class CorrelateSyncword implements MessageInput {
 			}
 			RxMetadata rxMeta = new RxMetadata();
 			rxMeta.setSnr(min.calculateSnr(syncwordSoftBits));
+			rxMeta.setFrequencyError(input.getContext().getFrequencyError());
 			index.setRxmeta(rxMeta);
 		}
 		LongValueSource currentSample = getContext().getCurrentSample();

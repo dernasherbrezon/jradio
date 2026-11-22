@@ -20,6 +20,7 @@ public class Context {
 	private int channels = 1;
 	private int sampleSizeInBits;
 	private LongValueSource currentSample;
+	private Long frequencyError;
 	private Boolean softBits;
 	private List<StateProvider> providers = new ArrayList<>();
 
@@ -35,6 +36,7 @@ public class Context {
 		sampleSizeInBits = orig.sampleSizeInBits;
 		currentSample = orig.currentSample;
 		softBits = orig.softBits;
+		frequencyError = orig.frequencyError;
 		providers.addAll(orig.providers);
 	}
 
@@ -106,4 +108,11 @@ public class Context {
 		return state;
 	}
 
+	public Long getFrequencyError() {
+		return frequencyError;
+	}
+
+	public void setFrequencyError(Long frequencyError) {
+		this.frequencyError = frequencyError;
+	}
 }
